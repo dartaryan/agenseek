@@ -20,9 +20,16 @@ export function ProfilePage() {
           <Card className="p-6 space-y-4">
             <h3 className="text-lg font-semibold">Account Information</h3>
             <div className="space-y-2 text-gray-600">
-              <p><strong>Email:</strong> {user?.email}</p>
-              <p><strong>User ID:</strong> {user?.id}</p>
-              <p><strong>Created:</strong> {user?.created_at ? new Date(user.created_at).toLocaleDateString() : 'N/A'}</p>
+              <p>
+                <strong>Email:</strong> {user?.email}
+              </p>
+              <p>
+                <strong>User ID:</strong> {user?.id}
+              </p>
+              <p>
+                <strong>Created:</strong>{' '}
+                {user?.created_at ? new Date(user.created_at).toLocaleDateString() : 'N/A'}
+              </p>
             </div>
           </Card>
 
@@ -33,11 +40,12 @@ export function ProfilePage() {
 
           <Card className="p-6 space-y-4">
             <h3 className="text-lg font-semibold">Learning Preferences</h3>
-            <p className="text-gray-500">Preferences will be set during onboarding (Stories 2.5-2.9)</p>
+            <p className="text-gray-500">
+              Preferences will be set during onboarding (Stories 2.5-2.9)
+            </p>
           </Card>
         </div>
       </div>
     </div>
   );
 }
-

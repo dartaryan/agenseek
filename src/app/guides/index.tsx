@@ -26,4 +26,3 @@ export function GuidesPage() {
     </div>
   );
 }
-

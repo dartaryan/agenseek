@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 /**
  * Footer Component
- * 
+ *
  * Simple footer with copyright and useful links.
  * Features:
  * - Copyright notice
@@ -23,16 +23,10 @@ export function Footer() {
 
           {/* Links */}
           <div className="flex items-center gap-4 text-sm">
-            <Link
-              to="/guides"
-              className="text-gray-600 hover:text-emerald-600 transition-colors"
-            >
+            <Link to="/guides" className="text-gray-600 hover:text-emerald-600 transition-colors">
               Guides
             </Link>
-            <Link
-              to="/settings"
-              className="text-gray-600 hover:text-emerald-600 transition-colors"
-            >
+            <Link to="/settings" className="text-gray-600 hover:text-emerald-600 transition-colors">
               Help & Support
             </Link>
             <a
@@ -49,4 +43,3 @@ export function Footer() {
     </footer>
   );
 }
-

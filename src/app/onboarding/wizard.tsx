@@ -12,7 +12,7 @@ export function OnboardingWizardPage() {
           <h1 className="text-3xl font-bold text-emerald-600">Welcome to Agenseek!</h1>
           <p className="text-gray-600">Let's personalize your learning experience</p>
         </div>
-        
+
         <div className="space-y-4">
           <p className="text-center text-gray-500">
             Onboarding wizard will be implemented in Stories 2.5-2.9
@@ -32,4 +32,3 @@ export function OnboardingWizardPage() {
     </div>
   );
 }
-

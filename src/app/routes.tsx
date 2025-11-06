@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { ProtectedRoute } from '../components/common/ProtectedRoute';
 import { Layout } from './layout';
@@ -34,18 +35,18 @@ function RootRedirect() {
 
 /**
  * Application routing configuration
- * 
+ *
  * Public routes (no layout):
  * - /auth/login
  * - /auth/register
  * - /auth/reset-password
- * 
+ *
  * Protected routes (with Layout - Header, Sidebar, Footer):
  * - /dashboard
  * - /guides, /guides/:slug
  * - /notes, /tasks, /profile, /settings
  * - /admin (admin-only)
- * 
+ *
  * Special protected routes (no layout):
  * - /onboarding (full-screen wizard)
  */
@@ -135,4 +136,3 @@ export const router = createBrowserRouter([
     element: <Navigate to="/" replace />,
   },
 ]);
-

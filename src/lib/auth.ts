@@ -107,4 +107,3 @@ export async function getCurrentUser() {
   if (error) throw error;
   return data.user;
 }
-

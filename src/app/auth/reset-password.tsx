@@ -13,7 +13,7 @@ export function ResetPasswordPage() {
           <h1 className="text-3xl font-bold text-emerald-600">Agenseek</h1>
           <p className="text-gray-600">BMAD Learning Hub</p>
         </div>
-        
+
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-center">Reset Password</h2>
           <p className="text-center text-gray-500">
@@ -35,4 +35,3 @@ export function ResetPasswordPage() {
     </div>
   );
 }
-

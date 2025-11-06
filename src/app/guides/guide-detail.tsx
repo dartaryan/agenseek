@@ -31,9 +31,9 @@ export function GuideDetailPage() {
               <h3 className="font-semibold">Content</h3>
               <div className="prose max-w-none">
                 <p className="text-gray-500">
-                  Dynamic content rendering will be implemented in Epic 3.
-                  The guide reader will support 14 different block types including
-                  text, headings, code, callouts, tables, charts, and more.
+                  Dynamic content rendering will be implemented in Epic 3. The guide reader will
+                  support 14 different block types including text, headings, code, callouts, tables,
+                  charts, and more.
                 </p>
               </div>
             </div>
@@ -53,4 +53,3 @@ export function GuideDetailPage() {
     </div>
   );
 }
-

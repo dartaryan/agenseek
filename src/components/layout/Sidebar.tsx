@@ -16,13 +16,11 @@ const navigationItems: NavItem[] = [
   { name: 'Settings', href: '/settings', icon: '⚙️' },
 ];
 
-const adminItems: NavItem[] = [
-  { name: 'Admin', href: '/admin', icon: '🔧' },
-];
+const adminItems: NavItem[] = [{ name: 'Admin', href: '/admin', icon: '🔧' }];
 
 /**
  * Sidebar Component
- * 
+ *
  * Collapsible navigation sidebar with main navigation links.
  * Features:
  * - Active state highlighting
@@ -91,9 +89,7 @@ export function Sidebar() {
       <div className="border-t p-4">
         <div className="rounded-lg bg-emerald-50 p-3">
           <p className="text-xs font-semibold text-emerald-900">Need Help?</p>
-          <p className="mt-1 text-xs text-emerald-700">
-            Check out our guides or ask the community
-          </p>
+          <p className="mt-1 text-xs text-emerald-700">Check out our guides or ask the community</p>
           <Link
             to="/guides"
             className="mt-2 inline-block text-xs font-medium text-emerald-600 hover:text-emerald-700"
@@ -105,4 +101,3 @@ export function Sidebar() {
     </aside>
   );
 }
-

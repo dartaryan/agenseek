@@ -58,7 +58,5 @@ export function verifyDependencies() {
 }
 
 // Export types for future use
-export type {
-  // Add exported types as needed
-};
-
+export // Add exported types as needed
+ type {};

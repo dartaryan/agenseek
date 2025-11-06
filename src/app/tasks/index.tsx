@@ -17,7 +17,9 @@ export function TasksPage() {
           {['To Do', 'In Progress', 'Done'].map((status) => (
             <Card key={status} className="p-6 space-y-4">
               <h3 className="text-lg font-semibold">{status}</h3>
-              <p className="text-gray-500">Kanban board will be implemented in Epic 6 (Stories 6.4-6.7)</p>
+              <p className="text-gray-500">
+                Kanban board will be implemented in Epic 6 (Stories 6.4-6.7)
+              </p>
               <div className="h-64 bg-gray-100 rounded flex items-center justify-center text-gray-400">
                 Task Cards
               </div>
@@ -28,4 +30,3 @@ export function TasksPage() {
     </div>
   );
 }
-

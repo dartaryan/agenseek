@@ -5,10 +5,10 @@ import { Footer } from '../components/layout/Footer';
 
 /**
  * Layout Component
- * 
+ *
  * Main layout wrapper for protected pages.
  * Combines Header, Sidebar, content area (Outlet), and Footer.
- * 
+ *
  * Layout Structure:
  * - Sticky header at top
  * - Sidebar on left (collapsible on mobile)
@@ -31,7 +31,7 @@ export function Layout() {
           <div className="flex-1">
             <Outlet />
           </div>
-          
+
           {/* Footer */}
           <Footer />
         </main>
@@ -39,4 +39,3 @@ export function Layout() {
     </div>
   );
 }
-

@@ -25,7 +25,7 @@ export function useAuth(): UseAuthReturn {
         setIsLoading(false);
         return;
       }
-      
+
       setUser(session?.user ?? null);
       setIsLoading(false);
     });
@@ -47,4 +47,3 @@ export function useAuth(): UseAuthReturn {
 
   return { user, isLoading, error };
 }
-

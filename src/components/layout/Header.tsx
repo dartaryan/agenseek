@@ -5,7 +5,7 @@ import { signOut } from '../../lib/auth';
 
 /**
  * Header Component
- * 
+ *
  * Sticky header with logo, navigation, and user menu.
  * Features:
  * - Sticky positioning at top
@@ -64,12 +64,7 @@ export function Header() {
         <div className="flex items-center space-x-4">
           {/* Theme Toggle - Placeholder for future */}
           <Button variant="ghost" size="sm" className="hidden md:inline-flex" disabled>
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -104,4 +99,3 @@ export function Header() {
     </header>
   );
 }
-

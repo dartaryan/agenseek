@@ -8,10 +8,10 @@ interface ProtectedRouteProps {
 
 /**
  * ProtectedRoute component
- * 
+ *
  * Wraps routes that require authentication and/or admin privileges.
  * Redirects to login if not authenticated, or to dashboard if not admin.
- * 
+ *
  * @param children - The component to render if access is granted
  * @param requireAdmin - If true, requires user to be an admin
  */
@@ -40,7 +40,7 @@ export function ProtectedRoute({ children, requireAdmin = false }: ProtectedRout
     // For now, we'll check if user metadata includes admin role
     // This will be properly implemented when we have the profiles table
     const isAdmin = user.user_metadata?.role === 'admin';
-    
+
     if (!isAdmin) {
       return <Navigate to="/dashboard" replace />;
     }
@@ -48,4 +48,3 @@ export function ProtectedRoute({ children, requireAdmin = false }: ProtectedRout
 
   return <>{children}</>;
 }
-
