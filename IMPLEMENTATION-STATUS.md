@@ -306,7 +306,65 @@
 
 ---
 
+### Story 2.5: Build Onboarding Wizard - Step 1 (Welcome) ✅
+- **Status:** COMPLETE
+- **Completed:** November 6, 2025
+- **Details:**
+  - ✅ Full-screen onboarding wizard layout with gradient background
+  - ✅ Progress dots component (1/5) with animations
+  - ✅ Welcome message in Hebrew and English
+  - ✅ Animated sparkles icon with glow effect (Framer Motion)
+  - ✅ Description: "Your personalized BMAD learning journey starts here"
+  - ✅ Primary CTA button: "Let's personalize your journey"
+  - ✅ Secondary "I'll do this later" skip link
+  - ✅ Decorative info bullets (5 steps, 2 minutes, personalized)
+  - ✅ Multi-step wizard structure ready for Steps 2-5
+  - ✅ Smooth page transitions between steps
+  - ✅ Registration redirects to /onboarding after success
+  - ✅ Responsive design with emerald theme
+
+**Implemented Components:**
+- **ProgressDots Component** (`src/components/onboarding/ProgressDots.tsx`):
+  - Shows current step and total steps (e.g., "1 / 5")
+  - Active step scales up with emerald ring
+  - Completed steps shown with emerald color
+  - Staggered entrance animation
+- **OnboardingWizard Page** (`src/app/onboarding/wizard.tsx`):
+  - Full-screen layout with gradient background
+  - Multi-step state management with useState
+  - AnimatePresence for smooth transitions
+  - Step 1: Welcome screen with all animations
+  - Placeholder steps 2-5 for future stories
+  - Skip functionality redirects to dashboard
+- **Registration Flow Updated:**
+  - Success toast: "Let's personalize your learning journey!"
+  - Redirects to `/onboarding` instead of `/auth/login`
+
+**Animations (Framer Motion):**
+- Icon: Rotate + scale spring animation with blur glow
+- Welcome text: Staggered fade-in from bottom
+- CTA button: Fade-in with hover rocket icon translation
+- Page transitions: Slide + fade between steps
+
+**Verification:**
+- ✅ `npm run type-check` - 0 errors
+- ✅ `npm run lint` - 0 errors
+- ✅ `npm run build` - Built successfully (7.60s)
+- ✅ All acceptance criteria met
+- ✅ Progress dots working (1/5)
+- ✅ Welcome screen displays correctly
+- ✅ Primary button advances to Step 2 (placeholder)
+- ✅ Skip link goes to dashboard
+- ✅ Registration flow redirects to onboarding
+
+---
+
 ## 📋 Next Stories (Sprint 2 - Epic 2)
+
+**Story 2.6: Build Onboarding Wizard - Step 2 (Select Role)**
+- 9 role cards in responsive grid
+- Single selection with emerald border
+- Next button enabled after selection
 
 ---
 
@@ -327,13 +385,13 @@
 - ✅ 1.10: Code Quality Tools
 
 ### Sprint 2 (Epic 2: Authentication & Onboarding) - 🚧 IN PROGRESS
-**Stories Complete:** 3 / 10 (30%)
+**Stories Complete:** 4 / 10 (40%)
 
 - ✅ 2.1: Build Login Page
 - ✅ 2.2: Build Registration Page
-- ✅ 2.3: Build Password Reset Flow ✅ **NEW!**
-- ⏳ 2.4: Build Google OAuth Integration (buttons hidden until configured)
-- ⏳ 2.5: Build Onboarding Wizard - Step 1 (Welcome)
+- ✅ 2.3: Build Password Reset Flow
+- ⏳ 2.4: Build Google OAuth Integration (optional P1 - skipped for now)
+- ✅ 2.5: Build Onboarding Wizard - Step 1 (Welcome) ✅ **NEW!**
 - ⏳ 2.6: Build Onboarding Wizard - Step 2 (Select Role)
 - ⏳ 2.7: Build Onboarding Wizard - Step 3 (Select Interests)
 - ⏳ 2.8: Build Onboarding Wizard - Step 4 (Experience Level)
@@ -346,47 +404,46 @@
 
 ## 🎯 How to Continue
 
-### 🎉 Story 2.3 COMPLETE! 🎉
+### 🎉 Story 2.5 COMPLETE! 🎉
 
-**Excellent progress!** Sprint 2 is progressing well with login, registration, AND password reset complete.
+**Fantastic progress!** Sprint 2 is now 40% complete with 4 stories done!
 
-### Story 2.3 Achievements:
-1. ✅ **Forgot Password page** with email input and send reset link
-2. ✅ **Reset Password page** with new password form and validation
-3. ✅ **Token validation** on page load with error handling
-4. ✅ **Password strength indicator** (reused from Story 2.2)
-5. ✅ **Success/error states** with visual feedback and toasts
-6. ✅ **Resend functionality** if email not received
-7. ✅ **Beautiful UI** with Framer Motion animations and emerald theme
-8. ✅ **Google OAuth buttons hidden** until Story 2.4 configuration
+### Story 2.5 Achievements:
+1. ✅ **ProgressDots component** with animated step indicators (1/5)
+2. ✅ **Full-screen wizard layout** with beautiful gradient background
+3. ✅ **Welcome screen** with Hebrew and English messages
+4. ✅ **Animated sparkles icon** with spring animation and glow effect
+5. ✅ **Primary CTA button** advances to next step
+6. ✅ **Skip functionality** redirects to dashboard with toast
+7. ✅ **Multi-step structure** ready for Steps 2-5 (placeholder UI)
+8. ✅ **Registration flow** now redirects to onboarding
+9. ✅ **Smooth transitions** with Framer Motion AnimatePresence
 
-### Ready for Story 2.5 (Build Onboarding Wizard - Step 1):
+### Ready for Story 2.6 (Build Onboarding Wizard - Step 2):
 
-**Note:** Story 2.4 (Google OAuth) requires external Supabase configuration and is optional (P1).
-We're skipping to Story 2.5 to keep momentum on core features.
+**Next Story:** Story 2.6 - Build Onboarding Wizard - Step 2 (Select Role)
+**Sprint:** 3 | **Points:** 2 | **Priority:** P0
+**Dependencies:** Story 2.5 (Complete ✅)
 
-**Next Story:** Story 2.5 - Build Onboarding Wizard - Step 1 (Welcome)
-**Sprint:** 2 | **Points:** 2 | **Priority:** P0
-**Dependencies:** Story 2.2 (Complete ✅), Story 2.3 (Complete ✅)
-
-**Story 2.5 Requirements:**
-- Full-screen onboarding wizard layout
-- Progress dots indicator (1/5)
-- Welcome screen with message
-- Animated illustration/icon
-- "Let's personalize your journey" CTA button
-- "Do this later" skip option
+**Story 2.6 Requirements:**
+- Progress dots (2/5)
+- 9 role cards in responsive grid (3x3 → 2x2 → 1x1)
+- Roles: Developer, Product Manager, UX Designer, Architect, QA Engineer, Scrum Master, Executive, Game Developer, Other
+- Single selection with emerald border and background tint
+- "Next" button disabled until selection
+- "Back" button returns to Step 1
 
 ### To Continue:
-- Say: **"Let's do Story 2.5"** to implement the onboarding wizard welcome screen
+- Say: **"Let's do Story 2.6"** to implement role selection
 - Or: **"What's next?"** to review the story requirements
 
 ### Current Status:
 - ✅ Dev server running at http://localhost:5173
 - ✅ Login page at /auth/login
 - ✅ Registration page at /auth/register
-- ✅ Forgot password at /auth/forgot-password ✅ **NEW!**
-- ✅ Reset password at /auth/reset-password ✅ **NEW!**
+- ✅ Forgot password at /auth/forgot-password
+- ✅ Reset password at /auth/reset-password
+- ✅ Onboarding wizard at /onboarding ✅ **NEW!**
 - ✅ All systems operational
 
 ---

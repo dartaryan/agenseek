@@ -176,12 +176,13 @@ export function RegisterPage() {
       // Success!
       toast({
         title: 'Account Created Successfully!',
-        description: 'Please check your email to verify your account before logging in.',
+        description: "Let's personalize your learning journey!",
       });
 
-      // Redirect to login page
+      // Redirect to onboarding wizard (Story 2.5)
+      // Note: Email verification happens in background via Supabase
       setTimeout(() => {
-        navigate('/auth/login');
+        navigate('/onboarding');
       }, 2000);
     } catch (err: unknown) {
       console.error('Registration error:', err);
