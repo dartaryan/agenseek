@@ -1,0 +1,24 @@
+# Supabase Configuration Template
+# 
+# INSTRUCTIONS:
+# 1. Create a new file in the PROJECT ROOT named: .env.local
+# 2. Copy the contents below into that file
+# 3. Replace the placeholder values with your actual Supabase credentials
+# 4. Save the file
+#
+# Get your credentials from:
+# https://supabase.com/dashboard/project/YOUR_PROJECT/settings/api
+#
+# ============================================
+# COPY EVERYTHING BELOW THIS LINE TO .env.local
+# ============================================
+
+VITE_SUPABASE_URL=your_supabase_project_url_here
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key_here
+
+# ============================================
+# Example of what it should look like:
+# ============================================
+# VITE_SUPABASE_URL=https://abcdefghijklm.supabase.co
+# VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFiY2RlZmdoaWprbG0iLCJyb2xlIjoiYW5vbiIsImlhdCI6MTYzOTU4ODQ2MSwiZXhwIjoxOTU1MTY0NDYxfQ.example_key_here
+
