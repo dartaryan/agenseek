@@ -1,99 +1,74 @@
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-4xl mx-auto space-y-8">
-        {/* Header */}
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-primary mb-2">
-            Agenseek - BMAD Learning Hub
-          </h1>
-          <p className="text-gray-600 font-sans">
-            TailwindCSS configured with Emerald theme ✨
-          </p>
-        </div>
-
-        {/* Color Palette Test */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800">
-            Emerald Color Palette
-          </h2>
-          <div className="grid grid-cols-3 gap-4">
-            <div className="bg-primary text-white p-4 rounded-lg text-center">
-              <p className="font-semibold">Primary</p>
-              <p className="text-sm">#10B981</p>
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+      <div className="max-w-2xl w-full space-y-6">
+        {/* Welcome Card */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-3xl text-center">Agenseek</CardTitle>
+            <CardDescription className="text-center">
+              BMAD Learning Hub - Foundation Complete! ✨
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4">
+              <p className="text-sm text-emerald-800 text-center">
+                ✅ Story 1.1: Vite + React + TypeScript<br />
+                ✅ Story 1.2: TailwindCSS + Emerald Theme<br />
+                ✅ Story 1.3: Shadcn/ui Components<br />
+              </p>
             </div>
-            <div className="bg-secondary text-gray-800 p-4 rounded-lg text-center">
-              <p className="font-semibold">Secondary</p>
-              <p className="text-sm">#6EE7B7</p>
+          </CardContent>
+        </Card>
+
+        {/* Component Demo Card */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Component Test</CardTitle>
+            <CardDescription>
+              Testing Shadcn/ui components with Emerald theme
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="test-input">Input Component</Label>
+              <Input id="test-input" placeholder="Type something..." />
             </div>
-            <div className="bg-accent text-white p-4 rounded-lg text-center">
-              <p className="font-semibold">Accent</p>
-              <p className="text-sm">#2DD4BF</p>
+            
+            <div className="space-y-2">
+              <Label>Button Variants</Label>
+              <div className="grid grid-cols-2 gap-2">
+                <Button variant="default">Primary</Button>
+                <Button variant="secondary">Secondary</Button>
+                <Button variant="outline">Outline</Button>
+                <Button variant="ghost">Ghost</Button>
+              </div>
             </div>
-          </div>
-        </div>
+            
+            <div className="space-y-2">
+              <Label>Button Sizes</Label>
+              <div className="flex items-center gap-2">
+                <Button size="sm">Small</Button>
+                <Button size="default">Default</Button>
+                <Button size="lg">Large</Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
-        {/* Emerald Shades Test */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800">
-            Emerald Shades (50-950)
-          </h2>
-          <div className="grid grid-cols-11 gap-2">
-            <div className="bg-emerald-50 h-16 rounded flex items-center justify-center text-xs">50</div>
-            <div className="bg-emerald-100 h-16 rounded flex items-center justify-center text-xs">100</div>
-            <div className="bg-emerald-200 h-16 rounded flex items-center justify-center text-xs">200</div>
-            <div className="bg-emerald-300 h-16 rounded flex items-center justify-center text-xs">300</div>
-            <div className="bg-emerald-400 h-16 rounded flex items-center justify-center text-xs text-white">400</div>
-            <div className="bg-emerald-500 h-16 rounded flex items-center justify-center text-xs text-white">500</div>
-            <div className="bg-emerald-600 h-16 rounded flex items-center justify-center text-xs text-white">600</div>
-            <div className="bg-emerald-700 h-16 rounded flex items-center justify-center text-xs text-white">700</div>
-            <div className="bg-emerald-800 h-16 rounded flex items-center justify-center text-xs text-white">800</div>
-            <div className="bg-emerald-900 h-16 rounded flex items-center justify-center text-xs text-white">900</div>
-            <div className="bg-emerald-950 h-16 rounded flex items-center justify-center text-xs text-white">950</div>
-          </div>
-        </div>
-
-        {/* Font Test */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800">
-            Fredoka Font Test
-          </h2>
-          <div className="space-y-2">
-            <p className="text-3xl font-light">Fredoka Light (300)</p>
-            <p className="text-3xl font-normal">Fredoka Regular (400)</p>
-            <p className="text-3xl font-medium">Fredoka Medium (500)</p>
-            <p className="text-3xl font-semibold">Fredoka Semibold (600)</p>
-            <p className="text-3xl font-bold">Fredoka Bold (700)</p>
-          </div>
-        </div>
-
-        {/* RTL Test */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800">
-            RTL Layout Test
-          </h2>
-          <p className="text-gray-600 mb-2">
-            This text should be aligned to the right in RTL mode.
-          </p>
-          <div className="flex gap-4">
-            <button className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-emerald-600 transition-colors">
-              Primary Button
-            </button>
-            <button className="bg-secondary text-gray-800 px-6 py-2 rounded-lg hover:bg-emerald-400 transition-colors">
-              Secondary Button
-            </button>
-          </div>
-        </div>
-
-        {/* Status Check */}
-        <div className="bg-emerald-50 border-2 border-primary rounded-xl p-6 text-center">
-          <p className="text-xl font-semibold text-primary">
-            ✅ Story 1.2: TailwindCSS Configuration Complete!
-          </p>
-          <p className="text-gray-600 mt-2">
-            Emerald theme, Fredoka font, and RTL layout are working correctly.
-          </p>
-        </div>
+        {/* Status Card */}
+        <Card className="border-primary">
+          <CardContent className="pt-6">
+            <p className="text-center text-sm text-muted-foreground">
+              <strong className="text-primary">Next:</strong> Story 1.4 - Install Core Dependencies
+            </p>
+          </CardContent>
+        </Card>
       </div>
     </div>
   )
