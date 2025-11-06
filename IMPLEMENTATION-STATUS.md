@@ -90,7 +90,7 @@
 
 ### Story 1.7: Configure Routing with React Router ✅
 - **Status:** COMPLETE
-- **Completed:** Just now
+- **Completed:** Previously
 - **Details:**
   - ✅ Created `src/app/routes.tsx` with `createBrowserRouter`
   - ✅ Created `src/components/common/ProtectedRoute.tsx` for auth protection
@@ -98,43 +98,71 @@
   - ✅ Created 14 placeholder page components
   - ✅ Integrated routing into App.tsx
   - ✅ Verified navigation and redirects work correctly
+
+### Story 1.8: Create Base Layout Components ✅
+- **Status:** COMPLETE
+- **Completed:** Previously
+- **Details:**
+  - ✅ Created `src/components/layout/Header.tsx` with sticky navigation
+  - ✅ Created `src/components/layout/Sidebar.tsx` with navigation links
+  - ✅ Created `src/components/layout/Footer.tsx` with links
+  - ✅ Created `src/app/layout.tsx` combining all layout components
+  - ✅ Updated routes to use Layout for all protected pages
+  - ✅ Verified responsive behavior and navigation
   - ✅ Build succeeds with no errors
 
-**Routes Implemented:**
-- Public: `/auth/login`, `/auth/register`, `/auth/reset-password`
-- Protected: `/dashboard`, `/guides`, `/guides/:slug`, `/notes`, `/tasks`, `/profile`, `/settings`, `/onboarding`
-- Admin: `/admin` (requires admin role)
-- Fallback: Wildcard redirect to root
+**Layout Features:**
+- Sticky header with logo, search placeholder, user menu
+- Sidebar with navigation (Dashboard, Guides, Notes, Tasks, Profile, Settings, Admin)
+- Active state highlighting on current page
+- Footer with copyright and help links
+- Responsive design (sidebar hidden on mobile)
+
+---
+
+### Story 1.9: Configure Vercel Deployment ✅
+- **Status:** COMPLETE (Configuration Ready - Manual Setup Required)
+- **Completed:** Just now
+- **Details:**
+  - ✅ Created `vercel.json` with build configuration
+  - ✅ Configured SPA rewrites for React Router
+  - ✅ Added security headers (X-Frame-Options, X-Content-Type-Options, etc.)
+  - ✅ Set up asset caching for optimal performance
+  - ✅ Created comprehensive deployment guide
+  - ✅ Environment variable placeholders configured
+  - ✅ Branch-based deployment strategy documented
+
+**Configuration Features:**
+- Build: Vite with npm build command
+- Output: dist directory
+- SPA rewrites: All routes → /index.html
+- Security: 5 security headers on all routes
+- Caching: 1-year immutable cache for assets
+- Environments: Production, Preview, Development support
+
+**Manual Steps Required:**
+- Connect GitHub repository to Vercel (15 minutes)
+- Configure Supabase environment variables
+- Verify first deployment
+- See: `docs/VERCEL-DEPLOYMENT-GUIDE.md`
 
 ---
 
 ## 📋 Next Stories (Remaining in Sprint 1)
 
-### Story 1.8: Create Base Layout Components
-- **Status:** READY TO START ⏭️
-- **Prerequisites Met:** ✅ Story 1.7 complete with routing configured
-- **What It Does:** Create Header, Sidebar, Footer, and Layout wrapper for protected pages
-- **Estimated Time:** 3 story points (~1 hour)
-
-### Story 1.8: Create Base Layout Components
-- **Status:** BLOCKED (requires Story 1.7)
-- **What It Does:** Header, sidebar, footer, breadcrumbs
-
-### Story 1.9: Configure Vercel Deployment
-- **Status:** BLOCKED (requires Story 1.8)
-- **What It Does:** Deploy to Vercel, configure environment variables
-
 ### Story 1.10: Set Up Development Scripts and Code Quality Tools
-- **Status:** BLOCKED (requires Story 1.9)
-- **What It Does:** Scripts for testing, linting, type checking
+- **Status:** READY TO START ⏭️
+- **Prerequisites Met:** ✅ Story 1.9 complete with deployment config
+- **What It Does:** ESLint, Prettier, testing scripts, pre-commit hooks
+- **Estimated Time:** 1 story point (~30 minutes)
 
 ---
 
 ## 📊 Sprint 1 Progress
 
-**Stories Complete:** 7 / 10 (70%) 🎯  
-**Stories Ready:** 1 (Story 1.8)  
-**Stories Blocked:** 2 (waiting on 1.8)
+**Stories Complete:** 9 / 10 (90%) 🎯  
+**Stories Ready:** 1 (Story 1.10)  
+**Stories Blocked:** 0
 
 ### Progress Breakdown:
 - ✅ 1.1: Initialize Project (DONE)
@@ -143,9 +171,10 @@
 - ✅ 1.4: Core Dependencies (DONE)
 - ✅ 1.5: Supabase Setup (DONE)
 - ✅ 1.6: Supabase Client & Auth (DONE)
-- ✅ 1.7: React Router (DONE) 🎉
-- ⏭️ 1.8: Layout Components (READY TO START)
-- 🔒 1.9-1.10: Blocked
+- ✅ 1.7: React Router (DONE)
+- ✅ 1.8: Layout Components (DONE)
+- ✅ 1.9: Vercel Deployment (DONE - Config Ready) 🎉
+- ⏭️ 1.10: Code Quality Tools (READY TO START)
 
 ---
 
@@ -153,26 +182,33 @@
 
 ### Immediate Next Steps:
 
-1. **✅ Story 1.7 COMPLETE!** 🎉
-   - React Router configured with all routes
-   - ProtectedRoute component for auth protection
-   - 14 placeholder pages created
-   - Navigation and redirects working
-   - Build succeeds with no errors
+1. **✅ Story 1.9 COMPLETE!** 🎉
+   - Vercel deployment configuration ready
+   - `vercel.json` with build settings and security headers
+   - SPA rewrites for React Router
+   - Asset caching optimized
+   - Comprehensive deployment guide created
+   - Manual setup steps documented
 
-2. **➡️ Ready for Story 1.8**
-   - Story 1.8 will create layout components
-   - Estimated: 3 story points (~1 hour)
+2. **⚠️ Manual Vercel Setup (Optional - 15 minutes)**
+   - Follow `docs/VERCEL-DEPLOYMENT-GUIDE.md`
+   - Connect GitHub repository to Vercel
+   - Configure Supabase environment variables
+   - Verify first deployment
+   - *Note: Can be done later, doesn't block development*
+
+3. **➡️ Ready for Story 1.10**
+   - Story 1.10 will set up code quality tools
+   - Estimated: 1 story point (~30 minutes)
    - This story can be implemented immediately
 
-3. **Request Story 1.8 Implementation**
-   - Say: "Let's do Story 1.8" or "Continue with next story"
-   - Story 1.8 will create:
-     - Header component with navigation
-     - Sidebar component with menu
-     - Footer component
-     - Layout wrapper for protected pages
-     - Breadcrumb navigation
+4. **Request Story 1.10 Implementation**
+   - Say: "Let's do Story 1.10" or "Continue with next story"
+   - Story 1.10 will:
+     - Configure ESLint
+     - Set up Prettier
+     - Add pre-commit hooks
+     - Create testing scripts
 
 ---
 
@@ -200,29 +236,35 @@
 - ✅ useAuth hook with real-time auth state
 - ✅ React Router with all routes configured
 - ✅ Protected routes with auth enforcement
-- ✅ 14 placeholder pages for all features
-- ✅ Navigation between pages
+- ✅ Complete layout system (Header, Sidebar, Footer)
+- ✅ Navigation with active state highlighting
+- ✅ User menu with profile and logout
+- ✅ 14 placeholder pages with unified layout
+- ✅ Responsive design (mobile & desktop)
+- ✅ Vercel deployment configuration with security headers
+- ✅ SPA rewrites for React Router
+- ✅ Optimized asset caching
 - ✅ Dev server running
 - ✅ Builds successfully
 - ✅ Type checking passes
 
 ---
 
-## 🚀 Coming Soon (After Story 1.5)
+## 🚀 Coming Soon (After Sprint 1)
 
-- User authentication (login, register, OAuth)
-- Database connection and queries
-- Protected routes
-- User profiles
-- Reading progress tracking
-- Notes and tasks
-- Search functionality
-- Community features (comments, Q&A)
-- Admin dashboard
-- Full responsive design
+- User authentication (login, register, OAuth) - Epic 2
+- Profile customization and onboarding - Epic 2
+- Dynamic content rendering - Epic 3
+- Guide library and reader - Epic 4
+- Progress tracking and achievements - Epic 5
+- Notes and tasks - Epic 6
+- Search functionality - Epic 7
+- Community features (comments, Q&A) - Epic 8
+- Admin dashboard - Epic 9
+- Full responsive design and accessibility - Epic 10
 
 ---
 
-**Ready to continue?** Follow `supabase/SETUP-CHECKLIST.md` to complete Story 1.5! 🎉
+**Ready to continue?** Say "Let's do Story 1.10" or "Continue with next story" to complete Sprint 1! 🎉
 
 

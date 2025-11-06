@@ -10,7 +10,7 @@ export function DashboardPage() {
   const { user } = useAuth();
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
+    <div className="p-8">
       <div className="max-w-7xl mx-auto space-y-8">
         <div className="space-y-2">
           <h1 className="text-4xl font-bold text-gray-900">Dashboard</h1>

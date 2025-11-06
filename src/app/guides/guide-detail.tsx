@@ -9,7 +9,7 @@ export function GuideDetailPage() {
   const { slug } = useParams<{ slug: string }>();
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
+    <div className="p-8">
       <div className="max-w-7xl mx-auto space-y-8">
         <Card className="p-8 space-y-6">
           <div className="space-y-2">

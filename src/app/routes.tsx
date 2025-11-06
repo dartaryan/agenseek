@@ -1,5 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { ProtectedRoute } from '../components/common/ProtectedRoute';
+import { Layout } from './layout';
 
 // Auth pages
 import { LoginPage } from './auth/login';
@@ -34,25 +35,26 @@ function RootRedirect() {
 /**
  * Application routing configuration
  * 
- * Public routes:
+ * Public routes (no layout):
  * - /auth/login
  * - /auth/register
  * - /auth/reset-password
  * 
- * Protected routes (require authentication):
- * - /onboarding
+ * Protected routes (with Layout - Header, Sidebar, Footer):
  * - /dashboard
  * - /guides, /guides/:slug
  * - /notes, /tasks, /profile, /settings
+ * - /admin (admin-only)
  * 
- * Admin routes (require admin role):
- * - /admin/*
+ * Special protected routes (no layout):
+ * - /onboarding (full-screen wizard)
  */
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <RootRedirect />,
   },
+  // Public routes (no layout)
   {
     path: '/auth/login',
     element: <LoginPage />,
@@ -65,6 +67,7 @@ export const router = createBrowserRouter([
     path: '/auth/reset-password',
     element: <ResetPasswordPage />,
   },
+  // Onboarding (protected, but no layout - full screen wizard)
   {
     path: '/onboarding',
     element: (
@@ -73,70 +76,60 @@ export const router = createBrowserRouter([
       </ProtectedRoute>
     ),
   },
+  // Protected routes with Layout
   {
-    path: '/dashboard',
     element: (
       <ProtectedRoute>
-        <DashboardPage />
+        <Layout />
       </ProtectedRoute>
     ),
+    children: [
+      {
+        path: '/dashboard',
+        element: <DashboardPage />,
+      },
+      {
+        path: '/guides',
+        element: <GuidesPage />,
+      },
+      {
+        path: '/guides/:slug',
+        element: <GuideDetailPage />,
+      },
+      {
+        path: '/notes',
+        element: <NotesPage />,
+      },
+      {
+        path: '/tasks',
+        element: <TasksPage />,
+      },
+      {
+        path: '/profile',
+        element: <ProfilePage />,
+      },
+      {
+        path: '/settings',
+        element: <SettingsPage />,
+      },
+    ],
   },
-  {
-    path: '/guides',
-    element: (
-      <ProtectedRoute>
-        <GuidesPage />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: '/guides/:slug',
-    element: (
-      <ProtectedRoute>
-        <GuideDetailPage />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: '/notes',
-    element: (
-      <ProtectedRoute>
-        <NotesPage />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: '/tasks',
-    element: (
-      <ProtectedRoute>
-        <TasksPage />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: '/profile',
-    element: (
-      <ProtectedRoute>
-        <ProfilePage />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: '/settings',
-    element: (
-      <ProtectedRoute>
-        <SettingsPage />
-      </ProtectedRoute>
-    ),
-  },
+  // Admin route (protected with admin check, with layout)
   {
     path: '/admin',
     element: (
       <ProtectedRoute requireAdmin>
-        <AdminDashboardPage />
+        <Layout />
       </ProtectedRoute>
     ),
+    children: [
+      {
+        index: true,
+        element: <AdminDashboardPage />,
+      },
+    ],
   },
+  // Fallback
   {
     path: '*',
     element: <Navigate to="/" replace />,
