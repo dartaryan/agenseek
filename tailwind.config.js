@@ -1,0 +1,41 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        primary: '#10B981',      // Emerald-500
+        secondary: '#6EE7B7',    // Emerald-300
+        accent: '#2DD4BF',       // Teal-400
+        emerald: {
+          50: '#ECFDF5',
+          100: '#D1FAE5',
+          200: '#A7F3D0',
+          300: '#6EE7B7',
+          400: '#34D399',
+          500: '#10B981',
+          600: '#059669',
+          700: '#047857',
+          800: '#065F46',
+          900: '#064E3B',
+          950: '#022C22',
+        },
+      },
+      fontFamily: {
+        sans: ['Fredoka', 'system-ui', 'sans-serif'],
+        serif: ['Fredoka', 'Georgia', 'serif'],
+      },
+      borderRadius: {
+        'lg': '0.75rem',
+        'xl': '1rem',
+      },
+    },
+  },
+  plugins: [
+    require('tailwindcss-animate'),
+  ],
+}

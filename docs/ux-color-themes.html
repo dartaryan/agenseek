@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenseek - Emerald Learning Theme</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Emerald Theme - Light Mode */
+            --primary: #10B981;
+            --primary-hover: #059669;
+            --primary-light: #D1FAE5;
+            --secondary: #6EE7B7;
+            --secondary-hover: #34D399;
+            --accent: #2DD4BF;
+            --accent-hover: #14B8A6;
+            --background: #FFFFFF;
+            --surface: #F9FAFB;
+            --surface-hover: #F3F4F6;
+            --foreground: #064E3B;
+            --text-secondary: #047857;
+            --text-muted: #6B7280;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+            --info: #3B82F6;
+            --border: #E5E7EB;
+            --border-hover: #D1D5DB;
+        }
+
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background: var(--surface);
+            color: var(--foreground);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            border-radius: 24px;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.2);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.125rem;
+            opacity: 0.95;
+        }
+
+        .theme-toggle {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .toggle-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .section {
+            background: var(--background);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--foreground);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        /* Color Swatches */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .color-swatch {
+            text-align: center;
+        }
+
+        .color-box {
+            width: 100%;
+            height: 100px;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .color-box:hover {
+            transform: scale(1.05);
+        }
+
+        .color-name {
+            font-weight: 600;
+            color: var(--foreground);
+            margin-bottom: 0.25rem;
+        }
+
+        .color-value {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-family: monospace;
+        }
+
+        /* Buttons */
+        .button-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            border: none;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: var(--foreground);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-secondary);
+        }
+
+        .btn-ghost:hover {
+            background: var(--surface-hover);
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--foreground);
+            font-size: 0.875rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1rem;
+            background: var(--background);
+            color: var(--foreground);
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .form-input.error {
+            border-color: var(--error);
+        }
+
+        .form-input.success {
+            border-color: var(--success);
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--foreground);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-text {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .badge-primary {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .badge-success {
+            background: #D1FAE5;
+            color: var(--success);
+        }
+
+        .badge-warning {
+            background: #FEF3C7;
+            color: var(--warning);
+        }
+
+        /* Alerts */
+        .alert {
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border-right: 4px solid;
+        }
+
+        .alert-success {
+            background: var(--primary-light);
+            border-color: var(--success);
+            color: var(--text-secondary);
+        }
+
+        .alert-warning {
+            background: #FEF3C7;
+            border-color: var(--warning);
+            color: #92400E;
+        }
+
+        .alert-error {
+            background: #FEE2E2;
+            border-color: var(--error);
+            color: #991B1B;
+        }
+
+        .alert-info {
+            background: #DBEAFE;
+            border-color: var(--info);
+            color: #1E40AF;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: var(--surface);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 999px;
+            transition: width 0.6s ease;
+        }
+
+        /* Dark Mode */
+        body.dark {
+            --primary: #14B8A6;
+            --primary-hover: #0F766E;
+            --primary-light: #134E4A;
+            --secondary: #0F766E;
+            --secondary-hover: #115E59;
+            --accent: #2DD4BF;
+            --accent-hover: #5EEAD4;
+            --background: #042F2E;
+            --surface: #134E4A;
+            --surface-hover: #115E59;
+            --foreground: #F0FDF9;
+            --text-secondary: #CCFBF1;
+            --text-muted: #99F6E4;
+            --success: #14B8A6;
+            --warning: #FBBF24;
+            --error: #F87171;
+            --info: #60A5FA;
+            --border: #115E59;
+            --border-hover: #0F766E;
+        }
+
+        .emoji {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--surface);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: var(--surface-hover);
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 Agenseek - Emerald Learning Theme</h1>
+            <p>Professional, Fresh, Modern - Your Personal BMAD Learning Mentor</p>
+        </div>
+
+        <div class="theme-toggle">
+            <button class="toggle-btn" onclick="toggleTheme()">🌙 Toggle Dark Mode</button>
+        </div>
+
+        <!-- Color Palette Section -->
+        <div class="section">
+            <h2 class="section-title">Color Palette</h2>
+            <h3 style="margin-bottom: 1rem; color: var(--text-secondary);">Primary Colors</h3>
+            <div class="color-grid">
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #10B981;"></div>
+                    <div class="color-name">Primary</div>
+                    <div class="color-value">#10B981</div>
+                    <small style="color: var(--text-muted);">Main actions, active states</small>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #6EE7B7;"></div>
+                    <div class="color-name">Secondary</div>
+                    <div class="color-value">#6EE7B7</div>
+                    <small style="color: var(--text-muted);">Supporting actions, hovers</small>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #2DD4BF;"></div>
+                    <div class="color-name">Accent</div>
+                    <div class="color-value">#2DD4BF</div>
+                    <small style="color: var(--text-muted);">Badges, highlights, animations</small>
+                </div>
+            </div>
+
+            <h3 style="margin: 2rem 0 1rem; color: var(--text-secondary);">Semantic Colors</h3>
+            <div class="color-grid">
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #10B981;"></div>
+                    <div class="color-name">Success</div>
+                    <div class="color-value">#10B981</div>
+                    <small style="color: var(--text-muted);">Completions, achievements</small>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #F59E0B;"></div>
+                    <div class="color-name">Warning</div>
+                    <div class="color-value">#F59E0B</div>
+                    <small style="color: var(--text-muted);">Alerts, important notices</small>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #EF4444;"></div>
+                    <div class="color-name">Error</div>
+                    <div class="color-value">#EF4444</div>
+                    <small style="color: var(--text-muted);">Errors, destructive actions</small>
+                </div>
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #3B82F6;"></div>
+                    <div class="color-name">Info</div>
+                    <div class="color-value">#3B82F6</div>
+                    <small style="color: var(--text-muted);">Tips, informational content</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Buttons Section -->
+        <div class="section">
+            <h2 class="section-title">Button Styles</h2>
+            <div class="button-grid">
+                <button class="btn btn-primary">Start Learning</button>
+                <button class="btn btn-secondary">Continue Reading</button>
+                <button class="btn btn-outline">Browse Guides</button>
+                <button class="btn btn-ghost">Skip</button>
+            </div>
+        </div>
+
+        <!-- Form Elements Section -->
+        <div class="section">
+            <h2 class="section-title">Form Elements</h2>
+            <div style="max-width: 600px;">
+                <div class="form-group">
+                    <label class="form-label">Search guides...</label>
+                    <input type="text" class="form-input" placeholder="חפש מדריכים...">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email (Success State)</label>
+                    <input type="email" class="form-input success" value="user@company.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password (Error State)</label>
+                    <input type="password" class="form-input error" placeholder="••••••••">
+                    <small style="color: var(--error); font-size: 0.875rem;">Password must be at least 8 characters</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cards Section -->
+        <div class="section">
+            <h2 class="section-title">Guide Cards</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="emoji">🚀</div>
+                    <div class="card-title">Quick Start Guide</div>
+                    <div class="card-text">מדריך התחלה מהיר ל-BMAD-METHOD - 15 דקות</div>
+                    <div class="card-footer">
+                        <span class="badge badge-primary">Core</span>
+                        <span style="color: var(--text-muted); font-size: 0.875rem;">15 min</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="emoji">💻</div>
+                    <div class="card-title">Developer's Guide</div>
+                    <div class="card-text">מדריך מלא למפתחים - כל מה שצריך לדעת</div>
+                    <div class="card-footer">
+                        <span class="badge badge-success">Completed ✓</span>
+                        <span style="color: var(--text-muted); font-size: 0.875rem;">45 min</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="emoji">🎨</div>
+                    <div class="card-title">UX Designer Guide</div>
+                    <div class="card-text">איך להשתמש ב-BMAD לעיצוב חוויות משתמש</div>
+                    <div class="card-footer">
+                        <span class="badge badge-warning">In Progress</span>
+                        <span style="color: var(--text-muted); font-size: 0.875rem;">30 min</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alerts Section -->
+        <div class="section">
+            <h2 class="section-title">Alerts & Notifications</h2>
+            <div class="alert alert-success">
+                <strong>🎉 Guide Completed!</strong> You've finished the Quick Start guide. Keep going!
+            </div>
+            <div class="alert alert-warning">
+                <strong>⚠️ Unsaved Changes</strong> You have unsaved notes. Save before leaving?
+            </div>
+            <div class="alert alert-error">
+                <strong>❌ Error</strong> Could not save your progress. Please try again.
+            </div>
+            <div class="alert alert-info">
+                <strong>💡 Tip</strong> Use Ctrl+K to open the command palette for quick navigation!
+            </div>
+        </div>
+
+        <!-- Progress Bars Section -->
+        <div class="section">
+            <h2 class="section-title">Progress Tracking</h2>
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>Core Guides</span>
+                    <span><strong>2/2</strong> Complete</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%;"></div>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>Role-Specific Guides</span>
+                    <span><strong>3/7</strong> Complete</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 43%;"></div>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>Overall Learning Journey</span>
+                    <span><strong>15/42</strong> Guides</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 36%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Icons Section -->
+        <div class="section">
+            <h2 class="section-title">Key Features</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="emoji">📚</div>
+                    <div style="font-weight: 600; color: var(--foreground); margin-bottom: 0.25rem;">42 Guides</div>
+                    <small style="color: var(--text-muted);">Comprehensive content</small>
+                </div>
+                <div class="feature-item">
+                    <div class="emoji">🎯</div>
+                    <div style="font-weight: 600; color: var(--foreground); margin-bottom: 0.25rem;">9 Roles</div>
+                    <small style="color: var(--text-muted);">Personalized paths</small>
+                </div>
+                <div class="feature-item">
+                    <div class="emoji">📝</div>
+                    <div style="font-weight: 600; color: var(--foreground); margin-bottom: 0.25rem;">Rich Notes</div>
+                    <small style="color: var(--text-muted);">Capture insights</small>
+                </div>
+                <div class="feature-item">
+                    <div class="emoji">✅</div>
+                    <div style="font-weight: 600; color: var(--foreground); margin-bottom: 0.25rem;">Task Manager</div>
+                    <small style="color: var(--text-muted);">Track actions</small>
+                </div>
+                <div class="feature-item">
+                    <div class="emoji">💬</div>
+                    <div style="font-weight: 600; color: var(--foreground); margin-bottom: 0.25rem;">Q&A Forum</div>
+                    <small style="color: var(--text-muted);">Ask & answer</small>
+                </div>
+                <div class="feature-item">
+                    <div class="emoji">🏆</div>
+                    <div style="font-weight: 600; color: var(--foreground); margin-bottom: 0.25rem;">Achievements</div>
+                    <small style="color: var(--text-muted);">Celebrate wins</small>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
+            <p><strong>Emerald Learning Theme</strong> - Professional yet exciting, polished yet approachable</p>
+            <p style="font-size: 0.875rem; margin-top: 0.5rem;">Designed for Agenseek - The BMAD Learning Hub</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+        }
+
+        // Animate progress bars on load
+        window.addEventListener('load', () => {
+            const fills = document.querySelectorAll('.progress-fill');
+            fills.forEach((fill, index) => {
+                setTimeout(() => {
+                    const width = fill.style.width;
+                    fill.style.width = '0%';
+                    setTimeout(() => {
+                        fill.style.width = width;
+                    }, 100);
+                }, index * 150);
+            });
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,23 @@
+@bmad/bmm/agents/dev 
+
+I'm ready to implement the next story for Agenseek.
+
+**Project Context:**
+- Product Brief: docs/brief.md
+- Architecture: docs/architecture.md  
+- UX Design: docs/ux-design-specification.md
+- Stories: docs/stories/
+- Sprint Guide: docs/SPRINT-EXECUTION-GUIDE.md
+- Story Dependencies: docs/story-dependencies.md
+
+**Instructions:**
+1. Check what stories are already complete (look at the codebase/files created)
+2. Identify the next story to implement based on sprint order and dependencies
+3. Read that story's requirements from docs/stories/
+4. Implement the story following architecture patterns
+5. Let me know when it's complete
+
+Start with the next unimplemented story.
+
+
+@bmad/bmm/agents/dev 

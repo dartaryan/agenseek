@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenseek - Design Direction Mockups</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #10B981;
+            --primary-hover: #059669;
+            --primary-light: #D1FAE5;
+            --secondary: #6EE7B7;
+            --accent: #2DD4BF;
+            --background: #FFFFFF;
+            --surface: #F9FAFB;
+            --foreground: #064E3B;
+            --text-secondary: #047857;
+            --text-muted: #6B7280;
+            --border: #E5E7EB;
+        }
+
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background: #1F2937;
+            color: var(--foreground);
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #111827;
+            color: white;
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .nav-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .nav-btn.secondary {
+            background: #374151;
+        }
+
+        .nav-btn.secondary:hover {
+            background: #4B5563;
+        }
+
+        .direction-counter {
+            color: #9CA3AF;
+            font-size: 0.875rem;
+        }
+
+        .mockup-container {
+            margin-top: 80px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .direction-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            max-width: 1600px;
+            width: 100%;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .direction-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .direction-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--foreground);
+            margin-bottom: 0.5rem;
+        }
+
+        .direction-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .direction-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .meta-label {
+            font-weight: 600;
+        }
+
+        /* Direction 1: Spacious Dashboard */
+        .mockup-spacious {
+            background: var(--surface);
+            border-radius: 12px;
+            min-height: 800px;
+            overflow: hidden;
+        }
+
+        .mock-header {
+            background: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mock-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .mock-search {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 2rem;
+        }
+
+        .mock-search-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        .mock-user {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .mock-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .mock-content {
+            padding: 3rem;
+        }
+
+        .welcome-section {
+            margin-bottom: 3rem;
+        }
+
+        .welcome-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--foreground);
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-text {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .dash-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dash-card:hover {
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .dash-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .dash-card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--foreground);
+            margin-bottom: 0.5rem;
+        }
+
+        .dash-card-text {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .progress-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: conic-gradient(var(--primary) 0deg 129deg, var(--surface) 129deg 360deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .progress-circle-inner {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .guide-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .guide-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+        }
+
+        .guide-icon {
+            font-size: 2.5rem;
+            min-width: 60px;
+        }
+
+        .guide-content {
+            flex: 1;
+        }
+
+        .guide-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--foreground);
+            margin-bottom: 0.5rem;
+        }
+
+        .guide-desc {
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .guide-meta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--foreground);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Direction 2: Dense Dashboard with Sidebar */
+        .mockup-dense {
+            display: flex;
+            min-height: 800px;
+        }
+
+        .mock-sidebar {
+            width: 250px;
+            background: white;
+            border-left: 1px solid var(--border);
+            padding: 2rem 0;
+        }
+
+        .sidebar-logo {
+            padding: 0 1.5rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-item {
+            padding: 0.75rem 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .sidebar-item:hover,
+        .sidebar-item.active {
+            background: var(--primary-light);
+            color: var(--primary);
+            border-right: 3px solid var(--primary);
+        }
+
+        .sidebar-icon {
+            font-size: 1.25rem;
+        }
+
+        .mock-main {
+            flex: 1;
+            background: var(--surface);
+            overflow-y: auto;
+        }
+
+        /* Direction 3: Card-Heavy Grid */
+        .grid-compact {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card-large {
+            background: white;
+            border-radius: 16px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card-large:hover {
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .card-image {
+            height: 180px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-badges {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Reading Layout */
+        .reading-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr 250px;
+            gap: 0;
+            min-height: 800px;
+        }
+
+        .toc-sidebar {
+            background: white;
+            border-left: 1px solid var(--border);
+            padding: 2rem 1.5rem;
+        }
+
+        .toc-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--foreground);
+            margin-bottom: 1rem;
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-item {
+            padding: 0.5rem 0;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: color 0.2s ease;
+            border-right: 2px solid transparent;
+            padding-right: 0.5rem;
+        }
+
+        .toc-item:hover,
+        .toc-item.active {
+            color: var(--primary);
+            border-right-color: var(--primary);
+        }
+
+        .content-main {
+            background: white;
+            padding: 3rem;
+            overflow-y: auto;
+        }
+
+        .content-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .content-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--foreground);
+            margin-bottom: 1rem;
+        }
+
+        .content-meta {
+            display: flex;
+            gap: 2rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .content-body {
+            max-width: 700px;
+        }
+
+        .content-body h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--foreground);
+            margin: 2rem 0 1rem;
+        }
+
+        .content-body p {
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .callout {
+            background: var(--primary-light);
+            border-right: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .callout-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .actions-sidebar {
+            background: var(--surface);
+            padding: 2rem 1.5rem;
+        }
+
+        .action-btn {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-bottom: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .action-btn.primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .action-btn.primary:hover {
+            background: var(--primary-hover);
+        }
+
+        .action-btn.secondary {
+            background: white;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .action-btn.secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .comparison-mode {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .comparison-mode .direction-card {
+            transform: scale(0.8);
+        }
+
+        .notes-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .notes-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--foreground);
+            margin-bottom: 0.5rem;
+        }
+
+        .notes-textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 0.875rem;
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <div class="nav-header">
+            <div class="nav-title">🎨 Agenseek Design Directions</div>
+            <div class="nav-controls">
+                <span class="direction-counter" id="counter">Direction <span id="current">1</span> of <span id="total">6</span></span>
+                <button class="nav-btn secondary" onclick="previousDirection()">⟵ Previous</button>
+                <button class="nav-btn" onclick="nextDirection()">Next ⟶</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="mockup-container" id="mockupContainer">
+        <!-- Direction 1: Spacious Dashboard -->
+        <div class="direction-card" data-direction="1">
+            <div class="direction-header">
+                <div class="direction-title">Direction 1: Spacious Dashboard</div>
+                <div class="direction-subtitle">אוורירי ונעים - דאשבורד מרווח עם כרטיסים גדולים</div>
+                <div class="direction-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Layout:</span>
+                        <span>3-Column Grid</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Density:</span>
+                        <span>Spacious (Lots of breathing room)</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Navigation:</span>
+                        <span>Top Header</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Best For:</span>
+                        <span>New users, focused learning</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mockup-spacious">
+                <div class="mock-header">
+                    <div class="mock-logo">🎓 Agenseek</div>
+                    <div class="mock-search">
+                        <input type="text" class="mock-search-input" placeholder="חפש מדריכים... (Ctrl+K)">
+                    </div>
+                    <div class="mock-user">
+                        <div class="mock-avatar">B</div>
+                        <span style="font-weight: 500;">Ben</span>
+                    </div>
+                </div>
+                
+                <div class="mock-content">
+                    <div class="welcome-section">
+                        <div class="welcome-title">שלום, Ben! 👋</div>
+                        <div class="welcome-text">מוכן להמשיך ללמוד? יש לך 3 מדריכים חדשים ממש בשבילך.</div>
+                    </div>
+                    
+                    <div class="dashboard-grid">
+                        <div class="dash-card">
+                            <div class="dash-card-icon">📊</div>
+                            <div class="dash-card-title">ההתקדמות שלך</div>
+                            <div class="dash-card-text">השלמת 15 מתוך 42 מדריכים</div>
+                            <div class="progress-circle">
+                                <div class="progress-circle-inner">36%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="dash-card">
+                            <div class="dash-card-icon">🔥</div>
+                            <div class="dash-card-title">Streak</div>
+                            <div class="dash-card-text">למדת 7 ימים ברציפות!</div>
+                            <div style="text-align: center; font-size: 3rem; color: var(--primary); font-weight: 700;">7</div>
+                        </div>
+                        
+                        <div class="dash-card">
+                            <div class="dash-card-icon">🏆</div>
+                            <div class="dash-card-title">Achievements</div>
+                            <div class="dash-card-text">רמת כסף - קרוב לזהב!</div>
+                            <div style="display: flex; justify-content: center; gap: 0.5rem; font-size: 2rem; margin-top: 1rem;">
+                                <span style="opacity: 0.3;">🥉</span>
+                                <span>🥈</span>
+                                <span style="opacity: 0.3;">🥇</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="section-title">המשך לקרוא</div>
+                    <div class="guide-card">
+                        <div class="guide-icon">💻</div>
+                        <div class="guide-content">
+                            <div class="guide-title">מדריך למפתחים</div>
+                            <div class="guide-desc">איך להשתמש ב-BMAD בפיתוח יומיומי - כל מה שצריך לדעת</div>
+                            <div class="guide-meta">
+                                <span class="badge">Roles</span>
+                                <span style="color: var(--text-muted); font-size: 0.875rem;">45 דקות</span>
+                                <span style="color: var(--primary); font-weight: 600;">67% הושלם</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="guide-card">
+                        <div class="guide-icon">🎨</div>
+                        <div class="guide-content">
+                            <div class="guide-title">מדריך למעצבי UX</div>
+                            <div class="guide-desc">עיצוב חוויות משתמש עם BMAD - מתאוריה לפרקטיקה</div>
+                            <div class="guide-meta">
+                                <span class="badge">Roles</span>
+                                <span style="color: var(--text-muted); font-size: 0.875rem;">30 דקות</span>
+                                <span style="color: var(--warning); font-weight: 600;">New</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="notes-section">
+                <div class="notes-title">What I like about this direction:</div>
+                <textarea class="notes-textarea" placeholder="Add your thoughts..."></textarea>
+            </div>
+        </div>
+
+        <!-- Direction 2: Dense Dashboard with Sidebar -->
+        <div class="direction-card hidden" data-direction="2">
+            <div class="direction-header">
+                <div class="direction-title">Direction 2: Dense with Sidebar Navigation</div>
+                <div class="direction-subtitle">צפוף ויעיל - ניווט צד למשתמשים מתקדמים</div>
+                <div class="direction-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Layout:</span>
+                        <span>Sidebar + Main Content</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Density:</span>
+                        <span>Dense (More info per screen)</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Navigation:</span>
+                        <span>Left Sidebar (RTL: Right)</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Best For:</span>
+                        <span>Power users, quick access</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mockup-dense">
+                <div class="mock-main">
+                    <div class="mock-header">
+                        <div class="mock-search" style="margin: 0;">
+                            <input type="text" class="mock-search-input" placeholder="חפש מדריכים...">
+                        </div>
+                        <div class="mock-user">
+                            <div class="mock-avatar">B</div>
+                        </div>
+                    </div>
+                    
+                    <div style="padding: 2rem;">
+                        <div style="margin-bottom: 2rem;">
+                            <div style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;">Dashboard</div>
+                            <div style="color: var(--text-muted);">15/42 guides completed • 7-day streak 🔥</div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem;">
+                            <div style="background: white; padding: 1.5rem; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">36%</div>
+                                <div style="color: var(--text-muted); font-size: 0.875rem;">Progress</div>
+                            </div>
+                            <div style="background: white; padding: 1.5rem; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">7</div>
+                                <div style="color: var(--text-muted); font-size: 0.875rem;">Day Streak</div>
+                            </div>
+                            <div style="background: white; padding: 1.5rem; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">12</div>
+                                <div style="color: var(--text-muted); font-size: 0.875rem;">Notes</div>
+                            </div>
+                            <div style="background: white; padding: 1.5rem; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">8</div>
+                                <div style="color: var(--text-muted); font-size: 0.875rem;">Tasks</div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: white; padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem;">
+                            <div style="font-weight: 600; margin-bottom: 1rem;">Continue Reading</div>
+                            <div style="display: flex; gap: 1rem; align-items: center;">
+                                <div style="font-size: 2rem;">💻</div>
+                                <div style="flex: 1;">
+                                    <div style="font-weight: 500; margin-bottom: 0.25rem;">מדריך למפתחים</div>
+                                    <div style="color: var(--text-muted); font-size: 0.875rem;">67% complete • 15 min left</div>
+                                </div>
+                                <button class="nav-btn" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Continue</button>
+                            </div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+                            <div style="background: white; padding: 1rem; border-radius: 12px; border: 1px solid var(--border); cursor: pointer;">
+                                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🚀</div>
+                                <div style="font-weight: 500; margin-bottom: 0.25rem; font-size: 0.875rem;">Quick Start</div>
+                                <div style="color: var(--text-muted); font-size: 0.75rem;">15 min</div>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 12px; border: 1px solid var(--border); cursor: pointer;">
+                                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📊</div>
+                                <div style="font-weight: 500; margin-bottom: 0.25rem; font-size: 0.875rem;">PM Guide</div>
+                                <div style="color: var(--text-muted); font-size: 0.75rem;">35 min</div>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 12px; border: 1px solid var(--border); cursor: pointer;">
+                                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🏗️</div>
+                                <div style="font-weight: 500; margin-bottom: 0.25rem; font-size: 0.875rem;">Architect</div>
+                                <div style="color: var(--text-muted); font-size: 0.75rem;">40 min</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mock-sidebar">
+                    <div class="sidebar-logo">🎓 Agenseek</div>
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-item active">
+                            <span class="sidebar-icon">🏠</span>
+                            <span>Dashboard</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <span class="sidebar-icon">📚</span>
+                            <span>Guides</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <span class="sidebar-icon">📝</span>
+                            <span>Notes</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <span class="sidebar-icon">✅</span>
+                            <span>Tasks</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <span class="sidebar-icon">💬</span>
+                            <span>Community</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <span class="sidebar-icon">👤</span>
+                            <span>Profile</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="notes-section">
+                <div class="notes-title">What I like about this direction:</div>
+                <textarea class="notes-textarea" placeholder="Add your thoughts..."></textarea>
+            </div>
+        </div>
+
+        <!-- Direction 3: Card-Heavy Grid (Guides Library) -->
+        <div class="direction-card hidden" data-direction="3">
+            <div class="direction-header">
+                <div class="direction-title">Direction 3: Visual Card Grid</div>
+                <div class="direction-subtitle">ויזואלי וצבעוני - ספריית מדריכים עם כרטיסים גדולים</div>
+                <div class="direction-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Layout:</span>
+                        <span>Responsive Grid</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Density:</span>
+                        <span>Balanced</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Style:</span>
+                        <span>Image-heavy, visual</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Best For:</span>
+                        <span>Browsing, discovery</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mockup-spacious">
+                <div class="mock-header">
+                    <div class="mock-logo">🎓 Agenseek</div>
+                    <div class="mock-search">
+                        <input type="text" class="mock-search-input" placeholder="חפש מדריכים...">
+                    </div>
+                    <div class="mock-user">
+                        <div class="mock-avatar">B</div>
+                    </div>
+                </div>
+                
+                <div class="mock-content">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                        <div>
+                            <div style="font-size: 2rem; font-weight: 700;">Guides Library</div>
+                            <div style="color: var(--text-muted);">42 guides • Filter by role, category, or difficulty</div>
+                        </div>
+                        <div style="display: flex; gap: 1rem;">
+                            <button class="nav-btn">Grid View</button>
+                            <button class="nav-btn secondary">List View</button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid-compact">
+                        <div class="card-large">
+                            <div class="card-image">🚀</div>
+                            <div class="card-body">
+                                <div class="card-badges">
+                                    <span class="badge">Core</span>
+                                    <span style="background: #FEF3C7; color: #F59E0B;" class="badge">Beginner</span>
+                                </div>
+                                <div style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem;">Quick Start Guide</div>
+                                <div style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1rem;">מדריך התחלה מהיר ל-BMAD - 15 דקות</div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="color: var(--text-muted); font-size: 0.875rem;">⏱️ 15 min</span>
+                                    <button class="nav-btn" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Start</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-large">
+                            <div class="card-image" style="background: linear-gradient(135deg, #6366F1, #8B5CF6);">💻</div>
+                            <div class="card-body">
+                                <div class="card-badges">
+                                    <span class="badge">Roles</span>
+                                    <span style="background: #DBEAFE; color: #3B82F6;" class="badge">Intermediate</span>
+                                </div>
+                                <div style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem;">Developer's Guide</div>
+                                <div style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1rem;">מדריך מלא למפתחים - כל מה שצריך</div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="color: var(--text-muted); font-size: 0.875rem;">⏱️ 45 min</span>
+                                    <span style="color: var(--primary); font-weight: 600; font-size: 0.875rem;">67% ✓</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-large">
+                            <div class="card-image" style="background: linear-gradient(135deg, #EC4899, #F43F5E);">🎨</div>
+                            <div class="card-body">
+                                <div class="card-badges">
+                                    <span class="badge">Roles</span>
+                                    <span style="background: #DBEAFE; color: #3B82F6;" class="badge">Intermediate</span>
+                                </div>
+                                <div style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem;">UX Designer Guide</div>
+                                <div style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1rem;">עיצוב חוויות משתמש עם BMAD</div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="color: var(--text-muted); font-size: 0.875rem;">⏱️ 30 min</span>
+                                    <button class="nav-btn" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Start</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="notes-section">
+                <div class="notes-title">What I like about this direction:</div>
+                <textarea class="notes-textarea" placeholder="Add your thoughts..."></textarea>
+            </div>
+        </div>
+
+        <!-- Direction 4: Reading Experience - 3 Panel Layout -->
+        <div class="direction-card hidden" data-direction="4">
+            <div class="direction-header">
+                <div class="direction-title">Direction 4: Immersive Reading Layout</div>
+                <div class="direction-subtitle">חוויית קריאה ממוקדת - 3 פאנלים (ToC, תוכן, פעולות)</div>
+                <div class="direction-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Layout:</span>
+                        <span>3-Panel (ToC + Content + Actions)</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Density:</span>
+                        <span>Focused (reading optimized)</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Style:</span>
+                        <span>Clean, minimal, content-first</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Best For:</span>
+                        <span>Deep learning, long content</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reading-layout">
+                <div class="toc-sidebar">
+                    <div class="toc-title">📑 תוכן עניינים</div>
+                    <ul class="toc-list">
+                        <li class="toc-item active">מבוא</li>
+                        <li class="toc-item">למה אני צריך את זה?</li>
+                        <li class="toc-item">איך זה עובד?</li>
+                        <li class="toc-item">התקנה</li>
+                        <li class="toc-item">צעדים ראשונים</li>
+                        <li class="toc-item">דוגמאות</li>
+                        <li class="toc-item">שאלות נפוצות</li>
+                        <li class="toc-item">מה הלאה?</li>
+                    </ul>
+                </div>
+                
+                <div class="content-main">
+                    <div class="content-header">
+                        <div class="content-title">מדריך התחלה מהירה</div>
+                        <div class="content-meta">
+                            <span>🚀 Core Guide</span>
+                            <span>⏱️ 15 דקות קריאה</span>
+                            <span>📊 Beginner</span>
+                            <span>👁️ 247 צפיות</span>
+                        </div>
+                    </div>
+                    
+                    <div class="content-body">
+                        <h2>מבוא</h2>
+                        <p>
+                            BMAD-METHOD היא מערכת מקיפה שעוזרת לכם לבנות תוכנה באיכות גבוהה עם עזרת בינה מלאכותית. 
+                            במקום לקפוץ ישר לקוד, BMAD מדריך אתכם דרך תהליך מסודר שמבטיח שאתם בונים את הדבר הנכון, בצורה הנכונה.
+                        </p>
+                        
+                        <div class="callout">
+                            <div class="callout-title">💡 למה זה חשוב?</div>
+                            <div>
+                                רוב הפרויקטים נכשלים לא בגלל קוד רע, אלא בגלל שבנו את הדבר הלא נכון. 
+                                BMAD עוזר לכם למנוע את זה על ידי תכנון נכון מההתחלה.
+                            </div>
+                        </div>
+                        
+                        <h2>איך זה עובד?</h2>
+                        <p>
+                            BMAD מורכב מ-11 אג'נטים מיוחדים, כל אחד עם תפקיד ספציפי בתהליך הפיתוח. 
+                            כמו צוות מקצועי שעובד יחד, האג'נטים האלה מדריכים אתכם דרך כל שלב בפרויקט.
+                        </p>
+                        
+                        <p>
+                            התהליך מחולק ל-4 שלבים עיקריים:
+                        </p>
+                        
+                        <div style="background: var(--surface); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0;">
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                                <div style="background: white; padding: 1rem; border-radius: 8px;">
+                                    <div style="font-weight: 600; margin-bottom: 0.5rem;">1️⃣ Analysis</div>
+                                    <div style="color: var(--text-muted); font-size: 0.875rem;">הבנת הצרכים והחזון</div>
+                                </div>
+                                <div style="background: white; padding: 1rem; border-radius: 8px;">
+                                    <div style="font-weight: 600; margin-bottom: 0.5rem;">2️⃣ Planning</div>
+                                    <div style="color: var(--text-muted); font-size: 0.875rem;">תכנון פיצ'רים וארכיטקטורה</div>
+                                </div>
+                                <div style="background: white; padding: 1rem; border-radius: 8px;">
+                                    <div style="font-weight: 600; margin-bottom: 0.5rem;">3️⃣ Solutioning</div>
+                                    <div style="color: var(--text-muted); font-size: 0.875rem;">עיצוב הפתרון הטכני</div>
+                                </div>
+                                <div style="background: white; padding: 1rem; border-radius: 8px;">
+                                    <div style="font-weight: 600; margin-bottom: 0.5rem;">4️⃣ Implementation</div>
+                                    <div style="color: var(--text-muted); font-size: 0.875rem;">פיתוח וביצוע</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="actions-sidebar">
+                    <button class="action-btn primary">📝 Add Note</button>
+                    <button class="action-btn primary">✅ Create Task</button>
+                    <button class="action-btn secondary">🔖 Bookmark</button>
+                    <button class="action-btn secondary">🔗 Copy Link</button>
+                    
+                    <div style="margin: 2rem 0; padding: 1rem; background: white; border-radius: 8px;">
+                        <div style="font-weight: 600; margin-bottom: 0.5rem; font-size: 0.875rem;">Your Progress</div>
+                        <div style="margin-bottom: 0.5rem;">
+                            <div style="height: 8px; background: var(--surface); border-radius: 999px; overflow: hidden;">
+                                <div style="width: 42%; height: 100%; background: var(--primary);"></div>
+                            </div>
+                        </div>
+                        <div style="color: var(--text-muted); font-size: 0.75rem;">42% through this guide</div>
+                    </div>
+                    
+                    <button class="action-btn primary">✓ Mark Complete</button>
+                    
+                    <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+                        <div style="font-weight: 600; margin-bottom: 1rem; font-size: 0.875rem;">Was this helpful?</div>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="action-btn secondary" style="flex: 1;">👍 Yes</button>
+                            <button class="action-btn secondary" style="flex: 1;">👎 No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="notes-section">
+                <div class="notes-title">What I like about this direction:</div>
+                <textarea class="notes-textarea" placeholder="Add your thoughts..."></textarea>
+            </div>
+        </div>
+
+        <!-- Direction 5: Minimal & Clean -->
+        <div class="direction-card hidden" data-direction="5">
+            <div class="direction-header">
+                <div class="direction-title">Direction 5: Ultra-Minimal</div>
+                <div class="direction-subtitle">מינימליסטי ונקי - דיסטרקציות אפס</div>
+                <div class="direction-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Layout:</span>
+                        <span>Centered, single-column</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Density:</span>
+                        <span>Very spacious</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Style:</span>
+                        <span>Minimal, clean, zen-like</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Best For:</span>
+                        <span>Focus, simplicity-lovers</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mockup-spacious">
+                <div class="mock-header" style="border: none; background: transparent;">
+                    <div class="mock-logo">🎓</div>
+                    <div class="mock-search">
+                        <input type="text" class="mock-search-input" placeholder="חפש..." style="border: none; background: var(--surface);">
+                    </div>
+                    <div class="mock-user">
+                        <div class="mock-avatar">B</div>
+                    </div>
+                </div>
+                
+                <div style="max-width: 800px; margin: 0 auto; padding: 4rem 2rem;">
+                    <div style="text-align: center; margin-bottom: 4rem;">
+                        <div style="font-size: 3rem; font-weight: 700; margin-bottom: 1rem;">שלום, Ben 👋</div>
+                        <div style="font-size: 1.25rem; color: var(--text-muted);">נכון להמשיך ללמוד?</div>
+                    </div>
+                    
+                    <div style="background: white; border-radius: 24px; padding: 3rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem;">
+                            <div style="font-size: 4rem;">💻</div>
+                            <div>
+                                <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">מדריך למפתחים</div>
+                                <div style="color: var(--text-muted);">נשאר לך 15 דקות • 67% הושלם</div>
+                            </div>
+                        </div>
+                        <button class="nav-btn" style="width: 100%; padding: 1rem; font-size: 1rem;">המשך לקרוא ←</button>
+                    </div>
+                    
+                    <div style="text-align: center; margin: 4rem 0;">
+                        <div style="font-size: 1.25rem; font-weight: 600; color: var(--foreground); margin-bottom: 2rem;">ההתקדמות שלך</div>
+                        <div style="display: flex; justify-content: center; gap: 3rem;">
+                            <div>
+                                <div style="font-size: 3rem; font-weight: 700; color: var(--primary);">36%</div>
+                                <div style="color: var(--text-muted);">מדריכים</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 3rem; font-weight: 700; color: var(--primary);">7🔥</div>
+                                <div style="color: var(--text-muted);">Streak</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 3rem;">🥈</div>
+                                <div style="color: var(--text-muted);">Silver</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <div style="color: var(--text-muted); margin-bottom: 1rem;">מדריכים מומלצים עבורך</div>
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div style="background: white; padding: 1.5rem; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="font-size: 2rem;">🎨</div>
+                                    <div style="text-align: right;">
+                                        <div style="font-weight: 500;">מדריך למעצבי UX</div>
+                                        <div style="color: var(--text-muted); font-size: 0.875rem;">30 דקות</div>
+                                    </div>
+                                </div>
+                                <button class="nav-btn">Start</button>
+                            </div>
+                            
+                            <div style="background: white; padding: 1.5rem; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="font-size: 2rem;">🏗️</div>
+                                    <div style="text-align: right;">
+                                        <div style="font-weight: 500;">ארכיטקטורה</div>
+                                        <div style="color: var(--text-muted); font-size: 0.875rem;">50 דקות</div>
+                                    </div>
+                                </div>
+                                <button class="nav-btn">Start</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="notes-section">
+                <div class="notes-title">What I like about this direction:</div>
+                <textarea class="notes-textarea" placeholder="Add your thoughts..."></textarea>
+            </div>
+        </div>
+
+        <!-- Direction 6: Modern App-Style -->
+        <div class="direction-card hidden" data-direction="6">
+            <div class="direction-header">
+                <div class="direction-title">Direction 6: Modern App Experience</div>
+                <div class="direction-subtitle">אפליקטיבי ומודרני - מרגיש כמו אפליקציה מובילה</div>
+                <div class="direction-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Layout:</span>
+                        <span>Modern app-style</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Density:</span>
+                        <span>Balanced, comfortable</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Style:</span>
+                        <span>Premium, polished, trendy</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Best For:</span>
+                        <span>"Wow" factor, screenshots</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mockup-spacious" style="background: linear-gradient(135deg, #042F2E 0%, #064E3B 100%);">
+                <div class="mock-header" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);">
+                    <div class="mock-logo" style="background: var(--primary); padding: 0.5rem 1rem; border-radius: 12px; color: white;">🎓 Agenseek</div>
+                    <div class="mock-search">
+                        <input type="text" class="mock-search-input" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;" placeholder="חפש מדריכים...">
+                    </div>
+                    <div class="mock-user">
+                        <div class="mock-avatar">B</div>
+                    </div>
+                </div>
+                
+                <div class="mock-content" style="padding: 2rem 3rem;">
+                    <div style="background: rgba(255,255,255,0.95); border-radius: 24px; padding: 3rem; backdrop-filter: blur(20px);">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 3rem;">
+                            <div>
+                                <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">שלום, Ben! 👋</div>
+                                <div style="font-size: 1.125rem; color: var(--text-muted);">Streak של 7 ימים ברציפות! 🔥 המשך כך!</div>
+                            </div>
+                            <div style="background: linear-gradient(135deg, var(--primary), var(--accent)); padding: 1.5rem 2rem; border-radius: 16px; text-align: center; color: white;">
+                                <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.25rem;">36%</div>
+                                <div style="opacity: 0.9;">Completed</div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #EEF2FF, #F0FDF9); border-radius: 20px; padding: 2rem; margin-bottom: 2rem; border: 2px solid var(--primary); position: relative; overflow: hidden;">
+                            <div style="position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(circle, rgba(16,185,129,0.2) 0%, transparent 70%);"></div>
+                            <div style="position: relative; z-index: 1;">
+                                <div style="display: flex; align-items: center; gap: 2rem;">
+                                    <div style="font-size: 4rem;">💻</div>
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">המשך לקרוא: מדריך למפתחים</div>
+                                        <div style="color: var(--text-secondary); margin-bottom: 1rem;">אתה ב-67% - עוד 15 דקות ואתה מסיים!</div>
+                                        <div style="height: 8px; background: rgba(255,255,255,0.5); border-radius: 999px; overflow: hidden; margin-bottom: 1rem;">
+                                            <div style="width: 67%; height: 100%; background: var(--primary); border-radius: 999px;"></div>
+                                        </div>
+                                        <button class="nav-btn" style="padding: 0.75rem 2rem;">המשך ←</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                            <div style="background: white; border-radius: 16px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid var(--border);">
+                                <div style="font-size: 2rem; margin-bottom: 0.75rem;">🎨</div>
+                                <div style="font-weight: 600; margin-bottom: 0.25rem;">מדריך למעצבי UX</div>
+                                <div style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1rem;">30 דקות • New</div>
+                                <button class="nav-btn secondary" style="width: 100%; padding: 0.5rem;">Start</button>
+                            </div>
+                            
+                            <div style="background: white; border-radius: 16px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid var(--border);">
+                                <div style="font-size: 2rem; margin-bottom: 0.75rem;">🏗️</div>
+                                <div style="font-weight: 600; margin-bottom: 0.25rem;">ארכיטקטורה</div>
+                                <div style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1rem;">50 דקות • Popular</div>
+                                <button class="nav-btn secondary" style="width: 100%; padding: 0.5rem;">Start</button>
+                            </div>
+                            
+                            <div style="background: white; border-radius: 16px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid var(--border);">
+                                <div style="font-size: 2rem; margin-bottom: 0.75rem;">📊</div>
+                                <div style="font-weight: 600; margin-bottom: 0.25rem;">PM Guide</div>
+                                <div style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1rem;">35 דקות</div>
+                                <button class="nav-btn secondary" style="width: 100%; padding: 0.5rem;">Start</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="notes-section">
+                <div class="notes-title">What I like about this direction:</div>
+                <textarea class="notes-textarea" placeholder="Add your thoughts..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentDirection = 1;
+        const totalDirections = 6;
+
+        function showDirection(n) {
+            const cards = document.querySelectorAll('.direction-card');
+            cards.forEach((card, index) => {
+                if (index + 1 === n) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            
+            document.getElementById('current').textContent = n;
+            currentDirection = n;
+        }
+
+        function nextDirection() {
+            if (currentDirection < totalDirections) {
+                showDirection(currentDirection + 1);
+            }
+        }
+
+        function previousDirection() {
+            if (currentDirection > 1) {
+                showDirection(currentDirection - 1);
+            }
+        }
+
+        // Initialize
+        document.getElementById('total').textContent = totalDirections;
+        showDirection(1);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') previousDirection();
+            if (e.key === 'ArrowLeft') nextDirection();
+        });
+    </script>
+</body>
+</html>
+
