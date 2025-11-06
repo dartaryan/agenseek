@@ -17,7 +17,7 @@ import {
   IconLock,
   IconCheck,
   IconX,
-  IconBrandGoogle,
+  // IconBrandGoogle, // Disabled until Story 2.4
 } from '@tabler/icons-react';
 
 // Zod validation schema
@@ -122,7 +122,7 @@ export function RegisterPage() {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+  // const [isGoogleLoading, setIsGoogleLoading] = useState(false); // Disabled until Story 2.4
 
   const {
     register,
@@ -197,35 +197,34 @@ export function RegisterPage() {
     }
   };
 
-  const handleGoogleSignUp = async () => {
-    setIsGoogleLoading(true);
-
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
-        },
-      });
-
-      if (error) {
-        toast({
-          variant: 'destructive',
-          title: 'Google Sign-Up Failed',
-          description: error.message,
-        });
-      }
-    } catch (err) {
-      console.error('Google sign-up error:', err);
-      toast({
-        variant: 'destructive',
-        title: 'Google Sign-Up Failed',
-        description: 'An unexpected error occurred. Please try again.',
-      });
-    } finally {
-      setIsGoogleLoading(false);
-    }
-  };
+  // Google OAuth - Disabled until Story 2.4
+  // const handleGoogleSignUp = async () => {
+  //   setIsGoogleLoading(true);
+  //   try {
+  //     const { error } = await supabase.auth.signInWithOAuth({
+  //       provider: 'google',
+  //       options: {
+  //         redirectTo: `${window.location.origin}/auth/callback`,
+  //       },
+  //     });
+  //     if (error) {
+  //       toast({
+  //         variant: 'destructive',
+  //         title: 'Google Sign-Up Failed',
+  //         description: error.message,
+  //       });
+  //     }
+  //   } catch (err) {
+  //     console.error('Google sign-up error:', err);
+  //     toast({
+  //       variant: 'destructive',
+  //       title: 'Google Sign-Up Failed',
+  //       description: 'An unexpected error occurred. Please try again.',
+  //       });
+  //   } finally {
+  //     setIsGoogleLoading(false);
+  //   }
+  // };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-4">
@@ -323,8 +322,8 @@ export function RegisterPage() {
             </Button>
           </form>
 
-          {/* Divider */}
-          <div className="relative">
+          {/* Google OAuth - Disabled until Supabase OAuth is configured (Story 2.4) */}
+          {/* <div className="relative">
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t border-gray-300" />
             </div>
@@ -333,7 +332,6 @@ export function RegisterPage() {
             </div>
           </div>
 
-          {/* Google Sign-Up */}
           <Button
             type="button"
             variant="outline"
@@ -343,7 +341,7 @@ export function RegisterPage() {
           >
             <IconBrandGoogle className="w-5 h-5 mr-2" />
             {isGoogleLoading ? 'Connecting...' : 'Sign up with Google'}
-          </Button>
+          </Button> */}
 
           {/* Login Link */}
           <p className="text-center text-sm text-gray-500">

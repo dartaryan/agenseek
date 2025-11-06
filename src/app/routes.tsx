@@ -6,6 +6,7 @@ import { Layout } from './layout';
 // Auth pages
 import { LoginPage } from './auth/login';
 import { RegisterPage } from './auth/register';
+import { ForgotPasswordPage } from './auth/forgot-password';
 import { ResetPasswordPage } from './auth/reset-password';
 
 // Onboarding
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
   {
     path: '/auth/register',
     element: <RegisterPage />,
+  },
+  {
+    path: '/auth/forgot-password',
+    element: <ForgotPasswordPage />,
   },
   {
     path: '/auth/reset-password',

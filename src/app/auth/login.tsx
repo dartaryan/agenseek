@@ -4,14 +4,14 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { motion } from 'framer-motion';
-import { IconBrandGoogle, IconLock, IconMail } from '@tabler/icons-react';
+import { /* IconBrandGoogle, */ IconLock, IconMail } from '@tabler/icons-react';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import { Checkbox } from '../../components/ui/checkbox';
 import { useToast } from '../../hooks/use-toast';
-import { signIn, signInWithProvider } from '../../lib/auth';
+import { signIn /* , signInWithProvider */ } from '../../lib/auth'; // signInWithProvider disabled until Story 2.4
 
 /**
  * Login form validation schema
@@ -32,7 +32,7 @@ export function LoginPage() {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+  // const [isGoogleLoading, setIsGoogleLoading] = useState(false); // Disabled until Story 2.4
 
   const {
     register,
@@ -75,24 +75,25 @@ export function LoginPage() {
     }
   };
 
-  const handleGoogleLogin = async () => {
-    setIsGoogleLoading(true);
-    try {
-      await signInWithProvider('google');
-      // Note: User will be redirected to Google, then back to /auth/callback
-      toast({
-        title: 'Redirecting to Google...',
-        description: 'You will be redirected back after authentication.',
-      });
-    } catch (error) {
-      toast({
-        title: 'Google login failed',
-        description: error instanceof Error ? error.message : 'Failed to initiate Google login',
-        variant: 'destructive',
-      });
-      setIsGoogleLoading(false);
-    }
-  };
+  // Google OAuth - Disabled until Story 2.4
+  // const handleGoogleLogin = async () => {
+  //   setIsGoogleLoading(true);
+  //   try {
+  //     await signInWithProvider('google');
+  //     // Note: User will be redirected to Google, then back to /auth/callback
+  //     toast({
+  //       title: 'Redirecting to Google...',
+  //       description: 'You will be redirected back after authentication.',
+  //     });
+  //   } catch (error) {
+  //     toast({
+  //       title: 'Google login failed',
+  //       description: error instanceof Error ? error.message : 'Failed to initiate Google login',
+  //       variant: 'destructive',
+  //     });
+  //     setIsGoogleLoading(false);
+  //   }
+  // };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-4">
@@ -117,8 +118,8 @@ export function LoginPage() {
             </p>
           </div>
 
-          {/* Google OAuth */}
-          <Button
+          {/* Google OAuth - Disabled until Supabase OAuth is configured (Story 2.4) */}
+          {/* <Button
             type="button"
             variant="outline"
             className="w-full"
@@ -129,7 +130,6 @@ export function LoginPage() {
             {isGoogleLoading ? 'Connecting...' : 'Continue with Google'}
           </Button>
 
-          {/* Divider */}
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t" />
@@ -137,7 +137,7 @@ export function LoginPage() {
             <div className="relative flex justify-center text-xs uppercase">
               <span className="bg-white px-2 text-gray-500">Or continue with email</span>
             </div>
-          </div>
+          </div> */}
 
           {/* Login Form */}
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -188,7 +188,7 @@ export function LoginPage() {
                   Remember me
                 </Label>
               </div>
-              <Link to="/auth/reset-password" className="text-sm text-emerald-600 hover:underline">
+              <Link to="/auth/forgot-password" className="text-sm text-emerald-600 hover:underline">
                 Forgot password?
               </Link>
             </div>
@@ -197,7 +197,7 @@ export function LoginPage() {
             <Button
               type="submit"
               className="w-full bg-emerald-600 hover:bg-emerald-700"
-              disabled={isLoading || isGoogleLoading}
+              disabled={isLoading}
             >
               {isLoading ? 'Signing in...' : 'Sign In'}
             </Button>

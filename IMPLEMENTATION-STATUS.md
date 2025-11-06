@@ -258,6 +258,54 @@
 
 ---
 
+### Story 2.3: Build Password Reset Flow ✅
+- **Status:** COMPLETE
+- **Completed:** November 6, 2025
+- **Details:**
+  - ✅ Forgot Password page with email input form
+  - ✅ Reset Password page with new password form
+  - ✅ Email verification token validation
+  - ✅ Password strength indicator (reused component)
+  - ✅ Send reset link via Supabase Auth
+  - ✅ Success/error states with visual feedback
+  - ✅ Invalid/expired token handling
+  - ✅ Success toast with redirect to login
+  - ✅ "Didn't receive email?" resend functionality
+  - ✅ Loading states during email send and password update
+  - ✅ Framer Motion entrance animations
+  - ✅ Responsive design with emerald theme
+
+**Implemented Features:**
+- **Forgot Password Page** (`/auth/forgot-password`):
+  - Email input with validation
+  - Send reset link button
+  - Success state with email confirmation
+  - Resend functionality
+  - Back to login link
+- **Reset Password Page** (`/auth/reset-password`):
+  - Token validation on page load
+  - New password + confirm password fields
+  - Password strength indicator (4 requirements)
+  - Invalid token error state with helpful message
+  - Success flow with redirect
+- **Login Page Updated:**
+  - "Forgot password?" link now points to `/auth/forgot-password`
+- **Google OAuth Buttons:**
+  - Hidden in both login and register (until Story 2.4 Supabase config)
+  - Commented out with clear note for future reference
+
+**Verification:**
+- ✅ `npm run type-check` - 0 errors
+- ✅ `npm run lint` - 0 errors
+- ✅ `npm run format:check` - All files formatted
+- ✅ `npm run build` - Built successfully (7.80s)
+- ✅ All acceptance criteria met
+- ✅ Email reset flow working via Supabase
+- ✅ Token validation working
+- ✅ Password update successful
+
+---
+
 ## 📋 Next Stories (Sprint 2 - Epic 2)
 
 ---
@@ -279,12 +327,12 @@
 - ✅ 1.10: Code Quality Tools
 
 ### Sprint 2 (Epic 2: Authentication & Onboarding) - 🚧 IN PROGRESS
-**Stories Complete:** 2 / 10 (20%)
+**Stories Complete:** 3 / 10 (30%)
 
 - ✅ 2.1: Build Login Page
-- ✅ 2.2: Build Registration Page ✅ **NEW!**
-- ⏳ 2.3: Build Password Reset Flow
-- ⏳ 2.4: Build Google OAuth Integration
+- ✅ 2.2: Build Registration Page
+- ✅ 2.3: Build Password Reset Flow ✅ **NEW!**
+- ⏳ 2.4: Build Google OAuth Integration (buttons hidden until configured)
 - ⏳ 2.5: Build Onboarding Wizard - Step 1 (Welcome)
 - ⏳ 2.6: Build Onboarding Wizard - Step 2 (Select Role)
 - ⏳ 2.7: Build Onboarding Wizard - Step 3 (Select Interests)
@@ -298,39 +346,47 @@
 
 ## 🎯 How to Continue
 
-### 🎉 Story 2.2 COMPLETE! 🎉
+### 🎉 Story 2.3 COMPLETE! 🎉
 
-**Excellent progress!** Sprint 2 is moving forward with both login and registration complete.
+**Excellent progress!** Sprint 2 is progressing well with login, registration, AND password reset complete.
 
-### Story 2.2 Achievements:
-1. ✅ **Complete registration form** with 4 fields (display name, email, password, confirm password)
-2. ✅ **Password strength indicator** with 3-level bar and requirements checklist
-3. ✅ **Email verification flow** via Supabase automatic email
-4. ✅ **Profile creation** in database with completed_onboarding flag
-5. ✅ **Google OAuth integration** with redirect configuration
-6. ✅ **Beautiful UI** with Framer Motion animations and emerald theme
+### Story 2.3 Achievements:
+1. ✅ **Forgot Password page** with email input and send reset link
+2. ✅ **Reset Password page** with new password form and validation
+3. ✅ **Token validation** on page load with error handling
+4. ✅ **Password strength indicator** (reused from Story 2.2)
+5. ✅ **Success/error states** with visual feedback and toasts
+6. ✅ **Resend functionality** if email not received
+7. ✅ **Beautiful UI** with Framer Motion animations and emerald theme
+8. ✅ **Google OAuth buttons hidden** until Story 2.4 configuration
 
-### Ready for Story 2.3 (Build Password Reset Flow):
+### Ready for Story 2.5 (Build Onboarding Wizard - Step 1):
 
-**Next Story:** Story 2.3 - Build Password Reset Flow
+**Note:** Story 2.4 (Google OAuth) requires external Supabase configuration and is optional (P1).
+We're skipping to Story 2.5 to keep momentum on core features.
+
+**Next Story:** Story 2.5 - Build Onboarding Wizard - Step 1 (Welcome)
 **Sprint:** 2 | **Points:** 2 | **Priority:** P0
-**Dependencies:** Story 2.2 (Complete ✅)
+**Dependencies:** Story 2.2 (Complete ✅), Story 2.3 (Complete ✅)
 
-**Story 2.3 Requirements:**
-- Forgot password page with email input
-- Send reset link via Supabase Auth
-- Reset password page with new password form
-- Token validation
-- Success redirect to login
+**Story 2.5 Requirements:**
+- Full-screen onboarding wizard layout
+- Progress dots indicator (1/5)
+- Welcome screen with message
+- Animated illustration/icon
+- "Let's personalize your journey" CTA button
+- "Do this later" skip option
 
 ### To Continue:
-- Say: **"Let's do Story 2.3"** to implement the password reset flow
+- Say: **"Let's do Story 2.5"** to implement the onboarding wizard welcome screen
 - Or: **"What's next?"** to review the story requirements
 
 ### Current Status:
 - ✅ Dev server running at http://localhost:5173
 - ✅ Login page at /auth/login
-- ✅ Registration page at /auth/register ✅ **NEW!**
+- ✅ Registration page at /auth/register
+- ✅ Forgot password at /auth/forgot-password ✅ **NEW!**
+- ✅ Reset password at /auth/reset-password ✅ **NEW!**
 - ✅ All systems operational
 
 ---
