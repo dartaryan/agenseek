@@ -155,9 +155,7 @@ export function LoginPage() {
                   disabled={isLoading}
                 />
               </div>
-              {errors.email && (
-                <p className="text-sm text-red-600">{errors.email.message}</p>
-              )}
+              {errors.email && <p className="text-sm text-red-600">{errors.email.message}</p>}
             </div>
 
             {/* Password Field */}
@@ -174,9 +172,7 @@ export function LoginPage() {
                   disabled={isLoading}
                 />
               </div>
-              {errors.password && (
-                <p className="text-sm text-red-600">{errors.password.message}</p>
-              )}
+              {errors.password && <p className="text-sm text-red-600">{errors.password.message}</p>}
             </div>
 
             {/* Remember Me & Forgot Password */}
@@ -185,22 +181,14 @@ export function LoginPage() {
                 <Checkbox
                   id="rememberMe"
                   checked={rememberMe}
-                  onCheckedChange={(checked: boolean) =>
-                    setValue('rememberMe', checked === true)
-                  }
+                  onCheckedChange={(checked: boolean) => setValue('rememberMe', checked === true)}
                   disabled={isLoading}
                 />
-                <Label
-                  htmlFor="rememberMe"
-                  className="text-sm font-normal cursor-pointer"
-                >
+                <Label htmlFor="rememberMe" className="text-sm font-normal cursor-pointer">
                   Remember me
                 </Label>
               </div>
-              <Link
-                to="/auth/reset-password"
-                className="text-sm text-emerald-600 hover:underline"
-              >
+              <Link to="/auth/reset-password" className="text-sm text-emerald-600 hover:underline">
                 Forgot password?
               </Link>
             </div>
