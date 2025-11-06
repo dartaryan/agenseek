@@ -42,7 +42,7 @@
 
 ### Step 2: Configure Environment Variables
 
-After the project is connected, configure the environment variables:
+**IMPORTANT:** Environment variables must be set in the Vercel dashboard, not in `vercel.json`.
 
 1. **Go to Project Settings:**
    - Navigate to your project in Vercel
@@ -57,7 +57,17 @@ After the project is connected, configure the environment variables:
    | `VITE_SUPABASE_URL` | Your Supabase project URL | Supabase Dashboard → Settings → API → Project URL |
    | `VITE_SUPABASE_ANON_KEY` | Your Supabase anon/public key | Supabase Dashboard → Settings → API → Project API keys → anon public |
 
-3. **Save Environment Variables**
+3. **For Each Variable:**
+   - Click "Add New"
+   - Enter the variable name (e.g., `VITE_SUPABASE_URL`)
+   - Paste the value from your Supabase dashboard
+   - Select all environments: ✅ Production, ✅ Preview, ✅ Development
+   - Click "Save"
+
+4. **Redeploy After Adding Variables:**
+   - Go to "Deployments" tab
+   - Click "..." on the failed deployment → "Redeploy"
+   - Or push a new commit to trigger a fresh deployment
 
 ---
 
@@ -176,6 +186,16 @@ After deployment, you'll have:
 ---
 
 ## 🐛 Troubleshooting
+
+### Issue: "Environment Variable references Secret which does not exist"
+**Error:** `Environment Variable "VITE_SUPABASE_URL" references Secret "supabase-url", which does not exist.`
+
+**Solution:** 
+- ✅ **Fixed!** The `env` section has been removed from `vercel.json`
+- Environment variables should be set in Vercel dashboard, not in `vercel.json`
+- Pull the latest changes to get the fixed `vercel.json`
+- Set environment variables through Vercel dashboard (Settings → Environment Variables)
+- Redeploy after setting the variables
 
 ### Issue: "Module not found" errors
 **Solution:** Ensure all dependencies are in `package.json` (not just devDependencies if they're needed at runtime)
