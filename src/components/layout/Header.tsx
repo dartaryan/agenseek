@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '../ui/button';
 import { useAuth } from '../../hooks/useAuth';
 import { signOut } from '../../lib/auth';
+import { hebrewLocale } from '../../lib/locale/he';
 
 /**
  * Header Component
@@ -40,7 +41,7 @@ export function Header() {
           <div className="relative w-full">
             <input
               type="text"
-              placeholder="Search guides... (Coming in Story 7.2)"
+              placeholder={hebrewLocale.actions.search}
               disabled
               className="w-full px-4 py-2 pl-10 text-sm border rounded-lg bg-gray-50 cursor-not-allowed"
             />
@@ -90,7 +91,7 @@ export function Header() {
                 </Button>
               </Link>
               <Button variant="ghost" size="sm" onClick={handleSignOut}>
-                Logout
+                {hebrewLocale.actions.logout}
               </Button>
             </div>
           )}

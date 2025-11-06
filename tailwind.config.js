@@ -26,8 +26,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Fredoka', 'system-ui', 'sans-serif'],
-        serif: ['Fredoka', 'Georgia', 'serif'],
+        sans: ['Arimo', 'system-ui', 'sans-serif'],
+        serif: ['Arimo', 'Georgia', 'serif'],
       },
       borderRadius: {
         'lg': '0.75rem',

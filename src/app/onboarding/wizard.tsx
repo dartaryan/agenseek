@@ -1,7 +1,19 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { IconSparkles, IconRocket } from '@tabler/icons-react';
+import {
+  IconSparkles,
+  IconRocket,
+  IconCode,
+  IconChartBar,
+  IconPalette,
+  IconBuildingBridge,
+  IconClipboardList,
+  IconTestPipe,
+  IconTie,
+  IconDeviceGamepad,
+  IconBulb,
+} from '@tabler/icons-react';
 import { Button } from '@/components/ui/button';
 import { ProgressDots } from '@/components/onboarding/ProgressDots';
 import { useToast } from '@/hooks/use-toast';
@@ -10,6 +22,7 @@ const TOTAL_STEPS = 5;
 
 export function OnboardingWizardPage() {
   const [currentStep, setCurrentStep] = useState(1);
+  const [selectedRole, setSelectedRole] = useState<string | null>(null);
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -52,10 +65,10 @@ export function OnboardingWizardPage() {
               />
             )}
             {currentStep === 2 && (
-              <PlaceholderStep
+              <RoleStep
                 key="role"
-                title="Step 2: Select Role"
-                description="Role selection coming in Story 2.6"
+                selectedRole={selectedRole}
+                onSelectRole={setSelectedRole}
                 onNext={handleNext}
                 onBack={handleBack}
               />
@@ -215,7 +228,177 @@ function WelcomeStep({ onNext, onSkip }: WelcomeStepProps) {
   );
 }
 
-// Placeholder for future steps (2.6-2.9)
+// Step 2: Role Selection
+interface RoleStepProps {
+  selectedRole: string | null;
+  onSelectRole: (role: string) => void;
+  onNext: () => void;
+  onBack: () => void;
+}
+
+interface Role {
+  id: string;
+  icon: React.ElementType;
+  title: string;
+  description: string;
+}
+
+const ROLES: Role[] = [
+  {
+    id: 'developer',
+    icon: IconCode,
+    title: 'Developer',
+    description: 'Building and implementing software solutions',
+  },
+  {
+    id: 'product-manager',
+    icon: IconChartBar,
+    title: 'Product Manager',
+    description: 'Defining product vision and strategy',
+  },
+  {
+    id: 'designer',
+    icon: IconPalette,
+    title: 'UX/UI Designer',
+    description: 'Crafting user experiences and interfaces',
+  },
+  {
+    id: 'architect',
+    icon: IconBuildingBridge,
+    title: 'Architect',
+    description: 'Designing system architecture and patterns',
+  },
+  {
+    id: 'project-manager',
+    icon: IconClipboardList,
+    title: 'Project Manager',
+    description: 'Coordinating projects and teams',
+  },
+  {
+    id: 'qa-engineer',
+    icon: IconTestPipe,
+    title: 'QA Engineer',
+    description: 'Ensuring quality through testing',
+  },
+  {
+    id: 'executive',
+    icon: IconTie,
+    title: 'Executive',
+    description: 'Leading strategic initiatives',
+  },
+  {
+    id: 'game-developer',
+    icon: IconDeviceGamepad,
+    title: 'Game Developer',
+    description: 'Creating interactive game experiences',
+  },
+  {
+    id: 'non-technical',
+    icon: IconBulb,
+    title: 'Non-Technical',
+    description: 'Supporting technical teams in other capacities',
+  },
+];
+
+function RoleStep({ selectedRole, onSelectRole, onNext, onBack }: RoleStepProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 100 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -100 }}
+      transition={{ duration: 0.3 }}
+      className="w-full max-w-4xl mx-auto"
+    >
+      {/* Heading */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="text-center mb-8"
+      >
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+          What's your role?
+        </h2>
+        <p className="text-gray-600 dark:text-gray-400">
+          This helps us recommend the most relevant content for you
+        </p>
+      </motion.div>
+
+      {/* Role Cards Grid */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8"
+      >
+        {ROLES.map((role, index) => {
+          const Icon = role.icon;
+          const isSelected = selectedRole === role.id;
+
+          return (
+            <motion.button
+              key={role.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 + index * 0.05 }}
+              onClick={() => onSelectRole(role.id)}
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className={`p-5 rounded-xl text-left transition-all duration-300 ${
+                isSelected
+                  ? 'bg-primary/10 border-2 border-primary shadow-lg shadow-primary/20'
+                  : 'bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 hover:shadow-md'
+              }`}
+            >
+              <div className="flex items-start gap-3">
+                <div
+                  className={`p-2 rounded-lg transition-colors ${
+                    isSelected
+                      ? 'bg-primary text-white'
+                      : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                  }`}
+                >
+                  <Icon className="w-6 h-6" stroke={1.5} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3
+                    className={`font-semibold mb-1 transition-colors ${
+                      isSelected
+                        ? 'text-primary'
+                        : 'text-gray-900 dark:text-white'
+                    }`}
+                  >
+                    {role.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+                    {role.description}
+                  </p>
+                </div>
+              </div>
+            </motion.button>
+          );
+        })}
+      </motion.div>
+
+      {/* Navigation Buttons */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="flex gap-4 justify-center"
+      >
+        <Button variant="outline" onClick={onBack} size="lg">
+          Back
+        </Button>
+        <Button onClick={onNext} disabled={!selectedRole} size="lg">
+          Next
+        </Button>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+// Placeholder for future steps (2.7-2.9)
 interface PlaceholderStepProps {
   title: string;
   description: string;

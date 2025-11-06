@@ -1,4 +1,5 @@
 import { Card } from '../../components/ui/card';
+import { hebrewLocale } from '../../lib/locale/he';
 
 /**
  * Notes Page (Protected)
@@ -9,14 +10,12 @@ export function NotesPage() {
     <div className="p-8">
       <div className="max-w-7xl mx-auto space-y-8">
         <div className="space-y-2">
-          <h1 className="text-4xl font-bold text-gray-900">My Notes</h1>
-          <p className="text-gray-600">Personal learning notes and insights</p>
+          <h1 className="text-4xl font-bold text-gray-900">{hebrewLocale.pages.notes.title}</h1>
+          <p className="text-gray-600">{hebrewLocale.pages.notes.description}</p>
         </div>
 
         <Card className="p-8">
-          <p className="text-center text-gray-500">
-            Rich text notes editor will be implemented in Epic 6 (Stories 6.1-6.3)
-          </p>
+          <p className="text-center text-gray-500">{hebrewLocale.pages.notes.placeholder}</p>
           <div className="mt-8 h-64 bg-gray-100 rounded flex items-center justify-center text-gray-400">
             Tiptap Rich Text Editor
           </div>
