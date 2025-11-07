@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<story-context story-id="5.1.1" version="1.0">
+  <metadata>
+    <story_key>5-1-1-mobile-reader-ux</story_key>
+    <title>Mobile Guide Reader UX Improvements</title>
+    <epic>Reader Experience Enhancements (Sub-Epic of Epic 5)</epic>
+    <status>ready-for-dev</status>
+    <priority>High</priority>
+    <estimate>5 Story Points</estimate>
+  </metadata>
+
+  <user_story>
+    <as_a>mobile user reading a guide</as_a>
+    <i_want>a better reading experience with proper spacing and intuitive navigation</i_want>
+    <so_that>I can comfortably read guides on my phone without UI elements obstructing content</so_that>
+  </user_story>
+
+  <acceptance_criteria>
+    <criterion id="AC1" category="Mobile Content Padding">
+      <item>Guide content has minimum 16px (1rem) padding on mobile screens</item>
+      <item>Content max-width prevents uncomfortably wide text on tablets</item>
+      <item>Bottom padding accounts for mobile ToC FAB button (80px clearance)</item>
+      <item>Breadcrumbs are properly spaced on mobile</item>
+    </criterion>
+
+    <criterion id="AC2" category="Mobile ToC Improvements">
+      <item>ToC bottom sheet includes visible "Close" button (X icon)</item>
+      <item>Tapping section in ToC closes the sheet automatically (already working)</item>
+      <item>ToC FAB button shows visual state indicator (open/closed)</item>
+      <item>ToC FAB has proper z-index to not block other interactive elements</item>
+      <item>Consider hiding FAB when scrolling down, showing when scrolling up</item>
+    </criterion>
+
+    <criterion id="AC3" category="Header Integration Option">
+      <item>Add ToC icon button to Header component on mobile (for reading pages)</item>
+      <item>Button appears in header when on guide reader page</item>
+      <item>Clicking header ToC button opens same mobile ToC sheet</item>
+      <item>This provides alternative discovery pattern for ToC functionality</item>
+    </criterion>
+
+    <criterion id="AC4" category="Mobile-Specific Polish">
+      <item>Ensure progress bar at top doesn't overlap header</item>
+      <item>Action buttons in GuideHeader are properly sized for touch targets</item>
+      <item>Related guides section is touch-friendly on mobile</item>
+      <item>Pagination arrows at bottom are large enough for comfortable tapping</item>
+    </criterion>
+  </acceptance_criteria>
+
+  <story_tasks>
+    <task id="T1" status="pending">
+      <description>Add mobile-specific padding classes to guide-reader.tsx content area</description>
+      <subtasks>
+        <subtask>Add px-4 lg:px-0 for horizontal padding on mobile</subtask>
+        <subtask>Add pb-24 for bottom clearance for FAB button</subtask>
+        <subtask>Test on mobile viewport (< 768px)</subtask>
+      </subtasks>
+    </task>
+
+    <task id="T2" status="pending">
+      <description>Implement auto-hide FAB on scroll in TableOfContents.tsx</description>
+      <subtasks>
+        <subtask>Add scroll direction detection with useRef and useEffect</subtask>
+        <subtask>Hide FAB when scrolling down past 100px threshold</subtask>
+        <subtask>Show FAB when scrolling up</subtask>
+        <subtask>Apply smooth transition (300ms ease-in-out)</subtask>
+      </subtasks>
+    </task>
+
+    <task id="T3" status="pending">
+      <description>Add explicit Close button to mobile ToC bottom sheet</description>
+      <subtasks>
+        <subtask>Already exists in TableOfContents.tsx line 151-170</subtask>
+        <subtask>Verify it's visible and functional</subtask>
+        <subtask>Test close behavior on mobile</subtask>
+      </subtasks>
+    </task>
+
+    <task id="T4" status="pending">
+      <description>Add ToC button to Header component for mobile guide reader pages</description>
+      <subtasks>
+        <subtask>Use useLocation() to detect guide reader route (/guides/:slug)</subtask>
+        <subtask>Add IconList button between logo and search bar</subtask>
+        <subtask>Make visible only on mobile (className="lg:hidden")</subtask>
+        <subtask>Connect to mobile ToC toggle prop passed from guide-reader</subtask>
+      </subtasks>
+    </task>
+
+    <task id="T5" status="pending">
+      <description>Update guide-reader.tsx to pass ToC toggle to Header</description>
+      <subtasks>
+        <subtask>Create context or prop drilling for isMobileTocOpen state</subtask>
+        <subtask>Pass setIsMobileTocOpen toggle function to Header</subtask>
+        <subtask>Test header ToC button opens mobile sheet</subtask>
+      </subtasks>
+    </task>
+  </story_tasks>
+
+  <artifacts>
+    <docs>
+      <doc>
+        <path>docs/ux-design-specification.md</path>
+        <title>UX Design Specification</title>
+        <section>6.2 Journey 2: Reading a Guide</section>
+        <snippet>3-panel immersive reading (ToC + Content + Actions). Left 20%: Table of Contents sidebar, collapsible on mobile (hamburger). Center 60%: Content with breadcrumbs, guide header, content, scroll progress bar. Right 20%: Actions & Progress with quick actions and circular progress indicator.</snippet>
+      </doc>
+
+      <doc>
+        <path>docs/stories/EPIC-5-READER-EXPERIENCE-ENHANCEMENTS.md</path>
+        <title>Reader Experience Enhancements Epic</title>
+        <section>Story 5.1.1 Details</section>
+        <snippet>Mobile reading experience improvements focusing on padding, ToC UX, and header integration. Key solutions: 16px mobile padding, 96px bottom clearance, auto-hide FAB on scroll, header-integrated ToC button.</snippet>
+      </doc>
+
+      <doc>
+        <path>STORY-4.5-COMPLETE.md</path>
+        <title>Story 4.5 Complete</title>
+        <section>Guide Reader Implementation</section>
+        <snippet>3-panel layout guide reader with ToC sidebar, content area, actions sidebar. Mobile: ToC as bottom sheet with floating FAB button. Desktop ToC hidden on mobile. Already includes close button in mobile sheet.</snippet>
+      </doc>
+
+      <doc>
+        <path>docs/architecture.md</path>
+        <title>Architecture Document</title>
+        <section>Responsive Design Patterns</section>
+        <snippet>Mobile-first approach with Tailwind responsive classes. Use lg:hidden and lg:block for mobile/desktop variants. Touch targets minimum 44x44px. Smooth transitions with Framer Motion.</snippet>
+      </doc>
+    </docs>
+
+    <code>
+      <artifact>
+        <path>src/app/guides/guide-reader.tsx</path>
+        <kind>page-component</kind>
+        <symbol>GuideReaderPage</symbol>
+        <lines>46-613</lines>
+        <reason>Main guide reader page component - needs mobile padding, scroll detection, and Header prop passing</reason>
+        <notes>
+          - Currently has 3-panel grid layout (lines 490-584)
+          - Mobile ToC state: isMobileTocOpen (line 57)
+          - Mobile ToC toggle: setIsMobileTocOpen (line 592)
+          - Needs to add padding classes to main content area (line 503)
+          - Needs to implement scroll direction detection for FAB auto-hide
+          - Needs to pass ToC toggle to Header via context or props
+        </notes>
+      </artifact>
+
+      <artifact>
+        <path>src/components/guides/TableOfContents.tsx</path>
+        <kind>component</kind>
+        <symbol>MobileTableOfContents</symbol>
+        <lines>77-183</lines>
+        <reason>Mobile ToC bottom sheet with FAB - needs auto-hide on scroll and visual state indicator</reason>
+        <notes>
+          - FAB button at lines 97-120 (fixed bottom-4 left-4)
+          - Close button already exists at lines 151-170 ✓
+          - Need to add showFab state with scroll direction detection
+          - Need to add visual indicator to FAB (rotation or color) based on isOpen prop
+          - Need to conditionally hide FAB based on scroll direction
+        </notes>
+      </artifact>
+
+      <artifact>
+        <path>src/components/layout/Header.tsx</path>
+        <kind>component</kind>
+        <symbol>Header</symbol>
+        <lines>1-106</lines>
+        <reason>Header component - needs conditional ToC button for mobile guide reader pages</reason>
+        <notes>
+          - Currently has logo, search bar, theme toggle, user menu
+          - Need to add ToC button between logo (line 31-40) and search bar (line 43-65)
+          - Use useLocation() from react-router-dom to detect /guides/:slug route
+          - Button should be mobile-only: className="lg:hidden"
+          - Use IconList from @tabler/icons-react
+          - Need to receive onTocToggle prop from guide-reader or use context
+        </notes>
+      </artifact>
+
+      <artifact>
+        <path>src/components/layout/Sidebar.tsx</path>
+        <kind>component</kind>
+        <symbol>Sidebar</symbol>
+        <lines>45-121</lines>
+        <reason>Reference for responsive patterns - hidden on mobile (hidden md:flex)</reason>
+        <notes>
+          - Uses useLocation() for active state detection (lines 46-53)
+          - Pattern for conditional rendering based on route
+          - Responsive classes: hidden md:flex md:w-64 (line 56)
+        </notes>
+      </artifact>
+
+      <artifact>
+        <path>src/app/layout.tsx</path>
+        <kind>layout-component</kind>
+        <symbol>Layout</symbol>
+        <lines>1-41</lines>
+        <reason>Main layout wrapper - shows where Header is rendered and how Outlet works</reason>
+        <notes>
+          - Header rendered at line 22
+          - Outlet (page content) at line 32
+          - If Header needs ToC toggle from guide-reader, may need React Context
+        </notes>
+      </artifact>
+    </code>
+
+    <dependencies>
+      <framework name="React" version="^18.3.1">
+        <packages>
+          <package>react</package>
+          <package>react-dom</package>
+          <package>react-router-dom</package>
+        </packages>
+      </framework>
+
+      <framework name="Styling" version="latest">
+        <packages>
+          <package name="tailwindcss">^3.4.17</package>
+          <package name="framer-motion">^11.15.0</package>
+        </packages>
+      </framework>
+
+      <framework name="Icons" version="latest">
+        <packages>
+          <package name="@tabler/icons-react">^3.29.0</package>
+        </packages>
+      </framework>
+    </dependencies>
+  </artifacts>
+
+  <interfaces>
+    <interface>
+      <name>MobileTableOfContentsProps</name>
+      <kind>React Component Props</kind>
+      <signature>
+interface MobileTableOfContentsProps extends TableOfContentsProps {
+  isOpen: boolean;
+  onToggle: () => void;
+}
+      </signature>
+      <path>src/components/guides/TableOfContents.tsx</path>
+      <notes>Extends TableOfContentsProps, adds isOpen state and onToggle callback</notes>
+    </interface>
+
+    <interface>
+      <name>useLocation Hook</name>
+      <kind>React Router Hook</kind>
+      <signature>
+import { useLocation } from 'react-router-dom';
+const location = useLocation();
+// location.pathname === '/guides/some-slug'
+      </signature>
+      <path>react-router-dom</path>
+      <notes>Use to detect guide reader route for conditional Header ToC button</notes>
+    </interface>
+
+    <interface>
+      <name>Scroll Direction Detection Pattern</name>
+      <kind>React Hook Pattern</kind>
+      <signature>
+const [showFab, setShowFab] = useState(true);
+const lastScrollY = useRef(0);
+
+useEffect(() => {
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+      setShowFab(false); // Scrolling down
+    } else if (currentScrollY < lastScrollY.current) {
+      setShowFab(true); // Scrolling up
+    }
+    lastScrollY.current = currentScrollY;
+  };
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  return () => window.removeEventListener('scroll', handleScroll);
+}, []);
+      </signature>
+      <notes>Pattern for detecting scroll direction to auto-hide FAB</notes>
+    </interface>
+  </interfaces>
+
+  <constraints>
+    <constraint type="design-system">
+      <rule>Use Tabler Icons only - no emojis (project policy)</rule>
+      <rule>Emerald color scheme (#10b981) for primary actions</rule>
+      <rule>Varela Round font for all text</rule>
+      <rule>RTL-first design for Hebrew content</rule>
+    </constraint>
+
+    <constraint type="responsive">
+      <rule>Mobile: < 768px (Tailwind default breakpoint)</rule>
+      <rule>Touch targets minimum 44x44px for accessibility</rule>
+      <rule>Use Tailwind responsive classes: sm: md: lg: xl:</rule>
+      <rule>Mobile-first approach: base classes for mobile, add breakpoint classes for desktop</rule>
+    </constraint>
+
+    <constraint type="performance">
+      <rule>Use { passive: true } for scroll event listeners</rule>
+      <rule>Smooth animations at 60fps (avoid janky transitions)</rule>
+      <rule>Use Framer Motion for complex animations</rule>
+    </constraint>
+
+    <constraint type="accessibility">
+      <rule>All buttons must have aria-label for screen readers</rule>
+      <rule>Touch targets minimum 44x44px</rule>
+      <rule>Focus indicators visible (2px emerald outline)</rule>
+    </constraint>
+
+    <constraint type="code-patterns">
+      <rule>Use TypeScript strict mode</rule>
+      <rule>Use functional components with hooks</rule>
+      <rule>Use React.useCallback for event handlers passed as props</rule>
+      <rule>Use React.useRef for values that don't trigger re-renders</rule>
+    </constraint>
+  </constraints>
+
+  <tests>
+    <standards>
+      Testing standards: React component testing with Testing Library patterns. Manual testing on real devices (iOS Safari, Chrome Android) required for mobile-specific features. Focus on responsive behavior, touch interactions, and smooth animations.
+    </standards>
+
+    <locations>
+      <location>No formal test files for this story - manual testing required</location>
+      <location>Future: src/__tests__/components/guides/ for component tests</location>
+    </locations>
+
+    <ideas>
+      <idea ac_id="AC1" test_type="manual">
+        Test mobile content padding: Open guide on mobile viewport (< 768px), verify 16px padding on sides, 96px bottom clearance for FAB, no text touching edges
+      </idea>
+
+      <idea ac_id="AC2" test_type="manual">
+        Test auto-hide FAB: Scroll down past 100px - FAB should fade out. Scroll up - FAB should fade in. Verify smooth transition (300ms).
+      </idea>
+
+      <idea ac_id="AC3" test_type="manual">
+        Test header ToC button: Open guide on mobile, verify button visible in header, tap button, verify mobile ToC sheet opens, tap section, verify navigation and sheet close
+      </idea>
+
+      <idea ac_id="AC4" test_type="manual">
+        Test touch targets: Verify all buttons are minimum 44x44px, test tapping on real device (not just viewport simulation), verify no accidental taps
+      </idea>
+
+      <idea ac_id="AC2" test_type="manual">
+        Test close button in ToC sheet: Open mobile ToC, verify X icon visible in top-right, tap X, verify sheet closes with smooth animation
+      </idea>
+    </ideas>
+  </tests>
+
+  <implementation_notes>
+    <note priority="high">
+      The close button already exists in TableOfContents.tsx (lines 151-170) - just verify it's working correctly. Focus on the other improvements.
+    </note>
+
+    <note priority="high">
+      For Header ToC button, consider using React Context to avoid prop drilling through Layout component. Alternative: pass via URL state or global state.
+    </note>
+
+    <note priority="medium">
+      Auto-hide FAB should have threshold of 100px to avoid flickering at top of page. Always show FAB when scrollY < 100.
+    </note>
+
+    <note priority="medium">
+      Tailwind classes for mobile padding: Use utility classes like `px-4 lg:px-0` and `pb-24` instead of custom CSS. Keeps codebase consistent.
+    </note>
+
+    <note priority="low">
+      Consider adding visual indicator to FAB (rotation or glow) when ToC is open. Could use transform: rotate(45deg) to change icon from list to X.
+    </note>
+  </implementation_notes>
+
+  <related_stories>
+    <story id="4.5" relationship="parent">
+      <title>Guide Reader 3-Panel Layout</title>
+      <status>complete</status>
+      <note>Established the base guide reader with mobile ToC. This story enhances mobile UX.</note>
+    </story>
+
+    <story id="5.1.2" relationship="sibling">
+      <title>Toggle Guide Completion</title>
+      <status>drafted</status>
+      <note>Also improves guide reader, but focuses on completion toggle feature.</note>
+    </story>
+
+    <story id="5.1.3" relationship="sibling">
+      <title>Fix Guide Component Bugs</title>
+      <status>drafted</status>
+      <note>Fixes broken icons and ToC functionality - should be done first (quick win).</note>
+    </story>
+  </related_stories>
+</story-context>
+

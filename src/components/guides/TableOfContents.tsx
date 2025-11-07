@@ -1,5 +1,5 @@
 /**
- * Table of Contents Component - Story 4.5
+ * Table of Contents Component - Story 4.5 + Story 5.1.1
  *
  * Displays guide ToC with:
  * - Auto-generated from H2/H3 headings
@@ -7,8 +7,10 @@
  * - Progress dots (completed/current/upcoming)
  * - Smooth scroll to section on click
  * - Sticky position
+ * - Auto-hide FAB on scroll (mobile)
  */
 
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import type { TocSection } from '@/types/content-blocks';
 
@@ -86,6 +88,32 @@ export function MobileTableOfContents({
   isOpen,
   onToggle,
 }: MobileTableOfContentsProps) {
+  // Auto-hide FAB on scroll
+  const [showFab, setShowFab] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Always show when at top of page
+      if (currentScrollY < 100) {
+        setShowFab(true);
+      } else if (currentScrollY > lastScrollY.current) {
+        // Scrolling down - hide FAB
+        setShowFab(false);
+      } else if (currentScrollY < lastScrollY.current) {
+        // Scrolling up - show FAB
+        setShowFab(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const handleSectionClick = (anchor: string) => {
     onSectionClick(anchor);
     onToggle(); // Close ToC after navigation on mobile
@@ -93,14 +121,22 @@ export function MobileTableOfContents({
 
   return (
     <div className="lg:hidden">
-      {/* Toggle button */}
-      <button
+      {/* Toggle button with auto-hide and visual state */}
+      <motion.button
         onClick={onToggle}
+        initial={false}
+        animate={{
+          opacity: showFab ? 1 : 0,
+          scale: showFab ? 1 : 0.8,
+          rotate: isOpen ? 45 : 0,
+        }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
         className="
           fixed bottom-4 left-4 z-50
           bg-emerald-600 text-white p-4 rounded-full shadow-lg
           hover:bg-emerald-700 transition-colors
         "
+        style={{ pointerEvents: showFab ? 'auto' : 'none' }}
         aria-label="תפריט תוכן עניינים"
       >
         <svg
@@ -117,7 +153,7 @@ export function MobileTableOfContents({
             d="M4 6h16M4 12h16M4 18h16"
           />
         </svg>
-      </button>
+      </motion.button>
 
       {/* Bottom sheet overlay */}
       {isOpen && (

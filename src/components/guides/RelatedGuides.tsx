@@ -1,13 +1,14 @@
 /**
- * Related Guides Component - Story 4.8
+ * Related Guides Component - Story 4.8 + Story 5.1.3
  *
  * Shows 3-4 related guides from the same category
  * Helps users discover similar content
+ * Story 5.1.3: Fixed icon rendering to use IconBook from Tabler Icons
  */
 
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { IconClock, IconArrowLeft } from '@tabler/icons-react';
+import { IconClock, IconArrowLeft, IconBook } from '@tabler/icons-react';
 import type { GuideCategory, GuideCatalogEntry } from '@/types/guide-catalog';
 import { getGuideCatalog } from '@/lib/guide-catalog';
 
@@ -44,9 +45,9 @@ export function RelatedGuides({ currentGuideId, category, className = '' }: Rela
             className="group block p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-emerald-500 dark:hover:border-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 transition-all"
           >
             <div className="flex items-start gap-3">
-              {/* Icon */}
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 dark:from-emerald-600 dark:to-emerald-700 flex items-center justify-center flex-shrink-0 text-xl">
-                {guide.icon}
+              {/* Icon - Story 5.1.3: Fixed to use IconBook */}
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-600 dark:from-emerald-600 dark:to-emerald-700 flex items-center justify-center flex-shrink-0">
+                <IconBook className="w-5 h-5 text-white" />
               </div>
 
               {/* Content */}

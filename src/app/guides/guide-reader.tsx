@@ -1,5 +1,5 @@
 /**
- * Guide Reader Page - Story 4.5 + 4.6 + 4.7 + 4.8
+ * Guide Reader Page - Story 4.5 + 4.6 + 4.7 + 4.8 + Story 5.1.1
  *
  * 3-panel layout guide reader with:
  * - ToC sidebar (left/right based on RTL)
@@ -14,9 +14,10 @@
  * - Stats tracking: increment guide view count
  * - Story 4.7: Mark complete with celebration and next guide recommendation
  * - Story 4.8: Keyboard arrow navigation, responsive breadcrumbs, related guides
+ * - Story 5.1.1: Mobile padding, auto-hide FAB, Header ToC integration
  */
 
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
@@ -33,6 +34,7 @@ import { loadGuide, getAdjacentGuides } from '@/lib/guide-loader';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/lib/supabase';
 import { toast } from '@/hooks/use-toast';
+import MobileTocContext from '@/contexts/MobileTocContext';
 import type { Guide, GuideMetadata } from '@/types/content-blocks';
 
 interface UserProgress {
@@ -422,6 +424,16 @@ export function GuideReaderPage() {
     slug && guide ? getAdjacentGuides(slug, guide.metadata.category) : { prev: null, next: null };
   const { prev, next } = adjacentGuides;
 
+  // Mobile ToC context value
+  const mobileTocContextValue = useMemo(
+    () => ({
+      isOpen: isMobileTocOpen,
+      onToggle: () => setIsMobileTocOpen(!isMobileTocOpen),
+      isEnabled: true, // Enabled on guide reader page
+    }),
+    [isMobileTocOpen]
+  );
+
   // Story 4.8: Keyboard arrow navigation (left/right arrows)
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -477,14 +489,15 @@ export function GuideReaderPage() {
   }
 
   return (
-    <div className="relative">
-      {/* Scroll progress bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-emerald-500 z-50 origin-right"
-        style={{
-          scaleX: scrollProgress / 100,
-        }}
-      />
+    <MobileTocContext.Provider value={mobileTocContextValue}>
+      <div className="relative">
+        {/* Scroll progress bar - above header */}
+        <motion.div
+          className="fixed top-0 left-0 right-0 h-1 bg-emerald-500 z-[60] origin-right"
+          style={{
+            scaleX: scrollProgress / 100,
+          }}
+        />
 
       {/* 3-panel layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 py-8">
@@ -500,7 +513,7 @@ export function GuideReaderPage() {
         </aside>
 
         {/* Center content area */}
-        <main className="col-span-1 lg:col-span-6 xl:col-span-7" ref={contentRef}>
+        <main className="col-span-1 lg:col-span-6 xl:col-span-7 px-4 lg:px-0 pb-24" ref={contentRef}>
           {/* Breadcrumbs */}
           <GuideBreadcrumbs
             category={guide.metadata.category as import('@/types/guide-catalog').GuideCategory}
@@ -608,6 +621,7 @@ export function GuideReaderPage() {
         guideTitle={guide.metadata.title}
         nextGuide={nextGuide}
       />
-    </div>
+      </div>
+    </MobileTocContext.Provider>
   );
 }

@@ -1,23 +1,32 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { IconList } from '@tabler/icons-react';
 import { Button } from '../ui/button';
 import { useAuth } from '../../hooks/useAuth';
 import { signOut } from '../../lib/auth';
 import { hebrewLocale } from '../../lib/locale/he';
+import { useMobileToc } from '../../contexts/MobileTocContext';
 import AgenseekLogo from '../../assets/agenseek-logo.svg';
 
 /**
- * Header Component
+ * Header Component - Story 5.1.1 Update
  *
  * Sticky header with logo, navigation, and user menu.
  * Features:
  * - Sticky positioning at top
  * - Logo linking to dashboard
+ * - Mobile ToC button (visible only on guide reader pages)
  * - Search bar (placeholder for Story 7.2)
  * - User menu with profile and logout
  * - Responsive design
  */
 export function Header() {
   const { user, profile } = useAuth();
+  const location = useLocation();
+  const { onToggle, isEnabled } = useMobileToc();
+
+  // Show mobile ToC button only on guide reader routes (/guides/:slug)
+  const isGuideReaderPage = location.pathname.startsWith('/guides/') &&
+    location.pathname !== '/guides';
 
   const handleSignOut = async () => {
     await signOut();
@@ -28,16 +37,31 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
         {/* Logo */}
-        <Link to="/dashboard" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-          <img
-            src={AgenseekLogo}
-            alt="Agenseek Logo"
-            className="h-8 w-auto"
-          />
-          <span className="hidden font-bold text-xl text-emerald-600 sm:inline-block">
-            Agenseek
-          </span>
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link to="/dashboard" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+            <img
+              src={AgenseekLogo}
+              alt="Agenseek Logo"
+              className="h-8 w-auto"
+            />
+            <span className="hidden font-bold text-xl text-emerald-600 sm:inline-block">
+              Agenseek
+            </span>
+          </Link>
+
+          {/* Mobile ToC button - visible only on guide reader pages, mobile only */}
+          {isGuideReaderPage && isEnabled && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onToggle}
+              className="lg:hidden ml-2"
+              aria-label="פתח תוכן עניינים"
+            >
+              <IconList className="h-5 w-5 text-emerald-600" />
+            </Button>
+          )}
+        </div>
 
         {/* Search Bar - Placeholder for Story 7.2 */}
         <div className="hidden md:flex flex-1 max-w-md mx-8">

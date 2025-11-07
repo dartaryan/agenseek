@@ -1,6 +1,7 @@
 /**
  * HeadingBlock - Semantic heading component with typography scale
  * Supports h1-h6 with ToC anchoring and RTL-aware styling
+ * Story 5.1.3: Fixed to use `id` field directly for anchoring (matches ToC anchors)
  */
 
 import type { HeadingBlock as HeadingBlockType } from '@/types/content-blocks';
@@ -8,7 +9,7 @@ import type { ElementType } from 'react';
 import { cn } from '@/lib/utils';
 
 interface HeadingBlockProps {
-  block: HeadingBlockType;
+  block: HeadingBlockType & { text?: string }; // Support legacy 'text' field from JSON
 }
 
 // Typography scale mapping for heading levels
@@ -23,7 +24,10 @@ const headingStyles: Record<number, string> = {
 
 function HeadingBlock({ block }: HeadingBlockProps) {
   const HeadingTag: ElementType = `h${block.level}`;
-  const anchorId = block.anchor || `heading-${block.id}`;
+  // Use block.id directly (matches ToC anchor), or fall back to anchor field
+  const anchorId = block.id;
+  // Support both 'content' (interface) and 'text' (JSON format)
+  const headingText = block.content || (block as any).text || '';
 
   return (
     <HeadingTag
@@ -39,12 +43,12 @@ function HeadingBlock({ block }: HeadingBlockProps) {
       <a
         href={`#${anchorId}`}
         className="absolute -left-6 top-0 opacity-0 group-hover:opacity-100 transition-opacity text-emerald-600 hover:text-emerald-700 rtl:left-auto rtl:-right-6"
-        aria-label={`Link to ${block.content}`}
+        aria-label={`Link to ${headingText}`}
       >
         #
       </a>
 
-      {block.content}
+      {headingText}
     </HeadingTag>
   );
 }

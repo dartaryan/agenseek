@@ -1,9 +1,30 @@
 # Story 5.1.1: Mobile Guide Reader UX Improvements
 
 **Epic:** Reader Experience Enhancements (Sub-Epic of Epic 5)
-**Status:** Ready for Development
+**Status:** Complete
 **Priority:** High
 **Estimate:** 5 Story Points
+
+## Dev Agent Record
+
+**Context Reference:**
+- Story Context: `docs/stories/5-1-1-mobile-reader-ux.context.xml`
+
+**Implementation Summary:**
+- ✅ Added mobile padding (px-4 lg:px-0 pb-24) to guide reader content area
+- ✅ Implemented auto-hide FAB on scroll with 100px threshold
+- ✅ Added visual state indicator to FAB (45° rotation when open)
+- ✅ Close button already exists and works in mobile ToC sheet
+- ✅ Added ToC button to Header component (mobile-only, guide reader pages)
+- ✅ Created MobileTocContext for state management without prop drilling
+- ✅ Fixed progress bar z-index to display above header
+- ✅ Verified touch targets are appropriate (44x44px minimum)
+
+**Files Modified:**
+- `src/app/guides/guide-reader.tsx` - Added mobile padding, context provider
+- `src/components/guides/TableOfContents.tsx` - Auto-hide FAB, visual state
+- `src/components/layout/Header.tsx` - Mobile ToC button with route detection
+- `src/contexts/MobileTocContext.tsx` - New context for ToC state management
 
 ## Overview
 Improve the mobile reading experience by fixing padding issues, enhancing navigation patterns, and providing better control over the table of contents overlay.
@@ -33,29 +54,29 @@ Improve the mobile reading experience by fixing padding issues, enhancing naviga
 ## Acceptance Criteria
 
 ### Mobile Content Padding
-- [ ] Guide content has minimum 16px (1rem) padding on mobile screens
-- [ ] Content max-width prevents uncomfortably wide text on tablets
-- [ ] Bottom padding accounts for mobile ToC FAB button (80px clearance)
-- [ ] Breadcrumbs are properly spaced on mobile
+- [x] Guide content has minimum 16px (1rem) padding on mobile screens
+- [x] Content max-width prevents uncomfortably wide text on tablets
+- [x] Bottom padding accounts for mobile ToC FAB button (80px clearance)
+- [x] Breadcrumbs are properly spaced on mobile
 
 ### Mobile ToC Improvements
-- [ ] ToC bottom sheet includes visible "Close" button (X icon)
-- [ ] Tapping section in ToC closes the sheet automatically (already working)
-- [ ] ToC FAB button shows visual state indicator (open/closed)
-- [ ] ToC FAB has proper z-index to not block other interactive elements
-- [ ] Consider hiding FAB when scrolling down, showing when scrolling up
+- [x] ToC bottom sheet includes visible "Close" button (X icon)
+- [x] Tapping section in ToC closes the sheet automatically (already working)
+- [x] ToC FAB button shows visual state indicator (open/closed)
+- [x] ToC FAB has proper z-index to not block other interactive elements
+- [x] Consider hiding FAB when scrolling down, showing when scrolling up
 
 ### Header Integration Option
-- [ ] Add ToC icon button to Header component on mobile (for reading pages)
-- [ ] Button appears in header when on guide reader page
-- [ ] Clicking header ToC button opens same mobile ToC sheet
-- [ ] This provides alternative discovery pattern for ToC functionality
+- [x] Add ToC icon button to Header component on mobile (for reading pages)
+- [x] Button appears in header when on guide reader page
+- [x] Clicking header ToC button opens same mobile ToC sheet
+- [x] This provides alternative discovery pattern for ToC functionality
 
 ### Mobile-Specific Polish
-- [ ] Ensure progress bar at top doesn't overlap header
-- [ ] Action buttons in GuideHeader are properly sized for touch targets
-- [ ] Related guides section is touch-friendly on mobile
-- [ ] Pagination arrows at bottom are large enough for comfortable tapping
+- [x] Ensure progress bar at top doesn't overlap header
+- [x] Action buttons in GuideHeader are properly sized for touch targets
+- [x] Related guides section is touch-friendly on mobile
+- [x] Pagination arrows at bottom are large enough for comfortable tapping
 
 ## Technical Notes
 
