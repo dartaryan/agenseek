@@ -15,6 +15,7 @@ import {
   type ForgotPasswordFormData,
 } from '../../lib/validation/authSchemas';
 import { IconMail, IconArrowLeft } from '@tabler/icons-react';
+import AgenseekLogo from '../../assets/agenseek-logo.svg';
 
 /**
  * Forgot Password Page
@@ -71,13 +72,20 @@ export function ForgotPasswordPage() {
       >
         <Card className="p-8 space-y-6 shadow-xl border-emerald-100">
           {/* Header */}
-          <div className="text-center space-y-2">
-            <h1 className="text-3xl font-bold text-emerald-600">{he.brandName}</h1>
-            <p className="text-gray-600">{he.brandSubtitle}</p>
-            <h2 className="text-2xl font-semibold pt-2">{he.forgotPasswordTitle}</h2>
-            <p className="text-sm text-gray-500">
-              {emailSent ? he.forgotPasswordSuccess : he.forgotPasswordSubtitle}
-            </p>
+          <div className="text-center space-y-4">
+            <img
+              src={AgenseekLogo}
+              alt="Agenseek - BMAD Learning Hub"
+              className="h-12 w-auto mx-auto"
+            />
+            <div className="space-y-2">
+              <h1 className="text-3xl font-bold text-emerald-600">{he.brandName}</h1>
+              <p className="text-gray-600">{he.brandSubtitle}</p>
+              <h2 className="text-2xl font-semibold pt-2">{he.forgotPasswordTitle}</h2>
+              <p className="text-sm text-gray-500">
+                {emailSent ? he.forgotPasswordSuccess : he.forgotPasswordSubtitle}
+              </p>
+            </div>
           </div>
 
           {!emailSent ? (

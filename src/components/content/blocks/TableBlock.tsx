@@ -70,8 +70,8 @@ function normalizeRows(rows: (string[] | TableRow)[]): TableRow[] {
  * TableBlock Component
  */
 function TableBlock({ block }: TableBlockProps) {
-  const headers = normalizeHeaders(block.headers as any);
-  const rows = normalizeRows(block.rows as any);
+  const headers = normalizeHeaders(block.headers as string[] | TableCell[]);
+  const rows = normalizeRows(block.rows as string[][] | TableRow[]);
 
   return (
     <div className="my-6">

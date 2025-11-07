@@ -69,20 +69,20 @@ function ListItemRenderer({ item, variant, level = 0 }: ListItemRendererProps) {
 
 function ListBlock({ block }: ListBlockProps) {
   // Handle both "variant" and "ordered" properties
-  const blockAny = block as any;
+  const blockWithOrdered = block as ListBlockType & { ordered?: boolean };
   let isOrdered = false;
 
   if (block.variant) {
     isOrdered = block.variant === 'ordered';
-  } else if (typeof blockAny.ordered === 'boolean') {
-    isOrdered = blockAny.ordered;
+  } else if (typeof blockWithOrdered.ordered === 'boolean') {
+    isOrdered = blockWithOrdered.ordered;
   }
 
   const variant: 'ordered' | 'unordered' = isOrdered ? 'ordered' : 'unordered';
   const ListTag = isOrdered ? 'ol' : 'ul';
 
   // Normalize items to handle both string[] and ListItem[] formats
-  const normalizedItems = normalizeListItems(block.items as any);
+  const normalizedItems = normalizeListItems(block.items as string[] | ListItem[]);
 
   return (
     <ListTag

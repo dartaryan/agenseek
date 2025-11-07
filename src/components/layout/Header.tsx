@@ -3,6 +3,7 @@ import { Button } from '../ui/button';
 import { useAuth } from '../../hooks/useAuth';
 import { signOut } from '../../lib/auth';
 import { hebrewLocale } from '../../lib/locale/he';
+import AgenseekLogo from '../../assets/agenseek-logo.svg';
 
 /**
  * Header Component
@@ -27,10 +28,12 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
         {/* Logo */}
-        <Link to="/dashboard" className="flex items-center gap-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500">
-            <span className="text-lg font-bold text-white">A</span>
-          </div>
+        <Link to="/dashboard" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+          <img
+            src={AgenseekLogo}
+            alt="Agenseek Logo"
+            className="h-8 w-auto"
+          />
           <span className="hidden font-bold text-xl text-emerald-600 sm:inline-block">
             Agenseek
           </span>

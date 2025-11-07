@@ -52,14 +52,50 @@ export interface LocaleStrings {
   dashboard: {
     title: string;
     welcomeBack: string;
+    goodMorning: string;
+    goodAfternoon: string;
+    goodEvening: string;
     yourProgress: string;
     progressDescription: string;
     progressPlaceholder: string;
+    guidesCompleted: string;
+    guidesInProgress: string;
+    totalGuides: string;
+    viewAllProgress: string;
     achievements: string;
     achievementsDescription: string;
     badgesPlaceholder: string;
+    earnedBadges: string;
+    lockedBadges: string;
+    viewAllBadges: string;
     continueLearning: string;
+    continueReading: string;
+    continueReadingDescription: string;
     recentGuidesDescription: string;
+    noInProgressGuides: string;
+    startNewGuide: string;
+    lastReadAt: string;
+    minutesAgo: string;
+    hoursAgo: string;
+    daysAgo: string;
+    quickActions: string;
+    quickActionsDescription: string;
+    browseGuides: string;
+    createNote: string;
+    addTask: string;
+    viewProfile: string;
+    recentActivity: string;
+    recentActivityDescription: string;
+    noRecentActivity: string;
+    viewAllActivity: string;
+    statistics: string;
+    totalReadingTime: string;
+    notesCreated: string;
+    tasksCompleted: string;
+    currentStreak: string;
+    days: string;
+    hours: string;
+    minutes: string;
   };
 
   // Pages
@@ -319,14 +355,50 @@ export const hebrewLocale: LocaleStrings = {
   dashboard: {
     title: 'לוח בקרה',
     welcomeBack: 'ברוכים השבים',
+    goodMorning: 'בוקר טוב',
+    goodAfternoon: 'צהריים טובים',
+    goodEvening: 'ערב טוב',
     yourProgress: 'ההתקדמות שלך',
-    progressDescription: 'מעקב אחר התקדמות ייושם בשלב 5',
+    progressDescription: 'המשך במקום שהפסקת',
     progressPlaceholder: 'תרשימי התקדמות',
+    guidesCompleted: 'מדריכים שהושלמו',
+    guidesInProgress: 'מדריכים בתהליך',
+    totalGuides: 'סך המדריכים',
+    viewAllProgress: 'צפה בכל ההתקדמות',
     achievements: 'הישגים',
-    achievementsDescription: 'תגים והישגים יגיעו בשלב 5',
+    achievementsDescription: 'התגים שלך וההישגים האחרונים',
     badgesPlaceholder: 'אוסף תגים',
+    earnedBadges: 'תגים שהושגו',
+    lockedBadges: 'תגים נעולים',
+    viewAllBadges: 'צפה בכל התגים',
     continueLearning: 'המשך למידה',
+    continueReading: 'המשך קריאה',
+    continueReadingDescription: 'חזור למדריכים שהתחלת',
     recentGuidesDescription: 'המדריכים האחרונים יוצגו כאן',
+    noInProgressGuides: 'אין מדריכים בתהליך',
+    startNewGuide: 'התחל מדריך חדש',
+    lastReadAt: 'קריאה אחרונה',
+    minutesAgo: 'לפני דקות',
+    hoursAgo: 'לפני שעות',
+    daysAgo: 'לפני ימים',
+    quickActions: 'פעולות מהירות',
+    quickActionsDescription: 'גישה מהירה לפעולות נפוצות',
+    browseGuides: 'עיון במדריכים',
+    createNote: 'צור הערה',
+    addTask: 'הוסף משימה',
+    viewProfile: 'צפה בפרופיל',
+    recentActivity: 'פעילות אחרונה',
+    recentActivityDescription: 'מה קרה לאחרונה',
+    noRecentActivity: 'אין פעילות אחרונה',
+    viewAllActivity: 'צפה בכל הפעילות',
+    statistics: 'סטטיסטיקות',
+    totalReadingTime: 'זמן קריאה כולל',
+    notesCreated: 'הערות שנוצרו',
+    tasksCompleted: 'משימות שהושלמו',
+    currentStreak: 'רצף נוכחי',
+    days: 'ימים',
+    hours: 'שעות',
+    minutes: 'דקות',
   },
 
   pages: {

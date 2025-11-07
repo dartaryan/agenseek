@@ -14,6 +14,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { signIn /* , signInWithProvider */ } from '../../lib/auth'; // signInWithProvider disabled until Story 2.4
 import { hebrewLocale } from '../../lib/locale/he';
 import { loginSchema, type LoginFormData } from '../../lib/validation/authSchemas';
+import AgenseekLogo from '../../assets/agenseek-logo.svg';
 
 /**
  * Login Page
@@ -111,9 +112,16 @@ export function LoginPage() {
       >
         <Card className="p-8 space-y-6 shadow-xl">
           {/* Header */}
-          <div className="text-center space-y-2">
-            <h1 className="text-4xl font-bold text-emerald-600">{he.brandName}</h1>
-            <p className="text-gray-600">{he.brandSubtitle}</p>
+          <div className="text-center space-y-4">
+            <img
+              src={AgenseekLogo}
+              alt="Agenseek - BMAD Learning Hub"
+              className="h-12 w-auto mx-auto"
+            />
+            <div className="space-y-2">
+              <h1 className="text-3xl font-bold text-emerald-600">{he.brandName}</h1>
+              <p className="text-gray-600">{he.brandSubtitle}</p>
+            </div>
           </div>
 
           {/* Title */}
@@ -181,7 +189,7 @@ export function LoginPage() {
 
             {/* Remember Me & Forgot Password */}
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 rtl:flex-row-reverse">
                 <Checkbox
                   id="rememberMe"
                   checked={rememberMe}

@@ -1,6 +1,6 @@
 # Agenseek - Complete Story Catalog
 
-**Total Stories:** 67
+**Total Stories:** 70
 **Format:** Quick reference for all stories with acceptance criteria
 **For detailed stories:** See individual files in `docs/stories/`
 
@@ -414,7 +414,29 @@ For each story, verify:
 
 ---
 
-**Document Version:** 1.0
-**Date:** November 6, 2025
-**Author:** Bob (Scrum Master)
+## Reader Experience Enhancements (Sub-Epic of Epic 5) (3 stories)
+
+### Story 5.1.1: Mobile Reader UX Improvements
+**Sprint:** TBD | **Points:** 5 | **Priority:** P0
+**User Story:** As a mobile user reading a guide, I want a better reading experience with proper spacing and intuitive navigation, so that I can comfortably read guides on my phone without UI elements obstructing content.
+**Key AC:** Proper content padding (16px mobile), bottom clearance for FAB, explicit close button in mobile ToC sheet, ToC FAB auto-hide on scroll down/show on scroll up, header-integrated ToC button option, touch-friendly action buttons, responsive breadcrumbs
+**Dependencies:** Stories 4.5-4.8
+
+### Story 5.1.2: Toggle Guide Completion Status
+**Sprint:** TBD | **Points:** 3 | **Priority:** P1
+**User Story:** As a user who has completed a guide, I want to be able to unmark it as completed, so that I can review it again with progress tracking or correct accidental completion.
+**Key AC:** Mark Complete button never disabled, toggles between "סמן כהושלם" and "סמן כלא הושלם", confirmation dialog for unmark, restore progress to pre-completion value, database stores progress_before_completion, activity log records both actions, icon changes with state
+**Dependencies:** Story 4.7
+
+### Story 5.1.3: Fix Guide Component Bugs
+**Sprint:** TBD | **Points:** 2 | **Priority:** P0
+**User Story:** As a user reading a guide, I want all UI components to work correctly, so that I can navigate and discover content without broken features.
+**Key AC:** Related Guides icons display properly (IconBook from Tabler Icons, not broken emojis), table of contents works correctly (smooth scroll, section highlighting, works on desktop and mobile), all H2/H3 headings appear in ToC, anchor IDs match properly
+**Dependencies:** Stories 4.5, 4.8
+
+---
+
+**Document Version:** 1.1
+**Date:** November 7, 2025
+**Author:** BMad Master (with Bob, Scrum Master)
 
