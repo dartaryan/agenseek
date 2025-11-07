@@ -28,8 +28,18 @@ export function ProtectedRoute({
   const { user, profile, isLoading } = useAuth();
   const location = useLocation();
 
+  console.log('[ProtectedRoute]', {
+    path: location.pathname,
+    isLoading,
+    hasUser: !!user,
+    hasProfile: !!profile,
+    requireAdmin,
+    skipOnboardingCheck
+  });
+
   // Show loading state while checking auth and profile
   if (isLoading) {
+    console.log('[ProtectedRoute] Showing loading state');
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
@@ -42,6 +52,7 @@ export function ProtectedRoute({
 
   // Redirect to login if not authenticated
   if (!user) {
+    console.log('[ProtectedRoute] No user, redirecting to login');
     return <Navigate to="/auth/login" state={{ from: location }} replace />;
   }
 

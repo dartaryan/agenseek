@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { ProtectedRoute } from '../components/common/ProtectedRoute';
+import { useAuth } from '../hooks/useAuth';
 import { Layout } from './layout';
 
 // Auth pages
@@ -29,9 +30,26 @@ import { AdminDashboardPage } from './admin';
  * Redirects to login or dashboard based on auth state
  */
 function RootRedirect() {
-  // For now, always redirect to login
-  // Story 2.10 will implement proper auth-based redirect
-  return <Navigate to="/auth/login" replace />;
+  const { user, isLoading } = useAuth();
+
+  // Show loading while checking auth
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto"></div>
+          <p className="mt-4 text-gray-600 dark:text-gray-400">טוען...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Redirect based on auth state
+  return user ? (
+    <Navigate to="/dashboard" replace />
+  ) : (
+    <Navigate to="/auth/login" replace />
+  );
 }
 
 /**

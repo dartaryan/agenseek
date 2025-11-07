@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -11,6 +11,7 @@ import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import { Checkbox } from '../../components/ui/checkbox';
 import { useToast } from '../../hooks/use-toast';
+import { useAuth } from '../../hooks/useAuth';
 import { signIn /* , signInWithProvider */ } from '../../lib/auth'; // signInWithProvider disabled until Story 2.4
 
 /**
@@ -31,6 +32,7 @@ type LoginFormData = z.infer<typeof loginSchema>;
 export function LoginPage() {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { user, isLoading: authLoading } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   // const [isGoogleLoading, setIsGoogleLoading] = useState(false); // Disabled until Story 2.4
 
@@ -51,10 +53,21 @@ export function LoginPage() {
 
   const rememberMe = watch('rememberMe');
 
+  // Redirect to dashboard if already logged in
+  useEffect(() => {
+    console.log('[LoginPage] Auth state check:', { authLoading, hasUser: !!user });
+    if (!authLoading && user) {
+      console.log('[LoginPage] User already logged in, redirecting to dashboard');
+      navigate('/dashboard', { replace: true });
+    }
+  }, [user, authLoading, navigate]);
+
   const onSubmit = async (data: LoginFormData) => {
     setIsLoading(true);
     try {
-      await signIn({ email: data.email, password: data.password });
+      console.log('[LoginPage] Attempting sign in...');
+      const result = await signIn({ email: data.email, password: data.password });
+      console.log('[LoginPage] Sign in successful:', result);
 
       toast({
         title: 'Welcome back!',
@@ -62,15 +75,16 @@ export function LoginPage() {
         variant: 'default',
       });
 
-      // Redirect to dashboard
-      navigate('/dashboard');
+      // Don't manually navigate - let the useEffect handle it when auth state updates
+      // This prevents race condition where we navigate before AuthProvider updates
+      console.log('[LoginPage] Waiting for auth state to update...');
     } catch (error) {
+      console.error('[LoginPage] Sign in error:', error);
       toast({
         title: 'Login failed',
         description: error instanceof Error ? error.message : 'Invalid email or password',
         variant: 'destructive',
       });
-    } finally {
       setIsLoading(false);
     }
   };
