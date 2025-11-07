@@ -387,7 +387,12 @@ export interface Database {
       [_ in never]: never;
     };
     Functions: {
-      [_ in never]: never;
+      increment_guide_views: {
+        Args: {
+          p_guide_slug: string;
+        };
+        Returns: void;
+      };
     };
     Enums: {
       [_ in never]: never;

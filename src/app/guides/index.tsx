@@ -11,11 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { GuideCard } from '@/components/guides/GuideCard';
-import {
-  getGuideCatalog,
-  getCategoryCounts,
-  getTotalGuideCount,
-} from '@/lib/guide-catalog';
+import { getGuideCatalog, getCategoryCounts, getTotalGuideCount } from '@/lib/guide-catalog';
 import {
   CATEGORY_CONFIG,
   DIFFICULTY_CONFIG,
@@ -204,7 +200,14 @@ export function GuidesPage() {
     }
 
     return chips;
-  }, [selectedCategories, selectedDifficulties, statusFilter, toggleCategory, toggleDifficulty, setStatusFilter]);
+  }, [
+    selectedCategories,
+    selectedDifficulties,
+    statusFilter,
+    toggleCategory,
+    toggleDifficulty,
+    setStatusFilter,
+  ]);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -216,7 +219,8 @@ export function GuidesPage() {
             <div>
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white">מדריכים</h1>
               <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                {filteredAndSortedGuides.length} מדריכים{filteredAndSortedGuides.length !== totalCount && ` מתוך ${totalCount}`}
+                {filteredAndSortedGuides.length} מדריכים
+                {filteredAndSortedGuides.length !== totalCount && ` מתוך ${totalCount}`}
               </p>
             </div>
 
@@ -236,9 +240,7 @@ export function GuidesPage() {
                     </option>
                   ))}
                 </select>
-                <TablerIcons.IconArrowsSort
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none"
-                />
+                <TablerIcons.IconArrowsSort className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
               </div>
 
               {/* View mode toggle */}
@@ -345,7 +347,9 @@ export function GuidesPage() {
             <div className="space-y-6 mt-12 lg:mt-0">
               {/* Category filters */}
               <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-                <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">קטגוריות</h3>
+                <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
+                  קטגוריות
+                </h3>
                 <div className="space-y-2">
                   {Object.entries(CATEGORY_CONFIG).map(([key, config]) => {
                     const category = key as GuideCategory;
@@ -364,7 +368,9 @@ export function GuidesPage() {
                           className="flex items-center justify-between flex-1 cursor-pointer text-sm"
                         >
                           <span>{config.label}</span>
-                          <span className="text-xs text-gray-500 dark:text-gray-400">({count})</span>
+                          <span className="text-xs text-gray-500 dark:text-gray-400">
+                            ({count})
+                          </span>
                         </Label>
                       </div>
                     );
@@ -374,7 +380,9 @@ export function GuidesPage() {
 
               {/* Difficulty filters */}
               <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-                <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">רמת קושי</h3>
+                <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
+                  רמת קושי
+                </h3>
                 <div className="space-y-2">
                   {Object.entries(DIFFICULTY_CONFIG).map(([key, config]) => {
                     const difficulty = key as GuideDifficulty;
@@ -427,12 +435,7 @@ export function GuidesPage() {
 
               {/* Clear filters button */}
               {hasActiveFilters() && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={clearAllFilters}
-                  className="w-full"
-                >
+                <Button variant="outline" size="sm" onClick={clearAllFilters} className="w-full">
                   <TablerIcons.IconX className="w-4 h-4 ml-2" />
                   נקה סינונים
                 </Button>

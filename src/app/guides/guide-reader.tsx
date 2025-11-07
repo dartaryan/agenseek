@@ -1,5 +1,5 @@
 /**
- * Guide Reader Page - Story 4.5
+ * Guide Reader Page - Story 4.5 + 4.6
  *
  * 3-panel layout guide reader with:
  * - ToC sidebar (left/right based on RTL)
@@ -8,6 +8,10 @@
  * - Scroll tracking with Intersection Observer
  * - Auto-save progress every 30 seconds
  * - Scroll progress bar at top
+ * - Progress tracking: load saved progress, resume from last position
+ * - Time tracking: track time spent reading
+ * - Activity logging: log reading activity to database
+ * - Stats tracking: increment guide view count
  */
 
 import { useEffect, useState, useRef, useCallback } from 'react';
@@ -26,6 +30,14 @@ import { supabase } from '@/lib/supabase';
 import { toast } from '@/hooks/use-toast';
 import type { Guide } from '@/types/content-blocks';
 
+interface UserProgress {
+  progress_percent: number;
+  last_position: string | null;
+  time_spent_seconds: number;
+  completed: boolean;
+  last_read_at: string;
+}
+
 export function GuideReaderPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
@@ -39,10 +51,14 @@ export function GuideReaderPage() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isMobileTocOpen, setIsMobileTocOpen] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
+  const [userProgress, setUserProgress] = useState<UserProgress | null>(null);
+  const [hasResumed, setHasResumed] = useState(false);
 
   // Refs
   const contentRef = useRef<HTMLDivElement>(null);
   const progressSaveTimerRef = useRef<number | null>(null);
+  const readingStartTimeRef = useRef<number>(Date.now());
+  const accumulatedTimeRef = useRef<number>(0);
 
   // Load guide
   useEffect(() => {
@@ -62,6 +78,115 @@ export function GuideReaderPage() {
         setLoading(false);
       });
   }, [slug]);
+
+  // Story 4.6: Load existing progress and log activity
+  useEffect(() => {
+    if (!user || !slug || !guide) return;
+
+    const loadProgressAndLogActivity = async () => {
+      try {
+        // Load existing progress
+        const { data: progressData, error: progressError } = await supabase
+          .from('user_progress')
+          .select('progress_percent, last_position, time_spent_seconds, completed, last_read_at')
+          .eq('user_id', user.id)
+          .eq('guide_slug', slug)
+          .single();
+
+        if (progressError && progressError.code !== 'PGRST116') {
+          // PGRST116 = no rows returned, which is fine (first time reading)
+          console.error('Failed to load progress:', progressError);
+        }
+
+        if (progressData) {
+          setUserProgress(progressData);
+          setIsCompleted(progressData.completed);
+          accumulatedTimeRef.current = progressData.time_spent_seconds;
+
+          // Show resume notification if user has made progress
+          if (progressData.progress_percent > 5 && !progressData.completed) {
+            toast({
+              title: 'ברוך שובך!',
+              description: `המשך מהמקום האחרון שבו עצרת (${progressData.progress_percent}%)`,
+            });
+          }
+        }
+
+        // Log activity: started reading
+        await supabase.from('user_activity').insert({
+          user_id: user.id,
+          activity_type: 'guide_started',
+          target_slug: slug,
+          metadata: {
+            guide_title: guide.metadata.title,
+            guide_category: guide.metadata.category,
+            difficulty: guide.metadata.difficulty,
+          },
+        });
+
+        // Update guide stats: increment view count
+        await supabase.rpc('increment_guide_views', { p_guide_slug: slug });
+      } catch (err) {
+        console.error('Error loading progress or logging activity:', err);
+      }
+    };
+
+    loadProgressAndLogActivity();
+  }, [user, slug, guide]);
+
+  // Story 4.6: Resume from last position
+  useEffect(() => {
+    if (!userProgress || !guide || hasResumed || !userProgress.last_position) return;
+
+    // Wait for DOM to be ready
+    const timer = setTimeout(() => {
+      const lastSection = document.getElementById(userProgress.last_position!);
+      if (lastSection) {
+        const yOffset = -80; // Header offset
+        const y = lastSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+        setHasResumed(true);
+      }
+    }, 500); // Small delay to ensure content is rendered
+
+    return () => clearTimeout(timer);
+  }, [userProgress, guide, hasResumed]);
+
+  // Story 4.6: Track reading time on unmount
+  useEffect(() => {
+    const startTime = readingStartTimeRef.current;
+
+    return () => {
+      // Calculate time spent in this session (in seconds)
+      const sessionTime = Math.round((Date.now() - startTime) / 1000);
+      const totalTime = accumulatedTimeRef.current + sessionTime;
+
+      // Save time on unmount (fire and forget)
+      if (user && slug) {
+        // Save progress update
+        supabase
+          .from('user_progress')
+          .update({ time_spent_seconds: totalTime })
+          .eq('user_id', user.id)
+          .eq('guide_slug', slug)
+          .then((result) => {
+            if (result.error) {
+              console.error('Failed to save reading time:', result.error);
+            }
+          });
+
+        // Log activity separately (also fire and forget)
+        supabase.from('user_activity').insert({
+          user_id: user.id,
+          activity_type: 'guide_read',
+          target_slug: slug,
+          metadata: {
+            time_spent_seconds: sessionTime,
+          },
+        });
+      }
+    };
+  }, [user, slug]);
 
   // Scroll tracking with Intersection Observer
   useEffect(() => {
@@ -127,14 +252,18 @@ export function GuideReaderPage() {
         clearTimeout(progressSaveTimerRef.current);
       }
     };
-  }, [user, slug, scrollProgress, currentSection]);
+  }, [user, slug, scrollProgress, currentSection, saveProgress]);
 
-  // Save progress to database
+  // Save progress to database (Story 4.6: includes time tracking)
   const saveProgress = useCallback(
     async (progress: number, lastSection: string | null) => {
       if (!user || !slug || !guide) return;
 
       try {
+        // Calculate current session time in seconds
+        const sessionTime = Math.round((Date.now() - readingStartTimeRef.current) / 1000);
+        const totalTime = accumulatedTimeRef.current + sessionTime;
+
         const { error } = await supabase.from('user_progress').upsert(
           {
             user_id: user.id,
@@ -143,6 +272,7 @@ export function GuideReaderPage() {
             progress_percent: Math.round(progress),
             last_position: lastSection || '',
             last_read_at: new Date().toISOString(),
+            time_spent_seconds: totalTime,
           },
           {
             onConflict: 'user_id,guide_slug',
@@ -230,7 +360,8 @@ export function GuideReaderPage() {
   }, []);
 
   // Adjacent guides for pagination
-  const adjacentGuides = slug && guide ? getAdjacentGuides(slug, guide.metadata.category) : { prev: null, next: null };
+  const adjacentGuides =
+    slug && guide ? getAdjacentGuides(slug, guide.metadata.category) : { prev: null, next: null };
   const { prev, next } = adjacentGuides;
 
   // Loading state
@@ -250,9 +381,7 @@ export function GuideReaderPage() {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center space-y-4">
-          <p className="text-xl text-gray-900 dark:text-gray-100">
-            {error || 'המדריך לא נמצא'}
-          </p>
+          <p className="text-xl text-gray-900 dark:text-gray-100">{error || 'המדריך לא נמצא'}</p>
           <Button onClick={() => navigate('/guides')}>חזרה לספרייה</Button>
         </div>
       </div>
@@ -370,4 +499,3 @@ export function GuideReaderPage() {
     </div>
   );
 }
-

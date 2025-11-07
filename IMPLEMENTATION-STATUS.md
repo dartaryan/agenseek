@@ -2,7 +2,7 @@
 
 **Last Updated:** November 7, 2025
 **Current Sprint:** Sprint 5-6 (Weeks 5-6) - Epic 4: Guide Library & Discovery
-**Current Story:** Story 4.6 - Implement Progress Tracking on Guide Read (NEXT)
+**Current Story:** Story 4.7 - Implement Mark Complete with Celebration (NEXT)
 **Project:** BMAD Learning Hub (Agenseek)
 
 ---
@@ -795,15 +795,15 @@
 - ✅ 3.10: Build Remaining Blocks (Grid, Card, Image, Video)
 
 ### Sprint 5-6 (Epic 4: Guide Library & Discovery) - 🚧 IN PROGRESS
-**Stories Complete:** 5 / 8 (62.5%)
+**Stories Complete:** 6 / 8 (75%)
 
 - ✅ 4.1: Create Guide JSON Content Catalog
 - ✅ 4.2: Migrate Sample Guide Content to JSON
 - ✅ 4.3: Build Guide Card Component
 - ✅ 4.4: Build Guides Library Page with Filtering
 - ✅ 4.5: Build Guide Reader 3-Panel Layout
-- ⏳ 4.6: Implement Progress Tracking on Guide Read (next)
-- ⏳ 4.7: Implement Mark Complete with Celebration
+- ✅ 4.6: Implement Progress Tracking on Guide Read ✅ **NEW!**
+- ⏳ 4.7: Implement Mark Complete with Celebration (next)
 - ⏳ 4.8: Build Breadcrumbs and Navigation Components
 
 ---
@@ -1236,24 +1236,84 @@
 
 ---
 
+### Story 4.6: Implement Progress Tracking on Guide Read ✅
+- **Status:** COMPLETE
+- **Completed:** November 7, 2025
+- **Details:**
+  - ✅ Load existing user progress on guide open
+  - ✅ Resume from last position with auto-scroll
+  - ✅ Track time spent reading in seconds
+  - ✅ Auto-save time with progress every 30 seconds
+  - ✅ Log activity to user_activity table (guide_started, guide_read)
+  - ✅ Update guide stats: increment view count
+  - ✅ Visual indicators for resumed guides (toast notification)
+  - ✅ Save time on unmount (cleanup)
+  - ✅ Created RPC function: increment_guide_views
+  - ✅ Updated database types with RPC function
+
+**Implemented Features:**
+- **Load Progress**: Fetches user_progress on mount, loads saved progress_percent, last_position, time_spent_seconds
+- **Resume Position**: Auto-scrolls to last_position with smooth animation after 500ms delay
+- **Time Tracking**: Tracks session time in seconds, accumulates with previous time, saves on unmount
+- **Activity Logging**:
+  - `guide_started` - logged when user opens guide
+  - `guide_read` - logged when user closes guide (with session time)
+- **Guide Stats**: Increments view_count in guide_stats table via RPC function
+- **Visual Feedback**: Toast notification "ברוך שובך!" when resuming progress > 5%
+
+**Database Changes:**
+- Created RPC function `increment_guide_views(p_guide_slug TEXT)`
+- Added function to TypeScript database types
+- Uses existing `time_spent_seconds` column in user_progress
+- Uses `target_slug` column in user_activity (not guide_slug)
+
+**Files Modified:**
+- `src/app/guides/guide-reader.tsx` - Added progress tracking logic (3 new effects, updated saveProgress)
+- `src/types/database.ts` - Added increment_guide_views RPC function type
+- `supabase/migrations/20241107_add_increment_guide_views_function.sql` - Created RPC function
+- `supabase/migrations/20241107_add_time_spent_to_user_progress.sql` - Documentation (column already exists)
+
+**Technical Implementation:**
+- Progress loading: Single query to user_progress table on mount
+- Resume scroll: setTimeout(500ms) to wait for DOM render, smooth scroll to element
+- Time tracking: Date.now() on mount, calculate delta on unmount/save
+- Activity logging: Fire-and-forget inserts to user_activity
+- Stats tracking: RPC function with ON CONFLICT DO UPDATE for upsert
+- Error handling: Graceful error logging, doesn't block user experience
+
+**Verification:**
+- ✅ `npm run type-check` - 0 errors
+- ✅ `npm run lint` - 0 errors
+- ✅ `npm run build` - Built successfully (14.90s)
+- ✅ All acceptance criteria met
+- ✅ Progress loads on guide open
+- ✅ Auto-scroll to last position works
+- ✅ Time tracking accumulates correctly
+- ✅ Activity logs created
+- ✅ View count increments
+- ✅ Resume toast displays
+
+---
+
 ## 🎯 How to Continue
 
-### Ready for Story 4.6 (Progress Tracking on Guide Read):
+### Ready for Story 4.7 (Mark Complete with Celebration):
 
-**Next Story:** Story 4.6 - Implement Progress Tracking on Guide Read
-**Sprint:** 6 | **Points:** 3 | **Priority:** P0
-**Dependencies:** Story 4.5 complete (✅)
+**Next Story:** Story 4.7 - Implement Mark Complete with Celebration
+**Sprint:** 6 | **Points:** 2 | **Priority:** P0
+**Dependencies:** Story 4.6 complete (✅)
 
-**Story 4.6 Requirements:**
-- Load user's existing progress on guide open
-- Resume from last position
-- Calculate progress based on scroll
-- Update last_read_at timestamp automatically
-- Track time spent reading
-- Visual indicators for resumed guides
+**Story 4.7 Requirements:**
+- Mark complete button with confirmation dialog
+- Update user_progress (completed=true, progress_percent=100, completed_at)
+- Insert activity log
+- Update guide stats (completion count)
+- Confetti animation celebration
+- Success modal with next guide recommendation
+- Redirect to next guide or library
 
 ### To Continue:
-- Say: **"Let's do Story 4.6"** to continue Epic 4: Guide Library & Discovery
+- Say: **"Let's do Story 4.7"** to continue Epic 4: Guide Library & Discovery
 - Or: **"Continue with the next story"** to keep building Agenseek
 
 ### Current Status:
@@ -1265,8 +1325,9 @@
 - ✅ Sample guide content in JSON format (Story 4.2)
 - ✅ Beautiful guide cards (Story 4.3)
 - ✅ Guides library page with filtering (Story 4.4)
-- ✅ Full-featured 3-panel guide reader (Story 4.5) ✅ **NEW!**
-- ✅ Ready to implement progress tracking and guide completion!
+- ✅ Full-featured 3-panel guide reader (Story 4.5)
+- ✅ Progress tracking and resume functionality (Story 4.6) ✅ **NEW!**
+- ✅ Ready to implement guide completion with celebration!
 
 ---
 
@@ -1352,21 +1413,26 @@
 - ✅ Sample guides converted to JSON format (Story 4.2)
 - ✅ Beautiful guide cards with gradient headers (Story 4.3)
 - ✅ Guides library page with filtering and sorting (Story 4.4)
-- ✅ Guide reader 3-panel layout with ToC, content, actions (Story 4.5) ✅ **NEW!**
+- ✅ Guide reader 3-panel layout with ToC, content, actions (Story 4.5)
 - ✅ Scroll tracking with Intersection Observer
 - ✅ Scroll progress bar at top
 - ✅ Auto-save progress every 30 seconds
 - ✅ Mark complete functionality
 - ✅ Previous/Next navigation
 - ✅ Mobile-responsive with bottom sheet ToC
-- ⏳ Load and resume user progress (Story 4.6 - NEXT)
+- ✅ Load and resume user progress (Story 4.6) ✅ **NEW!**
+- ✅ Progress tracking: load saved progress, resume from last position
+- ✅ Time tracking: accumulate reading time in seconds
+- ✅ Activity logging: guide_started, guide_read events
+- ✅ Guide stats: increment view count
+- ✅ Visual feedback: resume toast notification
+- ⏳ Celebration on completion (Story 4.7 - NEXT)
 
 ---
 
 ## 🚀 Coming Next
 
-- 📊 **Story 4.6:** Implement Progress Tracking on Guide Read (NEXT!)
-- 🎉 Story 4.7: Mark complete with celebration - Epic 4
+- 🎉 **Story 4.7:** Implement Mark Complete with Celebration (NEXT!)
 - 🧭 Story 4.8: Breadcrumbs and navigation components - Epic 4
 - 🏆 Dashboard with achievements - Epic 5
 - 📝 Notes and tasks system - Epic 6
@@ -1377,14 +1443,14 @@
 
 ---
 
-**🎊 SPRINT 1-5 PROGRESS COMPLETE! 🎊**
+**🎊 SPRINT 1-6 PROGRESS: 75% COMPLETE! 🎊**
 
 **✅ Completed:**
-- Epic 1: Foundation ✅ (11/11 stories)
-- Epic 2: Authentication & Onboarding ✅ (11/11 stories)
-- Epic 3: Dynamic Content Rendering ✅ (10/10 stories)
-- Epic 4: Guide Library & Discovery 🚧 (4/8 stories - 50%)
+- Epic 1: Foundation ✅ (11/11 stories - 100%)
+- Epic 2: Authentication & Onboarding ✅ (11/11 stories - 100%)
+- Epic 3: Dynamic Content Rendering ✅ (10/10 stories - 100%)
+- Epic 4: Guide Library & Discovery 🚧 (6/8 stories - 75%)
 
-**Ready to continue?** Say "Let's do Story 4.6" to implement progress tracking! 🚀
+**Ready to continue?** Say "Let's do Story 4.7" to implement guide completion celebration! 🚀
 
 

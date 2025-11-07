@@ -50,4 +50,3 @@ export function GuideBreadcrumbs({ category, guideTitle, className = '' }: Guide
     </nav>
   );
 }
-

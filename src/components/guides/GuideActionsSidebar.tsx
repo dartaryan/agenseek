@@ -104,12 +104,7 @@ export function GuideActionsSidebar({
           פעולות מהירות
         </h3>
         <div className="space-y-2">
-          <Button
-            onClick={onBookmark}
-            variant="ghost"
-            className="w-full justify-start"
-            size="sm"
-          >
+          <Button onClick={onBookmark} variant="ghost" className="w-full justify-start" size="sm">
             <IconBookmark className="w-4 h-4 ml-2" />
             שמור למועדפים
           </Button>
@@ -117,12 +112,7 @@ export function GuideActionsSidebar({
             <IconNote className="w-4 h-4 ml-2" />
             הוסף הערה
           </Button>
-          <Button
-            onClick={onCreateTask}
-            variant="ghost"
-            className="w-full justify-start"
-            size="sm"
-          >
+          <Button onClick={onCreateTask} variant="ghost" className="w-full justify-start" size="sm">
             <IconChecklist className="w-4 h-4 ml-2" />
             צור משימה
           </Button>
@@ -135,12 +125,7 @@ export function GuideActionsSidebar({
           האם המדריך עזר לך?
         </h3>
         <div className="flex gap-2">
-          <Button
-            onClick={() => onFeedback?.(true)}
-            variant="outline"
-            className="flex-1"
-            size="sm"
-          >
+          <Button onClick={() => onFeedback?.(true)} variant="outline" className="flex-1" size="sm">
             <IconThumbUp className="w-4 h-4 ml-1" />
             כן
           </Button>
@@ -158,4 +143,3 @@ export function GuideActionsSidebar({
     </div>
   );
 }
-

@@ -76,4 +76,3 @@ export function getAdjacentGuides(
     next: currentIndex < filteredCatalog.length - 1 ? filteredCatalog[currentIndex + 1] : null,
   };
 }
-
