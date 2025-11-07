@@ -780,12 +780,12 @@
 ---
 
 ### Sprint 4 (Epic 3: Dynamic Content Rendering) - 🚧 IN PROGRESS
-**Stories Complete:** 1 / 10 (10%)
+**Stories Complete:** 3 / 10 (30%)
 
-- ✅ 3.1: Define TypeScript Types for Content Blocks ✅ **NEW!**
-- ⏳ 3.2: Build Content Renderer Orchestrator (next)
-- ⏳ 3.3: Build Core Block Components (Heading, Text, List)
-- ⏳ 3.4: Build Code Block with Syntax Highlighting
+- ✅ 3.1: Define TypeScript Types for Content Blocks
+- ✅ 3.2: Build Content Renderer Orchestrator
+- ✅ 3.3: Build Core Block Components (Heading, Text, List) ✅ **NEW!**
+- ⏳ 3.4: Build Code Block with Syntax Highlighting (next)
 - ⏳ 3.5: Build Callout Block Component
 - ⏳ 3.6: Build Table Block Component
 - ⏳ 3.7: Build Accordion Block Component
@@ -841,22 +841,116 @@
 
 ---
 
+### Story 3.2: Build Content Renderer Orchestrator ✅
+- **Status:** COMPLETE
+- **Completed:** November 7, 2025
+- **Details:**
+  - ✅ Created ContentRenderer.tsx orchestrator component
+  - ✅ Implemented block type dispatcher for all 14 block types (switch statement)
+  - ✅ Created ContentErrorBoundary wrapper component
+  - ✅ Implemented fallback UI for unknown block types (amber warning box)
+  - ✅ Created 14 placeholder block components (fully implemented in Stories 3.3-3.10)
+  - ✅ All components use type-safe imports (`import type`)
+  - ✅ Proper error handling with graceful degradation
+  - ✅ Type-safe ContentBlock discriminated union
+  - ✅ Empty content state handling
+
+**Block Components Created (Placeholders):**
+1. HeadingBlock.tsx - h1-h6 with anchors
+2. TextBlock.tsx - Paragraph text
+3. ListBlock.tsx - Ordered/unordered lists
+4. CodeBlock.tsx - Code with filename
+5. CalloutBlock.tsx - 4 variants (info/warning/success/error)
+6. TableBlock.tsx - Headers + rows
+7. AccordionBlock.tsx - Collapsible sections
+8. TabsBlock.tsx - Tabbed content
+9. ChartBlock.tsx - Chart placeholder
+10. GridBlock.tsx - Multi-column layout
+11. CardBlock.tsx - 3 variants (default/elevated/outlined)
+12. ImageBlock.tsx - Image with caption
+13. VideoBlock.tsx - Video with aspect ratio
+14. DividerBlock.tsx - 3 variants (solid/dashed/dotted)
+
+**Verification:**
+- ✅ `npm run type-check` - 0 errors
+- ✅ `npm run build` - Built successfully (8.13s)
+- ✅ No lint errors in Story 3.2 files
+- ✅ All 14 block types dispatch correctly
+- ✅ Error boundary catches render errors
+- ✅ Unknown block types show fallback UI
+
+---
+
+### Story 3.3: Build Core Block Components (Heading, Text, List) ✅
+- **Status:** COMPLETE
+- **Completed:** November 7, 2025
+- **Details:**
+  - ✅ Enhanced HeadingBlock with typography scale (h1-h6)
+  - ✅ Implemented ToC anchor linking with hover indicators
+  - ✅ Enhanced TextBlock with inline markdown parser
+  - ✅ Markdown support: **bold**, *italic*, `code`, [links](url)
+  - ✅ Enhanced ListBlock with nested list support
+  - ✅ Recursive ListItemRenderer for multi-level nesting
+  - ✅ RTL-aware styling for Hebrew text (all components)
+  - ✅ Dark mode support for all components
+  - ✅ Responsive typography (scales on mobile)
+  - ✅ Semantic HTML5 elements
+
+**HeadingBlock Features:**
+- Typography scale with 6 heading levels (h1-h6)
+- Responsive font sizes (4xl-5xl down to base-lg)
+- Anchor IDs for table of contents navigation
+- Hover-revealed "#" link indicators (RTL-aware positioning)
+- scroll-mt for sticky header offset
+- Dark mode color variants
+
+**TextBlock Features:**
+- Inline markdown parser supporting 4 syntax types
+- **Bold** text with font-semibold
+- *Italic* text with em tag
+- `Code` spans with emerald syntax highlighting
+- [Links](url) with underline decoration and external link detection
+- Text alignment support (left/center/right)
+- RTL-aware default text direction
+- Dark mode support
+
+**ListBlock Features:**
+- Ordered (ol) and unordered (ul) list variants
+- Recursive nested list rendering (unlimited depth)
+- Level-aware indentation (ml-6 for root, ml-4 for nested)
+- RTL-aware spacing (mr instead of ml)
+- Proper list markers (decimal for ordered, disc for unordered)
+- Dark mode color variants
+
+**Verification:**
+- ✅ `npm run type-check` - 0 errors
+- ✅ `npm run build` - Built successfully (7.93s)
+- ✅ No lint errors
+- ✅ All acceptance criteria met
+- ✅ RTL-aware styling implemented
+- ✅ Semantic HTML used throughout
+- ✅ Dark mode support
+
+---
+
 ## 🎯 How to Continue
 
-### Ready for Story 3.2 (Content Renderer Orchestrator):
+### Ready for Story 3.4 (Code Block with Syntax Highlighting):
 
-**Next Story:** Story 3.2 - Build Content Renderer Orchestrator
-**Sprint:** 4 | **Points:** 2 | **Priority:** P0
-**Dependencies:** Story 3.1 complete (✅)
+**Next Story:** Story 3.4 - Build Code Block with Syntax Highlighting
+**Sprint:** 4 | **Points:** 3 | **Priority:** P0
+**Dependencies:** Story 3.3 complete (✅)
 
-**Story 3.2 Requirements:**
-- ContentRenderer component accepts blocks array
-- Switches on block type
-- Dispatches to specific components
-- Error boundary for invalid blocks
+**Story 3.4 Requirements:**
+- Install react-syntax-highlighter library
+- Language badge and filename display
+- Line numbers support
+- Highlighted lines capability
+- Copy button with feedback toast
+- Dark theme aware
 
 ### To Continue:
-- Say: **"Let's do Story 3.2"** to continue Epic 3: Dynamic Content Rendering
+- Say: **"Let's do Story 3.4"** to continue Epic 3: Dynamic Content Rendering
 - Or: **"Continue with the next story"** to keep building Agenseek
 
 ### Current Status:

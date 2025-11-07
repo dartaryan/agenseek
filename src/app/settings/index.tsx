@@ -66,10 +66,7 @@ export function SettingsPage() {
         </div>
 
         {/* Delete Account Dialog */}
-        <DeleteAccountDialog
-          open={isDeleteDialogOpen}
-          onOpenChange={setIsDeleteDialogOpen}
-        />
+        <DeleteAccountDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen} />
       </div>
     </div>
   );
