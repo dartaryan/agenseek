@@ -4,7 +4,7 @@
  */
 
 import ContentRenderer from '@/components/content/ContentRenderer';
-import { accordionBlockTests, calloutBlockTests, tableBlockTests } from '@/lib/content-test';
+import { accordionBlockTests, calloutBlockTests, tableBlockTests, tabsBlockTests } from '@/lib/content-test';
 
 export default function ContentDemo() {
   return (
@@ -42,6 +42,14 @@ export default function ContentDemo() {
             Table Blocks (Story 3.6)
           </h2>
           <ContentRenderer blocks={tableBlockTests} />
+        </section>
+
+        {/* Tabs Blocks Section */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4 pb-2 border-b-2 border-emerald-500">
+            Tabs Blocks (Story 3.8)
+          </h2>
+          <ContentRenderer blocks={tabsBlockTests} />
         </section>
       </div>
     </div>

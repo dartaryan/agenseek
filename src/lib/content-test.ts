@@ -12,6 +12,7 @@ import type {
   CalloutBlock,
   TableBlock,
   AccordionBlock,
+  TabsBlock,
 } from '../types/content-blocks';
 
 // Sample content blocks demonstrating type safety
@@ -654,6 +655,634 @@ export const accordionBlockTests: ContentBlock[] = [
     ],
     allowMultiple: true,
   } satisfies AccordionBlock,
+];
+
+// Comprehensive TabsBlock tests for Story 3.8
+export const tabsBlockTests: ContentBlock[] = [
+  // Simple tabs with text content
+  {
+    id: 'tabs-simple',
+    type: 'tabs',
+    items: [
+      {
+        id: 'tab-overview',
+        label: 'סקירה כללית',
+        content: [
+          {
+            id: 'tab-overview-text',
+            type: 'text',
+            content: 'זוהי הכרטיסייה הראשונה עם תוכן בסיסי. השתמש בכרטיסיות כדי לארגן תוכן קשור בממשק נקי.',
+          },
+          {
+            id: 'tab-overview-list',
+            type: 'list',
+            variant: 'unordered',
+            items: [
+              { content: 'ניווט קל בין קטגוריות' },
+              { content: 'ממשק משתמש נקי' },
+              { content: 'חיסכון במקום מסך' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'tab-features',
+        label: 'תכונות',
+        content: [
+          {
+            id: 'tab-features-text',
+            type: 'text',
+            content: 'הכרטיסייה השנייה מציגה תכונות שונות של מערכת הכרטיסיות.',
+          },
+          {
+            id: 'tab-features-callout',
+            type: 'callout',
+            variant: 'info',
+            title: 'עיצוב אמרלד',
+            content: 'הכרטיסייה הפעילה מודגשת בקו תחתון בצבע אמרלד.',
+          },
+        ],
+      },
+      {
+        id: 'tab-usage',
+        label: 'שימוש',
+        content: [
+          {
+            id: 'tab-usage-text',
+            type: 'text',
+            content: 'כרטיסיות מושלמות לארגון תוכן בקטגוריות ברורות.',
+          },
+        ],
+      },
+    ],
+  } satisfies TabsBlock,
+
+  // Tabs with code examples (programming tutorial style)
+  {
+    id: 'tabs-code-examples',
+    type: 'tabs',
+    items: [
+      {
+        id: 'tab-typescript',
+        label: 'TypeScript',
+        content: [
+          {
+            id: 'tab-ts-text',
+            type: 'text',
+            content: 'דוגמה לקוד TypeScript עם טיפוסים מלאים:',
+          },
+          {
+            id: 'tab-ts-code',
+            type: 'code',
+            language: 'typescript',
+            code: `interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: 'admin' | 'user';
+}
+
+function greetUser(user: User): string {
+  return \`Hello, \${user.name}!\`;
+}
+
+const currentUser: User = {
+  id: '123',
+  name: 'John Doe',
+  email: 'john@example.com',
+  role: 'user'
+};
+
+console.log(greetUser(currentUser));`,
+            filename: 'user.ts',
+            showLineNumbers: true,
+          },
+        ],
+      },
+      {
+        id: 'tab-javascript',
+        label: 'JavaScript',
+        content: [
+          {
+            id: 'tab-js-text',
+            type: 'text',
+            content: 'אותה דוגמה ב-JavaScript:',
+          },
+          {
+            id: 'tab-js-code',
+            type: 'code',
+            language: 'javascript',
+            code: `function greetUser(user) {
+  return \`Hello, \${user.name}!\`;
+}
+
+const currentUser = {
+  id: '123',
+  name: 'John Doe',
+  email: 'john@example.com',
+  role: 'user'
+};
+
+console.log(greetUser(currentUser));`,
+            filename: 'user.js',
+            showLineNumbers: true,
+          },
+        ],
+      },
+      {
+        id: 'tab-python',
+        label: 'Python',
+        content: [
+          {
+            id: 'tab-py-text',
+            type: 'text',
+            content: 'אותה לוגיקה ב-Python:',
+          },
+          {
+            id: 'tab-py-code',
+            type: 'code',
+            language: 'python',
+            code: `def greet_user(user: dict) -> str:
+    return f"Hello, {user['name']}!"
+
+current_user = {
+    'id': '123',
+    'name': 'John Doe',
+    'email': 'john@example.com',
+    'role': 'user'
+}
+
+print(greet_user(current_user))`,
+            filename: 'user.py',
+            showLineNumbers: true,
+          },
+        ],
+      },
+    ],
+  } satisfies TabsBlock,
+
+  // Tabs with rich nested content (installation guide style)
+  {
+    id: 'tabs-installation',
+    type: 'tabs',
+    items: [
+      {
+        id: 'tab-npm',
+        label: 'npm',
+        content: [
+          {
+            id: 'tab-npm-heading',
+            type: 'heading',
+            level: 3,
+            content: 'התקנה עם npm',
+          },
+          {
+            id: 'tab-npm-text',
+            type: 'text',
+            content: 'הדרך המומלצת להתקנת הפרויקט עם npm:',
+          },
+          {
+            id: 'tab-npm-code',
+            type: 'code',
+            language: 'bash',
+            code: 'npm install agenseek\nnpm run dev',
+            showLineNumbers: false,
+          },
+          {
+            id: 'tab-npm-callout',
+            type: 'callout',
+            variant: 'success',
+            title: 'מומלץ',
+            content: 'npm הוא מנהל החבילות הפופולרי ביותר עבור Node.js.',
+          },
+        ],
+      },
+      {
+        id: 'tab-yarn',
+        label: 'Yarn',
+        content: [
+          {
+            id: 'tab-yarn-heading',
+            type: 'heading',
+            level: 3,
+            content: 'התקנה עם Yarn',
+          },
+          {
+            id: 'tab-yarn-text',
+            type: 'text',
+            content: 'אלטרנטיבה מהירה עם Yarn:',
+          },
+          {
+            id: 'tab-yarn-code',
+            type: 'code',
+            language: 'bash',
+            code: 'yarn add agenseek\nyarn dev',
+            showLineNumbers: false,
+          },
+          {
+            id: 'tab-yarn-callout',
+            type: 'callout',
+            variant: 'info',
+            title: 'Yarn Classic vs Berry',
+            content: 'דוגמה זו מתאימה גם ל-Yarn 1.x וגם ל-Yarn 2+.',
+          },
+        ],
+      },
+      {
+        id: 'tab-pnpm',
+        label: 'pnpm',
+        content: [
+          {
+            id: 'tab-pnpm-heading',
+            type: 'heading',
+            level: 3,
+            content: 'התקנה עם pnpm',
+          },
+          {
+            id: 'tab-pnpm-text',
+            type: 'text',
+            content: 'מנהל חבילות יעיל במיוחד:',
+          },
+          {
+            id: 'tab-pnpm-code',
+            type: 'code',
+            language: 'bash',
+            code: 'pnpm add agenseek\npnpm dev',
+            showLineNumbers: false,
+          },
+          {
+            id: 'tab-pnpm-callout',
+            type: 'callout',
+            variant: 'success',
+            title: 'חסכוני במקום דיסק',
+            content: 'pnpm משתמש במנגנון קישורים קשיחים כדי לחסוך מקום.',
+          },
+        ],
+      },
+      {
+        id: 'tab-bun',
+        label: 'Bun',
+        content: [
+          {
+            id: 'tab-bun-heading',
+            type: 'heading',
+            level: 3,
+            content: 'התקנה עם Bun',
+          },
+          {
+            id: 'tab-bun-text',
+            type: 'text',
+            content: 'Runtime חדש ומהיר במיוחד:',
+          },
+          {
+            id: 'tab-bun-code',
+            type: 'code',
+            language: 'bash',
+            code: 'bun add agenseek\nbun run dev',
+            showLineNumbers: false,
+          },
+          {
+            id: 'tab-bun-callout',
+            type: 'callout',
+            variant: 'warning',
+            title: 'ניסיוני',
+            content: 'Bun נמצא עדיין בפיתוח אקטיבי. שקלו זאת בעת שימוש בפרודקשן.',
+          },
+        ],
+      },
+    ],
+  } satisfies TabsBlock,
+
+  // Tabs with tables (comparison style)
+  {
+    id: 'tabs-comparison',
+    type: 'tabs',
+    items: [
+      {
+        id: 'tab-pricing-basic',
+        label: 'Basic',
+        content: [
+          {
+            id: 'tab-basic-text',
+            type: 'text',
+            content: 'התוכנית הבסיסית מתאימה למשתמשים פרטיים ופרויקטים קטנים.',
+          },
+          {
+            id: 'tab-basic-table',
+            type: 'table',
+            caption: 'תכונות Basic',
+            headers: [
+              { content: 'תכונה', alignment: 'left' },
+              { content: 'כלול', alignment: 'center' },
+            ],
+            rows: [
+              {
+                cells: [
+                  { content: 'מדריכים בסיסיים', alignment: 'left' },
+                  { content: '✓', alignment: 'center' },
+                ],
+              },
+              {
+                cells: [
+                  { content: 'מעקב אחר התקדמות', alignment: 'left' },
+                  { content: '✓', alignment: 'center' },
+                ],
+              },
+              {
+                cells: [
+                  { content: 'הערות אישיות', alignment: 'left' },
+                  { content: '✗', alignment: 'center' },
+                ],
+              },
+              {
+                cells: [
+                  { content: 'תמיכה בקהילה', alignment: 'left' },
+                  { content: '✗', alignment: 'center' },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'tab-pricing-pro',
+        label: 'Pro',
+        content: [
+          {
+            id: 'tab-pro-text',
+            type: 'text',
+            content: 'התוכנית המקצועית עבור מפתחים ופרילנסרים.',
+          },
+          {
+            id: 'tab-pro-table',
+            type: 'table',
+            caption: 'תכונות Pro',
+            headers: [
+              { content: 'תכונה', alignment: 'left' },
+              { content: 'כלול', alignment: 'center' },
+            ],
+            rows: [
+              {
+                cells: [
+                  { content: 'כל תכונות Basic', alignment: 'left' },
+                  { content: '✓', alignment: 'center' },
+                ],
+              },
+              {
+                cells: [
+                  { content: 'הערות אישיות', alignment: 'left' },
+                  { content: '✓', alignment: 'center' },
+                ],
+              },
+              {
+                cells: [
+                  { content: 'תמיכה בקהילה', alignment: 'left' },
+                  { content: '✓', alignment: 'center' },
+                ],
+              },
+              {
+                cells: [
+                  { content: 'מדריכים מתקדמים', alignment: 'left' },
+                  { content: '✓', alignment: 'center' },
+                ],
+              },
+              {
+                cells: [
+                  { content: 'תמיכה לצוותים', alignment: 'left' },
+                  { content: '✗', alignment: 'center' },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'tab-pricing-team',
+        label: 'Team',
+        content: [
+          {
+            id: 'tab-team-text',
+            type: 'text',
+            content: 'פתרון שלם לצוותי פיתוח.',
+          },
+          {
+            id: 'tab-team-table',
+            type: 'table',
+            caption: 'תכונות Team',
+            headers: [
+              { content: 'תכונה', alignment: 'left' },
+              { content: 'כלול', alignment: 'center' },
+            ],
+            rows: [
+              {
+                cells: [
+                  { content: 'כל תכונות Pro', alignment: 'left' },
+                  { content: '✓', alignment: 'center' },
+                ],
+              },
+              {
+                cells: [
+                  { content: 'תמיכה לצוותים', alignment: 'left' },
+                  { content: '✓', alignment: 'center' },
+                ],
+              },
+              {
+                cells: [
+                  { content: 'ניהול תפקידים', alignment: 'left' },
+                  { content: '✓', alignment: 'center' },
+                ],
+              },
+              {
+                cells: [
+                  { content: 'אנליטיקס מתקדם', alignment: 'left' },
+                  { content: '✓', alignment: 'center' },
+                ],
+              },
+              {
+                cells: [
+                  { content: 'תמיכה עדיפות', alignment: 'left' },
+                  { content: '✓', alignment: 'center' },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  } satisfies TabsBlock,
+
+  // Tabs with English content (keyboard shortcuts documentation)
+  {
+    id: 'tabs-shortcuts',
+    type: 'tabs',
+    items: [
+      {
+        id: 'tab-navigation',
+        label: 'Navigation',
+        content: [
+          {
+            id: 'tab-nav-heading',
+            type: 'heading',
+            level: 3,
+            content: 'Navigation Shortcuts',
+          },
+          {
+            id: 'tab-nav-table',
+            type: 'table',
+            headers: [
+              { content: 'Shortcut', alignment: 'left' },
+              { content: 'Action', alignment: 'left' },
+            ],
+            rows: [
+              {
+                cells: [
+                  { content: 'Ctrl + K', alignment: 'left' },
+                  { content: 'Open command palette', alignment: 'left' },
+                ],
+              },
+              {
+                cells: [
+                  { content: 'Ctrl + /', alignment: 'left' },
+                  { content: 'Toggle sidebar', alignment: 'left' },
+                ],
+              },
+              {
+                cells: [
+                  { content: 'Ctrl + B', alignment: 'left' },
+                  { content: 'Toggle bookmark', alignment: 'left' },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'tab-editing',
+        label: 'Editing',
+        content: [
+          {
+            id: 'tab-edit-heading',
+            type: 'heading',
+            level: 3,
+            content: 'Editing Shortcuts',
+          },
+          {
+            id: 'tab-edit-table',
+            type: 'table',
+            headers: [
+              { content: 'Shortcut', alignment: 'left' },
+              { content: 'Action', alignment: 'left' },
+            ],
+            rows: [
+              {
+                cells: [
+                  { content: 'Ctrl + S', alignment: 'left' },
+                  { content: 'Save note', alignment: 'left' },
+                ],
+              },
+              {
+                cells: [
+                  { content: 'Ctrl + Enter', alignment: 'left' },
+                  { content: 'Submit comment', alignment: 'left' },
+                ],
+              },
+              {
+                cells: [
+                  { content: 'Ctrl + Z', alignment: 'left' },
+                  { content: 'Undo', alignment: 'left' },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'tab-search',
+        label: 'Search',
+        content: [
+          {
+            id: 'tab-search-heading',
+            type: 'heading',
+            level: 3,
+            content: 'Search Shortcuts',
+          },
+          {
+            id: 'tab-search-table',
+            type: 'table',
+            headers: [
+              { content: 'Shortcut', alignment: 'left' },
+              { content: 'Action', alignment: 'left' },
+            ],
+            rows: [
+              {
+                cells: [
+                  { content: 'Ctrl + F', alignment: 'left' },
+                  { content: 'Search in guide', alignment: 'left' },
+                ],
+              },
+              {
+                cells: [
+                  { content: 'Ctrl + Shift + F', alignment: 'left' },
+                  { content: 'Global search', alignment: 'left' },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  } satisfies TabsBlock,
+
+  // Minimal tabs (2 tabs only)
+  {
+    id: 'tabs-minimal',
+    type: 'tabs',
+    items: [
+      {
+        id: 'tab-before',
+        label: 'לפני',
+        content: [
+          {
+            id: 'tab-before-text',
+            type: 'text',
+            content: 'כך נראה הקוד לפני השיפור.',
+          },
+          {
+            id: 'tab-before-code',
+            type: 'code',
+            language: 'typescript',
+            code: 'function calculate(a, b) {\n  return a + b;\n}',
+            showLineNumbers: false,
+          },
+        ],
+      },
+      {
+        id: 'tab-after',
+        label: 'אחרי',
+        content: [
+          {
+            id: 'tab-after-text',
+            type: 'text',
+            content: 'כך נראה הקוד אחרי השיפור.',
+          },
+          {
+            id: 'tab-after-code',
+            type: 'code',
+            language: 'typescript',
+            code: 'function calculate(a: number, b: number): number {\n  return a + b;\n}',
+            showLineNumbers: false,
+          },
+          {
+            id: 'tab-after-callout',
+            type: 'callout',
+            variant: 'success',
+            title: 'שיפור',
+            content: 'הוספנו טיפוסים מלאים ל-TypeScript.',
+          },
+        ],
+      },
+    ],
+  } satisfies TabsBlock,
 ];
 
 // Sample guide demonstrating full structure
