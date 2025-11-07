@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -22,10 +22,16 @@ import {
   IconStar,
   IconStarHalfFilled,
   IconStarsFilled,
+  IconBooks,
+  IconCheck,
+  IconLoader2,
 } from '@tabler/icons-react';
 import { Button } from '@/components/ui/button';
 import { ProgressDots } from '@/components/onboarding/ProgressDots';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/lib/supabase';
+import { useAuth } from '@/hooks/useAuth';
+import confetti from 'canvas-confetti';
 
 const TOTAL_STEPS = 5;
 
@@ -36,6 +42,7 @@ export function OnboardingWizardPage() {
   const [selectedExperience, setSelectedExperience] = useState<string | null>(null);
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { user } = useAuth();
 
   const handleNext = () => {
     if (currentStep < TOTAL_STEPS) {
@@ -51,8 +58,8 @@ export function OnboardingWizardPage() {
 
   const handleSkip = () => {
     toast({
-      title: 'Onboarding skipped',
-      description: 'You can complete your profile anytime from Settings.',
+      title: 'הונחיה דולגה',
+      description: 'ניתן להשלים את הפרופיל שלך בכל עת מההגדרות.',
     });
     navigate('/dashboard');
   };
@@ -105,13 +112,14 @@ export function OnboardingWizardPage() {
               />
             )}
             {currentStep === 5 && (
-              <PlaceholderStep
+              <LearningPathStep
                 key="path"
-                title="Step 5: Learning Path"
-                description="Learning path generation coming in Story 2.9"
-                onNext={() => navigate('/dashboard')}
+                userId={user?.id || ''}
+                selectedRole={selectedRole || ''}
+                selectedInterests={selectedInterests}
+                selectedExperience={selectedExperience || ''}
+                onComplete={() => navigate('/dashboard')}
                 onBack={handleBack}
-                isLast
               />
             )}
           </AnimatePresence>
@@ -166,15 +174,6 @@ function WelcomeStep({ onNext, onSkip }: WelcomeStepProps) {
         ברוכים הבאים ל-Agenseek!
       </motion.h1>
 
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-        className="text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-6"
-      >
-        Welcome to Agenseek!
-      </motion.h2>
-
       {/* Description */}
       <motion.p
         initial={{ opacity: 0, y: 20 }}
@@ -182,8 +181,7 @@ function WelcomeStep({ onNext, onSkip }: WelcomeStepProps) {
         transition={{ delay: 0.6 }}
         className="text-lg text-gray-600 dark:text-gray-400 mb-12 max-w-xl mx-auto leading-relaxed"
       >
-        Your personalized BMAD learning journey starts here. We'll help you discover the right
-        content, track your progress, and connect with your team.
+        מסע הלמידה האישי שלך ב-BMAD מתחיל כאן. נעזור לך לגלות את התוכן הנכון, לעקוב אחר ההתקדמות שלך ולהתחבר לצוות שלך.
       </motion.p>
 
       {/* Primary Button */}
@@ -194,8 +192,8 @@ function WelcomeStep({ onNext, onSkip }: WelcomeStepProps) {
         className="space-y-4"
       >
         <Button size="lg" onClick={onNext} className="text-lg px-8 py-6 h-auto group">
-          <IconRocket className="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform" />
-          Let's personalize your journey
+          <IconRocket className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+          בואו נתאים אישית את המסע שלכם
         </Button>
 
         {/* Skip Link */}
@@ -204,7 +202,7 @@ function WelcomeStep({ onNext, onSkip }: WelcomeStepProps) {
             onClick={onSkip}
             className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 text-sm underline underline-offset-4 transition-colors"
           >
-            I'll do this later
+            אעשה זאת מאוחר יותר
           </button>
         </motion.div>
       </motion.div>
@@ -218,15 +216,15 @@ function WelcomeStep({ onNext, onSkip }: WelcomeStepProps) {
       >
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-primary rounded-full" />
-          <span>5 quick steps</span>
+          <span>5 שלבים מהירים</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-primary rounded-full" />
-          <span>2 minutes</span>
+          <span>2 דקות</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-primary rounded-full" />
-          <span>Personalized just for you</span>
+          <span>מותאם אישית עבורך</span>
         </div>
       </motion.div>
     </motion.div>
@@ -252,56 +250,56 @@ const ROLES: Role[] = [
   {
     id: 'developer',
     icon: IconCode,
-    title: 'Developer',
-    description: 'Building and implementing software solutions',
+    title: 'מפתח',
+    description: 'בניה ויישום פתרונות תוכנה',
   },
   {
     id: 'product-manager',
     icon: IconChartBar,
-    title: 'Product Manager',
-    description: 'Defining product vision and strategy',
+    title: 'מנהל מוצר',
+    description: 'הגדרת חזון ואסטרטגיה של מוצר',
   },
   {
     id: 'designer',
     icon: IconPalette,
-    title: 'UX/UI Designer',
-    description: 'Crafting user experiences and interfaces',
+    title: 'מעצב UX/UI',
+    description: 'עיצוב חוויות משתמש וממשקים',
   },
   {
     id: 'architect',
     icon: IconBuildingBridge,
-    title: 'Architect',
-    description: 'Designing system architecture and patterns',
+    title: 'ארכיטקט',
+    description: 'תכנון ארכיטקטורת מערכת ותבניות',
   },
   {
     id: 'project-manager',
     icon: IconClipboardList,
-    title: 'Project Manager',
-    description: 'Coordinating projects and teams',
+    title: 'מנהל פרויקטים',
+    description: 'תיאום פרויקטים וצוותים',
   },
   {
     id: 'qa-engineer',
     icon: IconTestPipe,
-    title: 'QA Engineer',
-    description: 'Ensuring quality through testing',
+    title: 'מהנדס QA',
+    description: 'הבטחת איכות באמצעות בדיקות',
   },
   {
     id: 'executive',
     icon: IconTie,
-    title: 'Executive',
-    description: 'Leading strategic initiatives',
+    title: 'מנהל בכיר',
+    description: 'הובלת יוזמות אסטרטגיות',
   },
   {
     id: 'game-developer',
     icon: IconDeviceGamepad,
-    title: 'Game Developer',
-    description: 'Creating interactive game experiences',
+    title: 'מפתח משחקים',
+    description: 'יצירת חוויות משחק אינטראקטיביות',
   },
   {
     id: 'non-technical',
     icon: IconBulb,
-    title: 'Non-Technical',
-    description: 'Supporting technical teams in other capacities',
+    title: 'לא טכני',
+    description: 'תמיכה בצוותים טכניים בתפקידים אחרים',
   },
 ];
 
@@ -316,42 +314,42 @@ const INTERESTS: Interest[] = [
   {
     id: 'agents-workflows',
     icon: IconRobotFace,
-    title: 'Agents & Workflows',
+    title: 'סוכנים וזרימות עבודה',
   },
   {
     id: 'architecture-design',
     icon: IconSchema,
-    title: 'Architecture & Design',
+    title: 'ארכיטקטורה ועיצוב',
   },
   {
     id: 'implementation-development',
     icon: IconCodeDots,
-    title: 'Implementation & Development',
+    title: 'יישום ופיתוח',
   },
   {
     id: 'testing-quality',
     icon: IconCheckbox,
-    title: 'Testing & Quality',
+    title: 'בדיקות ואיכות',
   },
   {
     id: 'game-development',
     icon: IconDeviceGamepad,
-    title: 'Game Development',
+    title: 'פיתוח משחקים',
   },
   {
     id: 'creative-processes',
     icon: IconChartArrows,
-    title: 'Creative Processes',
+    title: 'תהליכים יצירתיים',
   },
   {
     id: 'team-collaboration',
     icon: IconUsersGroup,
-    title: 'Team Collaboration',
+    title: 'שיתוף פעולה צוותי',
   },
   {
     id: 'project-management',
     icon: IconClipboardList,
-    title: 'Project Management',
+    title: 'ניהול פרויקטים',
   },
 ];
 
@@ -372,10 +370,10 @@ function RoleStep({ selectedRole, onSelectRole, onNext, onBack }: RoleStepProps)
         className="text-center mb-8"
       >
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
-          What's your role?
+          מה התפקיד שלך?
         </h2>
         <p className="text-gray-600 dark:text-gray-400">
-          This helps us recommend the most relevant content for you
+          זה עוזר לנו להמליץ על התוכן הרלוונטי ביותר עבורך
         </p>
       </motion.div>
 
@@ -441,10 +439,10 @@ function RoleStep({ selectedRole, onSelectRole, onNext, onBack }: RoleStepProps)
         className="flex gap-4 justify-center"
       >
         <Button variant="outline" onClick={onBack} size="lg">
-          Back
+          חזור
         </Button>
         <Button onClick={onNext} disabled={!selectedRole} size="lg">
-          Next
+          הבא
         </Button>
       </motion.div>
     </motion.div>
@@ -481,10 +479,10 @@ function InterestsStep({
         className="text-center mb-8"
       >
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
-          What interests you?
+          מה מעניין אותך?
         </h2>
         <p className="text-gray-600 dark:text-gray-400">
-          Select any topics you'd like to explore (you can select multiple or none)
+          בחר נושאים שתרצה לחקור (ניתן לבחור מספר נושאים או אף אחד)
         </p>
       </motion.div>
 
@@ -548,8 +546,8 @@ function InterestsStep({
         className="text-center mb-6 text-sm text-gray-500 dark:text-gray-400"
       >
         {selectedInterests.length === 0
-          ? 'No interests selected yet'
-          : `${selectedInterests.length} ${selectedInterests.length === 1 ? 'interest' : 'interests'} selected`}
+          ? 'טרם נבחרו תחומי עניין'
+          : `${selectedInterests.length} ${selectedInterests.length === 1 ? 'תחום עניין נבחר' : 'תחומי עניין נבחרו'}`}
       </motion.div>
 
       {/* Navigation Buttons */}
@@ -560,10 +558,10 @@ function InterestsStep({
         className="flex gap-4 justify-center"
       >
         <Button variant="outline" onClick={onBack} size="lg">
-          Back
+          חזור
         </Button>
         <Button onClick={onNext} size="lg">
-          Next
+          הבא
         </Button>
       </motion.div>
     </motion.div>
@@ -590,22 +588,22 @@ const EXPERIENCE_LEVELS: ExperienceLevel[] = [
   {
     id: 'beginner',
     icon: IconStar,
-    title: 'Beginner',
-    description: "I'm new to BMAD and want to start with the basics",
+    title: 'מתחיל',
+    description: 'אני חדש ב-BMAD ורוצה להתחיל מהיסודות',
     color: 'text-blue-500',
   },
   {
     id: 'intermediate',
     icon: IconStarHalfFilled,
-    title: 'Intermediate',
-    description: 'I have some experience and want to deepen my knowledge',
+    title: 'בינוני',
+    description: 'יש לי ניסיון מסוים ורוצה להעמיק את הידע שלי',
     color: 'text-emerald-500',
   },
   {
     id: 'advanced',
     icon: IconStarsFilled,
-    title: 'Advanced',
-    description: "I'm experienced and looking for advanced concepts",
+    title: 'מתקדם',
+    description: 'אני מנוסה ומחפש מושגים מתקדמים',
     color: 'text-purple-500',
   },
 ];
@@ -632,10 +630,10 @@ function ExperienceStep({
         className="text-center mb-8"
       >
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
-          What's your experience level?
+          מה רמת הניסיון שלך?
         </h2>
         <p className="text-gray-600 dark:text-gray-400">
-          This helps us recommend content at the right difficulty for you
+          זה עוזר לנו להמליץ על תוכן ברמת הקושי המתאימה עבורך
         </p>
       </motion.div>
 
@@ -705,49 +703,380 @@ function ExperienceStep({
         className="flex gap-4 justify-center"
       >
         <Button variant="outline" onClick={onBack} size="lg">
-          Back
+          חזור
         </Button>
         <Button onClick={onNext} disabled={!selectedExperience} size="lg">
-          Next
+          הבא
         </Button>
       </motion.div>
     </motion.div>
   );
 }
 
-// Placeholder for future steps (2.9)
-interface PlaceholderStepProps {
-  title: string;
-  description: string;
-  onNext: () => void;
+// Step 5: Learning Path Generated
+interface LearningPathStepProps {
+  userId: string;
+  selectedRole: string;
+  selectedInterests: string[];
+  selectedExperience: string;
+  onComplete: () => void;
   onBack: () => void;
-  isLast?: boolean;
 }
 
-function PlaceholderStep({
-  title,
-  description,
-  onNext,
+interface Guide {
+  id: string;
+  title: string;
+  description: string;
+  estimatedMinutes: number;
+}
+
+interface GuideSection {
+  category: string;
+  description: string;
+  guides: Guide[];
+}
+
+function LearningPathStep({
+  userId,
+  selectedRole,
+  selectedInterests,
+  selectedExperience,
+  onComplete,
   onBack,
-  isLast = false,
-}: PlaceholderStepProps) {
+}: LearningPathStepProps) {
+  const [isGenerating, setIsGenerating] = useState(true);
+  const [guideSections, setGuideSections] = useState<GuideSection[]>([]);
+  const [isSaving, setIsSaving] = useState(false);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    // Simulate generating personalized learning path
+    const generatePath = async () => {
+      setIsGenerating(true);
+
+      // Wait 2 seconds to show loading animation
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      // Generate mock guide recommendations based on selections
+      const sections: GuideSection[] = [
+        {
+          category: 'מדריכי ליבה',
+          description: 'מדריכים חיוניים להתחלת עבודה עם BMAD',
+          guides: [
+            {
+              id: 'quick-start',
+              title: 'מדריך התחלה מהירה',
+              description: 'התחל לעבוד עם BMAD תוך 15 דקות',
+              estimatedMinutes: 15,
+            },
+            {
+              id: 'bmad-fundamentals',
+              title: 'יסודות BMAD',
+              description: 'סקירה של מושגי ליבה ומתודולוגיה',
+              estimatedMinutes: 30,
+            },
+          ],
+        },
+        {
+          category: 'מומלץ עבורך',
+          description: `בהתבסס על תפקידך כ${selectedRole}`,
+          guides: [
+            {
+              id: 'role-guide',
+              title: `מדריך ${selectedRole}`,
+              description: `למד BMAD מנקודת מבט של ${selectedRole}`,
+              estimatedMinutes: 45,
+            },
+          ],
+        },
+      ];
+
+      // Add interest-based guides if user selected any
+      if (selectedInterests.length > 0) {
+        sections.push({
+          category: 'בהתבסס על תחומי העניין שלך',
+          description: `מדריכים התואמים את תחומי העניין שבחרת (${selectedInterests.length} נושאים)`,
+          guides: selectedInterests.slice(0, 3).map((interest, index) => ({
+            id: `interest-${interest}`,
+            title: `מדריך ${interest
+              .split('-')
+              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+              .join(' ')}`,
+            description: `צלילה עמוקה ל${interest.replace('-', ' ו')}`,
+            estimatedMinutes: 30 + index * 10,
+          })),
+        });
+      }
+
+      // Add experience-level guides
+      sections.push({
+        category: 'צלילות עמוקות אופציונליות',
+        description: `נושאים מתקדמים עבור לומדים ברמה ${selectedExperience}`,
+        guides: [
+          {
+            id: 'advanced-patterns',
+            title: 'תבניות מתקדמות',
+            description: 'זרימות עבודה מורכבות ותבניות ארכיטקטוניות',
+            estimatedMinutes: 60,
+          },
+        ],
+      });
+
+      setGuideSections(sections);
+      setIsGenerating(false);
+    };
+
+    generatePath();
+  }, [selectedRole, selectedInterests, selectedExperience]);
+
+  const handleComplete = async () => {
+    if (!userId) {
+      toast({
+        title: 'שגיאה',
+        description: 'המשתמש לא מאומת',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setIsSaving(true);
+
+    try {
+      // Save preferences to profile
+      const { error } = await supabase
+        .from('profiles')
+        .update({
+          role: selectedRole,
+          interests: selectedInterests,
+          experience_level: selectedExperience as 'beginner' | 'intermediate' | 'advanced',
+          completed_onboarding: true,
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', userId);
+
+      if (error) throw error;
+
+      // Fire confetti celebration
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#10b981', '#059669', '#34d399', '#6ee7b7', '#a7f3d0'],
+      });
+
+      // Show success toast
+      toast({
+        title: 'ההונחיה הושלמה בהצלחה!',
+        description: 'נתיב הלמידה האישי שלך מוכן. בואו נתחיל ללמוד!',
+      });
+
+      // Wait a moment for confetti before redirecting
+      setTimeout(() => {
+        onComplete();
+      }, 1500);
+    } catch (error) {
+      console.error('Error saving onboarding preferences:', error);
+      toast({
+        title: 'שגיאה',
+        description: 'שמירת ההעדפות נכשלה. אנא נסה שוב.',
+        variant: 'destructive',
+      });
+      setIsSaving(false);
+    }
+  };
+
+  if (isGenerating) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -100 }}
+        transition={{ duration: 0.3 }}
+        className="w-full max-w-4xl mx-auto text-center"
+      >
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="mb-8 flex justify-center"
+        >
+          <div className="relative">
+            <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full animate-pulse" />
+            <div className="relative bg-primary/10 p-8 rounded-full">
+              <IconLoader2 className="w-20 h-20 text-primary animate-spin" stroke={1.5} />
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4"
+        >
+          יוצר את נתיב הלמידה שלך...
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="text-lg text-gray-600 dark:text-gray-400"
+        >
+          אנחנו מתאימים אישית את מסע ה-BMAD שלך על סמך הבחירות שלך
+        </motion.p>
+      </motion.div>
+    );
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 100 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -100 }}
       transition={{ duration: 0.3 }}
-      className="text-center"
+      className="w-full max-w-4xl mx-auto"
     >
-      <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">{title}</h2>
-      <p className="text-gray-600 dark:text-gray-400 mb-8">{description}</p>
+      {/* Header */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="text-center mb-8"
+      >
+        <div className="mb-4 flex justify-center">
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
+            className="bg-primary/10 p-4 rounded-full"
+          >
+            <IconBooks className="w-12 h-12 text-primary" stroke={1.5} />
+          </motion.div>
+        </div>
 
-      <div className="flex gap-4 justify-center">
-        <Button variant="outline" onClick={onBack}>
-          Back
-        </Button>
-        <Button onClick={onNext}>{isLast ? 'Complete Onboarding' : 'Next'}</Button>
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+          נתיב הלמידה האישי שלך
+        </h2>
+        <p className="text-gray-600 dark:text-gray-400">
+          מבוסס על תפקידך, תחומי העניין ורמת הניסיון שלך
+        </p>
+      </motion.div>
+
+      {/* Guide Sections */}
+      <div className="space-y-6 mb-8">
+        {guideSections.map((section, sectionIndex) => (
+          <motion.div
+            key={section.category}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 + sectionIndex * 0.2 }}
+            className="bg-white dark:bg-gray-800 rounded-xl p-6 border-2 border-gray-200 dark:border-gray-700"
+          >
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+              {section.category}
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{section.description}</p>
+
+            <div className="space-y-3">
+              {section.guides.map((guide, guideIndex) => (
+                <motion.div
+                  key={guide.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4 + sectionIndex * 0.2 + guideIndex * 0.1 }}
+                  className="flex items-start gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                >
+                  <div className="mt-0.5">
+                    <IconCheck className="w-5 h-5 text-primary" stroke={2} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
+                      {guide.title}
+                    </h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                      {guide.description}
+                    </p>
+                    <span className="inline-flex items-center text-xs text-gray-500 dark:text-gray-500">
+                      <IconClock className="w-3 h-3 ml-1" />
+                      {guide.estimatedMinutes} דקות
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        ))}
       </div>
+
+      {/* Summary */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8 }}
+        className="text-center mb-6 p-4 bg-primary/5 rounded-lg border border-primary/20"
+      >
+        <p className="text-sm text-gray-700 dark:text-gray-300">
+          <span className="font-semibold text-primary">
+            {guideSections.reduce((total, section) => total + section.guides.length, 0)} מדריכים
+          </span>{' '}
+          נבחרו עבורך •{' '}
+          <span className="font-semibold text-primary">
+            ~
+            {guideSections.reduce(
+              (total, section) =>
+                total + section.guides.reduce((sum, guide) => sum + guide.estimatedMinutes, 0),
+              0
+            )}{' '}
+            דקות
+          </span>{' '}
+          של למידה
+        </p>
+      </motion.div>
+
+      {/* Navigation Buttons */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.9 }}
+        className="flex gap-4 justify-center"
+      >
+        <Button variant="outline" onClick={onBack} disabled={isSaving} size="lg">
+          חזור
+        </Button>
+        <Button onClick={handleComplete} disabled={isSaving} size="lg" className="min-w-[200px]">
+          {isSaving ? (
+            <>
+              <IconLoader2 className="w-5 h-5 ml-2 animate-spin" />
+              שומר...
+            </>
+          ) : (
+            <>
+              <IconRocket className="w-5 h-5 ml-2" />
+              התחל ללמוד!
+            </>
+          )}
+        </Button>
+      </motion.div>
     </motion.div>
+  );
+}
+
+// Missing IconClock - add it inline
+function IconClock({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
+    </svg>
   );
 }
