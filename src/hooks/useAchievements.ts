@@ -210,13 +210,20 @@ export function useAchievements() {
           const badge = getBadgeById(achievement.badge_id);
           if (!badge) return null;
 
-          return {
-            ...achievement,
+          const result: AchievementWithBadge = {
+            id: achievement.id,
+            user_id: achievement.user_id,
+            badge_id: achievement.badge_id,
+            badge_type: achievement.badge_type,
+            progress_current: achievement.progress_current,
+            progress_target: achievement.progress_target,
+            earned: achievement.earned,
             earned_at: achievement.earned_at ? new Date(achievement.earned_at) : null,
             created_at: new Date(achievement.created_at),
             updated_at: new Date(achievement.updated_at),
             badge,
           };
+          return result;
         })
         .filter((a): a is AchievementWithBadge => a !== null);
 
@@ -244,9 +251,6 @@ export function useAchievements() {
     try {
       // Calculate which badges should be earned
       const earnedBadgeIds = checkEarnedBadges(stats);
-
-      // Get existing achievements
-      const existingAchievements = achievements.map(a => a.badge_id);
 
       // Find newly earned badges
       const newlyEarned = earnedBadgeIds.filter(id => {

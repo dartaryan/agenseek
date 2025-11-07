@@ -54,7 +54,7 @@ export function GuideReaderPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { user } = useAuth();
-  const { checkAndUpdateAchievements, newlyEarnedBadge, setNewlyEarnedBadge } = useAchievements(); // Story 5.3
+  const { checkAndUpdateAchievements, newlyEarnedBadge } = useAchievements(); // Story 5.3
 
   // State
   const [guide, setGuide] = useState<Guide | null>(null);

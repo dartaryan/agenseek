@@ -385,6 +385,52 @@ export interface Database {
           },
         ];
       };
+      user_achievements: {
+        Row: {
+          id: string;
+          user_id: string;
+          badge_id: string;
+          badge_type: 'milestone' | 'streak' | 'skill' | 'special';
+          progress_current: number;
+          progress_target: number;
+          earned: boolean;
+          earned_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          badge_id: string;
+          badge_type: 'milestone' | 'streak' | 'skill' | 'special';
+          progress_current?: number;
+          progress_target?: number;
+          earned?: boolean;
+          earned_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          badge_id?: string;
+          badge_type?: 'milestone' | 'streak' | 'skill' | 'special';
+          progress_current?: number;
+          progress_target?: number;
+          earned?: boolean;
+          earned_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'user_achievements_user_id_fkey';
+            columns: ['user_id'];
+            referencedRelation: 'profiles';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
     };
     Views: {
       [_ in never]: never;
