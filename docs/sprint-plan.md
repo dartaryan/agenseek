@@ -1,11 +1,11 @@
 # Agenseek - 15-Week Sprint Plan
 
-**Project:** Agenseek (BMAD Learning Hub)  
-**Total Duration:** 15 weeks  
-**Total Epics:** 10  
-**Total Stories:** 66  
-**Sprint Length:** 1 week per sprint  
-**Team Capacity:** Single dev agent per story  
+**Project:** Agenseek (BMAD Learning Hub)
+**Total Duration:** 15 weeks
+**Total Epics:** 10
+**Total Stories:** 68 (66 original + 2 new)
+**Sprint Length:** 1 week per sprint
+**Team Capacity:** Single dev agent per story
 
 ---
 
@@ -33,7 +33,7 @@
 
 ## Sprint 1 - Week 1: Project Foundation & Infrastructure
 
-**Epic 1: Project Foundation & Infrastructure**  
+**Epic 1: Project Foundation & Infrastructure**
 **Goal:** Establish technical foundation for all subsequent development
 
 ### Stories
@@ -64,7 +64,7 @@
 
 ## Sprint 2 - Week 2: Authentication Basics
 
-**Epic 2: User Authentication & Personalized Onboarding (Part 1)**  
+**Epic 2: User Authentication & Personalized Onboarding (Part 1)**
 **Goal:** Enable users to securely create accounts and log in
 
 ### Stories
@@ -76,20 +76,24 @@
 | 2.3 | Build Password Reset Flow | P0 | 2.2 | 2 |
 | 2.4 | Build Google OAuth Integration | P1 | 2.3 | 2 |
 | 2.5 | Build Onboarding Wizard - Step 1 (Welcome) | P0 | 2.4 | 2 |
+| 2.11 | Comprehensive Hebrew Localization for Authentication Flows | P0 | 2.4 | 3 |
+| 2.12 | Account Deletion Feature | P1 | 2.10 | 3 |
 
-**Sprint Goal:** Users can register, log in, reset passwords, and start onboarding
+**Sprint Goal:** Users can register, log in, reset passwords, start onboarding, and manage account deletion in Hebrew
 
 **Definition of Done:**
 - ✅ Authentication flows work end-to-end
 - ✅ Email verification sent
 - ✅ Google OAuth functional
 - ✅ Welcome screen shows for new users
+- ✅ All auth content localized to Hebrew
+- ✅ Users can delete their accounts with proper confirmation
 
 ---
 
 ## Sprint 3 - Week 3: Personalized Onboarding
 
-**Epic 2: User Authentication & Personalized Onboarding (Part 2)**  
+**Epic 2: User Authentication & Personalized Onboarding (Part 2)**
 **Goal:** Complete personalized onboarding wizard
 
 ### Stories
@@ -114,7 +118,7 @@
 
 ## Sprint 4 - Week 4: Dynamic Content Rendering System
 
-**Epic 3: Dynamic Content Rendering System**  
+**Epic 3: Dynamic Content Rendering System**
 **Goal:** Build flexible JSON-based content system with 14 block types
 
 ### Stories
@@ -144,7 +148,7 @@
 
 ## Sprint 5 - Week 5: Guide Library & Discovery (Part 1)
 
-**Epic 4: Guide Library & Discovery (Part 1)**  
+**Epic 4: Guide Library & Discovery (Part 1)**
 **Goal:** Users can browse and discover guides
 
 ### Stories
@@ -168,7 +172,7 @@
 
 ## Sprint 6 - Week 6: Guide Library & Discovery (Part 2)
 
-**Epic 4: Guide Library & Discovery (Part 2)**  
+**Epic 4: Guide Library & Discovery (Part 2)**
 **Goal:** Complete guide reading experience with progress tracking
 
 ### Stories
@@ -192,7 +196,7 @@
 
 ## Sprint 7 - Week 7: Progress Tracking & Achievements
 
-**Epic 5: Progress Tracking & Achievements**  
+**Epic 5: Progress Tracking & Achievements**
 **Goal:** Gamification drives engagement and motivation
 
 ### Stories
@@ -220,7 +224,7 @@
 
 ## Sprint 8 - Week 8: Personal Learning Workspace - Notes
 
-**Epic 6: Personal Learning Workspace (Part 1 - Notes)**  
+**Epic 6: Personal Learning Workspace (Part 1 - Notes)**
 **Goal:** Users can capture insights with rich text notes
 
 ### Stories
@@ -244,7 +248,7 @@
 
 ## Sprint 9 - Week 9: Personal Learning Workspace - Tasks
 
-**Epic 6: Personal Learning Workspace (Part 2 - Tasks)**  
+**Epic 6: Personal Learning Workspace (Part 2 - Tasks)**
 **Goal:** Users can manage tasks with sub-tasks and kanban board
 
 ### Stories
@@ -268,7 +272,7 @@
 
 ## Sprint 10 - Week 10: Global Search & Command Palette
 
-**Epic 7: Global Search & Command Palette**  
+**Epic 7: Global Search & Command Palette**
 **Goal:** Instant search and power-user command palette
 
 ### Stories
@@ -293,7 +297,7 @@
 
 ## Sprint 11 - Week 11: Community Features
 
-**Epic 8: Community Features (Comments & Q&A)**  
+**Epic 8: Community Features (Comments & Q&A)**
 **Goal:** Foster collaborative learning community
 
 ### Stories
@@ -319,7 +323,7 @@
 
 ## Sprint 12 - Week 12: Admin Analytics & Management
 
-**Epic 9: Admin Analytics & Management**  
+**Epic 9: Admin Analytics & Management**
 **Goal:** Admins can monitor platform and manage users
 
 ### Stories
@@ -345,7 +349,7 @@
 
 ## Sprint 13 - Week 13: Responsive Design & Accessibility
 
-**Epic 10: Responsive Design & Accessibility**  
+**Epic 10: Responsive Design & Accessibility**
 **Goal:** Platform works on all devices and meets WCAG 2.1 AA
 
 ### Stories
@@ -640,9 +644,9 @@ Epic 10 (Responsive & A11y)
 
 ---
 
-**Document Version:** 1.0  
-**Date:** November 6, 2025  
-**Author:** Bob (Scrum Master)  
+**Document Version:** 1.0
+**Date:** November 6, 2025
+**Author:** Bob (Scrum Master)
 **Status:** Ready for execution
 
 **Let's build something amazing! 🚀**

@@ -1,9 +1,9 @@
 # Agenseek - Epic Breakdown
 
-**Author:** Ben  
-**Date:** November 6, 2025  
-**Project Level:** Level 3 (Full-featured internal platform)  
-**Target Scale:** 100 internal users, 42 learning guides  
+**Author:** Ben
+**Date:** November 6, 2025
+**Project Level:** Level 3 (Full-featured internal platform)
+**Target Scale:** 100 internal users, 42 learning guides
 **Timeline:** 15 weeks to launch
 
 ---
@@ -819,6 +819,118 @@ So that new users complete onboarding before accessing the platform.
 
 ---
 
+### Story 2.11: Comprehensive Hebrew Localization for Authentication Flows
+
+As a Hebrew-speaking user,
+I want all authentication-related content (login, registration, password reset, OAuth) fully translated to Hebrew,
+So that I can use the authentication system in my native language with complete clarity.
+
+**Acceptance Criteria:**
+
+**Given** I am using any authentication page
+**When** I view the interface
+**Then**:
+- Login Page (`/auth/login`):
+  - Form labels: "אימייל" (Email), "סיסמה" (Password)
+  - Buttons: "התחבר" (Login), "זכור אותי" (Remember me)
+  - Links: "שכחת סיסמה?" (Forgot password?), "אין לך חשבון? הירשם" (Don't have an account? Register)
+  - Placeholders: "הזן את האימייל שלך" (Enter your email), "הזן סיסמה" (Enter password)
+- Registration Page (`/auth/register`):
+  - Form labels: "שם מלא" (Full name), "אימייל" (Email), "סיסמה" (Password), "אמת סיסמה" (Confirm password)
+  - Button: "הירשם" (Register)
+  - Link: "כבר יש לך חשבון? התחבר" (Already have an account? Login)
+  - Password strength: "חלשה" (Weak), "בינונית" (Medium), "חזקה" (Strong)
+- Password Reset Page (`/auth/reset-password`):
+  - Heading: "איפוס סיסמה" (Reset Password)
+  - Label: "אימייל" (Email)
+  - Button: "שלח קישור לאיפוס" (Send reset link)
+  - Success message: "בדוק את האימייל שלך לקבלת קישור לאיפוס" (Check your email for reset link)
+- OAuth Button:
+  - Text: "התחבר עם Google" (Sign in with Google)
+- Error messages in Hebrew:
+  - "אימייל או סיסמה שגויים" (Invalid email or password)
+  - "האימייל כבר קיים" (Email already exists)
+  - "הסיסמאות לא תואמות" (Passwords don't match)
+  - "הסיסמה חייבת להכיל לפחות 8 תווים" (Password must be at least 8 characters)
+
+**And** all validation error messages appear in Hebrew
+**And** all success toast notifications appear in Hebrew
+**And** loading states show Hebrew text: "טוען..." (Loading...)
+
+**Prerequisites:** Story 2.4
+
+**Technical Notes:**
+- Extend `src/lib/locale/he.ts` with auth section
+- Create validation schemas with Hebrew error messages using Zod
+- Update all auth-related components to use locale strings
+- Ensure RTL layout works correctly with form layouts
+- Test all error states with Hebrew messages
+- Update toast notifications to use Hebrew locale
+
+---
+
+### Story 2.12: Account Deletion Feature
+
+As a user,
+I want to permanently delete my account and all associated data,
+So that I can exercise my right to be forgotten and remove my personal information from the platform.
+
+**Acceptance Criteria:**
+
+**Given** I am logged in and navigate to account settings
+**When** I want to delete my account
+**Then**:
+- Settings page (`/settings`) includes "מחיקת חשבון" (Delete Account) section
+- Section displays warning:
+  - "אזהרה: פעולה זו בלתי הפיכה" (Warning: This action is irreversible)
+  - "כל הנתונים שלך יימחקו לצמיתות" (All your data will be permanently deleted)
+  - List of what will be deleted:
+    - "פרופיל המשתמש" (User profile)
+    - "התקדמות בלמידה" (Learning progress)
+    - "הערות ומשימות" (Notes and tasks)
+    - "תגובות ושאלות" (Comments and questions)
+    - "סימניות והישגים" (Bookmarks and achievements)
+- "מחק את החשבון שלי" (Delete My Account) button in red
+- Clicking button opens confirmation dialog:
+  - Title: "האם אתה בטוח?" (Are you sure?)
+  - Message: "פעולה זו תמחק את כל הנתונים שלך ולא ניתן לשחזרם" (This will delete all your data and cannot be undone)
+  - Input field: "הקלד 'מחק' כדי לאשר" (Type 'DELETE' to confirm)
+  - Buttons: "ביטול" (Cancel), "מחק לצמיתות" (Delete Permanently)
+- Typing "מחק" or "DELETE" (case-insensitive) enables delete button
+- On confirmation:
+  - Show loading state: "מוחק חשבון..." (Deleting account...)
+  - Execute deletion transaction:
+    1. Delete from `user_activity` where user_id = current user
+    2. Delete from `guide_bookmarks` where user_id = current user
+    3. Delete from `comment_votes` where user_id = current user
+    4. Delete from `guide_comments` where user_id = current user
+    5. Delete from `user_tasks` where user_id = current user
+    6. Delete from `user_notes` where user_id = current user
+    7. Delete from `user_progress` where user_id = current user
+    8. Delete from `profiles` where id = current user
+    9. Delete from Supabase Auth: `supabase.auth.admin.deleteUser()`
+  - Log out user immediately
+  - Show farewell toast: "החשבון נמחק בהצלחה. להתראות!" (Account deleted successfully. Goodbye!)
+  - Redirect to home page
+
+**And** deleted accounts cannot be recovered
+**And** email becomes available for new registration after 30 days (optional grace period)
+
+**Prerequisites:** Story 2.10, Epic 1 complete
+
+**Technical Notes:**
+- Create `/settings/account` page with delete section
+- Implement cascading deletion using Supabase transaction
+- Use Supabase RLS policies to ensure users can only delete their own data
+- Consider soft delete option (mark as deleted, purge after 30 days) vs hard delete
+- Log deletion event before removing data for audit trail
+- Ensure proper error handling if deletion fails mid-transaction
+- Test foreign key constraints are handled correctly
+- Add rate limiting to prevent abuse
+- Consider adding "Download my data" option before deletion (GDPR compliance)
+
+---
+
 ## Epic 3: Dynamic Content Rendering System
 
 **Goal:** Build a flexible JSON-based content system that can render 14 different block types (headings, text, code, callouts, charts, etc.) to display rich, interactive learning guides.
@@ -1550,7 +1662,7 @@ So that I can easily navigate between guides and understand my location.
 
 **Technical Notes:**
 - Breadcrumbs component: src/components/layout/Breadcrumbs.tsx
-- Use 
+- Use
 eact-router-dom Link components
 - Previous/Next logic: Sort guides by category, find current index, get adjacent
 - Related guides: Use guide tags to find similar content (cosine similarity or simple tag matching)
