@@ -393,6 +393,12 @@ export interface Database {
         };
         Returns: void;
       };
+      increment_guide_completion: {
+        Args: {
+          p_guide_slug: string;
+        };
+        Returns: void;
+      };
     };
     Enums: {
       [_ in never]: never;

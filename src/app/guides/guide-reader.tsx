@@ -24,11 +24,13 @@ import { GuideActionsSidebar } from '@/components/guides/GuideActionsSidebar';
 import { GuideBreadcrumbs } from '@/components/guides/GuideBreadcrumbs';
 import { GuideHeader } from '@/components/guides/GuideHeader';
 import { ContentRenderer } from '@/components/content/ContentRenderer';
+import { MarkCompleteDialog } from '@/components/guides/MarkCompleteDialog';
+import { GuideCompletionModal } from '@/components/guides/GuideCompletionModal';
 import { loadGuide, getAdjacentGuides } from '@/lib/guide-loader';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/lib/supabase';
 import { toast } from '@/hooks/use-toast';
-import type { Guide } from '@/types/content-blocks';
+import type { Guide, GuideMetadata } from '@/types/content-blocks';
 
 interface UserProgress {
   progress_percent: number;
@@ -53,6 +55,10 @@ export function GuideReaderPage() {
   const [isCompleted, setIsCompleted] = useState(false);
   const [userProgress, setUserProgress] = useState<UserProgress | null>(null);
   const [hasResumed, setHasResumed] = useState(false);
+  const [showMarkCompleteDialog, setShowMarkCompleteDialog] = useState(false);
+  const [showCompletionModal, setShowCompletionModal] = useState(false);
+  const [isMarkingComplete, setIsMarkingComplete] = useState(false);
+  const [nextGuide, setNextGuide] = useState<GuideMetadata | null>(null);
 
   // Refs
   const contentRef = useRef<HTMLDivElement>(null);
@@ -215,6 +221,41 @@ export function GuideReaderPage() {
     };
   }, [guide]);
 
+  // Save progress to database (Story 4.6: includes time tracking)
+  const saveProgress = useCallback(
+    async (progress: number, lastSection: string | null) => {
+      if (!user || !slug || !guide) return;
+
+      try {
+        // Calculate current session time in seconds
+        const sessionTime = Math.round((Date.now() - readingStartTimeRef.current) / 1000);
+        const totalTime = accumulatedTimeRef.current + sessionTime;
+
+        const { error } = await supabase.from('user_progress').upsert(
+          {
+            user_id: user.id,
+            guide_slug: slug,
+            guide_category: guide.metadata.category,
+            progress_percent: Math.round(progress),
+            last_position: lastSection || '',
+            last_read_at: new Date().toISOString(),
+            time_spent_seconds: totalTime,
+          },
+          {
+            onConflict: 'user_id,guide_slug',
+          }
+        );
+
+        if (error) {
+          console.error('Failed to save progress:', error);
+        }
+      } catch (err) {
+        console.error('Error saving progress:', err);
+      }
+    },
+    [user, slug, guide]
+  );
+
   // Scroll progress tracking
   useEffect(() => {
     const handleScroll = () => {
@@ -254,41 +295,6 @@ export function GuideReaderPage() {
     };
   }, [user, slug, scrollProgress, currentSection, saveProgress]);
 
-  // Save progress to database (Story 4.6: includes time tracking)
-  const saveProgress = useCallback(
-    async (progress: number, lastSection: string | null) => {
-      if (!user || !slug || !guide) return;
-
-      try {
-        // Calculate current session time in seconds
-        const sessionTime = Math.round((Date.now() - readingStartTimeRef.current) / 1000);
-        const totalTime = accumulatedTimeRef.current + sessionTime;
-
-        const { error } = await supabase.from('user_progress').upsert(
-          {
-            user_id: user.id,
-            guide_slug: slug,
-            guide_category: guide.metadata.category,
-            progress_percent: Math.round(progress),
-            last_position: lastSection || '',
-            last_read_at: new Date().toISOString(),
-            time_spent_seconds: totalTime,
-          },
-          {
-            onConflict: 'user_id,guide_slug',
-          }
-        );
-
-        if (error) {
-          console.error('Failed to save progress:', error);
-        }
-      } catch (err) {
-        console.error('Error saving progress:', err);
-      }
-    },
-    [user, slug, guide]
-  );
-
   // Smooth scroll to section
   const handleSectionClick = useCallback((anchor: string) => {
     const element = document.getElementById(anchor);
@@ -299,13 +305,25 @@ export function GuideReaderPage() {
     }
   }, []);
 
-  // Mark complete handler
-  const handleMarkComplete = useCallback(async () => {
+  // Story 4.7: Mark complete button click - show confirmation dialog
+  const handleMarkCompleteClick = useCallback(() => {
+    if (isCompleted) return;
+    setShowMarkCompleteDialog(true);
+  }, [isCompleted]);
+
+  // Story 4.7: Confirm mark complete - full implementation
+  const handleConfirmMarkComplete = useCallback(async () => {
     if (!user || !slug || !guide) return;
 
+    setIsMarkingComplete(true);
+
     try {
-      // Update progress to 100%
-      await supabase.from('user_progress').upsert(
+      // Calculate final reading time
+      const sessionTime = Math.round((Date.now() - readingStartTimeRef.current) / 1000);
+      const totalTime = accumulatedTimeRef.current + sessionTime;
+
+      // 1. Update user_progress (completed=true, progress_percent=100, completed_at)
+      const { error: progressError } = await supabase.from('user_progress').upsert(
         {
           user_id: user.id,
           guide_slug: slug,
@@ -314,39 +332,76 @@ export function GuideReaderPage() {
           completed: true,
           completed_at: new Date().toISOString(),
           last_read_at: new Date().toISOString(),
+          time_spent_seconds: totalTime,
         },
         {
           onConflict: 'user_id,guide_slug',
         }
       );
 
-      // Note: increment_guide_completion RPC function would be created in Story 4.6
-      // For now, we'll skip this to avoid breaking the build
+      if (progressError) throw progressError;
 
-      setIsCompleted(true);
-      toast({
-        title: 'מדריך הושלם!',
-        description: 'כל הכבוד! המשך ללמידה הבאה.',
+      // 2. Insert activity log
+      const { error: activityError } = await supabase.from('user_activity').insert({
+        user_id: user.id,
+        activity_type: 'complete_guide',
+        target_slug: slug,
+        metadata: {
+          guide_title: guide.metadata.title,
+          guide_category: guide.metadata.category,
+          difficulty: guide.metadata.difficulty,
+          time_spent_seconds: totalTime,
+        },
       });
 
-      // Navigate to next guide after 2 seconds
-      setTimeout(() => {
-        const { next } = getAdjacentGuides(slug);
-        if (next) {
-          navigate(`/guides/${next.id}`);
-        } else {
-          navigate('/guides');
-        }
-      }, 2000);
+      if (activityError) throw activityError;
+
+      // 3. Update guide stats (increment completion count)
+      const { error: statsError } = await supabase.rpc('increment_guide_completion', {
+        p_guide_slug: slug,
+      });
+
+      if (statsError) {
+        console.error('Failed to update guide stats:', statsError);
+        // Non-fatal error, continue with completion flow
+      }
+
+      // 4. Update local state
+      setIsCompleted(true);
+      setIsMarkingComplete(false);
+      setShowMarkCompleteDialog(false);
+
+      // 5. Get next guide for recommendation
+      const { next } = getAdjacentGuides(slug, guide.metadata.category);
+      if (next) {
+        // Convert GuideCatalogEntry to GuideMetadata format
+        setNextGuide({
+          ...next,
+          slug: next.id, // GuideCatalogEntry uses 'id' instead of 'slug'
+        } as GuideMetadata);
+      } else {
+        setNextGuide(null);
+      }
+
+      // 6. Show success modal (confetti will fire automatically)
+      setShowCompletionModal(true);
+
+      // Success toast
+      toast({
+        title: 'מדריך הושלם!',
+        description: 'כל הכבוד! המשך למדריך הבא או חזרה לספרייה.',
+      });
     } catch (err) {
       console.error('Failed to mark complete:', err);
+      setIsMarkingComplete(false);
+      setShowMarkCompleteDialog(false);
       toast({
         title: 'שגיאה',
         description: 'לא הצלחנו לסמן את המדריך כהושלם',
         variant: 'destructive',
       });
     }
-  }, [user, slug, guide, navigate]);
+  }, [user, slug, guide]);
 
   // Copy link handler
   const handleCopyLink = useCallback(() => {
@@ -474,7 +529,7 @@ export function GuideReaderPage() {
             <GuideActionsSidebar
               progress={scrollProgress}
               isCompleted={isCompleted}
-              onMarkComplete={handleMarkComplete}
+              onMarkComplete={handleMarkCompleteClick}
               onBookmark={() => toast({ title: 'נשמר למועדפים' })}
               onAddNote={() => toast({ title: 'הוספת הערה - בקרוב' })}
               onCreateTask={() => toast({ title: 'יצירת משימה - בקרוב' })}
@@ -495,6 +550,23 @@ export function GuideReaderPage() {
         onSectionClick={handleSectionClick}
         isOpen={isMobileTocOpen}
         onToggle={() => setIsMobileTocOpen(!isMobileTocOpen)}
+      />
+
+      {/* Story 4.7: Mark Complete Confirmation Dialog */}
+      <MarkCompleteDialog
+        open={showMarkCompleteDialog}
+        onOpenChange={setShowMarkCompleteDialog}
+        onConfirm={handleConfirmMarkComplete}
+        guideTitle={guide.metadata.title}
+        isLoading={isMarkingComplete}
+      />
+
+      {/* Story 4.7: Completion Success Modal */}
+      <GuideCompletionModal
+        open={showCompletionModal}
+        onOpenChange={setShowCompletionModal}
+        guideTitle={guide.metadata.title}
+        nextGuide={nextGuide}
       />
     </div>
   );
