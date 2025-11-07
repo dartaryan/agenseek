@@ -18,6 +18,7 @@ import { DashboardPage } from './dashboard';
 import { GuidesPage } from './guides';
 import { GuideDetailPage } from './guides/guide-detail';
 import ContentDemo from './guides/content-demo';
+import GuideLibraryDemo from './guides/library-demo';
 import { NotesPage } from './notes';
 import { TasksPage } from './tasks';
 import { ProfilePage } from './profile';
@@ -116,6 +117,10 @@ export const router = createBrowserRouter([
       {
         path: '/guides/demo',
         element: <ContentDemo />,
+      },
+      {
+        path: '/guides/library-demo',
+        element: <GuideLibraryDemo />,
       },
       {
         path: '/guides/:slug',
