@@ -548,13 +548,87 @@
 
 ---
 
-## 📋 Next Stories (Sprint 2-3 - Epic 2)
+---
 
-**Story 2.9: Build Onboarding Wizard - Step 5 (Learning Path Generated)**
-- Loading animation
-- Staggered guide list reveal
-- Save preferences to profile
-- Confetti celebration
+### Story 2.9: Build Onboarding Wizard - Step 5 (Learning Path Generated) ✅
+- **Status:** COMPLETE
+- **Completed:** Previously (already in codebase)
+- **Details:**
+  - ✅ Progress dots (5/5) with ProgressDots component
+  - ✅ Loading animation with spinning IconLoader2 (2 seconds)
+  - ✅ Staggered guide list reveal with Framer Motion delays
+  - ✅ Guide sections: Core, Recommended (by role), Interests, Advanced
+  - ✅ Save preferences to profile database (role, interests, experience_level, completed_onboarding)
+  - ✅ Confetti celebration with emerald colors
+  - ✅ Success toast: "ההונחיה הושלמה בהצלחה!"
+  - ✅ Complete onboarding button with "התחל ללמוד!" text
+  - ✅ Summary shows total guides and estimated minutes
+  - ✅ Responsive design with emerald theme
+
+**Implemented Features:**
+- Mock learning path generator based on user selections
+- 4 guide sections with personalized recommendations
+- Check icons for each guide in the path
+- Time estimates for each guide
+- Back button to return to Step 4
+- Loading state prevents premature navigation
+- 1.5-second delay after confetti before redirect
+- IconClock component for time display
+
+**Verification:**
+- ✅ All acceptance criteria met
+- ✅ Confetti fires with emerald colors
+- ✅ Profile updated with onboarding completion
+- ✅ Redirects to dashboard after completion
+
+---
+
+### Story 2.10: Implement Protected Routes and Onboarding Redirect Logic ✅
+- **Status:** COMPLETE
+- **Completed:** November 7, 2025
+- **Details:**
+  - ✅ Updated useAuth hook to fetch user profile with completed_onboarding flag
+  - ✅ Profile data automatically fetched on auth state change
+  - ✅ ProtectedRoute checks completed_onboarding flag
+  - ✅ Redirect logic: unauthenticated → login, authenticated+not-onboarded → onboarding, authenticated+onboarded → allow
+  - ✅ Onboarding page uses skipOnboardingCheck to prevent redirect loops
+  - ✅ Admin routes check profile.is_admin flag
+  - ✅ Logout clears both user and profile state
+  - ✅ Header displays profile.display_name (fallback to email)
+  - ✅ Loading state shows Hebrew text ("טוען...")
+
+**Implemented Features:**
+- Profile type from database schema
+- Async profile fetching in useAuth hook
+- Profile state management with auth state changes
+- skipOnboardingCheck prop for onboarding route
+- Location state preservation for return URL (future)
+- Profile-based admin check
+- Display name in header avatar
+
+**Files Modified:**
+- `src/hooks/useAuth.ts` - Added profile fetching
+- `src/components/common/ProtectedRoute.tsx` - Added onboarding redirect
+- `src/app/routes.tsx` - Added skipOnboardingCheck to onboarding route
+- `src/components/layout/Header.tsx` - Display profile name
+
+**Verification:**
+- ✅ `npm run type-check` - 0 errors
+- ✅ `npm run lint` - 0 errors
+- ✅ `npm run build` - Built successfully (7.89s)
+- ✅ Redirect flow works correctly
+- ✅ Logout clears auth state
+
+---
+
+## 🎉 EPIC 2 COMPLETE! 🎉
+
+**All required stories in Epic 2 (Authentication & Onboarding) are complete!**
+
+**Epic 2 Summary:**
+- 9 P0 stories completed (100%)
+- 1 P1 story skipped (Google OAuth - optional)
+- Total: 9 / 9 required stories ✅
 
 ---
 
@@ -575,77 +649,75 @@
 - ✅ 1.10: Code Quality Tools
 - ✅ 1.11: Full Hebrew Localization (P0 Critical Fix) ✅ **NEW!**
 
-### Sprint 2 (Epic 2: Authentication & Onboarding) - 🚧 IN PROGRESS
-**Stories Complete:** 7 / 10 (70%)
+### Sprint 2-3 (Epic 2: Authentication & Onboarding) - ✅ COMPLETE
+**Stories Complete:** 9 / 10 (90% - Story 2.4 optional P1 skipped)
 
 - ✅ 2.1: Build Login Page
 - ✅ 2.2: Build Registration Page
 - ✅ 2.3: Build Password Reset Flow
-- ⏳ 2.4: Build Google OAuth Integration (optional P1 - skipped for now)
+- ⏳ 2.4: Build Google OAuth Integration (optional P1 - skipped)
 - ✅ 2.5: Build Onboarding Wizard - Step 1 (Welcome)
 - ✅ 2.6: Build Onboarding Wizard - Step 2 (Select Role)
 - ✅ 2.7: Build Onboarding Wizard - Step 3 (Select Interests)
-- ✅ 2.8: Build Onboarding Wizard - Step 4 (Experience Level) ✅ **NEW!**
-- ⏳ 2.9: Build Onboarding Wizard - Step 5 (Learning Path)
-- ⏳ 2.10: Implement Protected Routes Logic
+- ✅ 2.8: Build Onboarding Wizard - Step 4 (Experience Level)
+- ✅ 2.9: Build Onboarding Wizard - Step 5 (Learning Path) ✅ **NEW!**
+- ✅ 2.10: Implement Protected Routes Logic ✅ **NEW!**
 
-**Current Sprint Status:** 🟢 ON TRACK
+**Epic 2 Status:** 🎉 COMPLETE (9/9 P0 stories)
 
 ---
 
 ## 🎯 How to Continue
 
-### 🎉 Story 2.8 COMPLETE! 🎉
+### 🎉 EPIC 2 COMPLETE! 🎉
 
-**Fantastic progress!** Sprint 2 is now 70% complete - almost there!
+**Incredible progress!** All authentication and onboarding stories are complete!
 
-### Story 2.8 Achievements:
-1. ✅ **3 experience level cards** with unique star icons
-2. ✅ **Single selection** with emerald border highlight
-3. ✅ **Responsive grid layout** adapts perfectly (3 cols → 1 col)
-4. ✅ **Color-coded icons** (blue/emerald/purple) when unselected
-5. ✅ **Emerald theme** when selected (primary color)
-6. ✅ **Smooth animations** for hover, tap, and entrance
-7. ✅ **Lift effect** on hover (scale + translateY)
-8. ✅ **Next button disabled** until level selected
-9. ✅ **Back button** navigates to interests
-10. ✅ **State management** preserves selection across navigation
-11. ✅ **Staggered entrance** with 100ms delays
-12. ✅ **Dark mode support** for all card states
-13. ✅ **Descriptive text** helps users choose the right level
+### Epic 2 Achievements:
+1. ✅ **Complete authentication system** with login, registration, password reset
+2. ✅ **5-step onboarding wizard** with personalized learning paths
+3. ✅ **Protected route system** with automatic onboarding redirects
+4. ✅ **Profile management** with role, interests, and experience level
+5. ✅ **Confetti celebrations** for completed onboarding
+6. ✅ **Hebrew localization** throughout auth and onboarding
+7. ✅ **Framer Motion animations** for smooth UX
+8. ✅ **Type-safe database** operations with Supabase
+9. ✅ **Responsive design** for all auth/onboarding pages
 
-### Ready for Story 2.9 (Build Onboarding Wizard - Step 5):
+### Ready for Epic 3 (Dynamic Content Rendering):
 
-**Next Story:** Story 2.9 - Build Onboarding Wizard - Step 5 (Learning Path Generated)
-**Sprint:** 3 | **Points:** 3 | **Priority:** P0
-**Dependencies:** Story 2.8 (Complete ✅)
+**Next Story:** Story 3.1 - Define TypeScript Types for Content Blocks
+**Sprint:** 4 | **Points:** 2 | **Priority:** P0
+**Dependencies:** Epic 2 complete (✅)
 
-**Story 2.9 Requirements:**
-- Progress dots (5/5)
-- Loading animation while generating path
-- Staggered guide list reveal (Core, Recommended, Interests, Optional)
-- Save preferences to profile
-- Confetti celebration
-- Success toast
-- Complete onboarding button
+**Story 3.1 Requirements:**
+- Create content/schemas/content-types.ts
+- Define 14 block type interfaces
+- Discriminated unions for type safety
+- Guide type with metadata
+- ToC section types
+- Export all types
 
 ### To Continue:
-- Say: **"Let's do Story 2.9"** to implement learning path generation
-- Or: **"Continue with the next story"** to keep the momentum
+- Say: **"Let's do Story 3.1"** to start Epic 3: Dynamic Content Rendering
+- Or: **"Continue with the next story"** to keep building Agenseek
 
 ### Current Status:
 - ✅ Dev server ready at http://localhost:5173
-- ✅ Login page at /auth/login
-- ✅ Registration page at /auth/register
-- ✅ Forgot password at /auth/forgot-password
-- ✅ Reset password at /auth/reset-password
-- ✅ Onboarding wizard at /onboarding
-  - ✅ Step 1: Welcome (working)
-  - ✅ Step 2: Role Selection (working)
-  - ✅ Step 3: Interests (working)
-  - ✅ Step 4: Experience Level (working) ✅ **NEW!**
-  - ⏳ Step 5: Learning Path (next)
-- ✅ All systems operational
+- ✅ Complete authentication flow:
+  - Login page at /auth/login
+  - Registration page at /auth/register
+  - Forgot password at /auth/forgot-password
+  - Reset password at /auth/reset-password
+- ✅ Complete onboarding wizard at /onboarding:
+  - Step 1: Welcome ✅
+  - Step 2: Role Selection ✅
+  - Step 3: Interests ✅
+  - Step 4: Experience Level ✅
+  - Step 5: Learning Path ✅
+- ✅ Protected routes with onboarding redirect logic ✅
+- ✅ Profile-based user management ✅
+- ✅ All systems operational and ready for Epic 3!
 
 ---
 

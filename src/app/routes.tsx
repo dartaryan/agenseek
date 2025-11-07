@@ -77,7 +77,7 @@ export const router = createBrowserRouter([
   {
     path: '/onboarding',
     element: (
-      <ProtectedRoute>
+      <ProtectedRoute skipOnboardingCheck>
         <OnboardingWizardPage />
       </ProtectedRoute>
     ),

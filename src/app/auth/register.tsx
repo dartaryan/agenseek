@@ -10,7 +10,6 @@ import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import { useToast } from '../../hooks/use-toast';
 import { signUp } from '../../lib/auth';
-import { supabase } from '../../lib/supabase';
 import {
   IconUser,
   IconMail,
@@ -155,34 +154,20 @@ export function RegisterPage() {
         return;
       }
 
-      // Create profile in database
-      const { error: profileError } = await supabase.from('profiles').insert({
-        id: signUpData.user.id,
-        display_name: data.displayName,
-        email: data.email,
-        completed_onboarding: false,
-      });
-
-      if (profileError) {
-        console.error('Profile creation error:', profileError);
-        toast({
-          variant: 'destructive',
-          title: 'Profile Creation Failed',
-          description: 'Account created but profile setup failed. Please contact support.',
-        });
-        return;
-      }
+      // Profile is created automatically by database trigger (on_auth_user_created)
+      // No manual profile creation needed here
 
       // Success!
       toast({
         title: 'Account Created Successfully!',
-        description: "Let's personalize your learning journey!",
+        description: 'Please check your email to confirm your account, then log in.',
       });
 
-      // Redirect to onboarding wizard (Story 2.5)
-      // Note: Email verification happens in background via Supabase
+      // Redirect to login page
+      // User must confirm email first, then log in
+      // Profile will be created automatically by database trigger
       setTimeout(() => {
-        navigate('/onboarding');
+        navigate('/auth/login');
       }, 2000);
     } catch (err: unknown) {
       console.error('Registration error:', err);

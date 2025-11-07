@@ -16,7 +16,7 @@ import { hebrewLocale } from '../../lib/locale/he';
  * - Responsive design
  */
 export function Header() {
-  const { user } = useAuth();
+  const { user, profile } = useAuth();
 
   const handleSignOut = async () => {
     await signOut();
@@ -82,11 +82,12 @@ export function Header() {
                 <Button variant="ghost" size="sm" className="gap-2">
                   <div className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100">
                     <span className="text-xs font-semibold text-emerald-600">
-                      {user.email?.charAt(0).toUpperCase()}
+                      {profile?.display_name?.charAt(0).toUpperCase() ||
+                        user.email?.charAt(0).toUpperCase()}
                     </span>
                   </div>
                   <span className="hidden md:inline-block text-sm">
-                    {user.email?.split('@')[0]}
+                    {profile?.display_name || user.email?.split('@')[0]}
                   </span>
                 </Button>
               </Link>
