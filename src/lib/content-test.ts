@@ -56,6 +56,76 @@ export const sampleBlocks: ContentBlock[] = [
   },
 ];
 
+// Comprehensive CalloutBlock tests for Story 3.5
+export const calloutBlockTests: ContentBlock[] = [
+  // Info variant with title
+  {
+    id: 'callout-info',
+    type: 'callout',
+    variant: 'info',
+    title: 'מידע חשוב',
+    content: 'זהו הודעת מידע עם כותרת. השתמש בסוג זה למידע כללי.',
+  } satisfies CalloutBlock,
+
+  // Warning variant without title
+  {
+    id: 'callout-warning',
+    type: 'callout',
+    variant: 'warning',
+    content: 'זוהי אזהרה ללא כותרת. שימו לב לסיכון הפוטנציאלי.',
+  } satisfies CalloutBlock,
+
+  // Success variant with title
+  {
+    id: 'callout-success',
+    type: 'callout',
+    variant: 'success',
+    title: 'Success!',
+    content: 'This is a success callout. Use it for positive feedback and accomplishments.',
+  } satisfies CalloutBlock,
+
+  // Error variant with title
+  {
+    id: 'callout-error',
+    type: 'callout',
+    variant: 'error',
+    title: 'Error Detected',
+    content: 'This is an error callout. Use it for critical issues and errors.',
+  } satisfies CalloutBlock,
+
+  // Callout with nested content blocks
+  {
+    id: 'callout-nested',
+    type: 'callout',
+    variant: 'info',
+    title: 'Advanced Usage',
+    content: [
+      {
+        id: 'nested-text',
+        type: 'text',
+        content: 'Callouts can contain nested blocks like this text.',
+      },
+      {
+        id: 'nested-list',
+        type: 'list',
+        variant: 'unordered',
+        items: [
+          { content: 'First nested item' },
+          { content: 'Second nested item' },
+          { content: 'Third nested item' },
+        ],
+      },
+      {
+        id: 'nested-code',
+        type: 'code',
+        language: 'typescript',
+        code: 'const nested = "This code is inside a callout!";',
+        showLineNumbers: false,
+      },
+    ],
+  } satisfies CalloutBlock,
+];
+
 // Sample guide demonstrating full structure
 export const sampleGuide: Guide = {
   metadata: {
