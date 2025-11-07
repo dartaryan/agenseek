@@ -57,16 +57,31 @@ const PIE_COLORS = [
 ];
 
 /**
+ * Tooltip types for Recharts
+ */
+interface TooltipPayload {
+  color: string;
+  name: string;
+  value: number;
+}
+
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: TooltipPayload[];
+  label?: string;
+}
+
+/**
  * Custom tooltip styling for better readability
  */
-const CustomTooltip = ({ active, payload, label }: any) => {
+const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-white dark:bg-slate-800 px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg shadow-lg">
         <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mb-1">
           {label}
         </p>
-        {payload.map((entry: any, index: number) => (
+        {payload.map((entry, index: number) => (
           <p
             key={index}
             className="text-sm text-slate-600 dark:text-slate-400"

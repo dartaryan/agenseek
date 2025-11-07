@@ -90,10 +90,9 @@ function getIconComponent(iconName: string): React.ComponentType<{ size?: number
   // Ensure icon name has the "Icon" prefix
   const fullIconName = iconName.startsWith('Icon') ? iconName : `Icon${iconName}`;
 
-  // Get icon from TablerIcons
-  const IconComponent = (TablerIcons as Record<string, React.ComponentType<{ size?: number; className?: string }>>)[
-    fullIconName
-  ];
+  // Get icon from TablerIcons using type-safe indexing
+  const iconsMap = TablerIcons as unknown as Record<string, React.ComponentType<{ size?: number; className?: string }>>;
+  const IconComponent = iconsMap[fullIconName];
 
   // Fallback to IconBook if icon not found
   return IconComponent || TablerIcons.IconBook;

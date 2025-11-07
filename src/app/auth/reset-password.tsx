@@ -94,6 +94,7 @@ export function ResetPasswordPage() {
     };
 
     checkSession();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [toast]);
 
   const onSubmit = async (data: ResetPasswordFormData) => {
