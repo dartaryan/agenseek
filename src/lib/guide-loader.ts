@@ -8,6 +8,12 @@ import type { Guide } from '@/types/content-blocks';
 import type { GuideCatalogEntry } from '@/types/guide-catalog';
 import { getGuideById, getGuideCatalog } from './guide-catalog';
 
+// Use Vite's import.meta.glob to eagerly load all guide JSON files
+// This works around Vite's limitation with fully dynamic import paths
+const guideModules = import.meta.glob<{ default: Guide }>('@/content/locale/he/guides/**/*.json', {
+  eager: true,
+});
+
 /**
  * Load a full guide by its slug
  *
@@ -23,15 +29,18 @@ export async function loadGuide(slug: string): Promise<Guide> {
     throw new Error(`Guide not found: ${slug}`);
   }
 
-  // Load full guide content from JSON file
-  try {
-    // Dynamic import of guide JSON based on path
-    const guideModule = await import(`@/content/locale/he/guides/${catalogEntry.path}.json`);
-    return guideModule.default as Guide;
-  } catch (error) {
-    console.error(`Failed to load guide: ${slug}`, error);
+  // Build the full path to match the glob pattern
+  const fullPath = `/src/content/locale/he/guides/${catalogEntry.path}`;
+
+  // Find the matching module from our pre-loaded guides
+  const guideModule = guideModules[fullPath];
+
+  if (!guideModule) {
+    console.error(`Failed to load guide: ${slug}`, `Path: ${fullPath}`, 'Available paths:', Object.keys(guideModules));
     throw new Error(`Failed to load guide content: ${slug}`);
   }
+
+  return guideModule.default;
 }
 
 /**

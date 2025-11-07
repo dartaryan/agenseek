@@ -11,6 +11,20 @@ interface ListBlockProps {
 }
 
 /**
+ * Normalize list items - handle both string[] and ListItem[] formats
+ */
+function normalizeListItems(items: (string | ListItem)[]): ListItem[] {
+  if (!items || !Array.isArray(items)) return [];
+
+  return items.map(item => {
+    if (typeof item === 'string') {
+      return { content: item };
+    }
+    return item;
+  });
+}
+
+/**
  * Recursive list item component for nested lists
  */
 interface ListItemRendererProps {
@@ -54,20 +68,34 @@ function ListItemRenderer({ item, variant, level = 0 }: ListItemRendererProps) {
 }
 
 function ListBlock({ block }: ListBlockProps) {
-  const ListTag = block.variant === 'ordered' ? 'ol' : 'ul';
+  // Handle both "variant" and "ordered" properties
+  const blockAny = block as any;
+  let isOrdered = false;
+
+  if (block.variant) {
+    isOrdered = block.variant === 'ordered';
+  } else if (typeof blockAny.ordered === 'boolean') {
+    isOrdered = blockAny.ordered;
+  }
+
+  const variant: 'ordered' | 'unordered' = isOrdered ? 'ordered' : 'unordered';
+  const ListTag = isOrdered ? 'ol' : 'ul';
+
+  // Normalize items to handle both string[] and ListItem[] formats
+  const normalizedItems = normalizeListItems(block.items as any);
 
   return (
     <ListTag
       className={cn(
         'mb-4 space-y-2',
-        block.variant === 'ordered'
+        isOrdered
           ? 'list-decimal rtl:list-inside ltr:list-inside'
           : 'list-disc rtl:list-inside ltr:list-inside',
         'ml-6 rtl:mr-6 rtl:ml-0'
       )}
     >
-      {block.items.map((item, index) => (
-        <ListItemRenderer key={index} item={item} variant={block.variant} />
+      {normalizedItems.map((item, index) => (
+        <ListItemRenderer key={index} item={item} variant={variant} />
       ))}
     </ListTag>
   );

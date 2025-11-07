@@ -137,8 +137,10 @@ function renderContent(content: string | ContentBlock[]): React.ReactNode {
 }
 
 function CalloutBlock({ block }: CalloutBlockProps) {
-  const config = variantConfig[block.variant];
-  const Icon = config.icon;
+  // Fallback to 'info' if variant is invalid or missing
+  const variant = block.variant || 'info';
+  const config = variantConfig[variant] || variantConfig.info;
+  const Icon = config?.icon || IconInfoCircle;
 
   return (
     <div
@@ -152,7 +154,7 @@ function CalloutBlock({ block }: CalloutBlockProps) {
         'rtl:flex-row-reverse'
       )}
       role="note"
-      aria-label={`${block.variant} callout`}
+      aria-label={`${variant} callout`}
     >
       {/* Icon */}
       <div className="flex-shrink-0 mt-0.5">

@@ -13,7 +13,7 @@
  * Story 3.6: Build Table Block Component
  */
 
-import type { TableBlock as TableBlockType, TableCell } from '@/types/content-blocks';
+import type { TableBlock as TableBlockType, TableCell, TableRow } from '@/types/content-blocks';
 
 interface TableBlockProps {
   block: TableBlockType;
@@ -35,9 +35,44 @@ function getAlignmentClass(alignment?: 'left' | 'center' | 'right'): string {
 }
 
 /**
+ * Normalize headers - handle both string[] and TableCell[] formats
+ */
+function normalizeHeaders(headers: string[] | TableCell[]): TableCell[] {
+  if (!headers || !Array.isArray(headers)) return [];
+
+  return headers.map(header => {
+    if (typeof header === 'string') {
+      return { content: header };
+    }
+    return header;
+  });
+}
+
+/**
+ * Normalize rows - handle both string[][] and TableRow[] formats
+ */
+function normalizeRows(rows: (string[] | TableRow)[]): TableRow[] {
+  if (!rows || !Array.isArray(rows)) return [];
+
+  return rows.map(row => {
+    // If row is an array of strings, convert to TableRow format
+    if (Array.isArray(row)) {
+      return {
+        cells: row.map(cell => ({ content: cell }))
+      };
+    }
+    // Already in TableRow format
+    return row;
+  });
+}
+
+/**
  * TableBlock Component
  */
 function TableBlock({ block }: TableBlockProps) {
+  const headers = normalizeHeaders(block.headers as any);
+  const rows = normalizeRows(block.rows as any);
+
   return (
     <div className="my-6">
       {/* Responsive wrapper with horizontal scroll */}
@@ -53,7 +88,7 @@ function TableBlock({ block }: TableBlockProps) {
           {/* Table Header */}
           <thead className="bg-slate-50 dark:bg-slate-800/50">
             <tr>
-              {block.headers.map((header: TableCell, index: number) => (
+              {headers.map((header: TableCell, index: number) => (
                 <th
                   key={index}
                   className={`px-4 py-3 text-sm font-semibold text-slate-900 dark:text-slate-100 ${getAlignmentClass(
@@ -69,7 +104,7 @@ function TableBlock({ block }: TableBlockProps) {
 
           {/* Table Body with Zebra Striping */}
           <tbody className="bg-white dark:bg-slate-900 divide-y divide-slate-200 dark:divide-slate-700">
-            {block.rows.map((row, rowIndex) => (
+            {rows.map((row, rowIndex) => (
               <tr
                 key={rowIndex}
                 className={
