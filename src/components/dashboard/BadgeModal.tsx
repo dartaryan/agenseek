@@ -11,7 +11,8 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { BadgeDefinition, getBadgeProgress, UserStats } from '@/lib/achievements';
+import type { BadgeDefinition, UserStats } from '@/lib/achievements';
+import { getBadgeProgress } from '@/lib/achievements';
 import { BadgeDisplay } from './BadgeDisplay';
 import { IconShare, IconX } from '@tabler/icons-react';
 import { format } from 'date-fns';
@@ -43,7 +44,7 @@ export function BadgeModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md" dir="rtl">
+      <DialogContent className="sm:max-w-md bg-white" dir="rtl">
         <DialogHeader>
           <div className="flex items-center justify-between">
             <DialogTitle className="text-2xl font-bold">

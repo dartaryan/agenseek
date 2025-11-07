@@ -5,7 +5,7 @@
 
 import { motion } from 'framer-motion';
 import { IconLock } from '@tabler/icons-react';
-import { BadgeDefinition } from '@/lib/achievements';
+import type { BadgeDefinition } from '@/lib/achievements';
 import { cn } from '@/lib/utils';
 
 interface BadgeDisplayProps {

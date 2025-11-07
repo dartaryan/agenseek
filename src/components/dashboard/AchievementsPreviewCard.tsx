@@ -7,7 +7,8 @@ import { hebrewLocale } from '../../lib/locale/he';
 import { useAchievements } from '@/hooks/useAchievements';
 import { BadgeDisplay } from './BadgeDisplay';
 import { BadgeModal } from './BadgeModal';
-import { BadgeDefinition, getBadgeProgress } from '@/lib/achievements';
+import type { BadgeDefinition } from '@/lib/achievements';
+import { getBadgeProgress } from '@/lib/achievements';
 
 /**
  * Story 5.3: Achievements Preview Card Component

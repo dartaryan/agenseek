@@ -11,7 +11,7 @@ import {
   DialogContent,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { BadgeDefinition } from '@/lib/achievements';
+import type { BadgeDefinition } from '@/lib/achievements';
 import { BadgeDisplay } from './BadgeDisplay';
 import { IconSparkles } from '@tabler/icons-react';
 
@@ -88,7 +88,7 @@ export function BadgeUnlockAnimation({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="sm:max-w-md overflow-hidden"
+        className="sm:max-w-md bg-white overflow-hidden"
         dir="rtl"
       >
         <AnimatePresence>

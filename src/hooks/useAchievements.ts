@@ -6,10 +6,9 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/lib/supabase';
+import type { BadgeDefinition, UserStats } from '../lib/achievements';
 import {
   ALL_BADGES,
-  BadgeDefinition,
-  UserStats,
   checkEarnedBadges,
   getBadgeById
 } from '../lib/achievements';
