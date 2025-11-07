@@ -16,11 +16,7 @@ import { Link } from 'react-router-dom';
 import * as TablerIcons from '@tabler/icons-react';
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
-import {
-  type GuideCatalogEntry,
-  CATEGORY_CONFIG,
-  DIFFICULTY_CONFIG,
-} from '@/types/guide-catalog';
+import { type GuideCatalogEntry, CATEGORY_CONFIG, DIFFICULTY_CONFIG } from '@/types/guide-catalog';
 
 interface GuideCardProps {
   /** Guide metadata from catalog */
@@ -86,12 +82,17 @@ function getDifficultyBadgeColor(difficulty: GuideCatalogEntry['difficulty']): s
 /**
  * Get the Tabler icon component by name
  */
-function getIconComponent(iconName: string): React.ComponentType<{ size?: number; className?: string }> {
+function getIconComponent(
+  iconName: string
+): React.ComponentType<{ size?: number; className?: string }> {
   // Ensure icon name has the "Icon" prefix
   const fullIconName = iconName.startsWith('Icon') ? iconName : `Icon${iconName}`;
 
   // Get icon from TablerIcons using type-safe indexing
-  const iconsMap = TablerIcons as unknown as Record<string, React.ComponentType<{ size?: number; className?: string }>>;
+  const iconsMap = TablerIcons as unknown as Record<
+    string,
+    React.ComponentType<{ size?: number; className?: string }>
+  >;
   const IconComponent = iconsMap[fullIconName];
 
   // Fallback to IconBook if icon not found
@@ -101,7 +102,12 @@ function getIconComponent(iconName: string): React.ComponentType<{ size?: number
 /**
  * GuideCard Component
  */
-export function GuideCard({ guide, progressPercent = 0, isStarted = false, className }: GuideCardProps) {
+export function GuideCard({
+  guide,
+  progressPercent = 0,
+  isStarted = false,
+  className,
+}: GuideCardProps) {
   const categoryConfig = CATEGORY_CONFIG[guide.category];
   const difficultyConfig = DIFFICULTY_CONFIG[guide.difficulty];
   const IconComponent = getIconComponent(guide.icon);
@@ -118,17 +124,26 @@ export function GuideCard({ guide, progressPercent = 0, isStarted = false, class
       <Link to={`/guides/${guide.id}`} className="block h-full">
         <Card className="h-full flex flex-col overflow-hidden hover:border-emerald-500 transition-colors">
           {/* Gradient Header with Icon */}
-          <div className={cn('h-[180px] flex items-center justify-center', getCategoryGradient(guide.category))}>
+          <div
+            className={cn(
+              'h-[180px] flex items-center justify-center',
+              getCategoryGradient(guide.category)
+            )}
+          >
             <IconComponent size={64} className="text-white" />
           </div>
 
           {/* Card Body */}
           <div className="flex-1 flex flex-col p-4">
             {/* Title */}
-            <h3 className="text-xl font-semibold mb-2 text-gray-900 line-clamp-2 text-right">{guide.title}</h3>
+            <h3 className="text-xl font-semibold mb-2 text-gray-900 line-clamp-2 text-right">
+              {guide.title}
+            </h3>
 
             {/* Description */}
-            <p className="text-sm text-gray-600 mb-4 line-clamp-2 text-right flex-1">{guide.description}</p>
+            <p className="text-sm text-gray-600 mb-4 line-clamp-2 text-right flex-1">
+              {guide.description}
+            </p>
 
             {/* Badge Row */}
             <div className="flex gap-2 mb-4 flex-wrap justify-end">
@@ -170,7 +185,9 @@ export function GuideCard({ guide, progressPercent = 0, isStarted = false, class
                       style={{ width: `${progressPercent}%` }}
                     />
                   </div>
-                  <span className="text-emerald-600 font-medium">{Math.round(progressPercent)}%</span>
+                  <span className="text-emerald-600 font-medium">
+                    {Math.round(progressPercent)}%
+                  </span>
                 </div>
               )}
             </div>
@@ -183,7 +200,7 @@ export function GuideCard({ guide, progressPercent = 0, isStarted = false, class
                   ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
                   : 'bg-gray-100 hover:bg-gray-200 text-gray-900'
               )}
-              onClick={e => {
+              onClick={(e) => {
                 e.preventDefault();
                 // Navigation will be handled by the Link wrapper
               }}
@@ -200,4 +217,3 @@ export function GuideCard({ guide, progressPercent = 0, isStarted = false, class
     </motion.div>
   );
 }
-

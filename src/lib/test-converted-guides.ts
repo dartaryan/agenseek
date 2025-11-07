@@ -41,8 +41,17 @@ export async function testConvertedGuides() {
       }
 
       // Check metadata fields
-      const requiredMetadataFields = ['id', 'slug', 'title', 'description', 'category', 'difficulty'];
-      const missingFields = requiredMetadataFields.filter(field => !guide.metadata[field as keyof typeof guide.metadata]);
+      const requiredMetadataFields = [
+        'id',
+        'slug',
+        'title',
+        'description',
+        'category',
+        'difficulty',
+      ];
+      const missingFields = requiredMetadataFields.filter(
+        (field) => !guide.metadata[field as keyof typeof guide.metadata]
+      );
 
       if (missingFields.length > 0) {
         console.error(`❌ ${guideInfo.name}: Missing metadata fields: ${missingFields.join(', ')}`);
@@ -74,4 +83,3 @@ export async function testConvertedGuides() {
 
 // Can be called from component or dev script
 export default testConvertedGuides;
-

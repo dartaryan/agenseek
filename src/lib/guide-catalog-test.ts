@@ -10,14 +10,14 @@ import {
   getGuideById,
   getCategoryCounts,
   getTotalGuideCount,
-  validateGuideCatalog
+  validateGuideCatalog,
 } from './guide-catalog';
 import {
   filterByCategory,
   filterByDifficulty,
   getAllTags,
   getBeginnerGuides,
-  getTotalEstimatedTime
+  getTotalEstimatedTime,
 } from '@/types/guide-catalog';
 
 /**
@@ -68,7 +68,9 @@ export function runCatalogTests() {
 
   // Test 10: Total estimated time
   const totalTime = getTotalEstimatedTime(catalog);
-  console.log(`✅ Test 10: Total estimated reading time: ${totalTime} minutes (${Math.round(totalTime / 60)} hours)`);
+  console.log(
+    `✅ Test 10: Total estimated reading time: ${totalTime} minutes (${Math.round(totalTime / 60)} hours)`
+  );
 
   console.log('\n🎉 All catalog tests passed!');
 
@@ -89,4 +91,3 @@ if (import.meta.env.DEV) {
 }
 
 export default runCatalogTests;
-

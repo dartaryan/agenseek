@@ -4,7 +4,13 @@
  */
 
 import ContentRenderer from '@/components/content/ContentRenderer';
-import { accordionBlockTests, calloutBlockTests, chartBlockTests, tableBlockTests, tabsBlockTests } from '@/lib/content-test';
+import {
+  accordionBlockTests,
+  calloutBlockTests,
+  chartBlockTests,
+  tableBlockTests,
+  tabsBlockTests,
+} from '@/lib/content-test';
 
 export default function ContentDemo() {
   return (
@@ -63,4 +69,3 @@ export default function ContentDemo() {
     </div>
   );
 }
-

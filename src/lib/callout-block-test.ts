@@ -85,4 +85,3 @@ console.log(`📊 Generated ${allCalloutTests.length} test cases`);
 console.log('🎨 Variants: info, warning, success, error');
 console.log('📝 Content types: string, nested blocks (text, list, code)');
 console.log('🏷️  Title: with and without');
-

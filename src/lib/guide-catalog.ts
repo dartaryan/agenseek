@@ -25,7 +25,7 @@ export function getGuideCatalog(): GuideCatalog {
  */
 export function getGuideById(id: string): GuideCatalogEntry | undefined {
   const catalog = getGuideCatalog();
-  return catalog.find(guide => guide.id === id);
+  return catalog.find((guide) => guide.id === id);
 }
 
 /**
@@ -45,7 +45,7 @@ export function getCategoryCounts() {
     onboarding: 0,
   };
 
-  catalog.forEach(guide => {
+  catalog.forEach((guide) => {
     counts[guide.category]++;
   });
 
@@ -110,4 +110,3 @@ export function validateGuideCatalog(): { valid: boolean; errors: string[] } {
 
 // Export the catalog for direct use
 export const guideCatalog = getGuideCatalog();
-

@@ -9,21 +9,21 @@
  * Guide categories with Hebrew descriptions
  */
 export type GuideCategory =
-  | 'core'         // יסודות - Core guides everyone should read
-  | 'roles'        // תפקידים - Role-specific guides
-  | 'agents'       // אגנטים - Agent documentation
-  | 'workflows'    // וורקפלואים - Workflow guides
-  | 'practical'    // מעשי - Practical guides and how-tos
-  | 'faq'          // שאלות ותשובות - Frequently asked questions
-  | 'onboarding';  // הדרכה - Onboarding guides
+  | 'core' // יסודות - Core guides everyone should read
+  | 'roles' // תפקידים - Role-specific guides
+  | 'agents' // אגנטים - Agent documentation
+  | 'workflows' // וורקפלואים - Workflow guides
+  | 'practical' // מעשי - Practical guides and how-tos
+  | 'faq' // שאלות ותשובות - Frequently asked questions
+  | 'onboarding'; // הדרכה - Onboarding guides
 
 /**
  * Difficulty levels
  */
 export type GuideDifficulty =
-  | 'beginner'      // מתחילים
-  | 'intermediate'  // בינוני
-  | 'advanced';     // מתקדם
+  | 'beginner' // מתחילים
+  | 'intermediate' // בינוני
+  | 'advanced'; // מתקדם
 
 /**
  * Guide metadata - stored in catalog (index.json)
@@ -67,10 +67,10 @@ export type GuideCatalog = GuideCatalogEntry[];
  * Category configuration for UI display
  */
 export interface CategoryConfig {
-  label: string;        // Hebrew label
-  color: string;        // Tailwind color class (e.g., 'emerald')
-  description: string;  // Hebrew description
-  icon: string;         // Tabler icon name
+  label: string; // Hebrew label
+  color: string; // Tailwind color class (e.g., 'emerald')
+  description: string; // Hebrew description
+  icon: string; // Tabler icon name
 }
 
 /**
@@ -125,9 +125,9 @@ export const CATEGORY_CONFIG: Record<GuideCategory, CategoryConfig> = {
  * Difficulty configuration for UI display
  */
 export interface DifficultyConfig {
-  label: string;        // Hebrew label
-  color: string;        // Tailwind color class
-  icon: string;         // Tabler icon name
+  label: string; // Hebrew label
+  color: string; // Tailwind color class
+  icon: string; // Tabler icon name
 }
 
 /**
@@ -169,21 +169,24 @@ export function getDifficultyConfig(difficulty: GuideDifficulty): DifficultyConf
  * Utility function to filter guides by category
  */
 export function filterByCategory(catalog: GuideCatalog, category: GuideCategory): GuideCatalog {
-  return catalog.filter(guide => guide.category === category);
+  return catalog.filter((guide) => guide.category === category);
 }
 
 /**
  * Utility function to filter guides by difficulty
  */
-export function filterByDifficulty(catalog: GuideCatalog, difficulty: GuideDifficulty): GuideCatalog {
-  return catalog.filter(guide => guide.difficulty === difficulty);
+export function filterByDifficulty(
+  catalog: GuideCatalog,
+  difficulty: GuideDifficulty
+): GuideCatalog {
+  return catalog.filter((guide) => guide.difficulty === difficulty);
 }
 
 /**
  * Utility function to filter guides by tag
  */
 export function filterByTag(catalog: GuideCatalog, tag: string): GuideCatalog {
-  return catalog.filter(guide => guide.tags.includes(tag));
+  return catalog.filter((guide) => guide.tags.includes(tag));
 }
 
 /**
@@ -191,10 +194,11 @@ export function filterByTag(catalog: GuideCatalog, tag: string): GuideCatalog {
  */
 export function searchGuides(catalog: GuideCatalog, query: string): GuideCatalog {
   const lowerQuery = query.toLowerCase();
-  return catalog.filter(guide =>
-    guide.title.toLowerCase().includes(lowerQuery) ||
-    guide.description.toLowerCase().includes(lowerQuery) ||
-    guide.tags.some(tag => tag.toLowerCase().includes(lowerQuery))
+  return catalog.filter(
+    (guide) =>
+      guide.title.toLowerCase().includes(lowerQuery) ||
+      guide.description.toLowerCase().includes(lowerQuery) ||
+      guide.tags.some((tag) => tag.toLowerCase().includes(lowerQuery))
   );
 }
 
@@ -203,8 +207,8 @@ export function searchGuides(catalog: GuideCatalog, query: string): GuideCatalog
  */
 export function getAllTags(catalog: GuideCatalog): string[] {
   const tags = new Set<string>();
-  catalog.forEach(guide => {
-    guide.tags.forEach(tag => tags.add(tag));
+  catalog.forEach((guide) => {
+    guide.tags.forEach((tag) => tags.add(tag));
   });
   return Array.from(tags).sort();
 }
@@ -213,18 +217,20 @@ export function getAllTags(catalog: GuideCatalog): string[] {
  * Utility function to get guides by category, sorted by estimated minutes
  */
 export function getGuidesByCategory(catalog: GuideCatalog, category: GuideCategory): GuideCatalog {
-  return filterByCategory(catalog, category)
-    .sort((a, b) => a.estimatedMinutes - b.estimatedMinutes);
+  return filterByCategory(catalog, category).sort(
+    (a, b) => a.estimatedMinutes - b.estimatedMinutes
+  );
 }
 
 /**
  * Utility function to get recommended guides for beginners (core + onboarding)
  */
 export function getBeginnerGuides(catalog: GuideCatalog): GuideCatalog {
-  return catalog.filter(guide =>
-    guide.category === 'core' ||
-    guide.category === 'onboarding' ||
-    guide.difficulty === 'beginner'
+  return catalog.filter(
+    (guide) =>
+      guide.category === 'core' ||
+      guide.category === 'onboarding' ||
+      guide.difficulty === 'beginner'
   );
 }
 
@@ -234,4 +240,3 @@ export function getBeginnerGuides(catalog: GuideCatalog): GuideCatalog {
 export function getTotalEstimatedTime(guides: GuideCatalog): number {
   return guides.reduce((total, guide) => total + guide.estimatedMinutes, 0);
 }
-

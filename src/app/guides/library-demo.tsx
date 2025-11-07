@@ -31,7 +31,7 @@ export default function GuideLibraryDemo() {
           <section>
             <h2 className="text-2xl font-semibold mb-4 text-right">מדריכים שלא התחלתי</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {demoGuides.slice(0, 2).map(guide => (
+              {demoGuides.slice(0, 2).map((guide) => (
                 <GuideCard key={guide.id} guide={guide} />
               ))}
             </div>
@@ -56,7 +56,7 @@ export default function GuideLibraryDemo() {
           <section>
             <h2 className="text-2xl font-semibold mb-4 text-right">מדריכים שסיימתי</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {demoGuides.slice(4, 6).map(guide => (
+              {demoGuides.slice(4, 6).map((guide) => (
                 <GuideCard key={guide.id} guide={guide} isStarted={true} progressPercent={100} />
               ))}
             </div>
@@ -66,7 +66,7 @@ export default function GuideLibraryDemo() {
           <section>
             <h2 className="text-2xl font-semibold mb-4 text-right">כל הקטגוריות</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {catalog.slice(0, 12).map(guide => (
+              {catalog.slice(0, 12).map((guide) => (
                 <GuideCard key={guide.id} guide={guide} />
               ))}
             </div>
@@ -76,4 +76,3 @@ export default function GuideLibraryDemo() {
     </div>
   );
 }
-

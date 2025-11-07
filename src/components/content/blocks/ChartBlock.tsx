@@ -78,9 +78,7 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-white dark:bg-slate-800 px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg shadow-lg">
-        <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mb-1">
-          {label}
-        </p>
+        <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mb-1">{label}</p>
         {payload.map((entry, index: number) => (
           <p
             key={index}
@@ -214,9 +212,7 @@ function ChartBlock({ block }: ChartBlockProps) {
   if (!block.data || block.data.length === 0) {
     return (
       <div className="my-6 p-6 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg">
-        <p className="text-sm text-amber-800 dark:text-amber-200">
-          אין נתונים להצגה בגרף
-        </p>
+        <p className="text-sm text-amber-800 dark:text-amber-200">אין נתונים להצגה בגרף</p>
       </div>
     );
   }

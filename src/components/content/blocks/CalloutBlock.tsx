@@ -37,28 +37,32 @@ const variantConfig: Record<
     containerClasses: 'bg-blue-50 dark:bg-blue-950/30',
     iconClasses: 'text-blue-600 dark:text-blue-400',
     titleClasses: 'text-blue-900 dark:text-blue-100',
-    borderClasses: 'border-blue-200 dark:border-blue-800 border-l-4 border-l-blue-500 dark:border-l-blue-400',
+    borderClasses:
+      'border-blue-200 dark:border-blue-800 border-l-4 border-l-blue-500 dark:border-l-blue-400',
   },
   warning: {
     icon: IconAlertTriangle,
     containerClasses: 'bg-amber-50 dark:bg-amber-950/30',
     iconClasses: 'text-amber-600 dark:text-amber-400',
     titleClasses: 'text-amber-900 dark:text-amber-100',
-    borderClasses: 'border-amber-200 dark:border-amber-800 border-l-4 border-l-amber-500 dark:border-l-amber-400',
+    borderClasses:
+      'border-amber-200 dark:border-amber-800 border-l-4 border-l-amber-500 dark:border-l-amber-400',
   },
   success: {
     icon: IconCircleCheck,
     containerClasses: 'bg-emerald-50 dark:bg-emerald-950/30',
     iconClasses: 'text-emerald-600 dark:text-emerald-400',
     titleClasses: 'text-emerald-900 dark:text-emerald-100',
-    borderClasses: 'border-emerald-200 dark:border-emerald-800 border-l-4 border-l-emerald-500 dark:border-l-emerald-400',
+    borderClasses:
+      'border-emerald-200 dark:border-emerald-800 border-l-4 border-l-emerald-500 dark:border-l-emerald-400',
   },
   error: {
     icon: IconAlertCircle,
     containerClasses: 'bg-red-50 dark:bg-red-950/30',
     iconClasses: 'text-red-600 dark:text-red-400',
     titleClasses: 'text-red-900 dark:text-red-100',
-    borderClasses: 'border-red-200 dark:border-red-800 border-l-4 border-l-red-500 dark:border-l-red-400',
+    borderClasses:
+      'border-red-200 dark:border-red-800 border-l-4 border-l-red-500 dark:border-l-red-400',
   },
 };
 
@@ -75,10 +79,7 @@ function NestedContentRenderer({ blocks }: { blocks: ContentBlock[] }) {
         switch (block.type) {
           case 'text':
             return (
-              <p
-                key={block.id}
-                className="text-slate-700 dark:text-slate-300 leading-relaxed"
-              >
+              <p key={block.id} className="text-slate-700 dark:text-slate-300 leading-relaxed">
                 {block.content}
               </p>
             );
@@ -99,9 +100,7 @@ function NestedContentRenderer({ blocks }: { blocks: ContentBlock[] }) {
             return React.createElement(
               listTag,
               { key: block.id, className: listClass },
-              block.items.map((item, idx) =>
-                React.createElement('li', { key: idx }, item.content)
-              )
+              block.items.map((item, idx) => React.createElement('li', { key: idx }, item.content))
             );
           }
           case 'code':
@@ -130,11 +129,7 @@ function NestedContentRenderer({ blocks }: { blocks: ContentBlock[] }) {
  */
 function renderContent(content: string | ContentBlock[]): React.ReactNode {
   if (typeof content === 'string') {
-    return (
-      <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-        {content}
-      </p>
-    );
+    return <p className="text-slate-700 dark:text-slate-300 leading-relaxed">{content}</p>;
   }
 
   // For nested blocks, use our internal renderer
@@ -161,10 +156,7 @@ function CalloutBlock({ block }: CalloutBlockProps) {
     >
       {/* Icon */}
       <div className="flex-shrink-0 mt-0.5">
-        <Icon
-          className={cn(config.iconClasses, 'w-5 h-5')}
-          aria-hidden="true"
-        />
+        <Icon className={cn(config.iconClasses, 'w-5 h-5')} aria-hidden="true" />
       </div>
 
       {/* Content */}
@@ -183,9 +175,7 @@ function CalloutBlock({ block }: CalloutBlockProps) {
         )}
 
         {/* Content - string or nested blocks */}
-        <div className="text-sm rtl:text-right ltr:text-left">
-          {renderContent(block.content)}
-        </div>
+        <div className="text-sm rtl:text-right ltr:text-left">{renderContent(block.content)}</div>
       </div>
     </div>
   );

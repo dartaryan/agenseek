@@ -6,10 +6,7 @@
 
 import { useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import {
-  oneDark,
-  oneLight,
-} from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { IconCopy, IconCheck } from '@tabler/icons-react';
 import type { CodeBlock as CodeBlockType } from '@/types/content-blocks';
 
@@ -52,8 +49,7 @@ function CodeBlock({ block }: CodeBlockProps) {
 
   // Detect dark mode
   const isDarkMode =
-    typeof window !== 'undefined' &&
-    document.documentElement.classList.contains('dark');
+    typeof window !== 'undefined' && document.documentElement.classList.contains('dark');
 
   const handleCopy = async () => {
     try {
@@ -65,8 +61,7 @@ function CodeBlock({ block }: CodeBlockProps) {
     }
   };
 
-  const languageDisplayName =
-    LANGUAGE_NAMES[block.language] || block.language.toUpperCase();
+  const languageDisplayName = LANGUAGE_NAMES[block.language] || block.language.toUpperCase();
 
   return (
     <div className="my-6 overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
@@ -111,8 +106,7 @@ function CodeBlock({ block }: CodeBlockProps) {
           showLineNumbers={block.showLineNumbers !== false}
           wrapLines={true}
           lineProps={(lineNumber) => {
-            const isHighlighted =
-              block.highlightedLines?.includes(lineNumber) || false;
+            const isHighlighted = block.highlightedLines?.includes(lineNumber) || false;
             return {
               style: {
                 backgroundColor: isHighlighted
@@ -134,8 +128,7 @@ function CodeBlock({ block }: CodeBlockProps) {
           }}
           codeTagProps={{
             style: {
-              fontFamily:
-                'JetBrains Mono, Consolas, Monaco, "Courier New", monospace',
+              fontFamily: 'JetBrains Mono, Consolas, Monaco, "Courier New", monospace',
             },
           }}
         >

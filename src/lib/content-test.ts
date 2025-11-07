@@ -391,7 +391,8 @@ export const accordionBlockTests: ContentBlock[] = [
           {
             id: 'faq-1-text',
             type: 'text',
-            content: 'BMAD (Business Modeling and Agile Development) היא מתודולוגיה למודלינג עסקי ופיתוח זריז המשלבת עקרונות ניהול מוצר, ארכיטקטורה ופיתוח.',
+            content:
+              'BMAD (Business Modeling and Agile Development) היא מתודולוגיה למודלינג עסקי ופיתוח זריז המשלבת עקרונות ניהול מוצר, ארכיטקטורה ופיתוח.',
           },
         ],
       },
@@ -402,7 +403,8 @@ export const accordionBlockTests: ContentBlock[] = [
           {
             id: 'faq-2-text',
             type: 'text',
-            content: 'כל צוות פיתוח המעוניין לשפר את תהליך העבודה שלו - מפתחים, מנהלי מוצר, ארכיטקטים, מעצבים ועוד.',
+            content:
+              'כל צוות פיתוח המעוניין לשפר את תהליך העבודה שלו - מפתחים, מנהלי מוצר, ארכיטקטים, מעצבים ועוד.',
           },
         ],
       },
@@ -413,7 +415,8 @@ export const accordionBlockTests: ContentBlock[] = [
           {
             id: 'faq-3-text',
             type: 'text',
-            content: 'כן! BMAD גמיש וניתן להתאמה לפרויקטים בכל גודל. אתה יכול להשתמש רק בחלקים הרלוונטיים לפרויקט שלך.',
+            content:
+              'כן! BMAD גמיש וניתן להתאמה לפרויקטים בכל גודל. אתה יכול להשתמש רק בחלקים הרלוונטיים לפרויקט שלך.',
           },
         ],
       },
@@ -611,7 +614,8 @@ export const accordionBlockTests: ContentBlock[] = [
           {
             id: 'en-1-text',
             type: 'text',
-            content: 'Content blocks are modular, reusable components that make up guide content. Each block has a specific purpose and visual style.',
+            content:
+              'Content blocks are modular, reusable components that make up guide content. Each block has a specific purpose and visual style.',
           },
         ],
       },
@@ -622,7 +626,8 @@ export const accordionBlockTests: ContentBlock[] = [
           {
             id: 'en-2-text',
             type: 'text',
-            content: 'Simply define an accordion with items, each containing a title and nested content blocks:',
+            content:
+              'Simply define an accordion with items, each containing a title and nested content blocks:',
           },
           {
             id: 'en-2-code',
@@ -649,7 +654,8 @@ export const accordionBlockTests: ContentBlock[] = [
           {
             id: 'en-3-text',
             type: 'text',
-            content: 'Yes! Accordion content can contain any content blocks including text, code, callouts, lists, and even other accordions.',
+            content:
+              'Yes! Accordion content can contain any content blocks including text, code, callouts, lists, and even other accordions.',
           },
         ],
       },
@@ -672,7 +678,8 @@ export const tabsBlockTests: ContentBlock[] = [
           {
             id: 'tab-overview-text',
             type: 'text',
-            content: 'זוהי הכרטיסייה הראשונה עם תוכן בסיסי. השתמש בכרטיסיות כדי לארגן תוכן קשור בממשק נקי.',
+            content:
+              'זוהי הכרטיסייה הראשונה עם תוכן בסיסי. השתמש בכרטיסיות כדי לארגן תוכן קשור בממשק נקי.',
           },
           {
             id: 'tab-overview-list',
