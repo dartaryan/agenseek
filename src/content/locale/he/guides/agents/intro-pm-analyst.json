@@ -1,0 +1,464 @@
+{
+  "metadata": {
+    "id": "intro-pm-analyst",
+    "slug": "intro-pm-analyst",
+    "title": "מדריך אג'נטים - חלק 1א: מבוא + PM + Analyst",
+    "description": "הכירו את האג'נטים ב-BMAD: מה הם, למה הם שונים מ-AI רגיל, ואיך להשתמש בהם. מיקוד ב-John (מנהל מוצר) ו-Mary (אנליסטית עסקית).",
+    "category": "agents",
+    "difficulty": "beginner",
+    "estimatedMinutes": 25,
+    "icon": "Users",
+    "tags": ["אג'נטים", "PM", "analyst", "John", "Mary", "מבוא"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "מבוא: מהם אג'נטים ב-BMAD",
+      "level": 2,
+      "anchor": "intro"
+    },
+    {
+      "id": "toc-2",
+      "title": "John - מנהל מוצר (PM)",
+      "level": 2,
+      "anchor": "john-pm"
+    },
+    {
+      "id": "toc-3",
+      "title": "Mary - אנליסטית עסקית (Analyst)",
+      "level": 2,
+      "anchor": "mary-analyst"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מדריך אג'נטים - חלק 1א: מבוא + PM + Analyst",
+      "id": "main-title"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "מבוא: מהם אג'נטים ב-BMAD",
+      "id": "intro"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה אג'נט?",
+      "id": "what-is-agent"
+    },
+    {
+      "type": "text",
+      "content": "אג'נט ב-BMAD הוא מומחה AI מיוחד עם אישיות, מומחיות וסגנון תקשורת ייחודיים. כל אג'נט מייצג תפקיד מקצועי ספציפי בצוות פיתוח, ומגיע עם ידע מעמיק, עקרונות עבודה ברורים, ומערכת וורקפלואים ייעודית."
+    },
+    {
+      "type": "text",
+      "content": "במקום לעבוד עם AI כללי שצריך להסביר לו כל פעם מה התפקיד שלך ומה אתה צריך, BMAD מספקת לך צוות מוכן של מומחים מנוסים. כל אג'נט כבר \"יודע\" את התפקיד שלו, מבין את המתודולוגיה, ודובר בשפה המקצועית הרלוונטית."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "למה אג'נטים מיוחדים ולא AI כללי?",
+      "id": "why-specialized"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "עקביות ואיכות גבוהה יותר",
+      "content": "כאשר אתה עובד עם אג'נט מיוחד, אתה מקבל תשובות עקביות שמבוססות על עקרונות ברורים ומתודולוגיה מוגדרת. האג'נט לא \"שוכח\" את ההקשר או משנה גישה באמצע העבודה."
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "פחות הסברים, יותר ביצוע",
+      "content": "במקום להסביר בכל פעם מחדש מה אתה צריך, האג'נט כבר מכיר את התהליכים, הסטנדרטים והטרמינולוגיה המקצועית. זה חוסך זמן יקר ומפחית טעויות."
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "אישיות מקצועית",
+      "content": "כל אג'נט מתנהג בדרך שמתאימה לתפקיד - מנהל המוצר שואל שאלות חודרניות על ה-\"למה\", המפתח מתמקד בביצוע מדויק, והארכיטקט חושב על הארכיטקטורה הכוללת. זה יותר טבעי ויעיל לעבוד איתם."
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "וורקפלואים מובנים",
+      "content": "כל אג'נט מגיע עם תפריט וורקפלואים מוכנים לשימוש - תהליכי עבודה מוכחים שמדריכים אותך צעד אחר צעד דרך משימות מורכבות."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך משתמשים באג'נטים?",
+      "id": "how-to-use"
+    },
+    {
+      "type": "text",
+      "content": "טעינת אג'נט:"
+    },
+    {
+      "type": "text",
+      "content": "כדי לעבוד עם אג'נט, אתה פשוט טוען אותו ב-IDE שלך (Cursor, Claude Code, Windsurf וכו'). לדוגמה:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "@pm hi - טוען את John, מנהל המוצר",
+        "@analyst hi - טוען את Mary, האנליסטית",
+        "@dev hi - טוען את Amelia, המפתחת"
+      ]
+    },
+    {
+      "type": "text",
+      "content": "אינטראקציה עם האג'נט:"
+    },
+    {
+      "type": "text",
+      "content": "לאחר הטעינה, האג'נט יציג לך תפריט עם אפשרויות - וורקפלואים ופעולות שהוא יכול לבצע. אתה יכול לבחור מספר מהתפריט או להקליד את שם הפקודה (לדוגמה: *create-prd)."
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "חילופי אג'נטים",
+      "content": "כאשר מסיימים עבודה עם אג'נט אחד, מומלץ לפתוח צ'אט חדש ולטעון את האג'נט הבא. זה שומר על הקשר נקי ומונע בלבול."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דפוסי אינטראקציה נפוצים",
+      "id": "interaction-patterns"
+    },
+    {
+      "type": "text",
+      "content": "מסע עבודה טיפוסי:"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "מתחילים עם Analyst (Mary) למחקר וניתוח ראשוני",
+        "עוברים ל-PM (John) ליצירת PRD או Tech Spec",
+        "מועברים ל-Architect (Winston) לתכנון ארכיטקטורה",
+        "מתחילים ביצוע עם DEV (Amelia)",
+        "בדיקות עם TEA (Murat)"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "שימוש במספר אג'נטים",
+      "content": "BMAD מציעה גם מצב \"Party Mode\" (מסיבת אג'נטים) שבו אפשר להביא מספר אג'נטים לצ'אט אחד לשיתוף פעולה. זה שימושי במיוחד לדיונים מורכבים שדורשים נקודות מבט שונות."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "John - מנהל מוצר (PM)",
+      "id": "john-pm"
+    },
+    {
+      "type": "card",
+      "title": "John - מנהל מוצר אסטרטגי",
+      "description": "תפקיד: מנהל מוצר אסטרטגי עם כושר חקירה + מומחה בשוק",
+      "icon": "Briefcase"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מומחיות:",
+      "id": "john-expertise"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "מחקר שוק וניתוח תחרותי",
+        "ניתוח דרישות עסקיות והתנהגות משתמשים",
+        "תרגום דרישות מורכבות למפות דרכים ברורות",
+        "קבלת החלטות מונעת נתונים עם שיפוט אסטרטגי",
+        "תעדוף אכזרי להשגת יעדי MVP"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מתי להשתמש ב-John",
+      "id": "when-john"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "כאשר אתה צריך ליצור מסמך דרישות מוצר (PRD) מקיף",
+        "כאשר אתה צריך מפרט טכני (Tech Spec) לפרויקטים קטנים-בינוניים",
+        "כאשר אתה צריך לפרק דרישות לאפיקים (Epics) וסיפורים (Stories)",
+        "כאשר אתה צריך לתעדף פיצ'רים או לקבל החלטות על Trade-offs",
+        "כאשר הפרויקט יוצא ממסלול וצריך ניתוח \"תיקון מסלול\""
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "וורקפלואים עיקריים",
+      "id": "john-workflows"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "workflow-init - אתחול מסלול עבודה מובנה לפרויקט חדש",
+        "workflow-status - בדיקת סטטוס פרויקט וקבלת המלצות למה לעשות הלאה",
+        "create-prd - יצירת מסמך דרישות מוצר לפרויקטים ברמה 2-4",
+        "create-epics-and-stories - פירוק PRD לאפיקים וסיפורים ניתנים ליישום",
+        "validate-prd - בדיקת שלמות ואיכות של PRD + Epics + Stories",
+        "tech-spec - יצירת מפרט טכני לפרויקטים ברמה 0-2",
+        "validate-tech-spec - בדיקת תקינות מסמך המפרט הטכני",
+        "correct-course - ניתוח תיקון מסלול כאשר הפרויקט יוצא מהכיוון"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "סגנון תקשורת",
+      "id": "john-style"
+    },
+    {
+      "type": "text",
+      "content": "John מתקשר בצורה ישירה ואנליטית. הוא שואל שאלות חודרניות כדי לחשוף את ה-\"למה\" האמיתי מאחורי כל דרישה. הוא משתמש בנתונים ובתובנות משתמשים כדי לתמוך בהמלצות שלו, ומתקשר בבהירות ובדיוק במיוחד כאשר מדובר בעדיפויות ו-Trade-offs."
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "שים לב",
+      "content": "הוא לא יקבל תשובות מעורפלות - הוא ידחוף אותך להיות ספציפי ולהבין לעומק מה באמת צריך לבנות ולמה."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה מעשית מלאה",
+      "id": "john-example"
+    },
+    {
+      "type": "text",
+      "content": "תרחיש: אתה רוצה לבנות פיצ'ר התחברות חדש לאפליקציה קיימת שלך."
+    },
+    {
+      "type": "accordion",
+      "title": "שלבים:",
+      "content": [
+        {
+          "type": "list",
+          "ordered": true,
+          "items": [
+            "טען את John: @pm hi",
+            "בחר מהתפריט: *workflow-status כדי לראות היכן אתה עומד",
+            "אם זה פרויקט חדש, הרץ: *workflow-init כדי להגדיר את מסלול העבודה",
+            "עבור פיצ'ר בינוני, בחר: *tech-spec",
+            "John ישאל אותך שאלות על: מי המשתמשים? מה הבעיה? איזה סוגי אימות? קריטריוני הצלחה?"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאה",
+      "content": "מסמך Tech Spec מקצועי ומובנה שהצוות הטכני שלך יכול להתחיל לעבוד איתו מיד."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "עובד טוב עם",
+      "id": "john-works-with"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Analyst (Mary) - לפני יצירת PRD, Mary יכולה לעשות מחקר שוק וניתוח מתחרים",
+        "Architect (Winston) - אחרי יצירת PRD/Tech Spec, Winston יכול לתכנן את הארכיטקטורה",
+        "SM (Bob) - לאחר יצירת Epics ו-Stories, Bob יכול להכין אותם לספרינטים",
+        "UX Designer (Sally) - עבודה משותפת על הגדרות חוויית משתמש"
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Mary - אנליסטית עסקית (Analyst)",
+      "id": "mary-analyst"
+    },
+    {
+      "type": "card",
+      "title": "Mary - אנליסטית עסקית אסטרטגית",
+      "description": "תפקיד: אנליסטית עסקית אסטרטגית + מומחית דרישות",
+      "icon": "ChartBar"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מומחיות:",
+      "id": "mary-expertise"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "מחקר שוק וניתוח תחרותי מעמיק",
+        "גיבוש דרישות והבנת צרכים עסקיים",
+        "תרגום צרכים עסקיים מעורפלים למפרטים ברורים",
+        "ניתוח נתונים ויעוץ אסטרטגי",
+        "אסטרטגיית מוצר ומחקר משתמשים"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מתי להשתמש ב-Mary",
+      "id": "when-mary"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "כאשר אתה בתחילת פרויקט וצריך מחקר מעמיק ותובנות שוק",
+        "כאשר צריך לתעד פרויקט קיים (Brownfield) לפני שמתחילים להוסיף לו פיצ'רים",
+        "כאשר רוצים לעשות Brainstorming מובנה על הפרויקט",
+        "כאשר צריך Product Brief קצר ומרוכז לפרויקט",
+        "כאשר יש צורך בניתוח מתחרים או מגמות בשוק"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "וורקפלואים עיקריים",
+      "id": "mary-workflows"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "workflow-init - אתחול מסלול עבודה מובנה לפרויקט חדש",
+        "workflow-status - בדיקת סטטוס ומה לעשות הלאה (מומלץ להתחיל כאן!)",
+        "brainstorm-project - הנחיה דרך תהליך Brainstorming מובנה ויצירתי",
+        "product-brief - יצירת תקציר מוצר (Product Brief) תמציתי ומדויק",
+        "document-project - תיעוד מקיף של פרויקט קיים (מפתח לעבודה Brownfield)",
+        "research - הנחיה דרך תהליך מחקר שיטתי ומקיף"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "סגנון תקשורת",
+      "id": "mary-style"
+    },
+    {
+      "type": "text",
+      "content": "Mary מתקשרת בצורה אנליטית ושיטתית. היא מציגה ממצאים עם תמיכה נתונים ברורה, שואלת שאלות חודרניות כדי לחשוף דרישות והנחות נסתרות."
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "עקרונות עבודה",
+      "content": "Mary מאמינה שלכל אתגר עסקי יש סיבות שורש עמוקות שמחכות להתגלות דרך חקירה שיטתית וניתוח מונע נתונים. היא פועלת כשותפת חשיבה איטרטיבית שחוקרת מרחבי פתרונות רחבים לפני התכנסות להמלצות."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה מעשית מלאה",
+      "id": "mary-example"
+    },
+    {
+      "type": "text",
+      "content": "תרחיש: יש לך אפליקציה קיימת ואתה רוצה להוסיף מערכת תשלומים, אבל אתה לא בטוח איזה כיוון לקחת."
+    },
+    {
+      "type": "accordion",
+      "title": "שלבים:",
+      "content": [
+        {
+          "type": "list",
+          "ordered": true,
+          "items": [
+            "טען את Mary: @analyst hi",
+            "אם זה פרויקט קיים שלא תועד, התחל עם: *document-project",
+            "לאחר שהפרויקט מתועד, הרץ: *brainstorm-project",
+            "לאחר ה-Brainstorming, היא תציע: *research",
+            "לבסוף, *product-brief"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאה",
+      "content": "אתה עובר מרעיון מעורפל ל-Product Brief מקצועי עם החלטות מבוססות מחקר, מוכן למסירה ל-PM ליצירת PRD."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "עובד טוב עם",
+      "id": "mary-works-with"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "PM (John) - Mary עושה את המחקר, John לוקח את זה ל-PRD או Tech Spec",
+        "UX Designer (Sally) - Mary מספקת מחקר משתמשים, Sally מעצבת את החוויה",
+        "Architect (Winston) - Mary מספקת הקשר עסקי, Winston מתרגם לארכיטקטורה",
+        "CIS Agents (Brainstorming Coach, Design Thinking Coach) - לעבודה יצירתית ואסטרטגית"
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "סיכום ומה הלאה",
+      "id": "summary"
+    },
+    {
+      "type": "text",
+      "content": "בחלק זה למדנו על:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "מהם אג'נטים ב-BMAD - מומחי AI ייעודיים עם אישיות ומומחיות",
+        "John (PM) - לתכנון אסטרטגי, PRD, Tech Spec, ותיקון מסלול",
+        "Mary (Analyst) - למחקר, תיעוד פרויקטים קיימים, Brainstorming ו-Product Brief"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "בחלק הבא (1ב)",
+      "content": "נכיר את: Winston (Architect) לתכנון ארכיטקטורה, Bob (Scrum Master) להכנת סטוריז, Amelia (Developer) למימוש"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "חלק 1א הושלם!",
+      "content": "חלק זה הוא התחלת המסע שלך עם אגנטי BMAD. המשך לחלק הבא להכיר את שאר האג'נטים!"
+    }
+  ]
+}
+

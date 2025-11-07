@@ -1,0 +1,600 @@
+{
+  "metadata": {
+    "id": "developers",
+    "slug": "developers",
+    "title": "מדריך מפתחים ומפתחות: שליטה מלאה ב-BMAD-METHOD",
+    "description": "מדריך מקיף למפתחים ברמות שונות - Junior, Senior, Full-Stack. לומדים איך להשתמש ב-BMAD לשיפור איכות הקוד, הפחתת באגים, ועבודת צוות יעילה יותר.",
+    "category": "roles",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 45,
+    "icon": "Code",
+    "tags": ["מפתחים", "dev agent", "workflows", "story context", "code review", "מדריך מקיף"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "למי מדריך זה מיועד",
+      "level": 2,
+      "anchor": "for-who"
+    },
+    {
+      "id": "toc-2",
+      "title": "מסלול למידה מומלץ - צעד אחר צעד",
+      "level": 2,
+      "anchor": "learning-path",
+      "children": [
+        {
+          "id": "toc-2-1",
+          "title": "שלב 1: הבנת היסודות",
+          "level": 3,
+          "anchor": "stage-1"
+        },
+        {
+          "id": "toc-2-2",
+          "title": "שלב 2: התקנה והגדרה",
+          "level": 3,
+          "anchor": "stage-2"
+        },
+        {
+          "id": "toc-2-3",
+          "title": "שלב 3: שליטה באג'נטים והוורקפלואים",
+          "level": 3,
+          "anchor": "stage-3"
+        }
+      ]
+    },
+    {
+      "id": "toc-3",
+      "title": "האג'נטים שלך - מדריך מקוצר",
+      "level": 2,
+      "anchor": "your-agents"
+    },
+    {
+      "id": "toc-4",
+      "title": "הוורקפלואים שלך - מדריך שימוש מעשי",
+      "level": 2,
+      "anchor": "your-workflows"
+    },
+    {
+      "id": "toc-5",
+      "title": "תרחישים מעשיים מהעבודה שלך",
+      "level": 2,
+      "anchor": "practical-scenarios"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מדריך מפתחים ומפתחות: שליטה מלאה ב-BMAD-METHOD",
+      "id": "main-title"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "למי מדריך זה מיועד",
+      "id": "for-who"
+    },
+    {
+      "type": "text",
+      "content": "מדריך זה נכתב במיוחד עבור מפתחים ומפתחות - בין אם אתם:"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Junior Developers",
+      "id": "junior"
+    },
+    {
+      "type": "text",
+      "content": "אתם בתחילת הדרך? מצוין! BMAD-METHOD יעזור לכם ללמוד שיטות עבודה מקצועיות מהיום הראשון. במקום להתמודד לבד עם קוד מבולגן ודרישות לא ברורות, תקבלו מבנה עבודה ברור, תבניות מוכנות, ואג'נט AI שמלווה אתכם בכל שלב."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Senior Developers",
+      "id": "senior"
+    },
+    {
+      "type": "text",
+      "content": "כמפתחים ותיקים, אתם יודעים שהאתגר האמיתי הוא לא לכתוב קוד - אלא לכתוב את הקוד הנכון. BMAD-METHOD נותן לכם כלים לוודא שכל שורת קוד שאתם כותבים מקודמת את המטרה העסקית האמיתית."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה תשיגו עם BMAD-METHOD?",
+      "id": "benefits"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "פחות באגים, יותר איכות: Story Context מבטיח שאתם מבינים את הדרישות לפני שאתם מתחילים",
+        "פחות Rework: הכל מתועד ומאושר מראש - אין הפתעות באמצע הדרך",
+        "Code Reviews מקצועיים: קבלו פידבק מובנה ועקבי על כל Pull Request",
+        "תיעוד אוטומטי: אל תבזבזו זמן על תיעוד - האג'נטים יעשו את זה בשבילכם",
+        "פחות פגישות, יותר קוד: כל המידע שאתם צריכים זמין במקום אחד"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "זמן משוער ללמידה",
+      "content": "3-4 שעות להבנה בסיסית, 2-4 שבועות לשליטה מלאה"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "מסלול למידה מומלץ - צעד אחר צעד",
+      "id": "learning-path"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 1: הבנת היסודות (שבוע 1)",
+      "id": "stage-1"
+    },
+    {
+      "type": "text",
+      "content": "מטרה: להבין את הפילוסופיה של BMAD ואת מקומך בתהליך הפיתוח."
+    },
+    {
+      "type": "text",
+      "content": "BMAD-METHOD הוא לא עוד כלי - זו שיטת עבודה שלמה. הרעיון המרכזי פשוט: כל מידע שאתה צריך כדי לממש Story צריך להיות זמין לך לפני שאתה מתחיל לקודד."
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "איך זה עובד בפועל?",
+      "id": "how-works"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "PM (המנהל) כותב PRD - מסמך דרישות מוצר שמגדיר מה אנחנו בונים ולמה",
+        "Architect (הארכיטקט) מתכנן Architecture - איך המערכת תיבנה טכנית",
+        "TEA (UX Architect) מעצב את החוויה - איך המשתמש יעבוד עם המערכת",
+        "PM יוצר Tech Spec - מפרק את הפרויקט ל-Epics ו-Stories מפורטים",
+        "אתה (Developer) מקבל Story מאושר - עם כל המידע והקונטקסט",
+        "אתה רץ Story Context - אוסף את כל התיעוד הרלוונטי לקובץ XML אחד",
+        "אתה מריץ Dev Story - מממש את ה-Story עם כל המידע בהישג יד",
+        "אתה מריץ Code Review - מקבל פידבק מובנה ועקבי",
+        "אתה מריץ Story Done - מסמן את ה-Story כמושלם"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "למה זה חשוב?",
+      "content": "כשאתה מתחיל לקודד עם BMAD, יש לך: Story מפורט עם Acceptance Criteria ברורים, Story Context XML שמכיל את כל התיעוד הרלוונטי, קוד קיים שאתה יכול לעשות לו Reference, ותבניות מוכנות לכל סוג של Task"
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "מה שאתה לא צריך לעשות:",
+      "id": "what-not-to-do"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "לנחש מה המוצר צריך לעשות",
+        "לחפש מידע בעשרות מסמכים ו-Slack threads",
+        "לכתוב קוד שיצטרך להשתנות כי \"שכחנו\" משהו",
+        "להמציא פתרונות ללא קונטקסט"
+      ]
+    },
+    {
+      "type": "accordion",
+      "title": "למידה מעשית - שבוע 1",
+      "content": [
+        {
+          "type": "list",
+          "ordered": true,
+          "items": [
+            "קרא את המסמכים היסודיים (2-3 שעות): התחלה מהירה, מילון מונחים, מדריך DEV Agent",
+            "צפה בדוגמאות (1-2 שעות): התבונן ב-Story מוכן, הבט על Story Context XML",
+            "התנסות ראשונה (2-3 שעות): התקן את BMAD, טען את אג'נט DEV, הרץ workflow-status"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "סימנים שאתה מוכן לעבור לשלב 2",
+      "content": "אתה מבין מהו Story Context ולמה הוא קריטי, אתה יודע מהי ההבדל בין PRD ו-Tech Spec ו-Architecture, אתה מבין שהאג'נט DEV לא כותב קוד בשבילך אלא עובד איתך"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 2: התקנה והגדרה ראשונית (שבוע 1-2)",
+      "id": "stage-2"
+    },
+    {
+      "type": "text",
+      "content": "מטרה: להתקין את BMAD ולהגדיר את הסביבה לעבודה יעילה."
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "התקנה בסיסית (30 דקות):",
+      "id": "basic-install"
+    },
+    {
+      "type": "text",
+      "content": "BMAD עובד עם כל IDE מודרני שתומך ב-AI Agents - Cursor, Windsurf, Cline, ועוד."
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# התקן את הפקודה הגלובלית\nnpx bmad-cli install\n\n# הפעל את המודול BMM\nnpx bmad-cli install bmm"
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "הגדר את הקונפיגורציה:",
+      "id": "config"
+    },
+    {
+      "type": "text",
+      "content": "הקובץ bmad/bmm/config.yaml מכיל את ההגדרות שלך:"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "user_name: \"השם שלך\"\ncommunication_language: \"Hebrew\"\ndocument_output_language: \"Hebrew\"\noutput_folder: \"{project-root}/docs\"\ndev_story_location: \"{project-root}/stories\"\nrun_until_complete: true\nrun_tests_command: \"npm test\""
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "הבנת המבנה (1 שעה):",
+      "id": "understand-structure"
+    },
+    {
+      "type": "text",
+      "content": "אחרי ההתקנה, תראה את המבנה הבא בפרויקט:"
+    },
+    {
+      "type": "code",
+      "language": "text",
+      "code": "project-root/\n├── bmad/\n│   ├── bmm/\n│   │   ├── agents/          # האג'נטים שלך\n│   │   │   ├── dev.md       # אג'נט DEV (Amelia)\n│   │   │   ├── pm.md        # אג'נט PM\n│   │   │   └── architect.md # אג'נט Architect\n│   │   └── workflows/       # הוורקפלואים\n│   │       └── 4-implementation/\n│   │           ├── dev-story/\n│   │           ├── story-context/\n│   │           └── code-review/\n│   └── core/\n│       └── config.yaml      # קונפיגורציה מרכזית\n├── docs/                    # מסמכים (PRD, Architecture, etc.)\n└── stories/                 # Stories לפיתוח"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 3: שליטה באג'נטים והוורקפלואים (שבוע 2-4)",
+      "id": "stage-3"
+    },
+    {
+      "type": "text",
+      "content": "מטרה: ללמוד להשתמש באג'נטים ובוורקפלואים שאתה תצטרך בעבודה היום-יומית."
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "האג'נט DEV (Amelia) - החבר הכי טוב שלך",
+      "id": "dev-agent"
+    },
+    {
+      "type": "text",
+      "content": "אג'נט DEV הוא ה\"זוג לתכנות\" שלך. הוא לא כותב קוד במקומך - הוא עובד איתך."
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "מה הוא עושה",
+      "content": "מבין את ה-Story ואת ה-Context המלא שלו, מממש Tasks בהתאם ל-Acceptance Criteria, כותב טסטים ומריץ אותם, מעדכן את ה-Story עם התקדמות, שומר על עקביות עם הקוד הקיים"
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "מה הוא לא עושה",
+      "content": "לא ממציא דרישות שלא נכתבו ב-Story, לא משפר דברים שלא נדרשו, לא מדלג על טסטים, לא עובד בלי Story Context"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "האג'נטים שלך - מדריך מקוצר",
+      "id": "your-agents"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Amelia (DEV) - השותפה העיקרית שלך",
+      "id": "amelia-dev"
+    },
+    {
+      "type": "text",
+      "content": "Amelia היא Senior Implementation Engineer - היא לא כותבת קוד במקומך, היא עובדת איתך."
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "הפילוסופיה שלה:",
+      "id": "philosophy"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Story Context הוא האמת המוחלטת - היא לא ממציאה דברים",
+        "Acceptance Criteria מנחים הכל - כל שורת קוד קשורה ל-AC ספציפי",
+        "טסטים הם חובה - לא מדלגים על טסטים, לא משקרים על תוצאות",
+        "שימוש חוזר לפני יצירה חדשה - משתמשת בקוד קיים במקום להמציא מחדש"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "מתי תשתמש בה:",
+      "id": "when-use-amelia"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "כשיש לך Story מאושר - זה התנאי המינימלי",
+        "כשיש Story Context - בלעדיו היא תסרב לעבוד",
+        "כשאתה צריך לממש feature חדש",
+        "כשאתה צריך לתקן bug",
+        "כשאתה צריך לעדכן קוד קיים"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "איך לטעון אותה:",
+      "id": "load-amelia"
+    },
+    {
+      "type": "code",
+      "language": "text",
+      "code": "@dev hi"
+    },
+    {
+      "type": "text",
+      "content": "היא תקרא את הקונפיגורציה, תברך אותך, ותציג תפריט:"
+    },
+    {
+      "type": "code",
+      "language": "text",
+      "code": "1. *help - הצג תפריט\n2. *workflow-status - בדוק סטטוס ותקבל המלצות\n3. *develop-story - הרץ Dev Story workflow\n4. *story-done - סמן Story כמושלם\n5. *code-review - בצע ביקורת קוד\n6. *exit - יציאה"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "הוורקפלואים שלך - מדריך שימוש מעשי",
+      "id": "your-workflows"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "workflow-status - נקודת ההתחלה",
+      "id": "workflow-status"
+    },
+    {
+      "type": "text",
+      "content": "workflow-status הוא ה\"GPS\" של הפיתוח. הוא אומר לך איפה אתה נמצא ומה לעשות הלאה."
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "מתי להשתמש:",
+      "id": "when-use-status"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "בתחילת כל יום עבודה",
+        "כשמתחילים Story חדש",
+        "כשלא בטוח מה הצעד הבא",
+        "אחרי שמסיימים Story"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "תהליך שלב אחר שלב:",
+      "id": "status-process"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "הוורקפלואו סורק את התיקייה docs/ ומחפש מסמכים",
+        "בודק אילו Stories קיימים ב-stories/",
+        "בודק סטטוס כל Story",
+        "מזהה מה חסר",
+        "ממליץ על הצעד הבא"
+      ]
+    },
+    {
+      "type": "code",
+      "language": "text",
+      "code": "📊 סטטוס הפרויקט:\n\nמסמכים:\n✅ PRD נמצא: docs/prd-saas-platform.md\n✅ Architecture נמצא: docs/architecture.md\n✅ Tech Spec נמצא: docs/tech-spec.md\n\nStories (5 total):\n✅ 1-1-health-endpoint (done)\n🟡 1-2-user-authentication (in progress)\n   ⚠️  Story Context חסר!\n⚪ 1-3-user-profile (approved, ready)\n\n💡 המלצות:\n1. הרץ story-context על Story 1-2 לפני שממשיכים\n2. אחרי שמסיימים 1-2, התחל עם 1-3"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "story-context - הכנת הקונטקסט",
+      "id": "story-context"
+    },
+    {
+      "type": "text",
+      "content": "story-context אוסף את כל המידע הרלוונטי ל-Story ליצירת \"חבילה מושלמת\" שמכילה הכל."
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "למה זה חשוב?",
+      "content": "בלי Story Context, האג'נט DEV עובד \"עיוור\" - הוא לא יודע מה הדרישות המלאות, איך הארכיטקטורה בנויה, או מה הקוד הקיים. עם Story Context, הוא יודע הכל."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "dev-story - הלב של העבודה",
+      "id": "dev-story"
+    },
+    {
+      "type": "text",
+      "content": "זהו הוורקפלואו שאיתו תעבוד הכי הרבה. הוא מממש את ה-Story בפועל."
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "תנהגות מיוחדת",
+      "content": "אם run_until_complete: true - האג'נט ירוץ עד שהכל מושלם. אם run_until_complete: false - האג'נט יעצור אחרי כל Task לאישור"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תרחישים מעשיים מהעבודה שלך",
+      "id": "practical-scenarios"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 1: מימוש תכונת אימות משתמשים",
+      "id": "scenario-1"
+    },
+    {
+      "type": "text",
+      "content": "אתה Developer ב-startup שבונה SaaS platform. ה-PM כתב PRD, הארכיטקט תכנן Architecture, ועכשיו אתה צריך לממש את מערכת האימות."
+    },
+    {
+      "type": "accordion",
+      "title": "פתרון עם BMAD - צעד אחר צעד",
+      "content": [
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "1. בוקר - בדיקת סטטוס (09:00, 2 דקות)",
+          "id": "morning-status"
+        },
+        {
+          "type": "code",
+          "language": "text",
+          "code": "@dev hi\n*workflow-status"
+        },
+        {
+          "type": "text",
+          "content": "תשובה:"
+        },
+        {
+          "type": "code",
+          "language": "text",
+          "code": "✅ PRD: docs/prd-saas-platform.md\n✅ Architecture: docs/architecture.md\n\nStories:\n✅ 1-1-health-endpoint (done)\n🎯 1-2-user-authentication (approved) ← זה אתה!\n\n💡 Story 1-2 מאושר אבל חסר Story Context\n   הרץ: *story-context"
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "2. יצירת Story Context (09:02, 3 דקות)",
+          "id": "create-context"
+        },
+        {
+          "type": "code",
+          "language": "text",
+          "code": "*story-context"
+        },
+        {
+          "type": "text",
+          "content": "האג'נט אוסף: מה-PRD, מה-Architecture, מה-Tech Spec, קוד קיים"
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "3. פיתוח ה-Story (09:05 - 11:30, 2.5 שעות)",
+          "id": "develop"
+        },
+        {
+          "type": "code",
+          "language": "text",
+          "code": "*develop-story"
+        },
+        {
+          "type": "text",
+          "content": "האג'נט עובד: מתכנן, מממש כל Task, כותב טסטים, מריץ טסטים, מאמת ACs"
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "4. Code Review (11:30 - 11:35, 5 דקות)",
+          "id": "review"
+        },
+        {
+          "type": "code",
+          "language": "text",
+          "code": "*code-review"
+        },
+        {
+          "type": "callout",
+          "variant": "success",
+          "title": "תוצאה",
+          "content": "תכונת authentication מושלמת ב-2.5 שעות במקום 6 שעות! חיסכון של 58%"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 2: תיקון באג קריטי בפרודקשן",
+      "id": "scenario-2"
+    },
+    {
+      "type": "text",
+      "content": "03:00 בלילה. הטלפון מצלצל - יש באג קריטי בפרודקשן. משתמשים לא יכולים להתחבר. אתה צריך לתקן את זה עכשיו."
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "פתרון עם BMAD",
+      "content": "1. יצירת Story דחוף (3 דקות) 2. Story Context מהיר (2 דקות) 3. פיתוח מהיר (30 דקות) 4. Code Review (3 דקות) 5. Deploy (7 דקות). סה\"כ: 45 דקות במקום 2.5 שעות!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "סיכום",
+      "content": "BMAD-METHOD הוא לא רק כלי - זו שיטת עבודה שמשנה איך אתה מקודד. עם האג'נטים, הוורקפלואים, ו-Story Context, אתה יכול לקודד מהר יותר (חיסכון של 40-60%), לקודד טוב יותר (פחות באגים, יותר טסטים), ולקודד בביטחון (כל המידע בהישג יד)."
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "הצעד הבא שלך",
+      "content": "1. אם עוד לא עשית - התקן את BMAD 2. קח Story פשוט והרץ אותו עם @dev 3. תראה את הקסם קורה"
+    },
+    {
+      "type": "text",
+      "content": "בהצלחה! 🚀"
+    }
+  ]
+}
+
