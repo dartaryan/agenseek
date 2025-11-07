@@ -1,10 +1,5 @@
 import { Link } from 'react-router-dom';
-import {
-  IconBooks,
-  IconNote,
-  IconChecklist,
-  IconUser,
-} from '@tabler/icons-react';
+import { IconBooks, IconNote, IconChecklist, IconUser } from '@tabler/icons-react';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { useAuth } from '../../hooks/useAuth';

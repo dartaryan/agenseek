@@ -39,4 +39,3 @@ export function ProgressDots({ currentStep, totalSteps }: ProgressDotsProps) {
     </div>
   );
 }
-

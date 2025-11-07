@@ -330,4 +330,3 @@ export const hebrewLocale: LocaleStrings = {
     nonTechnicalDesc: 'תמיכה בצוותים טכניים בתפקידים אחרים',
   },
 };
-
