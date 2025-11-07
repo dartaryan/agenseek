@@ -1,8 +1,8 @@
 # Agenseek User Stories
 
-**Total Stories:** 66 across 10 epics  
-**Sprint Duration:** 15 weeks  
-**Status Tracking:** Individual story files  
+**Total Stories:** 66 across 10 epics
+**Sprint Duration:** 15 weeks
+**Status Tracking:** Individual story files
 
 ---
 
@@ -27,6 +27,8 @@ Example: `story-1.1.md` = Epic 1, Story 1
 - story-1.8.md - Create Base Layout Components
 - story-1.9.md - Configure Vercel Deployment
 - story-1.10.md - Set Up Development Scripts and Code Quality Tools
+- story-1.11.md - Full Hebrew Localization (No English)
+- story-1.12.md - Implement Real Agenseek Logo Across Application
 
 ### Epic 2: User Authentication & Personalized Onboarding (Weeks 2-3)
 - story-2.1.md - Build Login Page
@@ -152,6 +154,6 @@ Example: `story-1.1.md` = Epic 1, Story 1
 
 ---
 
-**Created:** November 6, 2025  
+**Created:** November 6, 2025
 **Author:** Bob (Scrum Master)
 

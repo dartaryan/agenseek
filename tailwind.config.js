@@ -27,12 +27,12 @@ export default {
   		},
   		fontFamily: {
   			sans: [
-  				'Arimo',
+  				'Varela Round',
   				'system-ui',
   				'sans-serif'
   			],
   			serif: [
-  				'Arimo',
+  				'Varela Round',
   				'Georgia',
   				'serif'
   			]

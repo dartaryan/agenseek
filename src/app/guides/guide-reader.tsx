@@ -1,5 +1,5 @@
 /**
- * Guide Reader Page - Story 4.5 + 4.6
+ * Guide Reader Page - Story 4.5 + 4.6 + 4.7 + 4.8
  *
  * 3-panel layout guide reader with:
  * - ToC sidebar (left/right based on RTL)
@@ -12,6 +12,8 @@
  * - Time tracking: track time spent reading
  * - Activity logging: log reading activity to database
  * - Stats tracking: increment guide view count
+ * - Story 4.7: Mark complete with celebration and next guide recommendation
+ * - Story 4.8: Keyboard arrow navigation, responsive breadcrumbs, related guides
  */
 
 import { useEffect, useState, useRef, useCallback } from 'react';
@@ -26,6 +28,7 @@ import { GuideHeader } from '@/components/guides/GuideHeader';
 import { ContentRenderer } from '@/components/content/ContentRenderer';
 import { MarkCompleteDialog } from '@/components/guides/MarkCompleteDialog';
 import { GuideCompletionModal } from '@/components/guides/GuideCompletionModal';
+import { RelatedGuides } from '@/components/guides/RelatedGuides';
 import { loadGuide, getAdjacentGuides } from '@/lib/guide-loader';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/lib/supabase';
@@ -419,6 +422,36 @@ export function GuideReaderPage() {
     slug && guide ? getAdjacentGuides(slug, guide.metadata.category) : { prev: null, next: null };
   const { prev, next } = adjacentGuides;
 
+  // Story 4.8: Keyboard arrow navigation (left/right arrows)
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Don't trigger if user is typing in an input/textarea
+      const target = event.target as HTMLElement;
+      if (
+        target.tagName === 'INPUT' ||
+        target.tagName === 'TEXTAREA' ||
+        target.isContentEditable
+      ) {
+        return;
+      }
+
+      // Left arrow = next guide (RTL)
+      if (event.key === 'ArrowLeft' && next) {
+        event.preventDefault();
+        navigate(`/guides/${next.id}`);
+      }
+
+      // Right arrow = previous guide (RTL)
+      if (event.key === 'ArrowRight' && prev) {
+        event.preventDefault();
+        navigate(`/guides/${prev.id}`);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [prev, next, navigate]);
+
   // Loading state
   if (loading) {
     return (
@@ -492,6 +525,13 @@ export function GuideReaderPage() {
           <div className="prose prose-lg max-w-none dark:prose-invert">
             <ContentRenderer blocks={guide.content} />
           </div>
+
+          {/* Story 4.8: Related Guides */}
+          <RelatedGuides
+            currentGuideId={slug || ''}
+            category={guide.metadata.category as import('@/types/guide-catalog').GuideCategory}
+            className="mt-12"
+          />
 
           {/* Bottom pagination */}
           <div className="flex items-center justify-between mt-12 pt-6 border-t border-gray-200 dark:border-gray-700">
