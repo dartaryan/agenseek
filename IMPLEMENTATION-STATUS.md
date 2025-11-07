@@ -2,7 +2,7 @@
 
 **Last Updated:** November 7, 2025
 **Current Sprint:** Sprint 5-6 (Weeks 5-6) - Epic 4: Guide Library & Discovery
-**Current Story:** Story 4.5 - Build Guide Reader 3-Panel Layout (NEXT)
+**Current Story:** Story 4.6 - Implement Progress Tracking on Guide Read (NEXT)
 **Project:** BMAD Learning Hub (Agenseek)
 
 ---
@@ -795,14 +795,14 @@
 - ✅ 3.10: Build Remaining Blocks (Grid, Card, Image, Video)
 
 ### Sprint 5-6 (Epic 4: Guide Library & Discovery) - 🚧 IN PROGRESS
-**Stories Complete:** 4 / 8 (50%)
+**Stories Complete:** 5 / 8 (62.5%)
 
 - ✅ 4.1: Create Guide JSON Content Catalog
 - ✅ 4.2: Migrate Sample Guide Content to JSON
 - ✅ 4.3: Build Guide Card Component
 - ✅ 4.4: Build Guides Library Page with Filtering
-- ⏳ 4.5: Build Guide Reader 3-Panel Layout (next)
-- ⏳ 4.6: Implement Progress Tracking on Guide Read
+- ✅ 4.5: Build Guide Reader 3-Panel Layout
+- ⏳ 4.6: Implement Progress Tracking on Guide Read (next)
 - ⏳ 4.7: Implement Mark Complete with Celebration
 - ⏳ 4.8: Build Breadcrumbs and Navigation Components
 
@@ -1173,24 +1173,87 @@
 
 ---
 
+### Story 4.5: Build Guide Reader 3-Panel Layout ✅
+- **Status:** COMPLETE
+- **Completed:** November 7, 2025
+- **Details:**
+  - ✅ Full-featured 3-panel guide reader at /guides/:slug
+  - ✅ Table of Contents sidebar (20%) with auto-generation from headings
+  - ✅ Center content area (60%) with breadcrumbs, header, action bar
+  - ✅ Actions sidebar (20%) with circular progress widget
+  - ✅ Scroll tracking with Intersection Observer
+  - ✅ Scroll progress bar at top (thin emerald line)
+  - ✅ Current section highlighting in ToC with emerald border
+  - ✅ Progress dots for each ToC section
+  - ✅ Smooth scroll to section on click
+  - ✅ Auto-save progress every 30 seconds
+  - ✅ Mark complete button with database update
+  - ✅ Previous/Next guide navigation buttons
+  - ✅ Mobile: ToC as bottom sheet with floating button
+  - ✅ Mobile: Single-column responsive layout
+  - ✅ Quick action buttons (bookmark, note, task, copy link)
+  - ✅ Helpful feedback (thumbs up/down)
+  - ✅ ContentRenderer integration with all 14 block types
+  - ✅ Dark mode support throughout
+  - ✅ RTL-aware layout
+
+**Files Created:**
+- `src/lib/guide-loader.ts` - Guide loading utilities (loadGuide, preloadGuide, getAdjacentGuides)
+- `src/components/guides/TableOfContents.tsx` - Desktop and mobile ToC components
+- `src/components/guides/GuideActionsSidebar.tsx` - Actions sidebar with progress widget
+- `src/components/guides/GuideBreadcrumbs.tsx` - Breadcrumb navigation
+- `src/components/guides/GuideHeader.tsx` - Guide header with metadata and action bar
+- `src/app/guides/guide-reader.tsx` - Main guide reader page (400+ lines)
+
+**Files Modified:**
+- `src/app/guides/guide-detail.tsx` - Updated to export GuideReaderPage
+
+**Technical Implementation:**
+- Intersection Observer for heading visibility tracking
+- Scroll progress calculation: `(scrollTop / maxScroll) * 100`
+- Timer-based auto-save with 30-second interval
+- Database: `user_progress` table with upsert on `user_id,guide_slug`
+- Saved fields: `progress_percent`, `last_position`, `last_read_at`, `completed`, `completed_at`
+- Circular SVG progress widget with smooth transitions
+- Framer Motion for mobile ToC bottom sheet animations
+- Adjacent guide navigation with category filtering
+- Passive scroll listeners for performance
+- Proper cleanup on unmount (no memory leaks)
+
+**Verification:**
+- ✅ `npm run type-check` - 0 errors
+- ✅ `npm run lint` - 0 errors
+- ✅ `npm run build` - Built successfully (15.34s)
+- ✅ All 20 acceptance criteria met
+- ✅ 3-panel layout displays correctly
+- ✅ ToC generated from guide headings
+- ✅ Current section highlights on scroll
+- ✅ Progress auto-saves every 30 seconds
+- ✅ Mark complete updates database
+- ✅ Previous/Next navigation works
+- ✅ Mobile bottom sheet ToC functional
+- ✅ All content blocks render correctly
+
+---
+
 ## 🎯 How to Continue
 
-### Ready for Story 4.5 (Guide Reader 3-Panel Layout):
+### Ready for Story 4.6 (Progress Tracking on Guide Read):
 
-**Next Story:** Story 4.5 - Build Guide Reader 3-Panel Layout
+**Next Story:** Story 4.6 - Implement Progress Tracking on Guide Read
 **Sprint:** 6 | **Points:** 3 | **Priority:** P0
-**Dependencies:** Story 4.4 complete (✅)
+**Dependencies:** Story 4.5 complete (✅)
 
-**Story 4.5 Requirements:**
-- /guides/:slug route
-- 3 panels (ToC 20%, content 60%, actions 20%)
-- ToC with current section highlight and progress dots
-- Content area with breadcrumbs and action bar
-- Actions sidebar with progress circle and mark complete button
-- Scroll progress bar at top
+**Story 4.6 Requirements:**
+- Load user's existing progress on guide open
+- Resume from last position
+- Calculate progress based on scroll
+- Update last_read_at timestamp automatically
+- Track time spent reading
+- Visual indicators for resumed guides
 
 ### To Continue:
-- Say: **"Let's do Story 4.5"** to continue Epic 4: Guide Library & Discovery
+- Say: **"Let's do Story 4.6"** to continue Epic 4: Guide Library & Discovery
 - Or: **"Continue with the next story"** to keep building Agenseek
 
 ### Current Status:
@@ -1202,7 +1265,8 @@
 - ✅ Sample guide content in JSON format (Story 4.2)
 - ✅ Beautiful guide cards (Story 4.3)
 - ✅ Guides library page with filtering (Story 4.4)
-- ✅ Ready to build the guide reader experience!
+- ✅ Full-featured 3-panel guide reader (Story 4.5) ✅ **NEW!**
+- ✅ Ready to implement progress tracking and guide completion!
 
 ---
 
@@ -1288,15 +1352,22 @@
 - ✅ Sample guides converted to JSON format (Story 4.2)
 - ✅ Beautiful guide cards with gradient headers (Story 4.3)
 - ✅ Guides library page with filtering and sorting (Story 4.4)
-- ⏳ Guide reader 3-panel layout (Story 4.5 - NEXT)
+- ✅ Guide reader 3-panel layout with ToC, content, actions (Story 4.5) ✅ **NEW!**
+- ✅ Scroll tracking with Intersection Observer
+- ✅ Scroll progress bar at top
+- ✅ Auto-save progress every 30 seconds
+- ✅ Mark complete functionality
+- ✅ Previous/Next navigation
+- ✅ Mobile-responsive with bottom sheet ToC
+- ⏳ Load and resume user progress (Story 4.6 - NEXT)
 
 ---
 
 ## 🚀 Coming Next
 
-- 📖 **Story 4.5:** Guide Reader 3-Panel Layout (NEXT!)
-- 📊 Progress tracking on guide read - Epic 4
-- 🎉 Mark complete with celebration - Epic 4
+- 📊 **Story 4.6:** Implement Progress Tracking on Guide Read (NEXT!)
+- 🎉 Story 4.7: Mark complete with celebration - Epic 4
+- 🧭 Story 4.8: Breadcrumbs and navigation components - Epic 4
 - 🏆 Dashboard with achievements - Epic 5
 - 📝 Notes and tasks system - Epic 6
 - 🔍 Search functionality - Epic 7
@@ -1314,6 +1385,6 @@
 - Epic 3: Dynamic Content Rendering ✅ (10/10 stories)
 - Epic 4: Guide Library & Discovery 🚧 (4/8 stories - 50%)
 
-**Ready to continue?** Say "Let's do Story 4.5" to build the guide reader! 🚀
+**Ready to continue?** Say "Let's do Story 4.6" to implement progress tracking! 🚀
 
 
