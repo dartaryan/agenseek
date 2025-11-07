@@ -13,6 +13,7 @@ import type {
   TableBlock,
   AccordionBlock,
   TabsBlock,
+  ChartBlock,
 } from '../types/content-blocks';
 
 // Sample content blocks demonstrating type safety
@@ -1283,6 +1284,167 @@ print(greet_user(current_user))`,
       },
     ],
   } satisfies TabsBlock,
+];
+
+// Comprehensive ChartBlock tests for Story 3.9
+export const chartBlockTests: ContentBlock[] = [
+  // Line Chart - Sprint Velocity
+  {
+    id: 'chart-line-velocity',
+    type: 'chart',
+    chartType: 'line',
+    title: 'Sprint Velocity - נקודות סיפור לאורך זמן',
+    data: [
+      { sprint: 'Sprint 1', points: 18 },
+      { sprint: 'Sprint 2', points: 21 },
+      { sprint: 'Sprint 3', points: 19 },
+      { sprint: 'Sprint 4', points: 24 },
+      { sprint: 'Sprint 5', points: 26 },
+      { sprint: 'Sprint 6', points: 23 },
+      { sprint: 'Sprint 7', points: 28 },
+      { sprint: 'Sprint 8', points: 25 },
+    ],
+    xKey: 'sprint',
+    yKey: 'points',
+    height: 300,
+  } satisfies ChartBlock,
+
+  // Bar Chart - Story Completion by Epic
+  {
+    id: 'chart-bar-completion',
+    type: 'chart',
+    chartType: 'bar',
+    title: 'Story Completion by Epic - סטוריז שהושלמו',
+    data: [
+      { epic: 'Epic 1', completed: 10 },
+      { epic: 'Epic 2', completed: 10 },
+      { epic: 'Epic 3', completed: 8 },
+      { epic: 'Epic 4', completed: 6 },
+      { epic: 'Epic 5', completed: 4 },
+      { epic: 'Epic 6', completed: 2 },
+      { epic: 'Epic 7', completed: 0 },
+    ],
+    xKey: 'epic',
+    yKey: 'completed',
+    height: 280,
+  } satisfies ChartBlock,
+
+  // Area Chart - Learning Progress Over Time
+  {
+    id: 'chart-area-learning',
+    type: 'chart',
+    chartType: 'area',
+    title: 'Learning Progress - מדריכים שהושלמו לאורך זמן',
+    data: [
+      { week: 'Week 1', guides: 2 },
+      { week: 'Week 2', guides: 5 },
+      { week: 'Week 3', guides: 8 },
+      { week: 'Week 4', guides: 12 },
+      { week: 'Week 5', guides: 15 },
+      { week: 'Week 6', guides: 18 },
+      { week: 'Week 7', guides: 22 },
+      { week: 'Week 8', guides: 25 },
+    ],
+    xKey: 'week',
+    yKey: 'guides',
+    height: 300,
+  } satisfies ChartBlock,
+
+  // Pie Chart - User Roles Distribution
+  {
+    id: 'chart-pie-roles',
+    type: 'chart',
+    chartType: 'pie',
+    title: 'User Roles Distribution - התפלגות תפקידים',
+    data: [
+      { role: 'מפתח', count: 45 },
+      { role: 'ארכיטקט', count: 12 },
+      { role: 'מנהל מוצר', count: 8 },
+      { role: 'מעצב', count: 15 },
+      { role: 'QA', count: 10 },
+      { role: 'אחר', count: 10 },
+    ],
+    xKey: 'role',
+    yKey: 'count',
+    height: 350,
+  } satisfies ChartBlock,
+
+  // Bar Chart - Component Performance (English)
+  {
+    id: 'chart-bar-performance',
+    type: 'chart',
+    chartType: 'bar',
+    title: 'Component Render Time (ms)',
+    data: [
+      { component: 'ContentRenderer', time: 42 },
+      { component: 'CodeBlock', time: 156 },
+      { component: 'TableBlock', time: 28 },
+      { component: 'AccordionBlock', time: 35 },
+      { component: 'TabsBlock', time: 31 },
+      { component: 'ChartBlock', time: 89 },
+    ],
+    xKey: 'component',
+    yKey: 'time',
+    height: 300,
+  } satisfies ChartBlock,
+
+  // Line Chart - Bug Tracking
+  {
+    id: 'chart-line-bugs',
+    type: 'chart',
+    chartType: 'line',
+    title: 'Bug Tracking - באגים פתוחים לאורך זמן',
+    data: [
+      { date: 'Jan', open: 45, closed: 12 },
+      { date: 'Feb', open: 38, closed: 18 },
+      { date: 'Mar', open: 42, closed: 15 },
+      { date: 'Apr', open: 35, closed: 22 },
+      { date: 'May', open: 28, closed: 28 },
+      { date: 'Jun', open: 22, closed: 32 },
+    ],
+    xKey: 'date',
+    yKey: 'open',
+    height: 280,
+  } satisfies ChartBlock,
+
+  // Pie Chart - Guide Categories
+  {
+    id: 'chart-pie-categories',
+    type: 'chart',
+    chartType: 'pie',
+    title: 'Guide Categories - התפלגות קטגוריות',
+    data: [
+      { category: 'Core Principles', count: 5 },
+      { category: 'Agents & Workflows', count: 8 },
+      { category: 'Architecture', count: 6 },
+      { category: 'Implementation', count: 12 },
+      { category: 'Testing', count: 4 },
+      { category: 'Game Dev', count: 7 },
+    ],
+    xKey: 'category',
+    yKey: 'count',
+    height: 350,
+  } satisfies ChartBlock,
+
+  // Area Chart - User Activity (small dataset)
+  {
+    id: 'chart-area-activity',
+    type: 'chart',
+    chartType: 'area',
+    title: 'Daily Active Users - משתמשים פעילים יומיים',
+    data: [
+      { day: 'Mon', users: 120 },
+      { day: 'Tue', users: 145 },
+      { day: 'Wed', users: 132 },
+      { day: 'Thu', users: 158 },
+      { day: 'Fri', users: 142 },
+      { day: 'Sat', users: 95 },
+      { day: 'Sun', users: 88 },
+    ],
+    xKey: 'day',
+    yKey: 'users',
+    height: 250,
+  } satisfies ChartBlock,
 ];
 
 // Sample guide demonstrating full structure
