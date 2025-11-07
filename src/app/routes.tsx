@@ -17,6 +17,7 @@ import { OnboardingWizardPage } from './onboarding/wizard';
 import { DashboardPage } from './dashboard';
 import { GuidesPage } from './guides';
 import { GuideDetailPage } from './guides/guide-detail';
+import ContentDemo from './guides/content-demo';
 import { NotesPage } from './notes';
 import { TasksPage } from './tasks';
 import { ProfilePage } from './profile';
@@ -111,6 +112,10 @@ export const router = createBrowserRouter([
       {
         path: '/guides',
         element: <GuidesPage />,
+      },
+      {
+        path: '/guides/demo',
+        element: <ContentDemo />,
       },
       {
         path: '/guides/:slug',

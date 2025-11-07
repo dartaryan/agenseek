@@ -11,6 +11,7 @@ import type {
   CodeBlock,
   CalloutBlock,
   TableBlock,
+  AccordionBlock,
 } from '../types/content-blocks';
 
 // Sample content blocks demonstrating type safety
@@ -372,6 +373,287 @@ export const tableBlockTests: ContentBlock[] = [
       },
     ],
   } satisfies TableBlock,
+];
+
+// Comprehensive AccordionBlock tests for Story 3.7
+export const accordionBlockTests: ContentBlock[] = [
+  // Simple accordion with single selection (default)
+  {
+    id: 'accordion-simple',
+    type: 'accordion',
+    items: [
+      {
+        id: 'faq-1',
+        title: 'מהי שיטת BMAD?',
+        content: [
+          {
+            id: 'faq-1-text',
+            type: 'text',
+            content: 'BMAD (Business Modeling and Agile Development) היא מתודולוגיה למודלינג עסקי ופיתוח זריז המשלבת עקרונות ניהול מוצר, ארכיטקטורה ופיתוח.',
+          },
+        ],
+      },
+      {
+        id: 'faq-2',
+        title: 'מי יכול להשתמש ב-BMAD?',
+        content: [
+          {
+            id: 'faq-2-text',
+            type: 'text',
+            content: 'כל צוות פיתוח המעוניין לשפר את תהליך העבודה שלו - מפתחים, מנהלי מוצר, ארכיטקטים, מעצבים ועוד.',
+          },
+        ],
+      },
+      {
+        id: 'faq-3',
+        title: 'האם BMAD מתאים לפרויקטים קטנים?',
+        content: [
+          {
+            id: 'faq-3-text',
+            type: 'text',
+            content: 'כן! BMAD גמיש וניתן להתאמה לפרויקטים בכל גודל. אתה יכול להשתמש רק בחלקים הרלוונטיים לפרויקט שלך.',
+          },
+        ],
+      },
+    ],
+    allowMultiple: false,
+  } satisfies AccordionBlock,
+
+  // Accordion with multiple selection allowed
+  {
+    id: 'accordion-multiple',
+    type: 'accordion',
+    items: [
+      {
+        id: 'role-dev',
+        title: 'מפתח (Developer)',
+        content: [
+          {
+            id: 'role-dev-desc',
+            type: 'text',
+            content: 'מפתח אחראי על מימוש הקוד, כתיבת בדיקות, ועבודה עם מערכת ניהול הגרסאות.',
+          },
+          {
+            id: 'role-dev-list',
+            type: 'list',
+            variant: 'unordered',
+            items: [
+              { content: 'כתיבת קוד נקי ומתועד' },
+              { content: 'עבודה לפי הארכיטקטורה המוגדרת' },
+              { content: 'ביצוע code reviews' },
+              { content: 'כתיבת unit tests' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'role-architect',
+        title: 'ארכיטקט (Architect)',
+        content: [
+          {
+            id: 'role-arch-desc',
+            type: 'text',
+            content: 'ארכיטקט מעצב את המבנה הטכני של המערכת ומוודא שהפתרון ניתן להרחבה ותחזוקה.',
+          },
+          {
+            id: 'role-arch-list',
+            type: 'list',
+            variant: 'unordered',
+            items: [
+              { content: 'עיצוב ארכיטקטורת המערכת' },
+              { content: 'קביעת סטנדרטים טכניים' },
+              { content: 'סקירת קוד ארכיטקטונית' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'role-pm',
+        title: 'מנהל מוצר (Product Manager)',
+        content: [
+          {
+            id: 'role-pm-desc',
+            type: 'text',
+            content: 'מנהל המוצר אחראי על חזון המוצר, תיעדוף הדרישות, וקבלת החלטות עסקיות.',
+          },
+          {
+            id: 'role-pm-list',
+            type: 'list',
+            variant: 'unordered',
+            items: [
+              { content: 'הגדרת דרישות המוצר' },
+              { content: 'תיעדוף Backlog' },
+              { content: 'ניהול Stakeholders' },
+            ],
+          },
+        ],
+      },
+    ],
+    allowMultiple: true,
+  } satisfies AccordionBlock,
+
+  // Accordion with nested content blocks (code, callout)
+  {
+    id: 'accordion-rich-content',
+    type: 'accordion',
+    items: [
+      {
+        id: 'setup-step1',
+        title: 'Step 1: Install Dependencies',
+        content: [
+          {
+            id: 'setup-step1-text',
+            type: 'text',
+            content: 'First, install the required npm packages:',
+          },
+          {
+            id: 'setup-step1-code',
+            type: 'code',
+            language: 'bash',
+            code: 'npm install react react-dom typescript vite\nnpm install -D tailwindcss postcss autoprefixer',
+            showLineNumbers: false,
+          },
+          {
+            id: 'setup-step1-callout',
+            type: 'callout',
+            variant: 'info',
+            title: 'Tip',
+            content: 'Make sure you have Node.js 18+ installed before running these commands.',
+          },
+        ],
+      },
+      {
+        id: 'setup-step2',
+        title: 'Step 2: Configure TypeScript',
+        content: [
+          {
+            id: 'setup-step2-text',
+            type: 'text',
+            content: 'Create a tsconfig.json file with strict mode enabled:',
+          },
+          {
+            id: 'setup-step2-code',
+            type: 'code',
+            language: 'json',
+            code: `{
+  "compilerOptions": {
+    "target": "ES2020",
+    "strict": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler"
+  }
+}`,
+            filename: 'tsconfig.json',
+            showLineNumbers: true,
+          },
+        ],
+      },
+      {
+        id: 'setup-step3',
+        title: 'Step 3: Run Development Server',
+        content: [
+          {
+            id: 'setup-step3-text',
+            type: 'text',
+            content: 'Start the development server:',
+          },
+          {
+            id: 'setup-step3-code',
+            type: 'code',
+            language: 'bash',
+            code: 'npm run dev',
+            showLineNumbers: false,
+          },
+          {
+            id: 'setup-step3-callout',
+            type: 'callout',
+            variant: 'success',
+            title: 'Success!',
+            content: 'Your development server should now be running on http://localhost:5173',
+          },
+        ],
+      },
+    ],
+    allowMultiple: false,
+  } satisfies AccordionBlock,
+
+  // Accordion with single item (minimal example)
+  {
+    id: 'accordion-single',
+    type: 'accordion',
+    items: [
+      {
+        id: 'single-item',
+        title: 'לחץ כאן לפתיחת המידע',
+        content: [
+          {
+            id: 'single-text',
+            type: 'text',
+            content: 'זהו אקורדיון עם פריט בודד. שימושי להסתרת מידע נוסף או פרטים משניים.',
+          },
+        ],
+      },
+    ],
+    allowMultiple: false,
+  } satisfies AccordionBlock,
+
+  // Accordion with English content
+  {
+    id: 'accordion-english',
+    type: 'accordion',
+    items: [
+      {
+        id: 'en-1',
+        title: 'What are Content Blocks?',
+        content: [
+          {
+            id: 'en-1-text',
+            type: 'text',
+            content: 'Content blocks are modular, reusable components that make up guide content. Each block has a specific purpose and visual style.',
+          },
+        ],
+      },
+      {
+        id: 'en-2',
+        title: 'How do I use AccordionBlock?',
+        content: [
+          {
+            id: 'en-2-text',
+            type: 'text',
+            content: 'Simply define an accordion with items, each containing a title and nested content blocks:',
+          },
+          {
+            id: 'en-2-code',
+            type: 'code',
+            language: 'typescript',
+            code: `const accordion: AccordionBlock = {
+  type: 'accordion',
+  items: [
+    {
+      id: 'item1',
+      title: 'Question',
+      content: [...]
+    }
+  ]
+}`,
+            showLineNumbers: false,
+          },
+        ],
+      },
+      {
+        id: 'en-3',
+        title: 'Can I nest blocks inside accordion?',
+        content: [
+          {
+            id: 'en-3-text',
+            type: 'text',
+            content: 'Yes! Accordion content can contain any content blocks including text, code, callouts, lists, and even other accordions.',
+          },
+        ],
+      },
+    ],
+    allowMultiple: true,
+  } satisfies AccordionBlock,
 ];
 
 // Sample guide demonstrating full structure

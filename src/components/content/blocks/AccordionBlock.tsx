@@ -1,23 +1,48 @@
 /**
- * AccordionBlock - Placeholder component for accordion blocks
- * Full implementation in Story 3.7
+ * AccordionBlock - Collapsible sections with smooth animations
+ * Story 3.7 - Implements Shadcn/ui Accordion with nested content support
  */
 
 import type { AccordionBlock as AccordionBlockType } from '@/types/content-blocks';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+import ContentRenderer from '../ContentRenderer';
 
 interface AccordionBlockProps {
   block: AccordionBlockType;
 }
 
 function AccordionBlock({ block }: AccordionBlockProps) {
+  const { items, allowMultiple = false } = block;
+
   return (
-    <div className="border border-slate-200 rounded-lg divide-y">
-      {block.items.map((item, index) => (
-        <details key={index} className="p-4">
-          <summary className="cursor-pointer font-semibold">{item.title}</summary>
-          <div className="mt-2 text-slate-700">[Nested content - Story 3.7]</div>
-        </details>
-      ))}
+    <div className="my-6">
+      <Accordion
+        type={allowMultiple ? 'multiple' : 'single'}
+        collapsible={!allowMultiple}
+        className="w-full border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden bg-white dark:bg-slate-900"
+      >
+        {items.map((item) => (
+          <AccordionItem
+            key={item.id}
+            value={item.id}
+            className="border-b border-slate-200 dark:border-slate-700 last:border-b-0"
+          >
+            <AccordionTrigger className="px-4 py-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 text-slate-900 dark:text-slate-100 text-base font-semibold text-right rtl:text-right ltr:text-left hover:no-underline">
+              {item.title}
+            </AccordionTrigger>
+            <AccordionContent className="px-4 pb-4 text-slate-700 dark:text-slate-300">
+              <div className="space-y-4">
+                <ContentRenderer blocks={item.content} />
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
     </div>
   );
 }
