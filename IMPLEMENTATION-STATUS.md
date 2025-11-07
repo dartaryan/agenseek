@@ -780,13 +780,13 @@
 ---
 
 ### Sprint 4 (Epic 3: Dynamic Content Rendering) - 🚧 IN PROGRESS
-**Stories Complete:** 3 / 10 (30%)
+**Stories Complete:** 4 / 10 (40%)
 
 - ✅ 3.1: Define TypeScript Types for Content Blocks
 - ✅ 3.2: Build Content Renderer Orchestrator
-- ✅ 3.3: Build Core Block Components (Heading, Text, List) ✅ **NEW!**
-- ⏳ 3.4: Build Code Block with Syntax Highlighting (next)
-- ⏳ 3.5: Build Callout Block Component
+- ✅ 3.3: Build Core Block Components (Heading, Text, List)
+- ✅ 3.4: Build Code Block with Syntax Highlighting ✅ **NEW!**
+- ⏳ 3.5: Build Callout Block Component (next)
 - ⏳ 3.6: Build Table Block Component
 - ⏳ 3.7: Build Accordion Block Component
 - ⏳ 3.8: Build Tabs Block Component
@@ -933,24 +933,71 @@
 
 ---
 
+### Story 3.4: Build Code Block with Syntax Highlighting ✅
+- **Status:** COMPLETE
+- **Completed:** November 7, 2025
+- **Details:**
+  - ✅ Installed react-syntax-highlighter and @types/react-syntax-highlighter
+  - ✅ Implemented full-featured CodeBlock component
+  - ✅ Language badge with 25+ language mappings (TypeScript, JavaScript, Python, etc.)
+  - ✅ Filename display in header (optional)
+  - ✅ Line numbers enabled by default (configurable)
+  - ✅ Highlighted lines with emerald background (array of line numbers)
+  - ✅ Copy button with clipboard API and visual feedback
+  - ✅ Copy confirmation with checkmark + "Copied!" message (2-second timeout)
+  - ✅ Dark mode support (oneDark theme) and light mode (oneLight theme)
+  - ✅ Auto-detection of dark mode from HTML class
+  - ✅ Custom font family (JetBrains Mono, Consolas, Monaco)
+  - ✅ Responsive design with horizontal scroll
+  - ✅ RTL-aware layout
+  - ✅ Accessibility features (aria-labels, keyboard navigation)
+
+**Language Support:**
+- 25+ languages with human-readable names
+- Web: TypeScript, JavaScript, TSX, JSX, HTML, CSS, SCSS
+- Backend: Python, Java, C#, Go, Rust, Ruby, PHP
+- Mobile: Swift, Kotlin
+- Systems: C, C++
+- Data: SQL, JSON, YAML, XML
+- Other: Bash, Shell, Markdown, GraphQL
+
+**Features Implemented:**
+- **Syntax Highlighting:** Prism.js via react-syntax-highlighter
+- **Theme Switching:** oneDark (dark mode) / oneLight (light mode)
+- **Language Badge:** Emerald themed, positioned in header
+- **Copy Button:** Clipboard API with success feedback
+- **Line Numbers:** Displayed by default, configurable
+- **Highlighted Lines:** Emerald background on specified lines
+- **Error Handling:** Graceful copy failure handling
+
+**Verification:**
+- ✅ `npm run type-check` - 0 errors
+- ✅ `npm run build` - Built successfully (8.31s)
+- ✅ Bundle size: 247.27 kB gzipped (within target)
+- ✅ All acceptance criteria met
+- ✅ 74 packages added (react-syntax-highlighter)
+- ✅ No vulnerabilities
+
+---
+
 ## 🎯 How to Continue
 
-### Ready for Story 3.4 (Code Block with Syntax Highlighting):
+### Ready for Story 3.5 (Callout Block Component):
 
-**Next Story:** Story 3.4 - Build Code Block with Syntax Highlighting
-**Sprint:** 4 | **Points:** 3 | **Priority:** P0
-**Dependencies:** Story 3.3 complete (✅)
+**Next Story:** Story 3.5 - Build Callout Block Component
+**Sprint:** 4 | **Points:** 2 | **Priority:** P0
+**Dependencies:** Story 3.4 complete (✅)
 
-**Story 3.4 Requirements:**
-- Install react-syntax-highlighter library
-- Language badge and filename display
-- Line numbers support
-- Highlighted lines capability
-- Copy button with feedback toast
-- Dark theme aware
+**Story 3.5 Requirements:**
+- 4 variants (info/warning/success/error)
+- Colored icon and border
+- Optional title
+- Content can be text or blocks
+- RTL-aware
+- Dark mode support
 
 ### To Continue:
-- Say: **"Let's do Story 3.4"** to continue Epic 3: Dynamic Content Rendering
+- Say: **"Let's do Story 3.5"** to continue Epic 3: Dynamic Content Rendering
 - Or: **"Continue with the next story"** to keep building Agenseek
 
 ### Current Status:
