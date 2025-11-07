@@ -3,23 +3,42 @@ import { IconArrowRight } from '@tabler/icons-react';
 import { Card } from '../ui/card';
 import { Button } from '../ui/button';
 import { hebrewLocale } from '../../lib/locale/he';
+import { ProgressCategoryBreakdown } from './ProgressCategoryBreakdown';
+import type { CategorizedGuides } from '../../lib/learning-path';
 
 /**
  * Overall Progress Card Component
  * Shows circular progress indicator with guide completion stats
  * Story 5.1 - Dashboard Home Page
+ * Enhanced in Story 5.2 - Added category breakdown accordion
  */
+
+interface CategoryProgress {
+  completed: number;
+  total: number;
+  percentage: number;
+}
 
 interface OverallProgressCardProps {
   guidesCompleted: number;
   guidesInProgress: number;
   totalGuides: number;
+  // Story 5.2 additions
+  categorizedGuides?: CategorizedGuides;
+  categoryProgress?: {
+    core: CategoryProgress;
+    recommended: CategoryProgress;
+    interests: CategoryProgress;
+    optional: CategoryProgress;
+  };
 }
 
 export function OverallProgressCard({
   guidesCompleted,
   guidesInProgress,
   totalGuides,
+  categorizedGuides,
+  categoryProgress,
 }: OverallProgressCardProps) {
   // Calculate progress percentage
   const progressPercent = totalGuides > 0 ? Math.round((guidesCompleted / totalGuides) * 100) : 0;
@@ -113,6 +132,14 @@ export function OverallProgressCard({
             </div>
           </div>
         </div>
+
+        {/* Story 5.2: Category Breakdown Accordion */}
+        {categorizedGuides && categoryProgress && (
+          <ProgressCategoryBreakdown
+            categorizedGuides={categorizedGuides}
+            progress={categoryProgress}
+          />
+        )}
 
         {/* Action Button */}
         <Button variant="outline" className="w-full" asChild>

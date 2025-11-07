@@ -3,6 +3,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { supabase } from '../../lib/supabase';
 import { hebrewLocale } from '../../lib/locale/he';
 import { getGuideCatalog } from '../../lib/guide-catalog';
+import { categorizeGuidesByLearningPath, getAllCategoryProgress } from '../../lib/learning-path';
 import { OverallProgressCard } from '../../components/dashboard/OverallProgressCard';
 import { ContinueReadingCard } from '../../components/dashboard/ContinueReadingCard';
 import { QuickActionsCard } from '../../components/dashboard/QuickActionsCard';
@@ -10,10 +11,12 @@ import { AchievementsPreviewCard } from '../../components/dashboard/Achievements
 import { ActivityFeedCard } from '../../components/dashboard/ActivityFeedCard';
 import { DashboardStats } from '../../components/dashboard/DashboardStats';
 import type { GuideCatalogEntry } from '../../types/guide-catalog';
+import type { CategorizedGuides } from '../../lib/learning-path';
 
 /**
  * Dashboard Page (Protected)
  * Story 5.1 - Build Dashboard Home Page
+ * Enhanced in Story 5.2 - Added category breakdown in progress card
  * Shows welcome message, overall progress, continue reading, quick actions, achievements, and activity
  */
 
@@ -40,6 +43,14 @@ interface DashboardData {
     link?: string;
     timestamp: string;
   }>;
+  // Story 5.2 additions
+  categorizedGuides: CategorizedGuides;
+  categoryProgress: {
+    core: { completed: number; total: number; percentage: number };
+    recommended: { completed: number; total: number; percentage: number };
+    interests: { completed: number; total: number; percentage: number };
+    optional: { completed: number; total: number; percentage: number };
+  };
 }
 
 function getGreeting(): string {
@@ -163,6 +174,17 @@ export function DashboardPage() {
         const earnedBadges = Math.min(guidesCompleted, 2); // Simple calculation for now
         const lockedBadges = 10 - earnedBadges;
 
+        // Story 5.2: Categorize guides by learning path
+        const categorizedGuides = categorizeGuidesByLearningPath(catalog, {
+          role: profile?.role,
+          interests: profile?.interests,
+          experience_level: profile?.experience_level,
+        });
+
+        // Story 5.2: Calculate progress for each category
+        const completedGuideIds = new Set(completedGuides.map((g) => g.guide_slug));
+        const categoryProgress = getAllCategoryProgress(categorizedGuides, completedGuideIds);
+
         setDashboardData({
           guidesCompleted,
           guidesInProgress,
@@ -175,6 +197,9 @@ export function DashboardPage() {
           earnedBadges,
           lockedBadges,
           recentActivities,
+          // Story 5.2 additions
+          categorizedGuides,
+          categoryProgress,
         });
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
@@ -258,6 +283,8 @@ export function DashboardPage() {
               guidesCompleted={dashboardData.guidesCompleted}
               guidesInProgress={dashboardData.guidesInProgress}
               totalGuides={dashboardData.totalGuides}
+              categorizedGuides={dashboardData.categorizedGuides}
+              categoryProgress={dashboardData.categoryProgress}
             />
             <DashboardStats
               totalReadingTimeMinutes={dashboardData.totalReadingTimeMinutes}

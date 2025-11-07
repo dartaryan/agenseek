@@ -96,6 +96,14 @@ export interface LocaleStrings {
     days: string;
     hours: string;
     minutes: string;
+    // Story 5.2 - Category breakdown
+    categoryBreakdown: string;
+    categoryCore: string;
+    categoryRecommended: string;
+    categoryInterests: string;
+    categoryOptional: string;
+    categoryCompleted: string;
+    categoryProgress: string;
   };
 
   // Pages
@@ -399,6 +407,14 @@ export const hebrewLocale: LocaleStrings = {
     days: 'ימים',
     hours: 'שעות',
     minutes: 'דקות',
+    // Story 5.2 - Category breakdown
+    categoryBreakdown: 'התקדמות לפי קטגוריות',
+    categoryCore: 'מדריכי יסוד',
+    categoryRecommended: 'מומלצים לתפקידך',
+    categoryInterests: 'תחומי העניין שלך',
+    categoryOptional: 'אופציונלי',
+    categoryCompleted: 'הושלם',
+    categoryProgress: 'מתוך',
   },
 
   pages: {

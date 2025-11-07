@@ -64,6 +64,7 @@ export interface Database {
           last_read_at: string;
           completed_at: string | null;
           created_at: string;
+          progress_before_completion: number | null; // Story 5.1.2
         };
         Insert: {
           id?: string;
@@ -77,6 +78,7 @@ export interface Database {
           last_read_at?: string;
           completed_at?: string | null;
           created_at?: string;
+          progress_before_completion?: number | null; // Story 5.1.2
         };
         Update: {
           id?: string;
@@ -90,6 +92,7 @@ export interface Database {
           last_read_at?: string;
           completed_at?: string | null;
           created_at?: string;
+          progress_before_completion?: number | null; // Story 5.1.2
         };
         Relationships: [
           {
