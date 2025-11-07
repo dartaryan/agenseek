@@ -32,8 +32,10 @@ import { MarkCompleteDialog } from '@/components/guides/MarkCompleteDialog';
 import { UnmarkCompleteDialog } from '@/components/guides/UnmarkCompleteDialog';
 import { GuideCompletionModal } from '@/components/guides/GuideCompletionModal';
 import { RelatedGuides } from '@/components/guides/RelatedGuides';
+import { BadgeUnlockAnimation } from '@/components/dashboard/BadgeUnlockAnimation';
 import { loadGuide, getAdjacentGuides } from '@/lib/guide-loader';
 import { useAuth } from '@/hooks/useAuth';
+import { useAchievements } from '@/hooks/useAchievements';
 import { supabase } from '@/lib/supabase';
 import { toast } from '@/hooks/use-toast';
 import MobileTocContext from '@/contexts/MobileTocContext';
@@ -52,6 +54,7 @@ export function GuideReaderPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { checkAndUpdateAchievements, newlyEarnedBadge, setNewlyEarnedBadge } = useAchievements(); // Story 5.3
 
   // State
   const [guide, setGuide] = useState<Guide | null>(null);
@@ -67,6 +70,7 @@ export function GuideReaderPage() {
   const [showUnmarkCompleteDialog, setShowUnmarkCompleteDialog] = useState(false); // Story 5.1.2
   const [showCompletionModal, setShowCompletionModal] = useState(false);
   const [isMarkingComplete, setIsMarkingComplete] = useState(false);
+  const [showBadgeUnlock, setShowBadgeUnlock] = useState(false); // Story 5.3
   const [nextGuide, setNextGuide] = useState<GuideMetadata | null>(null);
 
   // Refs
@@ -394,7 +398,10 @@ export function GuideReaderPage() {
         setNextGuide(null);
       }
 
-      // 6. Show success modal (confetti will fire automatically)
+      // 6. Check for newly earned achievements (Story 5.3)
+      const earnedBadge = await checkAndUpdateAchievements();
+
+      // 7. Show success modal (confetti will fire automatically)
       setShowCompletionModal(true);
 
       // Success toast
@@ -402,6 +409,14 @@ export function GuideReaderPage() {
         title: 'מדריך הושלם!',
         description: 'כל הכבוד! המשך למדריך הבא או חזרה לספרייה.',
       });
+
+      // 8. If badge was earned, show unlock animation after completion modal closes
+      if (earnedBadge) {
+        // Wait a bit for the completion modal to close before showing badge unlock
+        setTimeout(() => {
+          setShowBadgeUnlock(true);
+        }, 2000);
+      }
     } catch (err) {
       console.error('Failed to mark complete:', err);
       setIsMarkingComplete(false);
@@ -412,7 +427,7 @@ export function GuideReaderPage() {
         variant: 'destructive',
       });
     }
-  }, [user, slug, guide, scrollProgress]);
+  }, [user, slug, guide, scrollProgress, checkAndUpdateAchievements]);
 
   // Story 5.1.2: Unmark complete button click - show confirmation dialog
   const handleUnmarkCompleteClick = useCallback(() => {
@@ -699,6 +714,15 @@ export function GuideReaderPage() {
         restoredProgress={userProgress?.progress_before_completion ?? 0}
         isLoading={isMarkingComplete}
       />
+
+      {/* Story 5.3: Badge Unlock Animation */}
+      {newlyEarnedBadge && (
+        <BadgeUnlockAnimation
+          open={showBadgeUnlock}
+          onOpenChange={setShowBadgeUnlock}
+          badge={newlyEarnedBadge}
+        />
+      )}
 
       {/* Story 4.7: Completion Success Modal */}
       <GuideCompletionModal

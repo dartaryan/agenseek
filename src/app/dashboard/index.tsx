@@ -302,10 +302,8 @@ export function DashboardPage() {
 
           {/* Right Column - Achievements & Activity */}
           <div className="space-y-6">
-            <AchievementsPreviewCard
-              earnedBadges={dashboardData.earnedBadges}
-              lockedBadges={dashboardData.lockedBadges}
-            />
+            {/* Story 5.3: AchievementsPreviewCard now manages its own state */}
+            <AchievementsPreviewCard />
             <ActivityFeedCard activities={dashboardData.recentActivities} />
           </div>
         </div>
