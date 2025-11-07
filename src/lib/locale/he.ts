@@ -104,6 +104,8 @@ export interface LocaleStrings {
     categoryOptional: string;
     categoryCompleted: string;
     categoryProgress: string;
+    // Story 5.7 - Popular Guides Widget
+    popularGuides: string;
   };
 
   // Pages
@@ -415,6 +417,8 @@ export const hebrewLocale: LocaleStrings = {
     categoryOptional: 'אופציונלי',
     categoryCompleted: 'הושלם',
     categoryProgress: 'מתוך',
+    // Story 5.7 - Popular Guides Widget
+    popularGuides: 'מדריכים פופולריים',
   },
 
   pages: {

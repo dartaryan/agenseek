@@ -10,6 +10,7 @@ import { QuickActionsCard } from '../../components/dashboard/QuickActionsCard';
 import { AchievementsPreviewCard } from '../../components/dashboard/AchievementsPreviewCard';
 import { ActivityFeedCard } from '../../components/dashboard/ActivityFeedCard';
 import { DashboardStats } from '../../components/dashboard/DashboardStats';
+import { PopularGuidesCard } from '../../components/dashboard/PopularGuidesCard';
 import type { GuideCatalogEntry } from '../../types/guide-catalog';
 import type { CategorizedGuides } from '../../lib/learning-path';
 
@@ -17,8 +18,14 @@ import type { CategorizedGuides } from '../../lib/learning-path';
  * Dashboard Page (Protected)
  * Story 5.1 - Build Dashboard Home Page
  * Enhanced in Story 5.2 - Added category breakdown in progress card
+ * Enhanced in Story 5.7 - Added popular guides widget
  * Shows welcome message, overall progress, continue reading, quick actions, achievements, and activity
  */
+
+interface PopularGuide extends GuideCatalogEntry {
+  viewCount: number;
+  isTrending: boolean;
+}
 
 interface DashboardData {
   guidesCompleted: number;
@@ -51,6 +58,8 @@ interface DashboardData {
     interests: { completed: number; total: number; percentage: number };
     optional: { completed: number; total: number; percentage: number };
   };
+  // Story 5.7 addition
+  popularGuides: PopularGuide[];
 }
 
 function getGreeting(): string {
@@ -185,6 +194,64 @@ export function DashboardPage() {
         const completedGuideIds = new Set(completedGuides.map((g) => g.guide_slug));
         const categoryProgress = getAllCategoryProgress(categorizedGuides, completedGuideIds);
 
+        // Story 5.7: Fetch popular guides (most viewed in last 7 days)
+        const sevenDaysAgo = new Date();
+        sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
+        const fourteenDaysAgo = new Date();
+        fourteenDaysAgo.setDate(fourteenDaysAgo.getDate() - 14);
+
+        // Get view counts for last 7 days
+        const { data: recentViews } = await supabase
+          .from('user_activity')
+          .select('target_slug')
+          .eq('activity_type', 'view_guide')
+          .gte('created_at', sevenDaysAgo.toISOString());
+
+        // Get view counts for previous 7 days (for trending detection)
+        const { data: previousViews } = await supabase
+          .from('user_activity')
+          .select('target_slug')
+          .eq('activity_type', 'view_guide')
+          .gte('created_at', fourteenDaysAgo.toISOString())
+          .lt('created_at', sevenDaysAgo.toISOString());
+
+        // Count views per guide
+        const viewCounts = new Map<string, number>();
+        const previousViewCounts = new Map<string, number>();
+
+        recentViews?.forEach((view) => {
+          if (view.target_slug) {
+            viewCounts.set(view.target_slug, (viewCounts.get(view.target_slug) || 0) + 1);
+          }
+        });
+
+        previousViews?.forEach((view) => {
+          if (view.target_slug) {
+            previousViewCounts.set(view.target_slug, (previousViewCounts.get(view.target_slug) || 0) + 1);
+          }
+        });
+
+        // Create popular guides list with trending indicators
+        const popularGuides: PopularGuide[] = Array.from(viewCounts.entries())
+          .sort((a, b) => b[1] - a[1]) // Sort by view count descending
+          .slice(0, 5) // Top 5
+          .map(([guideSlug, viewCount]) => {
+            const guideInfo = catalog.find((g) => g.id === guideSlug);
+            if (!guideInfo) return null;
+
+            const previousCount = previousViewCounts.get(guideSlug) || 0;
+            // Trending if current views > previous views (even if previous was 0)
+            const isTrending = viewCount > previousCount;
+
+            return {
+              ...guideInfo,
+              viewCount,
+              isTrending,
+            };
+          })
+          .filter(Boolean) as PopularGuide[];
+
         setDashboardData({
           guidesCompleted,
           guidesInProgress,
@@ -200,6 +267,8 @@ export function DashboardPage() {
           // Story 5.2 additions
           categorizedGuides,
           categoryProgress,
+          // Story 5.7 addition
+          popularGuides,
         });
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
@@ -306,6 +375,11 @@ export function DashboardPage() {
             <AchievementsPreviewCard />
             <ActivityFeedCard activities={dashboardData.recentActivities} />
           </div>
+        </div>
+
+        {/* Story 5.7: Popular Guides Widget - Full Width */}
+        <div className="mt-8">
+          <PopularGuidesCard popularGuides={dashboardData.popularGuides} />
         </div>
       </div>
     </div>
