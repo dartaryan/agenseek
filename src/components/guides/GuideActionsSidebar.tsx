@@ -1,11 +1,12 @@
 /**
- * Guide Actions Sidebar - Story 4.5
+ * Guide Actions Sidebar - Story 4.5 + Story 5.1.2
  *
  * Right sidebar (left in RTL) with:
  * - Circular progress widget
- * - Mark Complete button
+ * - Mark/Unmark Complete button (toggleable)
  * - Quick action buttons (bookmark, note, task)
  * - Helpful feedback (thumbs up/down)
+ * Story 5.1.2: Added toggle functionality for mark/unmark complete
  */
 
 import { Button } from '@/components/ui/button';
@@ -17,12 +18,14 @@ import {
   IconCheck,
   IconThumbUp,
   IconThumbDown,
+  IconRotateClockwise,
 } from '@tabler/icons-react';
 
 interface GuideActionsSidebarProps {
   progress: number; // 0-100
   isCompleted: boolean;
   onMarkComplete: () => void;
+  onUnmarkComplete?: () => void; // Story 5.1.2: Added for toggle functionality
   onBookmark?: () => void;
   onAddNote?: () => void;
   onCreateTask?: () => void;
@@ -34,6 +37,7 @@ export function GuideActionsSidebar({
   progress,
   isCompleted,
   onMarkComplete,
+  onUnmarkComplete,
   onBookmark,
   onAddNote,
   onCreateTask,
@@ -86,16 +90,24 @@ export function GuideActionsSidebar({
         </div>
       </Card>
 
-      {/* Mark Complete button */}
+      {/* Mark/Unmark Complete button - Story 5.1.2: Toggle functionality */}
       <Button
-        onClick={onMarkComplete}
-        disabled={isCompleted}
+        onClick={isCompleted ? onUnmarkComplete : onMarkComplete}
         className="w-full"
         size="lg"
         variant={isCompleted ? 'outline' : 'default'}
       >
-        <IconCheck className="w-5 h-5 ml-2" />
-        {isCompleted ? 'הושלם' : 'סמן כהושלם'}
+        {isCompleted ? (
+          <>
+            <IconRotateClockwise className="w-5 h-5 ml-2" />
+            סמן כלא הושלם
+          </>
+        ) : (
+          <>
+            <IconCheck className="w-5 h-5 ml-2" />
+            סמן כהושלם
+          </>
+        )}
       </Button>
 
       {/* Quick actions */}

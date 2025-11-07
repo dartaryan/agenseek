@@ -1,9 +1,28 @@
 # Story 5.1.2: Toggle Guide Completion Status
 
 **Epic:** Reader Experience Enhancements (Sub-Epic of Epic 5)
-**Status:** Ready for Development
+**Status:** Complete
 **Priority:** Medium
 **Estimate:** 3 Story Points
+
+## Dev Agent Record
+
+**Implementation Summary:**
+- ✅ Created database migration for `progress_before_completion` column
+- ✅ Created UnmarkCompleteDialog component with amber theme
+- ✅ Updated GuideActionsSidebar to toggle between mark/unmark states
+- ✅ Updated guide-reader with unmark handlers and state management
+- ✅ Mark complete now saves progress_before_completion for restoration
+- ✅ Unmark complete restores progress and logs activity
+- ✅ All acceptance criteria met
+
+**Files Created:**
+- `supabase/migrations/20241107_add_progress_before_completion.sql` - Database migration
+- `src/components/guides/UnmarkCompleteDialog.tsx` - Confirmation dialog
+
+**Files Modified:**
+- `src/components/guides/GuideActionsSidebar.tsx` - Added toggle functionality
+- `src/app/guides/guide-reader.tsx` - Added unmark handlers and state
 
 ## Overview
 Allow users to mark a completed guide as "not completed" so they can re-read and track progress again. This provides flexibility for users who want to review guides or accidentally marked something as complete.
@@ -30,30 +49,30 @@ Allow users to mark a completed guide as "not completed" so they can re-read and
 ## Acceptance Criteria
 
 ### UI Changes
-- [ ] "Mark Complete" button is never disabled
-- [ ] When `isCompleted === true`, button text changes to "סמן כלא הושלם"
-- [ ] When `isCompleted === false`, button text shows "סמן כהושלם"
-- [ ] Button always remains interactive and visually indicates current state
-- [ ] Icon changes based on state (checkmark vs. rotate/undo icon)
+- [x] "Mark Complete" button is never disabled
+- [x] When `isCompleted === true`, button text changes to "סמן כלא הושלם"
+- [x] When `isCompleted === false`, button text shows "סמן כהושלם"
+- [x] Button always remains interactive and visually indicates current state
+- [x] Icon changes based on state (checkmark vs. rotate/undo icon)
 
 ### Confirmation Dialog
-- [ ] Clicking "unmark complete" shows confirmation dialog
-- [ ] Dialog explains that progress will be restored to pre-completion state
-- [ ] Dialog has "Cancel" and "אישור" (Confirm) buttons
-- [ ] Dialog is visually distinct from mark complete dialog
+- [x] Clicking "unmark complete" shows confirmation dialog
+- [x] Dialog explains that progress will be restored to pre-completion state
+- [x] Dialog has "Cancel" and "אישור" (Confirm) buttons
+- [x] Dialog is visually distinct from mark complete dialog
 
 ### Database Operations
-- [ ] On unmark: Update `user_progress.completed = false`
-- [ ] On unmark: Keep `completed_at` timestamp (for history)
-- [ ] On unmark: Restore `progress_percent` to pre-completion value (stored before marking complete)
-- [ ] On unmark: Log activity: `activity_type: 'uncomplete_guide'`
-- [ ] On unmark: Do NOT decrement guide completion stats (prevents gaming)
+- [x] On unmark: Update `user_progress.completed = false`
+- [x] On unmark: Keep `completed_at` timestamp (for history)
+- [x] On unmark: Restore `progress_percent` to pre-completion value (stored before marking complete)
+- [x] On unmark: Log activity: `activity_type: 'uncomplete_guide'`
+- [x] On unmark: Do NOT decrement guide completion stats (prevents gaming)
 
 ### State Management
-- [ ] `isCompleted` state updates immediately after successful unmark
-- [ ] Progress widget reflects restored progress percentage
-- [ ] Page doesn't need refresh to show updated state
-- [ ] Toast notification shows success/error message
+- [x] `isCompleted` state updates immediately after successful unmark
+- [x] Progress widget reflects restored progress percentage
+- [x] Page doesn't need refresh to show updated state
+- [x] Toast notification shows success/error message
 
 ## Technical Implementation
 

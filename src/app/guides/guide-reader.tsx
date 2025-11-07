@@ -1,5 +1,5 @@
 /**
- * Guide Reader Page - Story 4.5 + 4.6 + 4.7 + 4.8 + Story 5.1.1
+ * Guide Reader Page - Story 4.5 + 4.6 + 4.7 + 4.8 + Story 5.1.1 + Story 5.1.2
  *
  * 3-panel layout guide reader with:
  * - ToC sidebar (left/right based on RTL)
@@ -15,6 +15,7 @@
  * - Story 4.7: Mark complete with celebration and next guide recommendation
  * - Story 4.8: Keyboard arrow navigation, responsive breadcrumbs, related guides
  * - Story 5.1.1: Mobile padding, auto-hide FAB, Header ToC integration
+ * - Story 5.1.2: Toggle guide completion status (mark/unmark complete)
  */
 
 import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
@@ -28,6 +29,7 @@ import { GuideBreadcrumbs } from '@/components/guides/GuideBreadcrumbs';
 import { GuideHeader } from '@/components/guides/GuideHeader';
 import { ContentRenderer } from '@/components/content/ContentRenderer';
 import { MarkCompleteDialog } from '@/components/guides/MarkCompleteDialog';
+import { UnmarkCompleteDialog } from '@/components/guides/UnmarkCompleteDialog';
 import { GuideCompletionModal } from '@/components/guides/GuideCompletionModal';
 import { RelatedGuides } from '@/components/guides/RelatedGuides';
 import { loadGuide, getAdjacentGuides } from '@/lib/guide-loader';
@@ -43,6 +45,7 @@ interface UserProgress {
   time_spent_seconds: number;
   completed: boolean;
   last_read_at: string;
+  progress_before_completion?: number | null; // Story 5.1.2
 }
 
 export function GuideReaderPage() {
@@ -61,6 +64,7 @@ export function GuideReaderPage() {
   const [userProgress, setUserProgress] = useState<UserProgress | null>(null);
   const [hasResumed, setHasResumed] = useState(false);
   const [showMarkCompleteDialog, setShowMarkCompleteDialog] = useState(false);
+  const [showUnmarkCompleteDialog, setShowUnmarkCompleteDialog] = useState(false); // Story 5.1.2
   const [showCompletionModal, setShowCompletionModal] = useState(false);
   const [isMarkingComplete, setIsMarkingComplete] = useState(false);
   const [nextGuide, setNextGuide] = useState<GuideMetadata | null>(null);
@@ -328,12 +332,14 @@ export function GuideReaderPage() {
       const totalTime = accumulatedTimeRef.current + sessionTime;
 
       // 1. Update user_progress (completed=true, progress_percent=100, completed_at)
+      // Story 5.1.2: Save current progress before marking complete
       const { error: progressError } = await supabase.from('user_progress').upsert(
         {
           user_id: user.id,
           guide_slug: slug,
           guide_category: guide.metadata.category,
           progress_percent: 100,
+          progress_before_completion: Math.round(scrollProgress), // Save for restore on unmark
           completed: true,
           completed_at: new Date().toISOString(),
           last_read_at: new Date().toISOString(),
@@ -403,6 +409,75 @@ export function GuideReaderPage() {
       toast({
         title: 'שגיאה',
         description: 'לא הצלחנו לסמן את המדריך כהושלם',
+        variant: 'destructive',
+      });
+    }
+  }, [user, slug, guide, scrollProgress]);
+
+  // Story 5.1.2: Unmark complete button click - show confirmation dialog
+  const handleUnmarkCompleteClick = useCallback(() => {
+    if (!isCompleted) return;
+    setShowUnmarkCompleteDialog(true);
+  }, [isCompleted]);
+
+  // Story 5.1.2: Confirm unmark complete - restore progress
+  const handleConfirmUnmarkComplete = useCallback(async () => {
+    if (!user || !slug || !guide) return;
+
+    setIsMarkingComplete(true);
+
+    try {
+      // Get stored progress before completion
+      const { data: progressData } = await supabase
+        .from('user_progress')
+        .select('progress_before_completion')
+        .eq('user_id', user.id)
+        .eq('guide_slug', slug)
+        .single();
+
+      const restoredProgress = progressData?.progress_before_completion ?? 0;
+
+      // Update user_progress (keep completed_at for history)
+      const { error: progressError } = await supabase.from('user_progress').update({
+        completed: false,
+        progress_percent: restoredProgress,
+        last_read_at: new Date().toISOString(),
+      }).eq('user_id', user.id).eq('guide_slug', slug);
+
+      if (progressError) throw progressError;
+
+      // Log activity
+      const { error: activityError } = await supabase.from('user_activity').insert({
+        user_id: user.id,
+        activity_type: 'uncomplete_guide',
+        target_slug: slug,
+        metadata: {
+          guide_title: guide.metadata.title,
+          guide_category: guide.metadata.category,
+          restored_progress: restoredProgress,
+        },
+      });
+
+      if (activityError) throw activityError;
+
+      // Update local state
+      setIsCompleted(false);
+      setScrollProgress(restoredProgress);
+      setIsMarkingComplete(false);
+      setShowUnmarkCompleteDialog(false);
+
+      // Success toast
+      toast({
+        title: 'המדריך סומן כלא הושלם',
+        description: `התקדמות שוחזרה ל-${restoredProgress}%`,
+      });
+    } catch (err) {
+      console.error('Failed to unmark complete:', err);
+      setIsMarkingComplete(false);
+      setShowUnmarkCompleteDialog(false);
+      toast({
+        title: 'שגיאה',
+        description: 'לא הצלחנו לסמן את המדריך כלא הושלם',
         variant: 'destructive',
       });
     }
@@ -583,6 +658,7 @@ export function GuideReaderPage() {
               progress={scrollProgress}
               isCompleted={isCompleted}
               onMarkComplete={handleMarkCompleteClick}
+              onUnmarkComplete={handleUnmarkCompleteClick}
               onBookmark={() => toast({ title: 'נשמר למועדפים' })}
               onAddNote={() => toast({ title: 'הוספת הערה - בקרוב' })}
               onCreateTask={() => toast({ title: 'יצירת משימה - בקרוב' })}
@@ -611,6 +687,16 @@ export function GuideReaderPage() {
         onOpenChange={setShowMarkCompleteDialog}
         onConfirm={handleConfirmMarkComplete}
         guideTitle={guide.metadata.title}
+        isLoading={isMarkingComplete}
+      />
+
+      {/* Story 5.1.2: Unmark Complete Confirmation Dialog */}
+      <UnmarkCompleteDialog
+        open={showUnmarkCompleteDialog}
+        onOpenChange={setShowUnmarkCompleteDialog}
+        onConfirm={handleConfirmUnmarkComplete}
+        guideTitle={guide.metadata.title}
+        restoredProgress={userProgress?.progress_before_completion ?? 0}
         isLoading={isMarkingComplete}
       />
 
