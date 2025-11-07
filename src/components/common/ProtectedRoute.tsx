@@ -34,7 +34,7 @@ export function ProtectedRoute({
     hasUser: !!user,
     hasProfile: !!profile,
     requireAdmin,
-    skipOnboardingCheck
+    skipOnboardingCheck,
   });
 
   // Show loading state while checking auth and profile

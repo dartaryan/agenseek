@@ -181,7 +181,8 @@ function WelcomeStep({ onNext, onSkip }: WelcomeStepProps) {
         transition={{ delay: 0.6 }}
         className="text-lg text-gray-600 dark:text-gray-400 mb-12 max-w-xl mx-auto leading-relaxed"
       >
-        מסע הלמידה האישי שלך ב-BMAD מתחיל כאן. נעזור לך לגלות את התוכן הנכון, לעקוב אחר ההתקדמות שלך ולהתחבר לצוות שלך.
+        מסע הלמידה האישי שלך ב-BMAD מתחיל כאן. נעזור לך לגלות את התוכן הנכון, לעקוב אחר ההתקדמות שלך
+        ולהתחבר לצוות שלך.
       </motion.p>
 
       {/* Primary Button */}

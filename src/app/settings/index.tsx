@@ -1,11 +1,18 @@
+import { useState } from 'react';
 import { Card } from '../../components/ui/card';
+import { Button } from '../../components/ui/button';
 import { hebrewLocale } from '../../lib/locale/he';
+import { DeleteAccountDialog } from '../../components/settings/DeleteAccountDialog';
+import { IconAlertTriangle, IconTrash } from '@tabler/icons-react';
 
 /**
  * Settings Page (Protected)
- * Will be implemented with application settings
+ * Story 2.12: Account deletion feature
  */
 export function SettingsPage() {
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const he = hebrewLocale.accountDeletion;
+
   return (
     <div className="p-8">
       <div className="max-w-4xl mx-auto space-y-8">
@@ -34,7 +41,35 @@ export function SettingsPage() {
             <h3 className="text-lg font-semibold">שפה</h3>
             <p className="text-gray-500">תמיכה ב-RTL לעברית ויכולות דו-לשוניות</p>
           </Card>
+
+          {/* Danger Zone - Account Deletion */}
+          <Card className="p-6 space-y-3 border-red-200">
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg font-semibold text-gray-900">{he.title}</h3>
+              <IconAlertTriangle className="w-5 h-5 text-red-500" />
+            </div>
+
+            <p className="text-sm text-gray-600">{he.warningDataLoss}</p>
+
+            {/* Delete Button */}
+            <div className="pt-1">
+              <Button
+                variant="outline"
+                onClick={() => setIsDeleteDialogOpen(true)}
+                className="text-red-600 border-red-300 hover:bg-red-50 hover:text-red-700"
+              >
+                <IconTrash className="w-4 h-4 mr-2" />
+                {he.deleteAccountButton}
+              </Button>
+            </div>
+          </Card>
         </div>
+
+        {/* Delete Account Dialog */}
+        <DeleteAccountDialog
+          open={isDeleteDialogOpen}
+          onOpenChange={setIsDeleteDialogOpen}
+        />
       </div>
     </div>
   );

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { motion } from 'framer-motion';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
@@ -10,6 +9,8 @@ import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import { useToast } from '../../hooks/use-toast';
 import { signUp } from '../../lib/auth';
+import { hebrewLocale } from '../../lib/locale/he';
+import { registerSchema, type RegisterFormData } from '../../lib/validation/authSchemas';
 import {
   IconUser,
   IconMail,
@@ -19,33 +20,12 @@ import {
   // IconBrandGoogle, // Disabled until Story 2.4
 } from '@tabler/icons-react';
 
-// Zod validation schema
-const registerSchema = z
-  .object({
-    displayName: z
-      .string()
-      .min(2, 'Display name must be at least 2 characters')
-      .max(50, 'Display name must be less than 50 characters'),
-    email: z.string().email('Please enter a valid email address'),
-    password: z
-      .string()
-      .min(8, 'Password must be at least 8 characters')
-      .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
-      .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
-      .regex(/[0-9]/, 'Password must contain at least one number'),
-    confirmPassword: z.string(),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: 'Passwords do not match',
-    path: ['confirmPassword'],
-  });
-
-type RegisterFormData = z.infer<typeof registerSchema>;
-
 /**
  * Password Strength Indicator Component
  */
 function PasswordStrength({ password }: { password: string }) {
+  const he = hebrewLocale.auth;
+
   const calculateStrength = (pwd: string): { score: number; label: string; color: string } => {
     let score = 0;
 
@@ -56,18 +36,18 @@ function PasswordStrength({ password }: { password: string }) {
     if (/[0-9]/.test(pwd)) score++;
     if (/[^A-Za-z0-9]/.test(pwd)) score++;
 
-    if (score <= 2) return { score: 1, label: 'Weak', color: 'bg-red-500' };
-    if (score <= 4) return { score: 2, label: 'Medium', color: 'bg-yellow-500' };
-    return { score: 3, label: 'Strong', color: 'bg-emerald-500' };
+    if (score <= 2) return { score: 1, label: he.passwordStrengthWeak, color: 'bg-red-500' };
+    if (score <= 4) return { score: 2, label: he.passwordStrengthMedium, color: 'bg-yellow-500' };
+    return { score: 3, label: he.passwordStrengthStrong, color: 'bg-emerald-500' };
   };
 
   const strength = password ? calculateStrength(password) : { score: 0, label: '', color: '' };
 
   const checks = [
-    { label: 'At least 8 characters', valid: password.length >= 8 },
-    { label: 'Uppercase letter', valid: /[A-Z]/.test(password) },
-    { label: 'Lowercase letter', valid: /[a-z]/.test(password) },
-    { label: 'Number', valid: /[0-9]/.test(password) },
+    { label: he.requirementLength, valid: password.length >= 8 },
+    { label: he.requirementUppercase, valid: /[A-Z]/.test(password) },
+    { label: he.requirementLowercase, valid: /[a-z]/.test(password) },
+    { label: he.requirementNumber, valid: /[0-9]/.test(password) },
   ];
 
   if (!password) return null;
@@ -89,7 +69,7 @@ function PasswordStrength({ password }: { password: string }) {
       {/* Strength label */}
       {strength.label && (
         <p className="text-xs font-medium text-gray-600">
-          Password strength:{' '}
+          {he.passwordStrength}{' '}
           <span className={strength.color.replace('bg-', 'text-')}>{strength.label}</span>
         </p>
       )}
@@ -116,11 +96,13 @@ function PasswordStrength({ password }: { password: string }) {
 /**
  * Register Page
  * Story 2.2: Full registration form with email verification
+ * Story 2.11: Hebrew localization
  */
 export function RegisterPage() {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const he = hebrewLocale.auth;
   // const [isGoogleLoading, setIsGoogleLoading] = useState(false); // Disabled until Story 2.4
 
   const {
@@ -148,8 +130,8 @@ export function RegisterPage() {
       if (!signUpData.user) {
         toast({
           variant: 'destructive',
-          title: 'Registration Failed',
-          description: 'Failed to create user account. Please try again.',
+          title: he.registerFailed,
+          description: he.unexpectedError,
         });
         return;
       }
@@ -159,8 +141,8 @@ export function RegisterPage() {
 
       // Success!
       toast({
-        title: 'Account Created Successfully!',
-        description: 'Please check your email to confirm your account, then log in.',
+        title: he.registerSuccess,
+        description: he.registerSuccessDescription,
       });
 
       // Redirect to login page
@@ -171,11 +153,10 @@ export function RegisterPage() {
       }, 2000);
     } catch (err: unknown) {
       console.error('Registration error:', err);
-      const errorMessage =
-        err instanceof Error ? err.message : 'An unexpected error occurred. Please try again.';
+      const errorMessage = err instanceof Error ? err.message : he.unexpectedError;
       toast({
         variant: 'destructive',
-        title: 'Registration Failed',
+        title: he.registerFailed,
         description: errorMessage,
       });
     } finally {
@@ -223,23 +204,23 @@ export function RegisterPage() {
         <Card className="p-8 space-y-6 shadow-xl border-emerald-100">
           {/* Header */}
           <div className="text-center space-y-2">
-            <h1 className="text-3xl font-bold text-emerald-600">Agenseek</h1>
-            <p className="text-gray-600">BMAD Learning Hub</p>
-            <h2 className="text-2xl font-semibold pt-2">Create Account</h2>
-            <p className="text-sm text-gray-500">Start your learning journey today</p>
+            <h1 className="text-3xl font-bold text-emerald-600">{he.brandName}</h1>
+            <p className="text-gray-600">{he.brandSubtitle}</p>
+            <h2 className="text-2xl font-semibold pt-2">{he.registerTitle}</h2>
+            <p className="text-sm text-gray-500">{he.createAccountSubtitle}</p>
           </div>
 
           {/* Registration Form */}
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             {/* Display Name */}
             <div className="space-y-2">
-              <Label htmlFor="displayName">Display Name</Label>
+              <Label htmlFor="displayName">{he.displayName}</Label>
               <div className="relative">
                 <IconUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <Input
                   id="displayName"
                   type="text"
-                  placeholder="John Doe"
+                  placeholder={he.displayNamePlaceholder}
                   className="pl-10"
                   {...register('displayName')}
                 />
@@ -251,13 +232,13 @@ export function RegisterPage() {
 
             {/* Email */}
             <div className="space-y-2">
-              <Label htmlFor="email">Email Address</Label>
+              <Label htmlFor="email">{he.email}</Label>
               <div className="relative">
                 <IconMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <Input
                   id="email"
                   type="email"
-                  placeholder="you@example.com"
+                  placeholder={he.emailPlaceholder}
                   className="pl-10"
                   {...register('email')}
                 />
@@ -267,13 +248,13 @@ export function RegisterPage() {
 
             {/* Password */}
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">{he.password}</Label>
               <div className="relative">
                 <IconLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <Input
                   id="password"
                   type="password"
-                  placeholder="••••••••"
+                  placeholder={he.newPasswordPlaceholder}
                   className="pl-10"
                   {...register('password')}
                 />
@@ -286,13 +267,13 @@ export function RegisterPage() {
 
             {/* Confirm Password */}
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword">Confirm Password</Label>
+              <Label htmlFor="confirmPassword">{he.confirmPassword}</Label>
               <div className="relative">
                 <IconLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <Input
                   id="confirmPassword"
                   type="password"
-                  placeholder="••••••••"
+                  placeholder={he.confirmPasswordPlaceholder}
                   className="pl-10"
                   {...register('confirmPassword')}
                 />
@@ -304,7 +285,7 @@ export function RegisterPage() {
 
             {/* Submit Button */}
             <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? 'Creating Account...' : 'Create Account'}
+              {isLoading ? he.registerButtonLoading : he.registerButton}
             </Button>
           </form>
 
@@ -331,9 +312,9 @@ export function RegisterPage() {
 
           {/* Login Link */}
           <p className="text-center text-sm text-gray-500">
-            Already have an account?{' '}
+            {he.haveAccount}{' '}
             <Link to="/auth/login" className="text-emerald-600 hover:underline font-medium">
-              Login
+              {he.loginLink}
             </Link>
           </p>
         </Card>

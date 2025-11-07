@@ -45,11 +45,7 @@ function RootRedirect() {
   }
 
   // Redirect based on auth state
-  return user ? (
-    <Navigate to="/dashboard" replace />
-  ) : (
-    <Navigate to="/auth/login" replace />
-  );
+  return user ? <Navigate to="/dashboard" replace /> : <Navigate to="/auth/login" replace />;
 }
 
 /**

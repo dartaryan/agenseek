@@ -103,7 +103,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
     } = supabase.auth.onAuthStateChange(async (event, session) => {
       if (!isMounted) return;
 
-      console.log('[AuthProvider] Auth state changed:', event, session?.user ? 'User present' : 'No user');
+      console.log(
+        '[AuthProvider] Auth state changed:',
+        event,
+        session?.user ? 'User present' : 'No user'
+      );
       setUser(session?.user ?? null);
 
       // CRITICAL: Set loading to false immediately when auth state changes
@@ -124,7 +128,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
               .eq('id', session.user.id)
               .single();
 
-            console.log('[AuthProvider] Profile fetch result:', { profileData, profileError, isMounted });
+            console.log('[AuthProvider] Profile fetch result:', {
+              profileData,
+              profileError,
+              isMounted,
+            });
 
             if (isMounted) {
               if (profileError) {
@@ -166,4 +174,3 @@ export function AuthProvider({ children }: AuthProviderProps) {
     </AuthContext.Provider>
   );
 }
-

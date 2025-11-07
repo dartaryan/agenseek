@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { motion } from 'framer-motion';
 import { /* IconBrandGoogle, */ IconLock, IconMail } from '@tabler/icons-react';
 import { Card } from '../../components/ui/card';
@@ -13,27 +12,20 @@ import { Checkbox } from '../../components/ui/checkbox';
 import { useToast } from '../../hooks/use-toast';
 import { useAuth } from '../../hooks/useAuth';
 import { signIn /* , signInWithProvider */ } from '../../lib/auth'; // signInWithProvider disabled until Story 2.4
-
-/**
- * Login form validation schema
- */
-const loginSchema = z.object({
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
-  rememberMe: z.boolean().optional(),
-});
-
-type LoginFormData = z.infer<typeof loginSchema>;
+import { hebrewLocale } from '../../lib/locale/he';
+import { loginSchema, type LoginFormData } from '../../lib/validation/authSchemas';
 
 /**
  * Login Page
  * Story 2.1: Full authentication with email/password and Google OAuth
+ * Story 2.11: Hebrew localization
  */
 export function LoginPage() {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { user, isLoading: authLoading } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
+  const he = hebrewLocale.auth;
   // const [isGoogleLoading, setIsGoogleLoading] = useState(false); // Disabled until Story 2.4
 
   const {
@@ -70,8 +62,8 @@ export function LoginPage() {
       console.log('[LoginPage] Sign in successful:', result);
 
       toast({
-        title: 'Welcome back!',
-        description: 'You have successfully logged in.',
+        title: he.loginSuccess,
+        description: he.loginSuccessDescription,
         variant: 'default',
       });
 
@@ -81,8 +73,8 @@ export function LoginPage() {
     } catch (error) {
       console.error('[LoginPage] Sign in error:', error);
       toast({
-        title: 'Login failed',
-        description: error instanceof Error ? error.message : 'Invalid email or password',
+        title: he.loginFailed,
+        description: error instanceof Error ? error.message : he.invalidPassword,
         variant: 'destructive',
       });
       setIsLoading(false);
@@ -120,16 +112,14 @@ export function LoginPage() {
         <Card className="p-8 space-y-6 shadow-xl">
           {/* Header */}
           <div className="text-center space-y-2">
-            <h1 className="text-4xl font-bold text-emerald-600">Agenseek</h1>
-            <p className="text-gray-600">BMAD Learning Hub</p>
+            <h1 className="text-4xl font-bold text-emerald-600">{he.brandName}</h1>
+            <p className="text-gray-600">{he.brandSubtitle}</p>
           </div>
 
           {/* Title */}
           <div className="space-y-2">
-            <h2 className="text-2xl font-semibold text-center">Welcome Back</h2>
-            <p className="text-center text-gray-500 text-sm">
-              Sign in to continue your learning journey
-            </p>
+            <h2 className="text-2xl font-semibold text-center">{he.welcomeBack}</h2>
+            <p className="text-center text-gray-500 text-sm">{he.loginToAccount}</p>
           </div>
 
           {/* Google OAuth - Disabled until Supabase OAuth is configured (Story 2.4) */}
@@ -157,13 +147,13 @@ export function LoginPage() {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             {/* Email Field */}
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">{he.email}</Label>
               <div className="relative">
                 <IconMail className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
                 <Input
                   id="email"
                   type="email"
-                  placeholder="you@example.com"
+                  placeholder={he.emailPlaceholder}
                   className="pl-10"
                   {...register('email')}
                   disabled={isLoading}
@@ -174,13 +164,13 @@ export function LoginPage() {
 
             {/* Password Field */}
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">{he.password}</Label>
               <div className="relative">
                 <IconLock className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
                 <Input
                   id="password"
                   type="password"
-                  placeholder="Enter your password"
+                  placeholder={he.passwordPlaceholder}
                   className="pl-10"
                   {...register('password')}
                   disabled={isLoading}
@@ -199,11 +189,11 @@ export function LoginPage() {
                   disabled={isLoading}
                 />
                 <Label htmlFor="rememberMe" className="text-sm font-normal cursor-pointer">
-                  Remember me
+                  {he.rememberMe}
                 </Label>
               </div>
               <Link to="/auth/forgot-password" className="text-sm text-emerald-600 hover:underline">
-                Forgot password?
+                {he.forgotPassword}
               </Link>
             </div>
 
@@ -213,15 +203,15 @@ export function LoginPage() {
               className="w-full bg-emerald-600 hover:bg-emerald-700"
               disabled={isLoading}
             >
-              {isLoading ? 'Signing in...' : 'Sign In'}
+              {isLoading ? he.loginButtonLoading : he.loginButton}
             </Button>
           </form>
 
           {/* Register Link */}
           <p className="text-center text-sm text-gray-500">
-            Don't have an account?{' '}
+            {he.noAccount}{' '}
             <Link to="/auth/register" className="text-emerald-600 hover:underline font-semibold">
-              Create account
+              {he.registerLink}
             </Link>
           </p>
         </Card>

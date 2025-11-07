@@ -102,31 +102,137 @@ export interface LocaleStrings {
 
   // Auth
   auth: {
+    // Brand & Headings
+    brandName: string;
+    brandSubtitle: string;
     welcomeBack: string;
     loginToAccount: string;
-    email: string;
-    password: string;
-    rememberMe: string;
-    forgotPassword: string;
-    loginButton: string;
-    noAccount: string;
-    registerLink: string;
     registerTitle: string;
     createAccount: string;
-    displayName: string;
+    createAccountSubtitle: string;
+    forgotPasswordTitle: string;
+    resetPasswordTitle: string;
+    setNewPasswordTitle: string;
+
+    // Form Fields
+    email: string;
+    emailPlaceholder: string;
+    password: string;
+    passwordPlaceholder: string;
+    newPassword: string;
+    newPasswordPlaceholder: string;
     confirmPassword: string;
+    confirmPasswordPlaceholder: string;
+    displayName: string;
+    displayNamePlaceholder: string;
+
+    // Buttons & Actions
+    loginButton: string;
+    loginButtonLoading: string;
     registerButton: string;
+    registerButtonLoading: string;
+    sendResetLink: string;
+    sendResetLinkLoading: string;
+    resetPasswordButton: string;
+    resetPasswordButtonLoading: string;
+    rememberMe: string;
+
+    // Links & Navigation
+    forgotPassword: string;
+    noAccount: string;
+    registerLink: string;
     haveAccount: string;
     loginLink: string;
-    resetPassword: string;
     backToLogin: string;
-    sendResetLink: string;
+    backToLoginWithIcon: string;
+
+    // Password Reset Flow
+    forgotPasswordSubtitle: string;
+    forgotPasswordSuccess: string;
+    resetLinkSent: string;
     checkEmail: string;
+    checkEmailDescription: string;
+    emailExpiryNote: string;
     didntReceiveEmail: string;
     resendLink: string;
-    newPassword: string;
+    setNewPasswordSubtitle: string;
+    verifyingLink: string;
+
+    // Success Messages
+    loginSuccess: string;
+    loginSuccessDescription: string;
+    registerSuccess: string;
+    registerSuccessDescription: string;
     resetSuccess: string;
+    resetSuccessDescription: string;
+    resetLinkSentSuccess: string;
+    resetLinkSentDescription: string;
+
+    // Error Messages
+    loginFailed: string;
+    registerFailed: string;
+    resetFailed: string;
     tokenInvalid: string;
+    tokenInvalidDescription: string;
+    tokenExpiredNote: string;
+    invalidEmail: string;
+    invalidPassword: string;
+    emailAlreadyExists: string;
+    passwordsDontMatch: string;
+    passwordTooShort: string;
+    passwordNoUppercase: string;
+    passwordNoLowercase: string;
+    passwordNoNumber: string;
+    unexpectedError: string;
+
+    // Password Strength
+    passwordStrength: string;
+    passwordStrengthWeak: string;
+    passwordStrengthMedium: string;
+    passwordStrengthStrong: string;
+
+    // Password Requirements
+    passwordRequirements: string;
+    requirementLength: string;
+    requirementUppercase: string;
+    requirementLowercase: string;
+    requirementNumber: string;
+
+    // OAuth (placeholder for future)
+    continueWithGoogle: string;
+    orContinueWith: string;
+
+    // Misc
+    invalidResetLink: string;
+    requestNewResetLink: string;
+    rememberPassword: string;
+    sentResetLinkTo: string;
+    loading: string;
+  };
+
+  // Account Deletion
+  accountDeletion: {
+    title: string;
+    warningTitle: string;
+    warningIrreversible: string;
+    warningDataLoss: string;
+    whatWillBeDeleted: string;
+    dataUserProfile: string;
+    dataLearningProgress: string;
+    dataNotesAndTasks: string;
+    dataCommentsAndQuestions: string;
+    dataBookmarksAndAchievements: string;
+    deleteAccountButton: string;
+    confirmDialogTitle: string;
+    confirmDialogWarning: string;
+    confirmInputLabel: string;
+    confirmInputPlaceholder: string;
+    confirmDeleteButton: string;
+    deleteAccountLoading: string;
+    deleteSuccessMessage: string;
+    deleteErrorMessage: string;
+    confirmTextHebrew: string;
+    confirmTextEnglish: string;
   };
 
   // Onboarding
@@ -261,31 +367,136 @@ export const hebrewLocale: LocaleStrings = {
   },
 
   auth: {
+    // Brand & Headings
+    brandName: 'Agenseek',
+    brandSubtitle: 'מרכז הלמידה של BMAD',
     welcomeBack: 'ברוכים השבים',
     loginToAccount: 'התחבר לחשבון שלך',
-    email: 'דואר אלקטרוני',
-    password: 'סיסמה',
-    rememberMe: 'זכור אותי',
-    forgotPassword: 'שכחת סיסמה?',
-    loginButton: 'התחברות',
-    noAccount: 'אין לך חשבון?',
-    registerLink: 'הרשמה',
     registerTitle: 'יצירת חשבון חדש',
     createAccount: 'הצטרף ל-Agenseek',
-    displayName: 'שם תצוגה',
-    confirmPassword: 'אימות סיסמה',
-    registerButton: 'הרשמה',
-    haveAccount: 'יש לך כבר חשבון?',
-    loginLink: 'התחברות',
-    resetPassword: 'איפוס סיסמה',
-    backToLogin: 'חזרה להתחברות',
-    sendResetLink: 'שלח קישור איפוס',
-    checkEmail: 'בדוק את המייל שלך',
-    didntReceiveEmail: 'לא קיבלת מייל?',
-    resendLink: 'שלח שוב',
+    createAccountSubtitle: 'התחל את מסע הלמידה שלך היום',
+    forgotPasswordTitle: 'שכחת סיסמה?',
+    resetPasswordTitle: 'איפוס סיסמה',
+    setNewPasswordTitle: 'הגדר סיסמה חדשה',
+
+    // Form Fields
+    email: 'אימייל',
+    emailPlaceholder: 'הזן את האימייל שלך',
+    password: 'סיסמה',
+    passwordPlaceholder: 'הזן סיסמה',
     newPassword: 'סיסמה חדשה',
-    resetSuccess: 'הסיסמה אופסה בהצלחה',
-    tokenInvalid: 'הקישור אינו תקף או פג תוקפו',
+    newPasswordPlaceholder: '••••••••',
+    confirmPassword: 'אמת סיסמה',
+    confirmPasswordPlaceholder: '••••••••',
+    displayName: 'שם מלא',
+    displayNamePlaceholder: 'יוסי כהן',
+
+    // Buttons & Actions
+    loginButton: 'התחבר',
+    loginButtonLoading: 'מתחבר...',
+    registerButton: 'הירשם',
+    registerButtonLoading: 'יוצר חשבון...',
+    sendResetLink: 'שלח קישור לאיפוס',
+    sendResetLinkLoading: 'שולח קישור...',
+    resetPasswordButton: 'אפס סיסמה',
+    resetPasswordButtonLoading: 'מאפס סיסמה...',
+    rememberMe: 'זכור אותי',
+
+    // Links & Navigation
+    forgotPassword: 'שכחת סיסמה?',
+    noAccount: 'אין לך חשבון?',
+    registerLink: 'הירשם',
+    haveAccount: 'כבר יש לך חשבון?',
+    loginLink: 'התחבר',
+    backToLogin: 'חזרה להתחברות',
+    backToLoginWithIcon: '← חזרה להתחברות',
+
+    // Password Reset Flow
+    forgotPasswordSubtitle: 'הזן את האימייל שלך כדי לקבל קישור לאיפוס סיסמה',
+    forgotPasswordSuccess: 'בדוק את האימייל שלך לקבלת קישור לאיפוס',
+    resetLinkSent: 'קישור איפוס נשלח!',
+    checkEmail: 'בדוק את האימייל שלך',
+    checkEmailDescription: 'בדוק את האימייל שלך לקבלת קישור לאיפוס',
+    emailExpiryNote: 'לחץ על הקישור במייל כדי לאפס את הסיסמה שלך. הקישור יפוג תוקפו בעוד שעה.',
+    didntReceiveEmail: 'לא קיבלת מייל? לחץ לשליחה מחדש',
+    resendLink: 'שלח שוב',
+    setNewPasswordSubtitle: 'הזן את הסיסמה החדשה שלך למטה',
+    verifyingLink: 'מאמת קישור איפוס...',
+
+    // Success Messages
+    loginSuccess: 'ברוכים השבים!',
+    loginSuccessDescription: 'התחברת בהצלחה',
+    registerSuccess: 'החשבון נוצר בהצלחה!',
+    registerSuccessDescription: 'בדוק את המייל שלך לאישור החשבון, לאחר מכן התחבר.',
+    resetSuccess: 'הסיסמה אופסה בהצלחה!',
+    resetSuccessDescription: 'כעת אתה יכול להתחבר עם הסיסמה החדשה שלך',
+    resetLinkSentSuccess: 'קישור איפוס נשלח!',
+    resetLinkSentDescription: 'בדוק את האימייל שלך לקבלת קישור לאיפוס הסיסמה',
+
+    // Error Messages
+    loginFailed: 'ההתחברות נכשלה',
+    registerFailed: 'ההרשמה נכשלה',
+    resetFailed: 'איפוס הסיסמה נכשל',
+    tokenInvalid: 'קישור איפוס לא תקף',
+    tokenInvalidDescription: 'קישור איפוס הסיסמה הזה אינו תקף או פג תוקפו.',
+    tokenExpiredNote: 'קישורי איפוס סיסמה פגים תוקף אחרי שעה מטעמי אבטחה.',
+    invalidEmail: 'אימייל לא תקין',
+    invalidPassword: 'אימייל או סיסמה שגויים',
+    emailAlreadyExists: 'האימייל כבר קיים',
+    passwordsDontMatch: 'הסיסמאות לא תואמות',
+    passwordTooShort: 'הסיסמה חייבת להכיל לפחות 8 תווים',
+    passwordNoUppercase: 'הסיסמה חייבת להכיל לפחות אות גדולה אחת',
+    passwordNoLowercase: 'הסיסמה חייבת להכיל לפחות אות קטנה אחת',
+    passwordNoNumber: 'הסיסמה חייבת להכיל לפחות ספרה אחת',
+    unexpectedError: 'אירעה שגיאה בלתי צפויה. אנא נסה שוב.',
+
+    // Password Strength
+    passwordStrength: 'חוזק סיסמה:',
+    passwordStrengthWeak: 'חלשה',
+    passwordStrengthMedium: 'בינונית',
+    passwordStrengthStrong: 'חזקה',
+
+    // Password Requirements
+    passwordRequirements: 'דרישות סיסמה:',
+    requirementLength: 'לפחות 8 תווים',
+    requirementUppercase: 'אות גדולה',
+    requirementLowercase: 'אות קטנה',
+    requirementNumber: 'ספרה',
+
+    // OAuth (placeholder for future)
+    continueWithGoogle: 'התחבר עם Google',
+    orContinueWith: 'או המשך עם',
+
+    // Misc
+    invalidResetLink: 'קישור איפוס לא תקף',
+    requestNewResetLink: 'בקש קישור איפוס חדש',
+    rememberPassword: 'זוכר את הסיסמה שלך?',
+    sentResetLinkTo: 'שלחנו קישור לאיפוס סיסמה אל:',
+    loading: 'טוען...',
+  },
+
+  accountDeletion: {
+    title: 'מחיקת חשבון',
+    warningTitle: 'אזהרה: פעולה זו בלתי הפיכה',
+    warningIrreversible: 'אזהרה: פעולה זו בלתי הפיכה',
+    warningDataLoss: 'כל הנתונים שלך יימחקו לצמיתות',
+    whatWillBeDeleted: 'מה יימחק:',
+    dataUserProfile: 'פרופיל המשתמש',
+    dataLearningProgress: 'התקדמות בלמידה',
+    dataNotesAndTasks: 'הערות ומשימות',
+    dataCommentsAndQuestions: 'תגובות ושאלות',
+    dataBookmarksAndAchievements: 'סימניות והישגים',
+    deleteAccountButton: 'מחק את החשבון שלי',
+    confirmDialogTitle: 'האם אתה בטוח?',
+    confirmDialogWarning: 'פעולה זו תמחק את כל הנתונים שלך ולא ניתן לשחזרם',
+    confirmInputLabel: "הקלד 'מחק' כדי לאשר",
+    confirmInputPlaceholder: "הקלד 'מחק' או 'DELETE'",
+    confirmDeleteButton: 'מחק לצמיתות',
+    deleteAccountLoading: 'מוחק חשבון...',
+    deleteSuccessMessage: 'החשבון נמחק בהצלחה. להתראות!',
+    deleteErrorMessage: 'מחיקת החשבון נכשלה. אנא נסה שוב.',
+    confirmTextHebrew: 'מחק',
+    confirmTextEnglish: 'DELETE',
   },
 
   onboarding: {

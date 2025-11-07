@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { motion } from 'framer-motion';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
@@ -10,23 +9,23 @@ import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import { useToast } from '../../hooks/use-toast';
 import { resetPassword } from '../../lib/auth';
+import { hebrewLocale } from '../../lib/locale/he';
+import {
+  forgotPasswordSchema,
+  type ForgotPasswordFormData,
+} from '../../lib/validation/authSchemas';
 import { IconMail, IconArrowLeft } from '@tabler/icons-react';
-
-// Zod validation schema
-const forgotPasswordSchema = z.object({
-  email: z.string().email('Please enter a valid email address'),
-});
-
-type ForgotPasswordFormData = z.infer<typeof forgotPasswordSchema>;
 
 /**
  * Forgot Password Page
  * Story 2.3: Send password reset email
+ * Story 2.11: Hebrew localization
  */
 export function ForgotPasswordPage() {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
+  const he = hebrewLocale.auth;
 
   const {
     register,
@@ -46,16 +45,15 @@ export function ForgotPasswordPage() {
       // Success!
       setEmailSent(true);
       toast({
-        title: 'Reset Link Sent!',
-        description: 'Check your email for the password reset link.',
+        title: he.resetLinkSentSuccess,
+        description: he.resetLinkSentDescription,
       });
     } catch (err: unknown) {
       console.error('Password reset error:', err);
-      const errorMessage =
-        err instanceof Error ? err.message : 'Failed to send reset email. Please try again.';
+      const errorMessage = err instanceof Error ? err.message : he.unexpectedError;
       toast({
         variant: 'destructive',
-        title: 'Reset Failed',
+        title: he.resetFailed,
         description: errorMessage,
       });
     } finally {
@@ -74,13 +72,11 @@ export function ForgotPasswordPage() {
         <Card className="p-8 space-y-6 shadow-xl border-emerald-100">
           {/* Header */}
           <div className="text-center space-y-2">
-            <h1 className="text-3xl font-bold text-emerald-600">Agenseek</h1>
-            <p className="text-gray-600">BMAD Learning Hub</p>
-            <h2 className="text-2xl font-semibold pt-2">Forgot Password?</h2>
+            <h1 className="text-3xl font-bold text-emerald-600">{he.brandName}</h1>
+            <p className="text-gray-600">{he.brandSubtitle}</p>
+            <h2 className="text-2xl font-semibold pt-2">{he.forgotPasswordTitle}</h2>
             <p className="text-sm text-gray-500">
-              {emailSent
-                ? 'Check your email for the reset link'
-                : 'Enter your email to receive a password reset link'}
+              {emailSent ? he.forgotPasswordSuccess : he.forgotPasswordSubtitle}
             </p>
           </div>
 
@@ -90,13 +86,13 @@ export function ForgotPasswordPage() {
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 {/* Email */}
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email Address</Label>
+                  <Label htmlFor="email">{he.email}</Label>
                   <div className="relative">
                     <IconMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                     <Input
                       id="email"
                       type="email"
-                      placeholder="you@example.com"
+                      placeholder={he.emailPlaceholder}
                       className="pl-10"
                       {...register('email')}
                     />
@@ -106,7 +102,7 @@ export function ForgotPasswordPage() {
 
                 {/* Submit Button */}
                 <Button type="submit" className="w-full" disabled={isLoading}>
-                  {isLoading ? 'Sending Reset Link...' : 'Send Reset Link'}
+                  {isLoading ? he.sendResetLinkLoading : he.sendResetLink}
                 </Button>
               </form>
 
@@ -117,7 +113,7 @@ export function ForgotPasswordPage() {
                   className="text-sm text-gray-600 hover:text-emerald-600 flex items-center gap-1"
                 >
                   <IconArrowLeft className="w-4 h-4" />
-                  Back to Login
+                  {he.backToLogin}
                 </Link>
               </div>
             </>
@@ -134,12 +130,9 @@ export function ForgotPasswordPage() {
 
                 {/* Instructions */}
                 <div className="text-center space-y-2">
-                  <p className="text-gray-600">We've sent a password reset link to:</p>
+                  <p className="text-gray-600">{he.sentResetLinkTo}</p>
                   <p className="font-semibold text-gray-900">{getValues('email')}</p>
-                  <p className="text-sm text-gray-500 pt-2">
-                    Click the link in the email to reset your password. The link will expire in 1
-                    hour.
-                  </p>
+                  <p className="text-sm text-gray-500 pt-2">{he.emailExpiryNote}</p>
                 </div>
 
                 {/* Didn't receive email? */}
@@ -152,7 +145,7 @@ export function ForgotPasswordPage() {
                     }}
                     className="text-sm text-emerald-600 hover:underline"
                   >
-                    Didn't receive the email? Click to resend
+                    {he.didntReceiveEmail}
                   </button>
                 </div>
 
@@ -160,7 +153,7 @@ export function ForgotPasswordPage() {
                 <Button variant="outline" className="w-full" asChild>
                   <Link to="/auth/login">
                     <IconArrowLeft className="w-4 h-4 mr-2" />
-                    Back to Login
+                    {he.backToLogin}
                   </Link>
                 </Button>
               </div>
