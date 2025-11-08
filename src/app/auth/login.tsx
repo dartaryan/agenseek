@@ -9,6 +9,7 @@ import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import { Checkbox } from '../../components/ui/checkbox';
+import { AnimatedBackground } from '../../components/ui/AnimatedBackground';
 import { useToast } from '../../hooks/use-toast';
 import { useAuth } from '../../hooks/useAuth';
 import { signIn, signInWithProvider } from '../../lib/auth';
@@ -100,14 +101,17 @@ export function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-4">
+    <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-4">
+      {/* Story 6.15: Animated background shapes */}
+      <AnimatedBackground variant="auth" />
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-md"
+        className="w-full max-w-md relative z-10"
       >
-        <Card className="p-8 space-y-6 shadow-xl">
+        <Card className="p-8 space-y-6 shadow-xl backdrop-blur-xl bg-white/90 border border-white/20">
           {/* Header */}
           <div className="text-center space-y-4">
             <img

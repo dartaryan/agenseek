@@ -7,6 +7,7 @@ import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
+import { AnimatedBackground } from '../../components/ui/AnimatedBackground';
 import { useToast } from '../../hooks/use-toast';
 import { updatePassword } from '../../lib/auth';
 import { supabase } from '../../lib/supabase';
@@ -130,8 +131,11 @@ export function ResetPasswordPage() {
   // Loading state while checking token
   if (isValidToken === null) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50">
-        <Card className="w-full max-w-md p-8">
+      <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50">
+        {/* Story 6.15: Animated background shapes */}
+        <AnimatedBackground variant="auth" />
+
+        <Card className="w-full max-w-md p-8 backdrop-blur-xl bg-white/90 border border-white/20 relative z-10">
           <div className="text-center space-y-4">
             <div className="animate-spin w-8 h-8 border-4 border-emerald-600 border-t-transparent rounded-full mx-auto" />
             <p className="text-gray-600">{he.verifyingLink}</p>
@@ -144,14 +148,17 @@ export function ResetPasswordPage() {
   // Invalid token state
   if (isValidToken === false) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-4">
+      <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-4">
+        {/* Story 6.15: Animated background shapes */}
+        <AnimatedBackground variant="auth" />
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="w-full max-w-md"
+          className="w-full max-w-md relative z-10"
         >
-          <Card className="p-8 space-y-6 shadow-xl border-red-100">
+          <Card className="p-8 space-y-6 shadow-xl backdrop-blur-xl bg-white/90 border border-white/20">
             <div className="text-center space-y-4">
               <div className="flex justify-center">
                 <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
@@ -181,14 +188,17 @@ export function ResetPasswordPage() {
 
   // Valid token - show password reset form
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-4">
+    <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-4">
+      {/* Story 6.15: Animated background shapes */}
+      <AnimatedBackground variant="auth" />
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-md"
+        className="w-full max-w-md relative z-10"
       >
-        <Card className="p-8 space-y-6 shadow-xl border-emerald-100">
+        <Card className="p-8 space-y-6 shadow-xl backdrop-blur-xl bg-white/90 border border-white/20">
           {/* Header */}
           <div className="text-center space-y-4">
             <img

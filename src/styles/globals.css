@@ -24,6 +24,150 @@
   .stat-value {
     font-size: clamp(1.5rem, 4vw, 2rem);
   }
+
+  /* Story 6.15: Glassmorphism for cards */
+  .glass-card {
+    backdrop-filter: blur(16px);
+    background-color: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Story 6.15: Animated Background Keyframes - Enhanced movement */
+@keyframes float-1 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(30px, -45px) rotate(8deg); }
+  50% { transform: translate(60px, -20px) rotate(15deg); }
+  75% { transform: translate(30px, -50px) rotate(8deg); }
+}
+
+@keyframes float-2 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(-40px, 35px) rotate(-12deg); }
+  66% { transform: translate(-20px, 55px) rotate(-6deg); }
+}
+
+@keyframes float-3 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-40px, 25px) rotate(-10deg); }
+  50% { transform: translate(-70px, 10px) rotate(-20deg); }
+  75% { transform: translate(-40px, 35px) rotate(-10deg); }
+}
+
+@keyframes float-4 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(45px, -25px) rotate(12deg); }
+  66% { transform: translate(20px, -40px) rotate(6deg); }
+}
+
+@keyframes float-5 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-35px, 40px) rotate(18deg); }
+}
+
+@keyframes float-6 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(40px, -30px) rotate(-18deg); }
+}
+
+@keyframes float-subtle-1 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(25px, -35px) rotate(8deg); }
+}
+
+@keyframes float-subtle-2 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-30px, 40px) rotate(-10deg); }
+}
+
+@keyframes float-subtle-3 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-35px, 25px) rotate(-12deg); }
+}
+
+@keyframes float-subtle-4 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(40px, -30px) rotate(10deg); }
+}
+
+@keyframes float-subtle-5 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-25px, 35px) rotate(12deg); }
+}
+
+@layer utilities {
+  /* Standard animations (8-15s) */
+  .animate-float-1 {
+    animation: float-1 12s ease-in-out infinite;
+  }
+
+  .animate-float-2 {
+    animation: float-2 10s ease-in-out infinite 1s;
+  }
+
+  .animate-float-3 {
+    animation: float-3 15s ease-in-out infinite 2s;
+  }
+
+  .animate-float-4 {
+    animation: float-4 9s ease-in-out infinite 3s;
+  }
+
+  .animate-float-5 {
+    animation: float-5 8s ease-in-out infinite 1.5s;
+  }
+
+  .animate-float-6 {
+    animation: float-6 11s ease-in-out infinite 2.5s;
+  }
+
+  /* Subtle animations (8-12s) */
+  .animate-float-subtle-1 {
+    animation: float-subtle-1 10s ease-in-out infinite;
+  }
+
+  .animate-float-subtle-2 {
+    animation: float-subtle-2 9s ease-in-out infinite 1s;
+  }
+
+  .animate-float-subtle-3 {
+    animation: float-subtle-3 12s ease-in-out infinite 2s;
+  }
+
+  .animate-float-subtle-4 {
+    animation: float-subtle-4 10s ease-in-out infinite 1.5s;
+  }
+
+  .animate-float-subtle-5 {
+    animation: float-subtle-5 8s ease-in-out infinite 2.5s;
+  }
+
+  /* VERY FAST animations (4-6s) */
+  .animate-float-very-fast-1 {
+    animation: float-1 5s ease-in-out infinite;
+  }
+
+  .animate-float-very-fast-2 {
+    animation: float-2 4s ease-in-out infinite 0.5s;
+  }
+
+  /* FAST animations (6-8s) */
+  .animate-float-fast-1 {
+    animation: float-3 7s ease-in-out infinite;
+  }
+
+  .animate-float-fast-2 {
+    animation: float-4 6s ease-in-out infinite 1s;
+  }
+
+  /* SLOW animations (15-20s) */
+  .animate-float-slow-1 {
+    animation: float-5 18s ease-in-out infinite;
+  }
+
+  .animate-float-slow-2 {
+    animation: float-6 20s ease-in-out infinite 2s;
+  }
 }
 
 @layer base {

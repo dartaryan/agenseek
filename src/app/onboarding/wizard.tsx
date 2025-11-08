@@ -27,6 +27,7 @@ import {
   IconLoader2,
 } from '@tabler/icons-react';
 import { Button } from '@/components/ui/button';
+import { AnimatedBackground } from '@/components/ui/AnimatedBackground';
 import { ProgressDots } from '@/components/onboarding/ProgressDots';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/lib/supabase';
@@ -71,7 +72,10 @@ export function OnboardingWizardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex flex-col">
+    <div className="relative min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex flex-col">
+      {/* Story 6.15: Animated background shapes */}
+      <AnimatedBackground variant="auth" />
+
       {/* Progress Stepper - Fixed at top with padding */}
       <div className="w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 py-6 px-6 sticky top-0 z-20 shadow-sm">
         <ProgressDots currentStep={currentStep} totalSteps={TOTAL_STEPS} />

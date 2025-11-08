@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { Header } from '../components/layout/Header';
 import { Sidebar } from '../components/layout/Sidebar';
 import { Footer } from '../components/layout/Footer';
+import { AnimatedBackground } from '../components/ui/AnimatedBackground';
 
 /**
  * Layout Component
@@ -17,7 +18,10 @@ import { Footer } from '../components/layout/Footer';
  */
 export function Layout() {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="relative flex min-h-screen flex-col">
+      {/* Story 6.15: Animated background shapes for main app */}
+      <AnimatedBackground variant="app" />
+
       {/* Header */}
       <Header />
 
