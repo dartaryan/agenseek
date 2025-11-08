@@ -141,18 +141,36 @@
 
 ## 🚀 איך להתחיל?
 
+### ⚠️ הנחיה קריטית - חובה לקרוא!
+
+**מדריכים ארוכים (30+ דקות, 40+ בלוקים) חייבים להיווצר בחלקים של 700 שורות!**
+
+**למה?** מערכת ה-AI מתקשה עם קבצים גדולים מדי בפעולה אחת.
+
+**איך?**
+1. **חלק 1:** צור metadata + tableOfContents + 3-4 סקשנים ראשונים (עד 700 שורות)
+2. **חלק 2:** קרא קובץ → הוסף 3-4 סקשנים נוספים (עד 700 שורות)
+3. **חלק 3:** המשך עד סיום המדריך
+4. **בדוק:** וודא JSON תקין ושלם
+
+**קרא את FOR-AI-AGENTS.md לפרטים מלאים על תהליך היצירה בחלקים!**
+
+---
+
 ### אופציה 1: מדריך בודד (מומלץ להתחלה)
 
 "Paige, צרי את המדריך הראשון:
 **core/glossary** - מילון מונחים של BMAD
 
 קראי את:
-1. content-stories/FOR-AI-AGENTS.md
+1. content-stories/FOR-AI-AGENTS.md (חובה! יש הנחיות חשובות!)
 2. content-stories/stories/core/glossary.md
 3. src/content/locale/he/guides/core/quick-start.json
 
 שמרי ב: src/content/locale/he/guides/core/glossary.json
-עדכני את: src/content/locale/he/guides/index.json"
+עדכני את: src/content/locale/he/guides/index.json
+
+**זכרי: אם המדריך ארוך - צרי אותו בחלקים של 700 שורות!"**
 
 ### אופציה 2: קטגוריה שלמה
 

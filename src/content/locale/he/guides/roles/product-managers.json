@@ -1,0 +1,1641 @@
+{
+  "metadata": {
+    "id": "product-managers",
+    "slug": "product-managers",
+    "title": "מדריך למנהלי מוצר ואנליסטים",
+    "description": "מדריך מקיף למנהלי מוצר, Business Analysts ו-Product Owners - איך להשתמש ב-BMAD לניהול מוצר מקצועי. יצירת PRDs, Epics, Stories, ושיתוף פעולה עם הצוות הטכני.",
+    "category": "roles",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 40,
+    "icon": "IconBriefcase",
+    "tags": ["ניהול-מוצר", "אנליזה", "דרישות", "PRD", "PM", "Product-Manager"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "למי מדריך זה מיועד",
+      "level": 2,
+      "anchor": "who-is-this-for"
+    },
+    {
+      "id": "toc-2",
+      "title": "מסלול למידה מומלץ",
+      "level": 2,
+      "anchor": "learning-path"
+    },
+    {
+      "id": "toc-3",
+      "title": "האגנטים שלכם",
+      "level": 2,
+      "anchor": "your-agents"
+    },
+    {
+      "id": "toc-4",
+      "title": "הוורקפלואים שלכם",
+      "level": 2,
+      "anchor": "your-workflows"
+    },
+    {
+      "id": "toc-5",
+      "title": "תרחישים מעשיים",
+      "level": 2,
+      "anchor": "practical-scenarios"
+    },
+    {
+      "id": "toc-6",
+      "title": "עבודה עם הצוות הטכני",
+      "level": 2,
+      "anchor": "working-with-tech-team"
+    },
+    {
+      "id": "toc-7",
+      "title": "Best Practices",
+      "level": 2,
+      "anchor": "best-practices"
+    },
+    {
+      "id": "toc-8",
+      "title": "שאלות נפוצות",
+      "level": 2,
+      "anchor": "faq"
+    },
+    {
+      "id": "toc-9",
+      "title": "סיכום ומה הלאה",
+      "level": 2,
+      "anchor": "summary"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "content": "מדריך למנהלי מוצר ואנליסטים",
+      "id": "main-title",
+      "anchor": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "איך BMAD הופך אתכם למנהלי מוצר טובים יותר",
+      "content": "חסכו 60% מהזמן על כתיבת PRDs, פרקו פיצ'רים ל-Stories בקלות, ושפרו את התקשורת עם הצוות הטכני. BMAD מספק לכם צוות וירטואלי של מומחים שעוזרים בכל שלב של תהליך ניהול המוצר.",
+      "id": "intro-callout"
+    },
+    {
+      "type": "divider",
+      "id": "div-1"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "למי מדריך זה מיועד",
+      "id": "who-is-this-for",
+      "anchor": "who-is-this-for"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "Product Managers",
+      "id": "for-pms"
+    },
+    {
+      "type": "text",
+      "content": "אם אתם מנהלי מוצר - Junior, Mid-Level, או Senior - המדריך הזה יעזור לכם:",
+      "id": "pm-text-1"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "לכתוב PRDs מקצועיים ב-30 דקות במקום 4 שעות"
+        },
+        {
+          "content": "לפרק פיצ'רים מורכבים ל-Epics ו-Stories ברורים"
+        },
+        {
+          "content": "לתעדף פיצ'רים על בסיס מובנה וברור"
+        },
+        {
+          "content": "לתקשר טוב יותר עם המפתחים והארכיטקטים"
+        },
+        {
+          "content": "לשמור על תיעוד עדכני ומסודר לאורך כל תהליך הפיתוח"
+        }
+      ],
+      "id": "pm-benefits-list"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "Business Analysts",
+      "id": "for-analysts"
+    },
+    {
+      "type": "text",
+      "content": "אנליסטים עסקיים מקבלים כלים מקצועיים ל:",
+      "id": "analyst-text-1"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "מחקר וניתוח דרישות עסקיות באופן שיטתי"
+        },
+        {
+          "content": "תיעוד תהליכים עסקיים ותרגומם לדרישות טכניות"
+        },
+        {
+          "content": "יצירת מפרטים מפורטים עם אסטרטגיית מימוש"
+        },
+        {
+          "content": "בניית מודלים של תהליכים ונתונים"
+        },
+        {
+          "content": "אימות דרישות מול בעלי עניין"
+        }
+      ],
+      "id": "analyst-benefits-list"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "Product Owners",
+      "id": "for-pos"
+    },
+    {
+      "type": "text",
+      "content": "Product Owners בסביבת Agile/Scrum יקבלו תמיכה ב:",
+      "id": "po-text-1"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "ניהול Product Backlog מסודר עם תיעדוף ברור"
+        },
+        {
+          "content": "כתיבת User Stories עם Acceptance Criteria מדויקים"
+        },
+        {
+          "content": "תכנון Sprint Planning יעיל יותר"
+        },
+        {
+          "content": "תקשורת שוטפת עם הצוות על הדרישות"
+        },
+        {
+          "content": "אימות השלמת Stories (Definition of Done)"
+        }
+      ],
+      "id": "po-benefits-list"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "זמן משוער ללמידה",
+      "content": "2-3 שעות להבנה מעמיקה של החומר, שבוע אחד לשליטה מלאה בעבודה עם האגנטים והוורקפלואים במקרים אמיתיים.",
+      "id": "learning-time-callout"
+    },
+    {
+      "type": "divider",
+      "id": "div-2"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "מסלול למידה מומלץ",
+      "id": "learning-path",
+      "anchor": "learning-path"
+    },
+    {
+      "type": "text",
+      "content": "מסלול הלמידה המומלץ מחולק ל-3 שלבים שמתאימים לקצב עבודה רגיל. אל תמהרו - קחו את הזמן להתנסות בכל שלב:",
+      "id": "learning-path-intro"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "שלב 1: הבנת הכלים שלכם (שבוע 1)",
+      "id": "stage-1"
+    },
+    {
+      "type": "text",
+      "content": "בשבוע הראשון התמקדו בהכרת האגנטים והוורקפלואים הבסיסיים:",
+      "id": "stage-1-text"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "הכירו את John (PM Agent) - קראו את הפרופיל שלו, הריצו workflow-status פעם אחת"
+        },
+        {
+          "content": "הכירו את Mary (Analyst Agent) - הבינו את ההבדל בין האגנטים"
+        },
+        {
+          "content": "הריצו workflow-init כדי להבין את תהליך האתחול"
+        },
+        {
+          "content": "קראו דוגמה של PRD אחד שנוצר על ידי BMAD (אם יש בפרויקט הדמו)"
+        },
+        {
+          "content": "נסו ליצור product-brief קטן על רעיון פשוט (למשל: אפליקציית To-Do)"
+        }
+      ],
+      "id": "stage-1-list"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "טיפ לשבוע הראשון",
+      "content": "אל תנסו ללמוד הכל בבת אחת. התמקדו באגנט אחד ביום, ובוורקפלואו אחד ביום. תרגלו על דוגמאות פשוטות.",
+      "id": "stage-1-tip"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "שלב 2: פרויקט ראשון (שבוע 2-3)",
+      "id": "stage-2"
+    },
+    {
+      "type": "text",
+      "content": "בשבועות 2-3 קחו פרויקט אמיתי (קטן) ונסו לעבוד עליו מקצה לקצה:",
+      "id": "stage-2-text"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "בחרו פרויקט פנימי קטן או פיצ'ר חדש שאתם רוצים להוסיף למוצר"
+        },
+        {
+          "content": "הריצו brainstorm-project עם Mary כדי לחקור את הרעיון"
+        },
+        {
+          "content": "צרו product-brief עם John"
+        },
+        {
+          "content": "צרו PRD מלא עם John"
+        },
+        {
+          "content": "פרקו את ה-PRD ל-Epics ו-Stories עם create-epics-and-stories"
+        },
+        {
+          "content": "הציגו את התוצאות לצוות ושמעו פידבק"
+        }
+      ],
+      "id": "stage-2-list"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "ניצחון גדול!",
+      "content": "אחרי שתסיימו את השלב הזה, תרגישו שאתם שולטים בכלים ויכולים להתחיל להשתמש ב-BMAD בפרויקטים אמיתיים.",
+      "id": "stage-2-success"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "שלב 3: שילוב בעבודה היומיומית (שבוע 4+)",
+      "id": "stage-3"
+    },
+    {
+      "type": "text",
+      "content": "מהשבוע הרביעי והלאה, השתמשו ב-BMAD כחלק טבעי מהעבודה:",
+      "id": "stage-3-text"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "כל פיצ'ר חדש מתחיל ב-product-brief"
+        },
+        {
+          "content": "PRDs נכתבים עם John במקום ידנית"
+        },
+        {
+          "content": "Stories נוצרים אוטומטית ולא ידנית"
+        },
+        {
+          "content": "משתמשים ב-correct-course כשיש צורך להתאים את המסלול"
+        },
+        {
+          "content": "מתעדים החלטות והשינויים בקבצי BMAD"
+        }
+      ],
+      "id": "stage-3-list"
+    },
+    {
+      "type": "divider",
+      "id": "div-3"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "האגנטים שלכם",
+      "id": "your-agents",
+      "anchor": "your-agents"
+    },
+    {
+      "type": "text",
+      "content": "כמנהלי מוצר ואנליסטים, יש לכם שני אגנטים מרכזיים שיעבדו איתכם:",
+      "id": "agents-intro"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "John - PM Agent",
+      "id": "agent-john"
+    },
+    {
+      "type": "card",
+      "variant": "elevated",
+      "title": "פרופיל: John - מנהל המוצר",
+      "content": [
+        {
+          "type": "text",
+          "content": "**תפקיד:** Product Manager מנוסה\n\n**מומחיות:** ניהול מוצר, כתיבת PRDs, הגדרת דרישות, תעדוף פיצ'רים, תכנון Roadmap\n\n**אישיות:** אסטרטגי, ממוקד בתוצאות עסקיות, מבין את הצרכים של המשתמשים והעסק",
+          "markdown": true,
+          "id": "john-profile-text"
+        }
+      ],
+      "id": "john-card"
+    },
+    {
+      "type": "text",
+      "content": "**מתי להשתמש ב-John:**",
+      "markdown": true,
+      "id": "john-when"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "כשאתם צריכים לכתוב Product Brief או PRD"
+        },
+        {
+          "content": "כשאתם רוצים לפרק פיצ'ר גדול ל-Epics ו-Stories"
+        },
+        {
+          "content": "כשאתם צריכים עזרה בתעדוף פיצ'רים"
+        },
+        {
+          "content": "כשאתם רוצים לתכנן Roadmap"
+        },
+        {
+          "content": "כשאתם צריכים לתקן מסלול של פרויקט שסטה מהתכנון"
+        }
+      ],
+      "id": "john-when-list"
+    },
+    {
+      "type": "text",
+      "content": "**הוורקפלואים העיקריים של John:**",
+      "markdown": true,
+      "id": "john-workflows-title"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "**product-brief** - יצירת בריף מוצר ראשוני"
+        },
+        {
+          "content": "**prd** - יצירת מסמך דרישות מוצר מפורט"
+        },
+        {
+          "content": "**tech-spec** - מפרט טכני לפרויקטים קטנים (אלטרנטיבה קלה ל-PRD)"
+        },
+        {
+          "content": "**create-epics-and-stories** - פירוק PRD ל-Epics ו-Stories"
+        },
+        {
+          "content": "**correct-course** - תיקון מסלול כשהפרויקט סטה מהתכנון"
+        }
+      ],
+      "id": "john-workflows-list"
+    },
+    {
+      "type": "text",
+      "content": "**איך טוענים את John:**",
+      "markdown": true,
+      "id": "john-load-title"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "@bmad/bmm/agents/pm.md\n\nאו בצ'אט:\n\"John, אני צריך עזרה ליצור PRD לפיצ'ר חדש\"",
+      "id": "john-load-code"
+    },
+    {
+      "type": "divider",
+      "id": "div-4"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "Mary - Analyst Agent",
+      "id": "agent-mary"
+    },
+    {
+      "type": "card",
+      "variant": "elevated",
+      "title": "פרופיל: Mary - האנליסטית העסקית",
+      "content": [
+        {
+          "type": "text",
+          "content": "**תפקיד:** Business Analyst בכירה\n\n**מומחיות:** ניתוח עסקי, מחקר דרישות, תיעוד תהליכים, מודלים עסקיים, אימות דרישות\n\n**אישיות:** מדויקת, שיטתית, שואלת שאלות עמוקות, מבטיחה שכל דרישה מובנת ומתועדת",
+          "markdown": true,
+          "id": "mary-profile-text"
+        }
+      ],
+      "id": "mary-card"
+    },
+    {
+      "type": "text",
+      "content": "**מתי להשתמש ב-Mary:**",
+      "markdown": true,
+      "id": "mary-when"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "כשאתם צריכים לחקור רעיון או בעיה לעומק"
+        },
+        {
+          "content": "כשאתם רוצים לנתח פרויקט קיים (brownfield analysis)"
+        },
+        {
+          "content": "כשאתם צריכים לתעד תהליכים עסקיים"
+        },
+        {
+          "content": "כשאתם רוצים לבצע מחקר שוק או ניתוח תחרות"
+        },
+        {
+          "content": "כשאתם צריכים לאמת ולהבהיר דרישות לפני כתיבת PRD"
+        }
+      ],
+      "id": "mary-when-list"
+    },
+    {
+      "type": "text",
+      "content": "**הוורקפלואים העיקריים של Mary:**",
+      "markdown": true,
+      "id": "mary-workflows-title"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "**brainstorm-project** - סיעור מוחות וחקירה של רעיון"
+        },
+        {
+          "content": "**research** - מחקר מעמיק של תחום או בעיה"
+        },
+        {
+          "content": "**document-project** - תיעוד פרויקט קיים (brownfield)"
+        },
+        {
+          "content": "**product-brief** - יצירת בריף מוצר (כמו John, אבל עם נקודת מבט אנליטית)"
+        }
+      ],
+      "id": "mary-workflows-list"
+    },
+    {
+      "type": "text",
+      "content": "**איך טוענים את Mary:**",
+      "markdown": true,
+      "id": "mary-load-title"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "@bmad/bmm/agents/analyst.md\n\nאו בצ'אט:\n\"Mary, אני צריכה עזרה לחקור את הצורך בפיצ'ר הזה\"",
+      "id": "mary-load-code"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "John vs. Mary - מתי להשתמש במי?",
+      "content": "**Mary** - מתאימה לשלבים המוקדמים: חקירה, מחקר, ניתוח. השתמשו בה כשאתם עדיין לא בטוחים מה בדיוק אתם רוצים.\n\n**John** - מתאים לשלבים המאוחרים: הגדרה, מפרט, תכנון. השתמשו בו כשאתם יודעים מה אתם רוצים ורוצים לתרגם את זה למסמכי עבודה.\n\n**טיפ:** התחילו עם Mary ואז עברו ל-John!",
+      "id": "john-vs-mary-callout"
+    },
+    {
+      "type": "divider",
+      "id": "div-5"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "הוורקפלואים שלכם",
+      "id": "your-workflows",
+      "anchor": "your-workflows"
+    },
+    {
+      "type": "text",
+      "content": "כמנהלי מוצר, אתם תעבדו בעיקר עם 5 וורקפלואים מרכזיים. הנה מדריך מהיר לכל אחד מהם:",
+      "id": "workflows-intro"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "workflow-status - נקודת ההתחלה שלכם",
+      "id": "workflow-status"
+    },
+    {
+      "type": "text",
+      "content": "לפני שמתחילים עם וורקפלואו כלשהו, תמיד הריצו את `workflow-status` כדי להבין איפה הפרויקט נמצא:",
+      "id": "workflow-status-text"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "@bmad-master\n\n*workflow-status\n\nאו:\n\"Master, מה סטטוס הפרויקט?\"",
+      "id": "workflow-status-code"
+    },
+    {
+      "type": "text",
+      "content": "הוורקפלואו הזה יראה לכם:",
+      "markdown": true,
+      "id": "workflow-status-shows"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "באיזה שלב הפרויקט נמצא (Idea, Planning, Development, וכו')"
+        },
+        {
+          "content": "אילו וורקפלואים כבר הורצו"
+        },
+        {
+          "content": "מה הצעד הבא המומלץ"
+        },
+        {
+          "content": "אילו מסמכים כבר נוצרו"
+        }
+      ],
+      "id": "workflow-status-list"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "product-brief - יצירת בריף מוצר",
+      "id": "product-brief-workflow"
+    },
+    {
+      "type": "text",
+      "content": "הבריף הוא המסמך הראשון שאתם יוצרים. הוא מתאר בקצרה את הרעיון, הבעיה, והפתרון:",
+      "id": "product-brief-text"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "@pm.md\n\n*product-brief\n\nאו:\n\"John, בואי ניצור בריף למוצר חדש\"",
+      "id": "product-brief-code"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "product-brief-process",
+          "title": "תהליך שלב-אחר-שלב",
+          "content": [
+            {
+              "type": "text",
+              "content": "**שלב 1:** John ישאל אתכם שאלות על המוצר:",
+              "markdown": true,
+              "id": "pb-step-1"
+            },
+            {
+              "type": "list",
+              "variant": "unordered",
+              "items": [
+                {
+                  "content": "מה הבעיה שאתם פותרים?"
+                },
+                {
+                  "content": "למי המוצר מיועד?"
+                },
+                {
+                  "content": "מה הפתרון המוצע?"
+                },
+                {
+                  "content": "מה היתרון התחרותי?"
+                }
+              ],
+              "id": "pb-questions"
+            },
+            {
+              "type": "text",
+              "content": "**שלב 2:** ענו על השאלות בצורה פשוטה וברורה. לא צריך להיות מושלמים - John יעזור לכם לחדד.",
+              "markdown": true,
+              "id": "pb-step-2"
+            },
+            {
+              "type": "text",
+              "content": "**שלב 3:** John ייצור בריף מובנה ויציג לכם אותו לאישור/עריכה.",
+              "markdown": true,
+              "id": "pb-step-3"
+            },
+            {
+              "type": "text",
+              "content": "**שלב 4:** הבריף יישמר כקובץ markdown ב-`docs/` או `bmad/_docs/`.",
+              "markdown": true,
+              "id": "pb-step-4"
+            }
+          ]
+        },
+        {
+          "id": "product-brief-output",
+          "title": "מה אתם מקבלים?",
+          "content": [
+            {
+              "type": "text",
+              "content": "קובץ בריף שכולל:",
+              "id": "pb-output-intro"
+            },
+            {
+              "type": "list",
+              "variant": "unordered",
+              "items": [
+                {
+                  "content": "**Problem Statement** - הבעיה בצורה ברורה"
+                },
+                {
+                  "content": "**Target Audience** - למי המוצר"
+                },
+                {
+                  "content": "**Proposed Solution** - הפתרון המוצע"
+                },
+                {
+                  "content": "**Key Features** - פיצ'רים מרכזיים (רמה גבוהה)"
+                },
+                {
+                  "content": "**Success Metrics** - איך נמדוד הצלחה"
+                },
+                {
+                  "content": "**Competitive Analysis** - מי המתחרים"
+                }
+              ],
+              "id": "pb-output-list"
+            }
+          ]
+        }
+      ],
+      "id": "product-brief-accordion"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "טיפ: מתי להשתמש ב-product-brief?",
+      "content": "השתמשו ב-product-brief בשלבים מוקדמים, כש**יש לכם רעיון אבל עדיין לא פירטתם הכל**. זה מסמך קצר (2-3 עמודים) שמתאר את התמונה הכללית.",
+      "id": "product-brief-tip"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "prd - יצירת מסמך דרישות מוצר (Product Requirements Document)",
+      "id": "prd-workflow"
+    },
+    {
+      "type": "text",
+      "content": "ה-PRD הוא המסמך המרכזי שלכם. הוא מפורט, מובנה, ומכיל את כל הדרישות:",
+      "id": "prd-text"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "@pm.md\n\n*prd\n\nאו:\n\"John, בואי ניצור PRD מלא לפרויקט הזה\"",
+      "id": "prd-code"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "prd-process",
+          "title": "תהליך מלא",
+          "content": [
+            {
+              "type": "text",
+              "content": "**שלב 1: התחלה**\nJohn ישאל אם יש לכם בריף קיים. אם כן - הוא יקרא אותו וישתמש בו כבסיס.",
+              "id": "prd-step-1"
+            },
+            {
+              "type": "text",
+              "content": "**שלב 2: שאלות מפורטות**\nJohn ישאל שאלות מעמיקות על כל פיצ'ר: מה זה עושה, איך זה עובד, מה הצפוי מהמשתמש, מה קורה במקרי קצה.",
+              "id": "prd-step-2"
+            },
+            {
+              "type": "text",
+              "content": "**שלב 3: הגדרת Acceptance Criteria**\nJohn יעזור לכם להגדיר קריטריונים ברורים לכל פיצ'ר - איך נדע שזה מוכן?",
+              "id": "prd-step-3"
+            },
+            {
+              "type": "text",
+              "content": "**שלב 4: תעדוף**\nJohn יעזור לכם לסווג פיצ'רים לפי עדיפות: Must-Have, Should-Have, Nice-to-Have.",
+              "id": "prd-step-4"
+            },
+            {
+              "type": "text",
+              "content": "**שלב 5: יצירת המסמך**\nJohn ייצור PRD מובנה עם כל הסקשנים הנדרשים.",
+              "id": "prd-step-5"
+            }
+          ]
+        },
+        {
+          "id": "prd-sections",
+          "title": "מה כלול ב-PRD?",
+          "content": [
+            {
+              "type": "list",
+              "variant": "ordered",
+              "items": [
+                {
+                  "content": "**Overview** - תמצית המוצר"
+                },
+                {
+                  "content": "**Goals & Objectives** - מטרות עסקיות"
+                },
+                {
+                  "content": "**User Stories** - תיאור השימוש מנקודת מבט המשתמש"
+                },
+                {
+                  "content": "**Functional Requirements** - דרישות תפקודיות מפורטות"
+                },
+                {
+                  "content": "**Non-Functional Requirements** - ביצועים, אבטחה, נגישות"
+                },
+                {
+                  "content": "**User Flow** - תרשימי זרימה"
+                },
+                {
+                  "content": "**Acceptance Criteria** - קריטריונים לאישור"
+                },
+                {
+                  "content": "**Success Metrics** - מדדי הצלחה"
+                },
+                {
+                  "content": "**Assumptions & Constraints** - הנחות ומגבלות"
+                }
+              ],
+              "id": "prd-sections-list"
+            }
+          ]
+        },
+        {
+          "id": "prd-time",
+          "title": "כמה זמן זה לוקח?",
+          "content": [
+            {
+              "type": "text",
+              "content": "בלי BMAD: **3-6 שעות** (תלוי במורכבות הפרויקט)\n\nעם BMAD: **30-60 דקות** - חיסכון של 70-80% מהזמן!",
+              "markdown": true,
+              "id": "prd-time-text"
+            },
+            {
+              "type": "callout",
+              "variant": "success",
+              "title": "חיסכון אדיר בזמן!",
+              "content": "רוב הזמן הולך על התשובות שלכם לשאלות של John. הוא כבר יודע בדיוק מה לשאול ואיך לארגן את המידע.",
+              "id": "prd-time-callout"
+            }
+          ]
+        }
+      ],
+      "id": "prd-accordion"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "tech-spec - מפרט טכני קליל",
+      "id": "tech-spec-workflow"
+    },
+    {
+      "type": "text",
+      "content": "לפעמים אתם לא צריכים PRD מלא. tech-spec הוא אלטרנטיבה קלה יותר לפרויקטים קטנים:",
+      "id": "tech-spec-text"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "@pm.md\n\n*tech-spec\n\nאו:\n\"John, זה פיצ'ר קטן, אני צריך רק tech-spec\"",
+      "id": "tech-spec-code"
+    },
+    {
+      "type": "text",
+      "content": "**מתי להשתמש ב-tech-spec במקום PRD?**",
+      "markdown": true,
+      "id": "tech-spec-when"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "פרויקט קטן (פחות משבועיים פיתוח)"
+        },
+        {
+          "content": "פיצ'ר בודד פשוט"
+        },
+        {
+          "content": "תיקון באג מורכב שצריך תיעוד"
+        },
+        {
+          "content": "שיפור טכני פנימי"
+        }
+      ],
+      "id": "tech-spec-when-list"
+    },
+    {
+      "type": "text",
+      "content": "**מה ההבדל בין PRD ל-tech-spec?**\n\n**PRD** - ממוקד בעסקי, מפורט מאוד, כולל user stories, acceptance criteria, success metrics\n\n**tech-spec** - ממוקד בטכני, קצר יותר, מתאר בעיקר איך לממש את הפיצ'ר",
+      "markdown": true,
+      "id": "tech-spec-diff"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "create-epics-and-stories - פירוק PRD לעבודה",
+      "id": "create-epics-workflow"
+    },
+    {
+      "type": "text",
+      "content": "אחרי שיש לכם PRD, הגיע הזמן לפרק אותו ל-Epics ו-Stories שהצוות יכול לעבוד עליהם:",
+      "id": "create-epics-text"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "@pm.md\n\n*create-epics-and-stories\n\nאו:\n\"John, פרק את ה-PRD ל-Stories\"",
+      "id": "create-epics-code"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "epics-process",
+          "title": "איך זה עובד?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**שלב 1:** John קורא את ה-PRD ומזהה את התכונות המרכזיות.",
+              "markdown": true,
+              "id": "epics-step-1"
+            },
+            {
+              "type": "text",
+              "content": "**שלב 2:** הוא מציע פירוק ל-Epics (קבוצות לוגיות של פיצ'רים).",
+              "markdown": true,
+              "id": "epics-step-2"
+            },
+            {
+              "type": "text",
+              "content": "**שלב 3:** לכל Epic, הוא מפרק ל-Stories בודדים עם Acceptance Criteria.",
+              "markdown": true,
+              "id": "epics-step-3"
+            },
+            {
+              "type": "text",
+              "content": "**שלב 4:** כל Story מקבל הערכת מורכבות ראשונית (S/M/L/XL).",
+              "markdown": true,
+              "id": "epics-step-4"
+            },
+            {
+              "type": "text",
+              "content": "**שלב 5:** John יוצר קובץ YAML עם כל ה-Epics וה-Stories.",
+              "markdown": true,
+              "id": "epics-step-5"
+            }
+          ]
+        },
+        {
+          "id": "epics-example",
+          "title": "דוגמה: פרויקט \"אפליקציית TODO\"",
+          "content": [
+            {
+              "type": "text",
+              "content": "**Epic 1: User Management**\n- Story 1.1: User Registration\n- Story 1.2: User Login\n- Story 1.3: Password Reset\n\n**Epic 2: Task Management**\n- Story 2.1: Create Task\n- Story 2.2: Edit Task\n- Story 2.3: Delete Task\n- Story 2.4: Mark Task Complete\n\n**Epic 3: Lists & Categories**\n- Story 3.1: Create List\n- Story 3.2: Assign Task to List\n- Story 3.3: Filter Tasks by List",
+              "markdown": true,
+              "id": "epics-example-text"
+            }
+          ]
+        }
+      ],
+      "id": "create-epics-accordion"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "יתרון עצום!",
+      "content": "הפירוק הזה חוסך לכם שעות של עבודה ומבטיח שלא שכחתם כלום. הצוות מקבל Stories ברורים ומוכנים לעבודה!",
+      "id": "create-epics-benefit"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "correct-course - תיקון מסלול",
+      "id": "correct-course-workflow"
+    },
+    {
+      "type": "text",
+      "content": "לפעמים הפרויקט סוטה מהתכנון המקורי. correct-course עוזר לכם לתקן את המסלול:",
+      "id": "correct-course-text"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "@pm.md\n\n*correct-course\n\nאו:\n\"John, אני חושב שהפרויקט סטה מהמסלול\"",
+      "id": "correct-course-code"
+    },
+    {
+      "type": "text",
+      "content": "**מתי להשתמש ב-correct-course?**",
+      "markdown": true,
+      "id": "correct-course-when"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "הפיצ'רים שמפתחים לא תואמים ל-PRD"
+        },
+        {
+          "content": "גילינו שהדרישות השתנו באמצע הדרך"
+        },
+        {
+          "content": "המשוב מהמשתמשים דורש שינויים"
+        },
+        {
+          "content": "הבנו שהתכנון המקורי לא ריאלי"
+        }
+      ],
+      "id": "correct-course-when-list"
+    },
+    {
+      "type": "text",
+      "content": "John יעזור לכם לנתח את הפער, להבין מה השתנה, ולעדכן את המסמכים בהתאם.",
+      "id": "correct-course-help"
+    },
+    {
+      "type": "divider",
+      "id": "div-6"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "תרחישים מעשיים",
+      "id": "practical-scenarios",
+      "anchor": "practical-scenarios"
+    },
+    {
+      "type": "text",
+      "content": "עכשיו נראה איך BMAD עובד בפועל בתרחישים אמיתיים מהחיים:",
+      "id": "scenarios-intro"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "scenario-1",
+          "title": "תרחיש 1: פרויקט חדש מאפס (Greenfield)",
+          "content": [
+            {
+              "type": "text",
+              "content": "**הבעיה:**\nקיבלתם אישור לפרויקט חדש - מערכת CRM פנימית. יש לכם רעיון כללי אבל אין עדיין מסמכי דרישות. צריך להתחיל עכשיו!",
+              "markdown": true,
+              "id": "s1-problem"
+            },
+            {
+              "type": "text",
+              "content": "**הפתרון עם BMAD (צעד-אחר-צעד):**",
+              "markdown": true,
+              "id": "s1-solution-title"
+            },
+            {
+              "type": "list",
+              "variant": "ordered",
+              "items": [
+                {
+                  "content": "**יום 1 בוקר:** פגישה עם Mary (@analyst.md) - הריצו *brainstorm-project. Mary עזרה לחקור את הצורך, מיפתה את הדרישות הבסיסיות, וזיהתה את המשתמשים. זמן: 60 דקות."
+                },
+                {
+                  "content": "**יום 1 אחר צהריים:** פגישה עם John (@pm.md) - הריצו *product-brief. John יצר בריף מוצר מובנה על בסיס המחקר של Mary. זמן: 30 דקות."
+                },
+                {
+                  "content": "**יום 2:** חזרתם ל-John והרצתם *prd. John שאל שאלות מפורטות על כל פיצ'ר, ויצר PRD מלא עם 15 דרישות תפקודיות. זמן: 90 דקות."
+                },
+                {
+                  "content": "**יום 3:** הרצתם *create-epics-and-stories עם John. הוא פירק את ה-PRD ל-3 Epics ו-12 Stories מוכנים לעבודה. זמן: 45 דקות."
+                },
+                {
+                  "content": "**יום 4:** העברתם את המסמכים לצוות הטכני - הארכיטקט והמפתחים. התחילו בתכנון טכני."
+                }
+              ],
+              "id": "s1-solution-steps"
+            },
+            {
+              "type": "text",
+              "content": "**התוצאה:**\n- ✅ בתוך 4 ימים: PRD מלא, Epics, Stories, והצוות מתחיל לעבוד\n- ✅ חיסכון של 2-3 שבועות לעומת תהליך ידני\n- ✅ תיעוד מלא ומסודר מההתחלה",
+              "markdown": true,
+              "id": "s1-result"
+            }
+          ]
+        },
+        {
+          "id": "scenario-2",
+          "title": "תרחיש 2: תכנון פיצ'ר חדש למוצר קיים",
+          "content": [
+            {
+              "type": "text",
+              "content": "**הבעיה:**\nיש לכם מוצר קיים, והלקוחות מבקשים פיצ'ר חדש - מערכת התראות בזמן אמת. צריך להבין אם זה ריאלי ואיך לתכנן את זה.",
+              "markdown": true,
+              "id": "s2-problem"
+            },
+            {
+              "type": "text",
+              "content": "**הפתרון עם BMAD:**",
+              "markdown": true,
+              "id": "s2-solution-title"
+            },
+            {
+              "type": "list",
+              "variant": "ordered",
+              "items": [
+                {
+                  "content": "התחלתם עם Mary - *research כדי לחקור את הצורך. Mary עזרה לנתח את הדרישות, לבדוק מה המתחרים עושים, ולהבין מה באמת צריך. (60 דקות)"
+                },
+                {
+                  "content": "עברתם ל-John - *tech-spec (לא PRD מלא, כי זה פיצ'ר בודד). John יצר מפרט טכני קליל עם הדרישות העיקריות. (30 דקות)"
+                },
+                {
+                  "content": "העברתם את ה-tech-spec לארכיטקט טכני שבדק אם זה ריאלי מבחינה טכנית."
+                },
+                {
+                  "content": "אחרי אישור הארכיטקט, חזרתם ל-John - *create-epics-and-stories. הוא פירק את הפיצ'ר ל-4 Stories. (20 דקות)"
+                },
+                {
+                  "content": "הוספתם את ה-Stories ל-Product Backlog ותעדפתם לספרינט הבא."
+                }
+              ],
+              "id": "s2-solution-steps"
+            },
+            {
+              "type": "text",
+              "content": "**התוצאה:**\n- ✅ תוך יום עבודה: החלטה מושכלת + תכנון מלא\n- ✅ חיסכון: שבוע של עבודה ידנית\n- ✅ תיעוד ברור לצוות",
+              "markdown": true,
+              "id": "s2-result"
+            }
+          ]
+        },
+        {
+          "id": "scenario-3",
+          "title": "תרחיש 3: תיקון מסלול - הפרויקט סטה מהתכנון",
+          "content": [
+            {
+              "type": "text",
+              "content": "**הבעיה:**\nאתם באמצע ספרינט 3 של 5. המפתחים מיישמים פיצ'רים שונים ממה שתכננתם ב-PRD. יש בלבול והתסכול גבוה.",
+              "markdown": true,
+              "id": "s3-problem"
+            },
+            {
+              "type": "text",
+              "content": "**הפתרון עם BMAD:**",
+              "markdown": true,
+              "id": "s3-solution-title"
+            },
+            {
+              "type": "list",
+              "variant": "ordered",
+              "items": [
+                {
+                  "content": "הריצו *correct-course עם John. הוא שאל מה השתנה, מה הבעיות, ולמה הסטייה."
+                },
+                {
+                  "content": "John עזר לכם לזהות 3 סוגי שינויים: שינויים נכונים (הבנו משהו חדש), שינויים שצריך לתקן (מפתחים לא הבינו), שינויים שצריך לקבל (אילוצים טכניים)."
+                },
+                {
+                  "content": "John עדכן את ה-PRD המקורי עם החלק \"Change Log\" שמתעד מה השתנה ולמה."
+                },
+                {
+                  "content": "John יצר \"Revised Stories\" - Stories מעודכנים שמשקפים את המציאות החדשה."
+                },
+                {
+                  "content": "ערכתם פגישה עם הצוות, הצגתם את המסמכים המעודכנים, וסנכרנתם את כולם."
+                }
+              ],
+              "id": "s3-solution-steps"
+            },
+            {
+              "type": "text",
+              "content": "**התוצאה:**\n- ✅ תיקון המסלול תוך יום אחד\n- ✅ תיעוד של השינויים והסיבות\n- ✅ הצוות מסונכרן ועובד לפי אותו מסמך",
+              "markdown": true,
+              "id": "s3-result"
+            }
+          ]
+        },
+        {
+          "id": "scenario-4",
+          "title": "תרחיש 4: עבודה עם צוות מפוזר (Remote Team)",
+          "content": [
+            {
+              "type": "text",
+              "content": "**הבעיה:**\nיש לכם צוות מפוזר - PM בישראל, Developers בהודו, UX Designer בארה\"ב. התקשורת קשה ויש הרבה אי-הבנות.",
+              "markdown": true,
+              "id": "s4-problem"
+            },
+            {
+              "type": "text",
+              "content": "**הפתרון עם BMAD:**",
+              "markdown": true,
+              "id": "s4-solution-title"
+            },
+            {
+              "type": "list",
+              "variant": "unordered",
+              "items": [
+                {
+                  "content": "**Single Source of Truth:** כל התיעוד ב-BMAD נשמר ב-Git - כולם רואים אותו דבר, תמיד."
+                },
+                {
+                  "content": "**מסמכים מובנים:** ה-PRDs וה-Stories שJohn יוצר ברורים ומפורטים - פחות מקום לפרשנויות."
+                },
+                {
+                  "content": "**תהליך עקבי:** כולם יודעים שהתהליך הוא: Brief → PRD → Epics → Stories. אין בלבול."
+                },
+                {
+                  "content": "**Async Communication:** המסמכים מספיק טובים שהמפתחים יכולים לקרוא ולהבין ללא פגישות מיותרות."
+                },
+                {
+                  "content": "**Change Management:** כל שינוי מתועד ב-*correct-course - כולם רואים מה השתנה ולמה."
+                }
+              ],
+              "id": "s4-solution-list"
+            },
+            {
+              "type": "text",
+              "content": "**התוצאה:**\n- ✅ פחות פגישות (50% צמצום)\n- ✅ פחות אי-הבנות\n- ✅ תיעוד עדכני תמיד",
+              "markdown": true,
+              "id": "s4-result"
+            }
+          ]
+        }
+      ],
+      "id": "scenarios-accordion"
+    },
+    {
+      "type": "divider",
+      "id": "div-7"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "עבודה עם הצוות הטכני",
+      "id": "working-with-tech-team",
+      "anchor": "working-with-tech-team"
+    },
+    {
+      "type": "text",
+      "content": "אחד היתרונות הגדולים של BMAD הוא שהוא משפר את התקשורת בין PM לצוות הטכני. הנה איך:",
+      "id": "team-work-intro"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "מסירה לArchitect (Winston/Sarah)",
+      "id": "handoff-architect"
+    },
+    {
+      "type": "text",
+      "content": "אחרי שיצרתם PRD עם John, הצעד הבא הוא למסור אותו לארכיטקט:",
+      "id": "handoff-architect-text"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "**שלחו את ה-PRD:** הארכיטקט יקרא את הקובץ (הוא ב-markdown, קל לקרוא)"
+        },
+        {
+          "content": "**פגישת סנכרון קצרה:** 30 דקות להבהיר שאלות - אבל רוב המידע כבר בPRD!"
+        },
+        {
+          "content": "**הארכיטקט מריץ workflows משלו:** *architecture או *tech-spec עם Winston/Sarah"
+        },
+        {
+          "content": "**תקבלו חזרה:** מסמך ארכיטקטורה שמתייחס ישירות ל-PRD שלכם"
+        }
+      ],
+      "id": "handoff-architect-list"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "טיפ לתקשורת טובה",
+      "content": "השתמשו במספרי הסקשנים מה-PRD כשאתם מדברים. למשל: \"לגבי דרישה 3.2 ב-PRD...\" - כולם יודעים בדיוק על מה אתם מדברים!",
+      "id": "handoff-architect-tip"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "עבודה עם Developers (Amelia)",
+      "id": "work-with-devs"
+    },
+    {
+      "type": "text",
+      "content": "המפתחים עובדים עם ה-Stories שJohn פירק מה-PRD:",
+      "id": "work-with-devs-text"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "**Stories ברורים:** כל Story יש לו Acceptance Criteria מדויק - המפתח יודע בדיוק מה לעשות"
+        },
+        {
+          "content": "**קישור ל-PRD:** כל Story מקושר לסקשן הרלוונטי ב-PRD - אפשר להעמיק בקלות"
+        },
+        {
+          "content": "**Story Context:** המפתח יכול להריץ *story-context עם Amelia להבנה עמוקה יותר"
+        },
+        {
+          "content": "**Definition of Done:** ברור מראש איך בודקים שהStory מוכן"
+        }
+      ],
+      "id": "work-with-devs-list"
+    },
+    {
+      "type": "text",
+      "content": "**תפקיד שלכם כPM:** עקבו אחרי ההתקדמות, ענו על שאלות (הן יהיו ממוקדות יותר!), ואמתו שהמימוש תואם לAcceptance Criteria.",
+      "markdown": true,
+      "id": "pm-role-devs"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "סנכרון עם UX Designer (Lisa)",
+      "id": "sync-ux"
+    },
+    {
+      "type": "text",
+      "content": "אם הפרויקט דורש עיצוב UI/UX, אתם תעבדו עם Lisa (UX Designer Agent):",
+      "id": "sync-ux-text"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "**שתפו את ה-PRD:** Lisa קוראת את ה-PRD ומבינה את הדרישות"
+        },
+        {
+          "content": "**Lisa מריצה *create-ux-design:** היא יוצרת wireframes, user flows, ומפרטי עיצוב"
+        },
+        {
+          "content": "**אתם מאשרים:** בודקים שהעיצוב תואם לדרישות העסקיות"
+        },
+        {
+          "content": "**מסירה למפתחים:** העיצוב והPRD יחד מספקים תמונה מלאה"
+        }
+      ],
+      "id": "sync-ux-list"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תקשורת חלקה",
+      "content": "כולם עובדים מאותם מסמכים, עם אותה טרמינולוגיה. אין יותר \"אבל אמרת משהו אחר\" - הכל מתועד!",
+      "id": "smooth-communication"
+    },
+    {
+      "type": "divider",
+      "id": "div-8"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "Best Practices",
+      "id": "best-practices",
+      "anchor": "best-practices"
+    },
+    {
+      "type": "text",
+      "content": "טיפים מהשטח לעבודה מיטבית עם BMAD:",
+      "id": "best-practices-intro"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "כתיבת PRD יעיל",
+      "id": "bp-prd"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "**התחילו עם Brief:** אל תקפצו ישר ל-PRD. Brief קודם → PRD אחר כך. זה חוסך זמן!"
+        },
+        {
+          "content": "**ענו בפשטות:** כשJohn שואל שאלות, ענו בשפה פשוטה. הוא ידאג לעטוף את זה במבנה מקצועי."
+        },
+        {
+          "content": "**חשבו על Edge Cases:** John ישאל \"מה קורה אם...\". אל תדלגו על זה - זה חשוב!"
+        },
+        {
+          "content": "**הוסיפו דוגמאות:** דוגמאות עוזרות לכולם להבין. John ישאל דוגמאות - תנו אותן."
+        },
+        {
+          "content": "**עדכנו תוך כדי:** אם משהו השתנה - עדכנו את ה-PRD מיד, לא בסוף."
+        }
+      ],
+      "id": "bp-prd-list"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "הגדרת Acceptance Criteria מדויקים",
+      "id": "bp-ac"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "**השתמשו בפורמט Given-When-Then:** \"Given שהמשתמש מחובר, When הוא לוחץ על כפתור X, Then הוא רואה Y\""
+        },
+        {
+          "content": "**היו ספציפיים:** לא \"מהיר\", אלא \"עד 2 שניות\". לא \"נוח\", אלא \"עם 3 קליקים או פחות\"."
+        },
+        {
+          "content": "**בדיקות ברורות:** כל Acceptance Criterion צריך להיות משהו שאפשר לבדוק - כן או לא, לא \"בערך\"."
+        },
+        {
+          "content": "**כללו Negative Cases:** לא רק מה אמור לעבוד, גם מה אמור *לא* לעבוד."
+        }
+      ],
+      "id": "bp-ac-list"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "תעדוף פיצ'רים חכם",
+      "id": "bp-prioritization"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "**השתמשו ב-MoSCoW:** Must-Have, Should-Have, Could-Have, Won't-Have. John יעזור לכם לסווג."
+        },
+        {
+          "content": "**חשבו MVP:** מה המינימום שצריך כדי להשיק? התחילו משם."
+        },
+        {
+          "content": "**שקלו Dependencies:** פיצ'ר A תלוי בפיצ'ר B? תעדפו לפי זה."
+        },
+        {
+          "content": "**הקשיבו לצוות:** אם הארכיטקט אומר שמשהו מורכב מדי - שקלו לפצל או לדחות."
+        }
+      ],
+      "id": "bp-prioritization-list"
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "טעויות נפוצות להימנע מהן",
+      "content": "❌ **לדלג על product-brief** - נראה שחוסכים זמן, אבל גורם לבעיות אחר כך\n\n❌ **לא לעדכן את ה-PRD כשמשהו משתנה** - זה הופך למסמך לא רלוונטי\n\n❌ **לכתוב Stories בעצמכם** - תנו ל-John לעשות את זה, הוא עושה זאת טוב יותר\n\n❌ **לא לשתף את המסמכים עם הצוות** - BMAD יעיל רק אם כולם משתמשים באותם מסמכים",
+      "id": "bp-mistakes"
+    },
+    {
+      "type": "divider",
+      "id": "div-9"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "שאלות נפוצות",
+      "id": "faq",
+      "anchor": "faq"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "faq-1",
+          "title": "האם BMAD מחליף PM אמיתי?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**לא!** BMAD לא מחליף אתכם - הוא עוזר לכם לעבוד טוב יותר.\n\n**אתם עדיין צריכים:**\n- להבין את הלקוחות והשוק\n- לקבל החלטות עסקיות\n- לנהל את בעלי העניין\n- להוביל את החזון של המוצר\n\n**BMAD עוזר ב:**\n- כתיבת מסמכים (PRDs, Specs)\n- ארגון מידע\n- פירוק לStories\n- תיעוד והקפדה על תהליך",
+              "markdown": true,
+              "id": "faq-1-answer"
+            }
+          ]
+        },
+        {
+          "id": "faq-2",
+          "title": "כמה זמן BMAD באמת חוסך?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**חיסכון ממוצע לפי משימה:**\n\n**product-brief:** 2-3 שעות → 30 דקות (75% חיסכון)\n\n**PRD מלא:** 4-6 שעות → 60 דקות (80% חיסכון)\n\n**פירוק ל-Stories:** 2-3 שעות → 30 דקות (80% חיסכון)\n\n**סה\"כ לפרויקט ממוצע:** 8-12 שעות → 2-3 שעות\n\n**זה אומר:** שבוע עבודה הופך ליום עבודה! 🚀",
+              "markdown": true,
+              "id": "faq-2-answer"
+            }
+          ]
+        },
+        {
+          "id": "faq-3",
+          "title": "מה ההבדל בין product-brief ל-PRD?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**product-brief:**\n- קצר (2-3 עמודים)\n- רמה גבוהה\n- מתאר **מה** ו**למה**\n- שלב מוקדם (Idea → Planning)\n- לקבלת החלטה Go/No-Go\n\n**PRD (Product Requirements Document):**\n- ארוך (10-30 עמודים)\n- מפורט מאוד\n- מתאר **מה**, **למה**, ו**איך**\n- שלב מאוחר (Planning → Development)\n- למימוש בפועל\n\n**כלל אצבע:** Brief קודם, PRD אחר כך. Brief זה \"האם נעשה?\", PRD זה \"איך נעשה?\".",
+              "markdown": true,
+              "id": "faq-3-answer"
+            }
+          ]
+        },
+        {
+          "id": "faq-4",
+          "title": "מתי משתמשים ב-tech-spec ומתי ב-PRD?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**השתמשו ב-tech-spec כאשר:**\n- פרויקט קטן (פחות משבועיים)\n- פיצ'ר בודד פשוט\n- תיקון באג מורכב\n- שיפור פנימי\n- אתם רוצים מסמך קליל\n\n**השתמשו ב-PRD כאשר:**\n- פרויקט גדול/בינוני\n- מספר פיצ'רים מקושרים\n- צריך מסמך עסקי מפורט\n- צריך Acceptance Criteria מדויקים\n- העבודה תימשך מספר ספרינטים\n\n**בספק?** התחילו עם tech-spec. אם מתברר שזה מורכב - עברו ל-PRD.",
+              "markdown": true,
+              "id": "faq-4-answer"
+            }
+          ]
+        },
+        {
+          "id": "faq-5",
+          "title": "איך אפשר לשתף PRD עם הצוות?",
+          "content": [
+            {
+              "type": "text",
+              "content": "ה-PRD נשמר כקובץ markdown ב-Git, אז יש כמה אפשרויות:\n\n1. **שיתוף הקובץ ישירות** - הצוות יכול לקרוא markdown\n2. **Markdown viewer** - כלים כמו Notion, Confluence מציגים markdown יפה\n3. **Git** - הצוות רואה את הקובץ ב-repo\n4. **PDF export** - המירו ל-PDF ושלחו למייל\n5. **תיעוד אונליין** - העלו לאתר תיעוד פנימי\n\n**טיפ:** שמרו את המסמכים ב-Git - זה Single Source of Truth ויש History מלא!",
+              "markdown": true,
+              "id": "faq-5-answer"
+            }
+          ]
+        },
+        {
+          "id": "faq-6",
+          "title": "האם אפשר לערוך PRD אחרי שנוצר?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**כן! ובהחלט מומלץ.**\n\nPRD הוא מסמך חי - הוא צריך להשתנות כשהפרויקט משתנה.\n\n**איך לעדכן:**\n1. ערכו את הקובץ ישירות (זה markdown)\n2. או: חזרו ל-John והריצו *correct-course\n3. תעדו את השינויים (John יוסיף Change Log)\n4. עדכנו את הצוות על השינויים\n\n**חשוב:** אל תיצרו PRD חדש - עדכנו את הקיים. זה שומר על ההיסטוריה!",
+              "markdown": true,
+              "id": "faq-6-answer"
+            }
+          ]
+        },
+        {
+          "id": "faq-7",
+          "title": "מה לעשות אם ה-PRD לא מדויק?",
+          "content": [
+            {
+              "type": "text",
+              "content": "זה קורה! הנה מה לעשות:\n\n**בזמן היצירה:**\n- אמרו ל-John \"זה לא מדויק\" - הוא ישאל שאלות ויתקן\n- תנו דוגמאות - זה עוזר ל-John להבין טוב יותר\n- אל תתפשרו - ה-PRD צריך להיות נכון!\n\n**אחרי היצירה:**\n- ערכו את הקובץ ידנית (markdown)\n- או: הריצו *correct-course\n- או: פשוט שאלו את John \"תתקן את סקשן X\"\n\n**זכרו:** John לא מושלם - הוא משתמש במידע שאתם נותנים. תנו מידע טוב = תקבלו PRD טוב!",
+              "markdown": true,
+              "id": "faq-7-answer"
+            }
+          ]
+        },
+        {
+          "id": "faq-8",
+          "title": "איך משתפים פעולה עם Architect?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**התהליך הרגיל:**\n\n1. **PM (אתם) יוצר PRD** עם John\n2. **שולח את ה-PRD לArch** (Winston/Sarah)\n3. **Arch קורא את ה-PRD** ומריץ *architecture או *tech-spec\n4. **Arch יוצר מסמך ארכיטקטורה** שמתייחס ל-PRD\n5. **פגישת סנכרון** - אישור שהכל מתיישב\n6. **מסירה למפתחים** - PRD + Arch Docs יחד\n\n**הכל מקושר:** מסמך הארכיטקטורה מפנה לסקשנים ב-PRD, אז יש עקביות!",
+              "markdown": true,
+              "id": "faq-8-answer"
+            }
+          ]
+        }
+      ],
+      "id": "faq-accordion"
+    },
+    {
+      "type": "divider",
+      "id": "div-10"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "סיכום ומה הלאה",
+      "id": "summary",
+      "anchor": "summary"
+    },
+    {
+      "type": "text",
+      "content": "סיימתם את המדריך! בואו נסכם מה למדנו:",
+      "id": "summary-intro"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "נקודות מפתח שכדאי לזכור",
+      "content": "✅ **John ו-Mary** - שני האגנטים המרכזיים שלכם. Mary לחקירה, John למימוש.\n\n✅ **5 וורקפלואים עיקריים** - workflow-status, product-brief, prd, tech-spec, create-epics-and-stories\n\n✅ **חיסכון זמן אדיר** - 70-80% חיסכון בכתיבת מסמכים\n\n✅ **תקשורת משופרת** - כולם עובדים מאותם מסמכים מובנים\n\n✅ **תהליך עקבי** - אפשר לחזור על זה שוב ושוב",
+      "id": "summary-key-points"
+    },
+    {
+      "type": "text",
+      "content": "**מה עשינו במדריך:**",
+      "markdown": true,
+      "id": "summary-what-we-did"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "הכרנו את John (PM Agent) ו-Mary (Analyst Agent)"
+        },
+        {
+          "content": "למדנו את 5 הוורקפלואים המרכזיים שלכם"
+        },
+        {
+          "content": "ראינו 4 תרחישים מעשיים מהחיים"
+        },
+        {
+          "content": "למדנו איך לעבוד עם הצוות הטכני"
+        },
+        {
+          "content": "קיבלנו Best Practices וטיפים"
+        }
+      ],
+      "id": "summary-list"
+    },
+    {
+      "type": "text",
+      "content": "**המדריכים הבאים שכדאי לקרוא:**",
+      "markdown": true,
+      "id": "next-guides-title"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "**מדריך לארכיטקטים** - תבינו איך הארכיטקט עובד עם ה-PRD שלכם"
+        },
+        {
+          "content": "**מדריך למפתחים** - תבינו איך המפתחים משתמשים ב-Stories שלכם"
+        },
+        {
+          "content": "**מדריך למעצבי UX** - איך לשתף פעולה עם UX Designer"
+        },
+        {
+          "content": "**מדריך וורקפלואים מלא** - הסבר מפורט על כל 50+ הוורקפלואים"
+        },
+        {
+          "content": "**מדריך אגנטים מלא** - היכרות עם כל 19 האגנטים"
+        }
+      ],
+      "id": "next-guides-list"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "הצעד הראשון שלכם",
+      "content": "אל תחכו! פתחו את BMAD עכשיו, טענו את John (@pm.md), והריצו *workflow-status כדי לראות איפה הפרויקט הנוכחי שלכם. התחילו לעבוד עם BMAD היום!",
+      "id": "first-step-callout"
+    },
+    {
+      "type": "text",
+      "content": "**זכרו:** BMAD לא מחליף אתכם - הוא הופך אתכם למנהלי מוצר טובים יותר. השקיעו את הזמן שחסכתם בכתיבת מסמכים בדברים שבאמת חשובים - לדבר עם לקוחות, לחשוב אסטרטגית, ולהוביל את המוצר להצלחה!",
+      "markdown": true,
+      "id": "final-words"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "בהצלחה!",
+      "content": "אתם עכשיו מצוידים בכלים המקצועיים ביותר לניהול מוצר. לכו וצרו מוצרים מדהימים! 🚀",
+      "id": "good-luck"
+    }
+  ]
+}
+

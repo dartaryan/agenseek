@@ -13,6 +13,7 @@ import {
 import { cn } from '../../lib/utils';
 import { hebrewLocale } from '../../lib/locale/he';
 import { useSidebar } from '../../contexts/SidebarContext';
+import { useAuth } from '../../hooks/useAuth';
 import { Button } from '../ui/button';
 import {
   Tooltip,
@@ -58,6 +59,7 @@ const adminItems: NavItem[] = [
 export function Sidebar() {
   const location = useLocation();
   const { isCollapsed, toggle } = useSidebar();
+  const { profile } = useAuth();
 
   const isActive = (href: string) => {
     if (href === '/dashboard') {
@@ -65,6 +67,9 @@ export function Sidebar() {
     }
     return location.pathname.startsWith(href);
   };
+
+  // Check if user is admin
+  const isAdmin = profile?.is_admin ?? false;
 
   return (
     <>
@@ -132,30 +137,32 @@ export function Sidebar() {
               })}
             </div>
 
-            {/* Admin Section */}
-            <div className="pt-4 mt-4 border-t">
-              <p className="px-3 mb-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                {hebrewLocale.sections.administration}
-              </p>
-              {adminItems.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <Link
-                    key={item.href}
-                    to={item.href}
-                    className={cn(
-                      'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                      isActive(item.href)
-                        ? 'bg-emerald-100 text-emerald-900'
-                        : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
-                    )}
-                  >
-                    <Icon className="w-5 h-5" stroke={1.5} />
-                    <span>{item.name}</span>
-                  </Link>
-                );
-              })}
-            </div>
+            {/* Admin Section - Only visible for admins */}
+            {isAdmin && (
+              <div className="pt-4 mt-4 border-t">
+                <p className="px-3 mb-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                  {hebrewLocale.sections.administration}
+                </p>
+                {adminItems.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={item.href}
+                      to={item.href}
+                      className={cn(
+                        'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                        isActive(item.href)
+                          ? 'bg-emerald-100 text-emerald-900'
+                          : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                      )}
+                    >
+                      <Icon className="w-5 h-5" stroke={1.5} />
+                      <span>{item.name}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
           </nav>
         )}
 

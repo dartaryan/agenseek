@@ -462,17 +462,6 @@
     "path": "practical/updates-upgrades.json"
   },
   {
-    "id": "faq-basics",
-    "title": "שאלות ותשובות - חלק 1א: יסודות",
-    "description": "שאלות נפוצות על יסודות BMAD - מה זה, איך זה עובד, מה צריך כדי להתחיל, והבנת המושגים הבסיסיים. תשובות ברורות וקצרות.",
-    "category": "faq",
-    "difficulty": "beginner",
-    "estimatedMinutes": 20,
-    "icon": "IconQuestionMark",
-    "tags": ["שאלות", "יסודות", "FAQ", "מתחילים"],
-    "path": "faq/basics.json"
-  },
-  {
     "id": "faq-installation",
     "title": "שאלות ותשובות - חלק 1ב: התקנה",
     "description": "שאלות נפוצות על התקנה והגדרה - בעיות נפוצות, תאימות למערכות שונות, הגדרת IDEs, ותיקון שגיאות התקנה.",
@@ -526,28 +515,6 @@
     "icon": "IconQuestionMark",
     "tags": ["שאלות", "צוות", "שיתוף-פעולה", "ניהול"],
     "path": "faq/team.json"
-  },
-  {
-    "id": "onboarding-day1",
-    "title": "הדרכה ליום הראשון",
-    "description": "מה לעשות ביום הראשון עם BMAD - התקנה, סביבת עבודה, הפקודה הראשונה, וניצחון ראשון. מדריך צעד-אחר-צעד ליום 1.",
-    "category": "onboarding",
-    "difficulty": "beginner",
-    "estimatedMinutes": 30,
-    "icon": "IconCalendar",
-    "tags": ["הדרכה", "יום-ראשון", "onboarding", "התחלה"],
-    "path": "onboarding/day1.json"
-  },
-  {
-    "id": "onboarding-week1",
-    "title": "הדרכה לשבוע הראשון",
-    "description": "תוכנית השבוע הראשון - הכרת האגנטים הבסיסיים, ריצת וורקפלואים ראשונים, בניית פרויקט קטן, והשגת בטחון במערכת.",
-    "category": "onboarding",
-    "difficulty": "beginner",
-    "estimatedMinutes": 45,
-    "icon": "IconCalendar",
-    "tags": ["הדרכה", "שבוע-ראשון", "onboarding", "למידה"],
-    "path": "onboarding/week1.json"
   },
   {
     "id": "onboarding-month1",

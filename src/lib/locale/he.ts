@@ -262,6 +262,32 @@ export interface LocaleStrings {
       guidesCompleted: string;
       activeUsers: string;
       placeholder: string;
+      totalGuidesViewed: string;
+      avgCompletionRate: string;
+      activeUsersLast30Days: string;
+      activityGraph: string;
+      dailyActiveUsers: string;
+      guideViewsPerDay: string;
+      popularGuides: string;
+      recentActivity: string;
+      dateRange: string;
+      exportCSV: string;
+      guideTitle: string;
+      views: string;
+      uniqueViewers: string;
+      avgTime: string;
+      completionRate: string;
+      actions: string;
+      activityType: string;
+      user: string;
+      target: string;
+      timestamp: string;
+      last7Days: string;
+      last30Days: string;
+      last90Days: string;
+      allTime: string;
+      noData: string;
+      loading: string;
     };
   };
 
@@ -792,6 +818,32 @@ export const hebrewLocale: LocaleStrings = {
       guidesCompleted: 'מדריכים שהושלמו',
       activeUsers: 'משתמשים פעילים',
       placeholder: 'לוח בקרה לניהול ייושם בשלב 9',
+      totalGuidesViewed: 'סך צפיות במדריכים',
+      avgCompletionRate: 'שיעור השלמה ממוצע',
+      activeUsersLast30Days: 'משתמשים פעילים (30 יום)',
+      activityGraph: 'גרף פעילות',
+      dailyActiveUsers: 'משתמשים פעילים יומי',
+      guideViewsPerDay: 'צפיות במדריכים ליום',
+      popularGuides: 'מדריכים פופולריים',
+      recentActivity: 'פעילות אחרונה',
+      dateRange: 'טווח תאריכים',
+      exportCSV: 'ייצא CSV',
+      guideTitle: 'כותרת',
+      views: 'צפיות',
+      uniqueViewers: 'צופים ייחודיים',
+      avgTime: 'זמן ממוצע',
+      completionRate: 'שיעור השלמה',
+      actions: 'פעולות',
+      activityType: 'סוג פעילות',
+      user: 'משתמש',
+      target: 'יעד',
+      timestamp: 'זמן',
+      last7Days: '7 ימים אחרונים',
+      last30Days: '30 ימים אחרונים',
+      last90Days: '90 ימים אחרונים',
+      allTime: 'כל הזמן',
+      noData: 'אין נתונים',
+      loading: 'טוען...',
     },
   },
 
