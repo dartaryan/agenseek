@@ -154,6 +154,44 @@ export interface LocaleStrings {
       title: string;
       description: string;
       placeholder: string;
+      // Story 6.1 - Note Editor
+      newNote: string;
+      editNote: string;
+      noteTitle: string;
+      noteTitlePlaceholder: string;
+      noteContent: string;
+      noteContentPlaceholder: string;
+      tags: string;
+      tagsPlaceholder: string;
+      associatedGuide: string;
+      noGuide: string;
+      selectGuide: string;
+      saving: string;
+      saved: string;
+      notSaved: string;
+      saveAndClose: string;
+      saveNote: string;
+      deleteNote: string;
+      confirmDelete: string;
+      confirmDeleteMessage: string;
+      noteCreated: string;
+      noteUpdated: string;
+      noteDeleted: string;
+      noNotes: string;
+      noNotesDescription: string;
+      searchNotes: string;
+      filterByGuide: string;
+      filterByTags: string;
+      sortByRecent: string;
+      sortByCreated: string;
+      sortByAlphabetical: string;
+      sortByGuide: string;
+      notesCount: string;
+      // Story 6.3 - Quick Note
+      addNote: string;
+      addToNote: string;
+      quickNote: string;
+      textSelected: string;
     };
     tasks: {
       title: string;
@@ -500,6 +538,44 @@ export const hebrewLocale: LocaleStrings = {
       title: 'ההערות שלי',
       description: 'נהל את ההערות שלך',
       placeholder: 'מערכת הערות תיושם בשלב 6',
+      // Story 6.1 - Note Editor
+      newNote: 'הערה חדשה',
+      editNote: 'עריכת הערה',
+      noteTitle: 'כותרת ההערה',
+      noteTitlePlaceholder: 'הזן כותרת להערה',
+      noteContent: 'תוכן ההערה',
+      noteContentPlaceholder: 'התחל לכתוב את ההערה שלך כאן...',
+      tags: 'תגיות',
+      tagsPlaceholder: 'הוסף תגיות (הקש Enter להוספה)',
+      associatedGuide: 'מדריך משוייך',
+      noGuide: 'ללא מדריך משוייך',
+      selectGuide: 'בחר מדריך',
+      saving: 'שומר...',
+      saved: 'נשמר',
+      notSaved: 'לא נשמר',
+      saveAndClose: 'שמור וסגור',
+      saveNote: 'שמור הערה',
+      deleteNote: 'מחק הערה',
+      confirmDelete: 'האם למחוק?',
+      confirmDeleteMessage: 'האם אתה בטוח שברצונך למחוק הערה זו? פעולה זו אינה הפיכה.',
+      noteCreated: 'ההערה נוצרה בהצלחה',
+      noteUpdated: 'ההערה עודכנה בהצלחה',
+      noteDeleted: 'ההערה נמחקה בהצלחה',
+      noNotes: 'אין לך הערות',
+      noNotesDescription: 'התחל ליצור הערות למדריכים',
+      searchNotes: 'חפש הערות...',
+      filterByGuide: 'סנן לפי מדריך',
+      filterByTags: 'סנן לפי תגיות',
+      sortByRecent: 'מעודכנים לאחרונה',
+      sortByCreated: 'נוצרו לאחרונה',
+      sortByAlphabetical: 'א-ת',
+      sortByGuide: 'לפי מדריך',
+      notesCount: 'הערות',
+      // Story 6.3 - Quick Note
+      addNote: 'הוסף הערה',
+      addToNote: 'הוסף להערה',
+      quickNote: 'הערה מהירה',
+      textSelected: 'טקסט נבחר',
     },
     tasks: {
       title: 'המשימות שלי',

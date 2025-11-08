@@ -26,6 +26,7 @@
     "@radix-ui/react-toast": "^1.2.15",
     "@supabase/supabase-js": "^2.80.0",
     "@tabler/icons-react": "^3.35.0",
+    "@tiptap/extension-placeholder": "^3.10.4",
     "@tiptap/react": "^3.10.2",
     "@tiptap/starter-kit": "^3.10.2",
     "@types/react-syntax-highlighter": "^15.5.13",
