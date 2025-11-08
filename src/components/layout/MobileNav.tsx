@@ -130,11 +130,11 @@ export function MobileNav() {
         {/* Header Section - Story 0.3: User Avatar */}
         <SheetHeader className="border-b p-4">
           <div className="flex items-center gap-3">
-            <UserAvatar 
-              config={avatarConfig} 
-              userId={user?.id} 
+            <UserAvatar
+              config={avatarConfig}
+              userId={user?.id}
               size="md"
-              className="h-10 w-10" 
+              className="h-10 w-10"
             />
             <div className="flex-1 text-right">
               <p className="font-semibold text-sm">{displayName}</p>
