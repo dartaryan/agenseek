@@ -453,7 +453,7 @@ export function DashboardPage() {
   const displayName = profile?.display_name || user?.email?.split('@')[0] || 'משתמש';
 
   return (
-    <div className="p-6 md:p-8 max-w-7xl mx-auto">
+    <div className="px-4 md:px-6 lg:px-8 py-6 md:py-8 max-w-[1600px] mx-auto">
       <div className="space-y-8">
         {/* Welcome Header */}
         <div className="space-y-2">
@@ -466,7 +466,7 @@ export function DashboardPage() {
         </div>
 
         {/* Main Grid - 3 columns responsive */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
           {/* Left Column - Progress & Stats */}
           <div className="space-y-6">
             <OverallProgressCard

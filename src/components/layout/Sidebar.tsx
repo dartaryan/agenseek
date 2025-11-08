@@ -53,7 +53,7 @@ export function Sidebar() {
   };
 
   return (
-    <aside className="hidden md:flex md:w-64 md:flex-col border-r bg-gray-50/40">
+    <aside className="hidden md:flex md:w-60 md:flex-col border-r bg-gray-50/40">
       <nav className="flex-1 space-y-1 px-3 py-4">
         {/* Main Navigation */}
         <div className="space-y-1">

@@ -252,7 +252,7 @@ export function GuidesPage() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
       <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             {/* Title and count */}
             <div>
@@ -355,12 +355,12 @@ export function GuidesPage() {
       </div>
 
       {/* Main content with sidebar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-col lg:flex-row gap-8">
+      <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-8 py-8">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
           {/* Filters Sidebar */}
           <aside
             className={cn(
-              'lg:w-64 flex-shrink-0',
+              'lg:w-55 flex-shrink-0',
               'fixed lg:static inset-y-0 right-0 z-40 lg:z-0',
               'bg-white dark:bg-gray-800 lg:bg-transparent',
               'border-l lg:border-none border-gray-200 dark:border-gray-700',
@@ -515,10 +515,10 @@ export function GuidesPage() {
               <motion.div
                 layout
                 className={cn(
-                  'grid gap-6',
+                  'grid',
                   viewMode === 'grid'
-                    ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3'
-                    : 'grid-cols-1'
+                    ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 md:gap-5 lg:gap-6'
+                    : 'grid-cols-1 gap-4'
                 )}
               >
                 <AnimatePresence mode="popLayout">
