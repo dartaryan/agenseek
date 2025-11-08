@@ -12,6 +12,7 @@ interface AuthContextType {
   profile: Profile | null;
   isLoading: boolean;
   error: AuthError | null;
+  refreshProfile: () => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -34,6 +35,29 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<AuthError | null>(null);
+
+  // Function to manually refresh profile (useful after profile updates)
+  const refreshProfile = async () => {
+    if (!user?.id) return;
+
+    try {
+      console.log('[AuthProvider] Manually refreshing profile for user:', user.id);
+      const { data: profileData, error: profileError } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', user.id)
+        .single();
+
+      if (profileError) {
+        console.error('[AuthProvider] Error refreshing profile:', profileError);
+      } else {
+        console.log('[AuthProvider] Profile refreshed successfully');
+        setProfile(profileData);
+      }
+    } catch (err) {
+      console.error('[AuthProvider] Exception during profile refresh:', err);
+    }
+  };
 
   useEffect(() => {
     let isMounted = true;
@@ -170,7 +194,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, profile, isLoading, error }}>
+    <AuthContext.Provider value={{ user, profile, isLoading, error, refreshProfile }}>
       {children}
     </AuthContext.Provider>
   );

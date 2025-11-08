@@ -42,7 +42,7 @@ export function OnboardingWizardPage() {
   const [selectedExperience, setSelectedExperience] = useState<string | null>(null);
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { user } = useAuth();
+  const { user, refreshProfile } = useAuth();
 
   const handleNext = () => {
     if (currentStep < TOTAL_STEPS) {
@@ -72,13 +72,13 @@ export function OnboardingWizardPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex flex-col">
-      {/* Progress Dots */}
-      <div className="fixed top-8 left-1/2 -translate-x-1/2 z-10">
+      {/* Progress Stepper - Fixed at top with padding */}
+      <div className="w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 py-6 px-6 sticky top-0 z-20 shadow-sm">
         <ProgressDots currentStep={currentStep} totalSteps={TOTAL_STEPS} />
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex items-center justify-center p-6">
+      <div className="flex-1 flex items-center justify-center p-6 pt-12">
         <div className="w-full max-w-2xl">
           <AnimatePresence mode="wait">
             {currentStep === 1 && (
@@ -120,6 +120,7 @@ export function OnboardingWizardPage() {
                 selectedExperience={selectedExperience || ''}
                 onComplete={() => navigate('/dashboard')}
                 onBack={handleBack}
+                refreshProfile={refreshProfile}
               />
             )}
           </AnimatePresence>
@@ -722,6 +723,7 @@ interface LearningPathStepProps {
   selectedExperience: string;
   onComplete: () => void;
   onBack: () => void;
+  refreshProfile: () => Promise<void>;
 }
 
 interface Guide {
@@ -744,6 +746,7 @@ function LearningPathStep({
   selectedExperience,
   onComplete,
   onBack,
+  refreshProfile,
 }: LearningPathStepProps) {
   const [isGenerating, setIsGenerating] = useState(true);
   const [guideSections, setGuideSections] = useState<GuideSection[]>([]);
@@ -856,6 +859,9 @@ function LearningPathStep({
         .eq('id', userId);
 
       if (error) throw error;
+
+      // Refresh the profile in auth context so completed_onboarding is immediately reflected
+      await refreshProfile();
 
       // Fire confetti celebration
       confetti({

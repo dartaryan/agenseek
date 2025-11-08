@@ -32,6 +32,8 @@ import {
   type StatusFilter,
   type SortOption,
 } from '@/stores/guide-filters';
+import { categorizeGuidesByLearningPath } from '@/lib/learning-path';
+import { useAuth } from '@/hooks/useAuth';
 import { cn } from '@/lib/utils';
 
 /**
@@ -66,6 +68,7 @@ export function GuidesPage() {
   const catalog = getGuideCatalog();
   const categoryCounts = getCategoryCounts();
   const totalCount = getTotalGuideCount();
+  const { profile } = useAuth();
 
   // Filter state from Zustand
   const {
@@ -146,32 +149,61 @@ export function GuidesPage() {
 
         case 'recommended':
         default: {
-          // Personalized: Core first, then based on user role, then others
-          const categoryPriority: Record<GuideCategory, number> = {
-            core: 5,
-            onboarding: 4,
-            roles: 3,
-            agents: 2,
-            workflows: 2,
-            practical: 2,
-            faq: 1,
-          };
+          // Personalized based on user preferences (role, interests, experience)
+          // If user has preferences, use smart categorization
+          if (profile && (profile.role || (profile.interests && profile.interests.length > 0))) {
+            const categorized = categorizeGuidesByLearningPath(catalog, {
+              role: profile.role,
+              interests: profile.interests,
+              experience_level: profile.experience_level,
+            });
 
-          const aPriority = categoryPriority[a.category] || 0;
-          const bPriority = categoryPriority[b.category] || 0;
+            // Assign priority based on personalized category
+            // core = 4, recommended = 3, interests = 2, optional = 1
+            const getPriority = (guideId: string): number => {
+              if (categorized.core.some((g) => g.id === guideId)) return 4;
+              if (categorized.recommended.some((g) => g.id === guideId)) return 3;
+              if (categorized.interests.some((g) => g.id === guideId)) return 2;
+              return 1; // optional
+            };
 
-          if (aPriority !== bPriority) {
-            return bPriority - aPriority;
+            const aPriority = getPriority(a.id);
+            const bPriority = getPriority(b.id);
+
+            if (aPriority !== bPriority) {
+              return bPriority - aPriority;
+            }
+
+            // Within same personalized category, sort by estimated minutes (shorter first)
+            return a.estimatedMinutes - b.estimatedMinutes;
+          } else {
+            // Fallback: Generic priority if no preferences set
+            const categoryPriority: Record<GuideCategory, number> = {
+              core: 5,
+              onboarding: 4,
+              roles: 3,
+              agents: 2,
+              workflows: 2,
+              practical: 2,
+              faq: 1,
+            };
+
+            const aPriority = categoryPriority[a.category] || 0;
+            const bPriority = categoryPriority[b.category] || 0;
+
+            if (aPriority !== bPriority) {
+              return bPriority - aPriority;
+            }
+
+            // Within same priority, sort by estimated minutes (shorter first)
+            return a.estimatedMinutes - b.estimatedMinutes;
           }
-
-          // Within same priority, sort by estimated minutes (shorter first)
-          return a.estimatedMinutes - b.estimatedMinutes;
         }
       }
     });
 
     return guides;
-  }, [catalog, selectedCategories, selectedDifficulties, statusFilter, sortBy, progressData]);
+  }, [catalog, selectedCategories, selectedDifficulties, statusFilter, sortBy, progressData, profile]);
 
   /**
    * Get active filter chips for display
