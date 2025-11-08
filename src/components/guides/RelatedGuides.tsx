@@ -32,7 +32,7 @@ export function RelatedGuides({ currentGuideId, category, className = '' }: Rela
   }
 
   return (
-    <div className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 ${className}`}>
+    <div className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-md p-6 ${className}`}>
       <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
         מדריכים קשורים
       </h3>
@@ -42,7 +42,7 @@ export function RelatedGuides({ currentGuideId, category, className = '' }: Rela
           <Link
             key={guide.id}
             to={`/guides/${guide.id}`}
-            className="group block p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-emerald-500 dark:hover:border-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 transition-all"
+            className="group block p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-emerald-500 dark:hover:border-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 shadow-sm hover:shadow-md transition-all"
           >
             <div className="flex items-start gap-3">
               {/* Icon - Story 5.1.3: Fixed to use IconBook */}

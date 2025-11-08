@@ -26,6 +26,7 @@ import { NotesPage } from './notes';
 import { TasksPage } from './tasks';
 import { ProfilePage } from './profile';
 import { SettingsPage } from './settings';
+import { SearchResultsPage } from './search';
 
 // Admin pages
 import { AdminDashboardPage } from './admin';
@@ -156,6 +157,10 @@ export const router = createBrowserRouter([
       {
         path: '/settings',
         element: <SettingsPage />,
+      },
+      {
+        path: '/search',
+        element: <SearchResultsPage />,
       },
     ],
   },

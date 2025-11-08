@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   IconBook,
@@ -6,6 +7,8 @@ import {
   IconChecklist,
   IconTrophy,
   IconArrowRight,
+  IconChevronDown,
+  IconChevronUp,
 } from '@tabler/icons-react';
 import { Card } from '../ui/card';
 import { Button } from '../ui/button';
@@ -167,6 +170,7 @@ function ActivityItem({ activity }: { activity: Activity }) {
 
 export function ActivityFeedCard({ activities }: ActivityFeedCardProps) {
   const hasActivities = activities.length > 0;
+  const [isExpanded, setIsExpanded] = useState(false);
 
   // Story 5.5 - Group activities by day
   const groupedActivities = groupActivitiesByDay(activities);
@@ -177,19 +181,46 @@ export function ActivityFeedCard({ activities }: ActivityFeedCardProps) {
   return (
     <Card className="p-6">
       <div className="space-y-4">
-        {/* Header */}
-        <div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-            {hebrewLocale.dashboard.recentActivity}
-          </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            {hebrewLocale.dashboard.recentActivityDescription}
-          </p>
+        {/* Header with Expand/Collapse Button */}
+        <div className="flex items-start justify-between gap-2">
+          <div className="flex-1">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+              {hebrewLocale.dashboard.recentActivity}
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              {hebrewLocale.dashboard.recentActivityDescription}
+            </p>
+          </div>
+          {hasActivities && activities.length > 2 && (
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 rounded-lg transition-colors"
+              aria-label={isExpanded ? 'כווץ' : 'הרחב'}
+            >
+              {isExpanded ? (
+                <>
+                  <IconChevronUp className="w-4 h-4" stroke={2} />
+                  <span>כווץ</span>
+                </>
+              ) : (
+                <>
+                  <IconChevronDown className="w-4 h-4" stroke={2} />
+                  <span>הצג הכל</span>
+                </>
+              )}
+            </button>
+          )}
         </div>
 
         {/* Activity List or Empty State */}
         {hasActivities ? (
-          <div className="space-y-4">
+          <div
+            className={`space-y-4 transition-all duration-300 ${
+              !isExpanded && activities.length > 2
+                ? 'max-h-[200px] overflow-hidden'
+                : 'max-h-none'
+            }`}
+          >
             {/* Story 5.5 - Render activities grouped by day */}
             {dayGroupOrder.map((group) => {
               const groupActivities = groupedActivities[group];

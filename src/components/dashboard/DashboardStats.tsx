@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   IconClock,
   IconNote,
@@ -5,6 +6,8 @@ import {
   IconFlame,
   IconTrendingUp,
   IconCircleCheck,
+  IconChevronDown,
+  IconChevronUp,
 } from '@tabler/icons-react';
 import { Card } from '../ui/card';
 import { hebrewLocale } from '../../lib/locale/he';
@@ -62,7 +65,7 @@ interface StatCardProps {
 
 function StatCard({ icon: Icon, label, value, iconColor, trend }: StatCardProps) {
   return (
-    <div className="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+    <div className="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow">
       {/* Story 6.10: Horizontal layout with ample spacing, stacked vertically */}
       <div className="flex items-center gap-4">
         {/* Icon - small and subtle */}
@@ -119,58 +122,107 @@ export function DashboardStats({
   currentStreakDays,
   trends,
 }: DashboardStatsProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
     <Card className="p-6">
       <div className="space-y-4">
-        {/* Header */}
-        <div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-            {hebrewLocale.dashboard.statistics}
-          </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            {hebrewLocale.dashboard.statisticsDescription}
-          </p>
+        {/* Header with Expand/Collapse Button */}
+        <div className="flex items-start justify-between gap-2">
+          <div className="flex-1">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+              {hebrewLocale.dashboard.statistics}
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              {hebrewLocale.dashboard.statisticsDescription}
+            </p>
+          </div>
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 rounded-lg transition-colors"
+            aria-label={isExpanded ? 'כווץ' : 'הרחב'}
+          >
+            {isExpanded ? (
+              <>
+                <IconChevronUp className="w-4 h-4" stroke={2} />
+                <span>כווץ</span>
+              </>
+            ) : (
+              <>
+                <IconChevronDown className="w-4 h-4" stroke={2} />
+                <span>הצג הכל</span>
+              </>
+            )}
+          </button>
         </div>
 
-        {/* Stats Grid - Story 5.6: Now includes 5 stats with trends */}
-        {/* Story 6.10: Vertical stack layout for maximum space and readability */}
-        <div className="space-y-3">
-          <StatCard
-            icon={IconClock}
-            label={hebrewLocale.dashboard.totalReadingTime}
-            value={formatReadingTime(totalReadingTimeMinutes)}
-            iconColor="bg-gradient-to-br from-blue-500 to-blue-600"
-            trend={trends?.readingTime}
-          />
-          <StatCard
-            icon={IconCircleCheck}
-            label={hebrewLocale.dashboard.guidesCompleted}
-            value={guidesCompleted}
-            iconColor="bg-gradient-to-br from-emerald-500 to-emerald-600"
-            trend={trends?.guidesCompleted}
-          />
-          <StatCard
-            icon={IconFlame}
-            label={hebrewLocale.dashboard.currentStreak}
-            value={`${currentStreakDays} ${hebrewLocale.dashboard.days}`}
-            iconColor="bg-gradient-to-br from-orange-500 to-orange-600"
-            trend={trends?.streak}
-          />
-          <StatCard
-            icon={IconNote}
-            label={hebrewLocale.dashboard.notesCreated}
-            value={notesCreated}
-            iconColor="bg-gradient-to-br from-purple-500 to-purple-600"
-            trend={trends?.notes}
-          />
-          <StatCard
-            icon={IconChecklist}
-            label={hebrewLocale.dashboard.tasksCompleted}
-            value={tasksCompleted}
-            iconColor="bg-gradient-to-br from-teal-500 to-teal-600"
-            trend={trends?.tasks}
-          />
-        </div>
+        {/* Collapsed Summary (top 3 stats) */}
+        {!isExpanded && (
+          <div className="space-y-3">
+            <StatCard
+              icon={IconClock}
+              label={hebrewLocale.dashboard.totalReadingTime}
+              value={formatReadingTime(totalReadingTimeMinutes)}
+              iconColor="bg-gradient-to-br from-blue-500 to-blue-600"
+              trend={trends?.readingTime}
+            />
+            <StatCard
+              icon={IconCircleCheck}
+              label={hebrewLocale.dashboard.guidesCompleted}
+              value={guidesCompleted}
+              iconColor="bg-gradient-to-br from-emerald-500 to-emerald-600"
+              trend={trends?.guidesCompleted}
+            />
+            <StatCard
+              icon={IconFlame}
+              label={hebrewLocale.dashboard.currentStreak}
+              value={`${currentStreakDays} ${hebrewLocale.dashboard.days}`}
+              iconColor="bg-gradient-to-br from-orange-500 to-orange-600"
+              trend={trends?.streak}
+            />
+          </div>
+        )}
+
+        {/* Expanded View (all stats) */}
+        {isExpanded && (
+          <div className="space-y-3">
+            <StatCard
+              icon={IconClock}
+              label={hebrewLocale.dashboard.totalReadingTime}
+              value={formatReadingTime(totalReadingTimeMinutes)}
+              iconColor="bg-gradient-to-br from-blue-500 to-blue-600"
+              trend={trends?.readingTime}
+            />
+            <StatCard
+              icon={IconCircleCheck}
+              label={hebrewLocale.dashboard.guidesCompleted}
+              value={guidesCompleted}
+              iconColor="bg-gradient-to-br from-emerald-500 to-emerald-600"
+              trend={trends?.guidesCompleted}
+            />
+            <StatCard
+              icon={IconFlame}
+              label={hebrewLocale.dashboard.currentStreak}
+              value={`${currentStreakDays} ${hebrewLocale.dashboard.days}`}
+              iconColor="bg-gradient-to-br from-orange-500 to-orange-600"
+              trend={trends?.streak}
+            />
+            <StatCard
+              icon={IconNote}
+              label={hebrewLocale.dashboard.notesCreated}
+              value={notesCreated}
+              iconColor="bg-gradient-to-br from-purple-500 to-purple-600"
+              trend={trends?.notes}
+            />
+            <StatCard
+              icon={IconChecklist}
+              label={hebrewLocale.dashboard.tasksCompleted}
+              value={tasksCompleted}
+              iconColor="bg-gradient-to-br from-teal-500 to-teal-600"
+              trend={trends?.tasks}
+            />
+          </div>
+        )}
       </div>
     </Card>
   );
