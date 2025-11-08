@@ -27,6 +27,13 @@ export interface LocaleStrings {
     quickLinks: string;
   };
 
+  // Sidebar
+  sidebar: {
+    navigation: string;
+    collapseSidebar: string;
+    expandSidebar: string;
+  };
+
   // Common actions
   actions: {
     logout: string;
@@ -444,6 +451,12 @@ export const hebrewLocale: LocaleStrings = {
     administration: 'ניהול',
     help: 'עזרה',
     quickLinks: 'קישורים מהירים',
+  },
+
+  sidebar: {
+    navigation: 'ניווט',
+    collapseSidebar: 'כווץ סרגל צד',
+    expandSidebar: 'הרחב סרגל צד',
   },
 
   actions: {

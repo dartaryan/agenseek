@@ -658,7 +658,7 @@ export function GuideReaderPage() {
       {/* 3-panel layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 py-8">
         {/* Left sidebar - Table of Contents (desktop only) */}
-        <aside className="hidden lg:block lg:col-span-3 xl:col-span-2">
+        <aside className="hidden lg:block lg:col-span-3 xl:col-span-2 pr-4 lg:pr-6">
           <div className="sticky top-24">
             <TableOfContents
               sections={guide.tableOfContents}
@@ -669,7 +669,7 @@ export function GuideReaderPage() {
         </aside>
 
         {/* Center content area */}
-        <main className="col-span-1 lg:col-span-6 xl:col-span-7 px-4 lg:px-0 pb-24" ref={contentRef}>
+        <main className="col-span-1 lg:col-span-6 xl:col-span-7 px-4 lg:px-6 xl:px-8 pb-24" ref={contentRef}>
           {/* Breadcrumbs */}
           <GuideBreadcrumbs
             category={guide.metadata.category as import('@/types/guide-catalog').GuideCategory}
@@ -733,7 +733,7 @@ export function GuideReaderPage() {
         </main>
 
         {/* Right sidebar - Quick actions (desktop only) */}
-        <aside className="hidden lg:block lg:col-span-3">
+        <aside className="hidden lg:block lg:col-span-3 pl-4 lg:pl-6">
           <div className="sticky top-24">
             <GuideActionsSidebar
               progress={scrollProgress}
