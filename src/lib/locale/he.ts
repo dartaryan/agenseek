@@ -357,6 +357,43 @@ export interface LocaleStrings {
         completionRate: string;
         guideTitle: string;
       };
+      // Story 9.4 - User Engagement Report
+      engagementReport: {
+        title: string;
+        subtitle: string;
+        userSegmentation: string;
+        segmentCounts: string;
+        highlyEngaged: string;
+        highlyEngagedDesc: string;
+        moderatelyEngaged: string;
+        moderatelyEngagedDesc: string;
+        lowEngagement: string;
+        lowEngagementDesc: string;
+        atRisk: string;
+        atRiskDesc: string;
+        users: string;
+        percent: string;
+        engagementFunnel: string;
+        registered: string;
+        onboarded: string;
+        firstGuide: string;
+        fiveGuides: string;
+        allCoreComplete: string;
+        dropOffRate: string;
+        activityHeatmap: string;
+        dayOfWeek: string;
+        hourOfDay: string;
+        activityLevel: string;
+        cohortAnalysis: string;
+        registrationMonth: string;
+        cohortUsers: string;
+        cohortRetention: string;
+        cohortCompletion: string;
+        exportSegment: string;
+        exportCSV: string;
+        loading: string;
+        noData: string;
+      };
     };
   };
 
@@ -995,6 +1032,43 @@ export const hebrewLocale: LocaleStrings = {
         avgTime: 'זמן ממוצע',
         completionRate: 'שיעור השלמה',
         guideTitle: 'כותרת',
+      },
+      // Story 9.4 - User Engagement Report
+      engagementReport: {
+        title: 'דוח מעורבות משתמשים',
+        subtitle: 'ניתוח מעמיק של מעורבות משתמשים ודפוסי התנהגות',
+        userSegmentation: 'פילוח משתמשים',
+        segmentCounts: 'ספירת משתמשים לפי פלח',
+        highlyEngaged: 'מעורבים מאוד',
+        highlyEngagedDesc: 'משתמשים עם התקדמות 70%+',
+        moderatelyEngaged: 'מעורבים בינוני',
+        moderatelyEngagedDesc: 'משתמשים עם התקדמות 30-70%',
+        lowEngagement: 'מעורבות נמוכה',
+        lowEngagementDesc: 'משתמשים עם התקדמות פחות מ-30%',
+        atRisk: 'בסיכון',
+        atRiskDesc: 'משתמשים שמעולם לא השלימו הטמעה',
+        users: 'משתמשים',
+        percent: 'אחוזים',
+        engagementFunnel: 'משפך מעורבות',
+        registered: 'נרשמו',
+        onboarded: 'השלימו הטמעה',
+        firstGuide: 'השלימו מדריך ראשון',
+        fiveGuides: 'השלימו 5 מדריכים',
+        allCoreComplete: 'השלימו את כל מדריכי הליבה',
+        dropOffRate: 'שיעור נשירה',
+        activityHeatmap: 'מפת חום של פעילות',
+        dayOfWeek: 'יום בשבוע',
+        hourOfDay: 'שעה ביום',
+        activityLevel: 'רמת פעילות',
+        cohortAnalysis: 'ניתוח קוהורטות',
+        registrationMonth: 'חודש הרשמה',
+        cohortUsers: 'משתמשים',
+        cohortRetention: 'שימור',
+        cohortCompletion: 'שיעור השלמה',
+        exportSegment: 'ייצוא פלח',
+        exportCSV: 'ייצוא CSV',
+        loading: 'טוען...',
+        noData: 'אין נתונים',
       },
     },
   },

@@ -415,7 +415,7 @@ export function ProfilePage() {
       )}
 
       <div className="p-8">
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-7xl mx-auto space-y-8">
           <div className="space-y-2">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
               {hebrewLocale.pages.profile.title}
@@ -425,7 +425,7 @@ export function ProfilePage() {
             </p>
           </div>
 
-          <div className="grid gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Account Details */}
             <Card className="p-6 space-y-4">
               <div className="flex items-center justify-between">

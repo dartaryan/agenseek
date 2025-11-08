@@ -1,0 +1,1363 @@
+{
+  "metadata": {
+    "id": "ux-designers",
+    "slug": "ux-designers",
+    "title": "מדריך מעצבי UX/UI: עיצוב חוויית משתמש מעולה עם BMAD-METHOD",
+    "description": "מדריך מקיף למעצבי UX/UI, Product Designers, ו-UX Researchers. לומדים איך להשתמש ב-BMAD ליצירת חוויות משתמש מעולות, wireframes מקצועיים, design systems, ושילוב עיצוב בתהליך הפיתוח.",
+    "category": "roles",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 40,
+    "icon": "Palette",
+    "tags": ["עיצוב", "UX", "UI", "Sally", "חוויית משתמש", "design", "wireframes", "prototypes"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "למי מדריך זה מיועד",
+      "level": 2,
+      "anchor": "for-who"
+    },
+    {
+      "id": "toc-2",
+      "title": "מסלול למידה מומלץ - צעד אחר צעד",
+      "level": 2,
+      "anchor": "learning-path",
+      "children": [
+        {
+          "id": "toc-2-1",
+          "title": "שלב 1: הבנת היסודות",
+          "level": 3,
+          "anchor": "stage-1"
+        },
+        {
+          "id": "toc-2-2",
+          "title": "שלב 2: התקנה והגדרה",
+          "level": 3,
+          "anchor": "stage-2"
+        },
+        {
+          "id": "toc-2-3",
+          "title": "שלב 3: שליטה באג'נט Sally והוורקפלואים",
+          "level": 3,
+          "anchor": "stage-3"
+        }
+      ]
+    },
+    {
+      "id": "toc-3",
+      "title": "האג'נטית שלך: Sally (UX Designer)",
+      "level": 2,
+      "anchor": "your-agent"
+    },
+    {
+      "id": "toc-4",
+      "title": "הוורקפלואים שלך - מדריך שימוש מעשי",
+      "level": 2,
+      "anchor": "your-workflows"
+    },
+    {
+      "id": "toc-5",
+      "title": "תכנון UX מקצועי עם BMAD",
+      "level": 2,
+      "anchor": "ux-planning"
+    },
+    {
+      "id": "toc-6",
+      "title": "תרחישים מעשיים מהעבודה שלך",
+      "level": 2,
+      "anchor": "practical-scenarios"
+    },
+    {
+      "id": "toc-7",
+      "title": "עבודה עם הצוות",
+      "level": 2,
+      "anchor": "team-work"
+    },
+    {
+      "id": "toc-8",
+      "title": "Best Practices למעצבי UX/UI",
+      "level": 2,
+      "anchor": "best-practices"
+    },
+    {
+      "id": "toc-9",
+      "title": "שאלות נפוצות",
+      "level": 2,
+      "anchor": "faq"
+    },
+    {
+      "id": "toc-10",
+      "title": "סיכום ומה הלאה",
+      "level": 2,
+      "anchor": "summary"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מדריך מעצבי UX/UI: עיצוב חוויית משתמש מעולה עם BMAD-METHOD",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "למי מדריך זה?",
+      "content": "מעצבי UX/UI, Product Designers, UX Researchers, Interaction Designers - מתחילים ומנוסים כאחד. תלמדו איך BMAD משפר את תהליכי העיצוב ויוצר חוויות משתמש מעולות."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "למי מדריך זה מיועד",
+      "id": "for-who"
+    },
+    {
+      "type": "text",
+      "content": "מדריך זה נכתב במיוחד עבור מעצבי חוויית משתמש - בין אם אתם:",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "UX Designers (חוויית משתמש)",
+      "id": "ux-designers"
+    },
+    {
+      "type": "text",
+      "content": "אתם מתמקדים במחקר משתמשים, user journeys, ו-information architecture? BMAD-METHOD יעזור לכם לבנות תהליך עיצוב מובנה - מהמחקר הראשוני ועד למסירת מפרטי עיצוב למפתחים. אג'נטית Sally תלווה אתכם ביצירת personas, user flows, wireframes, ותיעוד עיצובי מקצועי.",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "UI Designers (עיצוב ממשק)",
+      "id": "ui-designers"
+    },
+    {
+      "type": "text",
+      "content": "אתם עוסקים בעיצוב ויזואלי, design systems, ו-high-fidelity prototypes? BMAD יעזור לכם לתכנן components מובנים, לבנות design tokens, ולשמור על עקביות ויזואלית. תקבלו עזרה ביצירת style guides, responsive designs, וממשק נגיש.",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Product Designers (עיצוב מוצר)",
+      "id": "product-designers"
+    },
+    {
+      "type": "text",
+      "content": "אתם משלבים UX, UI, ומחשבה עסקית? BMAD יעזור לכם לעבוד עם PM (John) על הגדרת דרישות, לתכנן features מקצה לקצה, ולהעביר מעיצוב למימוש בצורה חלקה. תקבלו תמיכה בכל מחזור החיים של המוצר - ממחקר ועד השקה.",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "UX Researchers",
+      "id": "ux-researchers"
+    },
+    {
+      "type": "text",
+      "content": "אתם עוסקים במחקר משתמשים, usability testing, ו-data analysis? BMAD יעזור לכם לתכנן מחקרים, לנתח תוצאות, ולהמיר insights לדרישות עיצוביות. Sally תסייע בכתיבת research plans, surveys, interview guides, ודוחות ממצאים.",
+      "markdown": false
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "עדיף להתחיל מהיסודות",
+      "content": "אם אתם חדשים ב-BMAD, קראו קודם את המדריך 'התחלה מהירה' ואת 'הדרכה ליום הראשון'. המדריך הזה מניח ידע בסיסי במושגים של BMAD."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "מסלול למידה מומלץ - צעד אחר צעד",
+      "id": "learning-path"
+    },
+    {
+      "type": "text",
+      "content": "הנה המסלול המומלץ ללימוד BMAD עבור מעצבי UX/UI:",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 1: הבנת היסודות (זמן: 1-2 שעות)",
+      "id": "stage-1"
+    },
+    {
+      "type": "text",
+      "content": "**מה ללמוד:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "קראו את 'התחלה מהירה ל-BMAD' - הבינו מה זה BMAD ואיך זה עובד"
+        },
+        {
+          "content": "קראו את 'מילון מונחים' - למדו מושגים כמו אג'נטים, וורקפלואים, Story Context"
+        },
+        {
+          "content": "עברו על 'הדרכה ליום הראשון' - תקבלו ניצחון ראשון!"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "יעד השלב",
+      "content": "להבין את הבסיס - מה זה אג'נטים, מה זה וורקפלואים, ואיך BMAD משתלב בתהליך העיצוב שלכם."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 2: התקנה והגדרה (זמן: 30-60 דקות)",
+      "id": "stage-2"
+    },
+    {
+      "type": "text",
+      "content": "**מה לעשות:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "התקינו את BMAD בפרויקט שלכם (או צרו פרויקט חדש לתרגול)"
+        },
+        {
+          "content": "הריצו את workflow-init - המערכת תזהה את הפרויקט שלכם"
+        },
+        {
+          "content": "פתחו את אג'נטית Sally (UX Designer) והתנסו בשיחה ראשונה"
+        },
+        {
+          "content": "הריצו את create-ux-design workflow על פיצ'ר קטן"
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# התקנה\ncd your-project\nnpx bmad-method@alpha install\n\n# הפעלת workflow-init\n# פתחו את bmad/core/agents/bmad-master.md\n# כתבו בצ'אט: *workflow-init",
+      "filename": "התקנה בסיסית"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "יעד השלב",
+      "content": "סביבת עבודה מוכנה - BMAD מותקן, אתם מכירים את אג'נטית Sally, והרצתם וורקפלואו ראשון."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 3: שליטה באג'נטית Sally והוורקפלואים (זמן: 2-4 שעות)",
+      "id": "stage-3"
+    },
+    {
+      "type": "text",
+      "content": "**מה ללמוד:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "למדו לעומק את אג'נטית Sally - מה היא יכולה לעשות ואיך להשתמש בה"
+        },
+        {
+          "content": "הריצו create-ux-design workflow על פיצ'ר אמיתי בפרויקט"
+        },
+        {
+          "content": "צרו User Journey Map לתכונה אחת"
+        },
+        {
+          "content": "עצבו Wireframes עם עזרת Sally"
+        },
+        {
+          "content": "תרגלו שילוב עם PM Agent (John) לקבלת דרישות וב-Dev Agent (Amelia) למסירת מפרטים"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "יעד השלב",
+      "content": "שליטה מלאה בכלי העיצוב של BMAD - אתם יודעים איך לתכנן UX, לעצב ממשקים, וליצור מפרטי עיצוב מקצועיים."
+    },
+    {
+      "type": "table",
+      "headers": [
+        {
+          "content": "שלב",
+          "alignment": "right"
+        },
+        {
+          "content": "זמן",
+          "alignment": "center"
+        },
+        {
+          "content": "מה תלמדו",
+          "alignment": "right"
+        },
+        {
+          "content": "תוצאה",
+          "alignment": "right"
+        }
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "content": "1",
+              "alignment": "right"
+            },
+            {
+              "content": "1-2 שעות",
+              "alignment": "center"
+            },
+            {
+              "content": "יסודות BMAD",
+              "alignment": "right"
+            },
+            {
+              "content": "הבנה כללית",
+              "alignment": "right"
+            }
+          ]
+        },
+        {
+          "cells": [
+            {
+              "content": "2",
+              "alignment": "right"
+            },
+            {
+              "content": "30-60 דקות",
+              "alignment": "center"
+            },
+            {
+              "content": "התקנה והגדרה",
+              "alignment": "right"
+            },
+            {
+              "content": "סביבה מוכנה",
+              "alignment": "right"
+            }
+          ]
+        },
+        {
+          "cells": [
+            {
+              "content": "3",
+              "alignment": "right"
+            },
+            {
+              "content": "2-4 שעות",
+              "alignment": "center"
+            },
+            {
+              "content": "שליטה באג'נטית",
+              "alignment": "right"
+            },
+            {
+              "content": "יכולת עבודה מקצועית",
+              "alignment": "right"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "האג'נטית שלך: Sally (UX Designer)",
+      "id": "your-agent"
+    },
+    {
+      "type": "text",
+      "content": "**Sally** היא אג'נטית העיצוב המרכזית שלכם. היא מומחית לכל היבטי עיצוב חוויית המשתמש - מחקר, תכנון, wireframes, prototypes, ו-design specs.",
+      "markdown": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה Sally יכולה לעשות עבורכם?",
+      "id": "sally-capabilities"
+    },
+    {
+      "type": "tabs",
+      "items": [
+        {
+          "id": "tab-research",
+          "label": "מחקר משתמשים",
+          "content": [
+            {
+              "type": "text",
+              "content": "**תכנון מחקרים וניתוח תוצאות**",
+              "markdown": true
+            },
+            {
+              "type": "list",
+              "variant": "unordered",
+              "items": [
+                {
+                  "content": "יצירת User Personas מבוססות מחקר"
+                },
+                {
+                  "content": "תכנון Interview Guides ו-Survey Questions"
+                },
+                {
+                  "content": "ניתוח Usability Testing Results"
+                },
+                {
+                  "content": "יצירת Empathy Maps"
+                },
+                {
+                  "content": "זיהוי Pain Points ו-Opportunities"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tab-information-architecture",
+          "label": "ארכיטקטורת מידע",
+          "content": [
+            {
+              "type": "text",
+              "content": "**תכנון מבנה ונווטציה**",
+              "markdown": true
+            },
+            {
+              "type": "list",
+              "variant": "unordered",
+              "items": [
+                {
+                  "content": "יצירת Site Maps ו-Navigation Structure"
+                },
+                {
+                  "content": "תכנון User Flows ו-Task Flows"
+                },
+                {
+                  "content": "הגדרת Content Hierarchy"
+                },
+                {
+                  "content": "תכנון Information Grouping"
+                },
+                {
+                  "content": "Card Sorting ו-Tree Testing"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tab-wireframes",
+          "label": "Wireframes ו-Prototypes",
+          "content": [
+            {
+              "type": "text",
+              "content": "**עיצוב ממשקים מלואו-פיי להיי-פיי**",
+              "markdown": true
+            },
+            {
+              "type": "list",
+              "variant": "unordered",
+              "items": [
+                {
+                  "content": "יצירת Low-Fidelity Wireframes (sketches)"
+                },
+                {
+                  "content": "תכנון Mid-Fidelity Wireframes (detailed)"
+                },
+                {
+                  "content": "עיצוב High-Fidelity Mockups"
+                },
+                {
+                  "content": "יצירת Interactive Prototypes"
+                },
+                {
+                  "content": "תכנון Responsive Designs (Mobile, Tablet, Desktop)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tab-design-systems",
+          "label": "Design Systems",
+          "content": [
+            {
+              "type": "text",
+              "content": "**בניית מערכות עיצוב עקביות**",
+              "markdown": true
+            },
+            {
+              "type": "list",
+              "variant": "unordered",
+              "items": [
+                {
+                  "content": "הגדרת Design Tokens (colors, typography, spacing)"
+                },
+                {
+                  "content": "יצירת Component Library"
+                },
+                {
+                  "content": "כתיבת Design Guidelines"
+                },
+                {
+                  "content": "תיעוד Patterns ו-Best Practices"
+                },
+                {
+                  "content": "הבטחת Accessibility (WCAG)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך לפתוח את Sally?",
+      "id": "open-sally"
+    },
+    {
+      "type": "code",
+      "language": "text",
+      "code": "# 1. נווטו לקובץ האג'נטית\nbmad/bmm/agents/ux-designer.md\n\n# 2. ב-Cursor / Claude Code:\n# - לחצו על 'Add to Context' או 'Start Chat with Agent'\n# - האג'נטית תקרא את הקונפיגורציה שלכם ותתחיל\n\n# 3. תראו הודעת ברכה:\n\"Hello [שמכם]! I'm Sally, your UX Designer.\nHow can I help you create amazing user experiences today?\"",
+      "filename": "פתיחת אג'נטית Sally"
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "טיפ חשוב",
+      "content": "כשאתם פותחים את Sally, תיתנו לה קונטקסט - איזה פרויקט, מי קהל היעד, מה המטרות העסקיות. ככל שתיתנו יותר מידע, כך היא תעזור יותר!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "הוורקפלואים שלך - מדריך שימוש מעשי",
+      "id": "your-workflows"
+    },
+    {
+      "type": "text",
+      "content": "בתור מעצב UX/UI, יש לכם וורקפלואים מיוחדים שמסייעים בתכנון וביצוע העיצוב:",
+      "markdown": false
+    },
+    {
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "workflow-create-ux-design",
+          "title": "create-ux-design - תהליך עיצוב UX מלא",
+          "content": [
+            {
+              "type": "text",
+              "content": "**מתי להשתמש:** כשמתחילים לעצב feature או product חדש",
+              "markdown": true
+            },
+            {
+              "type": "text",
+              "content": "**מה הוורקפלואו עושה:**\n\nSally מובילה אתכם בתהליך עיצוב מלא:\n• מבינה את הדרישות מה-PRD\n• מגדירה User Personas\n• מתכננת User Journeys\n• יוצרת Information Architecture\n• מעצבת Wireframes (Low → Mid → High Fidelity)\n• מייצרת Design Specs למפתחים",
+              "markdown": false
+            },
+            {
+              "type": "code",
+              "language": "bash",
+              "code": "# איך להריץ:\n# 1. פתחו את bmad/core/agents/bmad-master.md\n# 2. כתבו:\n*create-ux-design\n\n# או:\nrun create-ux-design for [feature name]",
+              "filename": "הרצת create-ux-design"
+            },
+            {
+              "type": "callout",
+              "variant": "success",
+              "title": "פלט הוורקפלואו",
+              "content": "קובץ UX-Design-[feature].md עם Personas, User Flows, Wireframes (description), Design Specs מפורט."
+            }
+          ]
+        },
+        {
+          "id": "workflow-prd",
+          "title": "prd - קבלת דרישות מ-PM",
+          "content": [
+            {
+              "type": "text",
+              "content": "**מתי להשתמש:** בתחילת הפרויקט, לקבלת דרישות ברורות",
+              "markdown": true
+            },
+            {
+              "type": "text",
+              "content": "**מה הוורקפלואו עושה:**\n\nעוזר לכם לקבל מידע ממנהל המוצר:\n• מבין את הדרישות העסקיות\n• מזהה User Stories ו-Use Cases\n• שואל שאלות הבהרה\n• מתעד Constraints ו-Requirements\n• מגדיר Success Metrics",
+              "markdown": false
+            },
+            {
+              "type": "callout",
+              "variant": "tip",
+              "title": "טיפ לעבודה צוותית",
+              "content": "הריצו את prd יחד עם ה-PM (John). זו הזדמנות מעולה להבין את החזון והמגבלות לפני שמתחילים לעצב."
+            }
+          ]
+        },
+        {
+          "id": "workflow-story-context",
+          "title": "story-context - הבנת Story לפני עיצוב",
+          "content": [
+            {
+              "type": "text",
+              "content": "**מתי להשתמש:** לפני עיצוב UI לכל Story",
+              "markdown": true
+            },
+            {
+              "type": "text",
+              "content": "**מה הוורקפלואו עושה:**\n\nעוזר להבין את הקונטקסט:\n• קורא את ה-Story Description\n• מזהה User Flows רלוונטיים\n• מבין טכני Constraints (מה-Architect)\n• רואה Design Patterns קיימים\n• מציע UI Components מתאימים",
+              "markdown": false
+            }
+          ]
+        },
+        {
+          "id": "workflow-document-project",
+          "title": "document-project - תיעוד עיצובי",
+          "content": [
+            {
+              "type": "text",
+              "content": "**מתי להשתמש:** כשצריך לתעד את המערכת העיצובית",
+              "markdown": true
+            },
+            {
+              "type": "text",
+              "content": "**מה הוורקפלואו עושה:**\n\nיוצר תיעוד מקיף:\n• Style Guide\n• Component Library Documentation\n• Design Patterns Catalog\n• Accessibility Guidelines\n• Handoff Documentation למפתחים",
+              "markdown": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תכנון UX מקצועי עם BMAD",
+      "id": "ux-planning"
+    },
+    {
+      "type": "text",
+      "content": "הנה תהליך מלא לתכנון UX עם BMAD:",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תהליך 5 שלבים",
+      "id": "five-step-process"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "gap": "md",
+      "items": [
+        [
+          {
+            "type": "card",
+            "variant": "outlined",
+            "title": "שלב 1: מחקר והבנה",
+            "content": [
+              {
+                "type": "text",
+                "content": "**קראו:** PRD\n**דברו עם:** John (PM)\n\n**צרו:**\n• User Personas\n• Problem Statements\n• User Needs\n• Business Goals\n\n**זמן:** 2-4 שעות",
+                "markdown": true
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "variant": "outlined",
+            "title": "שלב 2: ארכיטקטורת מידע",
+            "content": [
+              {
+                "type": "text",
+                "content": "**עבדו עם:** Sally\n\n**צרו:**\n• Site Map\n• User Flows\n• Task Flows\n• Content Structure\n• Navigation Plan\n\n**זמן:** 3-6 שעות",
+                "markdown": true
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "variant": "outlined",
+            "title": "שלב 3: Wireframes",
+            "content": [
+              {
+                "type": "text",
+                "content": "**עבדו עם:** Sally\n\n**עצבו:**\n• Low-Fi Sketches\n• Mid-Fi Wireframes\n• Annotations\n• Interaction Notes\n• Content Guidelines\n\n**זמן:** 4-8 שעות",
+                "markdown": true
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "variant": "outlined",
+            "title": "שלב 4: High-Fidelity Design",
+            "content": [
+              {
+                "type": "text",
+                "content": "**עצבו:**\n• Visual Design\n• UI Components\n• Design System\n• Responsive Layouts\n• Accessibility\n\n**זמן:** 6-12 שעות",
+                "markdown": true
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "type": "grid",
+      "columns": 1,
+      "gap": "md",
+      "items": [
+        [
+          {
+            "type": "card",
+            "variant": "outlined",
+            "title": "שלב 5: Handoff למפתחים",
+            "content": [
+              {
+                "type": "text",
+                "content": "**הכינו:**\n• Design Specs (measurements, colors, fonts)\n• Assets Export (icons, images, logos)\n• Component Documentation\n• Interaction Descriptions\n• Edge Cases & States\n\n**עבדו עם:** Amelia (Dev Agent) לקבלת feedback\n\n**זמן:** 2-4 שעות",
+                "markdown": true
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה מלאה: עיצוב UX לפיצ'ר E-Commerce Checkout",
+      "id": "example-checkout"
+    },
+    {
+      "type": "text",
+      "content": "בואו נראה דוגמה קונקרטית - תכנון UX לתהליך תשלום באתר מסחר:",
+      "markdown": false
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "# שיחה עם Sally (UX Designer)\n\nאתם: \"Hi Sally, אני צריכה לעצב checkout flow לאתר e-commerce.\nהדרישות:\n- 3 שלבים: Cart → Shipping → Payment\n- Support למספר אמצעי תשלום\n- Guest Checkout + Logged-in Users\n- Mobile-first approach\n- פחות מ-3 דקות להשלמת תשלום\n- Conversion rate goal: 70%+\"\n\nSally: \"Got it! Let's create a streamlined checkout experience.\nI'll help you with:\n1. User Flow Analysis (current vs. optimized)\n2. Best Practices Research (e-commerce UX patterns)\n3. Wireframes (mobile + desktop)\n4. Micro-interactions & Error Handling\n5. A/B Testing Recommendations\n\nLet's start with understanding your users...\"",
+      "filename": "תרחיש דוגמה"
+    },
+    {
+      "type": "text",
+      "content": "**Sally תיצור עבורכם:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "User Flow Diagram - תהליך מלא עם Decision Points"
+        },
+        {
+          "content": "Wireframes - 3 מסכים עיקריים + Edge Cases (12 מסכים סה\"כ)"
+        },
+        {
+          "content": "Interaction Specifications - כל אינטראקציה מתועדת"
+        },
+        {
+          "content": "Error Handling Guide - מה קורה בכל טעות אפשרית"
+        },
+        {
+          "content": "Conversion Optimization Tips - איך להגיע ל-70%+ conversion"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאה",
+      "content": "תוך 4-6 שעות תקבלו UX Design מקיף לכל תהליך התשלום - מובנה, מבוסס best practices, ומוכן למימוש."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תרחישים מעשיים מהעבודה שלך",
+      "id": "practical-scenarios"
+    },
+    {
+      "type": "text",
+      "content": "הנה תרחישים נפוצים מהעבודה היומיומית שלכם, ואיך BMAD עוזר:",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 1: קיבלתם Feature חדש לעיצוב",
+      "id": "scenario-1"
+    },
+    {
+      "type": "text",
+      "content": "**המצב:**\nה-PM (John) יצר PRD לפיצ'ר חדש. צריך לעצב את כל החוויה.",
+      "markdown": true
+    },
+    {
+      "type": "text",
+      "content": "**מה אתם עושים:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "פותחים את Sally (UX Designer)"
+        },
+        {
+          "content": "מריצים: *create-ux-design"
+        },
+        {
+          "content": "Sally קוראת את ה-PRD ושואלת שאלות הבהרה"
+        },
+        {
+          "content": "Sally יוצרת User Personas + User Flows"
+        },
+        {
+          "content": "Sally מעצבת Wireframes (Low → Mid → High)"
+        },
+        {
+          "content": "אתם עוברים על העיצוב, משפרים, ומאשרים"
+        },
+        {
+          "content": "Sally יוצרת Design Specs למפתחים"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "טיפ",
+      "content": "תמיד דברו עם John (PM) לפני שמתחילים - וודאו שהבנתם את המטרות העסקיות והמגבלות!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 2: עיצוב לא עובד - Users מתבלבלים",
+      "id": "scenario-2"
+    },
+    {
+      "type": "text",
+      "content": "**המצב:**\nUsability testing הראה שמשתמשים מתקשים להשתמש בפיצ'ר. צריך לשפר.",
+      "markdown": true
+    },
+    {
+      "type": "text",
+      "content": "**מה אתם עושים:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "פותחים את Sally ומסבירים את הבעיה"
+        },
+        {
+          "content": "שואלים: 'How can I improve this UX? Here are the usability issues...'"
+        },
+        {
+          "content": "Sally מנתחת את הבעיות ומציעה פתרונות"
+        },
+        {
+          "content": "Sally מעצבת Alternative Designs (A/B testing)"
+        },
+        {
+          "content": "אתם בוחרים את הפתרון הטוב ביותר"
+        },
+        {
+          "content": "מממשים ובודקים שוב!"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 3: צריך לבנות Design System לפרויקט",
+      "id": "scenario-3"
+    },
+    {
+      "type": "text",
+      "content": "**המצב:**\nהפרויקט גדל, והעיצובים לא עקביים. צריך Design System.",
+      "markdown": true
+    },
+    {
+      "type": "text",
+      "content": "**מה אתם עושים:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "פותחים את Sally"
+        },
+        {
+          "content": "מבקשים: 'Help me create a Design System for our product'"
+        },
+        {
+          "content": "Sally מנתחת את העיצובים הקיימים"
+        },
+        {
+          "content": "Sally מגדירה Design Tokens (colors, typography, spacing, shadows)"
+        },
+        {
+          "content": "Sally יוצרת Component Library (buttons, inputs, cards, etc.)"
+        },
+        {
+          "content": "Sally כותבת Style Guide ו-Usage Guidelines"
+        },
+        {
+          "content": "מתעדים הכל ב-Storybook או Figma"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "עבודה עם הצוות",
+      "id": "team-work"
+    },
+    {
+      "type": "text",
+      "content": "בתור מעצב UX/UI, אתם הגשר בין הרעיון למימוש. הנה איך BMAD עוזר בתקשורת:",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "עבודה עם PM (John)",
+      "id": "work-with-pm"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "John יוצר PRD - אתם מריצים create-ux-design להמיר את זה לעיצוב"
+        },
+        {
+          "content": "אתם מציעים שיפורים ל-UX - John מעדכן את הדרישות"
+        },
+        {
+          "content": "John מגדיר Success Metrics - אתם מעצבים בהתאם"
+        },
+        {
+          "content": "תקשורת חלקה וברורה!"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "עבודה עם Architect (Winston)",
+      "id": "work-with-architect"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "Winston מתכנן ארכיטקטורה - אתם מבינים את ההגבלות הטכניות"
+        },
+        {
+          "content": "אתם מעצבים UI - Winston מוודא שזה ניתן למימוש"
+        },
+        {
+          "content": "אתם מבקשים: 'Can we add real-time updates here?' - Winston בודק feasibility"
+        },
+        {
+          "content": "שיתוף פעולה מוקדם = פחות הפתעות בהמשך!"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "עבודה עם Developer (Amelia)",
+      "id": "work-with-dev"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "אתם מוסרים Design Specs - Amelia מממשת"
+        },
+        {
+          "content": "Amelia שואלת 'מה קורה במצב X?' - אתם מעדכנים את המפרט"
+        },
+        {
+          "content": "Amelia מציעה 'זה יהיה קל יותר אם...' - אתם מתאימים את העיצוב"
+        },
+        {
+          "content": "אתם בודקים את המימוש ונותנים feedback"
+        },
+        {
+          "content": "איטרציה משותפת = תוצאה מעולה!"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "עבודה עם QA (Murat)",
+      "id": "work-with-qa"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "Murat בודק UX - מוצא בעיות usability"
+        },
+        {
+          "content": "אתם מקבלים feedback - משפרים את העיצוב"
+        },
+        {
+          "content": "Murat בודק accessibility - אתם מתקנים"
+        },
+        {
+          "content": "עבודה משותפת = איכות גבוהה!"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תקשורת טובה יותר",
+      "content": "כשכולם משתמשים ב-BMAD, יש שפה משותפת. קל יותר להעביר מידע, לבקש שינויים, ולעבוד ביעילות."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Best Practices למעצבי UX/UI",
+      "id": "best-practices"
+    },
+    {
+      "type": "text",
+      "content": "הנה שיטות עבודה מומלצות מניסיון השטח:",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "1. תמיד התחילו ממחקר",
+      "id": "bp-start-research"
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "כלל הזהב",
+      "content": "אל תעצבו בלי להבין את המשתמשים. השקיעו זמן במחקר - זה חוסך שבועות של עיצוב מחדש."
+    },
+    {
+      "type": "text",
+      "content": "**איך לעשות:**\n• צרו User Personas מבוססות נתונים\n• בצעו User Interviews\n• הריצו Usability Tests\n• נתחו Analytics\n• דברו עם Support/Sales",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "2. תעצבו במדרגות (Progressive Fidelity)",
+      "id": "bp-progressive-fidelity"
+    },
+    {
+      "type": "text",
+      "content": "**אל תקפצו ישר ל-High-Fidelity!**\n\n**הסדר הנכון:**\n1. Sketches (נייר + עיפרון)\n2. Low-Fidelity Wireframes (מבנה)\n3. Mid-Fidelity Wireframes (תוכן + layout)\n4. High-Fidelity Mockups (עיצוב סופי)\n5. Interactive Prototype (אינטראקציות)\n\n**למה?** כל שלב מאפשר לקבל feedback מהר יותר וזול יותר מהשלב הבא.",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "3. שמרו על עקביות (Design System)",
+      "id": "bp-consistency"
+    },
+    {
+      "type": "text",
+      "content": "**בנו Design System מהר ככל האפשר:**\n\n• הגדירו Colors, Typography, Spacing\n• צרו Component Library\n• תעדו Patterns\n• שתפו עם המפתחים\n• עדכנו בהתמדה",
+      "markdown": false
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "יתרון",
+      "content": "Design System = עיצוב מהיר יותר + עקביות גבוהה + תחזוקה קלה"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "4. תעצבו ל-Accessibility",
+      "id": "bp-accessibility"
+    },
+    {
+      "type": "text",
+      "content": "**נגישות היא לא אופציה!**\n\n**Checklist:**\n• ניגודיות צבעים (WCAG AA minimum)\n• Keyboard Navigation\n• Screen Reader Support\n• Focus States ברורים\n• Error Messages תיאוריים\n• Alt Text לתמונות",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "5. תבדקו מוקדם ולעיתים קרובות",
+      "id": "bp-test-early"
+    },
+    {
+      "type": "text",
+      "content": "**אל תחכו לסוף!**\n\n• בדקו Sketches עם עמיתים\n• בדקו Wireframes עם Stakeholders\n• בדקו Prototypes עם משתמשים אמיתיים\n• בצעו A/B Tests\n• נתחו User Behavior (Analytics)",
+      "markdown": false
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "אזהרה",
+      "content": "כל בעיה שמוצאים בשלב Mockup עולה פי 10 מאשר בשלב Wireframe. בדקו מוקדם!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שאלות נפוצות",
+      "id": "faq"
+    },
+    {
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "faq-1",
+          "title": "האם BMAD מחליף את כלי העיצוב שלי (Figma, Sketch, Adobe XD)?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**לא!** BMAD לא מחליף את כלי העיצוב - הוא משלים אותם.\n\n**איך זה עובד:**\n• אתם מתכננים ב-BMAD (Sally עוזרת בתהליך)\n• מעצבים ב-Figma/Sketch/Adobe XD\n• מתעדים ב-BMAD\n• מוסרים למפתחים דרך BMAD\n\n**BMAD עוזר ב:**\n• תהליך UX (research, flows, wireframes)\n• תכנון Information Architecture\n• תקשורת עם הצוות\n• תיעוד ו-Handoff",
+              "markdown": true
+            }
+          ]
+        },
+        {
+          "id": "faq-2",
+          "title": "האם Sally יכולה לעצב במקומי?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**לא בדיוק.** Sally לא מחליפה אתכם - היא עוזרת לכם!\n\n**מה Sally כן עושה:**\n• מציעה רעיונות ופתרונות UX\n• יוצרת Wireframe descriptions\n• מתכננת User Flows\n• כותבת Design Specs\n• נותנת Best Practices\n\n**מה אתם עושים:**\n• מקבלים החלטות עיצוביות\n• מעצבים את הויזואליות ב-Figma\n• מאשרים את הפתרונות\n• מתאימים לצרכים הספציפיים\n\n**Sally היא שותפה, לא מחליפה!**",
+              "markdown": true
+            }
+          ]
+        },
+        {
+          "id": "faq-3",
+          "title": "איך BMAD עוזר בעבודה עם מפתחים?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**BMAD משפר את ה-Handoff:**\n\n**1. Design Specs ברורים:**\n• Sally עוזרת ליצור מפרטים מפורטים\n• כל מידה, צבע, font מתועד\n• Interaction descriptions ברורות\n\n**2. תקשורת ישירה:**\n• אתם עובדים עם Amelia (Dev Agent)\n• שואלים שאלות ומקבלים תשובות מהר\n• מתאימים את העיצוב לאילוצים טכניים\n\n**3. Iteration משותפת:**\n• Amelia מממשת → אתם בודקים\n• מוצאים בעיות → מתקנים מהר\n• פחות miscommunication = פחות bugs",
+              "markdown": true
+            }
+          ]
+        },
+        {
+          "id": "faq-4",
+          "title": "כמה זמן לוקח ללמוד BMAD למעצב?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**תלוי ברמת השליטה:**\n\n**שימוש בסיסי:** 1-2 ימים\n• התקנה\n• הכרת Sally\n• עיצוב UX ראשון\n• הרצת create-ux-design\n\n**שימוש מקצועי:** 1-2 שבועות\n• שליטה בכל הוורקפלואים\n• עבודה צוותית יעילה\n• יצירת Design Systems\n• Handoff מקצועי\n\n**שליטה מלאה:** חודש\n• התאמה אישית\n• יצירת Workflows מותאמים\n• הדרכת צוות\n• שיפור תהליכים",
+              "markdown": true
+            }
+          ]
+        },
+        {
+          "id": "faq-5",
+          "title": "מה ההבדל בין Sally לבין PM Agent?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**Sally (UX Designer) - עיצוב וחוויית משתמש:**\n• מתמקדת ב-User Experience\n• יוצרת Wireframes ו-Prototypes\n• מומחית ל-UI Design\n• מבינה Design Patterns\n• חושבת מנקודת מבט של משתמש\n\n**John (Product Manager) - אסטרטגיה ודרישות:**\n• מתמקד ב-Product Strategy\n• יוצר PRD ו-Roadmap\n• מומחה לדרישות עסקיות\n• מבין Market ו-Competition\n• חושב מנקודת מבט עסקית\n\n**מתי להשתמש בשניהם:**\n• John מגדיר מה לבנות → Sally מעצבת איך\n• John מציג דרישות → Sally הופכת לעיצוב\n• Sally מציעה שיפורי UX → John מאשר\n• עבודה משותפת = מוצר מעולה!",
+              "markdown": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "סיכום ומה הלאה",
+      "id": "summary"
+    },
+    {
+      "type": "text",
+      "content": "סיימתם את המדריך! הנה מה למדתם:",
+      "markdown": false
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מה למדתם",
+      "content": "✓ להכיר את Sally (UX Designer) ולעבוד איתה ביעילות\n✓ להשתמש בוורקפלואים: create-ux-design, prd, story-context\n✓ לתכנן UX מקצועי - Research, IA, Wireframes, High-Fi, Handoff\n✓ לעבוד עם הצוות בצורה חלקה\n✓ להפעיל Best Practices מהשטח"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הצעדים הבאים שלכם",
+      "id": "next-steps"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "**התקינו את BMAD** בפרויקט שלכם (אם עוד לא)"
+        },
+        {
+          "content": "**הריצו create-ux-design** על feature אמיתי"
+        },
+        {
+          "content": "**צרו User Flow** לפחות לתכונה אחת"
+        },
+        {
+          "content": "**עצבו Wireframes** עם עזרת Sally"
+        },
+        {
+          "content": "**שתפו את הצוות** - הראו להם מה למדתם"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מדריכים מומלצים להמשך",
+      "id": "recommended-guides"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "gap": "md",
+      "items": [
+        [
+          {
+            "type": "card",
+            "variant": "elevated",
+            "title": "מדריך אגנטים - TEA + UX",
+            "content": [
+              {
+                "type": "text",
+                "content": "הכירו לעומק את Sally ואת שאר האגנטים שקשורים לעיצוב.",
+                "markdown": false
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "variant": "elevated",
+            "title": "מדריך וורקפלואים - UX Design",
+            "content": [
+              {
+                "type": "text",
+                "content": "למדו את כל הוורקפלואים הקשורים לעיצוב UX/UI בפירוט.",
+                "markdown": false
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "variant": "elevated",
+            "title": "Best Practices",
+            "content": [
+              {
+                "type": "text",
+                "content": "שיטות עבודה מתקדמות לעבודה עם BMAD בצוותים גדולים.",
+                "markdown": false
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "variant": "elevated",
+            "title": "מקרי מבחן ותרגילים",
+            "content": [
+              {
+                "type": "text",
+                "content": "תרגלו על פרויקטים אמיתיים - תרחישי עיצוב מהחיים.",
+                "markdown": false
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "זכרו",
+      "content": "עיצוב טוב הוא לא רק יופי - זה פתרון בעיות. BMAD עוזר לכם להפוך רעיונות לחוויות משתמש מעולות. תעצבו בחוכמה!"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מזל טוב!",
+      "content": "סיימתם את המדריך למעצבי UX/UI! אתם מוכנים לעצב חוויות משתמש מדהימות בפרויקט שלכם עם BMAD. בהצלחה! 🎨"
+    }
+  ]
+}
+

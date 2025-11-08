@@ -1,328 +1,366 @@
-# 🚀 NEXT STORY: Story 9.4 - Build User Engagement Report
+# 🚀 NEXT STORY: Story 9.5 - Implement Admin Notifications and Alerts
 
 **Updated:** November 8, 2025
 
 ---
 
-## ✅ Story 9.3 Complete!
+## ✅ Story 9.4 Complete!
 
-Admins can now view comprehensive content analytics! Features include:
+Admins now have comprehensive user engagement insights! Features include:
 
-- **Guide performance table** with all guides showing:
-  - Views and unique viewers
-  - Average time spent
-  - Completion rate
-  - Helpful votes and comments count
-  - Color-coded engagement level (high/medium/low)
-- **Engagement summary cards** displaying:
-  - Total notes, tasks, and comments
-  - Average session duration
-- **Category performance bar chart** showing:
-  - Total views per category
-  - Average completion rate per category
-- **Filter by category** dropdown
-- **Sort by any metric** (views, unique viewers, time, completion rate, votes, comments)
-- **Export to CSV** functionality
-- **Responsive layout** for mobile, tablet, desktop
+- **User Segmentation** with four categories:
+  - Highly engaged (70%+ progress) - Green
+  - Moderately engaged (30-70% progress) - Blue
+  - Low engagement (<30% progress) - Amber
+  - At risk (never onboarded) - Red
+- **Engagement Funnel** with five stages:
+  - Registered → Onboarded → First Guide → 5 Guides → All Core Complete
+  - Drop-off rates calculated for each transition
+  - Visual progress bars showing funnel progression
+- **Activity Heatmap** showing:
+  - 7x24 grid (day of week vs hour of day)
+  - Last 30 days of activity data
+  - Color-coded heat intensity
+  - Interactive tooltips with activity counts
+- **Cohort Analysis** by registration month:
+  - User count per cohort
+  - Retention rate (% active in last 30 days)
+  - Completion rate (average progress)
+  - Visual progress bars for metrics
+- **Export Functionality:**
+  - Export individual segment user lists to CSV
+  - Export overall engagement report to CSV
+  - Files include user details and progress metrics
 - **Hebrew localization** throughout
+- **Responsive design** for all devices
+- **Color-coded visualizations** for quick insights
 
-**Completion File:** See `STORY-9.3-COMPLETE.md` for full details.
+**Completion File:** See `STORY-9.4-COMPLETE.md` for full details.
 
-**Epic 9 Status:** 3/6 stories complete (50%)
+**Epic 9 Status:** 4/6 stories complete (67%)
 
 ---
 
 ## 📍 Next Story to Implement
 
-### **Story 9.4: Build User Engagement Report**
+### **Story 9.5: Implement Admin Notifications and Alerts**
 
 **Epic:** 9 - Admin Analytics & Management
-**Priority:** P0
+**Priority:** P1
 **Sprint:** 12
-**Story Points:** 3
-**Dependencies:** Story 9.3 Complete ✅
+**Story Points:** 2
+**Dependencies:** Story 9.4 Complete ✅
 
 ---
 
-## 🎯 Story 9.4 Overview
+## 🎯 Story 9.5 Overview
 
-Implement a comprehensive user engagement report with segmentation, funnel analysis, activity heatmap, and cohort tracking. This helps admins understand user behavior patterns and identify at-risk users.
+Implement an admin notification system that alerts administrators about important events, at-risk users, and platform issues. Helps admins stay informed and take timely action.
 
 ### User Story
 
 **As an admin,**
-**I want to view detailed user engagement reports with segmentation and funnel analysis,**
-**So that I can identify engaged users, at-risk users, and understand user behavior patterns.**
+**I want to receive notifications about important platform events and user issues,**
+**So that I can take timely action and maintain platform health.**
 
 ---
 
 ## 📋 Acceptance Criteria
 
-### User Segmentation
+### Notification Bell Icon
 
-**Given** I navigate to /admin/engagement
-**When** page loads
+**Given** I'm logged in as admin
+**When** viewing any admin page
 **Then:**
 
-- [ ] Displays 4 user segments:
-  - **Highly Engaged:** 70%+ progress
-  - **Moderately Engaged:** 30-70% progress
-  - **Low Engagement:** <30% progress (but onboarded)
-  - **At Risk:** Never completed onboarding
-- [ ] Each segment shows:
-  - Count of users
-  - Percentage of total users
-  - Card with color coding (green/yellow/orange/red)
+- [ ] Bell icon displays in header with badge count
+- [ ] Badge shows number of unread notifications
+- [ ] Badge is hidden when count is 0
+- [ ] Icon is accessible and properly labeled
 
-### Engagement Funnel
+### Notification Dropdown
 
-**Given** I view the engagement report
-**When** funnel section loads
+**Given** I click the notification bell
+**When** dropdown opens
 **Then:**
 
-- [ ] Displays funnel stages:
-  1. Registered (total users)
-  2. Onboarded (completed wizard)
-  3. First Guide (viewed at least 1 guide)
-  4. Active User (completed 5+ guides)
-  5. Power User (completed all core guides)
-- [ ] Each stage shows:
-  - Count of users
-  - Percentage of total
-  - Drop-off rate from previous stage
-- [ ] Visual funnel chart
-- [ ] Color coding for drop-off rates (green <20%, yellow 20-40%, red >40%)
+- [ ] Shows recent notifications (last 20)
+- [ ] Each notification shows:
+  - Icon based on notification type
+  - Title and description
+  - Timestamp (relative time)
+  - Read/unread indicator
+- [ ] Unread notifications are highlighted
+- [ ] Can mark individual as read
+- [ ] Can mark all as read
+- [ ] Can clear all notifications
+- [ ] Scrollable if many notifications
 
-### Activity Heatmap
+### Notification Types
 
-**Given** I view the engagement report
-**When** heatmap section loads
+**System generates notifications for:**
+
+1. **New User Registration** (Daily Digest)
+   - Title: "משתמשים חדשים היום"
+   - Description: "X משתמשים נרשמו היום"
+   - Icon: IconUserPlus
+   - Priority: Low
+   - Frequency: Daily at 9 AM (if new users)
+
+2. **Inappropriate Content Flagged** (Immediate)
+   - Title: "תוכן דווח כבלתי הולם"
+   - Description: "תגובה במדריך [guide_title] דווחה"
+   - Icon: IconFlag
+   - Priority: High
+   - Frequency: Immediate on flag
+
+3. **Low Engagement Alert** (Weekly)
+   - Title: "משתמשים בסיכון"
+   - Description: "X משתמשים לא סיימו הטמעה"
+   - Icon: IconAlertTriangle
+   - Priority: Medium
+   - Frequency: Weekly on Monday
+
+4. **Performance Issues** (Immediate)
+   - Title: "בעיית ביצועים"
+   - Description: "[issue_description]"
+   - Icon: IconAlertCircle
+   - Priority: High
+   - Frequency: Immediate on detection
+
+5. **Milestone Reached** (Immediate)
+   - Title: "אבן דרך הושגה!"
+   - Description: "100 משתמשים סיימו את המדריך [guide_title]"
+   - Icon: IconTrophy
+   - Priority: Low
+   - Frequency: On milestone
+
+### Notification Preferences
+
+**Given** I open notification preferences
+**When** preferences modal displays
 **Then:**
 
-- [ ] Displays heatmap with:
-  - X-axis: Days of week (Sunday-Saturday)
-  - Y-axis: Hours of day (0-23)
-  - Cell color intensity: Activity level
-- [ ] Tooltip on hover shows:
-  - Day and hour
-  - Number of active users
-  - Number of guide views
-- [ ] Legend explaining color scale
+- [ ] Can toggle each notification type on/off
+- [ ] Settings persist in database
+- [ ] Defaults to all enabled
+- [ ] Changes save automatically
 
-### Cohort Analysis
+### Notification Actions
 
-**Given** I view the engagement report
-**When** cohort section loads
+**Given** I click a notification
+**When** notification has an action
 **Then:**
 
-- [ ] Displays cohorts by registration month
-- [ ] Each cohort shows:
-  - Month name (e.g., "ינואר 2025")
-  - Number of users registered
-  - Current average progress
-  - Retention rate (% still active)
-- [ ] Table sortable by month or metrics
-- [ ] Color coding for retention (green >60%, yellow 30-60%, red <30%)
-
-### Export Functionality
-
-**Given** I want to take action on segments
-**When** I click export
-**Then:**
-
-- [ ] Can export user list for each segment as CSV
-- [ ] CSV includes: name, email, progress %, last active date
-- [ ] Filename includes segment name and date
+- [ ] Marks notification as read
+- [ ] Navigates to relevant page:
+  - New users → /admin/users
+  - Flagged content → specific comment
+  - Low engagement → /admin/engagement
+  - Performance → /admin
+  - Milestone → /admin/analytics
 
 ---
 
 ## 🔨 Implementation Plan
 
-### 1. Create Engagement Actions
+### 1. Update Database Schema
 
-**File:** `src/lib/actions/admin.ts`
+**File:** `supabase/migrations/20241108_admin_notifications.sql` (already exists)
 
-**New Types:**
-```typescript
-export interface UserSegmentation {
-  highlyEngaged: { count: number; percentage: number; };
-  moderatelyEngaged: { count: number; percentage: number; };
-  lowEngagement: { count: number; percentage: number; };
-  atRisk: { count: number; percentage: number; };
-}
-
-export interface EngagementFunnelStage {
-  stage: string;
-  count: number;
-  percentage: number;
-  dropOffRate: number;
-}
-
-export interface ActivityHeatmapData {
-  day: number;
-  hour: number;
-  activeUsers: number;
-  guideViews: number;
-}
-
-export interface CohortData {
-  month: string;
-  usersRegistered: number;
-  avgProgress: number;
-  retentionRate: number;
-}
+Verify table structure:
+```sql
+CREATE TABLE admin_notifications (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  admin_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
+  notification_type TEXT NOT NULL,
+  title TEXT NOT NULL,
+  description TEXT NOT NULL,
+  metadata JSONB,
+  is_read BOOLEAN DEFAULT false,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
 ```
 
-**New Functions:**
+### 2. Create Notification Actions
+
+**File:** `src/lib/actions/admin-notifications.ts` (new file)
+
+**Functions:**
 ```typescript
-fetchUserSegmentation(): Promise<UserSegmentation>
-fetchEngagementFunnel(): Promise<EngagementFunnelStage[]>
-fetchActivityHeatmap(): Promise<ActivityHeatmapData[]>
-fetchCohortAnalysis(): Promise<CohortData[]>
-exportSegmentUsers(segment: string): Promise<void>
+fetchAdminNotifications(adminId: string, limit?: number): Promise<AdminNotification[]>
+markNotificationRead(notificationId: string): Promise<void>
+markAllNotificationsRead(adminId: string): Promise<void>
+clearAllNotifications(adminId: string): Promise<void>
+getUnreadCount(adminId: string): Promise<number>
+createNotification(notification: CreateNotificationInput): Promise<void>
 ```
 
-### 2. Create Engagement Report Page
+### 3. Create Notification Component
 
-**File:** `src/app/admin/engagement.tsx`
+**File:** `src/components/admin/NotificationBell.tsx` (new file)
 
-**Sections:**
-1. Header with title and export options
-2. Segmentation cards (4 cards in grid)
-3. Engagement funnel (visual funnel chart)
-4. Activity heatmap (recharts heatmap)
-5. Cohort analysis table
+**Features:**
+- Bell icon with badge
+- Dropdown with notifications list
+- Mark as read functionality
+- Clear all functionality
+- Real-time updates (polling or Supabase realtime)
 
-### 3. Add Route
+### 4. Add to Header
 
-**File:** `src/app/routes.tsx`
+**File:** `src/components/layout/Header.tsx`
 
-Add to admin children:
-```typescript
-{
-  path: 'engagement',
-  element: <UserEngagementReportPage />,
-}
-```
+Add `<NotificationBell />` component for admin users.
 
-### 4. Add Hebrew Locale Strings
+### 5. Create Notification Preferences
+
+**File:** `src/components/admin/NotificationPreferences.tsx` (new file)
+
+Modal with toggle switches for each notification type.
+
+### 6. Add Hebrew Locale Strings
 
 **File:** `src/lib/locale/he.ts`
 
-Add to `admin` section:
+Add to admin section:
 ```typescript
-engagement: {
+notifications: {
   title: string;
-  subtitle: string;
-  userSegmentation: string;
-  highlyEngaged: string;
-  moderatelyEngaged: string;
-  lowEngagement: string;
-  atRisk: string;
-  engagementFunnel: string;
-  registered: string;
-  onboarded: string;
-  firstGuide: string;
-  activeUser: string;
-  powerUser: string;
-  dropOffRate: string;
-  activityHeatmap: string;
-  cohortAnalysis: string;
-  registrationMonth: string;
-  usersRegistered: string;
-  avgProgress: string;
-  retentionRate: string;
-  exportSegment: string;
+  unread: string;
+  markRead: string;
+  markAllRead: string;
+  clearAll: string;
+  empty: string;
+  preferences: string;
+  types: {
+    newUsers: string;
+    flaggedContent: string;
+    lowEngagement: string;
+    performance: string;
+    milestone: string;
+  };
 }
 ```
 
-### 5. Update Sidebar Navigation
+### 7. Create Notification Generators (Server-Side)
 
-Add "דוח מעורבות משתמשים" link to admin section.
+**File:** `supabase/functions/generate-notifications/` (Edge Function)
+
+Scheduled functions to generate:
+- Daily new user digest
+- Weekly low engagement alert
+
+Immediate triggers for:
+- Flagged content (database trigger)
+- Performance issues (monitoring)
+- Milestones (database trigger)
 
 ---
 
 ## 🎨 UI/UX Considerations
 
-### Segmentation Cards
-- 4 cards in grid (2x2 on mobile, 4x1 on desktop)
-- Color coding: Green (high), Yellow (moderate), Orange (low), Red (at risk)
-- Large count number, percentage below
-- Icon for each segment
+### Bell Icon
+- Position: Header, right side (before user menu in RTL)
+- Icon: IconBell from Tabler
+- Badge: Small circle with count, emerald background
+- Hover: Slight scale effect
+- Active: Dropdown opens below
 
-### Funnel Chart
-- Visual funnel using recharts or custom CSS
-- Each stage progressively narrower
-- Labels inside or next to funnel
-- Drop-off percentages between stages
-- Color coding for alarming drop-offs
+### Notification Dropdown
+- Width: 320px on desktop, full width on mobile
+- Max height: 400px, scrollable
+- Background: White with subtle shadow
+- Each notification:
+  - Icon on right (RTL)
+  - Title bold, description normal
+  - Timestamp below in smaller text
+  - Unread: Light emerald background
+  - Read: White background
+  - Hover: Light gray background
 
-### Activity Heatmap
-- 7 columns (days) x 24 rows (hours)
-- Color gradient: white (low) → emerald (high)
-- Tooltip on hover
-- Legend showing scale
-- RTL consideration for day labels
+### Actions
+- "סמן הכול כנקרא" button at top
+- "נקה הכול" button at bottom
+- Click notification marks as read
+- Smooth animations on actions
 
-### Cohort Table
-- Sortable columns
-- Color-coded retention rates
-- Expand row to show user details optional
-- Export button per cohort
+### Empty State
+- Icon: IconBellOff
+- Text: "אין התראות חדשות"
+- Smaller, centered
+
+### Notification Types Colors
+- New Users: Blue (IconUserPlus)
+- Flagged Content: Red (IconFlag)
+- Low Engagement: Orange (IconAlertTriangle)
+- Performance: Red (IconAlertCircle)
+- Milestone: Green (IconTrophy)
 
 ---
 
 ## 🧪 Testing Scenarios
 
-### Happy Path - Segmentation
-1. Admin views engagement report
-2. **Expected:**
-   - 4 segment cards display correctly
-   - Numbers add up to total users
-   - Percentages total 100%
+### Happy Path - View Notifications
+1. Admin has 5 unread notifications
+2. Bell shows badge with "5"
+3. Admin clicks bell
+4. Dropdown shows 5 notifications
+5. **Expected:** All notifications display correctly
 
-### Happy Path - Funnel
-1. Admin views funnel
+### Happy Path - Mark as Read
+1. Admin clicks unread notification
 2. **Expected:**
-   - 5 stages display in order
-   - Each stage shows correct count
-   - Drop-off rates calculated correctly
-   - Visual funnel renders
+   - Notification marked as read
+   - Badge count decreases by 1
+   - Notification background changes
+   - Navigates to relevant page
 
-### Happy Path - Heatmap
-1. Admin views heatmap
-2. **Expected:**
-   - Heatmap displays 7x24 grid
-   - Color intensity reflects activity
-   - Tooltip shows details on hover
+### Happy Path - Mark All as Read
+1. Admin has 10 unread notifications
+2. Admin clicks "סמן הכול כנקרא"
+3. **Expected:**
+   - All notifications marked as read
+   - Badge disappears
+   - UI updates immediately
 
-### Happy Path - Cohort
-1. Admin views cohort analysis
+### Happy Path - Clear All
+1. Admin clicks "נקה הכול"
 2. **Expected:**
-   - Cohorts grouped by month
-   - Metrics calculated correctly
-   - Sortable by columns
+   - All notifications deleted
+   - Dropdown shows empty state
+   - Badge hidden
 
-### Export Segment
-1. Admin clicks export on "At Risk" segment
+### Edge Case - No Notifications
+1. New admin user
 2. **Expected:**
-   - CSV downloaded
-   - Contains user list with details
-   - Filename includes segment and date
+   - Badge hidden
+   - Dropdown shows empty state
+   - No errors
+
+### Edge Case - Real-time Updates
+1. Admin has dropdown open
+2. New notification arrives
+3. **Expected:**
+   - Badge updates
+   - New notification appears in list
+   - No page refresh needed
 
 ---
 
 ## 🔐 Security & Validation
 
 ### Server-Side
-- Admin-only access (RLS policy)
-- Data aggregation respects user privacy
-- Export includes only necessary fields
+- Admin-only access to notifications
+- RLS policies ensure admins see only their notifications
+- Notification creation requires admin role
+- Validate notification types
 
 ### Client-Side
-- Admin check before rendering
-- Loading states
-- Error handling
+- Admin check before showing bell icon
+- Debounce mark as read actions
+- Rate limit clear all actions
+- Sanitize notification content
 
 ---
 
@@ -330,24 +368,29 @@ Add "דוח מעורבות משתמשים" link to admin section.
 
 Before marking story complete:
 
-- [ ] User segmentation displays correctly
-- [ ] Engagement funnel visualized
-- [ ] Activity heatmap rendered
-- [ ] Cohort analysis table functional
-- [ ] Export CSV works for each segment
+- [ ] Database table exists with RLS policies
+- [ ] Notification bell displays in header for admins
+- [ ] Badge shows unread count correctly
+- [ ] Dropdown shows recent notifications
+- [ ] Mark as read functionality works
+- [ ] Mark all as read works
+- [ ] Clear all works
+- [ ] Navigation from notifications works
+- [ ] Empty state displays correctly
 - [ ] Hebrew localization complete
-- [ ] Route added to admin section
-- [ ] Sidebar navigation updated
 - [ ] No TypeScript errors
 - [ ] No linter errors
 - [ ] Responsive on mobile, tablet, desktop
 - [ ] RTL layout correct
 - [ ] Manual testing passed
+- [ ] Real-time updates working (optional enhancement)
 
 ---
 
 ## 🚀 Ready to Implement!
 
-Story 9.3 complete with content analytics. Story 9.4 will provide deep insights into user engagement patterns and help identify users who need support.
+Story 9.4 complete with user engagement insights. Story 9.5 will keep admins informed about important platform events.
 
-**Let's build user engagement insights! 📊**
+**Note:** Notification generation (server-side triggers and scheduled functions) can be implemented in phases. Start with manual notification creation for testing, then add automated generation.
+
+**Let's build admin notifications! 🔔**

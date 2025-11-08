@@ -835,3 +835,379 @@ export async function fetchCategoryPerformance(): Promise<CategoryPerformance[]>
   }
 }
 
+// Story 9.4 - User Engagement Report Types
+
+export interface UserSegment {
+  segment: 'highly_engaged' | 'moderately_engaged' | 'low_engagement' | 'at_risk';
+  segmentName: string;
+  description: string;
+  userCount: number;
+  percentage: number;
+  userIds: string[];
+}
+
+export interface EngagementFunnelStep {
+  step: string;
+  userCount: number;
+  percentage: number;
+  dropOffRate: number;
+}
+
+export interface ActivityHeatmapData {
+  dayOfWeek: number; // 0-6 (Sunday-Saturday)
+  hourOfDay: number; // 0-23
+  activityCount: number;
+}
+
+export interface CohortData {
+  cohortMonth: string; // YYYY-MM
+  userCount: number;
+  retentionRate: number;
+  completionRate: number;
+}
+
+/**
+ * Fetch user segmentation data
+ * Segments users by engagement level based on progress
+ */
+export async function fetchUserSegmentation(): Promise<UserSegment[]> {
+  try {
+    // Get all users with their progress
+    const { data: users } = await supabase
+      .from('profiles')
+      .select('id, completed_onboarding');
+
+    if (!users) return [];
+
+    // Get progress for all users
+    const { data: progressData } = await supabase
+      .from('user_progress')
+      .select('user_id, completed');
+
+    // Calculate progress percentage for each user
+    const userProgressMap = new Map<string, number>();
+    users.forEach(user => {
+      const userProgress = progressData?.filter(p => p.user_id === user.id) || [];
+      const completedCount = userProgress.filter(p => p.completed).length;
+      const progressPercentage = userProgress.length > 0
+        ? Math.round((completedCount / userProgress.length) * 100)
+        : 0;
+      userProgressMap.set(user.id, progressPercentage);
+    });
+
+    // Segment users
+    const segments = {
+      highly_engaged: { userIds: [] as string[], name: 'מעורבים מאוד', desc: 'משתמשים עם התקדמות 70%+' },
+      moderately_engaged: { userIds: [] as string[], name: 'מעורבים בינוני', desc: 'משתמשים עם התקדמות 30-70%' },
+      low_engagement: { userIds: [] as string[], name: 'מעורבות נמוכה', desc: 'משתמשים עם התקדמות פחות מ-30%' },
+      at_risk: { userIds: [] as string[], name: 'בסיכון', desc: 'משתמשים שמעולם לא השלימו הטמעה' }
+    };
+
+    users.forEach(user => {
+      const progress = userProgressMap.get(user.id) || 0;
+
+      if (!user.completed_onboarding) {
+        segments.at_risk.userIds.push(user.id);
+      } else if (progress >= 70) {
+        segments.highly_engaged.userIds.push(user.id);
+      } else if (progress >= 30) {
+        segments.moderately_engaged.userIds.push(user.id);
+      } else {
+        segments.low_engagement.userIds.push(user.id);
+      }
+    });
+
+    const totalUsers = users.length;
+
+    return [
+      {
+        segment: 'highly_engaged',
+        segmentName: segments.highly_engaged.name,
+        description: segments.highly_engaged.desc,
+        userCount: segments.highly_engaged.userIds.length,
+        percentage: totalUsers > 0 ? Math.round((segments.highly_engaged.userIds.length / totalUsers) * 100) : 0,
+        userIds: segments.highly_engaged.userIds,
+      },
+      {
+        segment: 'moderately_engaged',
+        segmentName: segments.moderately_engaged.name,
+        description: segments.moderately_engaged.desc,
+        userCount: segments.moderately_engaged.userIds.length,
+        percentage: totalUsers > 0 ? Math.round((segments.moderately_engaged.userIds.length / totalUsers) * 100) : 0,
+        userIds: segments.moderately_engaged.userIds,
+      },
+      {
+        segment: 'low_engagement',
+        segmentName: segments.low_engagement.name,
+        description: segments.low_engagement.desc,
+        userCount: segments.low_engagement.userIds.length,
+        percentage: totalUsers > 0 ? Math.round((segments.low_engagement.userIds.length / totalUsers) * 100) : 0,
+        userIds: segments.low_engagement.userIds,
+      },
+      {
+        segment: 'at_risk',
+        segmentName: segments.at_risk.name,
+        description: segments.at_risk.desc,
+        userCount: segments.at_risk.userIds.length,
+        percentage: totalUsers > 0 ? Math.round((segments.at_risk.userIds.length / totalUsers) * 100) : 0,
+        userIds: segments.at_risk.userIds,
+      },
+    ];
+  } catch (error) {
+    console.error('Error fetching user segmentation:', error);
+    return [];
+  }
+}
+
+/**
+ * Fetch engagement funnel data
+ */
+export async function fetchEngagementFunnel(): Promise<EngagementFunnelStep[]> {
+  try {
+    // Get all users
+    const { data: users } = await supabase
+      .from('profiles')
+      .select('id, completed_onboarding');
+
+    if (!users) return [];
+
+    const totalRegistered = users.length;
+
+    // Count onboarded users
+    const onboardedCount = users.filter(u => u.completed_onboarding).length;
+
+    // Get progress data
+    const { data: progressData } = await supabase
+      .from('user_progress')
+      .select('user_id, completed');
+
+    // Count users who completed at least 1 guide
+    const usersWithProgress = new Set(progressData?.filter(p => p.completed).map(p => p.user_id) || []);
+    const firstGuideCount = usersWithProgress.size;
+
+    // Count users who completed at least 5 guides
+    const userCompletionCounts = new Map<string, number>();
+    progressData?.forEach(p => {
+      if (p.completed) {
+        userCompletionCounts.set(p.user_id, (userCompletionCounts.get(p.user_id) || 0) + 1);
+      }
+    });
+
+    const fiveGuidesCount = Array.from(userCompletionCounts.values()).filter(count => count >= 5).length;
+
+    // Count users who completed all core guides (assuming 10 core guides)
+    const CORE_GUIDES_COUNT = 10;
+    const allCoreCompleteCount = Array.from(userCompletionCounts.values()).filter(count => count >= CORE_GUIDES_COUNT).length;
+
+    // Calculate drop-off rates
+    const steps = [
+      { step: 'נרשמו', userCount: totalRegistered, percentage: 100, dropOffRate: 0 },
+      {
+        step: 'השלימו הטמעה',
+        userCount: onboardedCount,
+        percentage: totalRegistered > 0 ? Math.round((onboardedCount / totalRegistered) * 100) : 0,
+        dropOffRate: totalRegistered > 0 ? Math.round(((totalRegistered - onboardedCount) / totalRegistered) * 100) : 0,
+      },
+      {
+        step: 'השלימו מדריך ראשון',
+        userCount: firstGuideCount,
+        percentage: totalRegistered > 0 ? Math.round((firstGuideCount / totalRegistered) * 100) : 0,
+        dropOffRate: onboardedCount > 0 ? Math.round(((onboardedCount - firstGuideCount) / onboardedCount) * 100) : 0,
+      },
+      {
+        step: 'השלימו 5 מדריכים',
+        userCount: fiveGuidesCount,
+        percentage: totalRegistered > 0 ? Math.round((fiveGuidesCount / totalRegistered) * 100) : 0,
+        dropOffRate: firstGuideCount > 0 ? Math.round(((firstGuideCount - fiveGuidesCount) / firstGuideCount) * 100) : 0,
+      },
+      {
+        step: 'השלימו את כל מדריכי הליבה',
+        userCount: allCoreCompleteCount,
+        percentage: totalRegistered > 0 ? Math.round((allCoreCompleteCount / totalRegistered) * 100) : 0,
+        dropOffRate: fiveGuidesCount > 0 ? Math.round(((fiveGuidesCount - allCoreCompleteCount) / fiveGuidesCount) * 100) : 0,
+      },
+    ];
+
+    return steps;
+  } catch (error) {
+    console.error('Error fetching engagement funnel:', error);
+    return [];
+  }
+}
+
+/**
+ * Fetch activity heatmap data
+ */
+export async function fetchActivityHeatmap(): Promise<ActivityHeatmapData[]> {
+  try {
+    // Get all activity from last 30 days
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+    const { data: activities } = await supabase
+      .from('user_activity')
+      .select('created_at')
+      .gte('created_at', thirtyDaysAgo.toISOString());
+
+    if (!activities) return [];
+
+    // Create a map of day/hour to count
+    const heatmapMap = new Map<string, number>();
+
+    activities.forEach(activity => {
+      const date = new Date(activity.created_at);
+      const dayOfWeek = date.getDay(); // 0-6
+      const hourOfDay = date.getHours(); // 0-23
+      const key = `${dayOfWeek}-${hourOfDay}`;
+      heatmapMap.set(key, (heatmapMap.get(key) || 0) + 1);
+    });
+
+    // Convert to array format
+    const heatmapData: ActivityHeatmapData[] = [];
+    for (let day = 0; day < 7; day++) {
+      for (let hour = 0; hour < 24; hour++) {
+        const key = `${day}-${hour}`;
+        heatmapData.push({
+          dayOfWeek: day,
+          hourOfDay: hour,
+          activityCount: heatmapMap.get(key) || 0,
+        });
+      }
+    }
+
+    return heatmapData;
+  } catch (error) {
+    console.error('Error fetching activity heatmap:', error);
+    return [];
+  }
+}
+
+/**
+ * Fetch cohort analysis data
+ */
+export async function fetchCohortAnalysis(): Promise<CohortData[]> {
+  try {
+    // Get all users with their registration date
+    const { data: users } = await supabase
+      .from('profiles')
+      .select('id, created_at');
+
+    if (!users) return [];
+
+    // Group users by month
+    const cohortMap = new Map<string, string[]>();
+    users.forEach(user => {
+      const date = new Date(user.created_at);
+      const cohortMonth = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+      if (!cohortMap.has(cohortMonth)) {
+        cohortMap.set(cohortMonth, []);
+      }
+      cohortMap.get(cohortMonth)!.push(user.id);
+    });
+
+    // Get progress data
+    const { data: progressData } = await supabase
+      .from('user_progress')
+      .select('user_id, completed');
+
+    // Get activity data from last 30 days for retention calculation
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+    const { data: recentActivities } = await supabase
+      .from('user_activity')
+      .select('user_id')
+      .gte('created_at', thirtyDaysAgo.toISOString());
+
+    const activeUserIds = new Set(recentActivities?.map(a => a.user_id) || []);
+
+    // Calculate metrics for each cohort
+    const cohortDataArray: CohortData[] = [];
+
+    for (const [cohortMonth, userIds] of cohortMap.entries()) {
+      const userCount = userIds.length;
+
+      // Retention: percentage still active in last 30 days
+      const activeInCohort = userIds.filter(id => activeUserIds.has(id)).length;
+      const retentionRate = userCount > 0 ? Math.round((activeInCohort / userCount) * 100) : 0;
+
+      // Completion: average progress percentage
+      let totalProgress = 0;
+      userIds.forEach(userId => {
+        const userProgress = progressData?.filter(p => p.user_id === userId) || [];
+        const completedCount = userProgress.filter(p => p.completed).length;
+        const progressPercentage = userProgress.length > 0
+          ? Math.round((completedCount / userProgress.length) * 100)
+          : 0;
+        totalProgress += progressPercentage;
+      });
+
+      const completionRate = userCount > 0 ? Math.round(totalProgress / userCount) : 0;
+
+      cohortDataArray.push({
+        cohortMonth,
+        userCount,
+        retentionRate,
+        completionRate,
+      });
+    }
+
+    // Sort by month (most recent first)
+    cohortDataArray.sort((a, b) => b.cohortMonth.localeCompare(a.cohortMonth));
+
+    return cohortDataArray;
+  } catch (error) {
+    console.error('Error fetching cohort analysis:', error);
+    return [];
+  }
+}
+
+/**
+ * Export user list for a specific segment to CSV
+ */
+export async function exportSegmentUsers(userIds: string[]): Promise<string> {
+  try {
+    // Get user details for the segment
+    const { data: users } = await supabase
+      .from('profiles')
+      .select('id, display_name, email, created_at')
+      .in('id', userIds);
+
+    if (!users || users.length === 0) {
+      return '';
+    }
+
+    // Get progress for these users
+    const { data: progressData } = await supabase
+      .from('user_progress')
+      .select('user_id, completed')
+      .in('user_id', userIds);
+
+    // Calculate progress for each user
+    const userProgressMap = new Map<string, number>();
+    users.forEach(user => {
+      const userProgress = progressData?.filter(p => p.user_id === user.id) || [];
+      const completedCount = userProgress.filter(p => p.completed).length;
+      const progressPercentage = userProgress.length > 0
+        ? Math.round((completedCount / userProgress.length) * 100)
+        : 0;
+      userProgressMap.set(user.id, progressPercentage);
+    });
+
+    // Create CSV content
+    const headers = ['User ID', 'Display Name', 'Email', 'Created At', 'Progress %'];
+    const rows = users.map(user => [
+      user.id,
+      user.display_name,
+      user.email,
+      user.created_at,
+      userProgressMap.get(user.id) || 0,
+    ]);
+
+    return [headers, ...rows].map(row => row.join(',')).join('\n');
+  } catch (error) {
+    console.error('Error exporting segment users:', error);
+    return '';
+  }
+}
+

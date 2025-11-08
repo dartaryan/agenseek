@@ -33,6 +33,7 @@ import { SearchResultsPage } from './search';
 import { AdminDashboardPage } from './admin';
 import { UserManagementPage } from './admin/users';
 import ContentAnalyticsPage from './admin/analytics';
+import EngagementReportPage from './admin/engagement';
 
 /**
  * Root route component
@@ -184,6 +185,10 @@ export const router = createBrowserRouter([
       {
         path: 'analytics',
         element: <ContentAnalyticsPage />,
+      },
+      {
+        path: 'engagement',
+        element: <EngagementReportPage />,
       },
     ],
   },

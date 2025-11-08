@@ -45,21 +45,21 @@ export function SettingsPage() {
 
   return (
     <div className="p-8">
-      <div className="max-w-4xl mx-auto space-y-8">
+      <div className="max-w-7xl mx-auto space-y-8">
         <div className="space-y-2">
           <h1 className="text-4xl font-bold text-gray-900">{hebrewLocale.pages.settings.title}</h1>
           <p className="text-gray-600">{hebrewLocale.pages.settings.description}</p>
         </div>
 
-        <div className="grid gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Profile Avatar - Story 0.3 */}
           <Card className="p-6 space-y-4">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">פרופיל</h3>
             <div className="flex items-center gap-4">
-              <UserAvatar 
-                config={avatarConfig} 
-                userId={user?.id} 
-                size="lg" 
+              <UserAvatar
+                config={avatarConfig}
+                userId={user?.id}
+                size="lg"
               />
               <div className="flex-1">
                 <p className="text-sm font-medium text-gray-900 dark:text-white">
@@ -68,8 +68,8 @@ export function SettingsPage() {
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   {user?.email}
                 </p>
-                <Link 
-                  to="/profile" 
+                <Link
+                  to="/profile"
                   className="text-sm text-emerald-600 hover:text-emerald-700 dark:text-emerald-500 dark:hover:text-emerald-400"
                 >
                   ערוך פרופיל ואווטר
