@@ -1,9 +1,11 @@
+import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Header } from '../components/layout/Header';
 import { Sidebar } from '../components/layout/Sidebar';
 import { Footer } from '../components/layout/Footer';
 import { AnimatedBackground } from '../components/ui/AnimatedBackground';
 import { SidebarProvider } from '../contexts/SidebarContext';
+import { CommandPalette } from '../components/common/CommandPalette';
 
 /**
  * Layout Component
@@ -18,13 +20,36 @@ import { SidebarProvider } from '../contexts/SidebarContext';
  * - Footer at bottom
  *
  * Story 6.12: Wrapped in SidebarProvider for collapsible sidebar state management
+ * Story 7.4: Added CommandPalette with Ctrl+K keyboard shortcut
  */
 export function Layout() {
+  const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
+
+  // Keyboard shortcut handler (Ctrl+K / Cmd+K)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Ctrl+K or Cmd+K
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        setCommandPaletteOpen((open) => !open);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   return (
     <SidebarProvider>
       <div className="relative flex min-h-screen flex-col">
         {/* Story 6.15: Animated background shapes for main app */}
         <AnimatedBackground variant="app" />
+
+        {/* Story 7.4: Command Palette (Ctrl+K) */}
+        <CommandPalette
+          open={commandPaletteOpen}
+          onOpenChange={setCommandPaletteOpen}
+        />
 
         {/* Header */}
         <Header />
