@@ -12,6 +12,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { getUserTasks, getSubTasks, getTaskStats } from '../../lib/api/tasks';
 import { TaskCard } from '../../components/tasks/TaskCard';
 import { TaskModal } from '../../components/tasks/TaskModal';
+import { TaskKanbanBoard } from '../../components/tasks/TaskKanbanBoard';
 import { IconPlus, IconChecklist } from '@tabler/icons-react';
 import type { Database } from '../../types/database';
 
@@ -108,15 +109,6 @@ export function TasksPage() {
       high: tasks.filter((t) => t.priority === 'high'),
       medium: tasks.filter((t) => t.priority === 'medium'),
       low: tasks.filter((t) => t.priority === 'low'),
-    };
-  }, [tasks]);
-
-  // Group tasks by status (for kanban)
-  const tasksByStatus = useMemo(() => {
-    return {
-      todo: tasks.filter((t) => t.status === 'todo'),
-      in_progress: tasks.filter((t) => t.status === 'in_progress'),
-      done: tasks.filter((t) => t.status === 'done'),
     };
   }, [tasks]);
 
@@ -334,103 +326,36 @@ export function TasksPage() {
 
           {/* Kanban View */}
           <TabsContent value="kanban" className="mt-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* To Do Column */}
-              <div className="space-y-3">
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-lg font-semibold text-gray-900 text-right">
-                    {he.todoCount} ({tasksByStatus.todo.length})
-                  </h2>
+            {isLoading ? (
+              <Card className="p-8">
+                <p className="text-center text-gray-500">טוען משימות...</p>
+              </Card>
+            ) : tasks.length === 0 ? (
+              <Card className="p-12">
+                <div className="text-center space-y-4">
+                  <IconChecklist className="w-16 h-16 mx-auto text-gray-300" />
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 text-right">{he.noTasks}</h3>
+                    <p className="text-gray-600 mt-1 text-right">{he.noTasksDescription}</p>
+                  </div>
+                  <Button
+                    onClick={handleNewTask}
+                    className="bg-emerald-600 hover:bg-emerald-700"
+                  >
+                    <IconPlus className="w-5 h-5 mr-2" />
+                    {he.newTask}
+                  </Button>
                 </div>
-                <div className="space-y-3 min-h-[400px]">
-                  {tasksByStatus.todo.map((task) => {
-                    const subTaskStats = getSubTaskStats(task.id);
-                    return (
-                      <TaskCard
-                        key={task.id}
-                        task={task}
-                        subTasksCount={subTaskStats.total}
-                        subTasksCompleted={subTaskStats.completed}
-                        guideTitle={task.guide_slug ? guidesData[task.guide_slug] : undefined}
-                        onTaskUpdated={handleTaskUpdated}
-                        onTaskDeleted={handleTaskDeleted}
-                        onEditTask={handleEditTask}
-                        onAddSubTask={handleAddSubTask}
-                      />
-                    );
-                  })}
-                  {tasksByStatus.todo.length === 0 && (
-                    <Card className="p-6">
-                      <p className="text-center text-sm text-gray-500">{he.noTasksInStatus}</p>
-                    </Card>
-                  )}
-                </div>
-              </div>
-
-              {/* In Progress Column */}
-              <div className="space-y-3">
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-lg font-semibold text-gray-900 text-right">
-                    {he.inProgressCount} ({tasksByStatus.in_progress.length})
-                  </h2>
-                </div>
-                <div className="space-y-3 min-h-[400px]">
-                  {tasksByStatus.in_progress.map((task) => {
-                    const subTaskStats = getSubTaskStats(task.id);
-                    return (
-                      <TaskCard
-                        key={task.id}
-                        task={task}
-                        subTasksCount={subTaskStats.total}
-                        subTasksCompleted={subTaskStats.completed}
-                        guideTitle={task.guide_slug ? guidesData[task.guide_slug] : undefined}
-                        onTaskUpdated={handleTaskUpdated}
-                        onTaskDeleted={handleTaskDeleted}
-                        onEditTask={handleEditTask}
-                        onAddSubTask={handleAddSubTask}
-                      />
-                    );
-                  })}
-                  {tasksByStatus.in_progress.length === 0 && (
-                    <Card className="p-6">
-                      <p className="text-center text-sm text-gray-500">{he.noTasksInStatus}</p>
-                    </Card>
-                  )}
-                </div>
-              </div>
-
-              {/* Done Column */}
-              <div className="space-y-3">
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-lg font-semibold text-gray-900 text-right">
-                    {he.doneCount} ({tasksByStatus.done.length})
-                  </h2>
-                </div>
-                <div className="space-y-3 min-h-[400px]">
-                  {tasksByStatus.done.map((task) => {
-                    const subTaskStats = getSubTaskStats(task.id);
-                    return (
-                      <TaskCard
-                        key={task.id}
-                        task={task}
-                        subTasksCount={subTaskStats.total}
-                        subTasksCompleted={subTaskStats.completed}
-                        guideTitle={task.guide_slug ? guidesData[task.guide_slug] : undefined}
-                        onTaskUpdated={handleTaskUpdated}
-                        onTaskDeleted={handleTaskDeleted}
-                        onEditTask={handleEditTask}
-                        onAddSubTask={handleAddSubTask}
-                      />
-                    );
-                  })}
-                  {tasksByStatus.done.length === 0 && (
-                    <Card className="p-6">
-                      <p className="text-center text-sm text-gray-500">{he.noTasksInStatus}</p>
-                    </Card>
-                  )}
-                </div>
-              </div>
-            </div>
+              </Card>
+            ) : (
+              <TaskKanbanBoard
+                tasks={tasks}
+                subTasksMap={subTasksMap}
+                guidesData={guidesData}
+                onTaskUpdated={handleTaskUpdated}
+                onTaskClick={handleEditTask}
+              />
+            )}
           </TabsContent>
 
           {/* By Priority View */}
