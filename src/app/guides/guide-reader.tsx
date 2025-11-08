@@ -1,5 +1,5 @@
 /**
- * Guide Reader Page - Story 4.5 + 4.6 + 4.7 + 4.8 + Story 5.1.1 + Story 5.1.2
+ * Guide Reader Page - Story 4.5 + 4.6 + 4.7 + 4.8 + Story 5.1.1 + Story 5.1.2 + Story 6.3 + Story 6.7
  *
  * 3-panel layout guide reader with:
  * - ToC sidebar (left/right based on RTL)
@@ -16,6 +16,8 @@
  * - Story 4.8: Keyboard arrow navigation, responsive breadcrumbs, related guides
  * - Story 5.1.1: Mobile padding, auto-hide FAB, Header ToC integration
  * - Story 5.1.2: Toggle guide completion status (mark/unmark complete)
+ * - Story 6.3: Quick note creation from guide with floating tooltip
+ * - Story 6.7: Quick task creation from guide with Ctrl+T shortcut
  */
 
 import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
@@ -35,6 +37,7 @@ import { RelatedGuides } from '@/components/guides/RelatedGuides';
 import { BadgeUnlockAnimation } from '@/components/dashboard/BadgeUnlockAnimation';
 import { FloatingNoteTooltip } from '@/components/guides/FloatingNoteTooltip'; // Story 6.3
 import { NoteEditorModal } from '@/components/notes/NoteEditorModal'; // Story 6.3
+import { TaskModal } from '@/components/tasks/TaskModal'; // Story 6.7
 import { loadGuide, getAdjacentGuides } from '@/lib/guide-loader';
 import { useAuth } from '@/hooks/useAuth';
 import { useAchievements } from '@/hooks/useAchievements';
@@ -42,6 +45,9 @@ import { supabase } from '@/lib/supabase';
 import { toast } from '@/hooks/use-toast';
 import MobileTocContext from '@/contexts/MobileTocContext';
 import type { Guide, GuideMetadata } from '@/types/content-blocks';
+import type { Database } from '@/types/database';
+
+type UserTask = Database['public']['Tables']['user_tasks']['Row'];
 
 interface UserProgress {
   progress_percent: number;
@@ -78,6 +84,9 @@ export function GuideReaderPage() {
   // Story 6.3: Note creation state
   const [isNoteEditorOpen, setIsNoteEditorOpen] = useState(false);
   const [noteInitialContent, setNoteInitialContent] = useState<string | null>(null);
+
+  // Story 6.7: Task creation state
+  const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
 
   // Refs
   const contentRef = useRef<HTMLDivElement>(null);
@@ -532,6 +541,33 @@ export function GuideReaderPage() {
     setNoteInitialContent(null);
   }, [toast]);
 
+  // Story 6.7: Handle create task - opens task modal
+  const handleCreateTask = useCallback(() => {
+    setIsTaskModalOpen(true);
+  }, []);
+
+  // Story 6.7: Handle task saved - show success toast
+  const handleTaskSaved = useCallback((task: UserTask) => {
+    toast({
+      title: 'משימה נוצרה!',
+      description: 'המשימה שלך נוצרה בהצלחה',
+    });
+
+    // Log activity
+    if (user && slug && guide) {
+      supabase.from('user_activity').insert({
+        user_id: user.id,
+        activity_type: 'create_task',
+        target_slug: slug,
+        metadata: {
+          task_id: task.id,
+          task_title: task.title,
+          guide_title: guide.metadata.title,
+        },
+      });
+    }
+  }, [user, slug, guide, toast]);
+
   // Adjacent guides for pagination
   const adjacentGuides =
     slug && guide ? getAdjacentGuides(slug, guide.metadata.category) : { prev: null, next: null };
@@ -547,7 +583,7 @@ export function GuideReaderPage() {
     [isMobileTocOpen]
   );
 
-  // Story 4.8: Keyboard arrow navigation (left/right arrows)
+  // Story 4.8 + 6.7: Keyboard shortcuts (arrows for navigation, Ctrl+T for task)
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       // Don't trigger if user is typing in an input/textarea
@@ -557,6 +593,13 @@ export function GuideReaderPage() {
         target.tagName === 'TEXTAREA' ||
         target.isContentEditable
       ) {
+        return;
+      }
+
+      // Story 6.7: Ctrl+T = open task modal
+      if ((event.ctrlKey || event.metaKey) && event.key === 't') {
+        event.preventDefault();
+        handleCreateTask();
         return;
       }
 
@@ -575,7 +618,7 @@ export function GuideReaderPage() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [prev, next, navigate]);
+  }, [prev, next, navigate, handleCreateTask]);
 
   // Loading state
   if (loading) {
@@ -641,7 +684,7 @@ export function GuideReaderPage() {
             estimatedMinutes={guide.metadata.estimatedMinutes}
             progress={scrollProgress}
             onAddNote={() => handleAddNote()}
-            onCreateTask={() => toast({ title: 'יצירת משימה - בקרוב' })}
+            onCreateTask={handleCreateTask}
             onBookmark={() => toast({ title: 'נשמר למועדפים' })}
             onCopyLink={handleCopyLink}
             className="mb-8"
@@ -699,7 +742,7 @@ export function GuideReaderPage() {
               onUnmarkComplete={handleUnmarkCompleteClick}
               onBookmark={() => toast({ title: 'נשמר למועדפים' })}
               onAddNote={() => handleAddNote()}
-              onCreateTask={() => toast({ title: 'יצירת משימה - בקרוב' })}
+              onCreateTask={handleCreateTask}
               onFeedback={(helpful) =>
                 toast({
                   title: helpful ? 'תודה על המשוב!' : 'נשמע, ננסה לשפר',
@@ -763,6 +806,14 @@ export function GuideReaderPage() {
         guideTitle={guide.metadata.title}
         initialContent={noteInitialContent}
         onSaved={handleNoteSaved}
+      />
+
+      {/* Story 6.7: Task Modal */}
+      <TaskModal
+        open={isTaskModalOpen}
+        onOpenChange={setIsTaskModalOpen}
+        guideSlug={slug}
+        onSaved={handleTaskSaved}
       />
 
       {/* Story 6.3: Floating Note Tooltip */}

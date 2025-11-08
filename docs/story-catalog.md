@@ -1,7 +1,7 @@
 # Agenseek - Complete Story Catalog
 
 **Total Stories:** 70
-**Completed:** 47/70 (67%)
+**Completed:** 59/70 (84%)
 **Format:** Quick reference for all stories with acceptance criteria
 **For detailed stories:** See individual files in `docs/stories/`
 
@@ -17,10 +17,10 @@
 - Epic 3: ✅ COMPLETE (10/10)
 - Epic 4: ✅ COMPLETE (8/8) 🎉
 - Epic 5: ✅ COMPLETE (11/11)
-- Epic 6: 🔨 IN PROGRESS (2/8) - 6.1 & 6.2 complete
+- Epic 6: 🔨 IN PROGRESS (7/8) - Only 6.8 remaining
 - Epic 7-10: ❌ NOT STARTED
 
-**Next Story:** 6.3 - Implement Quick Note from Guide
+**Next Story:** 6.8 - Build Task and Note Statistics Dashboard
 
 ---
 
@@ -291,7 +291,7 @@
 
 ---
 
-## Epic 6: Notes & Tasks (8 stories) - 1 of 8 Complete (13%)
+## Epic 6: Notes & Tasks (8 stories) - 7 of 8 Complete (88%)
 
 ### Story 6.1: Build Rich Text Note Editor ✅
 **Sprint:** 8 | **Points:** 3 | **Priority:** P0 | **Status:** COMPLETE
@@ -303,35 +303,35 @@
 **Key AC:** /notes route, header with count and "New Note" button, search bar, filters (by guide, by tags, date range), sort options (recent/created/alphabetical/by guide), 3-column card grid, card shows title (inline editable), content preview, tags, guide link, timestamps, edit/delete actions
 **Dependencies:** 6.1 ✅
 
-### Story 6.3: Implement Quick Note from Guide
-**Sprint:** 8 | **Points:** 2 | **Priority:** P0
+### Story 6.3: Implement Quick Note from Guide ✅
+**Sprint:** 8 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** "Add Note" button in guide action bar, modal pre-fills guide, selected text pre-fills as blockquote, floating "Add to Note" tooltip on text selection, save shows toast and updates count
-**Dependencies:** 6.2
+**Dependencies:** 6.2 ✅
 
-### Story 6.4: Build Task Management System
-**Sprint:** 8 | **Points:** 3 | **Priority:** P0
+### Story 6.4: Build Task Management System ✅
+**Sprint:** 8 | **Points:** 3 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** /tasks route, header with status counts and "New Task" button, view tabs (all/by guide/kanban/by priority), task card with checkbox (toggle status), title (inline editable), description, priority dot, status badge, guide link, sub-tasks progress, created date, edit/delete actions
-**Dependencies:** 6.3
+**Dependencies:** 6.3 ✅
 
-### Story 6.5: Build Task Creation Modal
-**Sprint:** 9 | **Points:** 3 | **Priority:** P0
+### Story 6.5: Build Task Creation Modal ✅
+**Sprint:** 9 | **Points:** 3 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** Task modal form with title, description (markdown), priority dropdown, status dropdown, associated guide, sub-tasks section with add/remove/drag reorder, save creates task and sub-tasks, toast notification
-**Dependencies:** 6.4
+**Dependencies:** 6.4 ✅
 
-### Story 6.6: Build Task Kanban Board
-**Sprint:** 9 | **Points:** 3 | **Priority:** P0
+### Story 6.6: Build Task Kanban Board ✅
+**Sprint:** 9 | **Points:** 3 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** Kanban tab with 3 columns (To Do, In Progress, Done), drag-and-drop tasks between columns (@dnd-kit), drop updates status in DB, compact task cards, click card opens modal, empty column state
-**Dependencies:** 6.5
+**Dependencies:** 6.5 ✅
 
-### Story 6.7: Implement Task Quick Actions from Guide
-**Sprint:** 9 | **Points:** 2 | **Priority:** P0
+### Story 6.7: Implement Task Quick Actions from Guide ✅
+**Sprint:** 9 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** "Create Task" button in guide action bar, modal pre-fills associated guide, quick save with Ctrl+Enter, task appears in My Tasks, count updates, can store current heading as context
-**Dependencies:** 6.6
+**Dependencies:** 6.6 ✅
 
 ### Story 6.8: Build Task and Note Statistics Dashboard
 **Sprint:** 9 | **Points:** 2 | **Priority:** P1
 **Key AC:** My Notes Summary (total count, top 5 tags, notes created this week trend, associated guides count), My Tasks Summary (status counts, completion rate %, high priority count, tasks created vs completed chart), visual bar chart and tag cloud
-**Dependencies:** 6.7
+**Dependencies:** 6.7 ✅
 
 ---
 
