@@ -226,6 +226,166 @@ export async function hasUserVoted(userId: string, commentId: string): Promise<b
 }
 
 /**
+ * Mark a comment as solution to a question
+ * Only the question author can mark solutions
+ */
+export async function markCommentAsSolution(data: {
+  userId: string;
+  commentId: string;
+  questionId: string;
+}): Promise<{ success: boolean; error?: string }> {
+  try {
+    // Verify user is the question author
+    const { data: question, error: questionError } = await supabase
+      .from('guide_comments')
+      .select('user_id, is_question')
+      .eq('id', data.questionId)
+      .single();
+
+    if (questionError || !question) {
+      console.error('Error fetching question:', questionError);
+      return {
+        success: false,
+        error: 'שגיאה בטעינת השאלה',
+      };
+    }
+
+    // Check if this is actually a question
+    if (!question.is_question) {
+      return {
+        success: false,
+        error: 'התגובה אינה שאלה',
+      };
+    }
+
+    // Check if user is the question author
+    if (question.user_id !== data.userId) {
+      return {
+        success: false,
+        error: 'רק מחבר השאלה יכול לסמן פתרון',
+      };
+    }
+
+    // Check if the comment is actually a reply to this question
+    const { data: reply, error: replyError } = await supabase
+      .from('guide_comments')
+      .select('parent_comment_id')
+      .eq('id', data.commentId)
+      .single();
+
+    if (replyError || !reply) {
+      console.error('Error fetching reply:', replyError);
+      return {
+        success: false,
+        error: 'שגיאה בטעינת התגובה',
+      };
+    }
+
+    if (reply.parent_comment_id !== data.questionId) {
+      return {
+        success: false,
+        error: 'התגובה אינה תשובה לשאלה זו',
+      };
+    }
+
+    // Remove any existing solution for this question
+    const { error: removeError } = await supabase
+      .from('guide_comments')
+      .update({ is_solution: false })
+      .eq('parent_comment_id', data.questionId)
+      .eq('is_solution', true);
+
+    if (removeError) {
+      console.error('Error removing existing solution:', removeError);
+      // Don't fail - continue to mark new solution
+    }
+
+    // Mark this comment as solution
+    const { error: markError } = await supabase
+      .from('guide_comments')
+      .update({ is_solution: true, updated_at: new Date().toISOString() })
+      .eq('id', data.commentId);
+
+    if (markError) {
+      console.error('Error marking solution:', markError);
+      return {
+        success: false,
+        error: 'שגיאה בסימון הפתרון',
+      };
+    }
+
+    return {
+      success: true,
+    };
+  } catch (err) {
+    console.error('Error marking solution:', err);
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : 'שגיאה בסימון הפתרון',
+    };
+  }
+}
+
+/**
+ * Unmark a comment as solution
+ * Only the question author can unmark solutions
+ */
+export async function unmarkCommentAsSolution(data: {
+  userId: string;
+  commentId: string;
+  questionId: string;
+}): Promise<{ success: boolean; error?: string }> {
+  try {
+    // Verify user is the question author
+    const { data: question, error: questionError } = await supabase
+      .from('guide_comments')
+      .select('user_id')
+      .eq('id', data.questionId)
+      .single();
+
+    if (questionError || !question) {
+      console.error('Error fetching question:', questionError);
+      return {
+        success: false,
+        error: 'שגיאה בטעינת השאלה',
+      };
+    }
+
+    // Check if user is the question author
+    if (question.user_id !== data.userId) {
+      return {
+        success: false,
+        error: 'רק מחבר השאלה יכול להסיר סימון פתרון',
+      };
+    }
+
+    // Unmark the solution
+    const { error: unmarkError } = await supabase
+      .from('guide_comments')
+      .update({ is_solution: false, updated_at: new Date().toISOString() })
+      .eq('id', data.commentId);
+
+    if (unmarkError) {
+      console.error('Error unmarking solution:', unmarkError);
+      return {
+        success: false,
+        error: 'שגיאה בהסרת סימון הפתרון',
+      };
+    }
+
+    return {
+      success: true,
+    };
+  } catch (err) {
+    console.error('Error unmarking solution:', err);
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : 'שגיאה בהסרת סימון הפתרון',
+    };
+  }
+}
+
+/**
  * Simple markdown renderer for preview
  * Handles basic markdown: bold, italic, code, links
  */

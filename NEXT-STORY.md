@@ -1,395 +1,350 @@
-# 🚀 NEXT STORY: Story 8.4 - Build Q&A Functionality
+# 🚀 NEXT STORY: Story 8.5 - Implement Comment Edit and Delete
 
 **Updated:** November 8, 2025
 
 ---
 
-## ✅ Story 8.3 Complete!
+## ✅ Story 8.4 Complete!
 
-Users can now vote on helpful comments! Features include:
+Users can now use Q&A functionality! Features include:
 
-- Vote comments as "helpful" with thumbs up button
-- Filled emerald button when voted
-- Toggle vote on/off
-- Cannot vote on own comments
-- Sort by "Most Helpful"
-- Real-time vote count updates
-- Vote state persists across sessions
-- Visual feedback with filled icon
-- Accessible and responsive
+- Question comments with orange styling and badge
+- Solution marking by question author
+- Green styling for solution replies
+- Solutions float to top of replies
+- Q&A filter toggle to show only questions
+- Permission-based solution marking
+- Real-time updates for solutions
+- Visual feedback with badges and colors
 
-**Completion File:** See `STORY-8.3-COMPLETE.md` for full details.
+**Completion File:** See `STORY-8.4-COMPLETE.md` for full details.
 
-**Epic 8 Status:** 3/6 stories complete (50%)
+**Epic 8 Status:** 4/6 stories complete (67%)
 
 ---
 
 ## 📍 Next Story to Implement
 
-### **Story 8.4: Build Q&A Functionality**
+### **Story 8.5: Implement Comment Edit and Delete**
 
 **Epic:** 8 - Community Features (Comments & Q&A)
 **Priority:** P0
 **Sprint:** 11
 **Story Points:** 3
-**Dependencies:** Story 8.3 Complete ✅
+**Dependencies:** Story 8.4 Complete ✅
 
 ---
 
-## 🎯 Story 8.4 Overview
+## 🎯 Story 8.5 Overview
 
-Enhance the comment system with Q&A functionality. Question comments get special treatment with orange styling, replies can be marked as solutions by the question author, and users can filter to see only questions.
+Allow users to edit and delete their own comments. Edited comments show "(נערך)" timestamp. Deleting parent comments with replies shows placeholder text instead of full deletion.
 
 ### User Story
 
-**As a user reading a guide,**
-**I want to see questions highlighted and solutions marked,**
-**So that I can quickly find answers to common problems and get help from the community.**
+**As a user,**
+**I want to edit or delete my own comments,**
+**So that I can correct mistakes or remove content I no longer want visible.**
 
 ---
 
 ## 📋 Acceptance Criteria
 
-### Question Visual Styling
+### Edit Functionality
 
-**Given** I'm viewing comments on a guide
-**When** A comment is marked as a question (is_question = true)
+**Given** I posted a comment
+**When** I want to edit it
 **Then:**
 
-- [ ] Question comment has orange background (bg-orange-50 dark:bg-orange-950/20)
-- [ ] Question has orange border (border-orange-200 dark:border-orange-800)
-- [ ] "שאלה" badge displayed with orange background
-- [ ] Badge positioned next to user name
-- [ ] Questions visually distinct from regular comments
+- [ ] Edit button (pencil icon) appears on hover (own comments only)
+- [ ] Click edit:
+  - Comment text becomes textarea
+  - "שמור" and "ביטול" buttons appear
+  - Can modify text
+  - Save updates comment and updated_at timestamp
+  - Shows "(נערך)" label with timestamp
+- [ ] Edited comments display "(נערך)" when updated_at > created_at + 1 minute
+- [ ] Character limit still applies (5000 chars)
+- [ ] Markdown formatting preserved
 
-### Mark Reply as Solution
+### Delete Functionality
 
-**Given** I'm the author of a question comment
-**When** I view replies to my question
+**Given** I posted a comment
+**When** I want to delete it
 **Then:**
 
-- [ ] Each reply has "סמן כפתרון" button (only visible to question author)
-- [ ] Clicking marks reply as solution (is_solution = true)
-- [ ] Solution reply moves to top of replies list
-- [ ] Solution gets green background (bg-green-50 dark:bg-green-950/20)
-- [ ] Green checkmark icon appears
-- [ ] "פתרון" badge displayed with green background
-- [ ] Only one solution per question (marking new solution removes previous)
-- [ ] Toast notification: "הפתרון סומן בהצלחה"
+- [ ] Delete button (trash icon) appears on hover
+- [ ] Click delete:
+  - Confirmation dialog: "למחוק תגובה? לא ניתן לבטל פעולה זו."
+  - On confirm: DELETE from guide_comments
+  - Comment removed from UI with fade-out animation
+  - Decrement guide comment count
+- [ ] If parent comment with replies:
+  - Show "[התגובה נמחקה]" placeholder
+  - Keep replies visible
+  - Preserve thread structure
+- [ ] If no replies: Hard delete (complete removal)
+- [ ] Activity logged
 
-### Unmark Solution
+### Permissions
 
-**Given** A reply is already marked as solution
-**When** Question author clicks "הסר סימון פתרון"
+**Given** I'm viewing comments
 **Then:**
 
-- [ ] is_solution set to false
-- [ ] Reply returns to chronological position
-- [ ] Green styling removed
-- [ ] Solution badge removed
-- [ ] Toast notification: "סימון הפתרון הוסר"
-
-### Q&A Filter Toggle
-
-**Given** I'm viewing comments on a guide
-**When** I toggle "הצג שאלות בלבד" filter
-**Then:**
-
-- [ ] Only comments with is_question = true displayed
-- [ ] Filter button state toggles (filled when active)
-- [ ] Count shows number of questions
-- [ ] Sorting still applies (recent/most helpful)
-- [ ] Replies to questions still shown
-- [ ] Toggle off shows all comments again
-
-### Questions Grouping
-
-**Given** Q&A filter is enabled
-**When** Questions are displayed
-**Then:**
-
-- [ ] Questions grouped into two sections:
-  - "שאלות ללא תשובה" (no replies with is_solution = true)
-  - "שאלות שנענו" (has reply with is_solution = true)
-- [ ] Unanswered questions displayed first
-- [ ] Each group sorted by selected sort option
-- [ ] Group headers show count
-- [ ] Empty groups show placeholder message
-
-### Solution Permissions
-
-**Given** I'm viewing a question with replies
-**Then:**
-
-- [ ] Only question author can mark/unmark solutions
-- [ ] "סמן כפתרון" button hidden from other users
-- [ ] Solution badge visible to all users
-- [ ] Question author can change solution to different reply
+- [ ] Edit/Delete buttons only visible on my own comments
+- [ ] Cannot edit/delete other users' comments
+- [ ] Server-side validation prevents unauthorized edits/deletes
 
 ---
 
 ## 🔨 Implementation Plan
 
-### 1. Update CommentItem Component for Solution Marking
+### 1. Add Edit State to CommentItem/CommentReply
 
-**File:** `src/components/comments/CommentItem.tsx`
+**Files:**
+- `src/components/comments/CommentItem.tsx`
+- `src/components/comments/CommentReply.tsx`
 
 **Changes:**
-1. Check if current user is question author (for replies to questions)
-2. Add "סמן כפתרון" button for replies (visible only to question author)
-3. Handle solution marking (call `markSolutionComment()`)
-4. Show solution badge and styling when `is_solution = true`
-5. Float solution replies to top of replies list
+1. Add `isEditing` state
+2. Replace content display with textarea when editing
+3. Add Save/Cancel buttons when editing
+4. Handle edit submission
+5. Display "(נערך)" when edited
 
-**Logic:**
-```typescript
-// Check if this is a reply to a question
-const isReplyToQuestion = comment.parent_comment_id && parentComment.is_question;
-
-// Check if current user is the question author
-const isQuestionAuthor = user?.id === parentComment.user_id;
-
-// Show mark solution button if:
-// - This is a reply to a question
-// - Current user is the question author
-// - Reply is not already marked as solution
-```
-
-### 2. Create Solution Marking Action
+### 2. Create Edit and Delete Actions
 
 **File:** `src/lib/actions/comments.ts`
 
-**Function:**
+**Functions:**
 ```typescript
-async function markCommentAsSolution(data: {
+async function editComment(data: {
   commentId: string;
-  questionId: string;
   userId: string;
-}): Promise<{ success: boolean; error?: string }>
+  content: string;
+}): Promise<{ success: boolean; error?: string }>;
+
+async function deleteComment(data: {
+  commentId: string;
+  userId: string;
+}): Promise<{ success: boolean; error?: string }>;
 ```
 
-**Process:**
-1. Verify user is author of question comment
-2. Unmark any existing solution for this question
-3. Mark new comment as solution
-4. Update question to track which reply is solution
-5. Return success
+**Logic:**
+- Verify user ownership
+- Update/delete in database
+- Log activity
+- Return success/error
 
-### 3. Update CommentThread for Q&A Filter
+### 3. Add Confirmation Dialog
 
-**File:** `src/components/comments/CommentThread.tsx`
+**Component:** Use shadcn/ui `AlertDialog`
 
-**Changes:**
-1. Add Q&A filter toggle button
-2. Add state for filter (showQuestionsOnly)
-3. Update useComments hook to support filtering
-4. Add grouping logic (unanswered / answered)
-5. Display group headers with counts
+**Flow:**
+1. User clicks delete
+2. Dialog opens: "למחוק תגובה? לא ניתן לבטל פעולה זו."
+3. User confirms or cancels
+4. On confirm: delete and show toast
 
-### 4. Update useComments Hook
+### 4. Soft Delete for Parent Comments
 
-**File:** `src/hooks/useComments.ts`
+**Logic:**
+```typescript
+// Check if comment has replies
+const hasReplies = await checkForReplies(commentId);
 
-**Changes:**
-1. Add `filterQuestions` parameter
-2. Filter query to only fetch questions when enabled
-3. Add logic to group questions by answered status
-4. Solution replies float to top within each question
+if (hasReplies) {
+  // Soft delete: Replace content with placeholder
+  await updateComment({
+    id: commentId,
+    content: '[התגובה נמחקה]',
+    is_deleted: true, // New field
+  });
+} else {
+  // Hard delete
+  await deleteComment(commentId);
+}
+```
 
-### 5. Update Hebrew Locale
+### 5. Update Types (if needed)
+
+**File:** `src/types/database.ts`
+
+Add `is_deleted` field to `guide_comments` table if not present.
+
+### 6. Update Hebrew Locale
 
 Add to `comments` section:
-- `markAsSolution`: 'סמן כפתרון'
-- `unmarkSolution`: 'הסר סימון פתרון'
-- `solutionMarked`: 'הפתרון סומן בהצלחה'
-- `solutionUnmarked`: 'סימון הפתרון הוסר'
-- `onlyQuestions`: 'הצג שאלות בלבד'
-- `allComments`: 'כל התגובות'
-- `unansweredQuestions`: 'שאלות ללא תשובה'
-- `answeredQuestions`: 'שאלות שנענו'
-- `noUnansweredQuestions`: 'אין שאלות ללא תשובה'
-- `noAnsweredQuestions`: 'אין שאלות שנענו'
+- `edit`: 'ערוך'
+- `delete`: 'מחק'
+- `deleteConfirm`: 'למחוק תגובה? לא ניתן לבטל פעולה זו.'
+- `deleteSuccess`: 'התגובה נמחקה בהצלחה'
+- `deleteError`: 'שגיאה במחיקת התגובה'
+- `edited`: '(נערך)'
+- `save`: 'שמור'
+- `cancel`: 'ביטול'
+- `commentDeleted`: '[התגובה נמחקה]'
+- `editSuccess`: 'התגובה עודכנה בהצלחה'
+- `editError`: 'שגיאה בעדכון התגובה'
 
-### 6. Solution Visual Styling
+### 7. Add Edit Mode UI
 
-**CSS Classes:**
-- Green background for solution: `bg-green-50 dark:bg-green-950/20`
-- Green border: `border-green-200 dark:border-green-800`
-- Green badge: `bg-green-500 hover:bg-green-600`
-- Checkmark icon: `IconCheck` from Tabler Icons
+**Edit State:**
+- Textarea with current content
+- Character counter
+- Save button (emerald)
+- Cancel button (gray)
+- Disable other actions while editing
 
-### 7. Reply Sorting Logic
+### 8. Activity Logging
 
-**Implementation:**
-1. Fetch all replies for question
-2. Separate solution reply (if exists)
-3. Sort remaining replies by sort option
-4. Return array: [solutionReply, ...otherReplies]
-5. Display with solution at top
-
-### 8. Question Grouping Logic
-
-**Implementation:**
-```typescript
-// Group questions into answered/unanswered
-const unanswered = questions.filter(q =>
-  !q.replies.some(r => r.is_solution)
-);
-const answered = questions.filter(q =>
-  q.replies.some(r => r.is_solution)
-);
-```
+**Activities:**
+- `comment_edited`: Log when user edits comment
+- `comment_deleted`: Log when user deletes comment
 
 ---
 
 ## 🎨 UI/UX Considerations
 
-### Form Placement
+### Edit Button
+- Pencil icon from Tabler Icons
+- Appears on hover (desktop) or always visible (mobile)
+- Only on user's own comments
 
-**Top of thread:**
-- Prominent "הוסף תגובה" button (emerald, with icon)
-- Form slides down when clicked
-- Full-width with proper padding
+### Delete Button
+- Trash icon from Tabler Icons
+- Red/destructive color
+- Confirmation required
 
-**Reply form:**
-- Indented to match reply depth
-- Smaller, more compact
-- "השב ל [Name]" indicator at top
+### Edit Mode
+- Textarea replaces content
+- Auto-focus on textarea
+- Same styling as comment form
+- Character counter visible
 
-### Visual States
+### Edited Label
+- "(נערך)" displayed next to timestamp
+- Gray/muted color
+- Hover shows edit time
 
-**Empty:**
-- Textarea gray border
-- Placeholder text visible
-
-**Focused:**
-- Emerald border
-- Placeholder disappears
-
-**Typing:**
-- Character count updates live
-- Green when < 4500
-- Orange when 4500-4999
-- Red when 5000
-
-**Submitting:**
-- Button shows spinner
-- Textarea disabled
-- "שולח..." text
-
-**Success:**
-- Toast notification
-- Form clears
-- Smooth scroll to new comment
-- Confetti animation (optional)
-
-### Responsive Design
-
-**Mobile (<640px):**
-- Full-width form
-- Larger touch targets
-- Preview tab full screen
-
-**Tablet (640-1024px):**
-- Form width matches content area
-- Side-by-side Write/Preview tabs
-
-**Desktop (>1024px):**
-- Max-width constrained
-- Comfortable spacing
-- Markdown guide visible by default
+### Soft Delete Display
+- "[התגובה נמחקה]" text
+- Gray/muted styling
+- Replies still visible and indented
+- User avatar and name removed
 
 ---
 
 ## 🧪 Testing Scenarios
 
-### Happy Path
-1. Click "הוסף תגובה"
-2. Type comment (< 5000 chars)
-3. Click "פרסם תגובה"
-4. See success toast
-5. New comment appears at top
-6. Count increments
+### Happy Path - Edit
+1. User posts comment
+2. User clicks edit button
+3. Modifies text
+4. Clicks save
+5. **Expected:**
+   - Comment updated
+   - "(נערך)" label appears
+   - Toast: "התגובה עודכנה בהצלחה"
 
-### Reply Flow
-1. Click "השב" on comment
-2. Type reply
-3. Submit
-4. Reply appears under parent
-5. Reply count updates
+### Happy Path - Delete (No Replies)
+1. User posts comment (no replies)
+2. User clicks delete
+3. Confirms in dialog
+4. **Expected:**
+   - Comment removed completely
+   - UI updates smoothly
+   - Toast: "התגובה נמחקה בהצלחה"
+
+### Soft Delete (With Replies)
+1. User posts comment
+2. Others reply to it
+3. User deletes original comment
+4. **Expected:**
+   - Content replaced with "[התגובה נמחקה]"
+   - Replies remain visible
+   - Thread structure preserved
+
+### Permissions
+1. User A posts comment
+2. User B views comment
+3. **Expected:**
+   - User B does NOT see edit/delete buttons
+   - Only User A sees buttons
+
+### Cancel Edit
+1. User clicks edit
+2. Modifies text
+3. Clicks cancel
+4. **Expected:**
+   - Original text restored
+   - Edit mode closed
+   - No changes saved
 
 ### Validation
-1. Try to submit empty → Button disabled
-2. Type 5001 chars → Button disabled, red count
-3. Backspace to 5000 → Button enabled
-4. Submit → Success
-
-### Question Toggle
-1. Toggle "שאלה"
-2. Submit
-3. New comment has orange background
-4. "שאלה" badge visible
-
-### Preview
-1. Type markdown: `**bold** and *italic*`
-2. Click Preview tab
-3. See formatted text
-4. Switch back to Write
-5. Content preserved
-
-### Error Handling
-1. Network error → Error toast
-2. User not authenticated → Redirect to login
-3. Invalid guide_slug → Error message
+1. User edits comment
+2. Deletes all content
+3. Tries to save
+4. **Expected:**
+   - Error: "התגובה לא יכולה להיות ריקה"
+   - Cannot save empty comment
 
 ---
 
 ## 🔐 Security & Validation
 
 ### Client-Side
-- Max 5000 characters
-- No empty submissions
-- Sanitize markdown (prevent XSS)
+- Only show buttons to comment owner
+- Validate content before submission
+- Character limit enforced
+- Confirmation required for delete
 
 ### Server-Side (RLS Policies)
-- User must be authenticated
-- User can only insert with their own user_id
-- Content length check
-- Rate limiting (future: prevent spam)
+- User can only update their own comments
+- User can only delete their own comments
+- Content validation
+- Rate limiting (prevent spam)
 
 ### Database Constraints
-- `content` NOT NULL
-- `user_id` foreign key constraint
-- `guide_slug` validated against catalog
+- `content` NOT NULL (unless soft deleted)
+- `user_id` validated against auth
+- `updated_at` automatically updated
 
 ---
 
 ## 📚 Technical Resources
 
-### Markdown Libraries
-- **react-markdown:** Simple, lightweight
-- **marked:** Fast parser
-- **Custom:** Can implement basic markdown manually
-
-### Textarea Auto-Resize
+### Confirmation Dialog
+Use shadcn/ui `AlertDialog`:
 ```typescript
-const adjustHeight = () => {
-  if (textareaRef.current) {
-    textareaRef.current.style.height = 'auto';
-    textareaRef.current.style.height = `${Math.min(
-      textareaRef.current.scrollHeight,
-      400
-    )}px`;
-  }
-};
+<AlertDialog>
+  <AlertDialogTrigger>
+    <Button>Delete</Button>
+  </AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>למחוק תגובה?</AlertDialogTitle>
+      <AlertDialogDescription>
+        לא ניתן לבטל פעולה זו.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>ביטול</AlertDialogCancel>
+      <AlertDialogAction>מחק</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>
 ```
 
-### Character Counter
+### Soft Delete Check
 ```typescript
-const charCount = content.length;
-const charColor = charCount > 4500
-  ? (charCount >= 5000 ? 'text-destructive' : 'text-orange-500')
-  : 'text-muted-foreground';
+const checkForReplies = async (commentId: string) => {
+  const { count } = await supabase
+    .from('guide_comments')
+    .select('id', { count: 'exact', head: true })
+    .eq('parent_comment_id', commentId);
+
+  return count > 0;
+};
 ```
 
 ---
@@ -398,25 +353,20 @@ const charColor = charCount > 4500
 
 Before marking story complete:
 
-- [ ] Comment form component created
-- [ ] Form integrated at top of CommentThread
-- [ ] Reply form integrated in CommentItem
-- [ ] Markdown formatting guide implemented
-- [ ] Preview tab functional
-- [ ] Comment/Question toggle works
-- [ ] Character counter updates live
-- [ ] Submit inserts to database
-- [ ] Activity logged
-- [ ] Success toast displays
-- [ ] Form resets after submit
-- [ ] Scroll to new comment works
-- [ ] Real-time update displays new comment
-- [ ] Count increments in header
-- [ ] Reply submission works
-- [ ] Reply appears under parent
-- [ ] Reply count updates
-- [ ] Validation prevents invalid submissions
-- [ ] Error handling shows appropriate messages
+- [ ] Edit button appears on own comments
+- [ ] Edit mode with textarea functional
+- [ ] Save updates comment in database
+- [ ] Cancel discards changes
+- [ ] "(נערך)" label displays correctly
+- [ ] Delete button appears on own comments
+- [ ] Confirmation dialog displays
+- [ ] Delete removes comment (or soft deletes)
+- [ ] Soft delete preserves replies
+- [ ] Hard delete removes completely
+- [ ] Activity logged for both actions
+- [ ] Toast notifications display
+- [ ] Permissions enforced (client + server)
+- [ ] Real-time updates working
 - [ ] Hebrew locale strings added
 - [ ] No TypeScript errors
 - [ ] No linter errors
@@ -428,7 +378,7 @@ Before marking story complete:
 
 ## 🚀 Ready to Implement!
 
-Story 8.1 complete with comment thread display and real-time updates. Story 8.2 will enable users to post comments and questions.
+Story 8.4 complete with Q&A functionality. Story 8.5 will allow users to manage their own comments by editing and deleting them.
 
 **Start Command:**
 ```bash
@@ -436,16 +386,16 @@ Story 8.1 complete with comment thread display and real-time updates. Story 8.2 
 ```
 
 Then implement in this order:
-1. Create comment submission logic (lib/actions/comments.ts)
-2. Create CommentForm component
-3. Integrate form into CommentThread (top-level)
-4. Integrate form into CommentItem (replies)
+1. Add edit state to CommentItem/CommentReply
+2. Create edit/delete actions in comments.ts
+3. Add confirmation dialog
+4. Implement soft delete logic
 5. Add Hebrew locale strings
-6. Test submission flow
-7. Test validation
-8. Test real-time updates
+6. Test edit flow
+7. Test delete flow (both hard and soft)
+8. Test permissions
 9. Complete story documentation
 
 ---
 
-**Let's build community engagement through comments! 💬✨**
+**Let's build comment management! ✏️🗑️**

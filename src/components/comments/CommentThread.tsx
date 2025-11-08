@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { IconMessage, IconSortDescending, IconPlus } from '@tabler/icons-react';
+import { IconMessage, IconSortDescending, IconPlus, IconFilter } from '@tabler/icons-react';
 import { hebrewLocale } from '@/lib/locale/he';
 import type { CommentSort } from '@/types/comments';
 
@@ -22,9 +22,11 @@ interface CommentThreadProps {
 export function CommentThread({ guideSlug }: CommentThreadProps) {
   const [sortBy, setSortBy] = useState<CommentSort>('recent');
   const [showCommentForm, setShowCommentForm] = useState(false);
+  const [showQuestionsOnly, setShowQuestionsOnly] = useState(false);
   const { comments, loading, error, hasMore, loadMore, refresh, totalCount } = useComments(
     guideSlug,
-    sortBy
+    sortBy,
+    showQuestionsOnly
   );
 
   const handleSortChange = (value: string) => {
@@ -62,7 +64,7 @@ export function CommentThread({ guideSlug }: CommentThreadProps) {
   return (
     <Card className="mt-8">
       <CardHeader>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-wrap gap-3">
           <CardTitle className="flex items-center gap-2">
             <IconMessage className="h-5 w-5 text-emerald-600" />
             <span>{hebrewLocale.comments.title}</span>
@@ -71,24 +73,43 @@ export function CommentThread({ guideSlug }: CommentThreadProps) {
             </span>
           </CardTitle>
 
-          {/* Sort Dropdown */}
-          <Select value={sortBy} onValueChange={handleSortChange}>
-            <SelectTrigger className="w-[180px]">
-              <IconSortDescending className="h-4 w-4 ml-2" />
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="recent">
-                {hebrewLocale.comments.sortRecent}
-              </SelectItem>
-              <SelectItem value="most_helpful">
-                {hebrewLocale.comments.sortMostHelpful}
-              </SelectItem>
-              <SelectItem value="oldest">
-                {hebrewLocale.comments.sortOldest}
-              </SelectItem>
-            </SelectContent>
-          </Select>
+          <div className="flex items-center gap-2">
+            {/* Q&A Filter Toggle */}
+            <Button
+              variant={showQuestionsOnly ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => setShowQuestionsOnly(!showQuestionsOnly)}
+              className={`gap-1 h-9 ${
+                showQuestionsOnly
+                  ? 'bg-orange-500 hover:bg-orange-600 text-white'
+                  : ''
+              }`}
+            >
+              <IconFilter className="h-4 w-4" />
+              <span className="text-xs">
+                {showQuestionsOnly ? hebrewLocale.comments.allComments : hebrewLocale.comments.onlyQuestions}
+              </span>
+            </Button>
+
+            {/* Sort Dropdown */}
+            <Select value={sortBy} onValueChange={handleSortChange}>
+              <SelectTrigger className="w-[180px]">
+                <IconSortDescending className="h-4 w-4 ml-2" />
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="recent">
+                  {hebrewLocale.comments.sortRecent}
+                </SelectItem>
+                <SelectItem value="most_helpful">
+                  {hebrewLocale.comments.sortMostHelpful}
+                </SelectItem>
+                <SelectItem value="oldest">
+                  {hebrewLocale.comments.sortOldest}
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
       </CardHeader>
 

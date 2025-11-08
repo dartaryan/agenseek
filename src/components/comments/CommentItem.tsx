@@ -268,14 +268,27 @@ export function CommentItem({ comment, guideSlug, onVoteChange }: CommentItemPro
           {/* Reply List */}
           {showReplies && (
             <div className="space-y-3 pt-2 border-r-2 border-emerald-200 dark:border-emerald-800 pr-4">
-              {comment.replies.map((reply) => (
-                <CommentReply
-                  key={reply.id}
-                  reply={reply}
-                  guideSlug={guideSlug}
-                  onVoteChange={onVoteChange}
-                />
-              ))}
+              {/* Sort replies: solutions first, then by creation date */}
+              {[...comment.replies]
+                .sort((a, b) => {
+                  // Solutions float to top
+                  if (a.is_solution && !b.is_solution) return -1;
+                  if (!a.is_solution && b.is_solution) return 1;
+                  // Otherwise maintain chronological order
+                  return 0;
+                })
+                .map((reply) => (
+                  <CommentReply
+                    key={reply.id}
+                    reply={reply}
+                    guideSlug={guideSlug}
+                    onVoteChange={onVoteChange}
+                    parentCommentId={comment.id}
+                    parentUserId={comment.user_id}
+                    parentIsQuestion={comment.is_question}
+                    onSolutionChange={onVoteChange}
+                  />
+                ))}
             </div>
           )}
         </div>

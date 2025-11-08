@@ -6,7 +6,11 @@ import type { RealtimeChannel } from '@supabase/supabase-js';
 /**
  * Hook to fetch and manage guide comments with real-time updates
  */
-export function useComments(guideSlug: string, sortBy: CommentSort = 'recent') {
+export function useComments(
+  guideSlug: string,
+  sortBy: CommentSort = 'recent',
+  showQuestionsOnly: boolean = false
+) {
   const [comments, setComments] = useState<CommentWithReplies[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -38,8 +42,8 @@ export function useComments(guideSlug: string, sortBy: CommentSort = 'recent') {
           break;
       }
 
-      // Fetch top-level comments (no parent)
-      const { data: topLevelComments, error: fetchError, count } = await supabase
+      // Build query for top-level comments (no parent)
+      let query = supabase
         .from('guide_comments')
         .select(`
           *,
@@ -50,7 +54,15 @@ export function useComments(guideSlug: string, sortBy: CommentSort = 'recent') {
           )
         `, { count: 'exact' })
         .eq('guide_slug', guideSlug)
-        .is('parent_comment_id', null)
+        .is('parent_comment_id', null);
+
+      // Apply question filter if enabled
+      if (showQuestionsOnly) {
+        query = query.eq('is_question', true);
+      }
+
+      // Apply sorting and pagination
+      const { data: topLevelComments, error: fetchError, count } = await query
         .order(orderColumn, { ascending: orderAscending })
         .range((pageNum - 1) * COMMENTS_PER_PAGE, pageNum * COMMENTS_PER_PAGE - 1);
 
@@ -108,7 +120,7 @@ export function useComments(guideSlug: string, sortBy: CommentSort = 'recent') {
     } finally {
       setLoading(false);
     }
-  }, [guideSlug, sortBy]);
+  }, [guideSlug, sortBy, showQuestionsOnly]);
 
   // Load more comments
   const loadMore = useCallback(() => {

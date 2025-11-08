@@ -514,6 +514,19 @@ export interface LocaleStrings {
     loginToVote: string;
     cannotVoteOwnComment: string;
     voteErrorGeneric: string;
+    // Story 8.4: Q&A Functionality
+    unmarkSolution: string;
+    solutionMarked: string;
+    solutionUnmarked: string;
+    onlyQuestions: string;
+    allComments: string;
+    unansweredQuestions: string;
+    answeredQuestions: string;
+    noUnansweredQuestions: string;
+    noAnsweredQuestions: string;
+    solutionError: string;
+    notQuestionAuthor: string;
+    answered: string;
   };
 }
 
@@ -1011,5 +1024,18 @@ export const hebrewLocale: LocaleStrings = {
     loginToVote: 'יש להתחבר כדי להצביע',
     cannotVoteOwnComment: 'לא ניתן להצביע לתגובה שלך',
     voteErrorGeneric: 'שגיאה בהצבעה, נסה שוב',
+    // Story 8.4: Q&A Functionality
+    unmarkSolution: 'הסר סימון פתרון',
+    solutionMarked: 'הפתרון סומן בהצלחה',
+    solutionUnmarked: 'סימון הפתרון הוסר',
+    onlyQuestions: 'הצג שאלות בלבד',
+    allComments: 'כל התגובות',
+    unansweredQuestions: 'שאלות ללא תשובה',
+    answeredQuestions: 'שאלות שנענו',
+    noUnansweredQuestions: 'אין שאלות ללא תשובה',
+    noAnsweredQuestions: 'אין שאלות שנענו',
+    solutionError: 'שגיאה בסימון פתרון',
+    notQuestionAuthor: 'רק מחבר השאלה יכול לסמן פתרון',
+    answered: 'נענתה',
   },
 };

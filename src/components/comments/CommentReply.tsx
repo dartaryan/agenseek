@@ -13,24 +13,32 @@ import {
 import { hebrewLocale } from '@/lib/locale/he';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/use-toast';
-import { toggleCommentVote, hasUserVoted } from '@/lib/actions/comments';
+import { toggleCommentVote, hasUserVoted, markCommentAsSolution, unmarkCommentAsSolution } from '@/lib/actions/comments';
 import type { CommentWithProfile } from '@/types/comments';
 
 interface CommentReplyProps {
   reply: CommentWithProfile;
   guideSlug: string;
   onVoteChange?: () => void;
+  parentCommentId?: string | null;
+  parentUserId?: string | null;
+  parentIsQuestion?: boolean;
+  onSolutionChange?: () => void;
 }
 
-export function CommentReply({ reply, onVoteChange }: CommentReplyProps) {
+export function CommentReply({ reply, onVoteChange, parentCommentId, parentUserId, parentIsQuestion, onSolutionChange }: CommentReplyProps) {
   const { user } = useAuth();
   const { toast } = useToast();
   const [hasVoted, setHasVoted] = useState(false);
   const [isVoting, setIsVoting] = useState(false);
   const [helpfulCount, setHelpfulCount] = useState(reply.helpful_count);
+  const [isMarkingSolution, setIsMarkingSolution] = useState(false);
 
   // Check if current user owns this reply
   const isOwner = user?.id === reply.user_id;
+
+  // Check if current user is the question author (can mark solutions)
+  const isQuestionAuthor = parentIsQuestion && user?.id === parentUserId;
 
   // Check if user has voted on mount
   useEffect(() => {
@@ -93,6 +101,51 @@ export function CommentReply({ reply, onVoteChange }: CommentReplyProps) {
     } else {
       toast({
         title: hebrewLocale.comments.voteError,
+        description: result.error || hebrewLocale.comments.voteErrorGeneric,
+        variant: 'destructive',
+      });
+    }
+  };
+
+  const handleToggleSolution = async () => {
+    if (!user || !parentCommentId) {
+      toast({
+        title: hebrewLocale.comments.solutionError,
+        description: hebrewLocale.comments.loginToVote,
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setIsMarkingSolution(true);
+
+    const result = reply.is_solution
+      ? await unmarkCommentAsSolution({
+          userId: user.id,
+          commentId: reply.id,
+          questionId: parentCommentId,
+        })
+      : await markCommentAsSolution({
+          userId: user.id,
+          commentId: reply.id,
+          questionId: parentCommentId,
+        });
+
+    setIsMarkingSolution(false);
+
+    if (result.success) {
+      toast({
+        title: reply.is_solution ? hebrewLocale.comments.solutionUnmarked : hebrewLocale.comments.solutionMarked,
+        variant: 'default',
+      });
+
+      // Notify parent to refresh
+      if (onSolutionChange) {
+        onSolutionChange();
+      }
+    } else {
+      toast({
+        title: hebrewLocale.comments.solutionError,
         description: result.error || hebrewLocale.comments.voteErrorGeneric,
         variant: 'destructive',
       });
@@ -173,6 +226,28 @@ export function CommentReply({ reply, onVoteChange }: CommentReplyProps) {
               {helpfulCount > 0 && ` (${helpfulCount})`}
             </span>
           </Button>
+
+          {/* Mark as Solution Button (only for question author) */}
+          {isQuestionAuthor && (
+            <Button
+              variant={reply.is_solution ? 'default' : 'ghost'}
+              size="sm"
+              className={`gap-1 h-7 text-xs ${
+                reply.is_solution
+                  ? 'bg-green-600 hover:bg-green-700 text-white'
+                  : ''
+              }`}
+              onClick={handleToggleSolution}
+              disabled={isMarkingSolution}
+            >
+              <IconCheck className="h-3 w-3" />
+              <span>
+                {reply.is_solution
+                  ? hebrewLocale.comments.unmarkSolution
+                  : hebrewLocale.comments.markAsSolution}
+              </span>
+            </Button>
+          )}
 
           {/* Edit Button (owner only) */}
           {isOwner && (
