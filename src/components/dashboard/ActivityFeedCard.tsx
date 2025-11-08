@@ -9,6 +9,8 @@ import {
   IconArrowRight,
   IconChevronDown,
   IconChevronUp,
+  IconMessage,
+  IconStarFilled,
 } from '@tabler/icons-react';
 import { Card } from '../ui/card';
 import { Button } from '../ui/button';
@@ -23,7 +25,7 @@ import { hebrewLocale } from '../../lib/locale/he';
 
 interface Activity {
   id: string;
-  type: 'view_guide' | 'complete_guide' | 'create_note' | 'create_task' | 'earn_achievement';
+  type: 'view_guide' | 'complete_guide' | 'create_note' | 'create_task' | 'earn_achievement' | 'comment_reply' | 'solution_marked';
   description: string;
   link?: string;
   timestamp: string;
@@ -45,6 +47,10 @@ function getActivityIcon(type: Activity['type']) {
       return <IconChecklist className="w-5 h-5 text-amber-500" stroke={1.5} />;
     case 'earn_achievement':
       return <IconTrophy className="w-5 h-5 text-yellow-500" stroke={1.5} />;
+    case 'comment_reply':
+      return <IconMessage className="w-5 h-5 text-blue-500" stroke={1.5} />;
+    case 'solution_marked':
+      return <IconStarFilled className="w-5 h-5 text-amber-500" stroke={1.5} />;
   }
 }
 

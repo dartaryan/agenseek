@@ -11,6 +11,7 @@ import AgenseekLogo from '../../assets/agenseek-logo.svg';
 import { MobileNav } from './MobileNav';
 import { HeaderNav } from './HeaderNav';
 import { SearchBar, type SearchBarRef } from './SearchBar';
+import { NotificationDropdown } from './NotificationDropdown';
 
 /**
  * Header public methods (Story 7.5)
@@ -110,6 +111,9 @@ export const Header = forwardRef<HeaderRef>(function Header(_props, ref) {
 
           {/* Desktop User Menu - Hidden on mobile */}
           <div className="hidden md:flex items-center gap-4">
+            {/* Notifications - Story 8.6 */}
+            <NotificationDropdown />
+
             {/* Theme Toggle - Placeholder for future */}
             <Button variant="ghost" size="sm" disabled>
               <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

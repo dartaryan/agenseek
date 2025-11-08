@@ -22,6 +22,17 @@
     "path": "core/glossary.json"
   },
   {
+    "id": "faq-basics",
+    "title": "שאלות ותשובות - יסודות",
+    "description": "כל השאלות הבסיסיות על BMAD במקום אחד - מה זה, למי זה מיועד, איך מתחילים, כמה עולה, ומה אפשר לעשות איתו. תשובות קצרות וברורות.",
+    "category": "faq",
+    "difficulty": "beginner",
+    "estimatedMinutes": 20,
+    "icon": "IconQuestionMark",
+    "tags": ["שאלות", "יסודות", "FAQ", "מתחילים", "התחלה"],
+    "path": "faq/basics.json"
+  },
+  {
     "id": "onboarding-day1",
     "title": "הדרכה ליום הראשון",
     "description": "מדריך צעד-אחר-צעד ליום הראשון עם BMAD. תוך שעה תתקינו את המערכת, תריצו את הפקודה הראשונה, ותשיגו את הניצחון הראשון שלכם!",

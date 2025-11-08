@@ -434,6 +434,67 @@ export interface Database {
           },
         ];
       };
+      notifications: {
+        Row: {
+          id: string;
+          recipient_id: string;
+          actor_id: string;
+          type: 'comment_reply' | 'solution_marked';
+          guide_slug: string;
+          comment_id: string;
+          reply_id: string | null;
+          comment_preview: string | null;
+          is_read: boolean;
+          created_at: string;
+          read_at: string | null;
+        };
+        Insert: {
+          id?: string;
+          recipient_id: string;
+          actor_id: string;
+          type: 'comment_reply' | 'solution_marked';
+          guide_slug: string;
+          comment_id: string;
+          reply_id?: string | null;
+          comment_preview?: string | null;
+          is_read?: boolean;
+          created_at?: string;
+          read_at?: string | null;
+        };
+        Update: {
+          id?: string;
+          recipient_id?: string;
+          actor_id?: string;
+          type?: 'comment_reply' | 'solution_marked';
+          guide_slug?: string;
+          comment_id?: string;
+          reply_id?: string | null;
+          comment_preview?: string | null;
+          is_read?: boolean;
+          created_at?: string;
+          read_at?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'notifications_recipient_id_fkey';
+            columns: ['recipient_id'];
+            referencedRelation: 'profiles';
+            referencedColumns: ['id'];
+          },
+          {
+            foreignKeyName: 'notifications_actor_id_fkey';
+            columns: ['actor_id'];
+            referencedRelation: 'profiles';
+            referencedColumns: ['id'];
+          },
+          {
+            foreignKeyName: 'notifications_comment_id_fkey';
+            columns: ['comment_id'];
+            referencedRelation: 'guide_comments';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
     };
     Views: {
       [_ in never]: never;

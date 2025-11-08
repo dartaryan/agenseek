@@ -58,7 +58,7 @@ interface DashboardData {
   lockedBadges: number;
   recentActivities: Array<{
     id: string;
-    type: 'view_guide' | 'complete_guide' | 'create_note' | 'create_task' | 'earn_achievement';
+    type: 'view_guide' | 'complete_guide' | 'create_note' | 'create_task' | 'earn_achievement' | 'comment_reply' | 'solution_marked';
     description: string;
     link?: string;
     timestamp: string;
@@ -237,15 +237,46 @@ export function DashboardPage() {
           .order('created_at', { ascending: false })
           .limit(10);
 
+        // Story 8.6: Fetch notifications (last 10)
+        const { data: notifications } = await supabase
+          .from('notifications')
+          .select(`
+            *,
+            actor:profiles!notifications_actor_id_fkey (
+              display_name
+            )
+          `)
+          .eq('recipient_id', user.id)
+          .order('created_at', { ascending: false })
+          .limit(10);
+
         // Transform activities to display format
-        const recentActivities =
+        const activityItems =
           activities?.map((activity) => ({
             id: activity.id,
-            type: activity.activity_type as 'view_guide' | 'complete_guide' | 'create_note' | 'create_task' | 'earn_achievement',
+            type: activity.activity_type as 'view_guide' | 'complete_guide' | 'create_note' | 'create_task' | 'earn_achievement' | 'comment_reply' | 'solution_marked',
             description: getActivityDescription(activity.activity_type, activity.metadata as { guide_title?: string } | null),
             link: getActivityLink(activity.activity_type, activity.target_slug),
             timestamp: activity.created_at,
           })) || [];
+
+        // Story 8.6: Transform notifications to activity format
+        const notificationItems =
+          notifications?.map((notification) => ({
+            id: notification.id,
+            type: notification.type as 'comment_reply' | 'solution_marked',
+            description:
+              notification.type === 'comment_reply'
+                ? `${notification.actor?.display_name || 'משתמש'} ${hebrewLocale.notifications.repliedToYourComment}`
+                : `${notification.actor?.display_name || 'משתמש'} ${hebrewLocale.notifications.markedYourAnswerAsSolution}`,
+            link: `/guides/${notification.guide_slug}?commentId=${notification.comment_id}`,
+            timestamp: notification.created_at,
+          })) || [];
+
+        // Merge activities and notifications, sort by timestamp, and limit to 10
+        const recentActivities = [...activityItems, ...notificationItems]
+          .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+          .slice(0, 10);
 
         // Story 0.1: Fetch real badge data from user_achievements
         const { data: achievements } = await supabase

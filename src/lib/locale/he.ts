@@ -532,6 +532,18 @@ export interface LocaleStrings {
     notQuestionAuthor: string;
     answered: string;
   };
+
+  // Notifications
+  notifications: {
+    title: string;
+    noNotifications: string;
+    markAllRead: string;
+    repliedToYourComment: string;
+    markedYourAnswerAsSolution: string;
+    viewComment: string;
+    newNotification: string;
+    allRead: string;
+  };
 }
 
 export const hebrewLocale: LocaleStrings = {
@@ -1045,5 +1057,17 @@ export const hebrewLocale: LocaleStrings = {
     solutionError: 'שגיאה בסימון פתרון',
     notQuestionAuthor: 'רק מחבר השאלה יכול לסמן פתרון',
     answered: 'נענתה',
+  },
+
+  // Notifications
+  notifications: {
+    title: 'התראות',
+    noNotifications: 'אין התראות חדשות',
+    markAllRead: 'סמן הכל כנקרא',
+    repliedToYourComment: 'השיב לתגובה שלך',
+    markedYourAnswerAsSolution: 'סימן את התשובה שלך כפתרון',
+    viewComment: 'צפה בתגובה',
+    newNotification: 'התראה חדשה',
+    allRead: 'כל ההתראות נקראו',
   },
 };
