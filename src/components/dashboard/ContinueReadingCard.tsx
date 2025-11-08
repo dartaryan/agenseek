@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import * as TablerIcons from '@tabler/icons-react';
 import { IconBook, IconClock, IconArrowRight } from '@tabler/icons-react';
 import { Card } from '../ui/card';
 import { Button } from '../ui/button';
@@ -7,13 +8,15 @@ import type { GuideCatalogEntry } from '../../types/guide-catalog';
 
 /**
  * Continue Reading Card Component
- * Shows last 3 in-progress guides with progress bars
+ * Shows last 3 in-progress guides with progress bars and last section
  * Story 5.1 - Dashboard Home Page
+ * Story 5.4 - Build Continue Reading Section (Enhanced)
  */
 
 interface InProgressGuide extends GuideCatalogEntry {
   progress_percent: number;
   last_read_at: string;
+  last_position: string | null;
 }
 
 interface ContinueReadingCardProps {
@@ -36,7 +39,44 @@ function formatTimeAgo(dateString: string): string {
   }
 }
 
+/**
+ * Get the Tabler icon component by name
+ * Same logic as GuideCard component
+ */
+function getIconComponent(
+  iconName: string
+): React.ComponentType<{ size?: number; className?: string; stroke?: number }> {
+  // Ensure icon name has the "Icon" prefix
+  const fullIconName = iconName.startsWith('Icon') ? iconName : `Icon${iconName}`;
+
+  // Get icon from TablerIcons using type-safe indexing
+  const iconsMap = TablerIcons as unknown as Record<
+    string,
+    React.ComponentType<{ size?: number; className?: string; stroke?: number }>
+  >;
+  const IconComponent = iconsMap[fullIconName];
+
+  // Fallback to IconBook if icon not found
+  return IconComponent || TablerIcons.IconBook;
+}
+
+/**
+ * Format heading ID to readable section name
+ * Converts "what-is-bmad" to "What is BMAD"
+ */
+function formatSectionName(headingId: string | null): string {
+  if (!headingId) return '';
+
+  // Replace hyphens with spaces and capitalize each word
+  return headingId
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
 function InProgressGuideItem({ guide }: { guide: InProgressGuide }) {
+  const IconComponent = getIconComponent(guide.icon);
+
   return (
     <Link
       to={`/guides/${guide.id}`}
@@ -44,8 +84,8 @@ function InProgressGuideItem({ guide }: { guide: InProgressGuide }) {
     >
       <div className="flex items-start gap-3">
         {/* Icon */}
-        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-lg flex items-center justify-center text-white text-xl">
-          {guide.icon}
+        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-lg flex items-center justify-center text-white">
+          <IconComponent size={24} stroke={1.5} />
         </div>
 
         {/* Content */}
@@ -53,13 +93,20 @@ function InProgressGuideItem({ guide }: { guide: InProgressGuide }) {
           <h4 className="font-semibold text-gray-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors line-clamp-1">
             {guide.title}
           </h4>
-          <div className="flex items-center gap-3 mt-1 text-xs text-gray-600 dark:text-gray-400">
-            <span className="flex items-center gap-1">
-              <IconClock className="w-3 h-3" stroke={1.5} />
-              {guide.estimatedMinutes} {hebrewLocale.dashboard.minutes}
-            </span>
-            <span>•</span>
-            <span>{hebrewLocale.dashboard.lastReadAt}: {formatTimeAgo(guide.last_read_at)}</span>
+          <div className="flex flex-col gap-1 mt-1 text-xs text-gray-600 dark:text-gray-400">
+            <div className="flex items-center gap-3">
+              <span className="flex items-center gap-1">
+                <IconClock className="w-3 h-3" stroke={1.5} />
+                {guide.estimatedMinutes} {hebrewLocale.dashboard.minutes}
+              </span>
+              <span>•</span>
+              <span>{hebrewLocale.dashboard.lastReadAt}: {formatTimeAgo(guide.last_read_at)}</span>
+            </div>
+            {guide.last_position && (
+              <div className="text-emerald-600 dark:text-emerald-400 font-medium">
+                {hebrewLocale.dashboard.lastSection}: {formatSectionName(guide.last_position)}
+              </div>
+            )}
           </div>
 
           {/* Progress Bar */}

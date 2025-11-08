@@ -299,7 +299,7 @@ export function GuideReaderPage() {
     // Set new timer
     progressSaveTimerRef.current = setTimeout(() => {
       saveProgress(scrollProgress, currentSection);
-    }, 30000); // 30 seconds
+    }, 10000); // 10 seconds
 
     return () => {
       if (progressSaveTimerRef.current) {

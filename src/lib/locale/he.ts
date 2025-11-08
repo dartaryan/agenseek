@@ -75,6 +75,7 @@ export interface LocaleStrings {
     noInProgressGuides: string;
     startNewGuide: string;
     lastReadAt: string;
+    lastSection: string;
     minutesAgo: string;
     hoursAgo: string;
     daysAgo: string;
@@ -413,6 +414,7 @@ export const hebrewLocale: LocaleStrings = {
     noInProgressGuides: 'אין מדריכים בתהליך',
     startNewGuide: 'התחל מדריך חדש',
     lastReadAt: 'קריאה אחרונה',
+    lastSection: 'בפרק',
     minutesAgo: 'לפני דקות',
     hoursAgo: 'לפני שעות',
     daysAgo: 'לפני ימים',

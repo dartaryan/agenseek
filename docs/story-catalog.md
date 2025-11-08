@@ -226,7 +226,7 @@
 
 ---
 
-## Epic 5: Progress & Achievements (8 stories) - 5 of 8 Complete (+ 3 enhancement stories complete)
+## Epic 5: Progress & Achievements (8 stories) - 6 of 8 Complete (+ 3 enhancement stories complete)
 
 ### Story 5.1: Build Dashboard Home Page ✅
 **Sprint:** 7 | **Points:** 3 | **Priority:** P0 | **Status:** COMPLETE
@@ -243,8 +243,8 @@
 **Key AC:** Achievement types (Bronze/Silver/Gold badges, Category Master, Week/Month Streak, Quick Learner, Note Taker, Task Master), badge display with earned (color+glow) vs locked (grayscale+lock), unlock animation with confetti, badge modal
 **Dependencies:** 5.2
 
-### Story 5.4: Build Continue Reading Section ⏸️
-**Sprint:** 7 | **Points:** 2 | **Priority:** P0 | **Status:** PENDING
+### Story 5.4: Build Continue Reading Section ✅
+**Sprint:** 7 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** Shows last 3 in-progress guides (0% < progress < 100%), displays icon, title, progress bar, continue button, time since last read, last position indicator, sorted by last_read_at DESC
 **Dependencies:** 5.3
 

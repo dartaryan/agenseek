@@ -35,6 +35,7 @@ interface DashboardData {
     GuideCatalogEntry & {
       progress_percent: number;
       last_read_at: string;
+      last_position: string | null;
     }
   >;
   totalReadingTimeMinutes: number;
@@ -114,11 +115,12 @@ export function DashboardPage() {
                   ...guideInfo,
                   progress_percent: progress.progress_percent,
                   last_read_at: progress.last_read_at,
+                  last_position: progress.last_position,
                 }
               : null;
           })
           .filter(Boolean) as Array<
-          GuideCatalogEntry & { progress_percent: number; last_read_at: string }
+          GuideCatalogEntry & { progress_percent: number; last_read_at: string; last_position: string | null }
         >;
 
         // Calculate total reading time (sum of all time_spent_seconds, convert to minutes)

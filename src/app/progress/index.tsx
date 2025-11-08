@@ -255,65 +255,65 @@ export function ProgressDetailsPage() {
           </div>
 
           {/* Overall Progress Card */}
-          <Card className="p-6">
-            <div className="flex items-center gap-8 flex-wrap">
+          <Card className="p-4 md:p-6">
+            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
               {/* Circular Progress */}
-              <div className="relative" style={{ width: 140, height: 140 }}>
-                <svg className="transform -rotate-90" width={140} height={140}>
+              <div className="relative flex-shrink-0" style={{ width: 120, height: 120 }}>
+                <svg className="transform -rotate-90" width={120} height={120}>
                   <circle
-                    cx={70}
-                    cy={70}
-                    r={62}
+                    cx={60}
+                    cy={60}
+                    r={52}
                     stroke="currentColor"
                     strokeWidth={10}
                     fill="none"
                     className="text-gray-200 dark:text-gray-700"
                   />
                   <circle
-                    cx={70}
-                    cy={70}
-                    r={62}
+                    cx={60}
+                    cy={60}
+                    r={52}
                     stroke="currentColor"
                     strokeWidth={10}
                     fill="none"
-                    strokeDasharray={2 * Math.PI * 62}
+                    strokeDasharray={2 * Math.PI * 52}
                     strokeDashoffset={
-                      2 * Math.PI * 62 - (progressData.overallProgress / 100) * 2 * Math.PI * 62
+                      2 * Math.PI * 52 - (progressData.overallProgress / 100) * 2 * Math.PI * 52
                     }
                     strokeLinecap="round"
                     className="text-emerald-500 transition-all duration-1000 ease-out"
                   />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <div className="text-3xl font-bold text-gray-900 dark:text-white">
+                  <div className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
                     {progressData.overallProgress}%
                   </div>
                 </div>
               </div>
 
               {/* Stats Grid */}
-              <div className="flex-1 grid grid-cols-3 gap-6">
-                <div className="space-y-1">
-                  <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+              <div className="flex-1 w-full grid grid-cols-3 gap-3 md:gap-6">
+                <div className="space-y-1 text-center md:text-right">
+                  <div className="text-xl md:text-2xl font-bold text-emerald-600 dark:text-emerald-400">
                     {progressData.guidesCompleted}
                   </div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                  <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
                     {hebrewLocale.dashboard.guidesCompleted}
                   </div>
                 </div>
-                <div className="space-y-1">
-                  <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                <div className="space-y-1 text-center md:text-right">
+                  <div className="text-xl md:text-2xl font-bold text-blue-600 dark:text-blue-400">
                     {progressData.guidesInProgress}
                   </div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                  <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
                     {hebrewLocale.dashboard.guidesInProgress}
                   </div>
                 </div>
-                <div className="space-y-1">
-                  <div className="text-2xl font-bold text-gray-600 dark:text-gray-400">
+                <div className="space-y-1 text-center md:text-right">
+                  <div className="text-xl md:text-2xl font-bold text-gray-600 dark:text-gray-400">
                     {progressData.guidesNotStarted}
                   </div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                  <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
                     {hebrewLocale.pages.progress.statusNotStarted}
                   </div>
                 </div>
@@ -323,8 +323,8 @@ export function ProgressDetailsPage() {
         </div>
 
         {/* Category Breakdown Section */}
-        <Card className="p-6">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+        <Card className="p-4 md:p-6">
+          <h2 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white mb-4">
             {hebrewLocale.pages.progress.categoryBreakdown}
           </h2>
 
@@ -401,8 +401,8 @@ export function ProgressDetailsPage() {
 
         {/* All Guides Section with Filters */}
         <div className="space-y-4">
-          <div className="flex items-center justify-between flex-wrap gap-4">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white">
               {hebrewLocale.pages.progress.allGuides}
             </h2>
 
@@ -412,6 +412,7 @@ export function ProgressDetailsPage() {
                 variant={activeFilter === 'all' ? 'default' : 'outline'}
                 size="sm"
                 onClick={() => setActiveFilter('all')}
+                className="flex-1 sm:flex-none"
               >
                 {hebrewLocale.pages.progress.filterAll} ({progressData.totalGuides})
               </Button>
@@ -419,6 +420,7 @@ export function ProgressDetailsPage() {
                 variant={activeFilter === 'in_progress' ? 'default' : 'outline'}
                 size="sm"
                 onClick={() => setActiveFilter('in_progress')}
+                className="flex-1 sm:flex-none"
               >
                 {hebrewLocale.pages.progress.filterInProgress} ({progressData.guidesInProgress})
               </Button>
@@ -426,6 +428,7 @@ export function ProgressDetailsPage() {
                 variant={activeFilter === 'completed' ? 'default' : 'outline'}
                 size="sm"
                 onClick={() => setActiveFilter('completed')}
+                className="flex-1 sm:flex-none"
               >
                 {hebrewLocale.pages.progress.filterCompleted} ({progressData.guidesCompleted})
               </Button>
@@ -433,6 +436,7 @@ export function ProgressDetailsPage() {
                 variant={activeFilter === 'not_started' ? 'default' : 'outline'}
                 size="sm"
                 onClick={() => setActiveFilter('not_started')}
+                className="flex-1 sm:flex-none"
               >
                 {hebrewLocale.pages.progress.filterNotStarted} ({progressData.guidesNotStarted})
               </Button>
@@ -631,15 +635,15 @@ function GuideProgressCard({
   };
 
   return (
-    <Card className={compact ? 'p-3' : 'p-4'}>
-      <div className="flex items-center justify-between gap-4 flex-wrap">
+    <Card className={compact ? 'p-3' : 'p-3 md:p-4'}>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
         {/* Left: Guide Info */}
         <div className="flex-1 min-w-0 space-y-2">
-          <div className="flex items-center gap-3">
-            <IconBook className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" stroke={1.5} />
+          <div className="flex items-start sm:items-center gap-2 sm:gap-3 flex-wrap">
+            <IconBook className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5 sm:mt-0" stroke={1.5} />
             <Link
               to={`/guides/${guide.id}`}
-              className="font-semibold text-gray-900 dark:text-white hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors truncate"
+              className="font-semibold text-sm md:text-base text-gray-900 dark:text-white hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors flex-1 min-w-0"
             >
               {guide.title}
             </Link>
@@ -648,7 +652,7 @@ function GuideProgressCard({
 
           {/* Progress bar for in-progress guides */}
           {!guide.completed && guide.progress_percent > 0 && (
-            <div className="h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden max-w-xs">
+            <div className="h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
               <div
                 className="h-full bg-blue-500 dark:bg-blue-400 rounded-full transition-all duration-300"
                 style={{ width: `${guide.progress_percent}%` }}
@@ -657,11 +661,11 @@ function GuideProgressCard({
           )}
 
           {/* Meta info */}
-          <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 flex-wrap">
+          <div className="flex items-center gap-3 md:gap-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 flex-wrap">
             {/* Time spent */}
             {guide.time_spent_seconds > 0 && (
               <div className="flex items-center gap-1">
-                <IconClock className="w-4 h-4" stroke={1.5} />
+                <IconClock className="w-3.5 h-3.5 md:w-4 md:h-4" stroke={1.5} />
                 <span>{formatTimeSpent(guide.time_spent_seconds)}</span>
               </div>
             )}
@@ -669,9 +673,12 @@ function GuideProgressCard({
             {/* Completion date */}
             {guide.completed && guide.completed_at && (
               <div className="flex items-center gap-1">
-                <IconCalendar className="w-4 h-4" stroke={1.5} />
-                <span>
+                <IconCalendar className="w-3.5 h-3.5 md:w-4 md:h-4" stroke={1.5} />
+                <span className="hidden sm:inline">
                   {hebrewLocale.pages.progress.completedOn} {formatDate(guide.completed_at)}
+                </span>
+                <span className="sm:hidden">
+                  {formatDate(guide.completed_at)}
                 </span>
               </div>
             )}
@@ -684,8 +691,8 @@ function GuideProgressCard({
         </div>
 
         {/* Right: Action Button */}
-        <Button variant={actionButton.variant} size="sm" asChild className="flex-shrink-0">
-          <Link to={`/guides/${guide.id}`} className="flex items-center gap-2">
+        <Button variant={actionButton.variant} size="sm" asChild className="flex-shrink-0 w-full sm:w-auto">
+          <Link to={`/guides/${guide.id}`} className="flex items-center justify-center gap-2">
             {actionButton.icon}
             {actionButton.label}
           </Link>

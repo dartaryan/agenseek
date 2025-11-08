@@ -8,8 +8,8 @@
 
 ## Summary
 
-**Total Stories Completed:** 41 of 70 (58.6%)
-**Next Story:** 5.4 - Build Continue Reading Section (or P0 stories from Epics 2-4)
+**Total Stories Completed:** 42 of 70 (60%)
+**Next Story:** 5.5 - Build Activity Feed (or P0 stories from Epics 2-4)
 
 ---
 
@@ -95,12 +95,13 @@ All foundation stories complete:
 
 ---
 
-### Epic 5: Progress & Achievements 🎯 **IN PROGRESS (8/11 complete)**
+### Epic 5: Progress & Achievements 🎯 **IN PROGRESS (9/11 complete)**
 
 **Completed Core Stories:**
 - ✅ 5.1: Build Dashboard Home Page
 - ✅ 5.2: Build Overall Progress Tracking System
 - ✅ 5.3: Build Achievement Badge System
+- ✅ 5.4: Build Continue Reading Section
 - ✅ 5.7: Build Popular Guides Widget
 - ✅ 5.8: Build Full Progress Details Page
 
@@ -110,11 +111,10 @@ All foundation stories complete:
 - ✅ 5.1.3: Fix Guide Component Bugs
 
 **Pending:**
-- 📍 **5.4: Build Continue Reading Section (P0 - NEXT RECOMMENDED)**
-- ⏸️ 5.5: Build Activity Feed (P0)
+- 📍 **5.5: Build Activity Feed (P0 - NEXT RECOMMENDED)**
 - ⏸️ 5.6: Build Statistics Widgets (P0)
 
-**Impact:** Dashboard and progress pages work with full tracking. Missing activity feed, continue reading section, and statistics widgets.
+**Impact:** Dashboard and progress pages work with full tracking including continue reading. Missing activity feed and statistics widgets.
 
 ---
 
@@ -172,25 +172,25 @@ All foundation stories complete:
 
 ## Next Story to Implement
 
-### 📍 Story 5.4: Build Continue Reading Section (RECOMMENDED)
+### 📍 Story 5.5: Build Activity Feed (NEXT RECOMMENDED)
 
 **Priority:** P0
 **Sprint:** 7
 **Points:** 2
 **Status:** NEXT RECOMMENDED
 
-**User Story:** As a user, I want to see my recently-read in-progress guides on the dashboard, so that I can quickly continue where I left off.
+**User Story:** As a user, I want to see my recent learning activities on the dashboard, so that I can track my engagement and recall what I've done.
 
 **Key Acceptance Criteria:**
-- Shows last 3 in-progress guides (0% < progress < 100%)
-- Displays icon, title, progress bar, continue button
-- Shows time since last read (e.g., "2 hours ago")
-- Shows last position indicator (section name)
-- Sorted by last_read_at DESC
-- Continue button navigates to guide at saved scroll position
+- Shows last 10 activities chronologically
+- Activity types: view_guide, complete_guide, create_note, create_task, earn_achievement
+- Each activity shows icon, description, link, and timestamp
+- Activities grouped by day headers (Today, Yesterday, This Week)
+- Displays in dashboard activity feed card
+- Links to relevant content
 
 **Dependencies:**
-- ✅ 5.3: Build Achievement Badge System (Complete)
+- ✅ 5.4: Build Continue Reading Section (Complete)
 
 **Alternative Next Stories:**
 - Story 4.7: Implement Mark Complete with Celebration (P0 - High Priority)
@@ -210,9 +210,9 @@ All foundation stories complete:
 ## Recommendations
 
 ### For Immediate Action:
-1. ✅ **Story 5.8 Complete** - Full Progress Details Page
-2. **Implement Story 5.4** (recommended) - Continue Reading Section
-3. After 5.4, complete remaining Epic 5 stories (5.5, 5.6)
+1. ✅ **Story 5.4 Complete** - Continue Reading Section
+2. **Implement Story 5.5** (recommended) - Activity Feed
+3. After 5.5, complete remaining Epic 5 stories (5.6)
 4. Then circle back to high-priority pending stories (4.7, 2.3, 2.11)
 
 ### For Sprint Planning:
@@ -228,7 +228,7 @@ All foundation stories complete:
 ---
 
 **Audit Update**
-**Story 5.8 Complete ✅ - Ready for Story 5.4** 🚀
+**Story 5.4 Complete ✅ - Ready for Story 5.5** 🚀
 
 ---
 
