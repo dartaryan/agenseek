@@ -4,6 +4,8 @@ import { supabase } from '../../lib/supabase';
 import { hebrewLocale } from '../../lib/locale/he';
 import { getGuideCatalog } from '../../lib/guide-catalog';
 import { categorizeGuidesByLearningPath, getAllCategoryProgress } from '../../lib/learning-path';
+import { getNotesStatistics, type NotesStatistics } from '../../lib/api/notes';
+import { getTasksStatistics, type TasksStatistics } from '../../lib/api/tasks';
 import { OverallProgressCard } from '../../components/dashboard/OverallProgressCard';
 import { ContinueReadingCard } from '../../components/dashboard/ContinueReadingCard';
 import { QuickActionsCard } from '../../components/dashboard/QuickActionsCard';
@@ -11,6 +13,8 @@ import { AchievementsPreviewCard } from '../../components/dashboard/Achievements
 import { ActivityFeedCard } from '../../components/dashboard/ActivityFeedCard';
 import { DashboardStats } from '../../components/dashboard/DashboardStats';
 import { PopularGuidesCard } from '../../components/dashboard/PopularGuidesCard';
+import { NotesStatisticsCard } from '../../components/dashboard/NotesStatisticsCard';
+import { TasksStatisticsCard } from '../../components/dashboard/TasksStatisticsCard';
 import type { GuideCatalogEntry } from '../../types/guide-catalog';
 import type { CategorizedGuides } from '../../lib/learning-path';
 
@@ -74,6 +78,9 @@ interface DashboardData {
     tasks?: TrendData;
     streak?: TrendData;
   };
+  // Story 6.8 additions
+  notesStatistics: NotesStatistics;
+  tasksStatistics: TasksStatistics;
 }
 
 function getGreeting(): string {
@@ -342,6 +349,10 @@ export function DashboardPage() {
           streak: calculateTrend(currentStreakDays, lastWeekStreak),
         };
 
+        // Story 6.8: Fetch notes and tasks statistics
+        const notesStatistics = await getNotesStatistics(user.id);
+        const tasksStatistics = await getTasksStatistics(user.id);
+
         setDashboardData({
           guidesCompleted,
           guidesInProgress,
@@ -361,6 +372,9 @@ export function DashboardPage() {
           popularGuides,
           // Story 5.6 addition
           trends,
+          // Story 6.8 additions
+          notesStatistics,
+          tasksStatistics,
         });
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
@@ -483,6 +497,17 @@ export function DashboardPage() {
             {/* Story 5.3: AchievementsPreviewCard now manages its own state */}
             <AchievementsPreviewCard />
             <ActivityFeedCard activities={dashboardData.recentActivities} />
+          </div>
+        </div>
+
+        {/* Story 6.8: Notes and Tasks Statistics - 2 Column Grid */}
+        <div className="mt-8">
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            הלמידה שלי
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <NotesStatisticsCard statistics={dashboardData.notesStatistics} />
+            <TasksStatisticsCard statistics={dashboardData.tasksStatistics} />
           </div>
         </div>
 

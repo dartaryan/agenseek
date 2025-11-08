@@ -195,3 +195,73 @@ export async function searchNotes(userId: string, query: string): Promise<UserNo
   return data || [];
 }
 
+/**
+ * Get notes statistics for dashboard
+ * Story 6.8: Build Task and Note Statistics Dashboard
+ */
+export interface NotesStatistics {
+  totalCount: number;
+  topTags: Array<{ tag: string; count: number }>;
+  createdThisWeek: number;
+  associatedGuidesCount: number;
+}
+
+export async function getNotesStatistics(userId: string): Promise<NotesStatistics> {
+  // Get all notes for the user
+  const { data: notes, error } = await supabase
+    .from('user_notes')
+    .select('tags, guide_slug, created_at')
+    .eq('user_id', userId);
+
+  if (error) {
+    console.error('[getNotesStatistics] Error:', error);
+    throw new Error(error.message);
+  }
+
+  if (!notes || notes.length === 0) {
+    return {
+      totalCount: 0,
+      topTags: [],
+      createdThisWeek: 0,
+      associatedGuidesCount: 0,
+    };
+  }
+
+  // Calculate total count
+  const totalCount = notes.length;
+
+  // Calculate tag frequencies
+  const tagFrequency: Record<string, number> = {};
+  notes.forEach((note) => {
+    (note.tags || []).forEach((tag) => {
+      tagFrequency[tag] = (tagFrequency[tag] || 0) + 1;
+    });
+  });
+
+  // Get top 5 tags sorted by frequency
+  const topTags = Object.entries(tagFrequency)
+    .map(([tag, count]) => ({ tag, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 5);
+
+  // Calculate notes created this week
+  const oneWeekAgo = new Date();
+  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+  const createdThisWeek = notes.filter(
+    (note) => new Date(note.created_at) >= oneWeekAgo
+  ).length;
+
+  // Count unique associated guides
+  const uniqueGuides = new Set(
+    notes.map((note) => note.guide_slug).filter((slug) => slug !== null)
+  );
+  const associatedGuidesCount = uniqueGuides.size;
+
+  return {
+    totalCount,
+    topTags,
+    createdThisWeek,
+    associatedGuidesCount,
+  };
+}
+

@@ -1,7 +1,7 @@
 # Agenseek - Complete Story Catalog
 
 **Total Stories:** 70
-**Completed:** 59/70 (84%)
+**Completed:** 60/70 (86%)
 **Format:** Quick reference for all stories with acceptance criteria
 **For detailed stories:** See individual files in `docs/stories/`
 
@@ -15,12 +15,12 @@
 - Epic 1: ✅ COMPLETE (12/12)
 - Epic 2: ⏸️ ALMOST COMPLETE (11/12) - Missing only 2.4 (P1 - optional)
 - Epic 3: ✅ COMPLETE (10/10)
-- Epic 4: ✅ COMPLETE (8/8) 🎉
+- Epic 4: ✅ COMPLETE (8/8)
 - Epic 5: ✅ COMPLETE (11/11)
-- Epic 6: 🔨 IN PROGRESS (7/8) - Only 6.8 remaining
+- Epic 6: ✅ COMPLETE (8/8) 🎉
 - Epic 7-10: ❌ NOT STARTED
 
-**Next Story:** 6.8 - Build Task and Note Statistics Dashboard
+**Next Story:** 7.1 - Implement Global Search Infrastructure
 
 ---
 
@@ -291,7 +291,7 @@
 
 ---
 
-## Epic 6: Notes & Tasks (8 stories) - 7 of 8 Complete (88%)
+## Epic 6: Notes & Tasks (8 stories) ✅ COMPLETE (8/8 - 100%)
 
 ### Story 6.1: Build Rich Text Note Editor ✅
 **Sprint:** 8 | **Points:** 3 | **Priority:** P0 | **Status:** COMPLETE
@@ -328,9 +328,10 @@
 **Key AC:** "Create Task" button in guide action bar, modal pre-fills associated guide, quick save with Ctrl+Enter, task appears in My Tasks, count updates, can store current heading as context
 **Dependencies:** 6.6 ✅
 
-### Story 6.8: Build Task and Note Statistics Dashboard
-**Sprint:** 9 | **Points:** 2 | **Priority:** P1
-**Key AC:** My Notes Summary (total count, top 5 tags, notes created this week trend, associated guides count), My Tasks Summary (status counts, completion rate %, high priority count, tasks created vs completed chart), visual bar chart and tag cloud
+### Story 6.8: Build Task and Note Statistics Dashboard ✅
+**Sprint:** 9 | **Points:** 2 | **Priority:** P1 | **Status:** COMPLETE
+**User Story:** As a user, I want to see statistics about my notes and tasks, so that I can understand my learning habits and productivity.
+**Key AC:** My Notes Summary (total count, top 5 tags, notes created this week trend, associated guides count), My Tasks Summary (status counts, completion rate %, high priority count, tasks created vs completed chart), visual bar chart and tag cloud, clicking cards navigates to full pages
 **Dependencies:** 6.7 ✅
 
 ---

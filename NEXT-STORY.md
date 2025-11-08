@@ -1,176 +1,199 @@
-# 🚀 NEXT STORY: Story 6.6 - Build Task Kanban Board
+# 🚀 NEXT STORY: Story 7.1 - Implement Global Search Infrastructure
 
 **Updated:** November 8, 2025
 
 ---
 
-## ✅ Story 6.5 Complete!
+## ✅ Story 6.8 Complete!
 
-The task creation modal has been successfully enhanced with advanced sub-task management. Users can now:
+The task and note statistics dashboard has been successfully implemented! Users can now:
 
-- Create tasks with inline sub-tasks
-- Add/remove/reorder sub-tasks before saving
-- Check off sub-tasks as completed
-- Validate sub-task length (max 200 chars)
-- See visual feedback with drag handles and icons
+- View comprehensive notes statistics (total, top tags, weekly trend, associated guides)
+- Monitor task statistics (status counts, completion rate, high priority tasks, weekly chart)
+- See visual representations with Recharts bar charts
+- Navigate easily to full notes/tasks pages
+- Track productivity and learning habits at a glance
 
-**Completion File:** See `STORY-6.5-COMPLETE.md` for full details.
+**Completion File:** See `STORY-6.8-COMPLETE.md` for full details.
+
+**Epic 6 Status:** ✅ **100% COMPLETE** (8/8 stories) 🎉
 
 ---
 
 ## 📍 Next Story to Implement
 
-### **Story 6.6: Build Task Kanban Board**
+### **Story 7.1: Implement Global Search Infrastructure**
 
-**Epic:** 6 - Notes & Tasks
+**Epic:** 7 - Global Search & Command Palette
 **Priority:** P0
-**Sprint:** 9
-**Story Points:** 3
-**Dependencies:** Story 6.5 (Complete ✅)
+**Sprint:** 10
+**Story Points:** 2
+**Dependencies:** Epic 6 Complete ✅
 
 ---
 
-## 🎯 Story 6.6 Overview
+## 🎯 Story 7.1 Overview
 
-Transform the existing Kanban tab into a full drag-and-drop kanban board where users can visually manage their task workflow by dragging tasks between status columns.
+Build the foundational search infrastructure using Fuse.js to enable fuzzy search across all content types (guides, notes, tasks). This infrastructure will power the header search bar, search results page, and command palette.
 
 ### Acceptance Criteria
 
-**Given** I am on the Tasks page
-**When** I switch to "Kanban" tab
+**Given** I need to enable search functionality
+**When** I set up search infrastructure
 **Then**:
 
-- 3-column board layout:
-  - **To Do:** Tasks with status='todo'
-  - **In Progress:** Tasks with status='in_progress'
-  - **Done:** Tasks with status='done'
-- Each column shows:
-  - Header with title and count
-  - Task cards (compact view):
-    - Title
-    - Priority dot
-    - Associated guide icon (small)
-    - Sub-tasks count if any
-- Drag-and-drop functionality:
-  - Can drag task card from one column to another
-  - Drop updates task status in database
-  - Smooth animation on drop
-  - Optimistic UI update
-- Click task card → opens task modal for editing
-- Empty column state: "No tasks" with icon
+- Create `src/lib/search.ts` with:
+  - Fuse.js configuration
+  - Search index builder
+  - Type definitions for search results
+- Search index includes:
+  - All guide metadata (title, description, content preview)
+  - All user notes (title, content)
+  - All user tasks (title, description)
+- Fuse.js configuration:
+  - Keys: title (weight: 3), description (weight: 2), content (weight: 1)
+  - Threshold: 0.3 (fuzzy matching)
+  - Include score and matches
+  - Limit: 50 results
+- Create `src/hooks/useSearch.ts`:
+  - Hook that builds index from all content
+  - Returns search function and results
+  - Debounced search (300ms)
+  - Loading state management
 
-**And** dragging task between columns updates status instantly
+**And** search updates when content changes (notes, tasks added/edited)
 
 ---
 
 ## 🔨 Implementation Plan
 
-### 1. Install Drag-and-Drop Library
+### 1. Install Fuse.js
 
 ```bash
-npm install @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities
+npm install fuse.js
 ```
 
-**Library Choice:** `@dnd-kit` is modern, accessible, and lightweight.
+**Library Choice:** Fuse.js is lightweight, powerful, and perfect for client-side fuzzy search.
 
-### 2. Modify Kanban Tab UI
+### 2. Create Search Library
 
-**File:** `src/app/tasks/index.tsx`
+**File:** `src/lib/search.ts`
 
-**Current State:** Basic 3-column layout with TaskCards (non-draggable)
+**Key Components:**
+- `SearchResult` type definition (item, type, score, matches)
+- `buildSearchIndex()` function to combine all content
+- `searchContent()` function with Fuse.js
+- Fuse.js configuration object
 
-**Changes Needed:**
-- Wrap with `DndContext` provider
-- Make each column a droppable zone
-- Make each TaskCard draggable
-- Add drag overlay for visual feedback
-- Handle drop events to update status
+**Search Types:**
+```typescript
+export type SearchableItem = Guide | Note | Task;
+export type SearchResultType = 'guide' | 'note' | 'task';
 
-### 3. Create Draggable Task Card Component
+export interface SearchResult {
+  item: SearchableItem;
+  type: SearchResultType;
+  score: number;
+  matches: FuseResultMatch[];
+}
+```
 
-**New File:** `src/components/tasks/DraggableTaskCard.tsx`
+### 3. Create Search Hook
+
+**File:** `src/hooks/useSearch.ts`
 
 **Features:**
-- Wraps existing TaskCard with drag functionality
-- Uses `useDraggable` hook from @dnd-kit
-- Adds drag handle styling
-- Preserves all existing TaskCard props
+- Build search index from guides catalog + user notes + user tasks
+- Debounce search queries (300ms) using lodash or custom debounce
+- Return: `{ search, results, isLoading }`
+- Update index when notes/tasks change
+- Use useMemo to cache Fuse instance
 
-### 4. Create Droppable Column Component
+**Hook Pattern:**
+```typescript
+export function useSearch(userId: string) {
+  const [results, setResults] = useState<SearchResult[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-**New File:** `src/components/tasks/DroppableColumn.tsx`
+  // Build index
+  // Create Fuse instance
+  // Debounced search function
+  // Return { search, results, isLoading }
+}
+```
 
-**Features:**
-- Uses `useDroppable` hook from @dnd-kit
-- Highlights on drag-over
-- Contains list of DraggableTaskCards
-- Shows empty state when no tasks
+### 4. Fuse.js Configuration
 
-### 5. Add Drag Handlers
+**Search Keys:**
+- `title` - weight: 3 (most important)
+- `description` - weight: 2 (secondary)
+- `content` - weight: 1 (tertiary)
 
-**In:** `src/app/tasks/index.tsx`
+**Options:**
+- `threshold`: 0.3 (balance between strict and fuzzy)
+- `includeScore`: true
+- `includeMatches`: true (for highlighting)
+- `minMatchCharLength`: 2
+- `limit`: 50
 
-**Functions to Add:**
-- `handleDragStart` - Track which task is being dragged
-- `handleDragEnd` - Update task status in database
-- `handleDragOver` - Provide visual feedback
+### 5. Index Building Strategy
 
-### 6. Update Task Status on Drop
+**Combine Content:**
+```typescript
+const guides = getGuideCatalog().map(g => ({ ...g, type: 'guide' }));
+const notes = await getUserNotes(userId).map(n => ({ ...n, type: 'note' }));
+const tasks = await getUserTasks(userId).map(t => ({ ...t, type: 'task' }));
+const allContent = [...guides, ...notes, ...tasks];
+```
 
-**Use Existing API:** `updateTaskStatus()` from `src/lib/api/tasks.ts`
+**Build Index:**
+```typescript
+const fuse = new Fuse(allContent, fuseOptions);
+```
 
-**Flow:**
-1. User drags task from "To Do" to "In Progress"
-2. `handleDragEnd` detects the drop
-3. Call `updateTaskStatus(taskId, newStatus)`
-4. Optimistically update local state
-5. Update stats
-6. Show toast notification (optional)
+### 6. Search Function
 
-### 7. Mobile Support
+**Input:** Query string
+**Output:** SearchResult[] (sorted by score)
 
-**Add:** Swipe gesture as alternative to drag-and-drop
-
-**Library:** `@dnd-kit` supports touch/pointer events by default
+**Process:**
+1. Check if query is empty → return []
+2. Run Fuse search: `fuse.search(query)`
+3. Transform results to SearchResult format
+4. Return up to 50 results
 
 ---
 
 ## 📚 Technical Resources
 
-### @dnd-kit Documentation
-- Main docs: https://docs.dndkit.com/
-- Sortable preset: https://docs.dndkit.com/presets/sortable
-- Examples: https://master--5fc05e08a4a65d0021ae0bf2.chromatic.com/
+### Fuse.js Documentation
+- Main docs: https://fusejs.io/
+- API reference: https://fusejs.io/api/
+- Examples: https://fusejs.io/examples.html
 
-### Pattern from Notes System
-The notes system doesn't have drag-and-drop, but we can follow similar patterns:
-- State management approach
-- Optimistic updates
-- Error handling
+### Debouncing Patterns
+- lodash.debounce: Already installed (can use from `lodash`)
+- Custom debounce hook: Use `useCallback` + `setTimeout`
 
-### Existing Kanban Layout
-Current implementation at line 336-433 in `src/app/tasks/index.tsx` provides the base structure.
+### Search Best Practices
+- Client-side search (< 10K items)
+- Index updates on content changes
+- Highlight matching text in results
+- Sort by relevance score
 
 ---
 
-## 🎨 UI/UX Considerations
+## 🎨 UI/UX Considerations (Future Stories)
 
-### Visual Feedback
-- Cursor changes to `grab` on hover
-- Active drag shows `grabbing` cursor
-- Drop zone highlights with border or background
-- Smooth animations using Framer Motion
+This story sets up the infrastructure. The UI components will be built in:
+- Story 7.2: Header Search Bar
+- Story 7.3: Search Results Page
+- Story 7.4: Command Palette
 
-### Accessibility
-- Keyboard navigation support (built into @dnd-kit)
-- Screen reader announcements
-- Focus management
-- Alt+Arrow keys to move tasks
-
-### Performance
-- Virtualize if > 50 tasks per column
-- Debounce database updates
-- Optimistic UI for instant feedback
+**For Now:**
+- Focus on accurate search results
+- Ensure performance (< 100ms search time)
+- Provide highlighting data for UI
 
 ---
 
@@ -178,67 +201,68 @@ Current implementation at line 336-433 in `src/app/tasks/index.tsx` provides the
 
 Before marking story complete:
 
-- [ ] 3-column board renders correctly
-- [ ] Tasks can be dragged between columns
-- [ ] Dropping updates task status in database
-- [ ] Smooth drag-and-drop animation
-- [ ] Optimistic UI update (no flicker)
-- [ ] Task modal opens on card click
-- [ ] Empty state shows for empty columns
-- [ ] Mobile/touch support works
-- [ ] Keyboard navigation works
+- [ ] `src/lib/search.ts` created with Fuse.js configuration
+- [ ] `src/hooks/useSearch.ts` created with search hook
+- [ ] Fuse.js installed and imported
+- [ ] Search index includes guides, notes, tasks
+- [ ] Search function returns results with scores and matches
+- [ ] Debounced search (300ms) implemented
+- [ ] Loading state management works
+- [ ] Search updates when content changes
+- [ ] Type definitions for SearchResult, SearchableItem
+- [ ] Search limited to 50 results
+- [ ] Fuzzy matching threshold set to 0.3
+- [ ] Weighted keys (title:3, description:2, content:1)
 - [ ] No TypeScript errors
 - [ ] No linter errors
-- [ ] Hebrew text displays correctly
-- [ ] Tested with multiple tasks
-- [ ] Tested with sub-tasks
-- [ ] Error handling for failed updates
 
 ---
 
 ## 🧪 Testing Scenarios
 
-### Basic Drag-and-Drop
-1. Create 3-5 tasks in different statuses
-2. Drag task from "To Do" to "In Progress"
-3. Verify task moves visually
-4. Verify status updated in database
-5. Refresh page - task stays in new column
+### Basic Search
+1. Search for "BMAD" → Returns relevant guides
+2. Search for note title → Returns that note
+3. Search for task title → Returns that task
+4. Empty query → Returns []
+5. No matches → Returns []
 
-### Edge Cases
-1. Drag task and drop in same column (no change)
-2. Drag task with sub-tasks (should work)
-3. Network error during update (show error, revert)
-4. Multiple rapid drags (should debounce)
-5. Empty columns (empty state shows)
+### Fuzzy Matching
+1. Search "bmal" → Matches "BMAD" (typo tolerance)
+2. Search "devloper" → Matches "Developer" (1 char typo)
+3. Search partial words → Returns matches
 
-### Mobile
-1. Touch and drag on mobile device
-2. Swipe gesture to move (if implemented)
-3. Task modal opens on tap
-4. Columns scroll horizontally on small screens
+### Performance
+1. Search 100+ items → < 100ms response time
+2. Rapid typing → Debounced correctly (no lag)
+3. Index rebuilding → Smooth, no UI freeze
+
+### Content Updates
+1. Create new note → Appears in search results
+2. Delete task → Removed from search results
+3. Edit note title → Updated in search results
 
 ---
 
 ## 🚀 Ready to Implement!
 
-Story 6.5 complete with sub-task management. Story 6.6 adds visual workflow management with drag-and-drop kanban board.
+Story 6.8 complete with comprehensive statistics dashboard. Epic 6 is 100% complete!
+
+Story 7.1 begins Epic 7 (Search & Command Palette) by building the search infrastructure foundation.
 
 **Start Command:**
 ```bash
-npm install @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities
+npm install fuse.js
 ```
 
 Then implement in this order:
-1. Install dependencies
-2. Create DraggableTaskCard component
-3. Create DroppableColumn component
-4. Update Kanban tab with DndContext
-5. Add drag handlers
-6. Test thoroughly
-7. Polish animations
-8. Complete story documentation
+1. Install Fuse.js
+2. Create search library (`src/lib/search.ts`)
+3. Create search hook (`src/hooks/useSearch.ts`)
+4. Test search functionality
+5. Verify all acceptance criteria
+6. Complete story documentation
 
 ---
 
-**Let's build an amazing kanban board! 🎨✨**
+**Let's build powerful search functionality! 🔍✨**

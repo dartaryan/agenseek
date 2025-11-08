@@ -227,3 +227,91 @@ export async function getTasksByGuide(userId: string, guideSlug: string): Promis
   return data || [];
 }
 
+/**
+ * Get detailed tasks statistics for dashboard
+ * Story 6.8: Build Task and Note Statistics Dashboard
+ */
+export interface TasksStatistics {
+  statusCounts: {
+    todo: number;
+    in_progress: number;
+    done: number;
+    total: number;
+  };
+  completionRate: number;
+  highPriorityCount: number;
+  weeklyData: {
+    created: number;
+    completed: number;
+  };
+}
+
+export async function getTasksStatistics(userId: string): Promise<TasksStatistics> {
+  // Get all tasks for the user (parent tasks only)
+  const { data: tasks, error } = await supabase
+    .from('user_tasks')
+    .select('status, priority, created_at, completed_at')
+    .eq('user_id', userId)
+    .is('parent_task_id', null);
+
+  if (error) {
+    console.error('[getTasksStatistics] Error:', error);
+    throw error;
+  }
+
+  if (!tasks || tasks.length === 0) {
+    return {
+      statusCounts: {
+        todo: 0,
+        in_progress: 0,
+        done: 0,
+        total: 0,
+      },
+      completionRate: 0,
+      highPriorityCount: 0,
+      weeklyData: {
+        created: 0,
+        completed: 0,
+      },
+    };
+  }
+
+  // Calculate status counts
+  const statusCounts = {
+    todo: tasks.filter((t) => t.status === 'todo').length,
+    in_progress: tasks.filter((t) => t.status === 'in_progress').length,
+    done: tasks.filter((t) => t.status === 'done').length,
+    total: tasks.length,
+  };
+
+  // Calculate completion rate
+  const completionRate = statusCounts.total > 0
+    ? Math.round((statusCounts.done / statusCounts.total) * 100)
+    : 0;
+
+  // Count high priority tasks
+  const highPriorityCount = tasks.filter((t) => t.priority === 'high').length;
+
+  // Calculate weekly data
+  const oneWeekAgo = new Date();
+  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+
+  const weeklyCreated = tasks.filter(
+    (t) => new Date(t.created_at) >= oneWeekAgo
+  ).length;
+
+  const weeklyCompleted = tasks.filter(
+    (t) => t.completed_at && new Date(t.completed_at) >= oneWeekAgo
+  ).length;
+
+  return {
+    statusCounts,
+    completionRate,
+    highPriorityCount,
+    weeklyData: {
+      created: weeklyCreated,
+      completed: weeklyCompleted,
+    },
+  };
+}
+
