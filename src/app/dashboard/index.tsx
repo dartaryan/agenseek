@@ -508,7 +508,7 @@ export function DashboardPage() {
             {getGreeting()}, {displayName}!
           </h1>
           <p className="text-gray-600 dark:text-gray-400">
-            {hebrewLocale.dashboard.welcomeBack} לאגנסיק - המשך במסע הלמידה שלך
+            {hebrewLocale.dashboard.welcomeBack} לאג'נסיק - המשך במסע הלמידה שלך
           </p>
         </div>
 
