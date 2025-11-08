@@ -6,6 +6,7 @@ import { signOut } from '../../lib/auth';
 import { hebrewLocale } from '../../lib/locale/he';
 import { useMobileToc } from '../../contexts/MobileTocContext';
 import AgenseekLogo from '../../assets/agenseek-logo.svg';
+import { MobileNav } from './MobileNav';
 
 /**
  * Header Component - Story 5.1.1 Update
@@ -88,41 +89,47 @@ export function Header() {
           </div>
         </div>
 
-        {/* User Menu */}
-        <div className="flex items-center gap-4">
-          {/* Theme Toggle - Placeholder for future */}
-          <Button variant="ghost" size="sm" className="hidden md:inline-flex" disabled>
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-              />
-            </svg>
-          </Button>
+        {/* Right Side: Mobile Nav + User Menu */}
+        <div className="flex items-center gap-2">
+          {/* Mobile Navigation - Shows only on mobile */}
+          <MobileNav />
 
-          {/* User Profile */}
-          {user && (
-            <div className="flex items-center gap-3">
-              <Link to="/profile">
-                <Button variant="ghost" size="sm" className="gap-2">
-                  <div className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100">
-                    <span className="text-xs font-semibold text-emerald-600">
-                      {profile?.display_name?.charAt(0).toUpperCase() ||
-                        user.email?.charAt(0).toUpperCase()}
+          {/* Desktop User Menu - Hidden on mobile */}
+          <div className="hidden md:flex items-center gap-4">
+            {/* Theme Toggle - Placeholder for future */}
+            <Button variant="ghost" size="sm" disabled>
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                />
+              </svg>
+            </Button>
+
+            {/* User Profile */}
+            {user && (
+              <div className="flex items-center gap-3">
+                <Link to="/profile">
+                  <Button variant="ghost" size="sm" className="gap-2">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100">
+                      <span className="text-xs font-semibold text-emerald-600">
+                        {profile?.display_name?.charAt(0).toUpperCase() ||
+                          user.email?.charAt(0).toUpperCase()}
+                      </span>
+                    </div>
+                    <span className="text-sm">
+                      {profile?.display_name || user.email?.split('@')[0]}
                     </span>
-                  </div>
-                  <span className="hidden md:inline-block text-sm">
-                    {profile?.display_name || user.email?.split('@')[0]}
-                  </span>
+                  </Button>
+                </Link>
+                <Button variant="ghost" size="sm" onClick={handleSignOut}>
+                  {hebrewLocale.actions.logout}
                 </Button>
-              </Link>
-              <Button variant="ghost" size="sm" onClick={handleSignOut}>
-                {hebrewLocale.actions.logout}
-              </Button>
-            </div>
-          )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </header>
