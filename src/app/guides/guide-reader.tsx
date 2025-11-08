@@ -38,6 +38,7 @@ import { BadgeUnlockAnimation } from '@/components/dashboard/BadgeUnlockAnimatio
 import { FloatingNoteTooltip } from '@/components/guides/FloatingNoteTooltip'; // Story 6.3
 import { NoteEditorModal } from '@/components/notes/NoteEditorModal'; // Story 6.3
 import { TaskModal } from '@/components/tasks/TaskModal'; // Story 6.7
+import { CommentThread } from '@/components/comments'; // Story 8.1
 import { loadGuide, getAdjacentGuides } from '@/lib/guide-loader';
 import { useAuth } from '@/hooks/useAuth';
 import { useAchievements } from '@/hooks/useAchievements';
@@ -701,6 +702,9 @@ export function GuideReaderPage() {
             category={guide.metadata.category as import('@/types/guide-catalog').GuideCategory}
             className="mt-12"
           />
+
+          {/* Story 8.1: Comments Section */}
+          <CommentThread guideSlug={slug || ''} />
 
           {/* Bottom pagination */}
           <div className="flex items-center justify-between mt-12 pt-6 border-t border-gray-200 dark:border-gray-700">

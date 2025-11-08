@@ -396,12 +396,27 @@
   "allowMultiple": false,        // אופציונלי - אפשר לפתוח כמה
   "items": [
     {
+      "id": "item-1",              // חובה! מזהה ייחודי
       "title": "שאלה 1",
-      "content": "תשובה 1"
+      "content": [                 // חובה! מערך של ContentBlock[]
+        {
+          "id": "item-1-text",
+          "type": "text",
+          "markdown": true,            // חשוב! אפשר markdown formatting
+          "content": "תשובה 1"
+        }
+      ]
     },
     {
+      "id": "item-2",
       "title": "שאלה 2",
-      "content": "תשובה 2"
+      "content": [
+        {
+          "id": "item-2-text",
+          "type": "text",
+          "content": "תשובה 2"
+        }
+      ]
     }
   ]
 }
@@ -413,8 +428,9 @@
   - `false` - רק אחד פתוח בכל פעם
   - `true` - אפשר לפתוח כמה יחד
 - `items`: **array** (חובה) - מערך של פריטים
+  - `id`: מזהה ייחודי (חובה!)
   - `title`: כותרת הפריט (מה שרואים כשזה סגור)
-  - `content`: התוכן (מה שמופיע כשפותחים)
+  - `content`: **ContentBlock[]** (חובה!) - מערך של בלוקים, לא string!
 
 ### דוגמה - FAQ:
 ```json
@@ -423,16 +439,40 @@
   "allowMultiple": true,
   "items": [
     {
+      "id": "faq-1",
       "title": "מה זה BMAD?",
-      "content": "BMAD הוא מערכת ניהול פרויקטים המבוססת על אגנטים..."
+      "content": [
+        {
+          "id": "faq-1-text",
+          "type": "text",
+          "markdown": true,
+          "content": "BMAD הוא מערכת ניהול פרויקטים המבוססת על אגנטים..."
+        }
+      ]
     },
     {
+      "id": "faq-2",
       "title": "איך מתקינים?",
-      "content": "ההתקנה מתבצעת ב-3 צעדים פשוטים..."
+      "content": [
+        {
+          "id": "faq-2-text",
+          "type": "text",
+          "markdown": true,
+          "content": "ההתקנה מתבצעת ב-3 צעדים פשוטים..."
+        }
+      ]
     },
     {
+      "id": "faq-3",
       "title": "מה זה אגנט?",
-      "content": "אגנט הוא מומחה וירטואלי שיודע תחום מסויים..."
+      "content": [
+        {
+          "id": "faq-3-text",
+          "type": "text",
+          "markdown": true,
+          "content": "אגנט הוא מומחה וירטואלי שיודע תחום מסויים..."
+        }
+      ]
     }
   ]
 }
@@ -443,6 +483,7 @@
 - ✅ 3-7 פריטים באקורדיון
 - ✅ כותרות קצרות ומפתות
 - ✅ תוכן תמציתי
+- ✅ **חשוב:** הוסף `markdown: true` לכל text block כדי לאפשר **bold** ו*italic*
 - ❌ אל תשים אקורדיון בתוך אקורדיון
 
 ---

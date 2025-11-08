@@ -447,6 +447,50 @@ export interface LocaleStrings {
     nonTechnical: string;
     nonTechnicalDesc: string;
   };
+
+  // Comments
+  comments: {
+    title: string;
+    noComments: string;
+    beFirstToComment: string;
+    addComment: string;
+    writeComment: string;
+    postComment: string;
+    postReply: string;
+    reply: string;
+    edit: string;
+    delete: string;
+    deleteConfirm: string;
+    deleteSuccess: string;
+    deleteError: string;
+    edited: string;
+    helpful: string;
+    markAsHelpful: string;
+    markAsQuestion: string;
+    markAsSolution: string;
+    question: string;
+    solution: string;
+    replies: string;
+    replyTo: string;
+    loadMore: string;
+    sortBy: string;
+    sortRecent: string;
+    sortMostHelpful: string;
+    sortOldest: string;
+    commentCount_zero: string;
+    commentCount_one: string;
+    commentCount_two: string;
+    commentCount_many: string;
+    replyCount_zero: string;
+    replyCount_one: string;
+    replyCount_two: string;
+    replyCount_many: string;
+    viewReplies: string;
+    hideReplies: string;
+    submitting: string;
+    loadingComments: string;
+    errorLoadingComments: string;
+  };
 }
 
 export const hebrewLocale: LocaleStrings = {
@@ -875,5 +919,49 @@ export const hebrewLocale: LocaleStrings = {
     gameDeveloperDesc: 'יצירת חוויות משחק אינטראקטיביות',
     nonTechnical: 'תפקיד לא-טכני',
     nonTechnicalDesc: 'תמיכה בצוותים טכניים בתפקידים אחרים',
+  },
+
+  // Comments
+  comments: {
+    title: 'תגובות',
+    noComments: 'אין תגובות עדיין',
+    beFirstToComment: 'היה הראשון להגיב!',
+    addComment: 'הוסף תגובה',
+    writeComment: 'כתוב תגובה...',
+    postComment: 'פרסם תגובה',
+    postReply: 'פרסם תשובה',
+    reply: 'השב',
+    edit: 'ערוך',
+    delete: 'מחק',
+    deleteConfirm: 'האם אתה בטוח שברצונך למחוק תגובה זו?',
+    deleteSuccess: 'התגובה נמחקה בהצלחה',
+    deleteError: 'שגיאה במחיקת התגובה',
+    edited: '(נערך)',
+    helpful: 'מועיל',
+    markAsHelpful: 'סמן כמועיל',
+    markAsQuestion: 'סמן כשאלה',
+    markAsSolution: 'סמן כפתרון',
+    question: 'שאלה',
+    solution: 'פתרון',
+    replies: 'תשובות',
+    replyTo: 'השב ל',
+    loadMore: 'טען תגובות נוספות',
+    sortBy: 'מיין לפי',
+    sortRecent: 'חדשות ביותר',
+    sortMostHelpful: 'הכי מועילות',
+    sortOldest: 'הישנות ביותר',
+    commentCount_zero: 'אין תגובות',
+    commentCount_one: 'תגובה אחת',
+    commentCount_two: 'שתי תגובות',
+    commentCount_many: '{count} תגובות',
+    replyCount_zero: 'אין תשובות',
+    replyCount_one: 'תשובה אחת',
+    replyCount_two: 'שתי תשובות',
+    replyCount_many: '{count} תשובות',
+    viewReplies: 'צפה בתשובות',
+    hideReplies: 'הסתר תשובות',
+    submitting: 'שולח...',
+    loadingComments: 'טוען תגובות...',
+    errorLoadingComments: 'שגיאה בטעינת תגובות',
   },
 };

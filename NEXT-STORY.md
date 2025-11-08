@@ -1,268 +1,445 @@
-# 🚀 NEXT STORY: Story 7.1 - Implement Global Search Infrastructure
+# 🚀 NEXT STORY: Story 8.2 - Build Comment Form and Submission
 
 **Updated:** November 8, 2025
 
 ---
 
-## ✅ Story 6.8 Complete!
+## ✅ Story 8.1 Complete!
 
-The task and note statistics dashboard has been successfully implemented! Users can now:
+The comment thread system has been successfully implemented! Users can now:
 
-- View comprehensive notes statistics (total, top tags, weekly trend, associated guides)
-- Monitor task statistics (status counts, completion rate, high priority tasks, weekly chart)
-- See visual representations with Recharts bar charts
-- Navigate easily to full notes/tasks pages
-- Track productivity and learning habits at a glance
+- View comment threads with hierarchical replies (1-level)
+- See real-time comment updates via Supabase subscriptions
+- Sort comments by Recent, Most Helpful, or Oldest
+- Load more comments with pagination (20 per page)
+- See visual distinction for questions and solution replies
+- View user avatars (initials), names, roles, and timestamps
+- Toggle reply visibility
+- See action buttons (Helpful, Reply, Edit, Delete - placeholders for now)
 
-**Completion File:** See `STORY-6.8-COMPLETE.md` for full details.
+**Completion File:** See `STORY-8.1-COMPLETE.md` for full details.
 
-**Epic 6 Status:** ✅ **100% COMPLETE** (8/8 stories) 🎉
+**Epic 8 Status:** 1/6 stories complete (17%)
 
 ---
 
 ## 📍 Next Story to Implement
 
-### **Story 7.1: Implement Global Search Infrastructure**
+### **Story 8.2: Build Comment Form and Submission**
 
-**Epic:** 7 - Global Search & Command Palette
+**Epic:** 8 - Community Features (Comments & Q&A)
 **Priority:** P0
-**Sprint:** 10
+**Sprint:** 11
 **Story Points:** 2
-**Dependencies:** Epic 6 Complete ✅
+**Dependencies:** Story 8.1 Complete ✅
 
 ---
 
-## 🎯 Story 7.1 Overview
+## 🎯 Story 8.2 Overview
 
-Build the foundational search infrastructure using Fuse.js to enable fuzzy search across all content types (guides, notes, tasks). This infrastructure will power the header search bar, search results page, and command palette.
+Build the comment submission form with markdown support, preview tab, and toggle between comment/question types. Enable users to post comments and questions on guides.
 
-### Acceptance Criteria
+### User Story
 
-**Given** I need to enable search functionality
-**When** I set up search infrastructure
-**Then**:
+**As a user reading a guide,**
+**I want to post comments and ask questions,**
+**So that I can share insights, get help, and engage with the community.**
 
-- Create `src/lib/search.ts` with:
-  - Fuse.js configuration
-  - Search index builder
-  - Type definitions for search results
-- Search index includes:
-  - All guide metadata (title, description, content preview)
-  - All user notes (title, content)
-  - All user tasks (title, description)
-- Fuse.js configuration:
-  - Keys: title (weight: 3), description (weight: 2), content (weight: 1)
-  - Threshold: 0.3 (fuzzy matching)
-  - Include score and matches
-  - Limit: 50 results
-- Create `src/hooks/useSearch.ts`:
-  - Hook that builds index from all content
-  - Returns search function and results
-  - Debounced search (300ms)
-  - Loading state management
+---
 
-**And** search updates when content changes (notes, tasks added/edited)
+## 📋 Acceptance Criteria
+
+### Comment Form
+
+**Given** I'm viewing a guide with the comment section
+**When** I click "הוסף תגובה" button
+**Then:**
+
+- [x] Comment form expands/appears
+- [x] Textarea with placeholder "כתוב תגובה..."
+- [x] Auto-expanding textarea (min 3 rows, grows with content)
+- [x] Markdown formatting guide (collapsible)
+  - Bold: `**text**`
+  - Italic: `*text*`
+  - Code: `` `code` ``
+  - Link: `[text](url)`
+- [x] Preview tab to see formatted content
+- [x] Toggle: "תגובה" / "שאלה" buttons
+  - Selected state: Filled emerald
+  - Unselected state: Outline
+- [x] Character count: "X/5000"
+  - Warning color when > 4500
+  - Error color when = 5000
+- [x] Submit button: "פרסם תגובה" or "פרסם שאלה"
+  - Disabled when empty or > 5000 chars
+  - Loading state when submitting
+- [x] Cancel button
+
+### Comment Submission
+
+**When** I click "פרסם תגובה"
+**Then:**
+
+- [x] Comment inserted to `guide_comments` table:
+  - user_id (current user)
+  - guide_slug
+  - content (markdown text)
+  - is_question (based on toggle)
+  - parent_comment_id (null for top-level)
+- [x] Activity logged to `user_activity`:
+  - Type: 'comment_posted'
+  - Guide slug recorded
+- [x] Success toast: "התגובה פורסמה בהצלחה"
+- [x] Form resets (clears textarea)
+- [x] Scroll to new comment
+- [x] Comment count updates in header
+- [x] Real-time update (new comment appears via existing subscription)
+
+### Reply Submission
+
+**Given** I click "השב" on a comment
+**When** I submit the reply
+**Then:**
+
+- [x] Reply inserted with `parent_comment_id` set
+- [x] Reply appears under parent comment
+- [x] Reply count increments
+- [x] Activity logged with both comment_id and parent_comment_id
+- [x] Success toast: "התשובה פורסמה בהצלחה"
+
+### Validation
+
+**Given** I try to submit invalid content
+**Then:**
+
+- [x] Empty content: Button disabled
+- [x] Over 5000 chars: Button disabled + error message
+- [x] Server error: Error toast with message
 
 ---
 
 ## 🔨 Implementation Plan
 
-### 1. Install Fuse.js
+### 1. Create Comment Form Component
 
-```bash
-npm install fuse.js
-```
+**File:** `src/components/comments/CommentForm.tsx`
 
-**Library Choice:** Fuse.js is lightweight, powerful, and perfect for client-side fuzzy search.
-
-### 2. Create Search Library
-
-**File:** `src/lib/search.ts`
-
-**Key Components:**
-- `SearchResult` type definition (item, type, score, matches)
-- `buildSearchIndex()` function to combine all content
-- `searchContent()` function with Fuse.js
-- Fuse.js configuration object
-
-**Search Types:**
+**Props:**
 ```typescript
-export type SearchableItem = Guide | Note | Task;
-export type SearchResultType = 'guide' | 'note' | 'task';
-
-export interface SearchResult {
-  item: SearchableItem;
-  type: SearchResultType;
-  score: number;
-  matches: FuseResultMatch[];
+interface CommentFormProps {
+  guideSlug: string;
+  parentCommentId?: string | null;
+  parentAuthorName?: string | null;
+  onSuccess?: () => void;
+  onCancel?: () => void;
 }
 ```
-
-### 3. Create Search Hook
-
-**File:** `src/hooks/useSearch.ts`
 
 **Features:**
-- Build search index from guides catalog + user notes + user tasks
-- Debounce search queries (300ms) using lodash or custom debounce
-- Return: `{ search, results, isLoading }`
-- Update index when notes/tasks change
-- Use useMemo to cache Fuse instance
+- Textarea with auto-expand
+- Markdown formatting guide (collapsible)
+- Preview tab
+- Comment/Question toggle
+- Character counter
+- Submit/Cancel buttons
 
-**Hook Pattern:**
+### 2. Update CommentItem to Show Form on Reply
+
+**File:** `src/components/comments/CommentItem.tsx`
+
+**Changes:**
+- Replace reply form placeholder with actual `CommentForm`
+- Pass `comment.id` as `parentCommentId`
+- Pass `comment.profile.display_name` as `parentAuthorName`
+- Handle onSuccess (close form)
+- Handle onCancel (close form)
+
+### 3. Add Form to Top of CommentThread
+
+**File:** `src/components/comments/CommentThread.tsx`
+
+**Changes:**
+- Add "הוסף תגובה" button at top of thread
+- Show/hide comment form
+- Pass `guideSlug`
+- Handle onSuccess (refresh comments, scroll to new)
+
+### 4. Implement Comment Submission Logic
+
+**File:** `src/lib/actions/comments.ts` (new file)
+
+**Functions:**
 ```typescript
-export function useSearch(userId: string) {
-  const [results, setResults] = useState<SearchResult[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+async function submitComment(data: {
+  userId: string;
+  guideSlug: string;
+  content: string;
+  isQuestion: boolean;
+  parentCommentId?: string | null;
+}): Promise<{ success: boolean; commentId?: string; error?: string }>
 
-  // Build index
-  // Create Fuse instance
-  // Debounced search function
-  // Return { search, results, isLoading }
-}
+async function logCommentActivity(data: {
+  userId: string;
+  guideSlug: string;
+  commentId: string;
+  parentCommentId?: string | null;
+}): Promise<void>
 ```
-
-### 4. Fuse.js Configuration
-
-**Search Keys:**
-- `title` - weight: 3 (most important)
-- `description` - weight: 2 (secondary)
-- `content` - weight: 1 (tertiary)
-
-**Options:**
-- `threshold`: 0.3 (balance between strict and fuzzy)
-- `includeScore`: true
-- `includeMatches`: true (for highlighting)
-- `minMatchCharLength`: 2
-- `limit`: 50
-
-### 5. Index Building Strategy
-
-**Combine Content:**
-```typescript
-const guides = getGuideCatalog().map(g => ({ ...g, type: 'guide' }));
-const notes = await getUserNotes(userId).map(n => ({ ...n, type: 'note' }));
-const tasks = await getUserTasks(userId).map(t => ({ ...t, type: 'task' }));
-const allContent = [...guides, ...notes, ...tasks];
-```
-
-**Build Index:**
-```typescript
-const fuse = new Fuse(allContent, fuseOptions);
-```
-
-### 6. Search Function
-
-**Input:** Query string
-**Output:** SearchResult[] (sorted by score)
 
 **Process:**
-1. Check if query is empty → return []
-2. Run Fuse search: `fuse.search(query)`
-3. Transform results to SearchResult format
-4. Return up to 50 results
+1. Validate content (not empty, <= 5000 chars)
+2. Insert to `guide_comments`
+3. Log activity to `user_activity`
+4. Return success + commentId
+
+### 5. Update Hebrew Locale
+
+Add to `comments` section:
+- `writeComment`: 'כתוב תגובה...'
+- `writeReply`: 'כתוב תשובה...'
+- `markdownGuide`: 'מדריך עיצוב'
+- `preview`: 'תצוגה מקדימה'
+- `comment`: 'תגובה'
+- `characterCount`: '{current} / 5000 תווים'
+- `characterLimitExceeded`: 'חרגת ממספר התווים המותר'
+- `commentPosted`: 'התגובה פורסמה בהצלחה'
+- `replyPosted`: 'התשובה פורסמה בהצלחה'
+- `errorPostingComment`: 'שגיאה בפרסום התגובה'
+- `emptyComment`: 'התגובה לא יכולה להיות ריקה'
+
+### 6. Markdown Formatting Guide
+
+**Collapsible section with examples:**
+- **Bold:** `**טקסט מודגש**` → **טקסט מודגש**
+- **Italic:** `*טקסט נטוי*` → *טקסט נטוי*
+- **Code:** `` `קוד` `` → `קוד`
+- **Link:** `[טקסט הקישור](URL)` → [טקסט הקישור](URL)
+
+**Note:** Full markdown rendering in Story 8.2, extended markdown in future
+
+### 7. Preview Tab
+
+**Implementation:**
+- Tab toggle: Write | Preview
+- Write tab: Show textarea
+- Preview tab: Show rendered markdown
+- Use simple markdown renderer (or just show formatted text for now)
+- Full markdown support can be added in refinement
+
+### 8. Auto-Expanding Textarea
+
+**Implementation:**
+- Use `useEffect` to adjust height based on scrollHeight
+- Min height: 3 rows (72px)
+- Max height: 400px (then scroll)
+- Smooth transition
 
 ---
 
-## 📚 Technical Resources
+## 🎨 UI/UX Considerations
 
-### Fuse.js Documentation
-- Main docs: https://fusejs.io/
-- API reference: https://fusejs.io/api/
-- Examples: https://fusejs.io/examples.html
+### Form Placement
 
-### Debouncing Patterns
-- lodash.debounce: Already installed (can use from `lodash`)
-- Custom debounce hook: Use `useCallback` + `setTimeout`
+**Top of thread:**
+- Prominent "הוסף תגובה" button (emerald, with icon)
+- Form slides down when clicked
+- Full-width with proper padding
 
-### Search Best Practices
-- Client-side search (< 10K items)
-- Index updates on content changes
-- Highlight matching text in results
-- Sort by relevance score
+**Reply form:**
+- Indented to match reply depth
+- Smaller, more compact
+- "השב ל [Name]" indicator at top
 
----
+### Visual States
 
-## 🎨 UI/UX Considerations (Future Stories)
+**Empty:**
+- Textarea gray border
+- Placeholder text visible
 
-This story sets up the infrastructure. The UI components will be built in:
-- Story 7.2: Header Search Bar
-- Story 7.3: Search Results Page
-- Story 7.4: Command Palette
+**Focused:**
+- Emerald border
+- Placeholder disappears
 
-**For Now:**
-- Focus on accurate search results
-- Ensure performance (< 100ms search time)
-- Provide highlighting data for UI
+**Typing:**
+- Character count updates live
+- Green when < 4500
+- Orange when 4500-4999
+- Red when 5000
 
----
+**Submitting:**
+- Button shows spinner
+- Textarea disabled
+- "שולח..." text
 
-## ✅ Acceptance Criteria Checklist
+**Success:**
+- Toast notification
+- Form clears
+- Smooth scroll to new comment
+- Confetti animation (optional)
 
-Before marking story complete:
+### Responsive Design
 
-- [ ] `src/lib/search.ts` created with Fuse.js configuration
-- [ ] `src/hooks/useSearch.ts` created with search hook
-- [ ] Fuse.js installed and imported
-- [ ] Search index includes guides, notes, tasks
-- [ ] Search function returns results with scores and matches
-- [ ] Debounced search (300ms) implemented
-- [ ] Loading state management works
-- [ ] Search updates when content changes
-- [ ] Type definitions for SearchResult, SearchableItem
-- [ ] Search limited to 50 results
-- [ ] Fuzzy matching threshold set to 0.3
-- [ ] Weighted keys (title:3, description:2, content:1)
-- [ ] No TypeScript errors
-- [ ] No linter errors
+**Mobile (<640px):**
+- Full-width form
+- Larger touch targets
+- Preview tab full screen
+
+**Tablet (640-1024px):**
+- Form width matches content area
+- Side-by-side Write/Preview tabs
+
+**Desktop (>1024px):**
+- Max-width constrained
+- Comfortable spacing
+- Markdown guide visible by default
 
 ---
 
 ## 🧪 Testing Scenarios
 
-### Basic Search
-1. Search for "BMAD" → Returns relevant guides
-2. Search for note title → Returns that note
-3. Search for task title → Returns that task
-4. Empty query → Returns []
-5. No matches → Returns []
+### Happy Path
+1. Click "הוסף תגובה"
+2. Type comment (< 5000 chars)
+3. Click "פרסם תגובה"
+4. See success toast
+5. New comment appears at top
+6. Count increments
 
-### Fuzzy Matching
-1. Search "bmal" → Matches "BMAD" (typo tolerance)
-2. Search "devloper" → Matches "Developer" (1 char typo)
-3. Search partial words → Returns matches
+### Reply Flow
+1. Click "השב" on comment
+2. Type reply
+3. Submit
+4. Reply appears under parent
+5. Reply count updates
 
-### Performance
-1. Search 100+ items → < 100ms response time
-2. Rapid typing → Debounced correctly (no lag)
-3. Index rebuilding → Smooth, no UI freeze
+### Validation
+1. Try to submit empty → Button disabled
+2. Type 5001 chars → Button disabled, red count
+3. Backspace to 5000 → Button enabled
+4. Submit → Success
 
-### Content Updates
-1. Create new note → Appears in search results
-2. Delete task → Removed from search results
-3. Edit note title → Updated in search results
+### Question Toggle
+1. Toggle "שאלה"
+2. Submit
+3. New comment has orange background
+4. "שאלה" badge visible
+
+### Preview
+1. Type markdown: `**bold** and *italic*`
+2. Click Preview tab
+3. See formatted text
+4. Switch back to Write
+5. Content preserved
+
+### Error Handling
+1. Network error → Error toast
+2. User not authenticated → Redirect to login
+3. Invalid guide_slug → Error message
+
+---
+
+## 🔐 Security & Validation
+
+### Client-Side
+- Max 5000 characters
+- No empty submissions
+- Sanitize markdown (prevent XSS)
+
+### Server-Side (RLS Policies)
+- User must be authenticated
+- User can only insert with their own user_id
+- Content length check
+- Rate limiting (future: prevent spam)
+
+### Database Constraints
+- `content` NOT NULL
+- `user_id` foreign key constraint
+- `guide_slug` validated against catalog
+
+---
+
+## 📚 Technical Resources
+
+### Markdown Libraries
+- **react-markdown:** Simple, lightweight
+- **marked:** Fast parser
+- **Custom:** Can implement basic markdown manually
+
+### Textarea Auto-Resize
+```typescript
+const adjustHeight = () => {
+  if (textareaRef.current) {
+    textareaRef.current.style.height = 'auto';
+    textareaRef.current.style.height = `${Math.min(
+      textareaRef.current.scrollHeight,
+      400
+    )}px`;
+  }
+};
+```
+
+### Character Counter
+```typescript
+const charCount = content.length;
+const charColor = charCount > 4500
+  ? (charCount >= 5000 ? 'text-destructive' : 'text-orange-500')
+  : 'text-muted-foreground';
+```
+
+---
+
+## ✅ Definition of Done
+
+Before marking story complete:
+
+- [ ] Comment form component created
+- [ ] Form integrated at top of CommentThread
+- [ ] Reply form integrated in CommentItem
+- [ ] Markdown formatting guide implemented
+- [ ] Preview tab functional
+- [ ] Comment/Question toggle works
+- [ ] Character counter updates live
+- [ ] Submit inserts to database
+- [ ] Activity logged
+- [ ] Success toast displays
+- [ ] Form resets after submit
+- [ ] Scroll to new comment works
+- [ ] Real-time update displays new comment
+- [ ] Count increments in header
+- [ ] Reply submission works
+- [ ] Reply appears under parent
+- [ ] Reply count updates
+- [ ] Validation prevents invalid submissions
+- [ ] Error handling shows appropriate messages
+- [ ] Hebrew locale strings added
+- [ ] No TypeScript errors
+- [ ] No linter errors
+- [ ] Responsive on mobile, tablet, desktop
+- [ ] RTL layout correct
+- [ ] Manual testing passed
 
 ---
 
 ## 🚀 Ready to Implement!
 
-Story 6.8 complete with comprehensive statistics dashboard. Epic 6 is 100% complete!
-
-Story 7.1 begins Epic 7 (Search & Command Palette) by building the search infrastructure foundation.
+Story 8.1 complete with comment thread display and real-time updates. Story 8.2 will enable users to post comments and questions.
 
 **Start Command:**
 ```bash
-npm install fuse.js
+# No new dependencies needed
 ```
 
 Then implement in this order:
-1. Install Fuse.js
-2. Create search library (`src/lib/search.ts`)
-3. Create search hook (`src/hooks/useSearch.ts`)
-4. Test search functionality
-5. Verify all acceptance criteria
-6. Complete story documentation
+1. Create comment submission logic (lib/actions/comments.ts)
+2. Create CommentForm component
+3. Integrate form into CommentThread (top-level)
+4. Integrate form into CommentItem (replies)
+5. Add Hebrew locale strings
+6. Test submission flow
+7. Test validation
+8. Test real-time updates
+9. Complete story documentation
 
 ---
 
-**Let's build powerful search functionality! 🔍✨**
+**Let's build community engagement through comments! 💬✨**

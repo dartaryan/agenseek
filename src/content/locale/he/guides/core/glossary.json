@@ -1,0 +1,545 @@
+{
+  "metadata": {
+    "id": "glossary",
+    "slug": "glossary",
+    "title": "מילון מונחים מלא",
+    "description": "מילון מקיף של כל המונחים והמושגים ב-BMAD-METHOD. מסביר בצורה ברורה מה זה אגנטים, וורקפלואים, Story Context, והמונחים החשובים האחרים.",
+    "category": "core",
+    "difficulty": "beginner",
+    "estimatedMinutes": 30,
+    "icon": "Book",
+    "tags": ["מושגים", "טרמינולוגיה", "הגדרות", "מילון"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "איך להשתמש במילון?",
+      "level": 2,
+      "anchor": "how-to-use"
+    },
+    {
+      "id": "toc-2",
+      "title": "מושגי יסוד",
+      "level": 2,
+      "anchor": "basic-concepts"
+    },
+    {
+      "id": "toc-3",
+      "title": "אגנטים (Agents)",
+      "level": 2,
+      "anchor": "agents"
+    },
+    {
+      "id": "toc-4",
+      "title": "וורקפלואים (Workflows)",
+      "level": 2,
+      "anchor": "workflows"
+    },
+    {
+      "id": "toc-5",
+      "title": "מושגי ניהול",
+      "level": 2,
+      "anchor": "management"
+    },
+    {
+      "id": "toc-6",
+      "title": "מושגים טכניים",
+      "level": 2,
+      "anchor": "technical"
+    },
+    {
+      "id": "toc-7",
+      "title": "קונפיגורציה וקבצים",
+      "level": 2,
+      "anchor": "config"
+    },
+    {
+      "id": "toc-8",
+      "title": "קיצורים נפוצים",
+      "level": 2,
+      "anchor": "abbreviations"
+    },
+    {
+      "id": "toc-9",
+      "title": "שאלות נפוצות",
+      "level": 2,
+      "anchor": "faq"
+    }
+  ],
+  "content": [
+    {
+      "id": "main-title",
+      "type": "heading",
+      "level": 1,
+      "content": "מילון מונחים מלא - כל המושגים של BMAD במקום אחד",
+      "anchor": "main-title"
+    },
+    {
+      "id": "intro-callout",
+      "type": "callout",
+      "variant": "info",
+      "title": "המילון המקיף של BMAD",
+      "content": "כל המונחים והמושגים שתצטרכו להבין כדי לעבוד עם BMAD-METHOD - מוסבר בצורה פשוטה וברורה"
+    },
+    {
+      "id": "divider-1",
+      "type": "divider"
+    },
+    {
+      "id": "how-to-use",
+      "type": "heading",
+      "level": 2,
+      "content": "איך להשתמש במילון?",
+      "anchor": "how-to-use"
+    },
+    {
+      "id": "how-to-use-text",
+      "type": "text",
+      "content": "המילון הזה בנוי כך שתוכלו למצוא כל מונח במהירות:"
+    },
+    {
+      "id": "how-to-use-list",
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        { "content": "המונחים מחולקים לפי קטגוריות לוגיות" },
+        { "content": "כל מונח מוסבר בפשטות עם דוגמאות" },
+        { "content": "יש קישורים למדריכים רלוונטיים" },
+        { "content": "השתמשו ב-Ctrl+F כדי לחפש מונח ספציפי" }
+      ]
+    },
+    {
+      "id": "tip-callout",
+      "type": "callout",
+      "variant": "success",
+      "title": "טיפ מקצועי",
+      "content": "סמנו את המילון הזה במועדפים - תחזרו אליו הרבה בהתחלה!"
+    },
+    {
+      "id": "divider-2",
+      "type": "divider"
+    },
+    {
+      "id": "basic-concepts",
+      "type": "heading",
+      "level": 2,
+      "content": "מושגי יסוד",
+      "anchor": "basic-concepts"
+    },
+    {
+      "id": "basic-concepts-text",
+      "type": "text",
+      "content": "המושגים הבסיסיים ביותר שצריך להכיר:"
+    },
+    {
+      "id": "basic-accordion",
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "term-bmad",
+          "title": "BMAD",
+          "content": [
+            {
+              "id": "term-bmad-def",
+              "type": "text",
+              "markdown": true,
+              "content": "**הגדרה:** BMAD הוא ראשי תיבות של במאד - שיטת עבודה מבוססת AI לפיתוח תוכנה. זו פלטפורמה שעוזרת לכם לנהל פרויקטים עם עזרת אגנטים חכמים."
+            },
+            {
+              "id": "term-bmad-example",
+              "type": "text",
+              "markdown": true,
+              "content": "**דוגמה:** במקום לנסות לזכור מה הצעד הבא בפרויקט, BMAD מנחה אתכם שלב אחר שלב."
+            },
+            {
+              "id": "term-bmad-see-also",
+              "type": "text",
+              "markdown": true,
+              "content": "**ראו גם:** מדריך ההתחלה המהירה"
+            }
+          ]
+        },
+        {
+          "id": "term-bmad-method",
+          "title": "BMAD-METHOD",
+          "content": [
+            {
+              "id": "term-bmad-method-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**הגדרה:** המתודולוגיה המלאה של BMAD - כולל את כל האגנטים, הוורקפלואים, והתהליכים. זו השיטה הכוללת לעבודה מסודרת עם AI.\n\n**דוגמה:** BMAD-METHOD כולל 19 אגנטים, 50+ וורקפלואים, ותהליכי עבודה מוגדרים מקצה לקצה.\n\n**ראו גם:** סקירה כללית על BMAD"
+            }
+          ]
+        },
+        {
+          "id": "term-cursor",
+          "title": "Cursor",
+          "content": [
+            {
+              "id": "term-cursor-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**הגדרה:** IDE (סביבת פיתוח) המבוססת על VSCode עם יכולות AI מובנות. זה הכלי המומלץ לעבודה עם BMAD.\n\n**דוגמה:** Cursor מאפשר לכם לדבר עם אגנטים ישירות בעורך הקוד.\n\n**ראו גם:** מדריך התקנה והגדרה"
+            }
+          ]
+        },
+        {
+          "id": "term-ai-agent",
+          "title": "AI Agent (אגנט בינה מלאכותית)",
+          "content": [
+            {
+              "id": "term-ai-agent-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**הגדרה:** מערכת AI שמתמחה בתחום מסוים ויודעת לבצע משימות ספציפיות. האגנטים של BMAD מחקים תפקידים אמיתיים בצוות.\n\n**דוגמה:** אגנט PM יודע לכתוב PRD, לנתח דרישות, ולתכנן פיצ'רים - בדיוק כמו מנהל מוצר אמיתי.\n\n**ראו גם:** מדריך אגנטים - מבוא"
+            }
+          ]
+        },
+        {
+          "id": "term-context-window",
+          "title": "Context Window (חלון הקשר)",
+          "content": [
+            {
+              "id": "term-context-window-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**הגדרה:** כמות המידע שה-AI יכול לזכור ולעבד בבת אחת. ככל שהחלון גדול יותר, כך ה-AI יכול לעבוד עם יותר מידע.\n\n**דוגמה:** Claude Sonnet 4.5 יש context window של 200K tokens - זה מספיק לכל הקוד של פרויקט קטן.\n\n**ראו גם:** מדריך לשימוש יעיל באגנטים"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "divider-3",
+      "type": "divider"
+    },
+    {
+      "id": "agents",
+      "type": "heading",
+      "level": 2,
+      "content": "אגנטים (Agents)",
+      "anchor": "agents"
+    },
+    {
+      "id": "agents-text",
+      "type": "text",
+      "content": "כל האגנטים ב-BMAD והתפקיד שלהם:"
+    },
+    {
+      "id": "agents-accordion",
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "agent-general",
+          "title": "Agent (אגנט - כללי)",
+          "content": [
+            {
+              "id": "agent-general-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**הגדרה:** מומחה וירטואלי שמתמחה בתפקיד מסוים. כל אגנט יודע את הכלים שלו, את התהליכים שלו, ואת הפרוטוקולים לעבודה.\n\n**דוגמה:** כשאתם צריכים לכתוב PRD - תפעילו את אגנט PM. כשצריך לכתוב קוד - אגנט Dev.\n\n**ראו גם:** מדריך אגנטים - מבוא"
+            }
+          ]
+        },
+        {
+          "id": "agent-pm",
+          "title": "PM (Product Manager - מנהל מוצר)",
+          "content": [
+            {
+              "id": "agent-pm-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**הגדרה:** אגנט המתמחה בניהול מוצר - כתיבת PRDs, ניתוח משתמשים, הגדרת דרישות, ותכנון פיצ'רים.\n\n**דוגמה:** אגנט PM יעזור לכם להפוך רעיון לתכנית מוצר מפורטת עם דרישות ברורות.\n\n**וורקפלואים עיקריים:** product-brief, prd, research\n\n**ראו גם:** מדריך למנהלי מוצר"
+            }
+          ]
+        },
+        {
+          "id": "agent-dev",
+          "title": "Dev (Developer - מפתח)",
+          "content": [
+            {
+              "id": "agent-dev-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**הגדרה:** אגנט המתמחה בפיתוח תוכנה - כתיבת קוד, code review, בדיקות, תיקון באגים.\n\n**דוגמה:** אגנט Dev יכתוב עבורכם קומפוננטה חדשה, יתקן באג, או יבצע refactoring.\n\n**וורקפלואים עיקריים:** dev-story, code-review\n\n**ראו גם:** מדריך למפתחים"
+            }
+          ]
+        },
+        {
+          "id": "agent-architect",
+          "title": "Architect (ארכיטקט)",
+          "content": [
+            {
+              "id": "agent-architect-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**הגדרה:** אגנט המתמחה בארכיטקטורת מערכות - תכנון טכני, בחירת טכנולוגיות, תיעוד ארכיטקטוני.\n\n**דוגמה:** אגנט Architect יקבע איזה בסיס נתונים להשתמש, איך לחלק את המערכת למיקרו-סרוויסים.\n\n**וורקפלואים עיקריים:** tech-spec, architecture\n\n**ראו גם:** מדריך לארכיטקטים"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "divider-4",
+      "type": "divider"
+    },
+    {
+      "id": "workflows",
+      "type": "heading",
+      "level": 2,
+      "content": "וורקפלואים (Workflows)",
+      "anchor": "workflows"
+    },
+    {
+      "id": "workflows-text",
+      "type": "text",
+      "content": "הוורקפלואים העיקריים ב-BMAD:"
+    },
+    {
+      "id": "workflows-accordion",
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "workflow-general",
+          "title": "Workflow (וורקפלואו - כללי)",
+          "content": [
+            {
+              "id": "workflow-general-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**הגדרה:** תהליך מובנה שמנחה אתכם שלב אחר שלב לביצוע משימה מסוימת. כל workflow מורכב מצעדים ברורים עם הוראות.\n\n**דוגמה:** workflow product-brief מנחה אתכם ביצירת בריף מוצר מפורט דרך שאלות ושלבים מובנים.\n\n**ראו גם:** מדריך וורקפלואים - מבוא"
+            }
+          ]
+        },
+        {
+          "id": "workflow-prd",
+          "title": "prd (Product Requirements Document)",
+          "content": [
+            {
+              "id": "workflow-prd-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**הגדרה:** יצירת מסמך דרישות מוצר מפורט - פיצ'רים, user stories, קריטריוני הצלחה.\n\n**מתי להשתמש:** אחרי product-brief, לפני פיתוח.\n\n**אגנט:** PM\n\n**ראו גם:** מדריך PRD"
+            }
+          ]
+        },
+        {
+          "id": "workflow-dev-story",
+          "title": "dev-story",
+          "content": [
+            {
+              "id": "workflow-dev-story-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**הגדרה:** פיתוח Story - כתיבת קוד, בדיקות, commit.\n\n**מתי להשתמש:** בזמן הספרינט, לפיתוח הפיצ'ר.\n\n**אגנט:** Dev\n\n**ראו גם:** מדריך למפתחים"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "divider-5",
+      "type": "divider"
+    },
+    {
+      "id": "management",
+      "type": "heading",
+      "level": 2,
+      "content": "מושגי ניהול",
+      "anchor": "management"
+    },
+    {
+      "id": "management-text",
+      "type": "text",
+      "content": "מונחים מעולם ניהול הפרויקטים והאג'ייל:"
+    },
+    {
+      "id": "management-accordion",
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "term-story",
+          "title": "Story (סטורי)",
+          "content": [
+            {
+              "id": "term-story-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**הגדרה:** יחידת עבודה קטנה שניתן לפתח בימים ספורים. מתאר פיצ'ר או משימה אחת.\n\n**דוגמה:** 'כמשתמש, אני רוצה להתחבר עם Google כדי לא להקליד סיסמה'\n\n**ראו גם:** מדריך Stories"
+            }
+          ]
+        },
+        {
+          "id": "term-epic",
+          "title": "Epic (אפיק)",
+          "content": [
+            {
+              "id": "term-epic-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**הגדרה:** קבוצה של Stories קשורות. פיצ'ר גדול שמחולק למשימות קטנות יותר.\n\n**דוגמה:** Epic: 'מערכת אימות משתמשים' → Stories: התחברות, הרשמה, שכחתי סיסמה, 2FA\n\n**ראו גם:** מדריך Epics"
+            }
+          ]
+        },
+        {
+          "id": "term-sprint",
+          "title": "Sprint (ספרינט)",
+          "content": [
+            {
+              "id": "term-sprint-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**הגדרה:** מחזור פיתוח קצר (שבוע-שבועיים) שבסופו יש גרסה עובדת של המוצר.\n\n**דוגמה:** Sprint 1: אימות משתמשים, Sprint 2: פרופיל משתמש\n\n**ראו גם:** מדריך ספרינטים"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "divider-6",
+      "type": "divider"
+    },
+    {
+      "id": "abbreviations",
+      "type": "heading",
+      "level": 2,
+      "content": "קיצורים נפוצים",
+      "anchor": "abbreviations"
+    },
+    {
+      "id": "abbreviations-text",
+      "type": "text",
+      "content": "טבלה מהירה של כל הקיצורים ב-BMAD:"
+    },
+    {
+      "id": "abbreviations-table",
+      "type": "table",
+      "caption": "קיצורים נפוצים ב-BMAD",
+      "headers": [
+        { "content": "קיצור", "alignment": "center" },
+        { "content": "פירוש", "alignment": "left" },
+        { "content": "הסבר קצר", "alignment": "left" }
+      ],
+      "rows": [
+        {
+          "cells": [
+            { "content": "BMAD", "alignment": "center" },
+            { "content": "במאד", "alignment": "left" },
+            { "content": "שם המערכת", "alignment": "left" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "PM", "alignment": "center" },
+            { "content": "Product Manager", "alignment": "left" },
+            { "content": "מנהל מוצר", "alignment": "left" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "DEV", "alignment": "center" },
+            { "content": "Developer", "alignment": "left" },
+            { "content": "מפתח", "alignment": "left" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "PRD", "alignment": "center" },
+            { "content": "Product Requirements Document", "alignment": "left" },
+            { "content": "מסמך דרישות מוצר", "alignment": "left" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "API", "alignment": "center" },
+            { "content": "Application Programming Interface", "alignment": "left" },
+            { "content": "ממשק תכנות", "alignment": "left" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "divider-7",
+      "type": "divider"
+    },
+    {
+      "id": "faq",
+      "type": "heading",
+      "level": 2,
+      "content": "שאלות נפוצות",
+      "anchor": "faq"
+    },
+    {
+      "id": "faq-accordion",
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "faq-1",
+          "title": "איך אני מוצא מונח מהר?",
+          "content": [
+            {
+              "id": "faq-1-text",
+              "type": "text",
+              "markdown": true,
+              "content": "השתמשו ב-Ctrl+F (או Cmd+F ב-Mac) וחפשו את המונח. המילון מחולק לקטגוריות כך שקל למצוא דברים קשורים."
+            }
+          ]
+        },
+        {
+          "id": "faq-2",
+          "title": "מה ההבדל בין Story ו-Epic?",
+          "content": [
+            {
+              "id": "faq-2-text",
+              "type": "text",
+              "markdown": true,
+              "content": "Story הוא משימה קטנה שאפשר לסיים בימים ספורים. Epic הוא קבוצה של Stories - פיצ'ר גדול שמחולק למשימות קטנות."
+            }
+          ]
+        },
+        {
+          "id": "faq-3",
+          "title": "מה ההבדל בין אגנט לוורקפלואו?",
+          "content": [
+            {
+              "id": "faq-3-text",
+              "type": "text",
+              "markdown": true,
+              "content": "אגנט הוא התפקיד (מי עושה) - כמו PM, Dev, Architect. וורקפלואו הוא התהליך (מה עושים) - כמו product-brief, dev-story. בדרך כלל אגנט מריץ וורקפלואו."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "divider-8",
+      "type": "divider"
+    },
+    {
+      "id": "summary",
+      "type": "heading",
+      "level": 2,
+      "content": "סיכום",
+      "anchor": "summary"
+    },
+    {
+      "id": "summary-text",
+      "type": "text",
+      "content": "המילון הזה הוא הנקודה המרכזית לכל המונחים של BMAD. תחזרו אליו בכל פעם שאתם נתקלים במונח שלא מוכר - זה לגמרי בסדר!"
+    },
+    {
+      "id": "summary-callout",
+      "type": "callout",
+      "variant": "success",
+      "title": "סמנו במועדפים!",
+      "content": "המילון הזה יהיה הכי שימושי בשבועות הראשונים שלכם עם BMAD. תחזרו אליו לעיתים קרובות!"
+    }
+  ]
+}
