@@ -19,6 +19,20 @@ interface AccordionBlockProps {
 function AccordionBlock({ block }: AccordionBlockProps) {
   const { items, allowMultiple = false } = block;
 
+  // Validate items array
+  if (!items || !Array.isArray(items) || items.length === 0) {
+    return (
+      <div className="my-6 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg text-amber-800 dark:text-amber-200">
+        <p className="text-sm font-medium">
+          שגיאה: בלוק אקורדיון חייב להכיל לפחות פריט אחד
+        </p>
+        <pre className="mt-2 text-xs overflow-auto opacity-70">
+          {JSON.stringify(block, null, 2)}
+        </pre>
+      </div>
+    );
+  }
+
   return (
     <div className="my-6">
       <Accordion

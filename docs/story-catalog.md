@@ -1,7 +1,7 @@
 # Agenseek - Complete Story Catalog
 
 **Total Stories:** 70
-**Completed:** 46/70 (66%)
+**Completed:** 47/70 (67%)
 **Format:** Quick reference for all stories with acceptance criteria
 **For detailed stories:** See individual files in `docs/stories/`
 
@@ -17,10 +17,10 @@
 - Epic 3: ✅ COMPLETE (10/10)
 - Epic 4: ✅ COMPLETE (8/8) 🎉
 - Epic 5: ✅ COMPLETE (11/11)
-- Epic 6: 🔨 IN PROGRESS (1/8) - 6.1 complete
+- Epic 6: 🔨 IN PROGRESS (2/8) - 6.1 & 6.2 complete
 - Epic 7-10: ❌ NOT STARTED
 
-**Next Story:** 6.2 - Build Notes Library Page
+**Next Story:** 6.3 - Implement Quick Note from Guide
 
 ---
 
@@ -298,10 +298,10 @@
 **Key AC:** Tiptap editor modal, toolbar (bold/italic/strike/headings/lists/code/link/undo/redo), markdown shortcuts, keyboard shortcuts, fields (title, content, tags, associated guide), auto-save every 10 seconds, save to user_notes with JSON content
 **Dependencies:** Epic 5 complete
 
-### Story 6.2: Build Notes Library Page
-**Sprint:** 8 | **Points:** 3 | **Priority:** P0
+### Story 6.2: Build Notes Library Page ✅
+**Sprint:** 8 | **Points:** 3 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** /notes route, header with count and "New Note" button, search bar, filters (by guide, by tags, date range), sort options (recent/created/alphabetical/by guide), 3-column card grid, card shows title (inline editable), content preview, tags, guide link, timestamps, edit/delete actions
-**Dependencies:** 6.1
+**Dependencies:** 6.1 ✅
 
 ### Story 6.3: Implement Quick Note from Guide
 **Sprint:** 8 | **Points:** 2 | **Priority:** P0

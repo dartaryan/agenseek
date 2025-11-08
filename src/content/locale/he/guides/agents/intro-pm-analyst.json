@@ -253,17 +253,22 @@
     },
     {
       "type": "accordion",
-      "title": "שלבים:",
-      "content": [
+      "items": [
         {
-          "type": "list",
-          "ordered": true,
-          "items": [
-            "טען את John: @pm hi",
-            "בחר מהתפריט: *workflow-status כדי לראות היכן אתה עומד",
-            "אם זה פרויקט חדש, הרץ: *workflow-init כדי להגדיר את מסלול העבודה",
-            "עבור פיצ'ר בינוני, בחר: *tech-spec",
-            "John ישאל אותך שאלות על: מי המשתמשים? מה הבעיה? איזה סוגי אימות? קריטריוני הצלחה?"
+          "id": "john-steps",
+          "title": "שלבים:",
+          "content": [
+            {
+              "type": "list",
+              "ordered": true,
+              "items": [
+                "טען את John: @pm hi",
+                "בחר מהתפריט: *workflow-status כדי לראות היכן אתה עומד",
+                "אם זה פרויקט חדש, הרץ: *workflow-init כדי להגדיר את מסלול העבודה",
+                "עבור פיצ'ר בינוני, בחר: *tech-spec",
+                "John ישאל אותך שאלות על: מי המשתמשים? מה הבעיה? איזה סוגי אימות? קריטריוני הצלחה?"
+              ]
+            }
           ]
         }
       ]
@@ -385,17 +390,22 @@
     },
     {
       "type": "accordion",
-      "title": "שלבים:",
-      "content": [
+      "items": [
         {
-          "type": "list",
-          "ordered": true,
-          "items": [
-            "טען את Mary: @analyst hi",
-            "אם זה פרויקט קיים שלא תועד, התחל עם: *document-project",
-            "לאחר שהפרויקט מתועד, הרץ: *brainstorm-project",
-            "לאחר ה-Brainstorming, היא תציע: *research",
-            "לבסוף, *product-brief"
+          "id": "mary-steps",
+          "title": "שלבים:",
+          "content": [
+            {
+              "type": "list",
+              "ordered": true,
+              "items": [
+                "טען את Mary: @analyst hi",
+                "אם זה פרויקט קיים שלא תועד, התחל עם: *document-project",
+                "לאחר שהפרויקט מתועד, הרץ: *brainstorm-project",
+                "לאחר ה-Brainstorming, היא תציע: *research",
+                "לבסוף, *product-brief"
+              ]
+            }
           ]
         }
       ]

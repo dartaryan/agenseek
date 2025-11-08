@@ -195,15 +195,20 @@
     },
     {
       "type": "accordion",
-      "title": "למידה מעשית - שבוע 1",
-      "content": [
+      "items": [
         {
-          "type": "list",
-          "ordered": true,
-          "items": [
-            "קרא את המסמכים היסודיים (2-3 שעות): התחלה מהירה, מילון מונחים, מדריך DEV Agent",
-            "צפה בדוגמאות (1-2 שעות): התבונן ב-Story מוכן, הבט על Story Context XML",
-            "התנסות ראשונה (2-3 שעות): התקן את BMAD, טען את אג'נט DEV, הרץ workflow-status"
+          "id": "learning-week-1",
+          "title": "למידה מעשית - שבוע 1",
+          "content": [
+            {
+              "type": "list",
+              "ordered": true,
+              "items": [
+                "קרא את המסמכים היסודיים (2-3 שעות): התחלה מהירה, מילון מונחים, מדריך DEV Agent",
+                "צפה בדוגמאות (1-2 שעות): התבונן ב-Story מוכן, הבט על Story Context XML",
+                "התנסות ראשונה (2-3 שעות): התקן את BMAD, טען את אג'נט DEV, הרץ workflow-status"
+              ]
+            }
           ]
         }
       ]
@@ -489,74 +494,79 @@
     },
     {
       "type": "accordion",
-      "title": "פתרון עם BMAD - צעד אחר צעד",
-      "content": [
+      "items": [
         {
-          "type": "heading",
-          "level": 4,
-          "text": "1. בוקר - בדיקת סטטוס (09:00, 2 דקות)",
-          "id": "morning-status"
-        },
-        {
-          "type": "code",
-          "language": "text",
-          "code": "@dev hi\n*workflow-status"
-        },
-        {
-          "type": "text",
-          "content": "תשובה:"
-        },
-        {
-          "type": "code",
-          "language": "text",
-          "code": "✅ PRD: docs/prd-saas-platform.md\n✅ Architecture: docs/architecture.md\n\nStories:\n✅ 1-1-health-endpoint (done)\n🎯 1-2-user-authentication (approved) ← זה אתה!\n\n💡 Story 1-2 מאושר אבל חסר Story Context\n   הרץ: *story-context"
-        },
-        {
-          "type": "heading",
-          "level": 4,
-          "text": "2. יצירת Story Context (09:02, 3 דקות)",
-          "id": "create-context"
-        },
-        {
-          "type": "code",
-          "language": "text",
-          "code": "*story-context"
-        },
-        {
-          "type": "text",
-          "content": "האג'נט אוסף: מה-PRD, מה-Architecture, מה-Tech Spec, קוד קיים"
-        },
-        {
-          "type": "heading",
-          "level": 4,
-          "text": "3. פיתוח ה-Story (09:05 - 11:30, 2.5 שעות)",
-          "id": "develop"
-        },
-        {
-          "type": "code",
-          "language": "text",
-          "code": "*develop-story"
-        },
-        {
-          "type": "text",
-          "content": "האג'נט עובד: מתכנן, מממש כל Task, כותב טסטים, מריץ טסטים, מאמת ACs"
-        },
-        {
-          "type": "heading",
-          "level": 4,
-          "text": "4. Code Review (11:30 - 11:35, 5 דקות)",
-          "id": "review"
-        },
-        {
-          "type": "code",
-          "language": "text",
-          "code": "*code-review"
-        },
-        {
-          "type": "callout",
-          "variant": "success",
-          "title": "תוצאה",
-          "content": "תכונת authentication מושלמת ב-2.5 שעות במקום 6 שעות! חיסכון של 58%"
+          "id": "bmad-solution-steps",
+          "title": "פתרון עם BMAD - צעד אחר צעד",
+          "content": [
+            {
+              "type": "heading",
+              "level": 4,
+              "text": "1. בוקר - בדיקת סטטוס (09:00, 2 דקות)",
+              "id": "morning-status"
+            },
+            {
+              "type": "code",
+              "language": "text",
+              "code": "@dev hi\n*workflow-status"
+            },
+            {
+              "type": "text",
+              "content": "תשובה:"
+            },
+            {
+              "type": "code",
+              "language": "text",
+              "code": "✅ PRD: docs/prd-saas-platform.md\n✅ Architecture: docs/architecture.md\n\nStories:\n✅ 1-1-health-endpoint (done)\n🎯 1-2-user-authentication (approved) ← זה אתה!\n\n💡 Story 1-2 מאושר אבל חסר Story Context\n   הרץ: *story-context"
+            },
+            {
+              "type": "heading",
+              "level": 4,
+              "text": "2. יצירת Story Context (09:02, 3 דקות)",
+              "id": "create-context"
+            },
+            {
+              "type": "code",
+              "language": "text",
+              "code": "*story-context"
+            },
+            {
+              "type": "text",
+              "content": "האג'נט אוסף: מה-PRD, מה-Architecture, מה-Tech Spec, קוד קיים"
+            },
+            {
+              "type": "heading",
+              "level": 4,
+              "text": "3. פיתוח ה-Story (09:05 - 11:30, 2.5 שעות)",
+              "id": "develop"
+            },
+            {
+              "type": "code",
+              "language": "text",
+              "code": "*develop-story"
+            },
+            {
+              "type": "text",
+              "content": "האג'נט עובד: מתכנן, מממש כל Task, כותב טסטים, מריץ טסטים, מאמת ACs"
+            },
+            {
+              "type": "heading",
+              "level": 4,
+              "text": "4. Code Review (11:30 - 11:35, 5 דקות)",
+              "id": "review"
+            },
+            {
+              "type": "code",
+              "language": "text",
+              "code": "*code-review"
+            },
+            {
+              "type": "callout",
+              "variant": "success",
+              "title": "תוצאה",
+              "content": "תכונת authentication מושלמת ב-2.5 שעות במקום 6 שעות! חיסכון של 58%"
+            }
+          ]
         }
       ]
     },
