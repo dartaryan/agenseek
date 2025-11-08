@@ -7,6 +7,7 @@ import {
   IconUser,
   IconSettings,
   IconShieldCog,
+  IconUsers,
   IconLayoutSidebarLeftCollapse,
   IconLayoutSidebarLeftExpand,
 } from '@tabler/icons-react';
@@ -41,6 +42,7 @@ const navigationItems: NavItem[] = [
 
 const adminItems: NavItem[] = [
   { name: hebrewLocale.nav.admin, href: '/admin', icon: IconShieldCog },
+  { name: hebrewLocale.pages.admin.userManagement, href: '/admin/users', icon: IconUsers },
 ];
 
 /**
@@ -64,6 +66,10 @@ export function Sidebar() {
   const isActive = (href: string) => {
     if (href === '/dashboard') {
       return location.pathname === href;
+    }
+    // Exact match for /admin to prevent matching /admin/users
+    if (href === '/admin') {
+      return location.pathname === '/admin';
     }
     return location.pathname.startsWith(href);
   };

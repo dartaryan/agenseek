@@ -31,6 +31,7 @@ import {
 } from '../../components/ui/table';
 import { IconUsers, IconBook, IconTrendingUp, IconDownload, IconEye } from '@tabler/icons-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BrandedLoader } from '../../components/ui/branded-loader';
 import { hebrewLocale } from '../../lib/locale/he';
 import {
   fetchAdminStats,
@@ -97,13 +98,8 @@ export function AdminDashboardPage() {
 
   if (isLoading) {
     return (
-      <div className="p-8">
-        <div className="max-w-7xl mx-auto space-y-8">
-          <div className="space-y-2">
-            <h1 className="text-4xl font-bold text-gray-900">{hebrewLocale.pages.admin.title}</h1>
-            <p className="text-gray-600">{hebrewLocale.pages.admin.loading}</p>
-          </div>
-        </div>
+      <div className="flex items-center justify-center min-h-screen w-full -mt-20">
+        <BrandedLoader size="lg" />
       </div>
     );
   }

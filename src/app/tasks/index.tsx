@@ -13,6 +13,7 @@ import { getUserTasks, getSubTasks, getTaskStats } from '../../lib/api/tasks';
 import { TaskCard } from '../../components/tasks/TaskCard';
 import { TaskModal } from '../../components/tasks/TaskModal';
 import { TaskKanbanBoard } from '../../components/tasks/TaskKanbanBoard';
+import { BrandedLoader } from '../../components/ui/branded-loader';
 import { IconPlus, IconChecklist } from '@tabler/icons-react';
 import type { Database } from '../../types/database';
 
@@ -197,9 +198,9 @@ export function TasksPage() {
     <div className="px-4 md:px-6 lg:px-8 py-6 md:py-8" dir="rtl">
       <div className="max-w-[1600px] mx-auto space-y-6">
         {/* Header */}
-        <div className="flex items-start justify-between">
-          <div className="space-y-2">
-            <h1 className="text-4xl font-bold text-gray-900 text-right">{he.title}</h1>
+        <div className="flex items-center justify-between">
+          <div className="space-y-1">
+            <h1 className="text-4xl font-bold text-gray-900">{he.title}</h1>
             <div className="flex items-center gap-4 text-sm text-gray-600">
               <span>
                 {he.todoCount} ({stats.todo})
@@ -235,16 +236,16 @@ export function TasksPage() {
           {/* All Tasks View */}
           <TabsContent value="all" className="mt-6">
             {isLoading ? (
-              <Card className="p-8">
-                <p className="text-center text-gray-500">טוען משימות...</p>
-              </Card>
+              <div className="flex items-center justify-center min-h-[60vh] w-full -mt-12">
+                <BrandedLoader size="lg" />
+              </div>
             ) : tasks.length === 0 ? (
               <Card className="p-12">
                 <div className="text-center space-y-4">
                   <IconChecklist className="w-16 h-16 mx-auto text-gray-300" />
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 text-right">{he.noTasks}</h3>
-                    <p className="text-gray-600 mt-1 text-right">{he.noTasksDescription}</p>
+                    <h3 className="text-lg font-semibold text-gray-900">{he.noTasks}</h3>
+                    <p className="text-gray-600 mt-1">{he.noTasksDescription}</p>
                   </div>
                   <Button
                     onClick={handleNewTask}
@@ -287,7 +288,7 @@ export function TasksPage() {
 
                 return (
                   <div key={guideSlug} className="space-y-3">
-                    <h2 className="text-xl font-semibold text-gray-900 text-right">{guideTitle}</h2>
+                    <h2 className="text-xl font-semibold text-gray-900">{guideTitle}</h2>
                     <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
                       {guideTasks.map((task) => {
                         const subTaskStats = getSubTaskStats(task.id);
@@ -327,16 +328,16 @@ export function TasksPage() {
           {/* Kanban View */}
           <TabsContent value="kanban" className="mt-6">
             {isLoading ? (
-              <Card className="p-8">
-                <p className="text-center text-gray-500">טוען משימות...</p>
-              </Card>
+              <div className="flex items-center justify-center min-h-[60vh] w-full -mt-12">
+                <BrandedLoader size="lg" />
+              </div>
             ) : tasks.length === 0 ? (
               <Card className="p-12">
                 <div className="text-center space-y-4">
                   <IconChecklist className="w-16 h-16 mx-auto text-gray-300" />
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 text-right">{he.noTasks}</h3>
-                    <p className="text-gray-600 mt-1 text-right">{he.noTasksDescription}</p>
+                    <h3 className="text-lg font-semibold text-gray-900">{he.noTasks}</h3>
+                    <p className="text-gray-600 mt-1">{he.noTasksDescription}</p>
                   </div>
                   <Button
                     onClick={handleNewTask}
@@ -348,13 +349,15 @@ export function TasksPage() {
                 </div>
               </Card>
             ) : (
-              <TaskKanbanBoard
-                tasks={tasks}
-                subTasksMap={subTasksMap}
-                guidesData={guidesData}
-                onTaskUpdated={handleTaskUpdated}
-                onTaskClick={handleEditTask}
-              />
+              <div dir="ltr">
+                <TaskKanbanBoard
+                  tasks={tasks}
+                  subTasksMap={subTasksMap}
+                  guidesData={guidesData}
+                  onTaskUpdated={handleTaskUpdated}
+                  onTaskClick={handleEditTask}
+                />
+              </div>
             )}
           </TabsContent>
 

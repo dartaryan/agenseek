@@ -288,6 +288,46 @@ export interface LocaleStrings {
       allTime: string;
       noData: string;
       loading: string;
+      // Story 9.2 - User Management
+      userManagement: string;
+      userManagementDescription: string;
+      searchUsers: string;
+      name: string;
+      email: string;
+      role: string;
+      joinedDate: string;
+      lastActive: string;
+      progress: string;
+      viewDetails: string;
+      hideDetails: string;
+      viewAsUser: string;
+      deleteUser: string;
+      confirmDeleteUser: string;
+      confirmDeleteUserMessage: string;
+      userDeleted: string;
+      userDeleteFailed: string;
+      usersPerPage: string;
+      prevPage: string;
+      nextPage: string;
+      pageOf: string;
+      sortBy: string;
+      sortByName: string;
+      sortByEmail: string;
+      sortByJoined: string;
+      sortByProgress: string;
+      profileDetails: string;
+      progressDetails: string;
+      activityDetails: string;
+      notesCount: string;
+      tasksCount: string;
+      commentsCount: string;
+      totalProgress: string;
+      userGuidesCompleted: string;
+      userGuidesInProgress: string;
+      lastActivityDate: string;
+      neverActive: string;
+      adminRole: string;
+      regularUser: string;
     };
   };
 
@@ -844,6 +884,46 @@ export const hebrewLocale: LocaleStrings = {
       allTime: 'כל הזמן',
       noData: 'אין נתונים',
       loading: 'טוען...',
+      // Story 9.2 - User Management
+      userManagement: 'ניהול משתמשים',
+      userManagementDescription: 'נהל משתמשים ופרופילים',
+      searchUsers: 'חפש משתמשים...',
+      name: 'שם',
+      email: 'אימייל',
+      role: 'תפקיד',
+      joinedDate: 'תאריך הצטרפות',
+      lastActive: 'פעיל לאחרונה',
+      progress: 'התקדמות',
+      viewDetails: 'הצג פרטים',
+      hideDetails: 'הסתר פרטים',
+      viewAsUser: 'צפה כמשתמש',
+      deleteUser: 'מחק משתמש',
+      confirmDeleteUser: 'האם למחוק משתמש?',
+      confirmDeleteUserMessage: 'האם אתה בטוח שברצונך למחוק משתמש זה? פעולה זו תמחק את כל הנתונים המשוייכים למשתמש ואינה הפיכה.',
+      userDeleted: 'המשתמש נמחק בהצלחה',
+      userDeleteFailed: 'שגיאה במחיקת המשתמש',
+      usersPerPage: '50 משתמשים לדף',
+      prevPage: 'הקודם',
+      nextPage: 'הבא',
+      pageOf: 'דף {current} מתוך {total}',
+      sortBy: 'מיין לפי',
+      sortByName: 'שם',
+      sortByEmail: 'אימייל',
+      sortByJoined: 'תאריך הצטרפות',
+      sortByProgress: 'התקדמות',
+      profileDetails: 'פרטי פרופיל',
+      progressDetails: 'פרטי התקדמות',
+      activityDetails: 'פרטי פעילות',
+      notesCount: 'הערות',
+      tasksCount: 'משימות',
+      commentsCount: 'תגובות',
+      totalProgress: 'התקדמות כוללת',
+      userGuidesCompleted: 'מדריכים שהושלמו',
+      userGuidesInProgress: 'מדריכים בתהליך',
+      lastActivityDate: 'תאריך פעילות אחרונה',
+      neverActive: 'מעולם לא היה פעיל',
+      adminRole: 'מנהל',
+      regularUser: 'משתמש רגיל',
     },
   },
 

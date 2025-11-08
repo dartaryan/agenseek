@@ -1,17 +1,19 @@
 /**
  * Admin Analytics Actions
  * Story 9.1: Build Admin Dashboard Overview
+ * Story 9.2: Build User Management Page
  *
  * Functions for fetching admin dashboard data:
  * - Overall statistics
  * - Activity graphs
  * - Popular guides
  * - Recent activity
+ * - User management
  */
 
 import { supabase } from '../supabase';
 
-// Type definitions
+// Type definitions - Story 9.1
 export interface AdminStats {
   totalUsers: number;
   totalGuidesViewed: number;
@@ -42,6 +44,44 @@ export interface RecentActivity {
   metadata: any;
   createdAt: string;
 }
+
+// Type definitions - Story 9.2
+export interface UserManagementRow {
+  id: string;
+  displayName: string;
+  email: string;
+  isAdmin: boolean;
+  createdAt: string;
+  lastActiveAt: string | null;
+  progressPercentage: number;
+}
+
+export interface UserDetails {
+  profile: {
+    id: string;
+    displayName: string;
+    email: string;
+    isAdmin: boolean;
+    createdAt: string;
+    lastActiveAt: string | null;
+    selectedRole: string | null;
+    selectedInterests: string[];
+    experienceLevel: string | null;
+  };
+  progress: {
+    totalProgress: number;
+    guidesCompleted: number;
+    guidesInProgress: number;
+  };
+  activity: {
+    notesCount: number;
+    tasksCount: number;
+    commentsCount: number;
+    lastActivityDate: string | null;
+  };
+}
+
+export type SortColumn = 'displayName' | 'email' | 'createdAt' | 'progressPercentage';
 
 /**
  * Fetch overall admin statistics
@@ -323,5 +363,219 @@ export function exportToCSV(data: any[], filename: string): void {
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
+}
+
+// ==================== Story 9.2: User Management Functions ====================
+
+/**
+ * Fetch users with pagination, search, and sorting
+ * @param page Page number (0-indexed)
+ * @param pageSize Number of users per page (default 50)
+ * @param searchTerm Optional search term for name/email
+ * @param sortColumn Column to sort by
+ * @param sortAscending Sort direction
+ */
+export async function fetchUsers(
+  page: number = 0,
+  pageSize: number = 50,
+  searchTerm: string = '',
+  sortColumn: SortColumn = 'createdAt',
+  sortAscending: boolean = false
+): Promise<{ users: UserManagementRow[]; totalCount: number }> {
+  try {
+    // Build base query
+    let query = supabase
+      .from('profiles')
+      .select('id, display_name, email, is_admin, created_at', { count: 'exact' });
+
+    // Apply search filter
+    if (searchTerm.trim()) {
+      query = query.or(`display_name.ilike.%${searchTerm}%,email.ilike.%${searchTerm}%`);
+    }
+
+    // Apply sorting (map column names to database columns)
+    const columnMap: Record<SortColumn, string> = {
+      displayName: 'display_name',
+      email: 'email',
+      createdAt: 'created_at',
+      progressPercentage: 'created_at', // Will sort by progress in client
+    };
+
+    query = query.order(columnMap[sortColumn], { ascending: sortAscending });
+
+    // Apply pagination
+    const from = page * pageSize;
+    const to = from + pageSize - 1;
+    query = query.range(from, to);
+
+    // Execute query
+    const { data: profiles, count, error } = await query;
+
+    if (error) throw error;
+
+    if (!profiles || profiles.length === 0) {
+      return { users: [], totalCount: count || 0 };
+    }
+
+    // Fetch progress for each user
+    const userIds = profiles.map(p => p.id);
+    const { data: progressData } = await supabase
+      .from('user_progress')
+      .select('user_id, completed')
+      .in('user_id', userIds);
+
+    // Calculate progress percentage for each user
+    const progressMap = new Map<string, number>();
+    progressData?.forEach((progress) => {
+      if (!progressMap.has(progress.user_id)) {
+        progressMap.set(progress.user_id, 0);
+      }
+    });
+
+    // Count completed guides per user
+    progressData?.forEach((progress) => {
+      if (progress.completed) {
+        progressMap.set(progress.user_id, (progressMap.get(progress.user_id) || 0) + 1);
+      }
+    });
+
+    // Total guides (42 according to brief)
+    const totalGuides = 42;
+
+    // Map profiles to UserManagementRow
+    let users: UserManagementRow[] = profiles.map((profile) => {
+      const completedCount = progressMap.get(profile.id) || 0;
+      const progressPercentage = Math.round((completedCount / totalGuides) * 100);
+
+      return {
+        id: profile.id,
+        displayName: profile.display_name || 'משתמש ללא שם',
+        email: profile.email || '',
+        isAdmin: profile.is_admin || false,
+        createdAt: profile.created_at,
+        lastActiveAt: profile.created_at, // Use created_at as fallback until last_active_at is implemented
+        progressPercentage,
+      };
+    });
+
+    // If sorting by progress, sort in JavaScript
+    if (sortColumn === 'progressPercentage') {
+      users = users.sort((a, b) =>
+        sortAscending
+          ? a.progressPercentage - b.progressPercentage
+          : b.progressPercentage - a.progressPercentage
+      );
+    }
+
+    return { users, totalCount: count || 0 };
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    throw error;
+  }
+}
+
+/**
+ * Fetch detailed information for a specific user
+ * @param userId User ID
+ */
+export async function fetchUserDetails(userId: string): Promise<UserDetails | null> {
+  try {
+    // Fetch profile
+    const { data: profile, error: profileError } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', userId)
+      .single();
+
+    if (profileError) throw profileError;
+    if (!profile) return null;
+
+    // Fetch progress data
+    const { data: progressData } = await supabase
+      .from('user_progress')
+      .select('completed')
+      .eq('user_id', userId);
+
+    const totalProgress = progressData?.length || 0;
+    const guidesCompleted = progressData?.filter(p => p.completed).length || 0;
+    const guidesInProgress = progressData?.filter(p => !p.completed).length || 0;
+
+    // Fetch activity counts
+    const [
+      { count: notesCount },
+      { count: tasksCount },
+      { count: commentsCount },
+    ] = await Promise.all([
+      supabase.from('user_notes').select('*', { count: 'exact', head: true }).eq('user_id', userId),
+      supabase.from('user_tasks').select('*', { count: 'exact', head: true }).eq('user_id', userId),
+      supabase.from('guide_comments').select('*', { count: 'exact', head: true }).eq('user_id', userId),
+    ]);
+
+    // Fetch last activity date
+    const { data: lastActivity } = await supabase
+      .from('user_activity')
+      .select('created_at')
+      .eq('user_id', userId)
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .single();
+
+    return {
+      profile: {
+        id: profile.id,
+        displayName: profile.display_name || 'משתמש ללא שם',
+        email: profile.email || '',
+        isAdmin: profile.is_admin || false,
+        createdAt: profile.created_at,
+        lastActiveAt: lastActivity?.created_at || profile.created_at, // Use last activity or created_at as fallback
+        selectedRole: profile.role,
+        selectedInterests: profile.interests || [],
+        experienceLevel: profile.experience_level,
+      },
+      progress: {
+        totalProgress,
+        guidesCompleted,
+        guidesInProgress,
+      },
+      activity: {
+        notesCount: notesCount || 0,
+        tasksCount: tasksCount || 0,
+        commentsCount: commentsCount || 0,
+        lastActivityDate: lastActivity?.created_at || null,
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching user details:', error);
+    throw error;
+  }
+}
+
+/**
+ * Delete a user and all associated data
+ * WARNING: This is a destructive operation
+ * @param userId User ID to delete
+ */
+export async function deleteUser(userId: string): Promise<void> {
+  try {
+    // Delete user profile (cascading deletes should handle related data via RLS)
+    // In production, you may want to soft-delete or archive users instead
+    const { error } = await supabase
+      .from('profiles')
+      .delete()
+      .eq('id', userId);
+
+    if (error) throw error;
+
+    // Note: Supabase RLS and foreign key constraints should cascade delete:
+    // - user_progress
+    // - user_activity
+    // - notes
+    // - tasks
+    // - comments
+    // If not configured, you'd need to manually delete each table
+  } catch (error) {
+    console.error('Error deleting user:', error);
+    throw error;
+  }
 }
 

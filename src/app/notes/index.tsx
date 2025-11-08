@@ -26,6 +26,7 @@ import {
   IconSearch,
   IconX,
 } from '@tabler/icons-react';
+import { BrandedLoader } from '../../components/ui/branded-loader';
 import type { Database } from '../../types/database';
 
 type UserNote = Database['public']['Tables']['user_notes']['Row'];
@@ -290,9 +291,9 @@ export function NotesPage() {
 
         {/* Notes Grid */}
         {isLoading ? (
-          <Card className="p-8">
-            <p className="text-center text-gray-500">טוען הערות...</p>
-          </Card>
+          <div className="flex items-center justify-center min-h-[60vh] w-full -mt-12">
+            <BrandedLoader size="lg" />
+          </div>
         ) : filteredAndSortedNotes.length === 0 ? (
           <Card className="p-12">
             <div className="text-center space-y-4">

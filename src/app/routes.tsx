@@ -2,6 +2,7 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { ProtectedRoute } from '../components/common/ProtectedRoute';
 import { useAuth } from '../hooks/useAuth';
+import { BrandedLoader } from '../components/ui/branded-loader';
 import { Layout } from './layout';
 
 // Auth pages
@@ -30,6 +31,7 @@ import { SearchResultsPage } from './search';
 
 // Admin pages
 import { AdminDashboardPage } from './admin';
+import { UserManagementPage } from './admin/users';
 
 /**
  * Root route component
@@ -42,10 +44,7 @@ function RootRedirect() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400">טוען...</p>
-        </div>
+        <BrandedLoader size="lg" />
       </div>
     );
   }
@@ -176,6 +175,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <AdminDashboardPage />,
+      },
+      {
+        path: 'users',
+        element: <UserManagementPage />,
       },
     ],
   },
