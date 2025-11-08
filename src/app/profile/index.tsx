@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { useAuth } from '../../hooks/useAuth';
 import { hebrewLocale } from '../../lib/locale/he';
 import { supabase } from '../../lib/supabase';
 import { useToast } from '../../hooks/use-toast';
+import { EditDisplayNameModal } from '../../components/profile/EditDisplayNameModal';
+import { isEnglishName } from '../../lib/utils/detectLanguage';
 import {
   IconCode,
   IconChartBar,
@@ -185,8 +187,10 @@ export function ProfilePage() {
   const { user, profile, refreshProfile } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [isEditingDisplayName, setIsEditingDisplayName] = useState(false);
 
   // Form state
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
@@ -201,6 +205,15 @@ export function ProfilePage() {
       setSelectedExperience(profile.experience_level || null);
     }
   }, [profile]);
+
+  // Check if we should open display name edit modal from query param
+  useEffect(() => {
+    if (searchParams.get('edit') === 'display_name') {
+      setIsEditingDisplayName(true);
+      // Remove query param
+      setSearchParams({});
+    }
+  }, [searchParams, setSearchParams]);
 
   const handleToggleInterest = (interestId: string) => {
     setSelectedInterests((prev) =>
@@ -286,32 +299,85 @@ export function ProfilePage() {
     }
   };
 
-  return (
-    <div className="p-8">
-      <div className="max-w-4xl mx-auto space-y-8">
-        <div className="space-y-2">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
-            {hebrewLocale.pages.profile.title}
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400">
-            {hebrewLocale.pages.profile.description}
-          </p>
-        </div>
+  const handleUpdateDisplayName = async (newName: string) => {
+    if (!user?.id) return;
 
-        <div className="grid gap-6">
-          {/* Account Details */}
-          <Card className="p-6 space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">פרטי חשבון</h3>
-            <div className="space-y-2 text-gray-600 dark:text-gray-400">
-              <p>
-                <strong>{hebrewLocale.auth.email}:</strong> {user?.email}
-              </p>
-              <p>
-                <strong>נוצר:</strong>{' '}
-                {user?.created_at ? new Date(user.created_at).toLocaleDateString('he-IL') : 'לא זמין'}
-              </p>
-            </div>
-          </Card>
+    try {
+      // Check if name is being changed from Hebrew to English
+      const oldName = profile?.display_name || '';
+      const isChangingToEnglish = !isEnglishName(oldName) && isEnglishName(newName);
+
+      const { error } = await supabase
+        .from('profiles')
+        .update({
+          display_name: newName,
+          // Reset flag if changing to English name
+          hebrew_name_suggestion_dismissed: isChangingToEnglish ? false : profile?.hebrew_name_suggestion_dismissed,
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', user.id);
+
+      if (error) throw error;
+
+      await refreshProfile();
+
+      toast({
+        title: 'השם עודכן בהצלחה',
+        description: 'שם התצוגה שלך עודכן',
+      });
+    } catch (error) {
+      console.error('Error updating display name:', error);
+      throw error;
+    }
+  };
+
+  return (
+    <>
+      {/* Edit Display Name Modal - Story X.X */}
+      <EditDisplayNameModal
+        currentName={profile?.display_name || ''}
+        isOpen={isEditingDisplayName}
+        onClose={() => setIsEditingDisplayName(false)}
+        onSave={handleUpdateDisplayName}
+      />
+
+      <div className="p-8">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <div className="space-y-2">
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
+              {hebrewLocale.pages.profile.title}
+            </h1>
+            <p className="text-gray-600 dark:text-gray-400">
+              {hebrewLocale.pages.profile.description}
+            </p>
+          </div>
+
+          <div className="grid gap-6">
+            {/* Account Details */}
+            <Card className="p-6 space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">פרטי חשבון</h3>
+                <Button
+                  onClick={() => setIsEditingDisplayName(true)}
+                  variant="outline"
+                  size="sm"
+                >
+                  ערוך שם
+                </Button>
+              </div>
+              <div className="space-y-2 text-gray-600 dark:text-gray-400">
+                <p>
+                  <strong>שם תצוגה:</strong> {profile?.display_name || 'לא הוגדר'}
+                </p>
+                <p>
+                  <strong>{hebrewLocale.auth.email}:</strong> {user?.email}
+                </p>
+                <p>
+                  <strong>נוצר:</strong>{' '}
+                  {user?.created_at ? new Date(user.created_at).toLocaleDateString('he-IL') : 'לא זמין'}
+                </p>
+              </div>
+            </Card>
 
           {/* Learning Preferences */}
           <Card className="p-6 space-y-6">
@@ -590,5 +656,6 @@ export function ProfilePage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

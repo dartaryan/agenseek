@@ -5,17 +5,20 @@ import { useAuth } from '../../hooks/useAuth';
 import { signOut } from '../../lib/auth';
 import { hebrewLocale } from '../../lib/locale/he';
 import { useMobileToc } from '../../contexts/MobileTocContext';
+import { useSidebar } from '../../contexts/SidebarContext';
 import AgenseekLogo from '../../assets/agenseek-logo.svg';
 import { MobileNav } from './MobileNav';
+import { HeaderNav } from './HeaderNav';
 
 /**
- * Header Component - Story 5.1.1 Update
+ * Header Component - Story 5.1.1 + Story 6.13
  *
  * Sticky header with logo, navigation, and user menu.
  * Features:
  * - Sticky positioning at top
  * - Logo linking to dashboard
  * - Mobile ToC button (visible only on guide reader pages)
+ * - Header navigation icons (Story 6.13 - shown when sidebar collapsed or in guide mode)
  * - Search bar (placeholder for Story 7.2)
  * - User menu with profile and logout
  * - Responsive design
@@ -24,10 +27,16 @@ export function Header() {
   const { user, profile } = useAuth();
   const location = useLocation();
   const { onToggle, isEnabled } = useMobileToc();
+  const { isCollapsed } = useSidebar();
 
   // Show mobile ToC button only on guide reader routes (/guides/:slug)
   const isGuideReaderPage = location.pathname.startsWith('/guides/') &&
     location.pathname !== '/guides';
+
+  // Story 6.13: Show header nav when:
+  // 1. Sidebar is collapsed
+  // 2. In guide reading mode
+  const showHeaderNav = isCollapsed || isGuideReaderPage;
 
   const handleSignOut = async () => {
     await signOut();
@@ -36,9 +45,9 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-      <div className="container flex h-16 items-center justify-between px-4 md:px-6">
+      <div className="container flex h-16 items-center justify-between px-4 md:px-6 gap-4">
         {/* Logo */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 shrink-0">
           <Link to="/dashboard" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <img
               src={AgenseekLogo}
@@ -64,8 +73,15 @@ export function Header() {
           )}
         </div>
 
+        {/* Story 6.13: Header Navigation - shown when sidebar collapsed or guide mode */}
+        {showHeaderNav && (
+          <div className="shrink-0">
+            <HeaderNav />
+          </div>
+        )}
+
         {/* Search Bar - Placeholder for Story 7.2 */}
-        <div className="hidden md:flex flex-1 max-w-md mx-8">
+        <div className="hidden md:flex flex-1 max-w-md">
           <div className="relative w-full">
             <input
               type="text"
@@ -90,7 +106,7 @@ export function Header() {
         </div>
 
         {/* Right Side: Mobile Nav + User Menu */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 shrink-0">
           {/* Mobile Navigation - Shows only on mobile */}
           <MobileNav />
 

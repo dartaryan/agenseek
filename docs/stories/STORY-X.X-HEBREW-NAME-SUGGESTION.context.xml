@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<story-context story-id="X.X" version="1.0">
+  <metadata>
+    <story_key>hebrew-name-suggestion</story_key>
+    <title>Hebrew Display Name Suggestion</title>
+    <epic>User Profile & Preferences</epic>
+    <status>in-development</status>
+    <priority>P2 (Nice to have)</priority>
+    <estimate>3 Story Points</estimate>
+    <created>2025-11-08</created>
+  </metadata>
+
+  <user_story>
+    <as_a>Hebrew-speaking user of Agenseek</as_a>
+    <i_want>the system to suggest changing my English display name to Hebrew</i_want>
+    <so_that>my profile aligns with the platform's Hebrew-first UX policy</so_that>
+  </user_story>
+
+  <acceptance_criteria>
+    <criterion id="AC1" category="Detection & Display">
+      <item>System detects English display name (>50% Latin characters)</item>
+      <item>Friendly banner appears at top of dashboard on first session load</item>
+      <item>Banner suggests changing name to Hebrew</item>
+      <item>Banner has two actions: "כן, עדכן" and "אל תציג שוב"</item>
+      <item>Banner is non-intrusive, dismissible, uses Hebrew text only</item>
+      <item>Uses Tabler Icons (IconLanguage or IconWorld)</item>
+    </criterion>
+
+    <criterion id="AC2" category="Display Name Editing">
+      <item>Clicking "כן, עדכן" navigates to profile page with modal open</item>
+      <item>Modal shows current name (readonly) and input for new Hebrew name</item>
+      <item>Form includes example text: "למשל: יוסי כהן"</item>
+      <item>Validation: Must contain Hebrew characters</item>
+      <item>Save button updates profile with new Hebrew name</item>
+      <item>New name appears immediately in header and dashboard</item>
+      <item>Banner is permanently dismissed after save</item>
+    </criterion>
+
+    <criterion id="AC3" category="Dismissal Behavior">
+      <item>Clicking "אל תציג שוב" dismisses banner immediately</item>
+      <item>Flag set in profile: hebrew_name_suggestion_dismissed = true</item>
+      <item>Banner never appears again for this account</item>
+      <item>No error or success message shown (silent dismissal)</item>
+    </criterion>
+
+    <criterion id="AC4" category="Name Change Detection">
+      <item>When Hebrew name changed to English name via profile settings</item>
+      <item>System resets dismissal flag: hebrew_name_suggestion_dismissed = false</item>
+      <item>On next dashboard load, banner appears again</item>
+      <item>Suggestion cycle restarts</item>
+    </criterion>
+
+    <criterion id="AC5" category="Edge Cases">
+      <item>"John Cohen" → Detected as English (show suggestion)</item>
+      <item>"יוחנן כהן" → Detected as Hebrew (no suggestion)</item>
+      <item>"John כהן" → Detected as English (>50% Latin, show suggestion)</item>
+      <item>"J" → Too short, ignored (no suggestion)</item>
+      <item>"123456" → Invalid name, ignored (no suggestion)</item>
+      <item>Empty or null name → No suggestion</item>
+    </criterion>
+  </acceptance_criteria>
+
+  <story_tasks>
+    <task id="T1" status="pending">
+      <description>Create database migration for hebrew_name_suggestion_dismissed column</description>
+      <subtasks>
+        <subtask>Add boolean column to profiles table (default false)</subtask>
+        <subtask>Create index for quick lookup</subtask>
+        <subtask>Test migration locally</subtask>
+      </subtasks>
+    </task>
+
+    <task id="T2" status="pending">
+      <description>Update TypeScript database types</description>
+      <subtasks>
+        <subtask>Add hebrew_name_suggestion_dismissed to profiles Row/Insert/Update</subtask>
+        <subtask>Ensure type consistency across database.ts</subtask>
+      </subtasks>
+    </task>
+
+    <task id="T3" status="pending">
+      <description>Create language detection utility</description>
+      <subtasks>
+        <subtask>Create src/lib/utils/detectLanguage.ts</subtask>
+        <subtask>Implement isEnglishName() function (>50% Latin chars)</subtask>
+        <subtask>Implement hasHebrewCharacters() function</subtask>
+        <subtask>Handle edge cases (empty, short, numeric names)</subtask>
+      </subtasks>
+    </task>
+
+    <task id="T4" status="pending">
+      <description>Create HebrewNameSuggestionBanner component</description>
+      <subtasks>
+        <subtask>Create src/components/banners/HebrewNameSuggestionBanner.tsx</subtask>
+        <subtask>Blue background, non-intrusive design</subtask>
+        <subtask>IconLanguage from Tabler Icons</subtask>
+        <subtask>Two buttons: "כן, עדכן" (primary) and "אל תציג שוב" (ghost)</subtask>
+        <subtask>X button for temporary close</subtask>
+        <subtask>onAccept and onDismiss callbacks</subtask>
+      </subtasks>
+    </task>
+
+    <task id="T5" status="pending">
+      <description>Create EditDisplayNameModal component</description>
+      <subtasks>
+        <subtask>Create src/components/profile/EditDisplayNameModal.tsx</subtask>
+        <subtask>Show current name (readonly) and input for new name</subtask>
+        <subtask>Example placeholder: "למשל: יוסי כהן"</subtask>
+        <subtask>Validation: hasHebrewCharacters()</subtask>
+        <subtask>Error display for validation failures</subtask>
+        <subtask>Save and Cancel buttons with loading state</subtask>
+      </subtasks>
+    </task>
+
+    <task id="T6" status="pending">
+      <description>Integrate banner into Dashboard page</description>
+      <subtasks>
+        <subtask>Import detection utility and banner component</subtask>
+        <subtask>Add useEffect to check if banner should show</subtask>
+        <subtask>Show banner only if: profile exists, name is English, not dismissed</subtask>
+        <subtask>Handle Accept: navigate to /profile?edit=display_name</subtask>
+        <subtask>Handle Dismiss: update profile, set dismissed flag, refresh profile</subtask>
+      </subtasks>
+    </task>
+
+    <task id="T7" status="pending">
+      <description>Enhance Profile page with display name editing</description>
+      <subtasks>
+        <subtask>Import EditDisplayNameModal component</subtask>
+        <subtask>Add state for modal open/close</subtask>
+        <subtask>Check for ?edit=display_name query param on mount</subtask>
+        <subtask>Open modal if query param present, clear param</subtask>
+        <subtask>Implement handleUpdateDisplayName function</subtask>
+        <subtask>Update profile with new name + reset dismissed flag</subtask>
+        <subtask>Show success toast after save</subtask>
+        <subtask>Add "ערוך שם" button to profile header</subtask>
+      </subtasks>
+    </task>
+
+    <task id="T8" status="pending">
+      <description>Update Hebrew locale strings</description>
+      <subtasks>
+        <subtask>Add profile.editDisplayName, currentName, newHebrewName, etc.</subtask>
+        <subtask>Add banners.hebrewNameSuggestion, hebrewNameAccept, hebrewNameDismiss</subtask>
+        <subtask>Ensure all Hebrew text is grammatically correct</subtask>
+      </subtasks>
+    </task>
+
+    <task id="T9" status="pending">
+      <description>Testing and validation</description>
+      <subtasks>
+        <subtask>Test Scenario 1: English name detection (show banner)</subtask>
+        <subtask>Test Scenario 2: Accept suggestion (modal opens, save works)</subtask>
+        <subtask>Test Scenario 3: Dismiss suggestion (banner never shows again)</subtask>
+        <subtask>Test Scenario 4: Hebrew name (no banner)</subtask>
+        <subtask>Test Scenario 5: Mixed name (show banner)</subtask>
+        <subtask>Test Scenario 6: Name change detection (flag resets)</subtask>
+        <subtask>Test Scenario 7: Validation (English name rejected in modal)</subtask>
+        <subtask>Test Scenario 8: Close banner with X (banner reappears on refresh)</subtask>
+      </subtasks>
+    </task>
+  </story_tasks>
+
+  <artifacts>
+    <docs>
+      <doc>
+        <path>docs/stories/STORY-X.X-HEBREW-NAME-SUGGESTION.md</path>
+        <title>Hebrew Display Name Suggestion Story</title>
+        <section>Full Story Specification</section>
+        <snippet>Complete story with acceptance criteria, implementation details, testing scenarios, and design notes. Includes database schema, component designs, and Hebrew locale strings.</snippet>
+      </doc>
+
+      <doc>
+        <path>HEBREW-ONLY-POLICY.md</path>
+        <title>Hebrew-Only Policy</title>
+        <section>Project Policy</section>
+        <snippet>Platform policy requiring Hebrew-first UX. All UI text must be in Hebrew. This story helps enforce the policy by nudging users to change English names to Hebrew.</snippet>
+      </doc>
+
+      <doc>
+        <path>FONT-AND-EMOJI-FIX.md</path>
+        <title>Font and Emoji Policy</title>
+        <section>Project Policy</section>
+        <snippet>Strict no-emojis policy. Use Tabler Icons for all visual icons. This applies to code, comments, documentation, and UI elements.</snippet>
+      </doc>
+    </docs>
+
+    <code>
+      <artifact>
+        <path>src/app/dashboard/index.tsx</path>
+        <kind>page-component</kind>
+        <symbol>DashboardPage</symbol>
+        <lines>97-522</lines>
+        <reason>Main dashboard page - needs to integrate HebrewNameSuggestionBanner at top</reason>
+        <notes>
+          - Currently has greeting, stats cards, progress cards
+          - Uses useAuth() hook for user/profile (line 98)
+          - Fetches dashboard data with useEffect (line 101+)
+          - Need to add banner check logic in useEffect
+          - Banner should appear above main content area
+          - Handle accept: navigate to /profile?edit=display_name
+          - Handle dismiss: update profile with dismissed flag
+        </notes>
+      </artifact>
+
+      <artifact>
+        <path>src/app/profile/index.tsx</path>
+        <kind>page-component</kind>
+        <symbol>ProfilePage</symbol>
+        <lines>1-595</lines>
+        <reason>Profile page - needs to add display name editing modal</reason>
+        <notes>
+          - Currently shows role selection, interests, experience level
+          - Uses useAuth() hook for user/profile
+          - Uses useNavigate() for routing
+          - Uses useToast() for notifications
+          - Need to add useSearchParams() to detect ?edit=display_name
+          - Need to add EditDisplayNameModal component
+          - Need to add handleUpdateDisplayName function
+          - Need to add "ערוך שם" button to profile header
+        </notes>
+      </artifact>
+
+      <artifact>
+        <path>src/contexts/AuthContext.tsx</path>
+        <kind>context</kind>
+        <symbol>AuthContext, AuthProvider, useAuth</symbol>
+        <lines>1-201</lines>
+        <reason>Auth context provides user and profile state, refreshProfile function</reason>
+        <notes>
+          - Provides user (User | null), profile (Profile | null)
+          - Provides refreshProfile() function (line 40-60)
+          - Profile type from database.ts (line 8)
+          - Used via useAuth() hook in components
+          - After updating profile, call refreshProfile() to update context
+        </notes>
+      </artifact>
+
+      <artifact>
+        <path>src/types/database.ts</path>
+        <kind>type-definitions</kind>
+        <symbol>Database, Profile</symbol>
+        <lines>1-460</lines>
+        <reason>TypeScript types for Supabase database schema</reason>
+        <notes>
+          - Profiles table Row/Insert/Update types (lines 6-51)
+          - Need to add hebrew_name_suggestion_dismissed: boolean
+          - Must update Row, Insert (optional), and Update (optional)
+          - Maintain consistency with other boolean fields (completed_onboarding, is_admin)
+        </notes>
+      </artifact>
+
+      <artifact>
+        <path>src/lib/locale/he.ts</path>
+        <kind>localization</kind>
+        <symbol>hebrewLocale</symbol>
+        <lines>1-400+</lines>
+        <reason>Hebrew locale strings for UI text</reason>
+        <notes>
+          - Contains all Hebrew translations organized by section
+          - Need to add profile.editDisplayName, currentName, newHebrewName, etc.
+          - Need to add banners section with hebrewNameSuggestion strings
+          - All text must be grammatically correct Hebrew
+          - Example strings in story document (lines 520-565 in story)
+        </notes>
+      </artifact>
+
+      <artifact>
+        <path>src/components/layout/Header.tsx</path>
+        <kind>component</kind>
+        <symbol>Header</symbol>
+        <lines>1-106</lines>
+        <reason>Reference for how profile data is displayed in header</reason>
+        <notes>
+          - Shows user display name in user menu
+          - After name update, refreshProfile() will update header automatically
+          - No changes needed to Header component
+        </notes>
+      </artifact>
+    </code>
+
+    <dependencies>
+      <framework name="React" version="^18.3.1">
+        <packages>
+          <package>react</package>
+          <package>react-dom</package>
+          <package>react-router-dom</package>
+        </packages>
+      </framework>
+
+      <framework name="Supabase" version="latest">
+        <packages>
+          <package name="@supabase/supabase-js">Database client</package>
+        </packages>
+      </framework>
+
+      <framework name="Styling" version="latest">
+        <packages>
+          <package name="tailwindcss">^3.4.17</package>
+        </packages>
+      </framework>
+
+      <framework name="Icons" version="latest">
+        <packages>
+          <package name="@tabler/icons-react">^3.29.0</package>
+        </packages>
+      </framework>
+
+      <framework name="UI Components" version="latest">
+        <packages>
+          <package name="shadcn/ui">Button, Card, Input components</package>
+        </packages>
+      </framework>
+    </dependencies>
+  </artifacts>
+
+  <interfaces>
+    <interface>
+      <name>isEnglishName</name>
+      <kind>Utility Function</kind>
+      <signature>
+export function isEnglishName(name: string): boolean {
+  // Returns true if name is primarily English (>50% Latin characters)
+  // Handles edge cases: empty, short (<2 chars), no alphabetic chars
+}
+      </signature>
+      <path>src/lib/utils/detectLanguage.ts</path>
+      <notes>Key detection logic: count Latin vs Hebrew chars, return latinChars / totalAlphaChars > 0.5</notes>
+    </interface>
+
+    <interface>
+      <name>hasHebrewCharacters</name>
+      <kind>Utility Function</kind>
+      <signature>
+export function hasHebrewCharacters(name: string): boolean {
+  // Returns true if name contains at least some Hebrew characters
+  // Uses regex: /[\u0590-\u05FF]/.test(name)
+}
+      </signature>
+      <path>src/lib/utils/detectLanguage.ts</path>
+      <notes>Used for validation in EditDisplayNameModal to ensure new name has Hebrew</notes>
+    </interface>
+
+    <interface>
+      <name>HebrewNameSuggestionBannerProps</name>
+      <kind>React Component Props</kind>
+      <signature>
+interface HebrewNameSuggestionBannerProps {
+  onAccept: () => void;
+  onDismiss: () => void;
+}
+      </signature>
+      <path>src/components/banners/HebrewNameSuggestionBanner.tsx</path>
+      <notes>Two callbacks: onAccept navigates to profile edit, onDismiss permanently dismisses banner</notes>
+    </interface>
+
+    <interface>
+      <name>EditDisplayNameModalProps</name>
+      <kind>React Component Props</kind>
+      <signature>
+interface EditDisplayNameModalProps {
+  currentName: string;
+  isOpen: boolean;
+  onClose: () => void;
+  onSave: (newName: string) => Promise&lt;void&gt;;
+}
+      </signature>
+      <path>src/components/profile/EditDisplayNameModal.tsx</path>
+      <notes>Modal controlled by parent, onSave is async and handles profile update</notes>
+    </interface>
+
+    <interface>
+      <name>Profile Type</name>
+      <kind>TypeScript Type</kind>
+      <signature>
+type Profile = Database['public']['Tables']['profiles']['Row'];
+
+// After this story, includes:
+// hebrew_name_suggestion_dismissed: boolean;
+      </signature>
+      <path>src/types/database.ts</path>
+      <notes>New field added to profiles table schema</notes>
+    </interface>
+
+    <interface>
+      <name>useSearchParams</name>
+      <kind>React Router Hook</kind>
+      <signature>
+import { useSearchParams } from 'react-router-dom';
+const [searchParams, setSearchParams] = useSearchParams();
+const editMode = searchParams.get('edit');
+setSearchParams({}); // Clear params
+      </signature>
+      <path>react-router-dom</path>
+      <notes>Use to detect ?edit=display_name query param in ProfilePage</notes>
+    </interface>
+
+    <interface>
+      <name>useNavigate</name>
+      <kind>React Router Hook</kind>
+      <signature>
+import { useNavigate } from 'react-router-dom';
+const navigate = useNavigate();
+navigate('/profile?edit=display_name');
+      </signature>
+      <path>react-router-dom</path>
+      <notes>Use in Dashboard to navigate to profile with edit query param</notes>
+    </interface>
+  </interfaces>
+
+  <constraints>
+    <constraint type="design-system">
+      <rule>Use Tabler Icons only - no emojis (project policy)</rule>
+      <rule>Emerald color scheme (#10b981) for primary actions</rule>
+      <rule>Blue color scheme for informational banners (bg-blue-50, text-blue-600)</rule>
+      <rule>Varela Round font for all text</rule>
+      <rule>RTL-first design for Hebrew content</rule>
+      <rule>All UI text in Hebrew (Hebrew-Only Policy)</rule>
+    </constraint>
+
+    <constraint type="validation">
+      <rule>Display name must contain at least some Hebrew characters after update</rule>
+      <rule>Name cannot be empty or whitespace only</rule>
+      <rule>Detection uses >50% Latin character threshold for "English" classification</rule>
+      <rule>Names shorter than 2 characters are ignored (no suggestion)</rule>
+      <rule>Names with no alphabetic characters are ignored (e.g., "123456")</rule>
+    </constraint>
+
+    <constraint type="ux">
+      <rule>Banner is non-intrusive (doesn't block content)</rule>
+      <rule>Banner has clear, distinct actions</rule>
+      <rule>Dismissal is permanent (via database flag)</rule>
+      <rule>X button provides temporary close (banner reappears on refresh)</rule>
+      <rule>Modal focuses input field on open (autoFocus)</rule>
+      <rule>Success toast after name update</rule>
+      <rule>No message on permanent dismissal (silent)</rule>
+    </constraint>
+
+    <constraint type="database">
+      <rule>hebrew_name_suggestion_dismissed boolean defaults to false</rule>
+      <rule>Flag is reset to false when name changes from Hebrew to English</rule>
+      <rule>Index on dismissed flag for performance (WHERE clause optimization)</rule>
+      <rule>Updated_at timestamp updated on profile changes</rule>
+    </constraint>
+
+    <constraint type="code-patterns">
+      <rule>Use TypeScript strict mode</rule>
+      <rule>Use functional components with hooks</rule>
+      <rule>Use async/await for Supabase operations</rule>
+      <rule>Use try/catch for error handling</rule>
+      <rule>Call refreshProfile() after profile updates</rule>
+      <rule>Use Tailwind utility classes (no custom CSS)</rule>
+    </constraint>
+  </constraints>
+
+  <tests>
+    <standards>
+      Manual testing on real browser environment. Focus on: language detection logic, banner display logic, dismissal persistence, name update flow, validation behavior, edge cases, and responsive design.
+    </standards>
+
+    <locations>
+      <location>No formal test files - manual testing scenarios documented in story</location>
+      <location>Future: src/__tests__/lib/utils/detectLanguage.test.ts for unit tests</location>
+      <location>Future: src/__tests__/components/banners/ for component tests</location>
+    </locations>
+
+    <ideas>
+      <idea ac_id="AC1" test_type="manual">
+        Test English name detection: Register with "John Smith", complete onboarding, navigate to dashboard. Banner should appear with Hebrew suggestion.
+      </idea>
+
+      <idea ac_id="AC2" test_type="manual">
+        Test accept suggestion: Click "כן, עדכן", verify navigation to profile with modal open, enter "יוחנן שמעון", click save, verify name updates in header, banner disappears permanently.
+      </idea>
+
+      <idea ac_id="AC3" test_type="manual">
+        Test dismiss suggestion: Click "אל תציג שוב", banner disappears, logout and login, verify banner does not reappear.
+      </idea>
+
+      <idea ac_id="AC4" test_type="manual">
+        Test Hebrew name (no suggestion): Register with "יוסי כהן", complete onboarding, navigate to dashboard, verify no banner appears.
+      </idea>
+
+      <idea ac_id="AC5" test_type="manual">
+        Test mixed name: Register with "John כהן", complete onboarding, verify banner appears (>50% English).
+      </idea>
+
+      <idea ac_id="AC4" test_type="manual">
+        Test name change detection: Have Hebrew name "יוסי כהן", change to "Joe Cohen" via profile, return to dashboard, verify banner appears again.
+      </idea>
+
+      <idea ac_id="AC2" test_type="manual">
+        Test validation: Click accept, try to save "John Smith", verify error "השם חייב להכיל תווים בעברית", enter "יוסי Smith", verify saves successfully.
+      </idea>
+
+      <idea ac_id="AC1" test_type="manual">
+        Test close banner (X): Click X button, banner closes, refresh page, verify banner reappears (not permanently dismissed).
+      </idea>
+
+      <idea ac_id="AC5" test_type="manual">
+        Test edge cases: Try names: "J" (too short, no banner), "123456" (no alpha chars, no banner), empty name (no banner).
+      </idea>
+    </ideas>
+  </tests>
+
+  <implementation_notes>
+    <note priority="high">
+      Database migration must be created and applied before implementing UI components. Test migration locally first.
+    </note>
+
+    <note priority="high">
+      Use navigate('/profile?edit=display_name') pattern to open modal from dashboard. ProfilePage detects query param and opens modal, then clears param.
+    </note>
+
+    <note priority="high">
+      When updating display_name, ALWAYS reset hebrew_name_suggestion_dismissed to false. This ensures the suggestion cycle restarts if user changes back to English.
+    </note>
+
+    <note priority="medium">
+      Banner should be placed ABOVE main dashboard content, not overlaying it. Use a separate container at the top.
+    </note>
+
+    <note priority="medium">
+      The X button provides temporary close (state-based), while "אל תציג שוב" provides permanent dismissal (database-based). Make this distinction clear in implementation.
+    </note>
+
+    <note priority="medium">
+      Hebrew character range in regex: \u0590-\u05FF covers all Hebrew Unicode characters including vowels and cantillation marks.
+    </note>
+
+    <note priority="low">
+      Consider adding example names in modal placeholder: "למשל: יוסי כהן" helps users understand expected format.
+    </note>
+
+    <note priority="low">
+      Future enhancement: Could add auto-translation API to suggest Hebrew name based on English name (post-MVP).
+    </note>
+  </implementation_notes>
+
+  <related_stories>
+    <story id="5.1" relationship="dependency">
+      <title>Dashboard Home Page</title>
+      <status>complete</status>
+      <note>Dashboard page where banner will be displayed</note>
+    </story>
+
+    <story id="2.10" relationship="dependency">
+      <title>Profile Page</title>
+      <status>complete</status>
+      <note>Profile page where display name editing occurs</note>
+    </story>
+
+    <story id="1.11" relationship="related">
+      <title>Hebrew Localization</title>
+      <status>complete</status>
+      <note>Established Hebrew-only UI policy and locale infrastructure</note>
+    </story>
+  </related_stories>
+</story-context>
+

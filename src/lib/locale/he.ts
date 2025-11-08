@@ -236,6 +236,19 @@ export interface LocaleStrings {
       description: string;
       settings: string;
       settingsDescription: string;
+      editDisplayName: string;
+      currentName: string;
+      newHebrewName: string;
+      enterHebrewName: string;
+      nameSaved: string;
+      nameUpdateFailed: string;
+      exampleName: string;
+      nameRequiresHebrew: string;
+    };
+    banners: {
+      hebrewNameSuggestion: string;
+      hebrewNameAccept: string;
+      hebrewNameDismiss: string;
     };
     settings: {
       title: string;
@@ -656,6 +669,19 @@ export const hebrewLocale: LocaleStrings = {
       description: 'נהל את הפרופיל שלך',
       settings: 'הגדרות פרופיל',
       settingsDescription: 'התאמה אישית של פרופיל תיושם בשלב 2',
+      editDisplayName: 'ערוך שם',
+      currentName: 'שם נוכחי',
+      newHebrewName: 'שם חדש בעברית',
+      enterHebrewName: 'הזן את שמך בעברית',
+      nameSaved: 'השם עודכן בהצלחה',
+      nameUpdateFailed: 'שגיאה בשמירת השם. אנא נסה שוב.',
+      exampleName: 'למשל: יוסי כהן',
+      nameRequiresHebrew: 'השם חייב להכיל תווים בעברית',
+    },
+    banners: {
+      hebrewNameSuggestion: 'שמנו לב שהשם שלך באנגלית. האם תרצה לשנות אותו לעברית?',
+      hebrewNameAccept: 'כן, עדכן',
+      hebrewNameDismiss: 'אל תציג שוב',
     },
     settings: {
       title: 'הגדרות',

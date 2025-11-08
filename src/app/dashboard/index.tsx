@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { supabase } from '../../lib/supabase';
 import { hebrewLocale } from '../../lib/locale/he';
@@ -6,6 +7,8 @@ import { getGuideCatalog } from '../../lib/guide-catalog';
 import { categorizeGuidesByLearningPath, getAllCategoryProgress } from '../../lib/learning-path';
 import { getNotesStatistics, type NotesStatistics } from '../../lib/api/notes';
 import { getTasksStatistics, type TasksStatistics } from '../../lib/api/tasks';
+import { isEnglishName } from '../../lib/utils/detectLanguage';
+import { HebrewNameSuggestionBanner } from '../../components/banners/HebrewNameSuggestionBanner';
 import { OverallProgressCard } from '../../components/dashboard/OverallProgressCard';
 import { ContinueReadingCard } from '../../components/dashboard/ContinueReadingCard';
 import { QuickActionsCard } from '../../components/dashboard/QuickActionsCard';
@@ -95,9 +98,44 @@ function getGreeting(): string {
 }
 
 export function DashboardPage() {
-  const { user, profile } = useAuth();
+  const { user, profile, refreshProfile } = useAuth();
+  const navigate = useNavigate();
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showHebrewNameBanner, setShowHebrewNameBanner] = useState(false);
+
+  // Check if we should show Hebrew name suggestion banner
+  useEffect(() => {
+    if (
+      profile &&
+      profile.display_name &&
+      !profile.hebrew_name_suggestion_dismissed &&
+      isEnglishName(profile.display_name)
+    ) {
+      setShowHebrewNameBanner(true);
+    }
+  }, [profile]);
+
+  const handleAcceptHebrewSuggestion = () => {
+    setShowHebrewNameBanner(false);
+    // Navigate to profile with edit mode query param
+    navigate('/profile?edit=display_name');
+  };
+
+  const handleDismissHebrewSuggestion = async () => {
+    if (!user?.id) return;
+
+    setShowHebrewNameBanner(false);
+
+    // Update profile to dismiss suggestion permanently
+    await supabase
+      .from('profiles')
+      .update({ hebrew_name_suggestion_dismissed: true })
+      .eq('id', user.id);
+
+    // Refresh profile to update local state
+    await refreshProfile();
+  };
 
   useEffect(() => {
     async function fetchDashboardData() {
@@ -453,9 +491,18 @@ export function DashboardPage() {
   const displayName = profile?.display_name || user?.email?.split('@')[0] || 'משתמש';
 
   return (
-    <div className="px-4 md:px-6 lg:px-8 py-6 md:py-8 max-w-[1600px] mx-auto">
-      <div className="space-y-8">
-        {/* Welcome Header */}
+    <>
+      {/* Hebrew Name Suggestion Banner - Story X.X */}
+      {showHebrewNameBanner && (
+        <HebrewNameSuggestionBanner
+          onAccept={handleAcceptHebrewSuggestion}
+          onDismiss={handleDismissHebrewSuggestion}
+        />
+      )}
+
+      <div className="px-4 md:px-6 lg:px-8 py-6 md:py-8 max-w-[1600px] mx-auto">
+        <div className="space-y-8">
+          {/* Welcome Header */}
         <div className="space-y-2">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
             {getGreeting()}, {displayName}!
@@ -517,5 +564,6 @@ export function DashboardPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

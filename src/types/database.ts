@@ -16,6 +16,7 @@ export interface Database {
           completed_onboarding: boolean;
           onboarded_at: string | null;
           is_admin: boolean;
+          hebrew_name_suggestion_dismissed: boolean;
           created_at: string;
           updated_at: string;
         };
@@ -31,6 +32,7 @@ export interface Database {
           completed_onboarding?: boolean;
           onboarded_at?: string | null;
           is_admin?: boolean;
+          hebrew_name_suggestion_dismissed?: boolean;
           created_at?: string;
           updated_at?: string;
         };
@@ -46,6 +48,7 @@ export interface Database {
           completed_onboarding?: boolean;
           onboarded_at?: string | null;
           is_admin?: boolean;
+          hebrew_name_suggestion_dismissed?: boolean;
           created_at?: string;
           updated_at?: string;
         };
