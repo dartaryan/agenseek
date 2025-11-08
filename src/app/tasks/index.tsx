@@ -202,12 +202,12 @@ export function TasksPage() {
   };
 
   return (
-    <div className="p-8">
+    <div className="p-8" dir="rtl">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="flex items-start justify-between">
           <div className="space-y-2">
-            <h1 className="text-4xl font-bold text-gray-900">{he.title}</h1>
+            <h1 className="text-4xl font-bold text-gray-900 text-right">{he.title}</h1>
             <div className="flex items-center gap-4 text-sm text-gray-600">
               <span>
                 {he.todoCount} ({stats.todo})
@@ -251,8 +251,8 @@ export function TasksPage() {
                 <div className="text-center space-y-4">
                   <IconChecklist className="w-16 h-16 mx-auto text-gray-300" />
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900">{he.noTasks}</h3>
-                    <p className="text-gray-600 mt-1">{he.noTasksDescription}</p>
+                    <h3 className="text-lg font-semibold text-gray-900 text-right">{he.noTasks}</h3>
+                    <p className="text-gray-600 mt-1 text-right">{he.noTasksDescription}</p>
                   </div>
                   <Button
                     onClick={handleNewTask}
@@ -264,7 +264,7 @@ export function TasksPage() {
                 </div>
               </Card>
             ) : (
-              <div className="space-y-4">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {tasks.map((task) => {
                   const subTaskStats = getSubTaskStats(task.id);
                   return (
@@ -295,8 +295,8 @@ export function TasksPage() {
 
                 return (
                   <div key={guideSlug} className="space-y-3">
-                    <h2 className="text-xl font-semibold text-gray-900">{guideTitle}</h2>
-                    <div className="space-y-3">
+                    <h2 className="text-xl font-semibold text-gray-900 text-right">{guideTitle}</h2>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                       {guideTasks.map((task) => {
                         const subTaskStats = getSubTaskStats(task.id);
                         return (
@@ -338,7 +338,7 @@ export function TasksPage() {
               {/* To Do Column */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-lg font-semibold text-gray-900">
+                  <h2 className="text-lg font-semibold text-gray-900 text-right">
                     {he.todoCount} ({tasksByStatus.todo.length})
                   </h2>
                 </div>
@@ -370,7 +370,7 @@ export function TasksPage() {
               {/* In Progress Column */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-lg font-semibold text-gray-900">
+                  <h2 className="text-lg font-semibold text-gray-900 text-right">
                     {he.inProgressCount} ({tasksByStatus.in_progress.length})
                   </h2>
                 </div>
@@ -402,7 +402,7 @@ export function TasksPage() {
               {/* Done Column */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-lg font-semibold text-gray-900">
+                  <h2 className="text-lg font-semibold text-gray-900 text-right">
                     {he.doneCount} ({tasksByStatus.done.length})
                   </h2>
                 </div>
@@ -443,7 +443,7 @@ export function TasksPage() {
                     <div className="w-3 h-3 rounded-full bg-red-500" />
                     <span>עדיפות גבוהה ({tasksByPriority.high.length})</span>
                   </h2>
-                  <div className="space-y-3">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     {tasksByPriority.high.map((task) => {
                       const subTaskStats = getSubTaskStats(task.id);
                       return (
@@ -471,7 +471,7 @@ export function TasksPage() {
                     <div className="w-3 h-3 rounded-full bg-yellow-500" />
                     <span>עדיפות בינונית ({tasksByPriority.medium.length})</span>
                   </h2>
-                  <div className="space-y-3">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     {tasksByPriority.medium.map((task) => {
                       const subTaskStats = getSubTaskStats(task.id);
                       return (
@@ -499,7 +499,7 @@ export function TasksPage() {
                     <div className="w-3 h-3 rounded-full bg-green-500" />
                     <span>עדיפות נמוכה ({tasksByPriority.low.length})</span>
                   </h2>
-                  <div className="space-y-3">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     {tasksByPriority.low.map((task) => {
                       const subTaskStats = getSubTaskStats(task.id);
                       return (

@@ -98,7 +98,7 @@ export function TaskCard({
   const isDone = task.status === 'done';
 
   return (
-    <Card className="p-4 hover:shadow-md transition-shadow">
+    <Card className="p-4 hover:shadow-md transition-shadow" dir="rtl">
       <div className="space-y-3">
         {/* Task Header */}
         <div className="flex items-start gap-3">
@@ -116,7 +116,7 @@ export function TaskCard({
           <div className="flex-1 min-w-0">
             {/* Title */}
             <h3
-              className={`text-lg font-semibold text-gray-900 mb-1 ${
+              className={`text-lg font-semibold text-gray-900 mb-1 text-right ${
                 isDone ? 'line-through text-gray-500' : ''
               }`}
             >
@@ -127,28 +127,28 @@ export function TaskCard({
             {task.description && (
               <div className="mb-2">
                 {isExpanded ? (
-                  <p className="text-sm text-gray-600 whitespace-pre-wrap">
+                  <p className="text-sm text-gray-600 whitespace-pre-wrap text-right">
                     {task.description}
                   </p>
                 ) : (
-                  <p className="text-sm text-gray-600 line-clamp-2">
+                  <p className="text-sm text-gray-600 line-clamp-2 text-right">
                     {task.description}
                   </p>
                 )}
                 {task.description.length > 100 && (
                   <button
                     onClick={() => setIsExpanded(!isExpanded)}
-                    className="text-xs text-emerald-600 hover:text-emerald-700 mt-1 flex items-center gap-1"
+                    className="text-xs text-emerald-600 hover:text-emerald-700 mt-1 flex items-center gap-1 mr-auto"
                   >
                     {isExpanded ? (
                       <>
-                        <IconChevronUp className="w-3 h-3" />
                         <span>הצג פחות</span>
+                        <IconChevronUp className="w-3 h-3" />
                       </>
                     ) : (
                       <>
-                        <IconChevronDown className="w-3 h-3" />
                         <span>הצג עוד</span>
+                        <IconChevronDown className="w-3 h-3" />
                       </>
                     )}
                   </button>
@@ -160,9 +160,6 @@ export function TaskCard({
             <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500">
               {/* Priority Indicator */}
               <div className="flex items-center gap-1">
-                <div
-                  className={`w-2 h-2 rounded-full ${priorityColors[task.priority]}`}
-                />
                 <span>
                   {task.priority === 'high'
                     ? 'עדיפות גבוהה'
@@ -170,6 +167,9 @@ export function TaskCard({
                     ? 'עדיפות נמוכה'
                     : 'עדיפות בינונית'}
                 </span>
+                <div
+                  className={`w-2 h-2 rounded-full ${priorityColors[task.priority]}`}
+                />
               </div>
 
               {/* Status Badge */}
@@ -180,8 +180,8 @@ export function TaskCard({
               {/* Guide Link */}
               {guideTitle && (
                 <div className="flex items-center gap-1 text-emerald-600">
-                  <IconLink className="w-3 h-3" />
                   <span>{guideTitle}</span>
+                  <IconLink className="w-3 h-3" />
                 </div>
               )}
 

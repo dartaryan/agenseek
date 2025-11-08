@@ -217,6 +217,12 @@ export interface LocaleStrings {
       priorityView: string;
       // Empty states
       noTasksInStatus: string;
+      // Story 6.5: Sub-tasks
+      subTasks: string;
+      subTasksCount: string;
+      addSubTask: string;
+      addSubTaskPlaceholder: string;
+      noSubTasks: string;
     };
     profile: {
       title: string;
@@ -621,6 +627,12 @@ export const hebrewLocale: LocaleStrings = {
       priorityView: 'תצוגת עדיפות',
       // Empty states
       noTasksInStatus: 'אין משימות בסטטוס זה',
+      // Story 6.5: Sub-tasks
+      subTasks: 'משימות משנה (אופציונלי)',
+      subTasksCount: 'משימות משנה',
+      addSubTask: 'הוסף משימת משנה',
+      addSubTaskPlaceholder: 'הוסף משימת משנה...',
+      noSubTasks: 'לא נוספו משימות משנה. השתמש בשדה למעלה כדי להוסיף.',
     },
     profile: {
       title: 'פרופיל',

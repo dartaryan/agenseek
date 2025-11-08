@@ -69,6 +69,53 @@ export async function createTask(task: UserTaskInsert): Promise<UserTask> {
 }
 
 /**
+ * Create a task with sub-tasks in a batch
+ * Story 6.5: Enhanced task creation modal
+ */
+export async function createTaskWithSubTasks(
+  parentTask: UserTaskInsert,
+  subTasks: Array<{ title: string; status: 'todo' | 'in_progress' | 'done'; position: number }>
+): Promise<UserTask> {
+  // First, create the parent task
+  const { data: newParentTask, error: parentError } = await supabase
+    .from('user_tasks')
+    .insert(parentTask)
+    .select()
+    .single();
+
+  if (parentError || !newParentTask) {
+    console.error('[createTaskWithSubTasks] Error creating parent task:', parentError);
+    throw parentError;
+  }
+
+  // Then, create all sub-tasks with the parent task ID
+  if (subTasks.length > 0) {
+    const subTasksInserts: UserTaskInsert[] = subTasks.map((st) => ({
+      user_id: parentTask.user_id,
+      parent_task_id: newParentTask.id,
+      title: st.title,
+      status: st.status,
+      position: st.position,
+      priority: 'medium', // Sub-tasks inherit parent priority or default to medium
+      guide_slug: parentTask.guide_slug || null,
+    }));
+
+    const { error: subTasksError } = await supabase
+      .from('user_tasks')
+      .insert(subTasksInserts);
+
+    if (subTasksError) {
+      console.error('[createTaskWithSubTasks] Error creating sub-tasks:', subTasksError);
+      // Parent task was created, but sub-tasks failed - log but don't throw
+      // User can manually add sub-tasks later
+      console.warn('[createTaskWithSubTasks] Parent task created but sub-tasks failed. Parent task ID:', newParentTask.id);
+    }
+  }
+
+  return newParentTask;
+}
+
+/**
  * Update a task
  */
 export async function updateTask(taskId: string, updates: UserTaskUpdate): Promise<UserTask> {

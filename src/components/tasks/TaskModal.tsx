@@ -1,6 +1,6 @@
 /**
- * TaskModal Component - Story 6.4
- * Modal for creating and editing tasks
+ * TaskModal Component - Story 6.5
+ * Modal for creating and editing tasks with sub-task management
  */
 
 import { useState, useEffect } from 'react';
@@ -21,9 +21,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/select';
-import { createTask, updateTask } from '../../lib/api/tasks';
+import { createTask, updateTask, createTaskWithSubTasks } from '../../lib/api/tasks';
 import { useAuth } from '../../hooks/useAuth';
-import { IconLoader } from '@tabler/icons-react';
+import {
+  IconLoader,
+  IconPlus,
+  IconTrash,
+  IconGripVertical,
+  IconChevronUp,
+  IconChevronDown
+} from '@tabler/icons-react';
 import type { Database } from '../../types/database';
 
 type UserTask = Database['public']['Tables']['user_tasks']['Row'];
@@ -46,6 +53,12 @@ interface FormData {
   guide_slug: string;
 }
 
+interface SubTaskData {
+  id: string; // Temporary ID for UI management
+  title: string;
+  status: 'todo' | 'in_progress' | 'done';
+}
+
 export function TaskModal({
   open,
   onOpenChange,
@@ -65,6 +78,10 @@ export function TaskModal({
     status: 'todo',
     guide_slug: '',
   });
+
+  // Sub-tasks state (only for parent tasks, not sub-tasks)
+  const [subTasks, setSubTasks] = useState<SubTaskData[]>([]);
+  const [newSubTaskTitle, setNewSubTaskTitle] = useState('');
 
   // Load guides for dropdown
   useEffect(() => {
@@ -91,6 +108,8 @@ export function TaskModal({
         status: task.status as 'todo' | 'in_progress' | 'done',
         guide_slug: task.guide_slug || '',
       });
+      // Clear sub-tasks when editing (sub-tasks managed separately)
+      setSubTasks([]);
     } else {
       // Create mode
       setFormData({
@@ -100,8 +119,57 @@ export function TaskModal({
         status: 'todo',
         guide_slug: guideSlug || '',
       });
+      // Clear sub-tasks
+      setSubTasks([]);
     }
+    setNewSubTaskTitle('');
   }, [task, guideSlug, open]);
+
+  // Sub-task management functions
+  const handleAddSubTask = () => {
+    if (!newSubTaskTitle.trim()) return;
+    if (newSubTaskTitle.length > 200) {
+      alert('כותרת משימת משנה לא יכולה להיות יותר מ-200 תווים');
+      return;
+    }
+
+    const newSubTask: SubTaskData = {
+      id: `temp-${Date.now()}-${Math.random()}`,
+      title: newSubTaskTitle.trim(),
+      status: 'todo',
+    };
+
+    setSubTasks([...subTasks, newSubTask]);
+    setNewSubTaskTitle('');
+  };
+
+  const handleDeleteSubTask = (id: string) => {
+    setSubTasks(subTasks.filter((st) => st.id !== id));
+  };
+
+  const handleMoveSubTaskUp = (index: number) => {
+    if (index === 0) return;
+    const newSubTasks = [...subTasks];
+    [newSubTasks[index - 1], newSubTasks[index]] = [newSubTasks[index], newSubTasks[index - 1]];
+    setSubTasks(newSubTasks);
+  };
+
+  const handleMoveSubTaskDown = (index: number) => {
+    if (index === subTasks.length - 1) return;
+    const newSubTasks = [...subTasks];
+    [newSubTasks[index], newSubTasks[index + 1]] = [newSubTasks[index + 1], newSubTasks[index]];
+    setSubTasks(newSubTasks);
+  };
+
+  const handleToggleSubTaskStatus = (id: string) => {
+    setSubTasks(
+      subTasks.map((st) =>
+        st.id === id
+          ? { ...st, status: st.status === 'done' ? 'todo' : 'done' }
+          : st
+      )
+    );
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -110,7 +178,7 @@ export function TaskModal({
     setIsSaving(true);
     try {
       if (task) {
-        // Update existing task
+        // Update existing task (sub-tasks managed separately in edit mode)
         const updatedTask = await updateTask(task.id, {
           title: formData.title.trim(),
           description: formData.description.trim() || null,
@@ -131,8 +199,21 @@ export function TaskModal({
           parent_task_id: parentTask?.id || null,
         };
 
-        const newTask = await createTask(newTaskData);
-        onSaved(newTask);
+        // If this is a parent task with sub-tasks, use batch creation
+        if (!parentTask && subTasks.length > 0) {
+          const subTasksData = subTasks.map((st, index) => ({
+            title: st.title,
+            status: st.status,
+            position: index + 1,
+          }));
+
+          const newTask = await createTaskWithSubTasks(newTaskData, subTasksData);
+          onSaved(newTask);
+        } else {
+          // Simple task creation without sub-tasks
+          const newTask = await createTask(newTaskData);
+          onSaved(newTask);
+        }
       }
 
       onOpenChange(false);
@@ -152,9 +233,9 @@ export function TaskModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-white">
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-white" dir="rtl">
         <DialogHeader>
-          <DialogTitle className="text-2xl">{modalTitle}</DialogTitle>
+          <DialogTitle className="text-2xl text-right">{modalTitle}</DialogTitle>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -168,7 +249,8 @@ export function TaskModal({
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
               placeholder="למשל: לסיים קריאת מדריך React"
               required
-              className="mt-1"
+              className="mt-1 text-right"
+              dir="rtl"
             />
           </div>
 
@@ -181,7 +263,8 @@ export function TaskModal({
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
               placeholder="פרטים נוספים על המשימה..."
               rows={4}
-              className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 resize-none"
+              className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 resize-none text-right"
+              dir="rtl"
             />
           </div>
 
@@ -252,9 +335,124 @@ export function TaskModal({
           {/* Parent Task Info */}
           {parentTask && (
             <div className="p-3 bg-blue-50 border border-blue-200 rounded-md">
-              <p className="text-sm text-blue-900">
+              <p className="text-sm text-blue-900 text-right">
                 <strong>משימת אב:</strong> {parentTask.title}
               </p>
+            </div>
+          )}
+
+          {/* Sub-tasks Section - Only for parent tasks (not sub-tasks) */}
+          {!task && !parentTask && (
+            <div className="space-y-3 border-t pt-4">
+              <div className="flex items-center justify-between">
+                <Label className="text-base">משימות משנה (אופציונלי)</Label>
+                <span className="text-xs text-gray-500">
+                  {subTasks.length} משימות משנה
+                </span>
+              </div>
+
+              {/* Add Sub-task Input */}
+              <div className="flex gap-2">
+                <Input
+                  type="text"
+                  value={newSubTaskTitle}
+                  onChange={(e) => setNewSubTaskTitle(e.target.value)}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      handleAddSubTask();
+                    }
+                  }}
+                  placeholder="הוסף משימת משנה..."
+                  maxLength={200}
+                  className="flex-1 text-right"
+                  dir="rtl"
+                />
+                <Button
+                  type="button"
+                  onClick={handleAddSubTask}
+                  disabled={!newSubTaskTitle.trim()}
+                  variant="outline"
+                  size="sm"
+                >
+                  <IconPlus className="w-4 h-4" />
+                </Button>
+              </div>
+
+              {/* Sub-tasks List */}
+              {subTasks.length > 0 && (
+                <div className="space-y-2 max-h-60 overflow-y-auto">
+                  {subTasks.map((subTask, index) => (
+                    <div
+                      key={subTask.id}
+                      className="flex items-center gap-2 p-2 bg-gray-50 rounded-md border border-gray-200"
+                    >
+                      {/* Drag Handle */}
+                      <IconGripVertical className="w-4 h-4 text-gray-400 flex-shrink-0" />
+
+                      {/* Checkbox */}
+                      <input
+                        type="checkbox"
+                        checked={subTask.status === 'done'}
+                        onChange={() => handleToggleSubTaskStatus(subTask.id)}
+                        className="w-4 h-4 text-emerald-600 rounded border-gray-300 focus:ring-emerald-500 flex-shrink-0"
+                      />
+
+                      {/* Title */}
+                      <span
+                        className={`flex-1 text-sm text-right ${
+                          subTask.status === 'done'
+                            ? 'line-through text-gray-500'
+                            : 'text-gray-900'
+                        }`}
+                      >
+                        {subTask.title}
+                      </span>
+
+                      {/* Reorder Buttons */}
+                      <div className="flex gap-1 flex-shrink-0">
+                        <Button
+                          type="button"
+                          onClick={() => handleMoveSubTaskUp(index)}
+                          disabled={index === 0}
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 w-6 p-0"
+                        >
+                          <IconChevronUp className="w-3 h-3" />
+                        </Button>
+                        <Button
+                          type="button"
+                          onClick={() => handleMoveSubTaskDown(index)}
+                          disabled={index === subTasks.length - 1}
+                          variant="ghost"
+                          size="sm"
+                          className="h-6 w-6 p-0"
+                        >
+                          <IconChevronDown className="w-3 h-3" />
+                        </Button>
+                      </div>
+
+                      {/* Delete Button */}
+                      <Button
+                        type="button"
+                        onClick={() => handleDeleteSubTask(subTask.id)}
+                        variant="ghost"
+                        size="sm"
+                        className="h-6 w-6 p-0 text-red-600 hover:text-red-700 hover:bg-red-50 flex-shrink-0"
+                      >
+                        <IconTrash className="w-3 h-3" />
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {subTasks.length === 0 && (
+                <p className="text-xs text-gray-500 text-center py-2">
+                  לא נוספו משימות משנה. השתמש בשדה למעלה כדי להוסיף.
+                </p>
+              )}
             </div>
           )}
 
