@@ -13,8 +13,19 @@ import {
 import { hebrewLocale } from '@/lib/locale/he';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/use-toast';
-import { toggleCommentVote, hasUserVoted, markCommentAsSolution, unmarkCommentAsSolution } from '@/lib/actions/comments';
+import { toggleCommentVote, hasUserVoted, markCommentAsSolution, unmarkCommentAsSolution, editComment, deleteComment } from '@/lib/actions/comments';
 import type { CommentWithProfile } from '@/types/comments';
+import { Textarea } from '@/components/ui/textarea';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 
 interface CommentReplyProps {
   reply: CommentWithProfile;
@@ -33,6 +44,11 @@ export function CommentReply({ reply, onVoteChange, parentCommentId, parentUserI
   const [isVoting, setIsVoting] = useState(false);
   const [helpfulCount, setHelpfulCount] = useState(reply.helpful_count);
   const [isMarkingSolution, setIsMarkingSolution] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editContent, setEditContent] = useState(reply.content);
+  const [isSaving, setIsSaving] = useState(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   // Check if current user owns this reply
   const isOwner = user?.id === reply.user_id;
@@ -152,6 +168,91 @@ export function CommentReply({ reply, onVoteChange, parentCommentId, parentUserI
     }
   };
 
+  const handleEdit = () => {
+    setIsEditing(true);
+    setEditContent(reply.content);
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+    setEditContent(reply.content);
+  };
+
+  const handleSaveEdit = async () => {
+    if (!user) return;
+
+    // Validate content
+    if (!editContent.trim()) {
+      toast({
+        title: hebrewLocale.comments.editError,
+        description: hebrewLocale.comments.emptyComment,
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setIsSaving(true);
+
+    const result = await editComment({
+      userId: user.id,
+      commentId: reply.id,
+      content: editContent,
+    });
+
+    setIsSaving(false);
+
+    if (result.success) {
+      setIsEditing(false);
+      toast({
+        title: hebrewLocale.comments.editSuccess,
+        variant: 'default',
+      });
+
+      // Refresh to show updated reply
+      if (onVoteChange) {
+        onVoteChange();
+      }
+    } else {
+      toast({
+        title: hebrewLocale.comments.editError,
+        description: result.error,
+        variant: 'destructive',
+      });
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!user) return;
+
+    setIsDeleting(true);
+
+    const result = await deleteComment({
+      userId: user.id,
+      commentId: reply.id,
+    });
+
+    setIsDeleting(false);
+    setShowDeleteDialog(false);
+
+    if (result.success) {
+      toast({
+        title: hebrewLocale.comments.deleteSuccess,
+        variant: 'default',
+      });
+
+      // Refresh to remove deleted reply
+      if (onVoteChange) {
+        onVoteChange();
+      }
+    } else {
+      toast({
+        title: hebrewLocale.comments.deleteError,
+        description: result.error,
+        variant: 'destructive',
+      });
+    }
+  };
+
   return (
     <div className={`
       flex gap-3 p-3 rounded-lg
@@ -197,11 +298,49 @@ export function CommentReply({ reply, onVoteChange, parentCommentId, parentUserI
         </div>
 
         {/* Reply Content */}
+        {isEditing ? (
+          <div className="space-y-2">
+            <Textarea
+              value={editContent}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setEditContent(e.target.value)}
+              className="min-h-[80px] resize-none text-sm"
+              maxLength={5000}
+              placeholder={hebrewLocale.comments.writeReply}
+              autoFocus
+            />
+            <div className="flex items-center justify-between">
+              <span className="text-xs text-muted-foreground">
+                {editContent.length} / 5000
+              </span>
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleCancelEdit}
+                  disabled={isSaving}
+                  className="h-7 text-xs"
+                >
+                  {hebrewLocale.comments.cancel}
+                </Button>
+                <Button
+                  variant="default"
+                  size="sm"
+                  onClick={handleSaveEdit}
+                  disabled={isSaving || !editContent.trim()}
+                  className="h-7 text-xs bg-emerald-600 hover:bg-emerald-700"
+                >
+                  {isSaving ? hebrewLocale.comments.submitting : hebrewLocale.comments.save}
+                </Button>
+              </div>
+            </div>
+          </div>
+        ) : (
         <div className="prose prose-sm dark:prose-invert max-w-none">
           <p className="text-sm text-gray-900 dark:text-gray-100 whitespace-pre-wrap">
             {reply.content}
           </p>
         </div>
+        )}
 
         {/* Action Buttons - Smaller for replies */}
         <div className="flex items-center gap-1 flex-wrap">
@@ -250,22 +389,54 @@ export function CommentReply({ reply, onVoteChange, parentCommentId, parentUserI
           )}
 
           {/* Edit Button (owner only) */}
-          {isOwner && (
-            <Button variant="ghost" size="sm" className="gap-1 h-7 text-xs">
+          {isOwner && !isEditing && (
+            <Button
+              variant="ghost"
+              size="sm"
+              className="gap-1 h-7 text-xs"
+              onClick={handleEdit}
+            >
               <IconPencil className="h-3 w-3" />
               <span>{hebrewLocale.comments.edit}</span>
             </Button>
           )}
 
           {/* Delete Button (owner only) */}
-          {isOwner && (
-            <Button variant="ghost" size="sm" className="gap-1 h-7 text-xs text-destructive hover:text-destructive">
+          {isOwner && !isEditing && (
+            <Button
+              variant="ghost"
+              size="sm"
+              className="gap-1 h-7 text-xs text-destructive hover:text-destructive"
+              onClick={() => setShowDeleteDialog(true)}
+            >
               <IconTrash className="h-3 w-3" />
               <span>{hebrewLocale.comments.delete}</span>
             </Button>
           )}
         </div>
       </div>
+
+      {/* Delete Confirmation Dialog */}
+      <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+        <AlertDialogContent className="bg-white text-right" dir="rtl">
+          <AlertDialogHeader className="text-right">
+            <AlertDialogTitle className="text-right">{hebrewLocale.comments.delete}</AlertDialogTitle>
+            <AlertDialogDescription className="text-right">
+              {hebrewLocale.comments.deleteConfirm}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>{hebrewLocale.comments.cancel}</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleDelete}
+              disabled={isDeleting}
+              className="bg-destructive hover:bg-destructive/90"
+            >
+              {isDeleting ? hebrewLocale.comments.submitting : hebrewLocale.comments.delete}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

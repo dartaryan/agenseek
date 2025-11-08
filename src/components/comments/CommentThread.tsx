@@ -47,10 +47,8 @@ export function CommentThread({ guideSlug }: CommentThreadProps) {
   };
 
   const handleVoteChange = () => {
-    // Refresh comments to re-sort when voting (especially for "most helpful" sort)
-    if (sortBy === 'most_helpful') {
+    // Always refresh comments after any change (vote, edit, delete, mark as solution)
       refresh();
-    }
   };
 
   // Format comment count

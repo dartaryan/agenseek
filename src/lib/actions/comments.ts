@@ -145,6 +145,7 @@ export async function toggleCommentVote(data: {
       }
 
       // Decrement helpful_count using RPC function
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { error: updateError } = await (supabase.rpc as any)('decrement_comment_helpful_count', {
         comment_id: data.commentId,
       });
@@ -177,6 +178,7 @@ export async function toggleCommentVote(data: {
       }
 
       // Increment helpful_count using RPC function
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { error: updateError } = await (supabase.rpc as any)('increment_comment_helpful_count', {
         comment_id: data.commentId,
       });
@@ -381,6 +383,211 @@ export async function unmarkCommentAsSolution(data: {
     return {
       success: false,
       error: err instanceof Error ? err.message : 'שגיאה בהסרת סימון הפתרון',
+    };
+  }
+}
+
+/**
+ * Edit a comment
+ * Only the comment author can edit their comment
+ */
+export async function editComment(data: {
+  userId: string;
+  commentId: string;
+  content: string;
+}): Promise<{ success: boolean; error?: string }> {
+  try {
+    // Validate content
+    if (!data.content || data.content.trim().length === 0) {
+      return {
+        success: false,
+        error: 'התגובה לא יכולה להיות ריקה',
+      };
+    }
+
+    if (data.content.length > 5000) {
+      return {
+        success: false,
+        error: 'חרגת ממספר התווים המותר (5000)',
+      };
+    }
+
+    // Verify user is the comment author
+    const { data: comment, error: fetchError } = await supabase
+      .from('guide_comments')
+      .select('user_id')
+      .eq('id', data.commentId)
+      .single();
+
+    if (fetchError || !comment) {
+      console.error('Error fetching comment:', fetchError);
+      return {
+        success: false,
+        error: 'שגיאה בטעינת התגובה',
+      };
+    }
+
+    // Check if user is the comment author
+    if (comment.user_id !== data.userId) {
+      return {
+        success: false,
+        error: 'רק מחבר התגובה יכול לערוך אותה',
+      };
+    }
+
+    // Update the comment
+    const { error: updateError } = await supabase
+      .from('guide_comments')
+      .update({
+        content: data.content.trim(),
+        updated_at: new Date().toISOString(),
+      })
+      .eq('id', data.commentId);
+
+    if (updateError) {
+      console.error('Error updating comment:', updateError);
+      return {
+        success: false,
+        error: 'שגיאה בעדכון התגובה',
+      };
+    }
+
+    // Log activity
+    await supabase.from('user_activity').insert([
+      {
+        user_id: data.userId,
+        activity_type: 'comment_edited',
+        metadata: {
+          comment_id: data.commentId,
+        },
+      },
+    ]);
+
+    return {
+      success: true,
+    };
+  } catch (err) {
+    console.error('Error editing comment:', err);
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : 'שגיאה בעדכון התגובה',
+    };
+  }
+}
+
+/**
+ * Check if a comment has replies
+ */
+async function checkForReplies(commentId: string): Promise<boolean> {
+  try {
+    const { count, error } = await supabase
+      .from('guide_comments')
+      .select('id', { count: 'exact', head: true })
+      .eq('parent_comment_id', commentId);
+
+    if (error) {
+      console.error('Error checking for replies:', error);
+      return false;
+    }
+
+    return (count || 0) > 0;
+  } catch (err) {
+    console.error('Error checking for replies:', err);
+    return false;
+  }
+}
+
+/**
+ * Delete a comment
+ * If comment has replies, do soft delete (replace content with placeholder)
+ * If no replies, do hard delete (complete removal)
+ * Only the comment author can delete their comment
+ */
+export async function deleteComment(data: {
+  userId: string;
+  commentId: string;
+}): Promise<{ success: boolean; error?: string }> {
+  try {
+    // Verify user is the comment author
+    const { data: comment, error: fetchError } = await supabase
+      .from('guide_comments')
+      .select('user_id, guide_slug')
+      .eq('id', data.commentId)
+      .single();
+
+    if (fetchError || !comment) {
+      console.error('Error fetching comment:', fetchError);
+      return {
+        success: false,
+        error: 'שגיאה בטעינת התגובה',
+      };
+    }
+
+    // Check if user is the comment author
+    if (comment.user_id !== data.userId) {
+      return {
+        success: false,
+        error: 'רק מחבר התגובה יכול למחוק אותה',
+      };
+    }
+
+    // Check if comment has replies
+    const hasReplies = await checkForReplies(data.commentId);
+
+    if (hasReplies) {
+      // Soft delete: Replace content with placeholder
+      const { error: updateError } = await supabase
+        .from('guide_comments')
+        .update({
+          content: '[התגובה נמחקה]',
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', data.commentId);
+
+      if (updateError) {
+        console.error('Error soft deleting comment:', updateError);
+        return {
+          success: false,
+          error: 'שגיאה במחיקת התגובה',
+        };
+      }
+    } else {
+      // Hard delete: Complete removal
+      const { error: deleteError } = await supabase
+        .from('guide_comments')
+        .delete()
+        .eq('id', data.commentId);
+
+      if (deleteError) {
+        console.error('Error hard deleting comment:', deleteError);
+        return {
+          success: false,
+          error: 'שגיאה במחיקת התגובה',
+        };
+      }
+    }
+
+    // Log activity
+    await supabase.from('user_activity').insert([
+      {
+        user_id: data.userId,
+        activity_type: 'comment_deleted',
+        guide_slug: comment.guide_slug,
+        metadata: {
+          comment_id: data.commentId,
+          soft_delete: hasReplies,
+        },
+      },
+    ]);
+
+    return {
+      success: true,
+    };
+  } catch (err) {
+    console.error('Error deleting comment:', err);
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : 'שגיאה במחיקת התגובה',
     };
   }
 }

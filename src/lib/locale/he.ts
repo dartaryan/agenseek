@@ -465,6 +465,10 @@ export interface LocaleStrings {
     deleteSuccess: string;
     deleteError: string;
     edited: string;
+    save: string;
+    editSuccess: string;
+    editError: string;
+    commentDeleted: string;
     helpful: string;
     markAsHelpful: string;
     markAsQuestion: string;
@@ -971,10 +975,14 @@ export const hebrewLocale: LocaleStrings = {
     reply: 'השב',
     edit: 'ערוך',
     delete: 'מחק',
-    deleteConfirm: 'האם אתה בטוח שברצונך למחוק תגובה זו?',
+    deleteConfirm: 'למחוק תגובה? לא ניתן לבטל פעולה זו.',
     deleteSuccess: 'התגובה נמחקה בהצלחה',
     deleteError: 'שגיאה במחיקת התגובה',
     edited: '(נערך)',
+    save: 'שמור',
+    editSuccess: 'התגובה עודכנה בהצלחה',
+    editError: 'שגיאה בעדכון התגובה',
+    commentDeleted: '[התגובה נמחקה]',
     helpful: 'מועיל',
     markAsHelpful: 'סמן כמועיל',
     markAsQuestion: 'סמן כשאלה',

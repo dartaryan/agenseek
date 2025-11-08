@@ -1,98 +1,128 @@
-# 🚀 NEXT STORY: Story 8.5 - Implement Comment Edit and Delete
+# 🚀 NEXT STORY: Story 8.6 - Implement Notification System
 
 **Updated:** November 8, 2025
 
 ---
 
-## ✅ Story 8.4 Complete!
+## ✅ Story 8.5 Complete!
 
-Users can now use Q&A functionality! Features include:
+Users can now edit and delete their own comments! Features include:
 
-- Question comments with orange styling and badge
-- Solution marking by question author
-- Green styling for solution replies
-- Solutions float to top of replies
-- Q&A filter toggle to show only questions
-- Permission-based solution marking
-- Real-time updates for solutions
-- Visual feedback with badges and colors
+- Edit button for comment owners
+- Edit mode with textarea and character counter
+- Save/Cancel functionality
+- "(נערך)" label for edited comments
+- Delete button with confirmation dialog
+- Soft delete for parent comments with replies (shows "[התגובה נמחקה]")
+- Hard delete for comments without replies (complete removal)
+- Permission enforcement (client and server-side)
+- Activity logging for edits and deletes
+- Toast notifications for success/errors
 
-**Completion File:** See `STORY-8.4-COMPLETE.md` for full details.
+**Completion File:** See `STORY-8.5-COMPLETE.md` for full details.
 
-**Epic 8 Status:** 4/6 stories complete (67%)
+**Epic 8 Status:** 5/6 stories complete (83%)
 
 ---
 
 ## 📍 Next Story to Implement
 
-### **Story 8.5: Implement Comment Edit and Delete**
+### **Story 8.6: Implement Notification System**
 
 **Epic:** 8 - Community Features (Comments & Q&A)
-**Priority:** P0
+**Priority:** P1
 **Sprint:** 11
-**Story Points:** 3
-**Dependencies:** Story 8.4 Complete ✅
+**Story Points:** 5
+**Dependencies:** Story 8.5 Complete ✅
 
 ---
 
-## 🎯 Story 8.5 Overview
+## 🎯 Story 8.6 Overview
 
-Allow users to edit and delete their own comments. Edited comments show "(נערך)" timestamp. Deleting parent comments with replies shows placeholder text instead of full deletion.
+Implement a notification system that alerts users about comment interactions, replies, votes, and solution markings. Users receive in-app notifications with read/unread status.
 
 ### User Story
 
 **As a user,**
-**I want to edit or delete my own comments,**
-**So that I can correct mistakes or remove content I no longer want visible.**
+**I want to receive notifications about interactions with my comments,**
+**So that I stay informed about community engagement with my content.**
 
 ---
 
 ## 📋 Acceptance Criteria
 
-### Edit Functionality
+### Notification Types
 
-**Given** I posted a comment
-**When** I want to edit it
+**Given** I have posted comments or questions
+**When** interactions occur
 **Then:**
 
-- [ ] Edit button (pencil icon) appears on hover (own comments only)
-- [ ] Click edit:
-  - Comment text becomes textarea
-  - "שמור" and "ביטול" buttons appear
-  - Can modify text
-  - Save updates comment and updated_at timestamp
-  - Shows "(נערך)" label with timestamp
-- [ ] Edited comments display "(נערך)" when updated_at > created_at + 1 minute
-- [ ] Character limit still applies (5000 chars)
-- [ ] Markdown formatting preserved
+- [ ] Notification created when someone replies to my comment
+- [ ] Notification created when someone votes my comment helpful
+- [ ] Notification created when my question gets a solution
+- [ ] Notification created when someone replies to my question
+- [ ] Each notification includes:
+  - Actor (who performed the action)
+  - Action type (reply, vote, solution)
+  - Comment/Question reference
+  - Guide context
+  - Timestamp
+  - Read/Unread status
 
-### Delete Functionality
+### Notification Bell Icon
 
-**Given** I posted a comment
-**When** I want to delete it
+**Given** I'm logged in
+**When** I view the header
 **Then:**
 
-- [ ] Delete button (trash icon) appears on hover
-- [ ] Click delete:
-  - Confirmation dialog: "למחוק תגובה? לא ניתן לבטל פעולה זו."
-  - On confirm: DELETE from guide_comments
-  - Comment removed from UI with fade-out animation
-  - Decrement guide comment count
-- [ ] If parent comment with replies:
-  - Show "[התגובה נמחקה]" placeholder
-  - Keep replies visible
-  - Preserve thread structure
-- [ ] If no replies: Hard delete (complete removal)
-- [ ] Activity logged
+- [ ] Bell icon (IconBell) appears in header next to search
+- [ ] Unread count badge shows number of unread notifications
+- [ ] Badge displays as emerald with white text
+- [ ] Badge hidden when no unread notifications
+- [ ] Clicking bell opens notification dropdown
 
-### Permissions
+### Notification Dropdown
 
-**Given** I'm viewing comments
+**Given** I click the notification bell
+**When** dropdown opens
 **Then:**
 
-- [ ] Edit/Delete buttons only visible on my own comments
-- [ ] Cannot edit/delete other users' comments
-- [ ] Server-side validation prevents unauthorized edits/deletes
+- [ ] Displays last 10 notifications (newest first)
+- [ ] Each notification shows:
+  - User avatar and name
+  - Action description in Hebrew
+  - Guide title (linked)
+  - Time ago (e.g., "לפני 5 דקות")
+  - Unread indicator (emerald dot)
+- [ ] "סמן הכל כנקראו" button at top
+- [ ] "צפה בכל ההתראות" link at bottom
+- [ ] Clicking notification:
+  - Marks as read
+  - Navigates to guide with comment highlighted
+  - Closes dropdown
+
+### Notification Page
+
+**Given** I navigate to /notifications
+**When** page loads
+**Then:**
+
+- [ ] Displays all notifications (paginated, 20 per page)
+- [ ] Filter tabs: "הכל" / "לא נקראו" / "תגובות" / "הצבעות"
+- [ ] "סמן הכל כנקראו" button
+- [ ] Empty state: "אין התראות עדיין"
+- [ ] Each notification clickable (navigates to guide + comment)
+- [ ] Mark individual notification as read/unread
+
+### Real-Time Notifications
+
+**Given** I'm logged in
+**When** someone interacts with my content
+**Then:**
+
+- [ ] Notification appears in real-time (via Supabase Realtime)
+- [ ] Bell icon badge updates immediately
+- [ ] No page refresh required
 
 ---
 

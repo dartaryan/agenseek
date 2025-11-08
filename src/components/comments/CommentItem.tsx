@@ -16,8 +16,19 @@ import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/use-toast';
 import { CommentReply } from './CommentReply';
 import { CommentForm } from './CommentForm';
-import { toggleCommentVote, hasUserVoted } from '@/lib/actions/comments';
+import { toggleCommentVote, hasUserVoted, editComment, deleteComment } from '@/lib/actions/comments';
 import type { CommentWithReplies } from '@/types/comments';
+import { Textarea } from '@/components/ui/textarea';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 
 interface CommentItemProps {
   comment: CommentWithReplies;
@@ -33,6 +44,11 @@ export function CommentItem({ comment, guideSlug, onVoteChange }: CommentItemPro
   const [hasVoted, setHasVoted] = useState(false);
   const [isVoting, setIsVoting] = useState(false);
   const [helpfulCount, setHelpfulCount] = useState(comment.helpful_count);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editContent, setEditContent] = useState(comment.content);
+  const [isSaving, setIsSaving] = useState(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   // Check if current user owns this comment
   const isOwner = user?.id === comment.user_id;
@@ -77,6 +93,11 @@ export function CommentItem({ comment, guideSlug, onVoteChange }: CommentItemPro
   const handleReplySuccess = () => {
     setIsReplying(false);
     setShowReplies(true); // Automatically show replies after successful submission
+
+    // Trigger refresh to show new reply immediately
+    if (onVoteChange) {
+      onVoteChange();
+    }
   };
 
   const handleVote = async () => {
@@ -120,6 +141,91 @@ export function CommentItem({ comment, guideSlug, onVoteChange }: CommentItemPro
       toast({
         title: hebrewLocale.comments.voteError,
         description: result.error || hebrewLocale.comments.voteErrorGeneric,
+        variant: 'destructive',
+      });
+    }
+  };
+
+  const handleEdit = () => {
+    setIsEditing(true);
+    setEditContent(comment.content);
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+    setEditContent(comment.content);
+  };
+
+  const handleSaveEdit = async () => {
+    if (!user) return;
+
+    // Validate content
+    if (!editContent.trim()) {
+      toast({
+        title: hebrewLocale.comments.editError,
+        description: hebrewLocale.comments.emptyComment,
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setIsSaving(true);
+
+    const result = await editComment({
+      userId: user.id,
+      commentId: comment.id,
+      content: editContent,
+    });
+
+    setIsSaving(false);
+
+    if (result.success) {
+      setIsEditing(false);
+      toast({
+        title: hebrewLocale.comments.editSuccess,
+        variant: 'default',
+      });
+
+      // Refresh to show updated comment
+      if (onVoteChange) {
+        onVoteChange();
+      }
+    } else {
+      toast({
+        title: hebrewLocale.comments.editError,
+        description: result.error,
+        variant: 'destructive',
+      });
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!user) return;
+
+    setIsDeleting(true);
+
+    const result = await deleteComment({
+      userId: user.id,
+      commentId: comment.id,
+    });
+
+    setIsDeleting(false);
+    setShowDeleteDialog(false);
+
+    if (result.success) {
+      toast({
+        title: hebrewLocale.comments.deleteSuccess,
+        variant: 'default',
+      });
+
+      // Refresh to remove deleted comment
+      if (onVoteChange) {
+        onVoteChange();
+      }
+    } else {
+      toast({
+        title: hebrewLocale.comments.deleteError,
+        description: result.error,
         variant: 'destructive',
       });
     }
@@ -177,11 +283,48 @@ export function CommentItem({ comment, guideSlug, onVoteChange }: CommentItemPro
           </div>
 
           {/* Comment Content */}
-          <div className="prose prose-sm dark:prose-invert max-w-none">
-            <p className="text-gray-900 dark:text-gray-100 whitespace-pre-wrap">
-              {comment.content}
-            </p>
-          </div>
+          {isEditing ? (
+            <div className="space-y-2">
+              <Textarea
+                value={editContent}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setEditContent(e.target.value)}
+                className="min-h-[100px] resize-none"
+                maxLength={5000}
+                placeholder={hebrewLocale.comments.writeComment}
+                autoFocus
+              />
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-muted-foreground">
+                  {editContent.length} / 5000
+                </span>
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleCancelEdit}
+                    disabled={isSaving}
+                  >
+                    {hebrewLocale.comments.cancel}
+                  </Button>
+                  <Button
+                    variant="default"
+                    size="sm"
+                    onClick={handleSaveEdit}
+                    disabled={isSaving || !editContent.trim()}
+                    className="bg-emerald-600 hover:bg-emerald-700"
+                  >
+                    {isSaving ? hebrewLocale.comments.submitting : hebrewLocale.comments.save}
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="prose prose-sm dark:prose-invert max-w-none">
+              <p className="text-gray-900 dark:text-gray-100 whitespace-pre-wrap">
+                {comment.content}
+              </p>
+            </div>
+          )}
 
           {/* Action Buttons */}
           <div className="flex items-center gap-2 flex-wrap">
@@ -219,16 +362,26 @@ export function CommentItem({ comment, guideSlug, onVoteChange }: CommentItemPro
             </Button>
 
             {/* Edit Button (owner only) */}
-            {isOwner && (
-              <Button variant="ghost" size="sm" className="gap-1 h-8">
+            {isOwner && !isEditing && (
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-1 h-8"
+                onClick={handleEdit}
+              >
                 <IconPencil className="h-4 w-4" />
                 <span className="text-xs">{hebrewLocale.comments.edit}</span>
               </Button>
             )}
 
             {/* Delete Button (owner only) */}
-            {isOwner && (
-              <Button variant="ghost" size="sm" className="gap-1 h-8 text-destructive hover:text-destructive">
+            {isOwner && !isEditing && (
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-1 h-8 text-destructive hover:text-destructive"
+                onClick={() => setShowDeleteDialog(true)}
+              >
                 <IconTrash className="h-4 w-4" />
                 <span className="text-xs">{hebrewLocale.comments.delete}</span>
               </Button>
@@ -293,6 +446,28 @@ export function CommentItem({ comment, guideSlug, onVoteChange }: CommentItemPro
           )}
         </div>
       )}
+
+      {/* Delete Confirmation Dialog */}
+      <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+        <AlertDialogContent className="bg-white text-right" dir="rtl">
+          <AlertDialogHeader className="text-right">
+            <AlertDialogTitle className="text-right">{hebrewLocale.comments.delete}</AlertDialogTitle>
+            <AlertDialogDescription className="text-right">
+              {hebrewLocale.comments.deleteConfirm}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>{hebrewLocale.comments.cancel}</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleDelete}
+              disabled={isDeleting}
+              className="bg-destructive hover:bg-destructive/90"
+            >
+              {isDeleting ? hebrewLocale.comments.submitting : hebrewLocale.comments.delete}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

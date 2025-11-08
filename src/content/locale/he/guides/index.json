@@ -33,6 +33,17 @@
     "path": "onboarding/day1.json"
   },
   {
+    "id": "onboarding-week1",
+    "title": "הדרכה לשבוע הראשון",
+    "description": "תוכנית שבועית מובנית להתנסות ראשונית עם BMAD. תוך שבוע תכירו 3-5 אגנטים, תריצו 5-7 וורקפלואים, ותבנו פרויקט קטן מקצה לקצה!",
+    "category": "onboarding",
+    "difficulty": "beginner",
+    "estimatedMinutes": 45,
+    "icon": "IconCalendar",
+    "tags": ["הדרכה", "שבוע-ראשון", "onboarding", "למידה", "אגנטים", "וורקפלואים"],
+    "path": "onboarding/week1.json"
+  },
+  {
     "id": "role-developers",
     "title": "מדריך למפתחים ומפתחות",
     "description": "מסלול למידה מלא למפתחים - Junior, Senior, Full-Stack. שליטה באגנטים והוורקפלואים הרלוונטיים, תרחישים מעשיים מהעבודה, והתאמה אישית לצרכים שלכם.",
