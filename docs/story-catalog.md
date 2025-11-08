@@ -1,7 +1,7 @@
 # Agenseek - Complete Story Catalog
 
 **Total Stories:** 70
-**Completed:** 44/70 (63%)
+**Completed:** 45/70 (64%)
 **Format:** Quick reference for all stories with acceptance criteria
 **For detailed stories:** See individual files in `docs/stories/`
 
@@ -14,7 +14,7 @@
 **Current Status:**
 - Epic 1: ✅ COMPLETE (12/12)
 - Epic 2: ⏸️ ALMOST COMPLETE (11/12) - Missing only 2.4 (P1 - optional)
-- Epic 3: ⏸️ PARTIAL (9/10) - Missing 3.10
+- Epic 3: ✅ COMPLETE (10/10)
 - Epic 4: ⏸️ PARTIAL (7/8) - Missing 4.7
 - Epic 5: ✅ COMPLETE (11/11)
 - Epic 6: 🔨 IN PROGRESS (1/8) - 6.1 complete
@@ -193,8 +193,9 @@
 **Key AC:** Recharts library, supports line/bar/area/pie charts, responsive sizing, tooltip on hover, data props with xKey/yKey
 **Dependencies:** 3.8
 
-### Story 3.10: Build Remaining Blocks (Grid, Card, Image, Video) ⏸️
-**Sprint:** 4 | **Points:** 3 | **Priority:** P1 | **Status:** PENDING
+### Story 3.10: Build Remaining Blocks (Grid, Card, Image, Video) ✅
+**Sprint:** 4 | **Points:** 3 | **Priority:** P1 | **Status:** COMPLETE
+**User Story:** As a content author, I want to use grid layouts, cards, images, and videos in guides, so that I can create rich, visually engaging learning content.
 **Key AC:** GridBlock (1-4 columns, responsive), CardBlock (Shadcn/ui with variants), ImageBlock (lazy loading, caption), VideoBlock (responsive aspect ratio)
 **Dependencies:** 3.9
 
