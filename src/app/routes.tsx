@@ -9,6 +9,7 @@ import { LoginPage } from './auth/login';
 import { RegisterPage } from './auth/register';
 import { ForgotPasswordPage } from './auth/forgot-password';
 import { ResetPasswordPage } from './auth/reset-password';
+import { OAuthCallbackPage } from './auth/callback';
 
 // Onboarding
 import { OnboardingWizardPage } from './onboarding/wizard';
@@ -90,6 +91,10 @@ export const router = createBrowserRouter([
   {
     path: '/auth/reset-password',
     element: <ResetPasswordPage />,
+  },
+  {
+    path: '/auth/callback',
+    element: <OAuthCallbackPage />,
   },
   // Onboarding (protected, but no layout - full screen wizard)
   {

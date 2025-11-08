@@ -343,7 +343,11 @@ export interface LocaleStrings {
     requirementLowercase: string;
     requirementNumber: string;
 
-    // OAuth (placeholder for future)
+    // OAuth - Story 2.4
+    googleSignIn: string;
+    googleSignUp: string;
+    googleSignInError: string;
+    googleSignUpError: string;
     continueWithGoogle: string;
     orContinueWith: string;
 
@@ -752,9 +756,13 @@ export const hebrewLocale: LocaleStrings = {
     requirementLowercase: 'אות קטנה',
     requirementNumber: 'ספרה',
 
-    // OAuth (placeholder for future)
+    // OAuth - Story 2.4
+    googleSignIn: 'התחבר עם Google',
+    googleSignUp: 'הירשם עם Google',
+    googleSignInError: 'שגיאה בהתחברות עם Google',
+    googleSignUpError: 'שגיאה בהרשמה עם Google',
     continueWithGoogle: 'התחבר עם Google',
-    orContinueWith: 'או המשך עם',
+    orContinueWith: 'או',
 
     // Misc
     invalidResetLink: 'קישור איפוס לא תקף',

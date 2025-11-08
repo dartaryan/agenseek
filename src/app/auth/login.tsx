@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { motion } from 'framer-motion';
-import { /* IconBrandGoogle, */ IconLock, IconMail } from '@tabler/icons-react';
+import { IconBrandGoogle, IconLock, IconMail, IconLoader2 } from '@tabler/icons-react';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
@@ -11,7 +11,7 @@ import { Label } from '../../components/ui/label';
 import { Checkbox } from '../../components/ui/checkbox';
 import { useToast } from '../../hooks/use-toast';
 import { useAuth } from '../../hooks/useAuth';
-import { signIn /* , signInWithProvider */ } from '../../lib/auth'; // signInWithProvider disabled until Story 2.4
+import { signIn, signInWithProvider } from '../../lib/auth';
 import { hebrewLocale } from '../../lib/locale/he';
 import { loginSchema, type LoginFormData } from '../../lib/validation/authSchemas';
 import AgenseekLogo from '../../assets/agenseek-logo.svg';
@@ -26,8 +26,8 @@ export function LoginPage() {
   const { toast } = useToast();
   const { user, isLoading: authLoading } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const he = hebrewLocale.auth;
-  // const [isGoogleLoading, setIsGoogleLoading] = useState(false); // Disabled until Story 2.4
 
   const {
     register,
@@ -82,25 +82,22 @@ export function LoginPage() {
     }
   };
 
-  // Google OAuth - Disabled until Story 2.4
-  // const handleGoogleLogin = async () => {
-  //   setIsGoogleLoading(true);
-  //   try {
-  //     await signInWithProvider('google');
-  //     // Note: User will be redirected to Google, then back to /auth/callback
-  //     toast({
-  //       title: 'Redirecting to Google...',
-  //       description: 'You will be redirected back after authentication.',
-  //     });
-  //   } catch (error) {
-  //     toast({
-  //       title: 'Google login failed',
-  //       description: error instanceof Error ? error.message : 'Failed to initiate Google login',
-  //       variant: 'destructive',
-  //     });
-  //     setIsGoogleLoading(false);
-  //   }
-  // };
+  const handleGoogleLogin = async () => {
+    setIsGoogleLoading(true);
+    try {
+      await signInWithProvider('google');
+      // Note: User will be redirected to Google, then back to /auth/callback
+      // No toast here - callback page will show success message
+    } catch (error) {
+      console.error('[LoginPage] Google sign-in error:', error);
+      toast({
+        title: he.googleSignInError || 'שגיאה בהתחברות עם Google',
+        description: error instanceof Error ? error.message : 'אירעה שגיאה לא צפויה',
+        variant: 'destructive',
+      });
+      setIsGoogleLoading(false);
+    }
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-4">
@@ -130,26 +127,34 @@ export function LoginPage() {
             <p className="text-center text-gray-500 text-sm">{he.loginToAccount}</p>
           </div>
 
-          {/* Google OAuth - Disabled until Supabase OAuth is configured (Story 2.4) */}
-          {/* <Button
+          {/* Google OAuth - Story 2.4 */}
+          <Button
             type="button"
             variant="outline"
-            className="w-full"
+            size="lg"
+            className="w-full gap-2"
             onClick={handleGoogleLogin}
             disabled={isGoogleLoading || isLoading}
           >
-            <IconBrandGoogle className="mr-2 h-5 w-5" />
-            {isGoogleLoading ? 'Connecting...' : 'Continue with Google'}
+            {isGoogleLoading ? (
+              <IconLoader2 className="w-5 h-5 animate-spin" />
+            ) : (
+              <IconBrandGoogle className="w-5 h-5" />
+            )}
+            {isGoogleLoading ? 'מתחבר...' : (he.googleSignIn || 'התחבר עם Google')}
           </Button>
 
+          {/* Divider */}
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t" />
+              <span className="w-full border-t border-gray-300 dark:border-gray-600" />
             </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-white px-2 text-gray-500">Or continue with email</span>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">
+                או
+              </span>
             </div>
-          </div> */}
+          </div>
 
           {/* Login Form */}
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

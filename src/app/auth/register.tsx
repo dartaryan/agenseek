@@ -8,7 +8,7 @@ import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import { useToast } from '../../hooks/use-toast';
-import { signUp } from '../../lib/auth';
+import { signUp, signInWithProvider } from '../../lib/auth';
 import { hebrewLocale } from '../../lib/locale/he';
 import { registerSchema, type RegisterFormData } from '../../lib/validation/authSchemas';
 import {
@@ -17,7 +17,8 @@ import {
   IconLock,
   IconCheck,
   IconX,
-  // IconBrandGoogle, // Disabled until Story 2.4
+  IconBrandGoogle,
+  IconLoader2,
 } from '@tabler/icons-react';
 import AgenseekLogo from '../../assets/agenseek-logo.svg';
 
@@ -103,8 +104,8 @@ export function RegisterPage() {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const he = hebrewLocale.auth;
-  // const [isGoogleLoading, setIsGoogleLoading] = useState(false); // Disabled until Story 2.4
 
   const {
     register,
@@ -165,34 +166,22 @@ export function RegisterPage() {
     }
   };
 
-  // Google OAuth - Disabled until Story 2.4
-  // const handleGoogleSignUp = async () => {
-  //   setIsGoogleLoading(true);
-  //   try {
-  //     const { error } = await supabase.auth.signInWithOAuth({
-  //       provider: 'google',
-  //       options: {
-  //         redirectTo: `${window.location.origin}/auth/callback`,
-  //       },
-  //     });
-  //     if (error) {
-  //       toast({
-  //         variant: 'destructive',
-  //         title: 'Google Sign-Up Failed',
-  //         description: error.message,
-  //       });
-  //     }
-  //   } catch (err) {
-  //     console.error('Google sign-up error:', err);
-  //     toast({
-  //       variant: 'destructive',
-  //       title: 'Google Sign-Up Failed',
-  //       description: 'An unexpected error occurred. Please try again.',
-  //       });
-  //   } finally {
-  //     setIsGoogleLoading(false);
-  //   }
-  // };
+  const handleGoogleSignUp = async () => {
+    setIsGoogleLoading(true);
+    try {
+      await signInWithProvider('google');
+      // Note: User will be redirected to Google, then back to /auth/callback
+      // No toast here - callback page will show success message
+    } catch (error) {
+      console.error('[RegisterPage] Google sign-up error:', error);
+      toast({
+        variant: 'destructive',
+        title: he.googleSignUpError || 'שגיאה בהרשמה עם Google',
+        description: error instanceof Error ? error.message : 'אירעה שגיאה לא צפויה',
+      });
+      setIsGoogleLoading(false);
+    }
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-4">
@@ -215,6 +204,35 @@ export function RegisterPage() {
               <p className="text-gray-600">{he.brandSubtitle}</p>
               <h2 className="text-2xl font-semibold pt-2">{he.registerTitle}</h2>
               <p className="text-sm text-gray-500">{he.createAccountSubtitle}</p>
+            </div>
+          </div>
+
+          {/* Google OAuth - Story 2.4 */}
+          <Button
+            type="button"
+            variant="outline"
+            size="lg"
+            className="w-full gap-2"
+            onClick={handleGoogleSignUp}
+            disabled={isGoogleLoading || isLoading}
+          >
+            {isGoogleLoading ? (
+              <IconLoader2 className="w-5 h-5 animate-spin" />
+            ) : (
+              <IconBrandGoogle className="w-5 h-5" />
+            )}
+            {isGoogleLoading ? 'מתחבר...' : (he.googleSignUp || 'הירשם עם Google')}
+          </Button>
+
+          {/* Divider */}
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t border-gray-300 dark:border-gray-600" />
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">
+                או
+              </span>
             </div>
           </div>
 
@@ -296,27 +314,6 @@ export function RegisterPage() {
               {isLoading ? he.registerButtonLoading : he.registerButton}
             </Button>
           </form>
-
-          {/* Google OAuth - Disabled until Supabase OAuth is configured (Story 2.4) */}
-          {/* <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t border-gray-300" />
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-white px-2 text-gray-500">Or continue with</span>
-            </div>
-          </div>
-
-          <Button
-            type="button"
-            variant="outline"
-            className="w-full"
-            onClick={handleGoogleSignUp}
-            disabled={isGoogleLoading}
-          >
-            <IconBrandGoogle className="w-5 h-5 mr-2" />
-            {isGoogleLoading ? 'Connecting...' : 'Sign up with Google'}
-          </Button> */}
 
           {/* Login Link */}
           <p className="text-center text-sm text-gray-500">
