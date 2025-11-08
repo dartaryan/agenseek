@@ -27,6 +27,11 @@ interface PopularGuide extends GuideCatalogEntry {
   isTrending: boolean;
 }
 
+interface TrendData {
+  value: number;
+  positive: boolean;
+}
+
 interface DashboardData {
   guidesCompleted: number;
   guidesInProgress: number;
@@ -61,6 +66,14 @@ interface DashboardData {
   };
   // Story 5.7 addition
   popularGuides: PopularGuide[];
+  // Story 5.6 addition
+  trends: {
+    readingTime?: TrendData;
+    guidesCompleted?: TrendData;
+    notes?: TrendData;
+    tasks?: TrendData;
+    streak?: TrendData;
+  };
 }
 
 function getGreeting(): string {
@@ -141,35 +154,43 @@ export function DashboardPage() {
           .eq('user_id', user.id)
           .eq('status', 'done');
 
-        // Calculate current streak (simplified - will be enhanced in Story 5.6)
-        // For now, check if user has activity today and yesterday
+        // Story 5.6: Enhanced streak calculation
+        // Calculate consecutive days of activity
         const today = new Date();
         today.setHours(0, 0, 0, 0);
-        const yesterday = new Date(today);
-        yesterday.setDate(yesterday.getDate() - 1);
 
-        const { data: recentActivity } = await supabase
+        const { data: allActivity } = await supabase
           .from('user_activity')
           .select('created_at')
           .eq('user_id', user.id)
-          .gte('created_at', yesterday.toISOString())
-          .order('created_at', { ascending: false });
+          .order('created_at', { ascending: false })
+          .limit(365); // Check up to a year
 
-        // Simple streak: 1 if activity today, 0 otherwise
-        const hasActivityToday = recentActivity?.some((a) => {
-          const activityDate = new Date(a.created_at);
-          activityDate.setHours(0, 0, 0, 0);
-          return activityDate.getTime() === today.getTime();
-        });
-        const currentStreakDays = hasActivityToday ? 1 : 0;
+        // Calculate streak by checking consecutive days
+        let currentStreakDays = 0;
+        if (allActivity && allActivity.length > 0) {
+          const activityDates = new Set<string>();
+          allActivity.forEach((a) => {
+            const date = new Date(a.created_at);
+            date.setHours(0, 0, 0, 0);
+            activityDates.add(date.toISOString().split('T')[0]);
+          });
 
-        // Fetch recent activities (last 5)
+          // Check consecutive days starting from today
+          let checkDate = new Date(today);
+          while (activityDates.has(checkDate.toISOString().split('T')[0])) {
+            currentStreakDays++;
+            checkDate.setDate(checkDate.getDate() - 1);
+          }
+        }
+
+        // Fetch recent activities (last 10) - Story 5.5
         const { data: activities } = await supabase
           .from('user_activity')
           .select('*')
           .eq('user_id', user.id)
           .order('created_at', { ascending: false })
-          .limit(5);
+          .limit(10);
 
         // Transform activities to display format
         const recentActivities =
@@ -254,6 +275,73 @@ export function DashboardPage() {
           })
           .filter(Boolean) as PopularGuide[];
 
+        // Story 5.6: Calculate trend indicators
+        // Compare this week's stats with last week's stats
+        const lastWeekStart = new Date(sevenDaysAgo);
+        lastWeekStart.setDate(lastWeekStart.getDate() - 7);
+
+        // Get last week's data for comparison
+        const { data: lastWeekProgress } = await supabase
+          .from('user_progress')
+          .select('*')
+          .eq('user_id', user.id)
+          .lt('updated_at', sevenDaysAgo.toISOString());
+
+        const { count: lastWeekNotesCount } = await supabase
+          .from('user_notes')
+          .select('*', { count: 'exact', head: true })
+          .eq('user_id', user.id)
+          .lt('created_at', sevenDaysAgo.toISOString());
+
+        const { count: lastWeekTasksCount } = await supabase
+          .from('user_tasks')
+          .select('*', { count: 'exact', head: true })
+          .eq('user_id', user.id)
+          .eq('status', 'done')
+          .lt('updated_at', sevenDaysAgo.toISOString());
+
+        // Calculate last week's stats
+        const lastWeekGuidesCompleted = lastWeekProgress?.filter((p) => p.completed).length || 0;
+        const lastWeekReadingTime = Math.floor(
+          (lastWeekProgress?.reduce((sum, p) => sum + (p.time_spent_seconds || 0), 0) || 0) / 60
+        );
+
+        // Calculate last week's streak
+        const { data: lastWeekActivity } = await supabase
+          .from('user_activity')
+          .select('created_at')
+          .eq('user_id', user.id)
+          .lt('created_at', sevenDaysAgo.toISOString())
+          .gte('created_at', lastWeekStart.toISOString());
+
+        const lastWeekActivityDates = new Set<string>();
+        lastWeekActivity?.forEach((a) => {
+          const date = new Date(a.created_at);
+          date.setHours(0, 0, 0, 0);
+          lastWeekActivityDates.add(date.toISOString().split('T')[0]);
+        });
+        const lastWeekStreak = lastWeekActivityDates.size;
+
+        // Calculate percentage changes (trends)
+        const calculateTrend = (current: number, previous: number) => {
+          if (previous === 0) {
+            return current > 0 ? { value: 100, positive: true } : undefined;
+          }
+          const change = ((current - previous) / previous) * 100;
+          return {
+            value: Math.abs(Math.round(change)),
+            positive: change >= 0,
+          };
+        };
+
+        const trends = {
+          readingTime: calculateTrend(totalReadingTimeMinutes, lastWeekReadingTime),
+          guidesCompleted: calculateTrend(guidesCompleted, lastWeekGuidesCompleted),
+          notes: calculateTrend(notesCount || 0, lastWeekNotesCount || 0),
+          tasks: calculateTrend(tasksCompletedCount || 0, lastWeekTasksCount || 0),
+          streak: calculateTrend(currentStreakDays, lastWeekStreak),
+        };
+
         setDashboardData({
           guidesCompleted,
           guidesInProgress,
@@ -271,6 +359,8 @@ export function DashboardPage() {
           categoryProgress,
           // Story 5.7 addition
           popularGuides,
+          // Story 5.6 addition
+          trends,
         });
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
@@ -284,16 +374,22 @@ export function DashboardPage() {
 
   function getActivityDescription(type: string, metadata: { guide_title?: string } | null): string {
     switch (type) {
+      // Story 5.5 - Support all activity types
       case 'guide_started':
-        return `התחלת לקרוא "${metadata?.guide_title || 'מדריך'}"`;
+      case 'view_guide':
+        return `קראת את "${metadata?.guide_title || 'מדריך'}"`;
       case 'guide_read':
         return `המשכת לקרוא "${metadata?.guide_title || 'מדריך'}"`;
       case 'complete_guide':
-        return `השלמת את "${metadata?.guide_title || 'מדריך'}" 🎉`;
+        return `השלמת את "${metadata?.guide_title || 'מדריך'}"`;
+      case 'uncomplete_guide':
+        return `סימנת כלא הושלם את "${metadata?.guide_title || 'מדריך'}"`;
       case 'create_note':
         return 'יצרת הערה חדשה';
       case 'create_task':
         return 'הוספת משימה חדשה';
+      case 'earn_achievement':
+        return `קיבלת הישג חדש!`;
       default:
         return 'פעילות חדשה';
     }
@@ -302,11 +398,20 @@ export function DashboardPage() {
   function getActivityLink(type: string, targetSlug: string | null): string | undefined {
     if (!targetSlug) return undefined;
 
+    // Story 5.5 - Support all activity types with proper links
     switch (type) {
       case 'guide_started':
       case 'guide_read':
+      case 'view_guide':
       case 'complete_guide':
+      case 'uncomplete_guide':
         return `/guides/${targetSlug}`;
+      case 'create_note':
+        return `/notes`;
+      case 'create_task':
+        return `/tasks`;
+      case 'earn_achievement':
+        return `/progress`; // Link to progress page where achievements are shown
       default:
         return undefined;
     }
@@ -359,9 +464,11 @@ export function DashboardPage() {
             />
             <DashboardStats
               totalReadingTimeMinutes={dashboardData.totalReadingTimeMinutes}
+              guidesCompleted={dashboardData.guidesCompleted}
               notesCreated={dashboardData.notesCreated}
               tasksCompleted={dashboardData.tasksCompleted}
               currentStreakDays={dashboardData.currentStreakDays}
+              trends={dashboardData.trends}
             />
           </div>
 

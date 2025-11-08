@@ -13,9 +13,9 @@ import { hebrewLocale } from '../../lib/locale/he';
 
 /**
  * Activity Feed Card Component
- * Shows recent user activity
- * Story 5.1 - Dashboard Home Page (Placeholder for Story 5.5)
- * Full implementation will come in Story 5.5
+ * Shows recent user activity with day grouping
+ * Story 5.1 - Dashboard Home Page (initial placeholder)
+ * Story 5.5 - Full implementation with day grouping (Today, Yesterday, This Week, Earlier)
  */
 
 interface Activity {
@@ -42,6 +42,83 @@ function getActivityIcon(type: Activity['type']) {
       return <IconChecklist className="w-5 h-5 text-amber-500" stroke={1.5} />;
     case 'earn_achievement':
       return <IconTrophy className="w-5 h-5 text-yellow-500" stroke={1.5} />;
+  }
+}
+
+/**
+ * Story 5.5 - Day grouping categories
+ */
+type DayGroup = 'today' | 'yesterday' | 'thisWeek' | 'earlier';
+
+interface GroupedActivities {
+  today: Activity[];
+  yesterday: Activity[];
+  thisWeek: Activity[];
+  earlier: Activity[];
+}
+
+/**
+ * Determines which day group an activity belongs to
+ * Story 5.5
+ */
+function getDayGroup(timestamp: string): DayGroup {
+  const now = new Date();
+  const activityDate = new Date(timestamp);
+
+  // Set to start of day for comparison
+  const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const yesterdayStart = new Date(todayStart);
+  yesterdayStart.setDate(yesterdayStart.getDate() - 1);
+  const weekStart = new Date(todayStart);
+  weekStart.setDate(weekStart.getDate() - 7);
+
+  const activityStart = new Date(activityDate.getFullYear(), activityDate.getMonth(), activityDate.getDate());
+
+  if (activityStart.getTime() === todayStart.getTime()) {
+    return 'today';
+  } else if (activityStart.getTime() === yesterdayStart.getTime()) {
+    return 'yesterday';
+  } else if (activityStart >= weekStart) {
+    return 'thisWeek';
+  } else {
+    return 'earlier';
+  }
+}
+
+/**
+ * Groups activities by day (Today, Yesterday, This Week, Earlier)
+ * Story 5.5
+ */
+function groupActivitiesByDay(activities: Activity[]): GroupedActivities {
+  const grouped: GroupedActivities = {
+    today: [],
+    yesterday: [],
+    thisWeek: [],
+    earlier: [],
+  };
+
+  activities.forEach((activity) => {
+    const group = getDayGroup(activity.timestamp);
+    grouped[group].push(activity);
+  });
+
+  return grouped;
+}
+
+/**
+ * Gets the Hebrew label for a day group
+ * Story 5.5
+ */
+function getDayGroupLabel(group: DayGroup): string {
+  switch (group) {
+    case 'today':
+      return hebrewLocale.dashboard.activityToday;
+    case 'yesterday':
+      return hebrewLocale.dashboard.activityYesterday;
+    case 'thisWeek':
+      return hebrewLocale.dashboard.activityThisWeek;
+    case 'earlier':
+      return hebrewLocale.dashboard.activityEarlier;
   }
 }
 
@@ -91,6 +168,12 @@ function ActivityItem({ activity }: { activity: Activity }) {
 export function ActivityFeedCard({ activities }: ActivityFeedCardProps) {
   const hasActivities = activities.length > 0;
 
+  // Story 5.5 - Group activities by day
+  const groupedActivities = groupActivitiesByDay(activities);
+
+  // Order of day groups to display
+  const dayGroupOrder: DayGroup[] = ['today', 'yesterday', 'thisWeek', 'earlier'];
+
   return (
     <Card className="p-6">
       <div className="space-y-4">
@@ -106,10 +189,26 @@ export function ActivityFeedCard({ activities }: ActivityFeedCardProps) {
 
         {/* Activity List or Empty State */}
         {hasActivities ? (
-          <div className="space-y-2">
-            {activities.slice(0, 5).map((activity) => (
-              <ActivityItem key={activity.id} activity={activity} />
-            ))}
+          <div className="space-y-4">
+            {/* Story 5.5 - Render activities grouped by day */}
+            {dayGroupOrder.map((group) => {
+              const groupActivities = groupedActivities[group];
+              if (groupActivities.length === 0) return null;
+
+              return (
+                <div key={group} className="space-y-2">
+                  {/* Day Group Header */}
+                  <h4 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider px-1">
+                    {getDayGroupLabel(group)}
+                  </h4>
+
+                  {/* Activities in this group */}
+                  {groupActivities.map((activity) => (
+                    <ActivityItem key={activity.id} activity={activity} />
+                  ))}
+                </div>
+              );
+            })}
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center py-8 text-center">

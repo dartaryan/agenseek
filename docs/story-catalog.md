@@ -226,7 +226,7 @@
 
 ---
 
-## Epic 5: Progress & Achievements (8 stories) - 6 of 8 Complete (+ 3 enhancement stories complete)
+## Epic 5: Progress & Achievements (8 stories) - 7 of 8 Complete (+ 3 enhancement stories complete)
 
 ### Story 5.1: Build Dashboard Home Page ✅
 **Sprint:** 7 | **Points:** 3 | **Priority:** P0 | **Status:** COMPLETE
@@ -248,15 +248,17 @@
 **Key AC:** Shows last 3 in-progress guides (0% < progress < 100%), displays icon, title, progress bar, continue button, time since last read, last position indicator, sorted by last_read_at DESC
 **Dependencies:** 5.3
 
-### Story 5.5: Build Activity Feed ⏸️
-**Sprint:** 7 | **Points:** 2 | **Priority:** P0 | **Status:** PENDING
-**Key AC:** Last 10 activities chronologically, activity types (view_guide, complete_guide, create_note, create_task, earn_achievement), icon + description + link + timestamp, grouped by day headers
-**Dependencies:** 5.4
+### Story 5.5: Build Activity Feed ✅
+**Sprint:** 7 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
+**User Story:** As a user, I want to see my recent learning activities on the dashboard, so that I can track my engagement and recall what I've done.
+**Key AC:** Last 10 activities chronologically, activity types (view_guide, complete_guide, create_note, create_task, earn_achievement), icon + description + link + timestamp, grouped by day headers (Today, Yesterday, This Week, Earlier), activity feed card on dashboard
+**Dependencies:** 5.4 ✅ Complete
 
-### Story 5.6: Build Statistics Widgets ⏸️
-**Sprint:** 7 | **Points:** 2 | **Priority:** P0 | **Status:** PENDING
+### Story 5.6: Build Statistics Widgets ✅
+**Sprint:** 7 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
+**User Story:** As a user, I want to see statistics about my learning (reading time, guides completed, notes, tasks, streak), so that I can understand my learning habits and stay motivated.
 **Key AC:** Your Statistics card with total reading time (hours:minutes), guides completed count, notes created count, tasks completed count, current streak (consecutive days), trend indicators, sparkline charts
-**Dependencies:** 5.5
+**Dependencies:** 5.5 ✅ Complete
 
 ### Story 5.7: Build Popular Guides Widget ✅
 **Sprint:** 7 | **Points:** 2 | **Priority:** P1 | **Status:** COMPLETE

@@ -196,7 +196,7 @@
 
 ---
 
-## Sprint 7 - Week 7: Progress Tracking & Achievements - 5 of 8 Complete (+ 3 Enhancement Stories)
+## Sprint 7 - Week 7: Progress Tracking & Achievements - 6 of 8 Complete (+ 3 Enhancement Stories)
 
 **Epic 5: Progress Tracking & Achievements**
 **Goal:** Gamification drives engagement and motivation
@@ -212,8 +212,8 @@
 | 5.2 | Build Overall Progress Tracking System | P0 | 5.1 | 2 | ✅ COMPLETE |
 | 5.3 | Build Achievement Badge System | P0 | 5.2 | 3 | ✅ COMPLETE |
 | 5.4 | Build Continue Reading Section | P0 | 5.3 | 2 | ✅ COMPLETE |
-| 5.5 | Build Activity Feed | P0 | 5.4 | 2 | 📍 NEXT TO DO |
-| 5.6 | Build Statistics Widgets | P0 | 5.5 | 2 | ⏸️ PENDING |
+| 5.5 | Build Activity Feed | P0 | 5.4 | 2 | ✅ COMPLETE |
+| 5.6 | Build Statistics Widgets | P0 | 5.5 | 2 | ✅ COMPLETE |
 | 5.7 | Build Popular Guides Widget | P1 | 5.6 | 2 | ✅ COMPLETE |
 | 5.8 | Build Full Progress Details Page | P1 | 5.7 | 2 | ✅ COMPLETE |
 
@@ -222,8 +222,8 @@
 **Definition of Done:**
 - ✅ Dashboard shows personalized progress
 - ✅ Achievement badges unlock with celebration
-- ⏸️ Activity feed displays recent actions
-- ⏸️ Statistics accurately calculated
+- ✅ Activity feed displays recent actions
+- 📍 Statistics accurately calculated (NEXT)
 
 ---
 

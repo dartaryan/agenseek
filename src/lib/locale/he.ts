@@ -89,7 +89,14 @@ export interface LocaleStrings {
     recentActivityDescription: string;
     noRecentActivity: string;
     viewAllActivity: string;
+    // Story 5.5 - Activity Feed Day Grouping
+    activityToday: string;
+    activityYesterday: string;
+    activityThisWeek: string;
+    activityEarlier: string;
+    // Story 5.6 - Statistics
     statistics: string;
+    statisticsDescription: string;
     totalReadingTime: string;
     notesCreated: string;
     tasksCompleted: string;
@@ -97,6 +104,8 @@ export interface LocaleStrings {
     days: string;
     hours: string;
     minutes: string;
+    trendUp: string;
+    trendDown: string;
     // Story 5.2 - Category breakdown
     categoryBreakdown: string;
     categoryCore: string;
@@ -428,7 +437,13 @@ export const hebrewLocale: LocaleStrings = {
     recentActivityDescription: 'מה קרה לאחרונה',
     noRecentActivity: 'אין פעילות אחרונה',
     viewAllActivity: 'צפה בכל הפעילות',
+    // Story 5.5 - Activity Feed Day Grouping
+    activityToday: 'היום',
+    activityYesterday: 'אתמול',
+    activityThisWeek: 'השבוע',
+    activityEarlier: 'קודם לכן',
     statistics: 'סטטיסטיקות',
+    statisticsDescription: 'נתוני השימוש שלך',
     totalReadingTime: 'זמן קריאה כולל',
     notesCreated: 'הערות שנוצרו',
     tasksCompleted: 'משימות שהושלמו',
@@ -436,6 +451,8 @@ export const hebrewLocale: LocaleStrings = {
     days: 'ימים',
     hours: 'שעות',
     minutes: 'דקות',
+    trendUp: 'עלייה',
+    trendDown: 'ירידה',
     // Story 5.2 - Category breakdown
     categoryBreakdown: 'התקדמות לפי קטגוריות',
     categoryCore: 'מדריכי יסוד',
