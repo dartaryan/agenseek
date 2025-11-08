@@ -9,17 +9,18 @@ import { useSidebar } from '../../contexts/SidebarContext';
 import AgenseekLogo from '../../assets/agenseek-logo.svg';
 import { MobileNav } from './MobileNav';
 import { HeaderNav } from './HeaderNav';
+import { SearchBar } from './SearchBar';
 
 /**
- * Header Component - Story 5.1.1 + Story 6.13
+ * Header Component - Story 5.1.1 + Story 6.13 + Story 7.2
  *
- * Sticky header with logo, navigation, and user menu.
+ * Sticky header with logo, navigation, search, and user menu.
  * Features:
  * - Sticky positioning at top
  * - Logo linking to dashboard
  * - Mobile ToC button (visible only on guide reader pages)
  * - Header navigation icons (Story 6.13 - shown when sidebar collapsed or in guide mode)
- * - Search bar (placeholder for Story 7.2)
+ * - Search bar (Story 7.2 - functional with dropdown results)
  * - User menu with profile and logout
  * - Responsive design
  */
@@ -80,29 +81,9 @@ export function Header() {
           </div>
         )}
 
-        {/* Search Bar - Placeholder for Story 7.2 */}
+        {/* Search Bar - Story 7.2 */}
         <div className="hidden md:flex flex-1 max-w-md">
-          <div className="relative w-full">
-            <input
-              type="text"
-              placeholder={hebrewLocale.actions.search}
-              disabled
-              className="w-full px-4 py-2 pl-10 text-sm border rounded-lg bg-gray-50 cursor-not-allowed"
-            />
-            <svg
-              className="absolute left-3 top-2.5 h-5 w-5 text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-          </div>
+          <SearchBar />
         </div>
 
         {/* Right Side: Mobile Nav + User Menu */}

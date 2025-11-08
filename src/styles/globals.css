@@ -227,4 +227,13 @@
       'rlig' 1,
       'calt' 1;
   }
+
+  /* Story 7.2: Search match highlighting with emerald background */
+  mark {
+    background-color: rgb(16 185 129 / 0.3); /* emerald-500 with 30% opacity */
+    color: inherit;
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-weight: 500;
+  }
 }
