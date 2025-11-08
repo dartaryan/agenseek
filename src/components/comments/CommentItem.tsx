@@ -71,7 +71,7 @@ export function CommentItem({ comment, guideSlug, onVoteChange }: CommentItemPro
         setAvatarConfig({
           style: data.avatar_style as any,
           seed: data.avatar_seed || comment.user_id,
-          options: data.avatar_options || {},
+          options: (data.avatar_options as Record<string, any>) || {},
         });
       }
     }

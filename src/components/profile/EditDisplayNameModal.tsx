@@ -50,7 +50,7 @@ export function EditDisplayNameModal({
         setAvatarConfig({
           style: data.avatar_style as any,
           seed: data.avatar_seed || userId,
-          options: data.avatar_options || {},
+          options: (data.avatar_options as Record<string, any>) || {},
         });
       }
     }

@@ -74,7 +74,7 @@ export function CommentReply({ reply, onVoteChange, parentCommentId, parentUserI
         setAvatarConfig({
           style: data.avatar_style as any,
           seed: data.avatar_seed || reply.user_id,
-          options: data.avatar_options || {},
+          options: (data.avatar_options as Record<string, any>) || {},
         });
       }
     }

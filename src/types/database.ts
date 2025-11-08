@@ -17,6 +17,9 @@ export interface Database {
           onboarded_at: string | null;
           is_admin: boolean;
           hebrew_name_suggestion_dismissed: boolean;
+          avatar_style: string;
+          avatar_seed: string | null;
+          avatar_options: Json;
           created_at: string;
           updated_at: string;
         };
@@ -33,6 +36,9 @@ export interface Database {
           onboarded_at?: string | null;
           is_admin?: boolean;
           hebrew_name_suggestion_dismissed?: boolean;
+          avatar_style?: string;
+          avatar_seed?: string | null;
+          avatar_options?: Json;
           created_at?: string;
           updated_at?: string;
         };
@@ -49,6 +55,9 @@ export interface Database {
           onboarded_at?: string | null;
           is_admin?: boolean;
           hebrew_name_suggestion_dismissed?: boolean;
+          avatar_style?: string;
+          avatar_seed?: string | null;
+          avatar_options?: Json;
           created_at?: string;
           updated_at?: string;
         };

@@ -87,7 +87,7 @@ export function Sidebar() {
         setAvatarConfig({
           style: data.avatar_style as any,
           seed: data.avatar_seed || user.id,
-          options: data.avatar_options || {},
+          options: (data.avatar_options as Record<string, any>) || {},
         });
       }
     }

@@ -32,13 +32,13 @@ export function SettingsPage() {
         .eq('id', user.id)
         .single();
 
-      if (data?.avatar_style) {
-        setAvatarConfig({
-          style: data.avatar_style as any,
-          seed: data.avatar_seed || user.id,
-          options: data.avatar_options || {},
-        });
-      }
+    if (data?.avatar_style) {
+      setAvatarConfig({
+        style: data.avatar_style as any,
+        seed: data.avatar_seed || user.id,
+        options: (data.avatar_options as Record<string, any>) || {},
+      });
+    }
     }
     loadAvatar();
   }, [user?.id]);

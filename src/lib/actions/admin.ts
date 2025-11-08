@@ -665,7 +665,7 @@ export async function fetchGuidePerformance(
 
       const avgTimeMinutes = timeData?.length
         ? Math.round(
-            timeData.reduce((sum, d) => sum + (d.metadata?.duration_minutes || 0), 0) / timeData.length
+            timeData.reduce((sum, d) => sum + ((d.metadata as any)?.duration_minutes || 0), 0) / timeData.length
           )
         : 0;
 
@@ -759,7 +759,7 @@ export async function fetchContentEngagementSummary(): Promise<ContentEngagement
 
     const avgSessionDurationMinutes = sessionData?.length
       ? Math.round(
-          sessionData.reduce((sum, d) => sum + (d.metadata?.duration_minutes || 0), 0) / sessionData.length
+          sessionData.reduce((sum, d) => sum + ((d.metadata as any)?.duration_minutes || 0), 0) / sessionData.length
         )
       : 0;
 
