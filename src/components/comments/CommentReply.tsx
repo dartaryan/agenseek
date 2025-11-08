@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { he } from 'date-fns/locale';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
@@ -11,18 +12,37 @@ import {
 } from '@tabler/icons-react';
 import { hebrewLocale } from '@/lib/locale/he';
 import { useAuth } from '@/hooks/useAuth';
+import { useToast } from '@/hooks/use-toast';
+import { toggleCommentVote, hasUserVoted } from '@/lib/actions/comments';
 import type { CommentWithProfile } from '@/types/comments';
 
 interface CommentReplyProps {
   reply: CommentWithProfile;
   guideSlug: string;
+  onVoteChange?: () => void;
 }
 
-export function CommentReply({ reply }: CommentReplyProps) {
+export function CommentReply({ reply, onVoteChange }: CommentReplyProps) {
   const { user } = useAuth();
+  const { toast } = useToast();
+  const [hasVoted, setHasVoted] = useState(false);
+  const [isVoting, setIsVoting] = useState(false);
+  const [helpfulCount, setHelpfulCount] = useState(reply.helpful_count);
 
   // Check if current user owns this reply
   const isOwner = user?.id === reply.user_id;
+
+  // Check if user has voted on mount
+  useEffect(() => {
+    const checkVoteStatus = async () => {
+      if (user?.id) {
+        const voted = await hasUserVoted(user.id, reply.id);
+        setHasVoted(voted);
+      }
+    };
+
+    checkVoteStatus();
+  }, [user?.id, reply.id]);
 
   // Get user initials for avatar fallback
   const userInitial = reply.profile?.display_name?.charAt(0).toUpperCase() || 'U';
@@ -32,6 +52,52 @@ export function CommentReply({ reply }: CommentReplyProps) {
     addSuffix: true,
     locale: he,
   });
+
+  const handleVote = async () => {
+    if (!user) {
+      toast({
+        title: hebrewLocale.comments.voteError,
+        description: hebrewLocale.comments.loginToVote,
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    // Can't vote on own comments
+    if (isOwner) {
+      toast({
+        title: hebrewLocale.comments.voteError,
+        description: hebrewLocale.comments.cannotVoteOwnComment,
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setIsVoting(true);
+
+    const result = await toggleCommentVote({
+      userId: user.id,
+      commentId: reply.id,
+    });
+
+    setIsVoting(false);
+
+    if (result.success) {
+      setHasVoted(result.hasVoted);
+      setHelpfulCount((prev) => (result.hasVoted ? prev + 1 : prev - 1));
+
+      // Notify parent to refresh if sorting by most helpful
+      if (onVoteChange) {
+        onVoteChange();
+      }
+    } else {
+      toast({
+        title: hebrewLocale.comments.voteError,
+        description: result.error || hebrewLocale.comments.voteErrorGeneric,
+        variant: 'destructive',
+      });
+    }
+  };
 
   return (
     <div className={`
@@ -87,11 +153,24 @@ export function CommentReply({ reply }: CommentReplyProps) {
         {/* Action Buttons - Smaller for replies */}
         <div className="flex items-center gap-1 flex-wrap">
           {/* Helpful Button */}
-          <Button variant="ghost" size="sm" className="gap-1 h-7 text-xs">
-            <IconThumbUp className="h-3 w-3" />
+          <Button
+            variant={hasVoted ? 'default' : 'ghost'}
+            size="sm"
+            className={`gap-1 h-7 text-xs ${
+              hasVoted
+                ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                : ''
+            } ${isOwner ? 'opacity-50 cursor-not-allowed' : ''}`}
+            onClick={handleVote}
+            disabled={isVoting || isOwner}
+          >
+            <IconThumbUp
+              className="h-3 w-3"
+              fill={hasVoted ? 'currentColor' : 'none'}
+            />
             <span>
               {hebrewLocale.comments.helpful}
-              {reply.helpful_count > 0 && ` (${reply.helpful_count})`}
+              {helpfulCount > 0 && ` (${helpfulCount})`}
             </span>
           </Button>
 

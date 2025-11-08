@@ -22,6 +22,17 @@
     "path": "core/glossary.json"
   },
   {
+    "id": "onboarding-day1",
+    "title": "הדרכה ליום הראשון",
+    "description": "מדריך צעד-אחר-צעד ליום הראשון עם BMAD. תוך שעה תתקינו את המערכת, תריצו את הפקודה הראשונה, ותשיגו את הניצחון הראשון שלכם!",
+    "category": "onboarding",
+    "difficulty": "beginner",
+    "estimatedMinutes": 30,
+    "icon": "IconCalendar",
+    "tags": ["הדרכה", "יום-ראשון", "onboarding", "התחלה", "מתחילים"],
+    "path": "onboarding/day1.json"
+  },
+  {
     "id": "role-developers",
     "title": "מדריך למפתחים ומפתחות",
     "description": "מסלול למידה מלא למפתחים - Junior, Senior, Full-Stack. שליטה באגנטים והוורקפלואים הרלוונטיים, תרחישים מעשיים מהעבודה, והתאמה אישית לצרכים שלכם.",

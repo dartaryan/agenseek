@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useComments } from '@/hooks/useComments';
 import { CommentItem } from './CommentItem';
+import { CommentForm } from './CommentForm';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -10,7 +11,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { IconMessage, IconSortDescending } from '@tabler/icons-react';
+import { IconMessage, IconSortDescending, IconPlus } from '@tabler/icons-react';
 import { hebrewLocale } from '@/lib/locale/he';
 import type { CommentSort } from '@/types/comments';
 
@@ -20,13 +21,34 @@ interface CommentThreadProps {
 
 export function CommentThread({ guideSlug }: CommentThreadProps) {
   const [sortBy, setSortBy] = useState<CommentSort>('recent');
-  const { comments, loading, error, hasMore, loadMore, totalCount } = useComments(
+  const [showCommentForm, setShowCommentForm] = useState(false);
+  const { comments, loading, error, hasMore, loadMore, refresh, totalCount } = useComments(
     guideSlug,
     sortBy
   );
 
   const handleSortChange = (value: string) => {
     setSortBy(value as CommentSort);
+  };
+
+  const handleCommentSuccess = (commentId: string) => {
+    setShowCommentForm(false);
+    refresh();
+
+    // Scroll to new comment after a short delay to allow for rendering
+    setTimeout(() => {
+      const commentElement = document.getElementById(`comment-${commentId}`);
+      if (commentElement) {
+        commentElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 100);
+  };
+
+  const handleVoteChange = () => {
+    // Refresh comments to re-sort when voting (especially for "most helpful" sort)
+    if (sortBy === 'most_helpful') {
+      refresh();
+    }
   };
 
   // Format comment count
@@ -71,6 +93,26 @@ export function CommentThread({ guideSlug }: CommentThreadProps) {
       </CardHeader>
 
       <CardContent className="space-y-6">
+        {/* Add Comment Button/Form */}
+        <div>
+          {!showCommentForm ? (
+            <Button
+              onClick={() => setShowCommentForm(true)}
+              className="w-full"
+              variant="outline"
+            >
+              <IconPlus className="h-4 w-4 ml-2" />
+              {hebrewLocale.comments.addComment}
+            </Button>
+          ) : (
+            <CommentForm
+              guideSlug={guideSlug}
+              onSuccess={handleCommentSuccess}
+              onCancel={() => setShowCommentForm(false)}
+            />
+          )}
+        </div>
+
         {/* Loading State */}
         {loading && comments.length === 0 && (
           <div className="flex items-center justify-center py-8">
@@ -109,6 +151,7 @@ export function CommentThread({ guideSlug }: CommentThreadProps) {
             key={comment.id}
             comment={comment}
             guideSlug={guideSlug}
+            onVoteChange={handleVoteChange}
           />
         ))}
 

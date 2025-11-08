@@ -1,0 +1,773 @@
+{
+  "metadata": {
+    "id": "onboarding-day1",
+    "slug": "onboarding-day1",
+    "title": "הדרכה ליום הראשון",
+    "description": "מדריך צעד-אחר-צעד ליום הראשון עם BMAD. תוך שעה תתקינו את המערכת, תריצו את הפקודה הראשונה, ותשיגו את הניצחון הראשון שלכם!",
+    "category": "onboarding",
+    "difficulty": "beginner",
+    "estimatedMinutes": 30,
+    "icon": "IconCalendar",
+    "tags": ["הדרכה", "יום-ראשון", "onboarding", "התחלה", "מתחילים"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "מה נעשה היום?",
+      "level": 2,
+      "anchor": "what-today"
+    },
+    {
+      "id": "toc-2",
+      "title": "מה צריך לפני שמתחילים?",
+      "level": 2,
+      "anchor": "prerequisites"
+    },
+    {
+      "id": "toc-3",
+      "title": "שלב 1: התקנת BMAD (10 דקות)",
+      "level": 2,
+      "anchor": "step-1-installation"
+    },
+    {
+      "id": "toc-4",
+      "title": "שלב 2: הכנת סביבת העבודה (10 דקות)",
+      "level": 2,
+      "anchor": "step-2-workspace"
+    },
+    {
+      "id": "toc-5",
+      "title": "שלב 3: הפקודה הראשונה (10 דקות)",
+      "level": 2,
+      "anchor": "step-3-first-command"
+    },
+    {
+      "id": "toc-6",
+      "title": "שלב 4: הניצחון הראשון (10 דקות)",
+      "level": 2,
+      "anchor": "step-4-first-win"
+    },
+    {
+      "id": "toc-7",
+      "title": "סיכום - מה עשינו?",
+      "level": 2,
+      "anchor": "summary"
+    },
+    {
+      "id": "toc-8",
+      "title": "מה הלאה?",
+      "level": 2,
+      "anchor": "whats-next"
+    },
+    {
+      "id": "toc-9",
+      "title": "שאלות נפוצות",
+      "level": 2,
+      "anchor": "faq"
+    }
+  ],
+  "content": [
+    {
+      "id": "main-title",
+      "type": "heading",
+      "level": 1,
+      "content": "הדרכה ליום הראשון עם BMAD",
+      "anchor": "main-title"
+    },
+    {
+      "id": "welcome-callout",
+      "type": "callout",
+      "variant": "success",
+      "title": "ברוכים הבאים!",
+      "content": "תוך שעה תתקינו את BMAD, תריצו את הפקודה הראשונה, ותשיגו את הניצחון הראשון שלכם! בואו נתחיל!"
+    },
+    {
+      "id": "divider-1",
+      "type": "divider"
+    },
+    {
+      "id": "what-today",
+      "type": "heading",
+      "level": 2,
+      "content": "מה נעשה היום?",
+      "anchor": "what-today"
+    },
+    {
+      "id": "what-today-text",
+      "type": "text",
+      "content": "היום הראשון שלכם עם BMAD הוא יום חשוב! תכירו את המערכת, תתקינו אותה, ותשיגו את הניצחון הראשון."
+    },
+    {
+      "id": "today-plan",
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        { "content": "התקנת BMAD והכנת הסביבה (10 דקות)" },
+        { "content": "הבנת מבנה התיקיות והקבצים (10 דקות)" },
+        { "content": "הרצת הפקודה הראשונה (10 דקות)" },
+        { "content": "יצירת Product Brief קטן - הניצחון הראשון! (10 דקות)" }
+      ]
+    },
+    {
+      "id": "time-callout",
+      "type": "callout",
+      "variant": "info",
+      "title": "כמה זמן זה לוקח?",
+      "content": "בסך הכל כ-40 דקות של עבודה אקטיבית. קחו לכם זמן רגוע ללא הפרעות!"
+    },
+    {
+      "id": "divider-2",
+      "type": "divider"
+    },
+    {
+      "id": "prerequisites",
+      "type": "heading",
+      "level": 2,
+      "content": "מה צריך לפני שמתחילים?",
+      "anchor": "prerequisites"
+    },
+    {
+      "id": "prerequisites-text",
+      "type": "text",
+      "content": "לפני שמתחילים, תוודאו שיש לכם את הדברים הבאים:"
+    },
+    {
+      "id": "prerequisites-list",
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        { "content": "Cursor IDE או VS Code מותקן ועובד" },
+        { "content": "Node.js גרסה 18 ומעלה מותקן" },
+        { "content": "חיבור יציב לאינטרנט" },
+        { "content": "40 דקות של זמן רגוע ללא הפרעות" },
+        { "content": "רצון ללמוד ולהצליח!" }
+      ]
+    },
+    {
+      "id": "check-nodejs",
+      "type": "callout",
+      "variant": "warning",
+      "title": "איך בודקים אם יש Node.js?",
+      "content": "פתחו Terminal והקלידו: node --version\n\nאם רואים מספר כמו v18.x.x או v20.x.x - מצוין!\nאם לא - לכו להורדה מ-https://nodejs.org"
+    },
+    {
+      "id": "divider-3",
+      "type": "divider"
+    },
+    {
+      "id": "step-1-installation",
+      "type": "heading",
+      "level": 2,
+      "content": "שלב 1: התקנת BMAD (10 דקות)",
+      "anchor": "step-1-installation"
+    },
+    {
+      "id": "step-1-intro",
+      "type": "heading",
+      "level": 3,
+      "content": "מה זה BMAD ולמה צריך להתקין?",
+      "anchor": "step-1-intro"
+    },
+    {
+      "id": "step-1-intro-text",
+      "type": "text",
+      "markdown": true,
+      "content": "**BMAD-METHOD** הוא מערכת של קבצים, אגנטים, ווורקפלואים שעוזרים לכם לבנות תוכנה באיכות גבוהה עם עזרת AI.\n\nכדי להשתמש בזה, צריך \"להתקין\" - כלומר להוריד את הקבצים האלה לפרויקט שלכם."
+    },
+    {
+      "id": "step-1-commands",
+      "type": "heading",
+      "level": 3,
+      "content": "הפקודות להתקנה",
+      "anchor": "step-1-commands"
+    },
+    {
+      "id": "step-1-commands-text",
+      "type": "text",
+      "markdown": true,
+      "content": "**צעד 1.1:** פתחו Terminal (או Command Prompt בWindows)"
+    },
+    {
+      "id": "step-1-commands-text-2",
+      "type": "text",
+      "markdown": true,
+      "content": "**צעד 1.2:** נווטו לתיקייה שבה אתם רוצים לעבוד (או צרו תיקייה חדשה):"
+    },
+    {
+      "id": "step-1-code-1",
+      "type": "code",
+      "language": "bash",
+      "code": "# ליצור תיקייה חדשה\nmkdir my-bmad-project\n\n# להיכנס לתיקייה\ncd my-bmad-project",
+      "showLineNumbers": false
+    },
+    {
+      "id": "step-1-commands-text-3",
+      "type": "text",
+      "markdown": true,
+      "content": "**צעד 1.3:** הריצו את פקודת ההתקנה:"
+    },
+    {
+      "id": "step-1-code-2",
+      "type": "code",
+      "language": "bash",
+      "code": "npx bmad-method@alpha install",
+      "showLineNumbers": false
+    },
+    {
+      "id": "step-1-what-happens",
+      "type": "callout",
+      "variant": "info",
+      "title": "מה קורה עכשיו?",
+      "content": "המערכת תשאל אתכם כמה שאלות:\n- איזה מודולים להתקין? (בחרו 'BMM' לעבודה רגילה, או 'All' להכל)\n- מה השם שלכם? (כדי שהאגנטים יפנו אליכם בשם)\n- באיזו שפה לתקשר? (עברית או אנגלית)\n- איזה IDE? (Cursor או VS Code)\n\nפשוט עקבו אחרי ההוראות על המסך!"
+    },
+    {
+      "id": "step-1-verify",
+      "type": "heading",
+      "level": 3,
+      "content": "וידוא שההתקנה הצליחה",
+      "anchor": "step-1-verify"
+    },
+    {
+      "id": "step-1-verify-text",
+      "type": "text",
+      "content": "אחרי שההתקנה מסתיימת, תוודאו שנוצרה תיקיית bmad/ בפרויקט שלכם:"
+    },
+    {
+      "id": "step-1-verify-code",
+      "type": "code",
+      "language": "bash",
+      "code": "# בדיקה שהתיקייה נוצרה\nls bmad/\n\n# או ב-Windows:\ndir bmad",
+      "showLineNumbers": false
+    },
+    {
+      "id": "step-1-verify-text-2",
+      "type": "text",
+      "markdown": true,
+      "content": "אם רואים תיקיות כמו `_cfg/`, `bmm/`, `core/` - **מעולה! ההתקנה הצליחה!**"
+    },
+    {
+      "id": "step-1-troubleshoot",
+      "type": "callout",
+      "variant": "warning",
+      "title": "בעיות נפוצות והפתרונות",
+      "content": "**בעיה:** \"npx: command not found\"\n**פתרון:** Node.js לא מותקן. הורידו מ-https://nodejs.org\n\n**בעיה:** \"Permission denied\"\n**פתרון:** הריצו עם sudo (Linux/Mac) או כ-Administrator (Windows)\n\n**בעיה:** \"Network error\"\n**פתרון:** בדקו חיבור לאינטרנט, או נסו שוב"
+    },
+    {
+      "id": "step-1-success",
+      "type": "callout",
+      "variant": "success",
+      "title": "כל הכבוד!",
+      "content": "השלב הראשון הושלם בהצלחה! BMAD מותקן ומוכן לשימוש!"
+    },
+    {
+      "id": "divider-4",
+      "type": "divider"
+    },
+    {
+      "id": "step-2-workspace",
+      "type": "heading",
+      "level": 2,
+      "content": "שלב 2: הכנת סביבת העבודה (10 דקות)",
+      "anchor": "step-2-workspace"
+    },
+    {
+      "id": "step-2-intro",
+      "type": "text",
+      "content": "עכשיו שBMAD מותקן, בואו נבין מה יש לנו ואיך להתחיל לעבוד."
+    },
+    {
+      "id": "step-2-open-project",
+      "type": "heading",
+      "level": 3,
+      "content": "פתיחת הפרויקט ב-Cursor",
+      "anchor": "step-2-open-project"
+    },
+    {
+      "id": "step-2-open-text",
+      "type": "text",
+      "markdown": true,
+      "content": "**צעד 2.1:** פתחו את Cursor IDE"
+    },
+    {
+      "id": "step-2-open-text-2",
+      "type": "text",
+      "markdown": true,
+      "content": "**צעד 2.2:** לחצו על File → Open Folder ובחרו את התיקייה `my-bmad-project`"
+    },
+    {
+      "id": "step-2-open-text-3",
+      "type": "text",
+      "content": "עכשיו אתם אמורים לראות את מבנה התיקיות בצד שמאל."
+    },
+    {
+      "id": "step-2-structure",
+      "type": "heading",
+      "level": 3,
+      "content": "הבנת המבנה",
+      "anchor": "step-2-structure"
+    },
+    {
+      "id": "step-2-structure-text",
+      "type": "text",
+      "content": "אלו התיקיות והקבצים שנוצרו:"
+    },
+    {
+      "id": "step-2-structure-list",
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        { "content": "bmad/ - כל קבצי BMAD (אגנטים, וורקפלואים, משימות)" },
+        { "content": "bmad/_cfg/ - קונפיגורציות ראשיות" },
+        { "content": "bmad/bmm/ - המודול הראשי לעבודה" },
+        { "content": "bmad/core/ - תשתית הליבה" },
+        { "content": ".cursorrules - כללים ל-Cursor IDE (נוצר אוטומטית)" }
+      ]
+    },
+    {
+      "id": "step-2-config",
+      "type": "heading",
+      "level": 3,
+      "content": "הקובץ החשוב: config.yaml",
+      "anchor": "step-2-config"
+    },
+    {
+      "id": "step-2-config-text",
+      "type": "text",
+      "markdown": true,
+      "content": "בתוך `bmad/bmm/` תמצאו קובץ חשוב: **config.yaml**\n\nזה הקובץ שמכיל את ההגדרות שלכם:"
+    },
+    {
+      "id": "step-2-config-code",
+      "type": "code",
+      "language": "yaml",
+      "code": "user_name: \"השם שלכם\"\ncommunication_language: \"Hebrew\"\ndocument_output_language: \"Hebrew\"\noutput_folder: \"output/\"\nide: \"Cursor\"",
+      "showLineNumbers": true
+    },
+    {
+      "id": "step-2-config-callout",
+      "type": "callout",
+      "variant": "info",
+      "title": "למה זה חשוב?",
+      "content": "כל אגנט ב-BMAD קורא את הקובץ הזה וקוסם לכם בשם, מדבר בשפה שבחרתם, ושומר קבצים במקום שהגדרתם!"
+    },
+    {
+      "id": "step-2-success",
+      "type": "callout",
+      "variant": "success",
+      "title": "מעולה!",
+      "content": "סיימתם להכיר את המבנה! עכשיו אתם מוכנים להריץ את הפקודה הראשונה!"
+    },
+    {
+      "id": "divider-5",
+      "type": "divider"
+    },
+    {
+      "id": "step-3-first-command",
+      "type": "heading",
+      "level": 2,
+      "content": "שלב 3: הפקודה הראשונה (10 דקות)",
+      "anchor": "step-3-first-command"
+    },
+    {
+      "id": "step-3-intro",
+      "type": "text",
+      "markdown": true,
+      "content": "**הגיע הרגע! בואו נריץ את הפקודה הראשונה ונדבר עם אגנט!**"
+    },
+    {
+      "id": "step-3-open-agent",
+      "type": "heading",
+      "level": 3,
+      "content": "פתיחת BMAD Master",
+      "anchor": "step-3-open-agent"
+    },
+    {
+      "id": "step-3-open-text",
+      "type": "text",
+      "markdown": true,
+      "content": "**BMAD Master** הוא האגנט הראשי שמדריך אתכם בכל המערכת."
+    },
+    {
+      "id": "step-3-open-steps",
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        { "content": "ב-Cursor, פתחו את הקובץ: bmad/core/agents/bmad-master.md" },
+        { "content": "קראו את התיאור בראש הקובץ (זה מסביר מי זה BMAD Master)" },
+        { "content": "בצד ימין, לחצו על כפתור 'Chat' (או Cmd/Ctrl + L)" },
+        { "content": "הקובץ יתווסף לצ'אט, וה-AI יזהה את האגנט אוטומטית" }
+      ]
+    },
+    {
+      "id": "step-3-greeting",
+      "type": "heading",
+      "level": 3,
+      "content": "מה אתם אמורים לראות",
+      "anchor": "step-3-greeting"
+    },
+    {
+      "id": "step-3-greeting-text",
+      "type": "text",
+      "content": "BMAD Master יברך אתכם עם הודעה כמו:"
+    },
+    {
+      "id": "step-3-greeting-code",
+      "type": "code",
+      "language": "text",
+      "code": "🧙 BMad Master Awakens\n\nGreetings, [השם שלכם]!\n\nThe BMad Master stands ready to guide you through the BMAD-METHOD.\n\nAvailable Operations:\n1. Show numbered menu → *help\n2. List Available Tasks → *list-tasks\n3. Initialize Workflow → *workflow-init\n...",
+      "showLineNumbers": false
+    },
+    {
+      "id": "step-3-menu",
+      "type": "heading",
+      "level": 3,
+      "content": "בחירת אפשרות מהתפריט",
+      "anchor": "step-3-menu"
+    },
+    {
+      "id": "step-3-menu-text",
+      "type": "text",
+      "markdown": true,
+      "content": "האגנט מציג לכם **תפריט** של דברים שאפשר לעשות.\n\nכל פריט מתחיל ב-`*` (כוכבית) - זה הטריגר שלו."
+    },
+    {
+      "id": "step-3-try-help",
+      "type": "text",
+      "markdown": true,
+      "content": "**בואו ננסה!** כתבו בצ'אט:"
+    },
+    {
+      "id": "step-3-try-help-code",
+      "type": "code",
+      "language": "text",
+      "code": "*help",
+      "showLineNumbers": false
+    },
+    {
+      "id": "step-3-try-help-text",
+      "type": "text",
+      "content": "BMAD Master יציג לכם את כל האפשרויות הזמינות!"
+    },
+    {
+      "id": "step-3-success",
+      "type": "callout",
+      "variant": "success",
+      "title": "מזל טוב!",
+      "content": "הרצתם את הפקודה הראשונה שלכם! אתם רשמית מדברים עם אגנט BMAD!"
+    },
+    {
+      "id": "divider-6",
+      "type": "divider"
+    },
+    {
+      "id": "step-4-first-win",
+      "type": "heading",
+      "level": 2,
+      "content": "שלב 4: הניצחון הראשון (10 דקות)",
+      "anchor": "step-4-first-win"
+    },
+    {
+      "id": "step-4-intro",
+      "type": "text",
+      "markdown": true,
+      "content": "**עכשיו נעשה משהו משמעותי! בואו ניצור Brief קטן לפרויקט!**"
+    },
+    {
+      "id": "step-4-what-is-brief",
+      "type": "heading",
+      "level": 3,
+      "content": "מה זה Product Brief?",
+      "anchor": "step-4-what-is-brief"
+    },
+    {
+      "id": "step-4-what-is-brief-text",
+      "type": "text",
+      "markdown": true,
+      "content": "**Product Brief** הוא מסמך קצר שמסביר:\n- מה הרעיון של הפרויקט\n- למי זה מיועד\n- מה הבעיה שזה פותר\n- איך זה עובד\n\nזה השלב הראשון בכל פרויקט!"
+    },
+    {
+      "id": "step-4-workflow",
+      "type": "heading",
+      "level": 3,
+      "content": "הרצת workflow-init",
+      "anchor": "step-4-workflow"
+    },
+    {
+      "id": "step-4-workflow-text",
+      "type": "text",
+      "markdown": true,
+      "content": "**workflow-init** זה וורקפלואו שעוזר לכם להתחיל פרויקט חדש."
+    },
+    {
+      "id": "step-4-steps",
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        { "content": "ודאו שעדיין בצ'אט עם BMAD Master" },
+        { "content": "כתבו: *workflow-init" },
+        { "content": "עקבו אחרי השאלות שהאגנט שואל" },
+        { "content": "ענו בכנות ובפשטות" }
+      ]
+    },
+    {
+      "id": "step-4-example",
+      "type": "heading",
+      "level": 3,
+      "content": "דוגמה לשיחה",
+      "anchor": "step-4-example"
+    },
+    {
+      "id": "step-4-example-code",
+      "type": "code",
+      "language": "text",
+      "code": "אתם: *workflow-init\n\nBMAD Master: מה הפרויקט שאתם רוצים לבנות?\n\nאתם: אני רוצה לבנות אפליקציית Todo מסודרת\n\nBMAD Master: מעולה! זה פרויקט חדש או קיים?\n\nאתם: חדש לגמרי\n\nBMAD Master: באיזה גודל אנחנו מדברים?\n\nאתם: פרויקט קטן, משהו פשוט\n\nBMAD Master: נהדר! אני מציע את המסלול הבא...",
+      "showLineNumbers": false
+    },
+    {
+      "id": "step-4-output",
+      "type": "heading",
+      "level": 3,
+      "content": "מה יקרה בסוף",
+      "anchor": "step-4-output"
+    },
+    {
+      "id": "step-4-output-text",
+      "type": "text",
+      "markdown": true,
+      "content": "BMAD Master יציע לכם:\n- **מסלול מתאים** (איזה וורקפלואים להריץ)\n- **סדר עבודה** (מה קודם, מה אחר כך)\n- **קובץ מעקב** - `bmm-workflow-status.yaml` שעוקב אחרי ההתקדמות"
+    },
+    {
+      "id": "step-4-check-file",
+      "type": "callout",
+      "variant": "info",
+      "title": "בדקו את הקובץ שנוצר!",
+      "content": "לכו ל-bmad/bmm/ ותמצאו שם bmm-workflow-status.yaml\n\nפתחו אותו - תראו את כל התוכנית שהמערכת יצרה עבורכם!"
+    },
+    {
+      "id": "step-4-win",
+      "type": "callout",
+      "variant": "success",
+      "title": "🎉 מזל טוב! הניצחון הראשון!",
+      "content": "יצרתם את התוכנית הראשונה שלכם עם BMAD!\n\nהמערכת הבינה מה אתם רוצים, יצרה מסלול מתאים, ותיעדה הכל!\n\nזה רק ההתחלה!"
+    },
+    {
+      "id": "divider-7",
+      "type": "divider"
+    },
+    {
+      "id": "summary",
+      "type": "heading",
+      "level": 2,
+      "content": "סיכום - מה עשינו?",
+      "anchor": "summary"
+    },
+    {
+      "id": "summary-text",
+      "type": "text",
+      "markdown": true,
+      "content": "**איזה יום! בואו נסכם את ההישגים שלכם:**"
+    },
+    {
+      "id": "achievements-list",
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        { "content": "✅ התקנתם את BMAD בהצלחה" },
+        { "content": "✅ הכרתם את מבנה התיקיות והקבצים" },
+        { "content": "✅ דיברתם עם האגנט הראשון - BMAD Master" },
+        { "content": "✅ הרצתם את הפקודה הראשונה - *help" },
+        { "content": "✅ הרצתם את הוורקפלואו הראשון - workflow-init" },
+        { "content": "✅ יצרתם תוכנית מסודרת לפרויקט שלכם" }
+      ]
+    },
+    {
+      "id": "summary-callout",
+      "type": "callout",
+      "variant": "success",
+      "title": "אתם כבר לא מתחילים!",
+      "content": "יש לכם BMAD מותקן, אתם יודעים להריץ אגנטים, ויש לכם תוכנית פעולה!\n\nזה הישג אמיתי! כל הכבוד!"
+    },
+    {
+      "id": "divider-8",
+      "type": "divider"
+    },
+    {
+      "id": "whats-next",
+      "type": "heading",
+      "level": 2,
+      "content": "מה הלאה?",
+      "anchor": "whats-next"
+    },
+    {
+      "id": "whats-next-text",
+      "type": "text",
+      "content": "המסע רק מתחיל! הנה מה מומלץ לעשות בהמשך:"
+    },
+    {
+      "id": "whats-next-week1",
+      "type": "heading",
+      "level": 3,
+      "content": "השבוע הראשון",
+      "anchor": "whats-next-week1"
+    },
+    {
+      "id": "whats-next-week1-list",
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        { "content": "קראו את 'הדרכה לשבוע הראשון' - התוכנית המלאה ל-7 ימים" },
+        { "content": "התנסו באגנטים נוספים - PM, Analyst, Architect" },
+        { "content": "הריצו עוד וורקפלואים - product-brief, brainstorming" },
+        { "content": "צרו משהו אמיתי - פרויקט קטן משלכם" }
+      ]
+    },
+    {
+      "id": "whats-next-guides",
+      "type": "heading",
+      "level": 3,
+      "content": "מדריכים מומלצים",
+      "anchor": "whats-next-guides"
+    },
+    {
+      "id": "whats-next-guides-list",
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        { "content": "מילון מונחים - להבין את כל המושגים" },
+        { "content": "מדריך אגנטים - חלק 1 - להכיר את האגנטים" },
+        { "content": "מדריך לפי התפקיד שלכם - מפתחים, מנהלי מוצר, וכו'" },
+        { "content": "שאלות ותשובות - יסודות - תשובות לשאלות נפוצות" }
+      ]
+    },
+    {
+      "id": "whats-next-community",
+      "type": "heading",
+      "level": 3,
+      "content": "הצטרפו לקהילה",
+      "anchor": "whats-next-community"
+    },
+    {
+      "id": "whats-next-community-text",
+      "type": "text",
+      "markdown": true,
+      "content": "יש קהילה מדהימה של אנשים שעובדים עם BMAD:\n\n- **Discord** - שאלות ותשובות, שיתוף טיפים\n- **GitHub Discussions** - דיונים טכניים\n- **Newsletter** - עדכונים שבועיים"
+    },
+    {
+      "id": "whats-next-practice",
+      "type": "callout",
+      "variant": "tip",
+      "title": "הטיפ הכי חשוב",
+      "content": "אל תלמדו רק תיאוריה! תרגלו על פרויקט אמיתי.\n\nקחו רעיון שיש לכם, והשתמשו ב-BMAD כדי לבנות אותו.\n\nזה הדרך הטובה ביותר ללמוד!"
+    },
+    {
+      "id": "divider-9",
+      "type": "divider"
+    },
+    {
+      "id": "faq",
+      "type": "heading",
+      "level": 2,
+      "content": "שאלות נפוצות של יום ראשון",
+      "anchor": "faq"
+    },
+    {
+      "id": "faq-accordion",
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "faq-1",
+          "title": "ההתקנה נכשלה, מה לעשות?",
+          "content": [
+            {
+              "id": "faq-1-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**הסיבות הנפוצות:**\n\n1. **Node.js לא מותקן** - הורידו מ-nodejs.org\n2. **גרסה ישנה של Node** - עדכנו לגרסה 18+\n3. **בעיית הרשאות** - הריצו עם sudo (Mac/Linux) או כ-Administrator (Windows)\n4. **חיבור אינטרנט** - בדקו שיש חיבור יציב\n\n**אם כלום לא עוזר:**\nכתבו בDiscord עם הודעת השגיאה המדויקת, והקהילה תעזור!"
+            }
+          ]
+        },
+        {
+          "id": "faq-2",
+          "title": "לא הבנתי משהו, איפה יש עזרה?",
+          "content": [
+            {
+              "id": "faq-2-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**יש הרבה מקומות לקבל עזרה:**\n\n- **מדריך 'שאלות ותשובות - יסודות'** - תשובות לשאלות נפוצות\n- **Discord Community** - קהילה עוזרת ותומכת\n- **GitHub Issues** - לבעיות טכניות\n- **המדריכים באתר** - מידע מפורט על כל נושא\n\n**אל תתביישו לשאול!** כולנו התחלנו מאפס."
+            }
+          ]
+        },
+        {
+          "id": "faq-3",
+          "title": "כמה זמן לוקח ללמוד את BMAD?",
+          "content": [
+            {
+              "id": "faq-3-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**תלוי מה אתם רוצים:**\n\n- **להתחיל לעבוד:** יום אחד (הושלם היום!)\n- **שליטה בסיסית:** שבוע של תרגול\n- **שליטה מתקדמת:** חודש של עבודה אמיתית\n- **מומחיות:** 2-3 חודשים של שימוש יומיומי\n\n**אבל:** כבר היום אתם יכולים להתחיל לעבוד!\n\nלא צריך לדעת הכל כדי להתחיל."
+            }
+          ]
+        },
+        {
+          "id": "faq-4",
+          "title": "מה אם טעיתי בפקודה?",
+          "content": [
+            {
+              "id": "faq-4-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**אין בעיה! אי אפשר לשבור משהו!**\n\n- האגנטים לא משנים קבצים בלי שאתם מסכימים\n- כל פלט נשמר בתיקייה נפרדת (output/)\n- אפשר תמיד להריץ שוב\n- אפשר לבטל ולהתחיל מחדש\n\n**הטיפ שלנו:** נסו! טעויות זה חלק מהלמידה.\n\nכל טעות מלמדת אתכם משהו חדש."
+            }
+          ]
+        },
+        {
+          "id": "faq-5",
+          "title": "איך יוצאים מ-BMAD Master?",
+          "content": [
+            {
+              "id": "faq-5-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**פשוט מאוד:**\n\nכתבו בצ'אט: `*exit`\n\nאו פשוט סגרו את הצ'אט.\n\n**רוצים לחזור?** פתחו את הקובץ `bmad-master.md` שוב!"
+            }
+          ]
+        },
+        {
+          "id": "faq-6",
+          "title": "מה עושים אם נתקעים?",
+          "content": [
+            {
+              "id": "faq-6-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**אל תלחץ! זה קורה לכולם.**\n\n**צעדים:**\n\n1. **קראו את הודעת השגיאה** - לפעמים יש בה את הפתרון\n2. **חפשו במילון המונחים** - אולי לא הבנתם מושג\n3. **שאלו את האגנט שוב** - הסבירו מה לא ברור\n4. **חפשו ב-FAQ** - אולי מישהו כבר שאל את זה\n5. **Discord** - הקהילה תמיד עוזרת\n\n**זכרו:** כולם נתקעים. זה חלק מהתהליך!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "divider-10",
+      "type": "divider"
+    },
+    {
+      "id": "final-message",
+      "type": "callout",
+      "variant": "success",
+      "title": "כל הכבוד על היום הראשון!",
+      "content": "עשיתם עבודה מצוינת היום. התקנתם, למדתם, הרצתם, והצלחתם!\n\nזה רק ההתחלה של מסע מרתק. בהצלחה!"
+    },
+    {
+      "id": "final-quote",
+      "type": "callout",
+      "variant": "info",
+      "title": "זכרו",
+      "content": "\"כל מומחה היה פעם מתחיל. ההבדל היחיד הוא שהם המשיכו.\"\n\nאתם כבר לא מתחילים. אתם בדרך להיות מומחים!"
+    }
+  ]
+}

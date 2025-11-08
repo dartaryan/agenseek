@@ -1,238 +1,244 @@
-# 🚀 NEXT STORY: Story 8.2 - Build Comment Form and Submission
+# 🚀 NEXT STORY: Story 8.4 - Build Q&A Functionality
 
 **Updated:** November 8, 2025
 
 ---
 
-## ✅ Story 8.1 Complete!
+## ✅ Story 8.3 Complete!
 
-The comment thread system has been successfully implemented! Users can now:
+Users can now vote on helpful comments! Features include:
 
-- View comment threads with hierarchical replies (1-level)
-- See real-time comment updates via Supabase subscriptions
-- Sort comments by Recent, Most Helpful, or Oldest
-- Load more comments with pagination (20 per page)
-- See visual distinction for questions and solution replies
-- View user avatars (initials), names, roles, and timestamps
-- Toggle reply visibility
-- See action buttons (Helpful, Reply, Edit, Delete - placeholders for now)
+- Vote comments as "helpful" with thumbs up button
+- Filled emerald button when voted
+- Toggle vote on/off
+- Cannot vote on own comments
+- Sort by "Most Helpful"
+- Real-time vote count updates
+- Vote state persists across sessions
+- Visual feedback with filled icon
+- Accessible and responsive
 
-**Completion File:** See `STORY-8.1-COMPLETE.md` for full details.
+**Completion File:** See `STORY-8.3-COMPLETE.md` for full details.
 
-**Epic 8 Status:** 1/6 stories complete (17%)
+**Epic 8 Status:** 3/6 stories complete (50%)
 
 ---
 
 ## 📍 Next Story to Implement
 
-### **Story 8.2: Build Comment Form and Submission**
+### **Story 8.4: Build Q&A Functionality**
 
 **Epic:** 8 - Community Features (Comments & Q&A)
 **Priority:** P0
 **Sprint:** 11
-**Story Points:** 2
-**Dependencies:** Story 8.1 Complete ✅
+**Story Points:** 3
+**Dependencies:** Story 8.3 Complete ✅
 
 ---
 
-## 🎯 Story 8.2 Overview
+## 🎯 Story 8.4 Overview
 
-Build the comment submission form with markdown support, preview tab, and toggle between comment/question types. Enable users to post comments and questions on guides.
+Enhance the comment system with Q&A functionality. Question comments get special treatment with orange styling, replies can be marked as solutions by the question author, and users can filter to see only questions.
 
 ### User Story
 
 **As a user reading a guide,**
-**I want to post comments and ask questions,**
-**So that I can share insights, get help, and engage with the community.**
+**I want to see questions highlighted and solutions marked,**
+**So that I can quickly find answers to common problems and get help from the community.**
 
 ---
 
 ## 📋 Acceptance Criteria
 
-### Comment Form
+### Question Visual Styling
 
-**Given** I'm viewing a guide with the comment section
-**When** I click "הוסף תגובה" button
+**Given** I'm viewing comments on a guide
+**When** A comment is marked as a question (is_question = true)
 **Then:**
 
-- [x] Comment form expands/appears
-- [x] Textarea with placeholder "כתוב תגובה..."
-- [x] Auto-expanding textarea (min 3 rows, grows with content)
-- [x] Markdown formatting guide (collapsible)
-  - Bold: `**text**`
-  - Italic: `*text*`
-  - Code: `` `code` ``
-  - Link: `[text](url)`
-- [x] Preview tab to see formatted content
-- [x] Toggle: "תגובה" / "שאלה" buttons
-  - Selected state: Filled emerald
-  - Unselected state: Outline
-- [x] Character count: "X/5000"
-  - Warning color when > 4500
-  - Error color when = 5000
-- [x] Submit button: "פרסם תגובה" or "פרסם שאלה"
-  - Disabled when empty or > 5000 chars
-  - Loading state when submitting
-- [x] Cancel button
+- [ ] Question comment has orange background (bg-orange-50 dark:bg-orange-950/20)
+- [ ] Question has orange border (border-orange-200 dark:border-orange-800)
+- [ ] "שאלה" badge displayed with orange background
+- [ ] Badge positioned next to user name
+- [ ] Questions visually distinct from regular comments
 
-### Comment Submission
+### Mark Reply as Solution
 
-**When** I click "פרסם תגובה"
+**Given** I'm the author of a question comment
+**When** I view replies to my question
 **Then:**
 
-- [x] Comment inserted to `guide_comments` table:
-  - user_id (current user)
-  - guide_slug
-  - content (markdown text)
-  - is_question (based on toggle)
-  - parent_comment_id (null for top-level)
-- [x] Activity logged to `user_activity`:
-  - Type: 'comment_posted'
-  - Guide slug recorded
-- [x] Success toast: "התגובה פורסמה בהצלחה"
-- [x] Form resets (clears textarea)
-- [x] Scroll to new comment
-- [x] Comment count updates in header
-- [x] Real-time update (new comment appears via existing subscription)
+- [ ] Each reply has "סמן כפתרון" button (only visible to question author)
+- [ ] Clicking marks reply as solution (is_solution = true)
+- [ ] Solution reply moves to top of replies list
+- [ ] Solution gets green background (bg-green-50 dark:bg-green-950/20)
+- [ ] Green checkmark icon appears
+- [ ] "פתרון" badge displayed with green background
+- [ ] Only one solution per question (marking new solution removes previous)
+- [ ] Toast notification: "הפתרון סומן בהצלחה"
 
-### Reply Submission
+### Unmark Solution
 
-**Given** I click "השב" on a comment
-**When** I submit the reply
+**Given** A reply is already marked as solution
+**When** Question author clicks "הסר סימון פתרון"
 **Then:**
 
-- [x] Reply inserted with `parent_comment_id` set
-- [x] Reply appears under parent comment
-- [x] Reply count increments
-- [x] Activity logged with both comment_id and parent_comment_id
-- [x] Success toast: "התשובה פורסמה בהצלחה"
+- [ ] is_solution set to false
+- [ ] Reply returns to chronological position
+- [ ] Green styling removed
+- [ ] Solution badge removed
+- [ ] Toast notification: "סימון הפתרון הוסר"
 
-### Validation
+### Q&A Filter Toggle
 
-**Given** I try to submit invalid content
+**Given** I'm viewing comments on a guide
+**When** I toggle "הצג שאלות בלבד" filter
 **Then:**
 
-- [x] Empty content: Button disabled
-- [x] Over 5000 chars: Button disabled + error message
-- [x] Server error: Error toast with message
+- [ ] Only comments with is_question = true displayed
+- [ ] Filter button state toggles (filled when active)
+- [ ] Count shows number of questions
+- [ ] Sorting still applies (recent/most helpful)
+- [ ] Replies to questions still shown
+- [ ] Toggle off shows all comments again
+
+### Questions Grouping
+
+**Given** Q&A filter is enabled
+**When** Questions are displayed
+**Then:**
+
+- [ ] Questions grouped into two sections:
+  - "שאלות ללא תשובה" (no replies with is_solution = true)
+  - "שאלות שנענו" (has reply with is_solution = true)
+- [ ] Unanswered questions displayed first
+- [ ] Each group sorted by selected sort option
+- [ ] Group headers show count
+- [ ] Empty groups show placeholder message
+
+### Solution Permissions
+
+**Given** I'm viewing a question with replies
+**Then:**
+
+- [ ] Only question author can mark/unmark solutions
+- [ ] "סמן כפתרון" button hidden from other users
+- [ ] Solution badge visible to all users
+- [ ] Question author can change solution to different reply
 
 ---
 
 ## 🔨 Implementation Plan
 
-### 1. Create Comment Form Component
-
-**File:** `src/components/comments/CommentForm.tsx`
-
-**Props:**
-```typescript
-interface CommentFormProps {
-  guideSlug: string;
-  parentCommentId?: string | null;
-  parentAuthorName?: string | null;
-  onSuccess?: () => void;
-  onCancel?: () => void;
-}
-```
-
-**Features:**
-- Textarea with auto-expand
-- Markdown formatting guide (collapsible)
-- Preview tab
-- Comment/Question toggle
-- Character counter
-- Submit/Cancel buttons
-
-### 2. Update CommentItem to Show Form on Reply
+### 1. Update CommentItem Component for Solution Marking
 
 **File:** `src/components/comments/CommentItem.tsx`
 
 **Changes:**
-- Replace reply form placeholder with actual `CommentForm`
-- Pass `comment.id` as `parentCommentId`
-- Pass `comment.profile.display_name` as `parentAuthorName`
-- Handle onSuccess (close form)
-- Handle onCancel (close form)
+1. Check if current user is question author (for replies to questions)
+2. Add "סמן כפתרון" button for replies (visible only to question author)
+3. Handle solution marking (call `markSolutionComment()`)
+4. Show solution badge and styling when `is_solution = true`
+5. Float solution replies to top of replies list
 
-### 3. Add Form to Top of CommentThread
+**Logic:**
+```typescript
+// Check if this is a reply to a question
+const isReplyToQuestion = comment.parent_comment_id && parentComment.is_question;
+
+// Check if current user is the question author
+const isQuestionAuthor = user?.id === parentComment.user_id;
+
+// Show mark solution button if:
+// - This is a reply to a question
+// - Current user is the question author
+// - Reply is not already marked as solution
+```
+
+### 2. Create Solution Marking Action
+
+**File:** `src/lib/actions/comments.ts`
+
+**Function:**
+```typescript
+async function markCommentAsSolution(data: {
+  commentId: string;
+  questionId: string;
+  userId: string;
+}): Promise<{ success: boolean; error?: string }>
+```
+
+**Process:**
+1. Verify user is author of question comment
+2. Unmark any existing solution for this question
+3. Mark new comment as solution
+4. Update question to track which reply is solution
+5. Return success
+
+### 3. Update CommentThread for Q&A Filter
 
 **File:** `src/components/comments/CommentThread.tsx`
 
 **Changes:**
-- Add "הוסף תגובה" button at top of thread
-- Show/hide comment form
-- Pass `guideSlug`
-- Handle onSuccess (refresh comments, scroll to new)
+1. Add Q&A filter toggle button
+2. Add state for filter (showQuestionsOnly)
+3. Update useComments hook to support filtering
+4. Add grouping logic (unanswered / answered)
+5. Display group headers with counts
 
-### 4. Implement Comment Submission Logic
+### 4. Update useComments Hook
 
-**File:** `src/lib/actions/comments.ts` (new file)
+**File:** `src/hooks/useComments.ts`
 
-**Functions:**
-```typescript
-async function submitComment(data: {
-  userId: string;
-  guideSlug: string;
-  content: string;
-  isQuestion: boolean;
-  parentCommentId?: string | null;
-}): Promise<{ success: boolean; commentId?: string; error?: string }>
-
-async function logCommentActivity(data: {
-  userId: string;
-  guideSlug: string;
-  commentId: string;
-  parentCommentId?: string | null;
-}): Promise<void>
-```
-
-**Process:**
-1. Validate content (not empty, <= 5000 chars)
-2. Insert to `guide_comments`
-3. Log activity to `user_activity`
-4. Return success + commentId
+**Changes:**
+1. Add `filterQuestions` parameter
+2. Filter query to only fetch questions when enabled
+3. Add logic to group questions by answered status
+4. Solution replies float to top within each question
 
 ### 5. Update Hebrew Locale
 
 Add to `comments` section:
-- `writeComment`: 'כתוב תגובה...'
-- `writeReply`: 'כתוב תשובה...'
-- `markdownGuide`: 'מדריך עיצוב'
-- `preview`: 'תצוגה מקדימה'
-- `comment`: 'תגובה'
-- `characterCount`: '{current} / 5000 תווים'
-- `characterLimitExceeded`: 'חרגת ממספר התווים המותר'
-- `commentPosted`: 'התגובה פורסמה בהצלחה'
-- `replyPosted`: 'התשובה פורסמה בהצלחה'
-- `errorPostingComment`: 'שגיאה בפרסום התגובה'
-- `emptyComment`: 'התגובה לא יכולה להיות ריקה'
+- `markAsSolution`: 'סמן כפתרון'
+- `unmarkSolution`: 'הסר סימון פתרון'
+- `solutionMarked`: 'הפתרון סומן בהצלחה'
+- `solutionUnmarked`: 'סימון הפתרון הוסר'
+- `onlyQuestions`: 'הצג שאלות בלבד'
+- `allComments`: 'כל התגובות'
+- `unansweredQuestions`: 'שאלות ללא תשובה'
+- `answeredQuestions`: 'שאלות שנענו'
+- `noUnansweredQuestions`: 'אין שאלות ללא תשובה'
+- `noAnsweredQuestions`: 'אין שאלות שנענו'
 
-### 6. Markdown Formatting Guide
+### 6. Solution Visual Styling
 
-**Collapsible section with examples:**
-- **Bold:** `**טקסט מודגש**` → **טקסט מודגש**
-- **Italic:** `*טקסט נטוי*` → *טקסט נטוי*
-- **Code:** `` `קוד` `` → `קוד`
-- **Link:** `[טקסט הקישור](URL)` → [טקסט הקישור](URL)
+**CSS Classes:**
+- Green background for solution: `bg-green-50 dark:bg-green-950/20`
+- Green border: `border-green-200 dark:border-green-800`
+- Green badge: `bg-green-500 hover:bg-green-600`
+- Checkmark icon: `IconCheck` from Tabler Icons
 
-**Note:** Full markdown rendering in Story 8.2, extended markdown in future
-
-### 7. Preview Tab
+### 7. Reply Sorting Logic
 
 **Implementation:**
-- Tab toggle: Write | Preview
-- Write tab: Show textarea
-- Preview tab: Show rendered markdown
-- Use simple markdown renderer (or just show formatted text for now)
-- Full markdown support can be added in refinement
+1. Fetch all replies for question
+2. Separate solution reply (if exists)
+3. Sort remaining replies by sort option
+4. Return array: [solutionReply, ...otherReplies]
+5. Display with solution at top
 
-### 8. Auto-Expanding Textarea
+### 8. Question Grouping Logic
 
 **Implementation:**
-- Use `useEffect` to adjust height based on scrollHeight
-- Min height: 3 rows (72px)
-- Max height: 400px (then scroll)
-- Smooth transition
+```typescript
+// Group questions into answered/unanswered
+const unanswered = questions.filter(q =>
+  !q.replies.some(r => r.is_solution)
+);
+const answered = questions.filter(q =>
+  q.replies.some(r => r.is_solution)
+);
+```
 
 ---
 

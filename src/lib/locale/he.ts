@@ -455,6 +455,7 @@ export interface LocaleStrings {
     beFirstToComment: string;
     addComment: string;
     writeComment: string;
+    writeReply: string;
     postComment: string;
     postReply: string;
     reply: string;
@@ -472,6 +473,7 @@ export interface LocaleStrings {
     solution: string;
     replies: string;
     replyTo: string;
+    replyingTo: string;
     loadMore: string;
     sortBy: string;
     sortRecent: string;
@@ -490,6 +492,28 @@ export interface LocaleStrings {
     submitting: string;
     loadingComments: string;
     errorLoadingComments: string;
+    // Story 8.2: Comment Form
+    write: string;
+    preview: string;
+    comment: string;
+    markdownGuide: string;
+    characterCount: string;
+    characterLimitExceeded: string;
+    commentPosted: string;
+    replyPosted: string;
+    errorPostingComment: string;
+    errorNotAuthenticated: string;
+    emptyComment: string;
+    submitComment: string;
+    submitReply: string;
+    submitQuestion: string;
+    cancel: string;
+    noPreview: string;
+    // Story 8.3: Comment Voting
+    voteError: string;
+    loginToVote: string;
+    cannotVoteOwnComment: string;
+    voteErrorGeneric: string;
   };
 }
 
@@ -928,6 +952,7 @@ export const hebrewLocale: LocaleStrings = {
     beFirstToComment: 'היה הראשון להגיב!',
     addComment: 'הוסף תגובה',
     writeComment: 'כתוב תגובה...',
+    writeReply: 'כתוב תשובה...',
     postComment: 'פרסם תגובה',
     postReply: 'פרסם תשובה',
     reply: 'השב',
@@ -945,6 +970,7 @@ export const hebrewLocale: LocaleStrings = {
     solution: 'פתרון',
     replies: 'תשובות',
     replyTo: 'השב ל',
+    replyingTo: 'משיב ל-{name}',
     loadMore: 'טען תגובות נוספות',
     sortBy: 'מיין לפי',
     sortRecent: 'חדשות ביותר',
@@ -963,5 +989,27 @@ export const hebrewLocale: LocaleStrings = {
     submitting: 'שולח...',
     loadingComments: 'טוען תגובות...',
     errorLoadingComments: 'שגיאה בטעינת תגובות',
+    // Story 8.2: Comment Form
+    write: 'כתיבה',
+    preview: 'תצוגה מקדימה',
+    comment: 'תגובה',
+    markdownGuide: 'מדריך עיצוב',
+    characterCount: '{current} / {max}',
+    characterLimitExceeded: 'חרגת ממספר התווים המותר',
+    commentPosted: 'התגובה פורסמה בהצלחה',
+    replyPosted: 'התשובה פורסמה בהצלחה',
+    errorPostingComment: 'שגיאה בפרסום התגובה',
+    errorNotAuthenticated: 'יש להתחבר כדי לפרסם תגובה',
+    emptyComment: 'התגובה לא יכולה להיות ריקה',
+    submitComment: 'פרסם תגובה',
+    submitReply: 'פרסם תשובה',
+    submitQuestion: 'פרסם שאלה',
+    cancel: 'ביטול',
+    noPreview: 'אין תוכן לתצוגה מקדימה',
+    // Story 8.3: Comment Voting
+    voteError: 'שגיאה בהצבעה',
+    loginToVote: 'יש להתחבר כדי להצביע',
+    cannotVoteOwnComment: 'לא ניתן להצביע לתגובה שלך',
+    voteErrorGeneric: 'שגיאה בהצבעה, נסה שוב',
   },
 };

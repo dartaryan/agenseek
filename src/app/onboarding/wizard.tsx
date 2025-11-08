@@ -772,7 +772,7 @@ function LearningPathStep({
       const categorizedGuides = categorizeGuidesByLearningPath(catalog, {
         role: selectedRole || undefined,
         interests: selectedInterests.length > 0 ? selectedInterests : undefined,
-        experience_level: selectedExperience || undefined,
+        experience_level: (selectedExperience as 'beginner' | 'intermediate' | 'advanced') || undefined,
       });
 
       const sections: GuideSection[] = [];

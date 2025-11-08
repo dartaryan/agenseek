@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { he } from 'date-fns/locale';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
@@ -13,21 +13,41 @@ import {
 } from '@tabler/icons-react';
 import { hebrewLocale } from '@/lib/locale/he';
 import { useAuth } from '@/hooks/useAuth';
+import { useToast } from '@/hooks/use-toast';
 import { CommentReply } from './CommentReply';
+import { CommentForm } from './CommentForm';
+import { toggleCommentVote, hasUserVoted } from '@/lib/actions/comments';
 import type { CommentWithReplies } from '@/types/comments';
 
 interface CommentItemProps {
   comment: CommentWithReplies;
   guideSlug: string;
+  onVoteChange?: () => void;
 }
 
-export function CommentItem({ comment, guideSlug }: CommentItemProps) {
+export function CommentItem({ comment, guideSlug, onVoteChange }: CommentItemProps) {
   const { user } = useAuth();
+  const { toast } = useToast();
   const [showReplies, setShowReplies] = useState(true);
   const [isReplying, setIsReplying] = useState(false);
+  const [hasVoted, setHasVoted] = useState(false);
+  const [isVoting, setIsVoting] = useState(false);
+  const [helpfulCount, setHelpfulCount] = useState(comment.helpful_count);
 
   // Check if current user owns this comment
   const isOwner = user?.id === comment.user_id;
+
+  // Check if user has voted on mount
+  useEffect(() => {
+    const checkVoteStatus = async () => {
+      if (user?.id) {
+        const voted = await hasUserVoted(user.id, comment.id);
+        setHasVoted(voted);
+      }
+    };
+
+    checkVoteStatus();
+  }, [user?.id, comment.id]);
 
   // Get user initials for avatar fallback
   const userInitial = comment.profile?.display_name?.charAt(0).toUpperCase() || 'U';
@@ -54,8 +74,59 @@ export function CommentItem({ comment, guideSlug }: CommentItemProps) {
     setShowReplies(!showReplies);
   };
 
+  const handleReplySuccess = () => {
+    setIsReplying(false);
+    setShowReplies(true); // Automatically show replies after successful submission
+  };
+
+  const handleVote = async () => {
+    if (!user) {
+      toast({
+        title: hebrewLocale.comments.voteError,
+        description: hebrewLocale.comments.loginToVote,
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    // Can't vote on own comments
+    if (isOwner) {
+      toast({
+        title: hebrewLocale.comments.voteError,
+        description: hebrewLocale.comments.cannotVoteOwnComment,
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setIsVoting(true);
+
+    const result = await toggleCommentVote({
+      userId: user.id,
+      commentId: comment.id,
+    });
+
+    setIsVoting(false);
+
+    if (result.success) {
+      setHasVoted(result.hasVoted);
+      setHelpfulCount((prev) => (result.hasVoted ? prev + 1 : prev - 1));
+
+      // Notify parent to refresh if sorting by most helpful
+      if (onVoteChange) {
+        onVoteChange();
+      }
+    } else {
+      toast({
+        title: hebrewLocale.comments.voteError,
+        description: result.error || hebrewLocale.comments.voteErrorGeneric,
+        variant: 'destructive',
+      });
+    }
+  };
+
   return (
-    <div className="space-y-4">
+    <div id={`comment-${comment.id}`} className="space-y-4">
       {/* Main Comment */}
       <div className={`
         flex gap-3 p-4 rounded-lg
@@ -115,11 +186,24 @@ export function CommentItem({ comment, guideSlug }: CommentItemProps) {
           {/* Action Buttons */}
           <div className="flex items-center gap-2 flex-wrap">
             {/* Helpful Button */}
-            <Button variant="ghost" size="sm" className="gap-1 h-8">
-              <IconThumbUp className="h-4 w-4" />
+            <Button
+              variant={hasVoted ? 'default' : 'ghost'}
+              size="sm"
+              className={`gap-1 h-8 ${
+                hasVoted
+                  ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                  : ''
+              } ${isOwner ? 'opacity-50 cursor-not-allowed' : ''}`}
+              onClick={handleVote}
+              disabled={isVoting || isOwner}
+            >
+              <IconThumbUp
+                className="h-4 w-4"
+                fill={hasVoted ? 'currentColor' : 'none'}
+              />
               <span className="text-xs">
                 {hebrewLocale.comments.helpful}
-                {comment.helpful_count > 0 && ` (${comment.helpful_count})`}
+                {helpfulCount > 0 && ` (${helpfulCount})`}
               </span>
             </Button>
 
@@ -155,27 +239,14 @@ export function CommentItem({ comment, guideSlug }: CommentItemProps) {
 
       {/* Reply Form (when replying) */}
       {isReplying && (
-        <div className="mr-12">
-          <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
-            <p className="text-sm text-muted-foreground mb-2">
-              {hebrewLocale.comments.replyTo} {comment.profile?.display_name}
-            </p>
-            {/* Reply form will be implemented in Story 8.2 */}
-            <textarea
-              className="w-full p-2 border rounded-md resize-none"
-              rows={3}
-              placeholder={hebrewLocale.comments.writeComment}
-              disabled
-            />
-            <div className="flex gap-2 mt-2">
-              <Button size="sm" disabled>
-                {hebrewLocale.comments.postReply}
-              </Button>
-              <Button size="sm" variant="ghost" onClick={() => setIsReplying(false)}>
-                {hebrewLocale.actions.cancel}
-              </Button>
-            </div>
-          </div>
+        <div className="mr-12 mt-4">
+          <CommentForm
+            guideSlug={guideSlug}
+            parentCommentId={comment.id}
+            parentAuthorName={comment.profile?.display_name || ''}
+            onSuccess={handleReplySuccess}
+            onCancel={() => setIsReplying(false)}
+          />
         </div>
       )}
 
@@ -202,6 +273,7 @@ export function CommentItem({ comment, guideSlug }: CommentItemProps) {
                   key={reply.id}
                   reply={reply}
                   guideSlug={guideSlug}
+                  onVoteChange={onVoteChange}
                 />
               ))}
             </div>

@@ -78,7 +78,7 @@ export function GuidesPage() {
 
   // Story 0.1: Progress data from database
   const [progressData, setProgressData] = useState<Record<string, GuideProgress>>({});
-  const [progressLoading, setProgressLoading] = useState(true);
+  const [, setProgressLoading] = useState(true);
 
   // Story 0.1: Fetch real progress data from database
   useEffect(() => {

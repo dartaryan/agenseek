@@ -14,8 +14,29 @@ interface TextBlockProps {
 /**
  * Parse and render inline markdown
  * Supports: **bold**, *italic*, `code`, [link](url)
+ * Also handles \n\n for paragraph breaks
  */
 function parseMarkdown(text: string): React.ReactNode[] {
+  // First split by double newlines to get paragraphs
+  const paragraphs = text.split('\n\n');
+
+  if (paragraphs.length === 1) {
+    // No paragraph breaks, process normally
+    return parseInlineMarkdown(paragraphs[0]);
+  }
+
+  // Multiple paragraphs - wrap each in a span with spacing
+  return paragraphs.map((para, idx) => (
+    <span key={idx} className="block mb-2 last:mb-0">
+      {parseInlineMarkdown(para)}
+    </span>
+  ));
+}
+
+/**
+ * Parse inline markdown within a single paragraph
+ */
+function parseInlineMarkdown(text: string): React.ReactNode[] {
   const elements: React.ReactNode[] = [];
   let key = 0;
 
