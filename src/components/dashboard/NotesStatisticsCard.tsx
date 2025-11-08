@@ -40,41 +40,41 @@ export function NotesStatisticsCard({ statistics }: NotesStatisticsCardProps) {
 
       {/* Statistics Grid */}
       <div className="space-y-4">
-        {/* Total Notes */}
-        <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-          <span className="text-sm text-gray-600 dark:text-gray-400">סה"כ הערות</span>
-          <span className="text-2xl font-bold text-gray-900 dark:text-white">
+        {/* Total Notes - Story 6.10: Fixed text overflow */}
+        <div className="flex items-center justify-between gap-3 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg min-w-0">
+          <span className="text-sm text-gray-600 dark:text-gray-400 break-words">סה"כ הערות</span>
+          <span className="text-2xl font-bold text-gray-900 dark:text-white flex-shrink-0">
             {statistics.totalCount}
           </span>
         </div>
 
-        {/* Notes Created This Week */}
-        <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-          <div className="flex items-center gap-2">
-            <IconTrendingUp className="w-4 h-4 text-emerald-500" />
+        {/* Notes Created This Week - Story 6.10: Fixed text overflow */}
+        <div className="flex items-center justify-between gap-3 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg min-w-0">
+          <div className="flex items-center gap-2 min-w-0">
+            <IconTrendingUp className="w-4 h-4 text-emerald-500 flex-shrink-0" />
             <span className="text-sm text-gray-600 dark:text-gray-400">השבוע</span>
           </div>
-          <span className="text-lg font-semibold text-emerald-600 dark:text-emerald-400">
+          <span className="text-lg font-semibold text-emerald-600 dark:text-emerald-400 flex-shrink-0">
             +{statistics.createdThisWeek}
           </span>
         </div>
 
-        {/* Associated Guides */}
-        <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-          <div className="flex items-center gap-2">
-            <IconBook className="w-4 h-4 text-purple-500" />
-            <span className="text-sm text-gray-600 dark:text-gray-400">מדריכים מקושרים</span>
+        {/* Associated Guides - Story 6.10: Fixed text overflow */}
+        <div className="flex items-center justify-between gap-3 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg min-w-0">
+          <div className="flex items-center gap-2 min-w-0">
+            <IconBook className="w-4 h-4 text-purple-500 flex-shrink-0" />
+            <span className="text-sm text-gray-600 dark:text-gray-400 break-words">מדריכים מקושרים</span>
           </div>
-          <span className="text-lg font-semibold text-purple-600 dark:text-purple-400">
+          <span className="text-lg font-semibold text-purple-600 dark:text-purple-400 flex-shrink-0">
             {statistics.associatedGuidesCount}
           </span>
         </div>
 
-        {/* Top Tags */}
+        {/* Top Tags - Story 6.10: Fixed tag wrapping and overflow */}
         {statistics.topTags.length > 0 && (
           <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
             <div className="flex items-center gap-2 mb-3">
-              <IconTag className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+              <IconTag className="w-4 h-4 text-gray-500 dark:text-gray-400 flex-shrink-0" />
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                 תגיות פופולריות
               </span>
@@ -83,10 +83,10 @@ export function NotesStatisticsCard({ statistics }: NotesStatisticsCardProps) {
               {statistics.topTags.map((tag) => (
                 <div
                   key={tag.tag}
-                  className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-full text-xs font-medium"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-full text-xs font-medium max-w-full"
                 >
-                  <span>{tag.tag}</span>
-                  <span className="text-emerald-600 dark:text-emerald-400">({tag.count})</span>
+                  <span className="truncate" title={tag.tag}>{tag.tag}</span>
+                  <span className="text-emerald-600 dark:text-emerald-400 flex-shrink-0">({tag.count})</span>
                 </div>
               ))}
             </div>

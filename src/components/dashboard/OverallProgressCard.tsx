@@ -105,29 +105,29 @@ export function OverallProgressCard({
           </div>
         </div>
 
-        {/* Stats */}
+        {/* Stats - Story 6.10: Fixed text overflow */}
         <div className="grid grid-cols-3 gap-4 text-center">
-          <div className="space-y-1">
-            <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+          <div className="space-y-1 min-w-0">
+            <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 truncate" title={String(guidesCompleted)}>
               {guidesCompleted}
             </div>
-            <div className="text-xs text-gray-600 dark:text-gray-400">
+            <div className="text-xs text-gray-600 dark:text-gray-400 break-words leading-relaxed">
               {hebrewLocale.dashboard.guidesCompleted}
             </div>
           </div>
-          <div className="space-y-1">
-            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+          <div className="space-y-1 min-w-0">
+            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 truncate" title={String(guidesInProgress)}>
               {guidesInProgress}
             </div>
-            <div className="text-xs text-gray-600 dark:text-gray-400">
+            <div className="text-xs text-gray-600 dark:text-gray-400 break-words leading-relaxed">
               {hebrewLocale.dashboard.guidesInProgress}
             </div>
           </div>
-          <div className="space-y-1">
-            <div className="text-2xl font-bold text-gray-600 dark:text-gray-400">
+          <div className="space-y-1 min-w-0">
+            <div className="text-2xl font-bold text-gray-600 dark:text-gray-400 truncate" title={String(totalGuides)}>
               {totalGuides}
             </div>
-            <div className="text-xs text-gray-600 dark:text-gray-400">
+            <div className="text-xs text-gray-600 dark:text-gray-400 break-words leading-relaxed">
               {hebrewLocale.dashboard.totalGuides}
             </div>
           </div>

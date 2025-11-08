@@ -55,38 +55,38 @@ export function TasksStatisticsCard({ statistics }: TasksStatisticsCardProps) {
 
       {/* Statistics Grid */}
       <div className="space-y-4">
-        {/* Status Counts */}
+        {/* Status Counts - Story 6.10: Fixed text overflow */}
         <div className="grid grid-cols-3 gap-2">
           {/* To Do */}
-          <div className="p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg text-center">
-            <div className="text-2xl font-bold text-yellow-600 dark:text-yellow-400">
+          <div className="p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg text-center min-w-0">
+            <div className="text-2xl font-bold text-yellow-600 dark:text-yellow-400 truncate" title={String(statistics.statusCounts.todo)}>
               {statistics.statusCounts.todo}
             </div>
-            <div className="text-xs text-yellow-700 dark:text-yellow-300 mt-1">לביצוע</div>
+            <div className="text-xs text-yellow-700 dark:text-yellow-300 mt-1 break-words">לביצוע</div>
           </div>
 
           {/* In Progress */}
-          <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-center">
-            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+          <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-center min-w-0">
+            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 truncate" title={String(statistics.statusCounts.in_progress)}>
               {statistics.statusCounts.in_progress}
             </div>
-            <div className="text-xs text-blue-700 dark:text-blue-300 mt-1">בתהליך</div>
+            <div className="text-xs text-blue-700 dark:text-blue-300 mt-1 break-words">בתהליך</div>
           </div>
 
           {/* Done */}
-          <div className="p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg text-center">
-            <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+          <div className="p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg text-center min-w-0">
+            <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 truncate" title={String(statistics.statusCounts.done)}>
               {statistics.statusCounts.done}
             </div>
-            <div className="text-xs text-emerald-700 dark:text-emerald-300 mt-1">הושלמו</div>
+            <div className="text-xs text-emerald-700 dark:text-emerald-300 mt-1 break-words">הושלמו</div>
           </div>
         </div>
 
-        {/* Completion Rate */}
-        <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-gray-600 dark:text-gray-400">שיעור השלמה</span>
-            <span className="text-2xl font-bold text-gray-900 dark:text-white">
+        {/* Completion Rate - Story 6.10: Fixed text overflow */}
+        <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg min-w-0">
+          <div className="flex items-center justify-between gap-3 mb-2">
+            <span className="text-sm text-gray-600 dark:text-gray-400 break-words">שיעור השלמה</span>
+            <span className="text-2xl font-bold text-gray-900 dark:text-white flex-shrink-0">
               {statistics.completionRate}%
             </span>
           </div>
@@ -99,27 +99,27 @@ export function TasksStatisticsCard({ statistics }: TasksStatisticsCardProps) {
           </div>
         </div>
 
-        {/* High Priority Tasks */}
+        {/* High Priority Tasks - Story 6.10: Fixed text overflow */}
         {statistics.highPriorityCount > 0 && (
           <div
-            className={`flex items-center justify-between p-3 rounded-lg ${
+            className={`flex items-center justify-between gap-3 p-3 rounded-lg min-w-0 ${
               statistics.highPriorityCount > 5
                 ? 'bg-red-50 dark:bg-red-900/20'
                 : 'bg-gray-50 dark:bg-gray-700/50'
             }`}
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 min-w-0">
               <IconAlertTriangle
-                className={`w-4 h-4 ${
+                className={`w-4 h-4 flex-shrink-0 ${
                   statistics.highPriorityCount > 5
                     ? 'text-red-500'
                     : 'text-gray-500 dark:text-gray-400'
                 }`}
               />
-              <span className="text-sm text-gray-600 dark:text-gray-400">עדיפות גבוהה</span>
+              <span className="text-sm text-gray-600 dark:text-gray-400 break-words">עדיפות גבוהה</span>
             </div>
             <span
-              className={`text-lg font-semibold ${
+              className={`text-lg font-semibold flex-shrink-0 ${
                 statistics.highPriorityCount > 5
                   ? 'text-red-600 dark:text-red-400'
                   : 'text-gray-900 dark:text-white'

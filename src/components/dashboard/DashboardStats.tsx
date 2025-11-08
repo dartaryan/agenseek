@@ -62,21 +62,37 @@ interface StatCardProps {
 
 function StatCard({ icon: Icon, label, value, iconColor, trend }: StatCardProps) {
   return (
-    <div className="flex items-start gap-4 p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
-      {/* Icon */}
-      <div className={`flex-shrink-0 w-12 h-12 ${iconColor} rounded-lg flex items-center justify-center`}>
-        <Icon className="w-6 h-6 text-white" stroke={1.5} />
-      </div>
+    <div className="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+      {/* Story 6.10: Horizontal layout with ample spacing, stacked vertically */}
+      <div className="flex items-center gap-4">
+        {/* Icon - small and subtle */}
+        <div className={`w-9 h-9 ${iconColor} rounded-lg flex items-center justify-center flex-shrink-0`}>
+          <Icon className="w-5 h-5 text-white" stroke={1.5} />
+        </div>
 
-      {/* Content */}
-      <div className="flex-1 min-w-0">
-        <div className="text-2xl font-bold text-gray-900 dark:text-white">{value}</div>
-        <div className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">{label}</div>
+        {/* Content - takes available space */}
+        <div className="flex-1 min-w-0">
+          <div
+            className="text-2xl font-bold text-gray-900 dark:text-white truncate mb-1"
+            title={typeof value === 'string' ? value : String(value)}
+          >
+            {value}
+          </div>
 
-        {/* Trend (optional) */}
+          <div
+            className="text-sm text-gray-600 dark:text-gray-400 truncate"
+            lang="he"
+            dir="rtl"
+            title={label}
+          >
+            {label}
+          </div>
+        </div>
+
+        {/* Trend (optional) - on the right */}
         {trend && (
           <div
-            className={`flex items-center gap-1 mt-1 text-xs ${
+            className={`flex items-center gap-1 text-xs flex-shrink-0 ${
               trend.positive ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-red-400'
             }`}
           >
@@ -84,8 +100,10 @@ function StatCard({ icon: Icon, label, value, iconColor, trend }: StatCardProps)
               className={`w-3 h-3 ${trend.positive ? '' : 'rotate-180'}`}
               stroke={1.5}
             />
-            {trend.positive ? '+' : ''}
-            {trend.value}%
+            <span className="whitespace-nowrap">
+              {trend.positive ? '+' : ''}
+              {trend.value}%
+            </span>
           </div>
         )}
       </div>
@@ -115,7 +133,8 @@ export function DashboardStats({
         </div>
 
         {/* Stats Grid - Story 5.6: Now includes 5 stats with trends */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {/* Story 6.10: Vertical stack layout for maximum space and readability */}
+        <div className="space-y-3">
           <StatCard
             icon={IconClock}
             label={hebrewLocale.dashboard.totalReadingTime}
