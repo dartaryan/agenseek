@@ -6,224 +6,266 @@
 
 ---
 
-## Epic 1: Project Foundation & Infrastructure (12 stories)
+## Epic 1: Project Foundation & Infrastructure (12 stories) ✅ COMPLETE
 
-### Story 1.11: Full Hebrew Localization (No English)
-**Sprint:** 1 | **Points:** 3 | **Priority:** P0
+### Story 1.1: Initialize Vite + React + TypeScript Project ✅
+**Sprint:** 1 | **Points:** 1 | **Priority:** P0 | **Status:** COMPLETE
+
+### Story 1.2: Configure TailwindCSS with Emerald Theme ✅
+**Sprint:** 1 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
+
+### Story 1.3: Install and Configure Shadcn/ui Component System ✅
+**Sprint:** 1 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
+
+### Story 1.4: Install Core Dependencies ✅
+**Sprint:** 1 | **Points:** 1 | **Priority:** P0 | **Status:** COMPLETE
+
+### Story 1.5: Create Supabase Project and Configure Database ✅
+**Sprint:** 1 | **Points:** 3 | **Priority:** P0 | **Status:** COMPLETE
+
+### Story 1.6: Set Up Supabase Client and Auth Configuration ✅
+**Sprint:** 1 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
+
+### Story 1.7: Configure Routing with React Router ✅
+**Sprint:** 1 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
+
+### Story 1.8: Create Base Layout Components ✅
+**Sprint:** 1 | **Points:** 3 | **Priority:** P0 | **Status:** COMPLETE
+
+### Story 1.9: Configure Vercel Deployment ✅
+**Sprint:** 1 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
+
+### Story 1.10: Set Up Development Scripts and Code Quality Tools ✅
+**Sprint:** 1 | **Points:** 1 | **Priority:** P0 | **Status:** COMPLETE
+
+### Story 1.11: Full Hebrew Localization (No English) ✅
+**Sprint:** 1 | **Points:** 3 | **Priority:** P0 | **Status:** COMPLETE
 **User Story:** As a Hebrew-speaking user, I want the entire application interface in Hebrew with Tabler Icons, so that I can use the platform in my native language without any English text or emojis.
 **Key AC:** Replace all emojis with Tabler Icons, translate all UI text to Hebrew, create centralized locale file, zero emojis and English text in UI
 **Dependencies:** 1.8
 
-### Story 1.12: Implement Real Agenseek Logo Across Application
-**Sprint:** 1 | **Points:** 2 | **Priority:** P1
+### Story 1.12: Implement Real Agenseek Logo Across Application ✅
+**Sprint:** 1 | **Points:** 2 | **Priority:** P1 | **Status:** COMPLETE
 **User Story:** As a user, I want to see the professional Agenseek logo throughout the application, so that the platform has a consistent and professional brand identity.
 **Key AC:** Replace placeholder logos in Header and auth pages, update favicon, use SVG format, maintain responsive design, proper alt text for accessibility
 **Dependencies:** 1.8, 1.11
 
 ---
 
-## Epic 2: Authentication & Onboarding (10 stories)
+## Epic 2: Authentication & Onboarding (12 stories) - 10 of 12 Complete
 
-### Story 2.1: Build Login Page
-**Sprint:** 2 | **Points:** 2 | **Priority:** P0
+### Story 2.1: Build Login Page ✅
+**Sprint:** 2 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
 **User Story:** As a user, I want to log in with my email and password, so that I can access my personalized learning experience.
 **Key AC:** Form with email/password, validation with Zod, React Hook Form, redirect to dashboard on success, error toasts, "Remember me" checkbox, forgot password link, Google OAuth button
 **Dependencies:** Epic 1 complete
 
-### Story 2.2: Build Registration Page
-**Sprint:** 2 | **Points:** 3 | **Priority:** P0
+### Story 2.2: Build Registration Page ✅
+**Sprint:** 2 | **Points:** 3 | **Priority:** P0 | **Status:** COMPLETE
 **User Story:** As a new user, I want to register for an account with email verification, so that I can start learning BMAD.
 **Key AC:** Form with display name, email, password, confirm password; password strength indicator; email verification sent; profile created in database
 **Dependencies:** 2.1
 
-### Story 2.3: Build Password Reset Flow
-**Sprint:** 2 | **Points:** 2 | **Priority:** P0
+### Story 2.3: Build Password Reset Flow ⏸️
+**Sprint:** 2 | **Points:** 2 | **Priority:** P0 | **Status:** PENDING
 **User Story:** As a user who forgot my password, I want to reset my password via email link, so that I can regain access.
 **Key AC:** Email input form, sends reset link, token validation, new password form, success redirect to login
 **Dependencies:** 2.2
 
-### Story 2.4: Build Google OAuth Integration
-**Sprint:** 2 | **Points:** 2 | **Priority:** P1
+### Story 2.4: Build Google OAuth Integration ⏸️
+**Sprint:** 2 | **Points:** 2 | **Priority:** P1 | **Status:** PENDING
 **User Story:** As a user, I want to sign in with my Google account, so that I can access the platform without creating a new password.
 **Key AC:** Google sign-in button, OAuth flow, automatic profile creation, redirect to onboarding or dashboard
 **Dependencies:** 2.3
 
-### Story 2.5: Build Onboarding Wizard - Step 1 (Welcome)
-**Sprint:** 2 | **Points:** 2 | **Priority:** P0
+### Story 2.5: Build Onboarding Wizard - Step 1 (Welcome) ✅
+**Sprint:** 2 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
 **User Story:** As a new user completing registration, I want a welcoming introduction, so that I understand what Agenseek offers.
 **Key AC:** Full-screen wizard, progress dots (1/5), welcome message, animated illustration, primary "Let's personalize" button, "Do later" link
 **Dependencies:** 2.4
 
-### Story 2.6: Build Onboarding Wizard - Step 2 (Select Role)
-**Sprint:** 3 | **Points:** 2 | **Priority:** P0
+### Story 2.6: Build Onboarding Wizard - Step 2 (Select Role) ✅
+**Sprint:** 3 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
 **User Story:** As a new user, I want to select my role, so that the platform can recommend relevant content.
 **Key AC:** Progress dots (2/5), 9 role cards (Developer, PM, Designer, Architect, etc.), single selection, emerald border on selection, next button enabled after selection
 **Dependencies:** 2.5
 
-### Story 2.7: Build Onboarding Wizard - Step 3 (Select Interests)
-**Sprint:** 3 | **Points:** 2 | **Priority:** P0
+### Story 2.7: Build Onboarding Wizard - Step 3 (Select Interests) ✅
+**Sprint:** 3 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
 **User Story:** As a new user, I want to select my learning interests, so that I receive personalized guide recommendations.
 **Key AC:** Progress dots (3/5), 8 interest topic chips (multi-select), toggle selection, no minimum required, filled emerald background when selected
 **Dependencies:** 2.6
 
-### Story 2.8: Build Onboarding Wizard - Step 4 (Experience Level)
-**Sprint:** 3 | **Points:** 2 | **Priority:** P0
+### Story 2.8: Build Onboarding Wizard - Step 4 (Experience Level) ✅
+**Sprint:** 3 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
 **User Story:** As a new user, I want to indicate my experience level, so that content difficulty matches my skill level.
 **Key AC:** Progress dots (4/5), 3 cards (Beginner, Intermediate, Advanced), single selection, hover animations, next button enabled after selection
 **Dependencies:** 2.7
 
-### Story 2.9: Build Onboarding Wizard - Step 5 (Learning Path Generated)
-**Sprint:** 3 | **Points:** 3 | **Priority:** P0
+### Story 2.9: Build Onboarding Wizard - Step 5 (Learning Path Generated) ✅
+**Sprint:** 3 | **Points:** 3 | **Priority:** P0 | **Status:** COMPLETE
 **User Story:** As a new user, I want to see my personalized learning path generated, so that I know which guides to read first.
 **Key AC:** Progress dots (5/5), loading animation, staggered guide list reveal (Core, Recommended, Interests, Optional), save preferences to profile, confetti celebration, success toast
 **Dependencies:** 2.8
 
-### Story 2.10: Implement Protected Routes and Onboarding Redirect Logic
-**Sprint:** 3 | **Points:** 2 | **Priority:** P0
+### Story 2.10: Implement Protected Routes and Onboarding Redirect Logic ✅
+**Sprint:** 3 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
 **User Story:** As a system, I want to automatically redirect users based on onboarding status, so that new users complete onboarding before accessing the platform.
 **Key AC:** Check completed_onboarding flag, redirect logic (not authenticated → login, authenticated but not onboarded → onboarding, authenticated and onboarded → allow), logout clears auth state
 **Dependencies:** 2.9
 
+### Story 2.11: Comprehensive Hebrew Localization for Authentication Flows ⏸️
+**Sprint:** 2 | **Points:** 3 | **Priority:** P0 | **Status:** PENDING
+**User Story:** As a Hebrew-speaking user, I want all authentication-related content fully translated to Hebrew, so that I can use the authentication system in my native language.
+**Key AC:** All auth pages translated to Hebrew, error messages in Hebrew, validation in Hebrew, toast notifications in Hebrew
+**Dependencies:** 2.4
+
+### Story 2.12: Account Deletion Feature ⏸️
+**Sprint:** 2 | **Points:** 3 | **Priority:** P1 | **Status:** PENDING
+**User Story:** As a user, I want to permanently delete my account and all associated data, so that I can exercise my right to be forgotten.
+**Key AC:** Delete account button in settings, confirmation dialog, cascading deletion of all user data, sign out and redirect
+**Dependencies:** 2.10
+
 ---
 
-## Epic 3: Dynamic Content Rendering (10 stories)
+## Epic 3: Dynamic Content Rendering (10 stories) - 9 of 10 Complete
 
-### Story 3.1: Define TypeScript Types for Content Blocks
-**Sprint:** 4 | **Points:** 2 | **Priority:** P0
+### Story 3.1: Define TypeScript Types for Content Blocks ✅
+**Sprint:** 4 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** Create content/schemas/component.types.ts with 14 block type interfaces, discriminated unions, Guide type with metadata
 **Dependencies:** Epic 2 complete
 
-### Story 3.2: Build Content Renderer Orchestrator
-**Sprint:** 4 | **Points:** 2 | **Priority:** P0
+### Story 3.2: Build Content Renderer Orchestrator ✅
+**Sprint:** 4 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** ContentRenderer component accepts blocks array, switches on block type, dispatches to specific components, error boundary for invalid blocks
 **Dependencies:** 3.1
 
-### Story 3.3: Build Core Block Components (Heading, Text, List)
-**Sprint:** 4 | **Points:** 2 | **Priority:** P0
+### Story 3.3: Build Core Block Components (Heading, Text, List) ✅
+**Sprint:** 4 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** HeadingBlock (h1-h6, id for ToC), TextBlock (markdown inline), ListBlock (ol/ul, nested), RTL-aware, semantic HTML
 **Dependencies:** 3.2
 
-### Story 3.4: Build Code Block with Syntax Highlighting
-**Sprint:** 4 | **Points:** 3 | **Priority:** P0
+### Story 3.4: Build Code Block with Syntax Highlighting ✅
+**Sprint:** 4 | **Points:** 3 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** react-syntax-highlighter, language badge, filename, line numbers, highlighted lines, copy button with feedback, dark theme aware
 **Dependencies:** 3.3
 
-### Story 3.5: Build Callout Block Component
-**Sprint:** 4 | **Points:** 2 | **Priority:** P0
+### Story 3.5: Build Callout Block Component ✅
+**Sprint:** 4 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** 4 variants (info/warning/success/error), colored icon and border, optional title, content can be text or blocks
 **Dependencies:** 3.4
 
-### Story 3.6: Build Table Block Component
-**Sprint:** 4 | **Points:** 2 | **Priority:** P0
+### Story 3.6: Build Table Block Component ✅
+**Sprint:** 4 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** Semantic table HTML, caption, zebra striping, column alignment, responsive (horizontal scroll on mobile)
 **Dependencies:** 3.5
 
-### Story 3.7: Build Accordion Block Component
-**Sprint:** 4 | **Points:** 2 | **Priority:** P0
+### Story 3.7: Build Accordion Block Component ✅
+**Sprint:** 4 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** Shadcn/ui Accordion, multiple items, allowMultiple option, chevron animation, smooth height transition, content can be blocks
 **Dependencies:** 3.6
 
-### Story 3.8: Build Tabs Block Component
-**Sprint:** 4 | **Points:** 2 | **Priority:** P0
+### Story 3.8: Build Tabs Block Component ✅
+**Sprint:** 4 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** Shadcn/ui Tabs, horizontal tab list, active tab highlighted with emerald underline, keyboard navigation, content transition
 **Dependencies:** 3.7
 
-### Story 3.9: Build Chart Block Component
-**Sprint:** 4 | **Points:** 3 | **Priority:** P1
+### Story 3.9: Build Chart Block Component ✅
+**Sprint:** 4 | **Points:** 3 | **Priority:** P1 | **Status:** COMPLETE
 **Key AC:** Recharts library, supports line/bar/area/pie charts, responsive sizing, tooltip on hover, data props with xKey/yKey
 **Dependencies:** 3.8
 
-### Story 3.10: Build Remaining Blocks (Grid, Card, Image, Video)
-**Sprint:** 4 | **Points:** 3 | **Priority:** P1
+### Story 3.10: Build Remaining Blocks (Grid, Card, Image, Video) ⏸️
+**Sprint:** 4 | **Points:** 3 | **Priority:** P1 | **Status:** PENDING
 **Key AC:** GridBlock (1-4 columns, responsive), CardBlock (Shadcn/ui with variants), ImageBlock (lazy loading, caption), VideoBlock (responsive aspect ratio)
 **Dependencies:** 3.9
 
 ---
 
-## Epic 4: Guide Library & Discovery (8 stories)
+## Epic 4: Guide Library & Discovery (8 stories) - 7 of 8 Complete
 
-### Story 4.1: Create Guide JSON Content Catalog
-**Sprint:** 5 | **Points:** 2 | **Priority:** P0
+### Story 4.1: Create Guide JSON Content Catalog ✅
+**Sprint:** 5 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** Create content/locale/he/guides/index.json with metadata for all 42 guides (id, title, description, category, difficulty, estimatedMinutes, icon, tags, path)
 **Dependencies:** Epic 3 complete
 
-### Story 4.2: Migrate Sample Guide Content to JSON
-**Sprint:** 5 | **Points:** 3 | **Priority:** P0
+### Story 4.2: Migrate Sample Guide Content to JSON ✅
+**Sprint:** 5 | **Points:** 3 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** Convert 3 sample guides from markdown to JSON (quick-start, developers role, intro-pm-analyst), include metadata, tableOfContents, content array with variety of block types
 **Dependencies:** 4.1
 
-### Story 4.3: Build Guide Card Component
-**Sprint:** 5 | **Points:** 3 | **Priority:** P0
+### Story 4.3: Build Guide Card Component ✅
+**Sprint:** 5 | **Points:** 3 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** Visual card with gradient header (180px) with icon, title, description (2 lines truncated), category/difficulty badges, footer with time + progress, action button, hover lift animation with emerald glow
 **Dependencies:** 4.2
 
-### Story 4.4: Build Guides Library Page with Filtering
-**Sprint:** 5 | **Points:** 3 | **Priority:** P0
+### Story 4.4: Build Guides Library Page with Filtering ✅
+**Sprint:** 5 | **Points:** 3 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** /guides route, header with count and view toggle, left sidebar filters (category, difficulty, status), guide card grid (responsive 1-4 cols), sorting dropdown (recommended/alphabetical/recent/popular), active filter chips
 **Dependencies:** 4.3
 
-### Story 4.5: Build Guide Reader 3-Panel Layout
-**Sprint:** 6 | **Points:** 3 | **Priority:** P0
+### Story 4.5: Build Guide Reader 3-Panel Layout ✅
+**Sprint:** 6 | **Points:** 3 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** /guides/:slug route, 3 panels (ToC 20%, content 60%, actions 20%), ToC with current section highlight and progress dots, content area with breadcrumbs and action bar, actions sidebar with progress circle and mark complete button, scroll progress bar at top
 **Dependencies:** 4.4
 
-### Story 4.6: Implement Progress Tracking on Guide Read
-**Sprint:** 6 | **Points:** 3 | **Priority:** P0
+### Story 4.6: Implement Progress Tracking on Guide Read ✅
+**Sprint:** 6 | **Points:** 3 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** Track scroll position, calculate progress %, time spent, auto-save every 30 seconds to user_progress table, log activity, update guide stats, resume at saved position on reload
 **Dependencies:** 4.5
 
-### Story 4.7: Implement Mark Complete with Celebration
-**Sprint:** 6 | **Points:** 2 | **Priority:** P0
+### Story 4.7: Implement Mark Complete with Celebration ⏸️
+**Sprint:** 6 | **Points:** 2 | **Priority:** P0 | **Status:** PENDING
 **Key AC:** Mark complete button, confirmation dialog, update user_progress (completed=true, progress_percent=100, completed_at), insert activity, update guide stats, confetti animation, success modal with next guide recommendation
 **Dependencies:** 4.6
 
-### Story 4.8: Build Breadcrumbs and Navigation Components
-**Sprint:** 6 | **Points:** 2 | **Priority:** P1
+### Story 4.8: Build Breadcrumbs and Navigation Components ✅
+**Sprint:** 6 | **Points:** 2 | **Priority:** P1 | **Status:** COMPLETE
 **Key AC:** Breadcrumbs (Home > Category > Guide), clickable links, RTL chevron, responsive collapse on mobile, bottom pagination (previous/next guide), keyboard arrows for navigation, related guides section
 **Dependencies:** 4.7
 
 ---
 
-## Epic 5: Progress & Achievements (8 stories)
+## Epic 5: Progress & Achievements (8 stories) - 5 of 8 Complete (+ 3 enhancement stories complete)
 
-### Story 5.1: Build Dashboard Home Page
-**Sprint:** 7 | **Points:** 3 | **Priority:** P0
+### Story 5.1: Build Dashboard Home Page ✅
+**Sprint:** 7 | **Points:** 3 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** /dashboard route, welcome message, 3-column responsive grid (progress & achievements, quick actions, community & activity), overall progress card, continue reading section, quick action buttons
 **Dependencies:** Epic 4 complete
 
-### Story 5.2: Build Overall Progress Tracking System
-**Sprint:** 7 | **Points:** 2 | **Priority:** P0
+### Story 5.2: Build Overall Progress Tracking System ✅
+**Sprint:** 7 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** Large circular progress indicator, percentage and count, category breakdown accordion (Core/Recommended/Interests/Optional), progress bars per category, checkmark for 100% complete
 **Dependencies:** 5.1
 
-### Story 5.3: Build Achievement Badge System
-**Sprint:** 7 | **Points:** 3 | **Priority:** P0
+### Story 5.3: Build Achievement Badge System ✅
+**Sprint:** 7 | **Points:** 3 | **Priority:** P0 | **Status:** COMPLETE
 **Key AC:** Achievement types (Bronze/Silver/Gold badges, Category Master, Week/Month Streak, Quick Learner, Note Taker, Task Master), badge display with earned (color+glow) vs locked (grayscale+lock), unlock animation with confetti, badge modal
 **Dependencies:** 5.2
 
-### Story 5.4: Build Continue Reading Section
-**Sprint:** 7 | **Points:** 2 | **Priority:** P0
+### Story 5.4: Build Continue Reading Section ⏸️
+**Sprint:** 7 | **Points:** 2 | **Priority:** P0 | **Status:** PENDING
 **Key AC:** Shows last 3 in-progress guides (0% < progress < 100%), displays icon, title, progress bar, continue button, time since last read, last position indicator, sorted by last_read_at DESC
 **Dependencies:** 5.3
 
-### Story 5.5: Build Activity Feed
-**Sprint:** 7 | **Points:** 2 | **Priority:** P0
+### Story 5.5: Build Activity Feed ⏸️
+**Sprint:** 7 | **Points:** 2 | **Priority:** P0 | **Status:** PENDING
 **Key AC:** Last 10 activities chronologically, activity types (view_guide, complete_guide, create_note, create_task, earn_achievement), icon + description + link + timestamp, grouped by day headers
 **Dependencies:** 5.4
 
-### Story 5.6: Build Statistics Widgets
-**Sprint:** 7 | **Points:** 2 | **Priority:** P0
+### Story 5.6: Build Statistics Widgets ⏸️
+**Sprint:** 7 | **Points:** 2 | **Priority:** P0 | **Status:** PENDING
 **Key AC:** Your Statistics card with total reading time (hours:minutes), guides completed count, notes created count, tasks completed count, current streak (consecutive days), trend indicators, sparkline charts
 **Dependencies:** 5.5
 
-### Story 5.7: Build Popular Guides Widget
-**Sprint:** 7 | **Points:** 2 | **Priority:** P1
+### Story 5.7: Build Popular Guides Widget ✅
+**Sprint:** 7 | **Points:** 2 | **Priority:** P1 | **Status:** COMPLETE
 **Key AC:** Top 5 most viewed guides last 7 days, displays icon, title, view count, trend indicator (flame if increasing), "Trending" badge for top 3
 **Dependencies:** 5.6
 
-### Story 5.8: Build Full Progress Details Page
-**Sprint:** 7 | **Points:** 2 | **Priority:** P1
-**Key AC:** /progress route, hero with overall progress, category breakdown (expandable), full guide list with status (not started/in progress/completed), time spent, date completed, action buttons, filters (all/in progress/completed), PDF export option
+### Story 5.8: Build Full Progress Details Page ✅
+**Sprint:** 7 | **Points:** 2 | **Priority:** P1 | **Status:** COMPLETE
+**Key AC:** /progress route, hero with overall progress, category breakdown (expandable), full guide list with status (not started/in progress/completed), time spent, date completed, action buttons, filters (all/in progress/completed), PDF export option (placeholder)
 **Dependencies:** 5.7
 
 ---
@@ -414,22 +456,22 @@ For each story, verify:
 
 ---
 
-## Reader Experience Enhancements (Sub-Epic of Epic 5) (3 stories)
+## Reader Experience Enhancements (Sub-Epic of Epic 5) (3 stories) ✅ ALL COMPLETE
 
-### Story 5.1.1: Mobile Reader UX Improvements
-**Sprint:** TBD | **Points:** 5 | **Priority:** P0
+### Story 5.1.1: Mobile Reader UX Improvements ✅
+**Sprint:** 7 | **Points:** 5 | **Priority:** P0 | **Status:** COMPLETE
 **User Story:** As a mobile user reading a guide, I want a better reading experience with proper spacing and intuitive navigation, so that I can comfortably read guides on my phone without UI elements obstructing content.
 **Key AC:** Proper content padding (16px mobile), bottom clearance for FAB, explicit close button in mobile ToC sheet, ToC FAB auto-hide on scroll down/show on scroll up, header-integrated ToC button option, touch-friendly action buttons, responsive breadcrumbs
 **Dependencies:** Stories 4.5-4.8
 
-### Story 5.1.2: Toggle Guide Completion Status
-**Sprint:** TBD | **Points:** 3 | **Priority:** P1
+### Story 5.1.2: Toggle Guide Completion Status ✅
+**Sprint:** 7 | **Points:** 3 | **Priority:** P1 | **Status:** COMPLETE
 **User Story:** As a user who has completed a guide, I want to be able to unmark it as completed, so that I can review it again with progress tracking or correct accidental completion.
 **Key AC:** Mark Complete button never disabled, toggles between "סמן כהושלם" and "סמן כלא הושלם", confirmation dialog for unmark, restore progress to pre-completion value, database stores progress_before_completion, activity log records both actions, icon changes with state
 **Dependencies:** Story 4.7
 
-### Story 5.1.3: Fix Guide Component Bugs
-**Sprint:** TBD | **Points:** 2 | **Priority:** P0
+### Story 5.1.3: Fix Guide Component Bugs ✅
+**Sprint:** 7 | **Points:** 2 | **Priority:** P0 | **Status:** COMPLETE
 **User Story:** As a user reading a guide, I want all UI components to work correctly, so that I can navigate and discover content without broken features.
 **Key AC:** Related Guides icons display properly (IconBook from Tabler Icons, not broken emojis), table of contents works correctly (smooth scroll, section highlighting, works on desktop and mobile), all H2/H3 headings appear in ToC, anchor IDs match properly
 **Dependencies:** Stories 4.5, 4.8

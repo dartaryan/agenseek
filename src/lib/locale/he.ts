@@ -115,6 +115,31 @@ export interface LocaleStrings {
       description: string;
       placeholder: string;
     };
+    progress: {
+      title: string;
+      description: string;
+      heroTitle: string;
+      heroDescription: string;
+      overallProgress: string;
+      categoryBreakdown: string;
+      allGuides: string;
+      filterAll: string;
+      filterInProgress: string;
+      filterCompleted: string;
+      filterNotStarted: string;
+      statusNotStarted: string;
+      statusInProgress: string;
+      statusCompleted: string;
+      timeSpent: string;
+      completedOn: string;
+      actionStart: string;
+      actionResume: string;
+      actionReview: string;
+      noGuides: string;
+      noGuidesDescription: string;
+      guidesCount: string;
+      exportPdf: string;
+    };
     notes: {
       title: string;
       description: string;
@@ -426,6 +451,31 @@ export const hebrewLocale: LocaleStrings = {
       title: 'מדריכי למידה',
       description: 'גלה מדריכים המותאמים אישית עבורך',
       placeholder: 'ספריית המדריכים תיושם בשלב 4',
+    },
+    progress: {
+      title: 'ההתקדמות שלי',
+      description: 'מעקב אחר מסע הלמידה שלך',
+      heroTitle: 'מסע הלמידה שלך',
+      heroDescription: 'עקוב אחר ההתקדמות שלך בכל המדריכים',
+      overallProgress: 'התקדמות כללית',
+      categoryBreakdown: 'חלוקה לפי קטגוריות',
+      allGuides: 'כל המדריכים',
+      filterAll: 'הכל',
+      filterInProgress: 'בתהליך',
+      filterCompleted: 'הושלמו',
+      filterNotStarted: 'טרם התחילו',
+      statusNotStarted: 'טרם התחלת',
+      statusInProgress: 'בתהליך',
+      statusCompleted: 'הושלם',
+      timeSpent: 'זמן קריאה',
+      completedOn: 'הושלם ב-',
+      actionStart: 'התחל',
+      actionResume: 'המשך',
+      actionReview: 'סקור שנית',
+      noGuides: 'לא נמצאו מדריכים',
+      noGuidesDescription: 'נסה לשנות את המסננים',
+      guidesCount: 'מדריכים',
+      exportPdf: 'ייצא כ-PDF',
     },
     notes: {
       title: 'ההערות שלי',

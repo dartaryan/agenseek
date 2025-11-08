@@ -15,6 +15,7 @@ import { OnboardingWizardPage } from './onboarding/wizard';
 
 // Protected pages
 import { DashboardPage } from './dashboard';
+import { ProgressDetailsPage } from './progress';
 import { GuidesPage } from './guides';
 import { GuideDetailPage } from './guides/guide-detail';
 import ContentDemo from './guides/content-demo';
@@ -110,6 +111,10 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard',
         element: <DashboardPage />,
+      },
+      {
+        path: '/progress',
+        element: <ProgressDetailsPage />,
       },
       {
         path: '/guides',
