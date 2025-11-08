@@ -28,6 +28,9 @@ interface GuideCardProps {
   /** Optional: Whether guide is started */
   isStarted?: boolean;
 
+  /** Optional: View mode (grid or list) */
+  viewMode?: 'grid' | 'list';
+
   /** Optional: Additional CSS classes */
   className?: string;
 }
@@ -106,12 +109,124 @@ export function GuideCard({
   guide,
   progressPercent = 0,
   isStarted = false,
+  viewMode = 'grid',
   className,
 }: GuideCardProps) {
   const categoryConfig = CATEGORY_CONFIG[guide.category];
   const difficultyConfig = DIFFICULTY_CONFIG[guide.difficulty];
   const IconComponent = getIconComponent(guide.icon);
 
+  // List view - horizontal compact layout
+  if (viewMode === 'list') {
+    return (
+      <motion.div
+        whileHover={{
+          x: -4,
+          boxShadow: '0 8px 20px rgba(16, 185, 129, 0.2)',
+        }}
+        transition={{ duration: 0.2 }}
+        className={className}
+      >
+        <Link to={`/guides/${guide.id}`} className="block">
+          <Card className="flex overflow-hidden hover:border-emerald-500 transition-colors">
+            {/* Content - Left side */}
+            <div className="flex-1 flex flex-col sm:flex-row gap-4 p-4">
+              {/* Text Content */}
+              <div className="flex-1 min-w-0">
+                {/* Title */}
+                <h3 className="text-lg font-semibold mb-1 text-gray-900 line-clamp-1 text-right">
+                  {guide.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-sm text-gray-600 mb-3 line-clamp-2 text-right">
+                  {guide.description}
+                </p>
+
+                {/* Meta info: badges and time */}
+                <div className="flex items-center gap-3 flex-wrap justify-end">
+                  {/* Category Badge */}
+                  <span
+                    className={cn(
+                      'inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium border',
+                      getCategoryBadgeColor(guide.category)
+                    )}
+                  >
+                    {categoryConfig.label}
+                  </span>
+
+                  {/* Difficulty Badge */}
+                  <span
+                    className={cn(
+                      'inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium border',
+                      getDifficultyBadgeColor(guide.difficulty)
+                    )}
+                  >
+                    {difficultyConfig.label}
+                  </span>
+
+                  {/* Estimated Time */}
+                  <div className="flex items-center gap-1 text-sm text-gray-600">
+                    <TablerIcons.IconClock size={14} />
+                    <span>{guide.estimatedMinutes} דקות</span>
+                  </div>
+
+                  {/* Progress Indicator (only if started) */}
+                  {isStarted && progressPercent > 0 && (
+                    <div className="flex items-center gap-1.5 text-sm">
+                      <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-emerald-500 rounded-full transition-all"
+                          style={{ width: `${progressPercent}%` }}
+                        />
+                      </div>
+                      <span className="text-emerald-600 font-medium text-xs">
+                        {Math.round(progressPercent)}%
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Action Button - Desktop only */}
+              <div className="hidden sm:flex items-center">
+                <button
+                  className={cn(
+                    'py-2 px-4 rounded-lg font-medium text-sm transition-colors whitespace-nowrap',
+                    isStarted
+                      ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                      : 'bg-gray-100 hover:bg-gray-200 text-gray-900'
+                  )}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    // Navigation will be handled by the Link wrapper
+                  }}
+                >
+                  {isStarted && progressPercent > 0 && progressPercent < 100
+                    ? 'המשך'
+                    : isStarted && progressPercent === 100
+                      ? 'קרא שוב'
+                      : 'התחל'}
+                </button>
+              </div>
+            </div>
+
+            {/* Gradient Icon - Right side */}
+            <div
+              className={cn(
+                'w-24 sm:w-28 flex-shrink-0 flex items-center justify-center',
+                getCategoryGradient(guide.category)
+              )}
+            >
+              <IconComponent size={40} className="text-white" />
+            </div>
+          </Card>
+        </Link>
+      </motion.div>
+    );
+  }
+
+  // Grid view - original vertical layout
   return (
     <motion.div
       whileHover={{

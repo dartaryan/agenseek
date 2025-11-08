@@ -37,6 +37,8 @@ interface NoteEditorModalProps {
   onOpenChange: (open: boolean) => void;
   note?: UserNote | null;
   guideSlug?: string | null;
+  guideTitle?: string | null; // Story 6.3: Guide title for default note title
+  initialContent?: string | null; // Story 6.3: Pre-fill content (e.g., selected text)
   onSaved?: (note: UserNote) => void;
 }
 
@@ -45,6 +47,8 @@ export function NoteEditorModal({
   onOpenChange,
   note,
   guideSlug,
+  guideTitle,
+  initialContent,
   onSaved,
 }: NoteEditorModalProps) {
   const { user } = useAuth();
@@ -97,16 +101,48 @@ export function NoteEditorModal({
       setHasChanges(false);
       setSaveStatus('saved');
     } else {
-      // New note
-      setTitle('');
+      // New note - Story 6.3: Pre-fill with guide title and selected content
+      setTitle(guideTitle || '');
       setTags([]);
       setSelectedGuide(guideSlug || null);
-      editor?.commands.setContent({ type: 'doc', content: [{ type: 'paragraph' }] });
+
+      // Story 6.3: If initialContent provided, set as blockquote
+      if (initialContent && editor) {
+        editor.commands.setContent({
+          type: 'doc',
+          content: [
+            {
+              type: 'blockquote',
+              content: [
+                {
+                  type: 'paragraph',
+                  content: [
+                    {
+                      type: 'text',
+                      text: initialContent,
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: 'paragraph', // Empty paragraph after blockquote for user to continue typing
+            },
+          ],
+        });
+        // Focus will be set after a brief delay to allow editor to render
+        setTimeout(() => {
+          editor.commands.focus('end');
+        }, 100);
+      } else {
+        editor?.commands.setContent({ type: 'doc', content: [{ type: 'paragraph' }] });
+      }
+
       noteIdRef.current = null;
-      setHasChanges(false);
-      setSaveStatus('saved');
+      setHasChanges(initialContent ? true : false);
+      setSaveStatus(initialContent ? 'unsaved' : 'saved');
     }
-  }, [note, guideSlug, editor, open]);
+  }, [note, guideSlug, guideTitle, initialContent, editor, open]);
 
   // Auto-save function
   const handleAutoSave = useCallback(async () => {

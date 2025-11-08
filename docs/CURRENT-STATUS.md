@@ -2,30 +2,31 @@
 
 **Last Updated:** November 8, 2025
 **Current Sprint:** Sprint 8 - Notes & Tasks
-**Sprint Status:** Story 6.1 COMPLETE ✅
+**Sprint Status:** Story 6.3 COMPLETE ✅
 
 ---
 
 ## 📍 NEXT STORY TO IMPLEMENT
 
-### **Story 6.3: Implement Quick Note from Guide**
+### **Story 6.4: Build Task Management System**
 
 - **Epic:** 6 - Notes & Tasks
 - **Priority:** P0
 - **Sprint:** 8
-- **Story Points:** 2
+- **Story Points:** 3
 - **Status:** ⏸️ PENDING
 
 **Why This Story:**
-- Story 6.2 (Notes Library Page) is complete
+- Story 6.3 (Quick Note from Guide) is complete
 - Continues Epic 6 implementation
-- Enables users to create notes directly while reading guides
-- Improves learning workflow by reducing friction
+- Enables users to track learning tasks and action items
+- Supports subtasks for granular task breakdown
+- Priority levels help users focus on important tasks
 
-**Story File:** Check `docs/epics-remaining.md` lines 431-461 for full acceptance criteria
+**Story File:** Check `docs/epics-remaining.md` lines 463-507 for full acceptance criteria
 
 **Quick Context:**
-With the notes library complete, now we add the ability to create notes directly from the guide reader. Users can click "Add Note" in the guide actions sidebar to open the note editor pre-filled with the current guide. Selected text in the guide can be added as a blockquote. This creates a seamless learning workflow.
+With notes complete, now we add task management. Users can create tasks with title, description, status (todo/in_progress/done), priority (high/medium/low), and optional guide association. Subtasks allow breaking down complex tasks. This completes the personal learning workspace.
 
 ---
 
@@ -38,13 +39,13 @@ With the notes library complete, now we add the ability to create notes directly
 | Epic 3 | Dynamic Content Rendering | ✅ COMPLETE | 10/10 | 100% |
 | Epic 4 | Guide Library & Discovery | ✅ COMPLETE | 8/8 | 100% |
 | Epic 5 | Progress & Achievements | ✅ COMPLETE | 11/11 | 100% |
-| Epic 6 | Notes & Tasks | 🔨 IN PROGRESS | 2/8 | 25% |
+| Epic 6 | Notes & Tasks | 🔨 IN PROGRESS | 3/8 | 38% |
 | Epic 7 | Search & Command Palette | ❌ NOT STARTED | 0/5 | 0% |
 | Epic 8 | Community Features | ❌ NOT STARTED | 0/6 | 0% |
 | Epic 9 | Admin Analytics & Management | ❌ NOT STARTED | 0/6 | 0% |
 | Epic 10 | Responsive & Accessibility | ❌ NOT STARTED | 0/5 | 0% |
 
-**Total Progress:** 54/70 stories (77%)
+**Total Progress:** 55/70 stories (79%)
 
 ---
 
@@ -58,6 +59,7 @@ Only remaining P1 story: Story 2.4 (Google OAuth Integration) - Optional enhance
 
 ## ✅ RECENTLY COMPLETED STORIES
 
+- ✅ Story 6.3: Implement Quick Note from Guide (Nov 8) 🎉
 - ✅ Story 6.2: Build Notes Library Page (Nov 8) 🎉
 - ✅ Story 4.7: Mark Complete with Celebration (Nov 8) 🎉
 - ✅ Story 3.10: Build Remaining Blocks (Grid, Card, Image, Video) (Nov 8) 🎉
@@ -83,8 +85,8 @@ Only remaining P1 story: Story 2.4 (Google OAuth Integration) - Optional enhance
 
 ### Current Phase: Epic 6 - Notes & Tasks (IN PROGRESS)
 
-1. **Story 6.3** - Implement Quick Note from Guide (NEXT)
-2. **Story 6.4** - Build Task Management System
+1. **Story 6.4** - Build Task Management System (NEXT)
+2. **Story 6.5** - Build Task Creation Modal
 3. **Story 6.5** - Build Task Creation Modal
 4. **Story 6.6** - Build Task Kanban Board
 5. **Story 6.7** - Implement Task Quick Actions from Guide
@@ -129,8 +131,8 @@ Only remaining P1 story: Story 2.4 (Google OAuth Integration) - Optional enhance
 - ✅ **Epic 4 Complete:** Guide library & discovery fully functional (8/8 stories) 🎉 NEW!
 - ✅ **Epic 5 Complete:** Dashboard & Progress features fully functional (11/11 stories)
 - ✅ **Epic 2 Almost Complete:** Only missing Google OAuth (11/12 stories, 92%)
-- ✅ **54 stories completed** (77% of total)
-- ✅ **Epic 6 In Progress:** Notes system complete (2/8 stories)
+- ✅ **55 stories completed** (79% of total)
+- ✅ **Epic 6 In Progress:** Notes and quick note creation complete (3/8 stories)
 - ✅ **All P0 Stories Complete:** No blocking high-priority stories remaining! 🎉
 - ✅ Core user flow working: Register → Onboard → Browse → Read → Track Progress → Complete Guides → Take Notes
 - ✅ Authentication flow complete including password reset
@@ -141,5 +143,5 @@ Only remaining P1 story: Story 2.4 (Google OAuth Integration) - Optional enhance
 
 ---
 
-**🚀 Next Action:** Implement Story 6.3 - Implement Quick Note from Guide
+**🚀 Next Action:** Implement Story 6.4 - Build Task Management System
 

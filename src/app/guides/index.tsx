@@ -10,6 +10,13 @@ import * as TablerIcons from '@tabler/icons-react';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { GuideCard } from '@/components/guides/GuideCard';
 import { getGuideCatalog, getCategoryCounts, getTotalGuideCount } from '@/lib/guide-catalog';
 import {
@@ -227,21 +234,18 @@ export function GuidesPage() {
             {/* View toggle and sort */}
             <div className="flex items-center gap-3">
               {/* Sort dropdown */}
-              <div className="relative">
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value as SortOption)}
-                  className="pl-10 pr-4 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 appearance-none cursor-pointer"
-                  dir="rtl"
-                >
+              <Select value={sortBy} onValueChange={(value) => setSortBy(value as SortOption)}>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
                   {Object.entries(SORT_OPTIONS).map(([value, { label }]) => (
-                    <option key={value} value={value}>
+                    <SelectItem key={value} value={value}>
                       {label}
-                    </option>
+                    </SelectItem>
                   ))}
-                </select>
-                <TablerIcons.IconArrowsSort className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
-              </div>
+                </SelectContent>
+              </Select>
 
               {/* View mode toggle */}
               <div className="flex items-center gap-1 bg-gray-100 dark:bg-gray-700 p-1 rounded-lg">
@@ -502,6 +506,7 @@ export function GuidesPage() {
                           guide={guide}
                           progressPercent={progress?.progressPercent}
                           isStarted={progress?.isStarted}
+                          viewMode={viewMode}
                         />
                       </motion.div>
                     );

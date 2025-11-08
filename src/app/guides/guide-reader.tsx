@@ -33,6 +33,8 @@ import { UnmarkCompleteDialog } from '@/components/guides/UnmarkCompleteDialog';
 import { GuideCompletionModal } from '@/components/guides/GuideCompletionModal';
 import { RelatedGuides } from '@/components/guides/RelatedGuides';
 import { BadgeUnlockAnimation } from '@/components/dashboard/BadgeUnlockAnimation';
+import { FloatingNoteTooltip } from '@/components/guides/FloatingNoteTooltip'; // Story 6.3
+import { NoteEditorModal } from '@/components/notes/NoteEditorModal'; // Story 6.3
 import { loadGuide, getAdjacentGuides } from '@/lib/guide-loader';
 import { useAuth } from '@/hooks/useAuth';
 import { useAchievements } from '@/hooks/useAchievements';
@@ -72,6 +74,10 @@ export function GuideReaderPage() {
   const [isMarkingComplete, setIsMarkingComplete] = useState(false);
   const [showBadgeUnlock, setShowBadgeUnlock] = useState(false); // Story 5.3
   const [nextGuide, setNextGuide] = useState<GuideMetadata | null>(null);
+
+  // Story 6.3: Note creation state
+  const [isNoteEditorOpen, setIsNoteEditorOpen] = useState(false);
+  const [noteInitialContent, setNoteInitialContent] = useState<string | null>(null);
 
   // Refs
   const contentRef = useRef<HTMLDivElement>(null);
@@ -509,6 +515,23 @@ export function GuideReaderPage() {
     });
   }, []);
 
+  // Story 6.3: Handle add note - opens note editor
+  const handleAddNote = useCallback((selectedText?: string) => {
+    setNoteInitialContent(selectedText || null);
+    setIsNoteEditorOpen(true);
+  }, []);
+
+  // Story 6.3: Handle note saved - show success toast
+  const handleNoteSaved = useCallback(() => {
+    toast({
+      title: 'הערה נשמרה!',
+      description: 'ההערה שלך נוצרה בהצלחה',
+    });
+
+    // Reset initial content
+    setNoteInitialContent(null);
+  }, [toast]);
+
   // Adjacent guides for pagination
   const adjacentGuides =
     slug && guide ? getAdjacentGuides(slug, guide.metadata.category) : { prev: null, next: null };
@@ -617,7 +640,7 @@ export function GuideReaderPage() {
             difficulty={guide.metadata.difficulty}
             estimatedMinutes={guide.metadata.estimatedMinutes}
             progress={scrollProgress}
-            onAddNote={() => toast({ title: 'הוספת הערה - בקרוב' })}
+            onAddNote={() => handleAddNote()}
             onCreateTask={() => toast({ title: 'יצירת משימה - בקרוב' })}
             onBookmark={() => toast({ title: 'נשמר למועדפים' })}
             onCopyLink={handleCopyLink}
@@ -675,7 +698,7 @@ export function GuideReaderPage() {
               onMarkComplete={handleMarkCompleteClick}
               onUnmarkComplete={handleUnmarkCompleteClick}
               onBookmark={() => toast({ title: 'נשמר למועדפים' })}
-              onAddNote={() => toast({ title: 'הוספת הערה - בקרוב' })}
+              onAddNote={() => handleAddNote()}
               onCreateTask={() => toast({ title: 'יצירת משימה - בקרוב' })}
               onFeedback={(helpful) =>
                 toast({
@@ -731,6 +754,19 @@ export function GuideReaderPage() {
         guideTitle={guide.metadata.title}
         nextGuide={nextGuide}
       />
+
+      {/* Story 6.3: Note Editor Modal */}
+      <NoteEditorModal
+        open={isNoteEditorOpen}
+        onOpenChange={setIsNoteEditorOpen}
+        guideSlug={slug}
+        guideTitle={guide.metadata.title}
+        initialContent={noteInitialContent}
+        onSaved={handleNoteSaved}
+      />
+
+      {/* Story 6.3: Floating Note Tooltip */}
+      <FloatingNoteTooltip onAddNote={handleAddNote} />
       </div>
     </MobileTocContext.Provider>
   );

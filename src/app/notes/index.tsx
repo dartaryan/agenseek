@@ -24,7 +24,6 @@ import {
   IconPlus,
   IconNote,
   IconSearch,
-  IconFilter,
   IconX,
 } from '@tabler/icons-react';
 import type { Database } from '../../types/database';
