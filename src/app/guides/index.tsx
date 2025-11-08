@@ -4,7 +4,7 @@
  * Complete guide library with filtering, sorting, and grid/list views
  */
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as TablerIcons from '@tabler/icons-react';
 import { Button } from '@/components/ui/button';
@@ -34,10 +34,11 @@ import {
 } from '@/stores/guide-filters';
 import { categorizeGuidesByLearningPath } from '@/lib/learning-path';
 import { useAuth } from '@/hooks/useAuth';
+import { supabase } from '@/lib/supabase';
 import { cn } from '@/lib/utils';
 
 /**
- * Guide progress data (mock for now - will integrate with Supabase in Story 4.6)
+ * Story 0.1: Guide progress data from database
  */
 interface GuideProgress {
   guideId: string;
@@ -47,28 +48,13 @@ interface GuideProgress {
 }
 
 /**
- * Get mock progress data
- * TODO: Replace with real Supabase query in Story 4.6
- */
-function getMockProgress(): Record<string, GuideProgress> {
-  return {
-    'quick-start': {
-      guideId: 'quick-start',
-      progressPercent: 45,
-      isStarted: true,
-      isCompleted: false,
-    },
-  };
-}
-
-/**
  * Main Guides Library Page Component
  */
 export function GuidesPage() {
   const catalog = getGuideCatalog();
   const categoryCounts = getCategoryCounts();
   const totalCount = getTotalGuideCount();
-  const { profile } = useAuth();
+  const { user, profile } = useAuth();
 
   // Filter state from Zustand
   const {
@@ -90,8 +76,51 @@ export function GuidesPage() {
   // Mobile sidebar state
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  // Progress data
-  const [progressData] = useState<Record<string, GuideProgress>>(getMockProgress());
+  // Story 0.1: Progress data from database
+  const [progressData, setProgressData] = useState<Record<string, GuideProgress>>({});
+  const [progressLoading, setProgressLoading] = useState(true);
+
+  // Story 0.1: Fetch real progress data from database
+  useEffect(() => {
+    async function fetchProgressData() {
+      if (!user?.id) {
+        setProgressLoading(false);
+        return;
+      }
+
+      try {
+        setProgressLoading(true);
+
+        const { data, error } = await supabase
+          .from('user_progress')
+          .select('guide_slug, progress_percent, completed')
+          .eq('user_id', user.id);
+
+        if (error) throw error;
+
+        // Transform array to lookup map
+        const progressMap: Record<string, GuideProgress> = {};
+        data?.forEach((item) => {
+          progressMap[item.guide_slug] = {
+            guideId: item.guide_slug,
+            progressPercent: item.progress_percent,
+            isStarted: item.progress_percent > 0,
+            isCompleted: item.completed,
+          };
+        });
+
+        setProgressData(progressMap);
+      } catch (error) {
+        console.error('Error fetching progress data:', error);
+        // Keep empty progress data on error
+        setProgressData({});
+      } finally {
+        setProgressLoading(false);
+      }
+    }
+
+    fetchProgressData();
+  }, [user?.id]);
 
   /**
    * Filter and sort guides based on current state

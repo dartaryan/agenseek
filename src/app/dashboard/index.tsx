@@ -247,9 +247,16 @@ export function DashboardPage() {
             timestamp: activity.created_at,
           })) || [];
 
-        // Mock badge data (will be real in Story 5.3)
-        const earnedBadges = Math.min(guidesCompleted, 2); // Simple calculation for now
-        const lockedBadges = 10 - earnedBadges;
+        // Story 0.1: Fetch real badge data from user_achievements
+        const { data: achievements } = await supabase
+          .from('user_achievements')
+          .select('achievement_id, earned_at')
+          .eq('user_id', user.id)
+          .not('earned_at', 'is', null);
+
+        const earnedBadges = achievements?.length || 0;
+        const totalBadges = 10; // Total possible badges (can be updated when more achievements are added)
+        const lockedBadges = totalBadges - earnedBadges;
 
         // Story 5.2: Categorize guides by learning path
         const categorizedGuides = categorizeGuidesByLearningPath(catalog, {

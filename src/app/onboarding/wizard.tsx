@@ -32,6 +32,8 @@ import { ProgressDots } from '@/components/onboarding/ProgressDots';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/hooks/useAuth';
+import { getGuideCatalog } from '@/lib/guide-catalog';
+import { categorizeGuidesByLearningPath } from '@/lib/learning-path';
 import confetti from 'canvas-confetti';
 
 const TOTAL_STEPS = 5;
@@ -758,77 +760,82 @@ function LearningPathStep({
   const { toast } = useToast();
 
   useEffect(() => {
-    // Simulate generating personalized learning path
+    // Story 0.1: Generate personalized learning path using real catalog
     const generatePath = async () => {
       setIsGenerating(true);
 
       // Wait 2 seconds to show loading animation
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
-      // Generate mock guide recommendations based on selections
-      const sections: GuideSection[] = [
-        {
+      // Story 0.1: Use real guide catalog data
+      const catalog = getGuideCatalog();
+      const categorizedGuides = categorizeGuidesByLearningPath(catalog, {
+        role: selectedRole || undefined,
+        interests: selectedInterests.length > 0 ? selectedInterests : undefined,
+        experience_level: selectedExperience || undefined,
+      });
+
+      const sections: GuideSection[] = [];
+
+      // Core guides section
+      if (categorizedGuides.core.length > 0) {
+        sections.push({
           category: 'מדריכי ליבה',
           description: 'מדריכים חיוניים להתחלת עבודה עם BMAD',
-          guides: [
-            {
-              id: 'quick-start',
-              title: 'מדריך התחלה מהירה',
-              description: 'התחל לעבוד עם BMAD תוך 15 דקות',
-              estimatedMinutes: 15,
-            },
-            {
-              id: 'bmad-fundamentals',
-              title: 'יסודות BMAD',
-              description: 'סקירה של מושגי ליבה ומתודולוגיה',
-              estimatedMinutes: 30,
-            },
-          ],
-        },
-        {
-          category: 'מומלץ עבורך',
-          description: `בהתבסס על תפקידך כ${selectedRole}`,
-          guides: [
-            {
-              id: 'role-guide',
-              title: `מדריך ${selectedRole}`,
-              description: `למד BMAD מנקודת מבט של ${selectedRole}`,
-              estimatedMinutes: 45,
-            },
-          ],
-        },
-      ];
-
-      // Add interest-based guides if user selected any
-      if (selectedInterests.length > 0) {
-        sections.push({
-          category: 'בהתבסס על תחומי העניין שלך',
-          description: `מדריכים התואמים את תחומי העניין שבחרת (${selectedInterests.length} נושאים)`,
-          guides: selectedInterests.slice(0, 3).map((interest, index) => ({
-            id: `interest-${interest}`,
-            title: `מדריך ${interest
-              .split('-')
-              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-              .join(' ')}`,
-            description: `צלילה עמוקה ל${interest.replace('-', ' ו')}`,
-            estimatedMinutes: 30 + index * 10,
+          guides: categorizedGuides.core.slice(0, 5).map((guide) => ({
+            id: guide.id,
+            title: guide.title,
+            description: guide.description,
+            estimatedMinutes: guide.estimatedMinutes,
           })),
         });
       }
 
-      // Add experience-level guides
-      sections.push({
-        category: 'צלילות עמוקות אופציונליות',
-        description: `נושאים מתקדמים עבור לומדים ברמה ${selectedExperience}`,
-        guides: [
-          {
-            id: 'advanced-patterns',
-            title: 'תבניות מתקדמות',
-            description: 'זרימות עבודה מורכבות ותבניות ארכיטקטוניות',
-            estimatedMinutes: 60,
-          },
-        ],
-      });
+      // Recommended guides based on role
+      if (categorizedGuides.recommended.length > 0) {
+        sections.push({
+          category: 'מומלץ עבורך',
+          description: selectedRole
+            ? `בהתבסס על תפקידך כ${selectedRole}`
+            : 'מדריכים מומלצים בשבילך',
+          guides: categorizedGuides.recommended.slice(0, 5).map((guide) => ({
+            id: guide.id,
+            title: guide.title,
+            description: guide.description,
+            estimatedMinutes: guide.estimatedMinutes,
+          })),
+        });
+      }
+
+      // Interest-based guides
+      if (selectedInterests.length > 0 && categorizedGuides.interests.length > 0) {
+        sections.push({
+          category: 'בהתבסס על תחומי העניין שלך',
+          description: `מדריכים התואמים את תחומי העניין שבחרת (${selectedInterests.length} נושאים)`,
+          guides: categorizedGuides.interests.slice(0, 5).map((guide) => ({
+            id: guide.id,
+            title: guide.title,
+            description: guide.description,
+            estimatedMinutes: guide.estimatedMinutes,
+          })),
+        });
+      }
+
+      // Optional deep dives
+      if (categorizedGuides.optional.length > 0) {
+        sections.push({
+          category: 'צלילות עמוקות אופציונליות',
+          description: selectedExperience
+            ? `נושאים מתקדמים עבור לומדים ברמה ${selectedExperience}`
+            : 'נושאים מתקדמים להמשך למידה',
+          guides: categorizedGuides.optional.slice(0, 3).map((guide) => ({
+            id: guide.id,
+            title: guide.title,
+            description: guide.description,
+            estimatedMinutes: guide.estimatedMinutes,
+          })),
+        });
+      }
 
       setGuideSections(sections);
       setIsGenerating(false);
