@@ -197,6 +197,26 @@ export interface LocaleStrings {
       title: string;
       description: string;
       placeholder: string;
+      newTask: string;
+      tasksCount: string;
+      noTasks: string;
+      noTasksDescription: string;
+      // Tabs
+      allTasks: string;
+      byGuide: string;
+      kanban: string;
+      byPriority: string;
+      // Status counts
+      statusCounts: string;
+      todoCount: string;
+      inProgressCount: string;
+      doneCount: string;
+      // Views
+      listView: string;
+      kanbanView: string;
+      priorityView: string;
+      // Empty states
+      noTasksInStatus: string;
     };
     profile: {
       title: string;
@@ -581,6 +601,26 @@ export const hebrewLocale: LocaleStrings = {
       title: 'המשימות שלי',
       description: 'עקוב אחר המשימות שלך',
       placeholder: 'מערכת משימות תיושם בשלב 6',
+      newTask: 'משימה חדשה',
+      tasksCount: 'משימות',
+      noTasks: 'אין לך משימות עדיין',
+      noTasksDescription: 'צור משימה חדשה כדי להתחיל לעקוב אחר הלמידה שלך',
+      // Tabs
+      allTasks: 'כל המשימות',
+      byGuide: 'לפי מדריך',
+      kanban: 'לוח קאנבן',
+      byPriority: 'לפי עדיפות',
+      // Status counts
+      statusCounts: 'לביצוע ({todo}) / בתהליך ({inProgress}) / הושלם ({done})',
+      todoCount: 'לביצוע',
+      inProgressCount: 'בתהליך',
+      doneCount: 'הושלם',
+      // Views
+      listView: 'תצוגת רשימה',
+      kanbanView: 'תצוגת קאנבן',
+      priorityView: 'תצוגת עדיפות',
+      // Empty states
+      noTasksInStatus: 'אין משימות בסטטוס זה',
     },
     profile: {
       title: 'פרופיל',
