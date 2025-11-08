@@ -2,9 +2,10 @@
  * SearchBar Component - Story 7.2
  *
  * Header search bar with dropdown results, keyboard navigation, and match highlighting
+ * Story 7.5: Added forwardRef to allow external focus control via keyboard shortcuts
  */
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, forwardRef, useImperativeHandle } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   IconSearch,
@@ -19,15 +20,29 @@ import { highlightMatches } from '@/lib/search';
 import type { SearchResult } from '@/lib/search';
 
 /**
+ * SearchBar public methods (Story 7.5)
+ */
+export interface SearchBarRef {
+  focus: () => void;
+}
+
+/**
  * SearchBar component with dropdown results
  */
-export function SearchBar() {
+export const SearchBar = forwardRef<SearchBarRef>(function SearchBar(_props, ref) {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Story 7.5: Expose focus method to parent via ref
+  useImperativeHandle(ref, () => ({
+    focus: () => {
+      inputRef.current?.focus();
+    },
+  }));
 
   // Use search hook with user ID for personalized results
   const { query, setQuery, results, isSearching, error } = useSearch({
@@ -226,7 +241,7 @@ export function SearchBar() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder="חפש מדריכים, הערות, משימות..."
+          placeholder="חפש מדריכים, הערות, משימות... (Ctrl+F או /)"
           className="w-full px-4 py-2 pl-10 text-sm border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
         />
         <IconSearch className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
@@ -304,7 +319,7 @@ export function SearchBar() {
       )}
     </div>
   );
-}
+});
 
 /**
  * Search result section component

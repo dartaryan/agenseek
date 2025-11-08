@@ -20,19 +20,23 @@
 content-stories/
 ├── README.md                    # המסמך הזה
 ├── MASTER-PROMPT.md            # פרומפט master לסוכנים
+├── TECH-WRITER-PROMPT.md       # 🆕 פרומפט מלא ל-Tech Writer (מומלץ!)
+├── QUICK-PROMPT.md             # 🆕 פרומפט מהיר לשימוש
+├── EXAMPLES-PROMPTS.md         # 🆕 דוגמאות פרומפטים ספציפיים
+├── QUICK-START-GUIDE.md        # מדריך התחלה מהיר
+├── SUMMARY.md                  # סיכום התהליך
+├── FOR-AI-AGENTS.md            # הוראות מפורטות לסוכנים
 ├── story-template.md           # תבנית לסטורי מדריך
 ├── blocks-reference.md         # רשימה מלאה של בלוקים זמינים
-├── examples/                   # דוגמאות למדריכים קיימים
-│   ├── quick-start-example.md
-│   └── developers-example.md
 └── stories/                    # 42 סטוריז (אחד לכל מדריך)
-    ├── core/                   # 2 מדריכי ליבה
-    ├── roles/                  # 9 מדריכי תפקידים
-    ├── agents/                 # 8 מדריכי אגנטים
-    ├── workflows/              # 10 מדריכי וורקפלואים
-    ├── practical/              # 9 מדריכים מעשיים
-    ├── faq/                    # 6 מדריכי שאלות ותשובות
-    └── onboarding/             # 3 מדריכי הדרכה
+    ├── INDEX.md                # אינדקס של כל המדריכים
+    ├── core/                   # קטגוריה: Core (7 מדריכים)
+    ├── onboarding/             # קטגוריה: Onboarding (6 מדריכים)
+    ├── roles/                  # קטגוריה: Roles (7 מדריכים)
+    ├── workflows/              # קטגוריה: Workflows (14 מדריכים)
+    ├── testarch/               # קטגוריה: Test Architecture (4 מדריכים)
+    ├── integration/            # קטגוריה: Integration (2 מדריכים)
+    └── resources/              # קטגוריה: Resources (2 מדריכים)
 ```
 
 ---
@@ -46,6 +50,35 @@ content-stories/
 ---
 
 ## 🚀 איך להתחיל?
+
+### 🎯 אופציה מומלצת: השתמש ב-Tech Writer Agent!
+
+**הדרך הכי קלה ומהירה:**
+
+1. **קרא את הפרומפט המוכן:**
+   - `TECH-WRITER-PROMPT.md` - פרומפט מלא ומפורט
+   - `QUICK-PROMPT.md` - גרסה קצרה לשימוש מהיר
+   - `EXAMPLES-PROMPTS.md` - דוגמאות לכל סוג מדריך
+
+2. **העתק והדבק את הפרומפט** ל-Cursor:
+   ```
+   @tech-writer.mdc 
+   
+   [העתק מתוך TECH-WRITER-PROMPT.md]
+   ```
+
+3. **Tech Writer ייצור את המדריך עבורך** בפורמט JSON מושלם!
+
+**למה Tech Writer?**
+- ✅ מומחית תיעוד טכני
+- ✅ מכירה את כל הפורמטים
+- ✅ כותבת בעברית שוטפת
+- ✅ עוקבת אחר הסטנדרטים
+- ✅ יוצרת תוכן איכותי
+
+---
+
+### 🛠️ אופציה ידנית (אם אתה רוצה לעשות בעצמך):
 
 ### שלב 1: קרא את המסמכים הבסיסים
 1. `MASTER-PROMPT.md` - פרומפט master לסוכן

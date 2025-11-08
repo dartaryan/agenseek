@@ -1,11 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Header } from '../components/layout/Header';
+import { Header, type HeaderRef } from '../components/layout/Header';
 import { Sidebar } from '../components/layout/Sidebar';
 import { Footer } from '../components/layout/Footer';
 import { AnimatedBackground } from '../components/ui/AnimatedBackground';
 import { SidebarProvider } from '../contexts/SidebarContext';
 import { CommandPalette } from '../components/common/CommandPalette';
+import { TaskModal } from '../components/tasks/TaskModal';
+import { NoteEditorModal } from '../components/notes/NoteEditorModal';
+import { KeyboardShortcutsModal, useKeyboardShortcutsModal } from '../components/common/KeyboardShortcutsModal';
+import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
+import type { Database } from '../types/database';
+
+type UserTask = Database['public']['Tables']['user_tasks']['Row'];
+type UserNote = Database['public']['Tables']['user_notes']['Row'];
 
 /**
  * Layout Component
@@ -21,23 +29,39 @@ import { CommandPalette } from '../components/common/CommandPalette';
  *
  * Story 6.12: Wrapped in SidebarProvider for collapsible sidebar state management
  * Story 7.4: Added CommandPalette with Ctrl+K keyboard shortcut
+ * Story 7.5: Integrated global keyboard shortcuts (Ctrl+F, Alt+T, Alt+N, Alt+1-5, /, ?)
+ *            Also includes first-time keyboard shortcuts help modal
  */
 export function Layout() {
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
+  const [taskModalOpen, setTaskModalOpen] = useState(false);
+  const [noteModalOpen, setNoteModalOpen] = useState(false);
+  const headerRef = useRef<HeaderRef>(null);
 
-  // Keyboard shortcut handler (Ctrl+K / Cmd+K)
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Ctrl+K or Cmd+K
-      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-        e.preventDefault();
-        setCommandPaletteOpen((open) => !open);
-      }
-    };
+  // Story 7.5: Keyboard shortcuts help modal (shows on first visit, or with ? key)
+  const { isOpen: shortcutsModalOpen, setIsOpen: setShortcutsModalOpen } = useKeyboardShortcutsModal();
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  // Story 7.5: Global keyboard shortcuts
+  useKeyboardShortcuts({
+    onOpenCommandPalette: () => setCommandPaletteOpen((open) => !open),
+    onOpenTaskModal: () => setTaskModalOpen(true),
+    onOpenNoteModal: () => setNoteModalOpen(true),
+    onFocusSearch: () => headerRef.current?.focusSearch(),
+  });
+
+  // Handler for task modal save
+  const handleTaskSaved = (task: UserTask) => {
+    console.log('Task saved:', task);
+    setTaskModalOpen(false);
+    // Optionally: Navigate to tasks page or show toast
+  };
+
+  // Handler for note modal save
+  const handleNoteSaved = (note: UserNote) => {
+    console.log('Note saved:', note);
+    setNoteModalOpen(false);
+    // Optionally: Navigate to notes page or show toast
+  };
 
   return (
     <SidebarProvider>
@@ -51,8 +75,28 @@ export function Layout() {
           onOpenChange={setCommandPaletteOpen}
         />
 
+        {/* Story 7.5: Global Task Modal (Ctrl+T) */}
+        <TaskModal
+          open={taskModalOpen}
+          onOpenChange={setTaskModalOpen}
+          onSaved={handleTaskSaved}
+        />
+
+        {/* Story 7.5: Global Note Modal (Alt+N) */}
+        <NoteEditorModal
+          open={noteModalOpen}
+          onOpenChange={setNoteModalOpen}
+          onSaved={handleNoteSaved}
+        />
+
+        {/* Story 7.5: Keyboard Shortcuts Help Modal (shows on first visit or with ? key) */}
+        <KeyboardShortcutsModal
+          open={shortcutsModalOpen}
+          onOpenChange={setShortcutsModalOpen}
+        />
+
         {/* Header */}
-        <Header />
+        <Header ref={headerRef} />
 
         {/* Main Content Area */}
         <div className="flex flex-1">

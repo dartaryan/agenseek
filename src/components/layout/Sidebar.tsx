@@ -20,19 +20,21 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { KeyboardShortcutHint } from '../ui/KeyboardShortcut';
 
 interface NavItem {
   name: string;
   href: string;
   icon: React.ElementType;
+  shortcut?: string; // Story 7.5: Keyboard shortcut hint
 }
 
 const navigationItems: NavItem[] = [
-  { name: hebrewLocale.nav.dashboard, href: '/dashboard', icon: IconLayoutDashboard },
-  { name: hebrewLocale.nav.guides, href: '/guides', icon: IconBooks },
-  { name: hebrewLocale.nav.notes, href: '/notes', icon: IconNote },
-  { name: hebrewLocale.nav.tasks, href: '/tasks', icon: IconChecklist },
-  { name: hebrewLocale.nav.profile, href: '/profile', icon: IconUser },
+  { name: hebrewLocale.nav.dashboard, href: '/dashboard', icon: IconLayoutDashboard, shortcut: 'Alt+1' },
+  { name: hebrewLocale.nav.guides, href: '/guides', icon: IconBooks, shortcut: 'Alt+2' },
+  { name: hebrewLocale.nav.notes, href: '/notes', icon: IconNote, shortcut: 'Alt+3' },
+  { name: hebrewLocale.nav.tasks, href: '/tasks', icon: IconChecklist, shortcut: 'Alt+4' },
+  { name: hebrewLocale.nav.profile, href: '/profile', icon: IconUser, shortcut: 'Alt+5' },
   { name: hebrewLocale.nav.settings, href: '/settings', icon: IconSettings },
 ];
 
@@ -120,7 +122,11 @@ export function Sidebar() {
                     )}
                   >
                     <Icon className="w-5 h-5" stroke={1.5} />
-                    <span>{item.name}</span>
+                    <span className="flex-1">{item.name}</span>
+                    {/* Story 7.5: Keyboard shortcut hint */}
+                    {item.shortcut && (
+                      <KeyboardShortcutHint keys={item.shortcut} />
+                    )}
                   </Link>
                 );
               })}

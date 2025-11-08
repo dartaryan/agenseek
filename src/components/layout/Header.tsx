@@ -1,3 +1,4 @@
+import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { IconList } from '@tabler/icons-react';
 import { Button } from '../ui/button';
@@ -9,10 +10,17 @@ import { useSidebar } from '../../contexts/SidebarContext';
 import AgenseekLogo from '../../assets/agenseek-logo.svg';
 import { MobileNav } from './MobileNav';
 import { HeaderNav } from './HeaderNav';
-import { SearchBar } from './SearchBar';
+import { SearchBar, type SearchBarRef } from './SearchBar';
 
 /**
- * Header Component - Story 5.1.1 + Story 6.13 + Story 7.2
+ * Header public methods (Story 7.5)
+ */
+export interface HeaderRef {
+  focusSearch: () => void;
+}
+
+/**
+ * Header Component - Story 5.1.1 + Story 6.13 + Story 7.2 + Story 7.5
  *
  * Sticky header with logo, navigation, search, and user menu.
  * Features:
@@ -23,12 +31,21 @@ import { SearchBar } from './SearchBar';
  * - Search bar (Story 7.2 - functional with dropdown results)
  * - User menu with profile and logout
  * - Responsive design
+ * - Story 7.5: Exposes focusSearch method for keyboard shortcuts
  */
-export function Header() {
+export const Header = forwardRef<HeaderRef>(function Header(_props, ref) {
   const { user, profile } = useAuth();
   const location = useLocation();
   const { onToggle, isEnabled } = useMobileToc();
   const { isCollapsed } = useSidebar();
+  const searchBarRef = useRef<SearchBarRef>(null);
+
+  // Story 7.5: Expose focusSearch method to parent via ref
+  useImperativeHandle(ref, () => ({
+    focusSearch: () => {
+      searchBarRef.current?.focus();
+    },
+  }));
 
   // Show mobile ToC button only on guide reader routes (/guides/:slug)
   const isGuideReaderPage = location.pathname.startsWith('/guides/') &&
@@ -81,9 +98,9 @@ export function Header() {
           </div>
         )}
 
-        {/* Search Bar - Story 7.2 */}
+        {/* Search Bar - Story 7.2 + Story 7.5 */}
         <div className="hidden md:flex flex-1 max-w-md">
-          <SearchBar />
+          <SearchBar ref={searchBarRef} />
         </div>
 
         {/* Right Side: Mobile Nav + User Menu */}
@@ -131,4 +148,4 @@ export function Header() {
       </div>
     </header>
   );
-}
+});

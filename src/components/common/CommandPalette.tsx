@@ -215,7 +215,7 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
         setThemeState(getTheme());
         // Don't close palette, allow multiple toggles
       },
-      shortcut: '⌘/Ctrl + T',
+      shortcut: 'Alt+T',
     },
     {
       id: 'new-note',
@@ -226,7 +226,7 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
         navigate('/notes?new=true');
         onOpenChange(false);
       },
-      shortcut: '⌘/Ctrl + N',
+      shortcut: 'Alt+N',
     },
     {
       id: 'new-task',
@@ -237,7 +237,7 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
         navigate('/tasks?new=true');
         onOpenChange(false);
       },
-      shortcut: '⌘/Ctrl + T',
+      shortcut: 'Alt+T',
     },
   ];
 
