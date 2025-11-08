@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { he } from 'date-fns/locale';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -26,6 +25,9 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
+import { UserAvatar } from '@/components/ui/user-avatar';
+import { supabase } from '@/lib/supabase';
+import type { AvatarConfig } from '@/lib/avatar';
 
 interface CommentReplyProps {
   reply: CommentWithProfile;
@@ -49,12 +51,35 @@ export function CommentReply({ reply, onVoteChange, parentCommentId, parentUserI
   const [isSaving, setIsSaving] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [avatarConfig, setAvatarConfig] = useState<AvatarConfig | null>(null);
 
   // Check if current user owns this reply
   const isOwner = user?.id === reply.user_id;
 
   // Check if current user is the question author (can mark solutions)
   const isQuestionAuthor = parentIsQuestion && user?.id === parentUserId;
+
+  // Story 0.3: Load commenter's avatar
+  useEffect(() => {
+    async function loadAvatar() {
+      if (!reply.user_id) return;
+
+      const { data } = await supabase
+        .from('profiles')
+        .select('avatar_style, avatar_seed, avatar_options')
+        .eq('id', reply.user_id)
+        .single();
+
+      if (data?.avatar_style) {
+        setAvatarConfig({
+          style: data.avatar_style as any,
+          seed: data.avatar_seed || reply.user_id,
+          options: data.avatar_options || {},
+        });
+      }
+    }
+    loadAvatar();
+  }, [reply.user_id]);
 
   // Check if user has voted on mount
   useEffect(() => {
@@ -67,9 +92,6 @@ export function CommentReply({ reply, onVoteChange, parentCommentId, parentUserI
 
     checkVoteStatus();
   }, [user?.id, reply.id]);
-
-  // Get user initials for avatar fallback
-  const userInitial = reply.profile?.display_name?.charAt(0).toUpperCase() || 'U';
 
   // Format timestamp
   const timeAgo = formatDistanceToNow(new Date(reply.created_at), {
@@ -258,13 +280,14 @@ export function CommentReply({ reply, onVoteChange, parentCommentId, parentUserI
       flex gap-3 p-3 rounded-lg
       ${reply.is_solution ? 'bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800' : 'bg-white dark:bg-gray-900'}
     `}>
-      {/* Avatar - Smaller for replies */}
+      {/* Avatar - Story 0.3: Smaller for replies */}
       <div className="shrink-0">
-        <Avatar className="h-8 w-8">
-          <AvatarFallback className="bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 font-semibold text-xs">
-            {userInitial}
-          </AvatarFallback>
-        </Avatar>
+        <UserAvatar
+          config={avatarConfig}
+          userId={reply.user_id}
+          size="sm"
+          className="h-8 w-8"
+        />
       </div>
 
       {/* Content */}

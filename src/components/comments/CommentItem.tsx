@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { he } from 'date-fns/locale';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -29,6 +28,9 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
+import { UserAvatar } from '@/components/ui/user-avatar';
+import { supabase } from '@/lib/supabase';
+import type { AvatarConfig } from '@/lib/avatar';
 
 interface CommentItemProps {
   comment: CommentWithReplies;
@@ -49,9 +51,32 @@ export function CommentItem({ comment, guideSlug, onVoteChange }: CommentItemPro
   const [isSaving, setIsSaving] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [avatarConfig, setAvatarConfig] = useState<AvatarConfig | null>(null);
 
   // Check if current user owns this comment
   const isOwner = user?.id === comment.user_id;
+
+  // Story 0.3: Load commenter's avatar
+  useEffect(() => {
+    async function loadAvatar() {
+      if (!comment.user_id) return;
+
+      const { data } = await supabase
+        .from('profiles')
+        .select('avatar_style, avatar_seed, avatar_options')
+        .eq('id', comment.user_id)
+        .single();
+
+      if (data?.avatar_style) {
+        setAvatarConfig({
+          style: data.avatar_style as any,
+          seed: data.avatar_seed || comment.user_id,
+          options: data.avatar_options || {},
+        });
+      }
+    }
+    loadAvatar();
+  }, [comment.user_id]);
 
   // Check if user has voted on mount
   useEffect(() => {
@@ -64,9 +89,6 @@ export function CommentItem({ comment, guideSlug, onVoteChange }: CommentItemPro
 
     checkVoteStatus();
   }, [user?.id, comment.id]);
-
-  // Get user initials for avatar fallback
-  const userInitial = comment.profile?.display_name?.charAt(0).toUpperCase() || 'U';
 
   // Format timestamp
   const timeAgo = formatDistanceToNow(new Date(comment.created_at), {
@@ -238,13 +260,14 @@ export function CommentItem({ comment, guideSlug, onVoteChange }: CommentItemPro
         flex gap-3 p-4 rounded-lg
         ${comment.is_question ? 'bg-orange-50 dark:bg-orange-950/20 border border-orange-200 dark:border-orange-800' : 'bg-gray-50 dark:bg-gray-800/50'}
       `}>
-        {/* Avatar */}
+        {/* Avatar - Story 0.3 */}
         <div className="shrink-0">
-          <Avatar className="h-10 w-10">
-            <AvatarFallback className="bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 font-semibold">
-              {userInitial}
-            </AvatarFallback>
-          </Avatar>
+          <UserAvatar
+            config={avatarConfig}
+            userId={comment.user_id}
+            size="md"
+            className="h-10 w-10"
+          />
         </div>
 
         {/* Content */}

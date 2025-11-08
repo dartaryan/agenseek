@@ -1,381 +1,328 @@
-# 🚀 NEXT STORY: Story 8.6 - Implement Notification System
+# 🚀 NEXT STORY: Story 9.4 - Build User Engagement Report
 
 **Updated:** November 8, 2025
 
 ---
 
-## ✅ Story 8.5 Complete!
+## ✅ Story 9.3 Complete!
 
-Users can now edit and delete their own comments! Features include:
+Admins can now view comprehensive content analytics! Features include:
 
-- Edit button for comment owners
-- Edit mode with textarea and character counter
-- Save/Cancel functionality
-- "(נערך)" label for edited comments
-- Delete button with confirmation dialog
-- Soft delete for parent comments with replies (shows "[התגובה נמחקה]")
-- Hard delete for comments without replies (complete removal)
-- Permission enforcement (client and server-side)
-- Activity logging for edits and deletes
-- Toast notifications for success/errors
+- **Guide performance table** with all guides showing:
+  - Views and unique viewers
+  - Average time spent
+  - Completion rate
+  - Helpful votes and comments count
+  - Color-coded engagement level (high/medium/low)
+- **Engagement summary cards** displaying:
+  - Total notes, tasks, and comments
+  - Average session duration
+- **Category performance bar chart** showing:
+  - Total views per category
+  - Average completion rate per category
+- **Filter by category** dropdown
+- **Sort by any metric** (views, unique viewers, time, completion rate, votes, comments)
+- **Export to CSV** functionality
+- **Responsive layout** for mobile, tablet, desktop
+- **Hebrew localization** throughout
 
-**Completion File:** See `STORY-8.5-COMPLETE.md` for full details.
+**Completion File:** See `STORY-9.3-COMPLETE.md` for full details.
 
-**Epic 8 Status:** 5/6 stories complete (83%)
+**Epic 9 Status:** 3/6 stories complete (50%)
 
 ---
 
 ## 📍 Next Story to Implement
 
-### **Story 8.6: Implement Notification System**
+### **Story 9.4: Build User Engagement Report**
 
-**Epic:** 8 - Community Features (Comments & Q&A)
-**Priority:** P1
-**Sprint:** 11
-**Story Points:** 5
-**Dependencies:** Story 8.5 Complete ✅
+**Epic:** 9 - Admin Analytics & Management
+**Priority:** P0
+**Sprint:** 12
+**Story Points:** 3
+**Dependencies:** Story 9.3 Complete ✅
 
 ---
 
-## 🎯 Story 8.6 Overview
+## 🎯 Story 9.4 Overview
 
-Implement a notification system that alerts users about comment interactions, replies, votes, and solution markings. Users receive in-app notifications with read/unread status.
+Implement a comprehensive user engagement report with segmentation, funnel analysis, activity heatmap, and cohort tracking. This helps admins understand user behavior patterns and identify at-risk users.
 
 ### User Story
 
-**As a user,**
-**I want to receive notifications about interactions with my comments,**
-**So that I stay informed about community engagement with my content.**
+**As an admin,**
+**I want to view detailed user engagement reports with segmentation and funnel analysis,**
+**So that I can identify engaged users, at-risk users, and understand user behavior patterns.**
 
 ---
 
 ## 📋 Acceptance Criteria
 
-### Notification Types
+### User Segmentation
 
-**Given** I have posted comments or questions
-**When** interactions occur
-**Then:**
-
-- [ ] Notification created when someone replies to my comment
-- [ ] Notification created when someone votes my comment helpful
-- [ ] Notification created when my question gets a solution
-- [ ] Notification created when someone replies to my question
-- [ ] Each notification includes:
-  - Actor (who performed the action)
-  - Action type (reply, vote, solution)
-  - Comment/Question reference
-  - Guide context
-  - Timestamp
-  - Read/Unread status
-
-### Notification Bell Icon
-
-**Given** I'm logged in
-**When** I view the header
-**Then:**
-
-- [ ] Bell icon (IconBell) appears in header next to search
-- [ ] Unread count badge shows number of unread notifications
-- [ ] Badge displays as emerald with white text
-- [ ] Badge hidden when no unread notifications
-- [ ] Clicking bell opens notification dropdown
-
-### Notification Dropdown
-
-**Given** I click the notification bell
-**When** dropdown opens
-**Then:**
-
-- [ ] Displays last 10 notifications (newest first)
-- [ ] Each notification shows:
-  - User avatar and name
-  - Action description in Hebrew
-  - Guide title (linked)
-  - Time ago (e.g., "לפני 5 דקות")
-  - Unread indicator (emerald dot)
-- [ ] "סמן הכל כנקראו" button at top
-- [ ] "צפה בכל ההתראות" link at bottom
-- [ ] Clicking notification:
-  - Marks as read
-  - Navigates to guide with comment highlighted
-  - Closes dropdown
-
-### Notification Page
-
-**Given** I navigate to /notifications
+**Given** I navigate to /admin/engagement
 **When** page loads
 **Then:**
 
-- [ ] Displays all notifications (paginated, 20 per page)
-- [ ] Filter tabs: "הכל" / "לא נקראו" / "תגובות" / "הצבעות"
-- [ ] "סמן הכל כנקראו" button
-- [ ] Empty state: "אין התראות עדיין"
-- [ ] Each notification clickable (navigates to guide + comment)
-- [ ] Mark individual notification as read/unread
+- [ ] Displays 4 user segments:
+  - **Highly Engaged:** 70%+ progress
+  - **Moderately Engaged:** 30-70% progress
+  - **Low Engagement:** <30% progress (but onboarded)
+  - **At Risk:** Never completed onboarding
+- [ ] Each segment shows:
+  - Count of users
+  - Percentage of total users
+  - Card with color coding (green/yellow/orange/red)
 
-### Real-Time Notifications
+### Engagement Funnel
 
-**Given** I'm logged in
-**When** someone interacts with my content
+**Given** I view the engagement report
+**When** funnel section loads
 **Then:**
 
-- [ ] Notification appears in real-time (via Supabase Realtime)
-- [ ] Bell icon badge updates immediately
-- [ ] No page refresh required
+- [ ] Displays funnel stages:
+  1. Registered (total users)
+  2. Onboarded (completed wizard)
+  3. First Guide (viewed at least 1 guide)
+  4. Active User (completed 5+ guides)
+  5. Power User (completed all core guides)
+- [ ] Each stage shows:
+  - Count of users
+  - Percentage of total
+  - Drop-off rate from previous stage
+- [ ] Visual funnel chart
+- [ ] Color coding for drop-off rates (green <20%, yellow 20-40%, red >40%)
+
+### Activity Heatmap
+
+**Given** I view the engagement report
+**When** heatmap section loads
+**Then:**
+
+- [ ] Displays heatmap with:
+  - X-axis: Days of week (Sunday-Saturday)
+  - Y-axis: Hours of day (0-23)
+  - Cell color intensity: Activity level
+- [ ] Tooltip on hover shows:
+  - Day and hour
+  - Number of active users
+  - Number of guide views
+- [ ] Legend explaining color scale
+
+### Cohort Analysis
+
+**Given** I view the engagement report
+**When** cohort section loads
+**Then:**
+
+- [ ] Displays cohorts by registration month
+- [ ] Each cohort shows:
+  - Month name (e.g., "ינואר 2025")
+  - Number of users registered
+  - Current average progress
+  - Retention rate (% still active)
+- [ ] Table sortable by month or metrics
+- [ ] Color coding for retention (green >60%, yellow 30-60%, red <30%)
+
+### Export Functionality
+
+**Given** I want to take action on segments
+**When** I click export
+**Then:**
+
+- [ ] Can export user list for each segment as CSV
+- [ ] CSV includes: name, email, progress %, last active date
+- [ ] Filename includes segment name and date
 
 ---
 
 ## 🔨 Implementation Plan
 
-### 1. Add Edit State to CommentItem/CommentReply
+### 1. Create Engagement Actions
 
-**Files:**
-- `src/components/comments/CommentItem.tsx`
-- `src/components/comments/CommentReply.tsx`
+**File:** `src/lib/actions/admin.ts`
 
-**Changes:**
-1. Add `isEditing` state
-2. Replace content display with textarea when editing
-3. Add Save/Cancel buttons when editing
-4. Handle edit submission
-5. Display "(נערך)" when edited
-
-### 2. Create Edit and Delete Actions
-
-**File:** `src/lib/actions/comments.ts`
-
-**Functions:**
+**New Types:**
 ```typescript
-async function editComment(data: {
-  commentId: string;
-  userId: string;
-  content: string;
-}): Promise<{ success: boolean; error?: string }>;
+export interface UserSegmentation {
+  highlyEngaged: { count: number; percentage: number; };
+  moderatelyEngaged: { count: number; percentage: number; };
+  lowEngagement: { count: number; percentage: number; };
+  atRisk: { count: number; percentage: number; };
+}
 
-async function deleteComment(data: {
-  commentId: string;
-  userId: string;
-}): Promise<{ success: boolean; error?: string }>;
-```
+export interface EngagementFunnelStage {
+  stage: string;
+  count: number;
+  percentage: number;
+  dropOffRate: number;
+}
 
-**Logic:**
-- Verify user ownership
-- Update/delete in database
-- Log activity
-- Return success/error
+export interface ActivityHeatmapData {
+  day: number;
+  hour: number;
+  activeUsers: number;
+  guideViews: number;
+}
 
-### 3. Add Confirmation Dialog
-
-**Component:** Use shadcn/ui `AlertDialog`
-
-**Flow:**
-1. User clicks delete
-2. Dialog opens: "למחוק תגובה? לא ניתן לבטל פעולה זו."
-3. User confirms or cancels
-4. On confirm: delete and show toast
-
-### 4. Soft Delete for Parent Comments
-
-**Logic:**
-```typescript
-// Check if comment has replies
-const hasReplies = await checkForReplies(commentId);
-
-if (hasReplies) {
-  // Soft delete: Replace content with placeholder
-  await updateComment({
-    id: commentId,
-    content: '[התגובה נמחקה]',
-    is_deleted: true, // New field
-  });
-} else {
-  // Hard delete
-  await deleteComment(commentId);
+export interface CohortData {
+  month: string;
+  usersRegistered: number;
+  avgProgress: number;
+  retentionRate: number;
 }
 ```
 
-### 5. Update Types (if needed)
+**New Functions:**
+```typescript
+fetchUserSegmentation(): Promise<UserSegmentation>
+fetchEngagementFunnel(): Promise<EngagementFunnelStage[]>
+fetchActivityHeatmap(): Promise<ActivityHeatmapData[]>
+fetchCohortAnalysis(): Promise<CohortData[]>
+exportSegmentUsers(segment: string): Promise<void>
+```
 
-**File:** `src/types/database.ts`
+### 2. Create Engagement Report Page
 
-Add `is_deleted` field to `guide_comments` table if not present.
+**File:** `src/app/admin/engagement.tsx`
 
-### 6. Update Hebrew Locale
+**Sections:**
+1. Header with title and export options
+2. Segmentation cards (4 cards in grid)
+3. Engagement funnel (visual funnel chart)
+4. Activity heatmap (recharts heatmap)
+5. Cohort analysis table
 
-Add to `comments` section:
-- `edit`: 'ערוך'
-- `delete`: 'מחק'
-- `deleteConfirm`: 'למחוק תגובה? לא ניתן לבטל פעולה זו.'
-- `deleteSuccess`: 'התגובה נמחקה בהצלחה'
-- `deleteError`: 'שגיאה במחיקת התגובה'
-- `edited`: '(נערך)'
-- `save`: 'שמור'
-- `cancel`: 'ביטול'
-- `commentDeleted`: '[התגובה נמחקה]'
-- `editSuccess`: 'התגובה עודכנה בהצלחה'
-- `editError`: 'שגיאה בעדכון התגובה'
+### 3. Add Route
 
-### 7. Add Edit Mode UI
+**File:** `src/app/routes.tsx`
 
-**Edit State:**
-- Textarea with current content
-- Character counter
-- Save button (emerald)
-- Cancel button (gray)
-- Disable other actions while editing
+Add to admin children:
+```typescript
+{
+  path: 'engagement',
+  element: <UserEngagementReportPage />,
+}
+```
 
-### 8. Activity Logging
+### 4. Add Hebrew Locale Strings
 
-**Activities:**
-- `comment_edited`: Log when user edits comment
-- `comment_deleted`: Log when user deletes comment
+**File:** `src/lib/locale/he.ts`
+
+Add to `admin` section:
+```typescript
+engagement: {
+  title: string;
+  subtitle: string;
+  userSegmentation: string;
+  highlyEngaged: string;
+  moderatelyEngaged: string;
+  lowEngagement: string;
+  atRisk: string;
+  engagementFunnel: string;
+  registered: string;
+  onboarded: string;
+  firstGuide: string;
+  activeUser: string;
+  powerUser: string;
+  dropOffRate: string;
+  activityHeatmap: string;
+  cohortAnalysis: string;
+  registrationMonth: string;
+  usersRegistered: string;
+  avgProgress: string;
+  retentionRate: string;
+  exportSegment: string;
+}
+```
+
+### 5. Update Sidebar Navigation
+
+Add "דוח מעורבות משתמשים" link to admin section.
 
 ---
 
 ## 🎨 UI/UX Considerations
 
-### Edit Button
-- Pencil icon from Tabler Icons
-- Appears on hover (desktop) or always visible (mobile)
-- Only on user's own comments
+### Segmentation Cards
+- 4 cards in grid (2x2 on mobile, 4x1 on desktop)
+- Color coding: Green (high), Yellow (moderate), Orange (low), Red (at risk)
+- Large count number, percentage below
+- Icon for each segment
 
-### Delete Button
-- Trash icon from Tabler Icons
-- Red/destructive color
-- Confirmation required
+### Funnel Chart
+- Visual funnel using recharts or custom CSS
+- Each stage progressively narrower
+- Labels inside or next to funnel
+- Drop-off percentages between stages
+- Color coding for alarming drop-offs
 
-### Edit Mode
-- Textarea replaces content
-- Auto-focus on textarea
-- Same styling as comment form
-- Character counter visible
+### Activity Heatmap
+- 7 columns (days) x 24 rows (hours)
+- Color gradient: white (low) → emerald (high)
+- Tooltip on hover
+- Legend showing scale
+- RTL consideration for day labels
 
-### Edited Label
-- "(נערך)" displayed next to timestamp
-- Gray/muted color
-- Hover shows edit time
-
-### Soft Delete Display
-- "[התגובה נמחקה]" text
-- Gray/muted styling
-- Replies still visible and indented
-- User avatar and name removed
+### Cohort Table
+- Sortable columns
+- Color-coded retention rates
+- Expand row to show user details optional
+- Export button per cohort
 
 ---
 
 ## 🧪 Testing Scenarios
 
-### Happy Path - Edit
-1. User posts comment
-2. User clicks edit button
-3. Modifies text
-4. Clicks save
-5. **Expected:**
-   - Comment updated
-   - "(נערך)" label appears
-   - Toast: "התגובה עודכנה בהצלחה"
+### Happy Path - Segmentation
+1. Admin views engagement report
+2. **Expected:**
+   - 4 segment cards display correctly
+   - Numbers add up to total users
+   - Percentages total 100%
 
-### Happy Path - Delete (No Replies)
-1. User posts comment (no replies)
-2. User clicks delete
-3. Confirms in dialog
-4. **Expected:**
-   - Comment removed completely
-   - UI updates smoothly
-   - Toast: "התגובה נמחקה בהצלחה"
+### Happy Path - Funnel
+1. Admin views funnel
+2. **Expected:**
+   - 5 stages display in order
+   - Each stage shows correct count
+   - Drop-off rates calculated correctly
+   - Visual funnel renders
 
-### Soft Delete (With Replies)
-1. User posts comment
-2. Others reply to it
-3. User deletes original comment
-4. **Expected:**
-   - Content replaced with "[התגובה נמחקה]"
-   - Replies remain visible
-   - Thread structure preserved
+### Happy Path - Heatmap
+1. Admin views heatmap
+2. **Expected:**
+   - Heatmap displays 7x24 grid
+   - Color intensity reflects activity
+   - Tooltip shows details on hover
 
-### Permissions
-1. User A posts comment
-2. User B views comment
-3. **Expected:**
-   - User B does NOT see edit/delete buttons
-   - Only User A sees buttons
+### Happy Path - Cohort
+1. Admin views cohort analysis
+2. **Expected:**
+   - Cohorts grouped by month
+   - Metrics calculated correctly
+   - Sortable by columns
 
-### Cancel Edit
-1. User clicks edit
-2. Modifies text
-3. Clicks cancel
-4. **Expected:**
-   - Original text restored
-   - Edit mode closed
-   - No changes saved
-
-### Validation
-1. User edits comment
-2. Deletes all content
-3. Tries to save
-4. **Expected:**
-   - Error: "התגובה לא יכולה להיות ריקה"
-   - Cannot save empty comment
+### Export Segment
+1. Admin clicks export on "At Risk" segment
+2. **Expected:**
+   - CSV downloaded
+   - Contains user list with details
+   - Filename includes segment and date
 
 ---
 
 ## 🔐 Security & Validation
 
+### Server-Side
+- Admin-only access (RLS policy)
+- Data aggregation respects user privacy
+- Export includes only necessary fields
+
 ### Client-Side
-- Only show buttons to comment owner
-- Validate content before submission
-- Character limit enforced
-- Confirmation required for delete
-
-### Server-Side (RLS Policies)
-- User can only update their own comments
-- User can only delete their own comments
-- Content validation
-- Rate limiting (prevent spam)
-
-### Database Constraints
-- `content` NOT NULL (unless soft deleted)
-- `user_id` validated against auth
-- `updated_at` automatically updated
-
----
-
-## 📚 Technical Resources
-
-### Confirmation Dialog
-Use shadcn/ui `AlertDialog`:
-```typescript
-<AlertDialog>
-  <AlertDialogTrigger>
-    <Button>Delete</Button>
-  </AlertDialogTrigger>
-  <AlertDialogContent>
-    <AlertDialogHeader>
-      <AlertDialogTitle>למחוק תגובה?</AlertDialogTitle>
-      <AlertDialogDescription>
-        לא ניתן לבטל פעולה זו.
-      </AlertDialogDescription>
-    </AlertDialogHeader>
-    <AlertDialogFooter>
-      <AlertDialogCancel>ביטול</AlertDialogCancel>
-      <AlertDialogAction>מחק</AlertDialogAction>
-    </AlertDialogFooter>
-  </AlertDialogContent>
-</AlertDialog>
-```
-
-### Soft Delete Check
-```typescript
-const checkForReplies = async (commentId: string) => {
-  const { count } = await supabase
-    .from('guide_comments')
-    .select('id', { count: 'exact', head: true })
-    .eq('parent_comment_id', commentId);
-
-  return count > 0;
-};
-```
+- Admin check before rendering
+- Loading states
+- Error handling
 
 ---
 
@@ -383,21 +330,14 @@ const checkForReplies = async (commentId: string) => {
 
 Before marking story complete:
 
-- [ ] Edit button appears on own comments
-- [ ] Edit mode with textarea functional
-- [ ] Save updates comment in database
-- [ ] Cancel discards changes
-- [ ] "(נערך)" label displays correctly
-- [ ] Delete button appears on own comments
-- [ ] Confirmation dialog displays
-- [ ] Delete removes comment (or soft deletes)
-- [ ] Soft delete preserves replies
-- [ ] Hard delete removes completely
-- [ ] Activity logged for both actions
-- [ ] Toast notifications display
-- [ ] Permissions enforced (client + server)
-- [ ] Real-time updates working
-- [ ] Hebrew locale strings added
+- [ ] User segmentation displays correctly
+- [ ] Engagement funnel visualized
+- [ ] Activity heatmap rendered
+- [ ] Cohort analysis table functional
+- [ ] Export CSV works for each segment
+- [ ] Hebrew localization complete
+- [ ] Route added to admin section
+- [ ] Sidebar navigation updated
 - [ ] No TypeScript errors
 - [ ] No linter errors
 - [ ] Responsive on mobile, tablet, desktop
@@ -408,24 +348,6 @@ Before marking story complete:
 
 ## 🚀 Ready to Implement!
 
-Story 8.4 complete with Q&A functionality. Story 8.5 will allow users to manage their own comments by editing and deleting them.
+Story 9.3 complete with content analytics. Story 9.4 will provide deep insights into user engagement patterns and help identify users who need support.
 
-**Start Command:**
-```bash
-# No new dependencies needed
-```
-
-Then implement in this order:
-1. Add edit state to CommentItem/CommentReply
-2. Create edit/delete actions in comments.ts
-3. Add confirmation dialog
-4. Implement soft delete logic
-5. Add Hebrew locale strings
-6. Test edit flow
-7. Test delete flow (both hard and soft)
-8. Test permissions
-9. Complete story documentation
-
----
-
-**Let's build comment management! ✏️🗑️**
+**Let's build user engagement insights! 📊**

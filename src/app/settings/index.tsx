@@ -1,17 +1,47 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { hebrewLocale } from '../../lib/locale/he';
 import { DeleteAccountDialog } from '../../components/settings/DeleteAccountDialog';
 import { IconAlertTriangle, IconTrash } from '@tabler/icons-react';
+import { UserAvatar } from '../../components/ui/user-avatar';
+import { useAuth } from '../../hooks/useAuth';
+import { supabase } from '../../lib/supabase';
+import type { AvatarConfig } from '../../lib/avatar';
+import { Link } from 'react-router-dom';
 
 /**
  * Settings Page (Protected)
  * Story 2.12: Account deletion feature
+ * Story 0.3: User avatar display
  */
 export function SettingsPage() {
+  const { user, profile } = useAuth();
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [avatarConfig, setAvatarConfig] = useState<AvatarConfig | null>(null);
   const he = hebrewLocale.accountDeletion;
+
+  // Load avatar configuration - Story 0.3
+  useEffect(() => {
+    async function loadAvatar() {
+      if (!user?.id) return;
+
+      const { data } = await supabase
+        .from('profiles')
+        .select('avatar_style, avatar_seed, avatar_options')
+        .eq('id', user.id)
+        .single();
+
+      if (data?.avatar_style) {
+        setAvatarConfig({
+          style: data.avatar_style as any,
+          seed: data.avatar_seed || user.id,
+          options: data.avatar_options || {},
+        });
+      }
+    }
+    loadAvatar();
+  }, [user?.id]);
 
   return (
     <div className="p-8">
@@ -22,6 +52,32 @@ export function SettingsPage() {
         </div>
 
         <div className="grid gap-6">
+          {/* Profile Avatar - Story 0.3 */}
+          <Card className="p-6 space-y-4">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">פרופיל</h3>
+            <div className="flex items-center gap-4">
+              <UserAvatar 
+                config={avatarConfig} 
+                userId={user?.id} 
+                size="lg" 
+              />
+              <div className="flex-1">
+                <p className="text-sm font-medium text-gray-900 dark:text-white">
+                  {profile?.display_name || 'משתמש'}
+                </p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  {user?.email}
+                </p>
+                <Link 
+                  to="/profile" 
+                  className="text-sm text-emerald-600 hover:text-emerald-700 dark:text-emerald-500 dark:hover:text-emerald-400"
+                >
+                  ערוך פרופיל ואווטר
+                </Link>
+              </div>
+            </div>
+          </Card>
+
           <Card className="p-6 space-y-4">
             <h3 className="text-lg font-semibold">התראות</h3>
             <p className="text-gray-500">הגדרות התראות יגיעו בקרוב</p>

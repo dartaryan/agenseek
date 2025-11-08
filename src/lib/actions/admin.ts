@@ -2,6 +2,7 @@
  * Admin Analytics Actions
  * Story 9.1: Build Admin Dashboard Overview
  * Story 9.2: Build User Management Page
+ * Story 9.3: Build Content Analytics Page
  *
  * Functions for fetching admin dashboard data:
  * - Overall statistics
@@ -9,6 +10,7 @@
  * - Popular guides
  * - Recent activity
  * - User management
+ * - Content analytics
  */
 
 import { supabase } from '../supabase';
@@ -82,6 +84,36 @@ export interface UserDetails {
 }
 
 export type SortColumn = 'displayName' | 'email' | 'createdAt' | 'progressPercentage';
+
+// Type definitions - Story 9.3
+export interface GuidePerformance {
+  guideSlug: string;
+  guideTitle: string;
+  category: string;
+  views: number;
+  uniqueViewers: number;
+  avgTimeMinutes: number;
+  completionRate: number;
+  helpfulVotes: number;
+  commentsCount: number;
+  engagementLevel: 'high' | 'medium' | 'low';
+}
+
+export interface ContentEngagementSummary {
+  totalNotes: number;
+  totalTasks: number;
+  totalComments: number;
+  avgSessionDurationMinutes: number;
+}
+
+export interface CategoryPerformance {
+  category: string;
+  guidesCount: number;
+  totalViews: number;
+  avgCompletionRate: number;
+}
+
+export type GuidesSortColumn = 'views' | 'uniqueViewers' | 'avgTimeMinutes' | 'completionRate' | 'helpfulVotes' | 'commentsCount';
 
 /**
  * Fetch overall admin statistics
@@ -576,6 +608,230 @@ export async function deleteUser(userId: string): Promise<void> {
   } catch (error) {
     console.error('Error deleting user:', error);
     throw error;
+  }
+}
+
+// Story 9.3: Content Analytics Functions
+
+/**
+ * Fetch guide performance data
+ * @param categoryFilter Optional category filter
+ * @param sortColumn Column to sort by
+ * @param sortAscending Sort direction
+ */
+export async function fetchGuidePerformance(
+  categoryFilter?: string,
+  sortColumn: GuidesSortColumn = 'views',
+  sortAscending: boolean = false
+): Promise<GuidePerformance[]> {
+  try {
+    // Get all guides from JSON catalog
+    const guidesResponse = await fetch('/content/guides-catalog.json');
+    const guidesCatalog = await guidesResponse.json();
+
+    const guides = guidesCatalog.guides || [];
+
+    // Filter by category if specified
+    const filteredGuides = categoryFilter
+      ? guides.filter((g: any) => g.category === categoryFilter)
+      : guides;
+
+    // Fetch performance data for each guide
+    const performancePromises = filteredGuides.map(async (guide: any) => {
+      const guideSlug = guide.slug;
+
+      // Views count
+      const { count: views } = await supabase
+        .from('user_activity')
+        .select('*', { count: 'exact', head: true })
+        .eq('activity_type', 'view_guide')
+        .eq('target_slug', guideSlug);
+
+      // Unique viewers
+      const { data: uniqueViewersData } = await supabase
+        .from('user_activity')
+        .select('user_id')
+        .eq('activity_type', 'view_guide')
+        .eq('target_slug', guideSlug);
+
+      const uniqueViewers = new Set(uniqueViewersData?.map(d => d.user_id)).size;
+
+      // Average time spent (from metadata if stored)
+      const { data: timeData } = await supabase
+        .from('user_activity')
+        .select('metadata')
+        .eq('activity_type', 'view_guide')
+        .eq('target_slug', guideSlug);
+
+      const avgTimeMinutes = timeData?.length
+        ? Math.round(
+            timeData.reduce((sum, d) => sum + (d.metadata?.duration_minutes || 0), 0) / timeData.length
+          )
+        : 0;
+
+      // Completion rate
+      const { data: progressData } = await supabase
+        .from('user_progress')
+        .select('completed')
+        .eq('guide_slug', guideSlug);
+
+      const completionRate = progressData?.length
+        ? Math.round((progressData.filter(p => p.completed).length / progressData.length) * 100)
+        : 0;
+
+      // Helpful votes (from comments)
+      const { data: commentsData } = await supabase
+        .from('guide_comments')
+        .select('helpful_count')
+        .eq('guide_slug', guideSlug);
+
+      const helpfulVotes = commentsData?.reduce((sum, c) => sum + (c.helpful_count || 0), 0) || 0;
+
+      // Comments count
+      const { count: commentsCount } = await supabase
+        .from('guide_comments')
+        .select('*', { count: 'exact', head: true })
+        .eq('guide_slug', guideSlug);
+
+      // Engagement level (based on views and completion rate)
+      let engagementLevel: 'high' | 'medium' | 'low' = 'low';
+      if ((views || 0) > 50 && completionRate > 60) {
+        engagementLevel = 'high';
+      } else if ((views || 0) > 20 || completionRate > 40) {
+        engagementLevel = 'medium';
+      }
+
+      return {
+        guideSlug,
+        guideTitle: guide.title,
+        category: guide.category,
+        views: views || 0,
+        uniqueViewers,
+        avgTimeMinutes,
+        completionRate,
+        helpfulVotes,
+        commentsCount: commentsCount || 0,
+        engagementLevel,
+      };
+    });
+
+    let performance = await Promise.all(performancePromises);
+
+    // Sort by selected column
+    performance = performance.sort((a, b) => {
+      const aVal = a[sortColumn];
+      const bVal = b[sortColumn];
+      return sortAscending ? aVal - bVal : bVal - aVal;
+    });
+
+    return performance;
+  } catch (error) {
+    console.error('Error fetching guide performance:', error);
+    return [];
+  }
+}
+
+/**
+ * Fetch content engagement summary
+ */
+export async function fetchContentEngagementSummary(): Promise<ContentEngagementSummary> {
+  try {
+    // Total notes
+    const { count: totalNotes } = await supabase
+      .from('user_notes')
+      .select('*', { count: 'exact', head: true });
+
+    // Total tasks
+    const { count: totalTasks } = await supabase
+      .from('user_tasks')
+      .select('*', { count: 'exact', head: true });
+
+    // Total comments
+    const { count: totalComments } = await supabase
+      .from('guide_comments')
+      .select('*', { count: 'exact', head: true });
+
+    // Average session duration
+    const { data: sessionData } = await supabase
+      .from('user_activity')
+      .select('metadata')
+      .eq('activity_type', 'view_guide');
+
+    const avgSessionDurationMinutes = sessionData?.length
+      ? Math.round(
+          sessionData.reduce((sum, d) => sum + (d.metadata?.duration_minutes || 0), 0) / sessionData.length
+        )
+      : 0;
+
+    return {
+      totalNotes: totalNotes || 0,
+      totalTasks: totalTasks || 0,
+      totalComments: totalComments || 0,
+      avgSessionDurationMinutes,
+    };
+  } catch (error) {
+    console.error('Error fetching content engagement summary:', error);
+    return {
+      totalNotes: 0,
+      totalTasks: 0,
+      totalComments: 0,
+      avgSessionDurationMinutes: 0,
+    };
+  }
+}
+
+/**
+ * Fetch category performance data for bar chart
+ */
+export async function fetchCategoryPerformance(): Promise<CategoryPerformance[]> {
+  try {
+    // Get all guides from catalog
+    const guidesResponse = await fetch('/content/guides-catalog.json');
+    const guidesCatalog = await guidesResponse.json();
+
+    const guides = guidesCatalog.guides || [];
+
+    // Group by category
+    const categoryMap = new Map<string, string[]>();
+    guides.forEach((guide: any) => {
+      const category = guide.category || 'אחר';
+      if (!categoryMap.has(category)) {
+        categoryMap.set(category, []);
+      }
+      categoryMap.get(category)!.push(guide.slug);
+    });
+
+    // Calculate performance for each category
+    const performancePromises = Array.from(categoryMap.entries()).map(async ([category, slugs]) => {
+      // Total views for this category
+      const { count: totalViews } = await supabase
+        .from('user_activity')
+        .select('*', { count: 'exact', head: true })
+        .eq('activity_type', 'view_guide')
+        .in('target_slug', slugs);
+
+      // Completion rate for this category
+      const { data: progressData } = await supabase
+        .from('user_progress')
+        .select('completed')
+        .in('guide_slug', slugs);
+
+      const avgCompletionRate = progressData?.length
+        ? Math.round((progressData.filter(p => p.completed).length / progressData.length) * 100)
+        : 0;
+
+      return {
+        category,
+        guidesCount: slugs.length,
+        totalViews: totalViews || 0,
+        avgCompletionRate,
+      };
+    });
+
+    return await Promise.all(performancePromises);
+  } catch (error) {
+    console.error('Error fetching category performance:', error);
+    return [];
   }
 }
 

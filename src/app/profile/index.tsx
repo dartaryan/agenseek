@@ -8,6 +8,9 @@ import { supabase } from '../../lib/supabase';
 import { useToast } from '../../hooks/use-toast';
 import { EditDisplayNameModal } from '../../components/profile/EditDisplayNameModal';
 import { isEnglishName } from '../../lib/utils/detectLanguage';
+import { UserAvatar } from '../../components/ui/user-avatar';
+import { AvatarSelector } from '../../components/avatar-selector';
+import { getDefaultAvatarConfig, type AvatarConfig } from '../../lib/avatar';
 import {
   IconCode,
   IconChartBar,
@@ -30,6 +33,7 @@ import {
   IconCheck,
   IconLoader2,
   IconSparkles,
+  IconEdit,
 } from '@tabler/icons-react';
 
 // Role definitions (same as onboarding)
@@ -197,6 +201,10 @@ export function ProfilePage() {
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
   const [selectedExperience, setSelectedExperience] = useState<string | null>(null);
 
+  // Avatar state
+  const [showAvatarSelector, setShowAvatarSelector] = useState(false);
+  const [avatarConfig, setAvatarConfig] = useState<AvatarConfig | null>(null);
+
   // Load current preferences from profile
   useEffect(() => {
     if (profile) {
@@ -205,6 +213,28 @@ export function ProfilePage() {
       setSelectedExperience(profile.experience_level || null);
     }
   }, [profile]);
+
+  // Load avatar configuration from profile
+  useEffect(() => {
+    async function loadAvatar() {
+      if (!user?.id) return;
+
+      const { data } = await supabase
+        .from('profiles')
+        .select('avatar_style, avatar_seed, avatar_options')
+        .eq('id', user.id)
+        .single();
+
+      if (data?.avatar_style) {
+        setAvatarConfig({
+          style: data.avatar_style as any,
+          seed: data.avatar_seed || user.id,
+          options: data.avatar_options || {},
+        });
+      }
+    }
+    loadAvatar();
+  }, [user?.id]);
 
   // Check if we should open display name edit modal from query param
   useEffect(() => {
@@ -331,15 +361,58 @@ export function ProfilePage() {
     }
   };
 
+  const handleSaveAvatar = async (config: AvatarConfig) => {
+    if (!user?.id) return;
+
+    try {
+      const { error } = await supabase
+        .from('profiles')
+        .update({
+          avatar_style: config.style,
+          avatar_seed: config.seed,
+          avatar_options: config.options,
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', user.id);
+
+      if (error) throw error;
+
+      setAvatarConfig(config);
+      toast({
+        title: 'האווטר עודכן בהצלחה',
+        description: 'האווטר שלך שונה',
+      });
+    } catch (error) {
+      console.error('Error saving avatar:', error);
+      toast({
+        variant: 'destructive',
+        title: 'שגיאה בשמירת אווטר',
+        description: 'אנא נסה שוב',
+      });
+    }
+  };
+
   return (
     <>
       {/* Edit Display Name Modal - Story X.X */}
       <EditDisplayNameModal
         currentName={profile?.display_name || ''}
+        userId={user?.id || ''}
         isOpen={isEditingDisplayName}
         onClose={() => setIsEditingDisplayName(false)}
         onSave={handleUpdateDisplayName}
       />
+
+      {/* Avatar Selector - Story 0.3 */}
+      {user?.id && (
+        <AvatarSelector
+          open={showAvatarSelector}
+          onClose={() => setShowAvatarSelector(false)}
+          currentConfig={avatarConfig || getDefaultAvatarConfig(user.id)}
+          onSave={handleSaveAvatar}
+          userId={user.id}
+        />
+      )}
 
       <div className="p-8">
         <div className="max-w-4xl mx-auto space-y-8">
@@ -365,6 +438,29 @@ export function ProfilePage() {
                   ערוך שם
                 </Button>
               </div>
+
+              {/* Avatar Display and Edit - Story 0.3 */}
+              <div className="flex items-center gap-4 pb-4 border-b border-gray-200 dark:border-gray-700">
+                <UserAvatar
+                  config={avatarConfig}
+                  userId={user?.id}
+                  size="xl"
+                />
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    אווטר פרופיל
+                  </p>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setShowAvatarSelector(true)}
+                  >
+                    <IconEdit className="w-4 h-4 ml-2" />
+                    שנה אווטר
+                  </Button>
+                </div>
+              </div>
+
               <div className="space-y-2 text-gray-600 dark:text-gray-400">
                 <p>
                   <strong>שם תצוגה:</strong> {profile?.display_name || 'לא הוגדר'}

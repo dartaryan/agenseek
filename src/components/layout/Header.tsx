@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle, useRef } from 'react';
+import { forwardRef, useImperativeHandle, useRef, useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { IconList } from '@tabler/icons-react';
 import { Button } from '../ui/button';
@@ -12,6 +12,9 @@ import { MobileNav } from './MobileNav';
 import { HeaderNav } from './HeaderNav';
 import { SearchBar, type SearchBarRef } from './SearchBar';
 import { NotificationDropdown } from './NotificationDropdown';
+import { UserAvatar } from '../ui/user-avatar';
+import { supabase } from '../../lib/supabase';
+import type { AvatarConfig } from '../../lib/avatar';
 
 /**
  * Header public methods (Story 7.5)
@@ -40,6 +43,29 @@ export const Header = forwardRef<HeaderRef>(function Header(_props, ref) {
   const { onToggle, isEnabled } = useMobileToc();
   const { isCollapsed } = useSidebar();
   const searchBarRef = useRef<SearchBarRef>(null);
+  const [avatarConfig, setAvatarConfig] = useState<AvatarConfig | null>(null);
+
+  // Story 0.3: Load avatar configuration
+  useEffect(() => {
+    async function loadAvatar() {
+      if (!user?.id) return;
+
+      const { data } = await supabase
+        .from('profiles')
+        .select('avatar_style, avatar_seed, avatar_options')
+        .eq('id', user.id)
+        .single();
+
+      if (data?.avatar_style) {
+        setAvatarConfig({
+          style: data.avatar_style as any,
+          seed: data.avatar_seed || user.id,
+          options: data.avatar_options || {},
+        });
+      }
+    }
+    loadAvatar();
+  }, [user?.id]);
 
   // Story 7.5: Expose focusSearch method to parent via ref
   useImperativeHandle(ref, () => ({
@@ -126,17 +152,16 @@ export const Header = forwardRef<HeaderRef>(function Header(_props, ref) {
               </svg>
             </Button>
 
-            {/* User Profile */}
+            {/* User Profile - Story 0.3: Avatar */}
             {user && (
               <div className="flex items-center gap-3">
                 <Link to="/profile">
                   <Button variant="ghost" size="sm" className="gap-2">
-                    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100">
-                      <span className="text-xs font-semibold text-emerald-600">
-                        {profile?.display_name?.charAt(0).toUpperCase() ||
-                          user.email?.charAt(0).toUpperCase()}
-                      </span>
-                    </div>
+                    <UserAvatar
+                      config={avatarConfig}
+                      userId={user.id}
+                      size="sm"
+                    />
                     <span className="text-sm">
                       {profile?.display_name || user.email?.split('@')[0]}
                     </span>

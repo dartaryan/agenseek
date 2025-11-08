@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   IconMenu2,
   IconHome,
@@ -18,11 +18,13 @@ import {
   SheetTrigger,
 } from '../ui/sheet';
 import { Button } from '../ui/button';
-import { Avatar, AvatarFallback } from '../ui/avatar';
+import { UserAvatar } from '../ui/user-avatar';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { signOut } from '../../lib/auth';
+import { supabase } from '../../lib/supabase';
 import { cn } from '../../lib/utils';
+import type { AvatarConfig } from '../../lib/avatar';
 
 interface NavItem {
   icon: React.ElementType;
@@ -56,9 +58,32 @@ const NAV_ITEMS: NavItem[] = [
 export function MobileNav() {
   const [open, setOpen] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [avatarConfig, setAvatarConfig] = useState<AvatarConfig | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
   const { user, profile } = useAuth();
+
+  // Story 0.3: Load avatar configuration
+  useEffect(() => {
+    async function loadAvatar() {
+      if (!user?.id) return;
+
+      const { data } = await supabase
+        .from('profiles')
+        .select('avatar_style, avatar_seed, avatar_options')
+        .eq('id', user.id)
+        .single();
+
+      if (data?.avatar_style) {
+        setAvatarConfig({
+          style: data.avatar_style as any,
+          seed: data.avatar_seed || user.id,
+          options: data.avatar_options || {},
+        });
+      }
+    }
+    loadAvatar();
+  }, [user?.id]);
 
   const handleNavClick = (href: string) => {
     navigate(href);
@@ -83,7 +108,6 @@ export function MobileNav() {
   };
 
   const displayName = profile?.display_name || user?.email?.split('@')[0] || 'משתמש';
-  const userInitial = displayName.charAt(0).toUpperCase();
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -103,14 +127,15 @@ export function MobileNav() {
         className="w-[280px] p-0 flex flex-col bg-white dark:bg-gray-900"
         aria-label="תפריט ניווט"
       >
-        {/* Header Section */}
+        {/* Header Section - Story 0.3: User Avatar */}
         <SheetHeader className="border-b p-4">
           <div className="flex items-center gap-3">
-            <Avatar className="h-10 w-10 bg-emerald-100">
-              <AvatarFallback className="text-emerald-600 font-semibold">
-                {userInitial}
-              </AvatarFallback>
-            </Avatar>
+            <UserAvatar 
+              config={avatarConfig} 
+              userId={user?.id} 
+              size="md"
+              className="h-10 w-10" 
+            />
             <div className="flex-1 text-right">
               <p className="font-semibold text-sm">{displayName}</p>
               <button

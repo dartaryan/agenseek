@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import {
   IconLayoutDashboard,
   IconBooks,
@@ -8,6 +9,7 @@ import {
   IconSettings,
   IconShieldCog,
   IconUsers,
+  IconChartBar,
   IconLayoutSidebarLeftCollapse,
   IconLayoutSidebarLeftExpand,
 } from '@tabler/icons-react';
@@ -23,6 +25,9 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { KeyboardShortcutHint } from '../ui/KeyboardShortcut';
+import { UserAvatar } from '../ui/user-avatar';
+import { supabase } from '../../lib/supabase';
+import type { AvatarConfig } from '../../lib/avatar';
 
 interface NavItem {
   name: string;
@@ -43,6 +48,7 @@ const navigationItems: NavItem[] = [
 const adminItems: NavItem[] = [
   { name: hebrewLocale.nav.admin, href: '/admin', icon: IconShieldCog },
   { name: hebrewLocale.pages.admin.userManagement, href: '/admin/users', icon: IconUsers },
+  { name: hebrewLocale.pages.admin.analytics.title, href: '/admin/analytics', icon: IconChartBar },
 ];
 
 /**
@@ -61,7 +67,30 @@ const adminItems: NavItem[] = [
 export function Sidebar() {
   const location = useLocation();
   const { isCollapsed, toggle } = useSidebar();
-  const { profile } = useAuth();
+  const { user, profile } = useAuth();
+  const [avatarConfig, setAvatarConfig] = useState<AvatarConfig | null>(null);
+
+  // Load avatar configuration - Story 0.3
+  useEffect(() => {
+    async function loadAvatar() {
+      if (!user?.id) return;
+
+      const { data } = await supabase
+        .from('profiles')
+        .select('avatar_style, avatar_seed, avatar_options')
+        .eq('id', user.id)
+        .single();
+
+      if (data?.avatar_style) {
+        setAvatarConfig({
+          style: data.avatar_style as any,
+          seed: data.avatar_seed || user.id,
+          options: data.avatar_options || {},
+        });
+      }
+    }
+    loadAvatar();
+  }, [user?.id]);
 
   const isActive = (href: string) => {
     if (href === '/dashboard') {
@@ -172,22 +201,45 @@ export function Sidebar() {
           </nav>
         )}
 
-        {/* Bottom Section - Help - only visible when expanded */}
+        {/* Bottom Section - User & Help - only visible when expanded */}
         {!isCollapsed && (
-          <div className="border-t p-4">
-            <div className="rounded-lg bg-emerald-50 p-3">
-              <p className="text-xs font-semibold text-emerald-900">
-                {hebrewLocale.help.title}
-              </p>
-              <p className="mt-1 text-xs text-emerald-700">
-                {hebrewLocale.help.description}
-              </p>
-              <Link
-                to="/guides"
-                className="mt-2 inline-block text-xs font-medium text-emerald-600 hover:text-emerald-700"
-              >
-                {hebrewLocale.help.browseLink}
-              </Link>
+          <div className="border-t">
+            {/* User Section - Story 0.3 */}
+            <Link
+              to="/profile"
+              className="flex items-center gap-3 p-4 hover:bg-gray-100 transition-colors border-b"
+            >
+              <UserAvatar
+                config={avatarConfig}
+                userId={user?.id}
+                size="md"
+              />
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-gray-900 truncate">
+                  {profile?.display_name || 'משתמש'}
+                </p>
+                <p className="text-xs text-gray-500 truncate">
+                  {user?.email}
+                </p>
+              </div>
+            </Link>
+
+            {/* Help Section */}
+            <div className="p-4">
+              <div className="rounded-lg bg-emerald-50 p-3">
+                <p className="text-xs font-semibold text-emerald-900">
+                  {hebrewLocale.help.title}
+                </p>
+                <p className="mt-1 text-xs text-emerald-700">
+                  {hebrewLocale.help.description}
+                </p>
+                <Link
+                  to="/guides"
+                  className="mt-2 inline-block text-xs font-medium text-emerald-600 hover:text-emerald-700"
+                >
+                  {hebrewLocale.help.browseLink}
+                </Link>
+              </div>
             </div>
           </div>
         )}

@@ -1,7 +1,7 @@
 # 📊 מעקב התקדמות מדריכים - Guides Progress Tracker
 
 **תאריך עדכון:** 8 נובמבר 2025
-**סטטוס:** 9/47 הושלמו (19%)
+**סטטוס:** 10/47 הושלמו (21%)
 
 ---
 
@@ -23,11 +23,11 @@
 | Core | 2 | 2 | 0 | 100% |
 | FAQ | 6 | 1 | 5 | 17% |
 | Onboarding | 3 | 2 | 1 | 67% |
-| Roles | 9 | 3 | 6 | 33% |
+| Roles | 9 | 4 | 5 | 44% |
 | Agents | 8 | 1 | 7 | 12.5% |
 | Workflows | 10 | 0 | 10 | 0% |
 | Practical | 9 | 0 | 9 | 0% |
-| **סה"כ** | **47** | **9** | **38** | **19%** |
+| **סה"כ** | **47** | **10** | **37** | **21%** |
 
 ---
 
@@ -54,7 +54,7 @@
 | 6 | `role-developers` | מדריך למפתחים ומפתחות | roles | ✅ |
 | 7 | `role-product-managers` | מדריך למנהלי מוצר ואנליסטים | roles | ✅ |
 | 8 | `role-architects` | מדריך לארכיטקטים טכנולוגיים | roles | ✅ |
-| 9 | `role-qa-testers` | מדריך לבודקי תוכנה | roles | ⏳ |
+| 9 | `role-qa-testers` | מדריך לבודקי תוכנה | roles | ✅ |
 | 10 | `role-ux-designers` | מדריך למעצבי UX/UI | roles | ⏳ |
 | 11 | `role-project-managers` | מדריך למנהלי פרויקטים וסקראם מאסטרים | roles | ⏳ |
 | 12 | `agents-intro-pm-analyst` | מדריך אגנטים - חלק 1א: מבוא + PM + Analyst | agents | ✅ |
@@ -72,7 +72,7 @@
 | 24 | `faq-workflows` | שאלות ותשובות - חלק 2ב: וורקפלואים | faq | ⏳ |
 | 25 | `onboarding-month1` | הדרכה לחודש הראשון | onboarding | ⏳ |
 
-**סטטוס P1:** ✅ 4/15 הושלמו (27%)
+**סטטוס P1:** ✅ 6/15 הושלמו (40%)
 
 ---
 
@@ -112,10 +112,10 @@
 
 **לפי עדיפות P1, המדריך הבא הוא:**
 
-### 📌 `role-qa-testers`
+### 📌 `role-ux-designers`
 
 **פרטים:**
-- **כותרת:** מדריך לבודקי תוכנה
+- **כותרת:** מדריך למעצבי UX/UI
 - **קטגוריה:** roles
 - **רמת קושי:** intermediate
 - **זמן קריאה:** 40 דקות
@@ -123,17 +123,17 @@
 
 **קבצים לקרוא:**
 1. `content-stories/FOR-AI-AGENTS.md` - הפרומפט המלא (חשוב! כולל הנחיות ליצירה בחלקים)
-2. `content-stories/stories/roles/qa-testers.md` - הסטורי המפורט
+2. `content-stories/stories/roles/ux-designers.md` - הסטורי המפורט
 3. `src/content/locale/he/guides/core/quick-start.json` - דוגמה מוכנה
-4. `src/content/locale/he/guides/roles/developers.json` - דוגמה בקטגוריה
-5. `src/content/locale/he/guides/roles/architects.json` - המדריך שזה עתה הושלם
+4. `src/content/locale/he/guides/roles/qa-testers.json` - המדריך שזה עתה הושלם
+5. `src/content/locale/he/guides/roles/developers.json` - דוגמה נוספת
 
 **היכן לשמור:**
-- `src/content/locale/he/guides/roles/qa-testers.json`
+- `src/content/locale/he/guides/roles/ux-designers.json`
 
 **לא לשכוח:**
 - **⚠️ זה מדריך ארוך (40 דקות) - יכול להידרש יצירה בחלקים!**
-- לעדכן את `src/content/locale/he/guides/index.json`
+- לעדכן את `src/content/locale/he/guides/index.json` (אם צריך)
 - לעדכן את הקובץ הזה (GUIDES-PROGRESS-TRACKER.md)
 
 ---
@@ -154,9 +154,9 @@ src/content/locale/he/guides/
 │   └── month1.json ⏳
 ├── roles/
 │   ├── developers.json ✅
-│   ├── product-managers.json ⏳ (הבא!)
-│   ├── architects.json ⏳
-│   ├── qa-testers.json ⏳
+│   ├── product-managers.json ✅
+│   ├── architects.json ✅
+│   ├── qa-testers.json ✅
 │   ├── ux-designers.json ⏳
 │   ├── project-managers.json ⏳
 │   ├── game-developers.json ⏳
@@ -247,10 +247,11 @@ src/content/locale/he/guides/
 1. day1 - הדרכה ליום הראשון
 2. week1 - הדרכה לשבוע הראשון
 
-### ✅ Roles (3/9 - 33%)
+### ✅ Roles (4/9 - 44%)
 1. developers - מדריך למפתחים ומפתחות
 2. product-managers - מדריך למנהלי מוצר ואנליסטים
 3. architects - מדריך לארכיטקטים טכנולוגיים
+4. qa-testers - מדריך לבודקי תוכנה
 
 ### ✅ Agents (1/8 - 12.5%)
 1. intro-pm-analyst - מדריך אגנטים - חלק 1א: מבוא + PM + Analyst
@@ -261,4 +262,3 @@ src/content/locale/he/guides/
 **תאריך עדכון אחרון:** 8 נובמבר 2025
 **גרסה:** 1.0
 **סטטוס:** Active ✅
-

@@ -1,0 +1,1313 @@
+{
+  "metadata": {
+    "id": "qa-testers",
+    "slug": "qa-testers",
+    "title": "מדריך בודקי תוכנה: איכות מעולה עם BMAD-METHOD",
+    "description": "מדריך מקיף לבודקי תוכנה - QA Engineers, Test Architects, QA Automation. לומדים איך להשתמש ב-BMAD ליצירת אסטרטגיית בדיקות, כתיבת תוכניות בדיקה מקצועיות, ושילוב איכותי בתהליך הפיתוח.",
+    "category": "roles",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 40,
+    "icon": "TestPipe",
+    "tags": ["בודקי תוכנה", "QA", "TEA", "בדיקות", "איכות", "test plans", "automation"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "למי מדריך זה מיועד",
+      "level": 2,
+      "anchor": "for-who"
+    },
+    {
+      "id": "toc-2",
+      "title": "מסלול למידה מומלץ - צעד אחר צעד",
+      "level": 2,
+      "anchor": "learning-path",
+      "children": [
+        {
+          "id": "toc-2-1",
+          "title": "שלב 1: הבנת היסודות",
+          "level": 3,
+          "anchor": "stage-1"
+        },
+        {
+          "id": "toc-2-2",
+          "title": "שלב 2: התקנה והגדרה",
+          "level": 3,
+          "anchor": "stage-2"
+        },
+        {
+          "id": "toc-2-3",
+          "title": "שלב 3: שליטה באג'נט TEA והוורקפלואים",
+          "level": 3,
+          "anchor": "stage-3"
+        }
+      ]
+    },
+    {
+      "id": "toc-3",
+      "title": "האג'נט שלך: Murat (TEA - Test Expert Architect)",
+      "level": 2,
+      "anchor": "your-agent"
+    },
+    {
+      "id": "toc-4",
+      "title": "הוורקפלואים שלך - מדריך שימוש מעשי",
+      "level": 2,
+      "anchor": "your-workflows"
+    },
+    {
+      "id": "toc-5",
+      "title": "תכנון בדיקות מקצועי עם BMAD",
+      "level": 2,
+      "anchor": "test-planning"
+    },
+    {
+      "id": "toc-6",
+      "title": "תרחישים מעשיים מהעבודה שלך",
+      "level": 2,
+      "anchor": "practical-scenarios"
+    },
+    {
+      "id": "toc-7",
+      "title": "עבודה עם הצוות",
+      "level": 2,
+      "anchor": "team-work"
+    },
+    {
+      "id": "toc-8",
+      "title": "Best Practices לבודקי תוכנה",
+      "level": 2,
+      "anchor": "best-practices"
+    },
+    {
+      "id": "toc-9",
+      "title": "שאלות נפוצות",
+      "level": 2,
+      "anchor": "faq"
+    },
+    {
+      "id": "toc-10",
+      "title": "סיכום ומה הלאה",
+      "level": 2,
+      "anchor": "summary"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מדריך בודקי תוכנה: איכות מעולה עם BMAD-METHOD",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "למי מדריך זה?",
+      "content": "בודקי תוכנה, QA Engineers, Test Architects, QA Automation Engineers - מתחילים ומנוסים כאחד. תלמדו איך BMAD משפר את תהליכי הבדיקה ומעלה את איכות התוכנה."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "למי מדריך זה מיועד",
+      "id": "for-who"
+    },
+    {
+      "type": "text",
+      "content": "מדריך זה נכתב במיוחד עבור בודקי תוכנה - בין אם אתם:",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "QA Engineers (Manual Testing)",
+      "id": "qa-manual"
+    },
+    {
+      "type": "text",
+      "content": "אתם מבצעים בדיקות ידניות? BMAD-METHOD יעזור לכם לתכנן בדיקות בצורה מובנית יותר, ליצור test plans מפורטים, ולתעד את הממצאים בצורה מקצועית. אג'נט TEA ילווה אתכם ביצירת test cases מקיפים ויוודא שלא פספסתם תרחישי קצה חשובים.",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "QA Automation Engineers",
+      "id": "qa-automation"
+    },
+    {
+      "type": "text",
+      "content": "אתם כותבים בדיקות אוטומטיות? BMAD יעזור לכם לתכנן את אסטרטגיית האוטומציה, לזהות מה כדאי לבדוק אוטומטית ומה ידנית, וליצור קוד בדיקות איכותי. תקבלו עזרה בכתיבת test frameworks, page objects, ותחזוקת הבדיקות לאורך זמן.",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Test Architects / QA Team Leads",
+      "id": "test-architects"
+    },
+    {
+      "type": "text",
+      "content": "אתם מובילים צוות בדיקות? BMAD יעזור לכם לבנות Master Test Plan מקצועי, להגדיר אסטרטגיית בדיקות ברמת המערכת, לתכנן את ה-Test Pyramid, ולשלב בדיקות בתהליכי CI/CD. תקבלו כלים לניהול איכות ברמה ארגונית.",
+      "markdown": false
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "עדיף להתחיל מהיסודות",
+      "content": "אם אתם חדשים ב-BMAD, קראו קודם את המדריך 'התחלה מהירה' ואת 'הדרכה ליום הראשון'. המדריך הזה מניח ידע בסיסי במושגים של BMAD."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "מסלול למידה מומלץ - צעד אחר צעד",
+      "id": "learning-path"
+    },
+    {
+      "type": "text",
+      "content": "הנה המסלול המומלץ ללימוד BMAD עבור בודקי תוכנה:",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 1: הבנת היסודות (זמן: 1-2 שעות)",
+      "id": "stage-1"
+    },
+    {
+      "type": "text",
+      "content": "**מה ללמוד:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "קראו את 'התחלה מהירה ל-BMAD' - הבינו מה זה BMAD ואיך זה עובד"
+        },
+        {
+          "content": "קראו את 'מילון מונחים' - למדו מושגים כמו אג'נטים, וורקפלואים, Story Context"
+        },
+        {
+          "content": "עברו על 'הדרכה ליום הראשון' - תקבלו ניצחון ראשון!"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "יעד השלב",
+      "content": "להבין את הבסיס - מה זה אג'נטים, מה זה וורקפלואים, ואיך BMAD מתאים לתהליך הבדיקות שלכם."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 2: התקנה והגדרה (זמן: 30-60 דקות)",
+      "id": "stage-2"
+    },
+    {
+      "type": "text",
+      "content": "**מה לעשות:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "התקינו את BMAD בפרויקט שלכם (או צרו פרויקט חדש לתרגול)"
+        },
+        {
+          "content": "הריצו את workflow-init - המערכת תזהה את הפרויקט שלכם"
+        },
+        {
+          "content": "פתחו את אג'נט TEA (Murat) והתנסו בשיחה ראשונה"
+        },
+        {
+          "content": "הריצו את test-arch workflow על פיצ'ר קטן"
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# התקנה\ncd your-project\nnpx bmad-method@alpha install\n\n# הפעלת workflow-init\n# פתחו את bmad/core/agents/bmad-master.md\n# כתבו בצ'אט: *workflow-init",
+      "filename": "התקנה בסיסית"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "יעד השלב",
+      "content": "סביבת עבודה מוכנה - BMAD מותקן, אתם מכירים את אג'נט TEA, והרצתם וורקפלואו ראשון."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 3: שליטה באג'נט TEA והוורקפלואים (זמן: 2-4 שעות)",
+      "id": "stage-3"
+    },
+    {
+      "type": "text",
+      "content": "**מה ללמוד:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "למדו לעומק את אג'נט Murat (TEA) - מה הוא יכול לעשות ואיך להשתמש בו"
+        },
+        {
+          "content": "הריצו test-arch workflow על פיצ'ר אמיתי בפרויקט"
+        },
+        {
+          "content": "צרו Master Test Plan לפיצ'ר קטן"
+        },
+        {
+          "content": "כתבו Test Cases עם עזרת TEA"
+        },
+        {
+          "content": "תרגלו שילוב עם Dev Agent (Amelia) לביצוע code review"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "יעד השלב",
+      "content": "שליטה מלאה בכלי הבדיקות של BMAD - אתם יודעים איך לתכנן בדיקות, לכתוב test plans, וליצור test cases מקצועיים."
+    },
+    {
+      "type": "table",
+      "headers": [
+        {
+          "content": "שלב",
+          "alignment": "right"
+        },
+        {
+          "content": "זמן",
+          "alignment": "center"
+        },
+        {
+          "content": "מה תלמדו",
+          "alignment": "right"
+        },
+        {
+          "content": "תוצאה",
+          "alignment": "right"
+        }
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "content": "1",
+              "alignment": "right"
+            },
+            {
+              "content": "1-2 שעות",
+              "alignment": "center"
+            },
+            {
+              "content": "יסודות BMAD",
+              "alignment": "right"
+            },
+            {
+              "content": "הבנה כללית",
+              "alignment": "right"
+            }
+          ]
+        },
+        {
+          "cells": [
+            {
+              "content": "2",
+              "alignment": "right"
+            },
+            {
+              "content": "30-60 דקות",
+              "alignment": "center"
+            },
+            {
+              "content": "התקנה והגדרה",
+              "alignment": "right"
+            },
+            {
+              "content": "סביבה מוכנה",
+              "alignment": "right"
+            }
+          ]
+        },
+        {
+          "cells": [
+            {
+              "content": "3",
+              "alignment": "right"
+            },
+            {
+              "content": "2-4 שעות",
+              "alignment": "center"
+            },
+            {
+              "content": "שליטה באג'נטים",
+              "alignment": "right"
+            },
+            {
+              "content": "יכולת עבודה מקצועית",
+              "alignment": "right"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "האג'נט שלך: Murat (TEA - Test Expert Architect)",
+      "id": "your-agent"
+    },
+    {
+      "type": "text",
+      "content": "**Murat** הוא אג'נט הבדיקות המרכזי שלכם. הוא מומחה לכל היבטי הבדיקות - תכנון, ביצוע, אוטומציה, ודיווח.",
+      "markdown": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה Murat יכול לעשות עבורכם?",
+      "id": "tea-capabilities"
+    },
+    {
+      "type": "tabs",
+      "items": [
+        {
+          "id": "tab-strategy",
+          "label": "אסטרטגיית בדיקות",
+          "content": [
+            {
+              "type": "text",
+              "content": "**תכנון אסטרטגיה מקיף**",
+              "markdown": true
+            },
+            {
+              "type": "list",
+              "variant": "unordered",
+              "items": [
+                {
+                  "content": "יצירת Master Test Plan ברמת הפרויקט"
+                },
+                {
+                  "content": "הגדרת Test Pyramid - מה לבדוק בכל רמה"
+                },
+                {
+                  "content": "זיהוי סיכונים ואזורים קריטיים"
+                },
+                {
+                  "content": "קביעת קריטריונים לאיכות (DoD - Definition of Done)"
+                },
+                {
+                  "content": "תכנון אוטומציה - מה כדאי לאוטמט ומה לא"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tab-testplan",
+          "label": "תוכניות בדיקה",
+          "content": [
+            {
+              "type": "text",
+              "content": "**יצירת Test Plans מפורטים**",
+              "markdown": true
+            },
+            {
+              "type": "list",
+              "variant": "unordered",
+              "items": [
+                {
+                  "content": "Test Plan לכל Story / Epic"
+                },
+                {
+                  "content": "הגדרת Scope - מה בדיקה ומה לא"
+                },
+                {
+                  "content": "רשימת תרחישי בדיקה מקיפה"
+                },
+                {
+                  "content": "תעדוף בדיקות לפי חשיבות וסיכון"
+                },
+                {
+                  "content": "הערכת זמנים ומשאבים"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tab-testcases",
+          "label": "Test Cases",
+          "content": [
+            {
+              "type": "text",
+              "content": "**כתיבת תרחישי בדיקה מקצועיים**",
+              "markdown": true
+            },
+            {
+              "type": "list",
+              "variant": "unordered",
+              "items": [
+                {
+                  "content": "תרחישי Happy Path מלאים"
+                },
+                {
+                  "content": "תרחישי Edge Cases וקצוות"
+                },
+                {
+                  "content": "תרחישי שגיאות ו-Error Handling"
+                },
+                {
+                  "content": "בדיקות Performance ו-Load (במידת הצורך)"
+                },
+                {
+                  "content": "בדיקות Security (במידת הצורך)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tab-automation",
+          "label": "אוטומציה",
+          "content": [
+            {
+              "type": "text",
+              "content": "**תכנון ויצירת בדיקות אוטומטיות**",
+              "markdown": true
+            },
+            {
+              "type": "list",
+              "variant": "unordered",
+              "items": [
+                {
+                  "content": "עזרה בבחירת Test Framework (Cypress, Playwright, Jest, etc.)"
+                },
+                {
+                  "content": "יצירת קוד בדיקות אוטומטי"
+                },
+                {
+                  "content": "הגדרת Page Objects ו-Test Utilities"
+                },
+                {
+                  "content": "שילוב ב-CI/CD Pipeline"
+                },
+                {
+                  "content": "תחזוקה ושיפור בדיקות קיימות"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך לפתוח את Murat?",
+      "id": "open-tea"
+    },
+    {
+      "type": "code",
+      "language": "text",
+      "code": "# 1. נווטו לקובץ האג'נט\nbmad/bmm/agents/tea.md\n\n# 2. ב-Cursor / Claude Code:\n# - לחצו על 'Add to Context' או 'Start Chat with Agent'\n# - האג'נט יקרא את הקונפיגורציה שלכם ויתחיל\n\n# 3. תראו הודעת ברכה:\n\"Hello [שמכם]! I'm Murat, your Test Expert Architect.\nHow can I help you ensure quality today?\"",
+      "filename": "פתיחת אג'נט TEA"
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "טיפ חשוב",
+      "content": "כשאתם פותחים את Murat, תיתנו לו קונטקסט - איזה פיצ'ר אתם בודקים, מה הדרישות, ומה הסיכונים. ככל שתיתנו יותר מידע, כך הוא יעזור יותר!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "הוורקפלואים שלך - מדריך שימוש מעשי",
+      "id": "your-workflows"
+    },
+    {
+      "type": "text",
+      "content": "בתור בודק תוכנה, יש לכם וורקפלואים מיוחדים שמסייעים בתכנון וביצוע הבדיקות:",
+      "markdown": false
+    },
+    {
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "workflow-test-arch",
+          "title": "test-arch - תכנון ארכיטקטורת בדיקות",
+          "content": [
+            {
+              "type": "text",
+              "content": "**מתי להשתמש:** בתחילת כל Epic או Feature גדול",
+              "markdown": true
+            },
+            {
+              "type": "text",
+              "content": "**מה הוורקפלואו עושה:**\n\nMurat עוזר לכם לתכנן את כל ארכיטקטורת הבדיקות לפיצ'ר:\n• מבין את הדרישות והסיכונים\n• יוצר Master Test Plan\n• מגדיר Test Strategy\n• מציע אילו סוגי בדיקות נדרשים (Unit, Integration, E2E)\n• ממליץ על כלים וטכנולוגיות\n• מגדיר קריטריונים להצלחה",
+              "markdown": false
+            },
+            {
+              "type": "code",
+              "language": "bash",
+              "code": "# איך להריץ:\n# 1. פתחו את bmad/core/agents/bmad-master.md\n# 2. כתבו:\n*test-arch\n\n# או:\nrun test-arch for [feature name]",
+              "filename": "הרצת test-arch"
+            },
+            {
+              "type": "callout",
+              "variant": "success",
+              "title": "פלט הוורקפלואו",
+              "content": "קובץ Master-Test-Plan-[feature].md עם אסטרטגיה מקיפה, Test Pyramid, וזיהוי סיכונים."
+            }
+          ]
+        },
+        {
+          "id": "workflow-story-ready",
+          "title": "story-ready - בדיקת מוכנות Story לפיתוח",
+          "content": [
+            {
+              "type": "text",
+              "content": "**מתי להשתמש:** לפני שה-Story עובר לפיתוח",
+              "markdown": true
+            },
+            {
+              "type": "text",
+              "content": "**מה הוורקפלואו עושה:**\n\nמוודא שה-Story מוכן גם מבחינת בדיקות:\n• בודק שיש קריטריוני קבלה ברורים (Acceptance Criteria)\n• מוודא שהדרישות ניתנות לבדיקה (Testable)\n• מציע Test Cases בסיסיים\n• מזהה תלויות בבדיקות\n• בודק שיש תכנון לבדיקות רגרסיה",
+              "markdown": false
+            },
+            {
+              "type": "callout",
+              "variant": "tip",
+              "title": "טיפ לעבודה צוותית",
+              "content": "הריצו את story-ready יחד עם ה-PM והמפתח. כך תוודאו שכולם מבינים מה צריך לבדוק ואיך."
+            }
+          ]
+        },
+        {
+          "id": "workflow-story-done",
+          "title": "story-done - וידוא סיום Story",
+          "content": [
+            {
+              "type": "text",
+              "content": "**מתי להשתמש:** לפני סגירת Story",
+              "markdown": true
+            },
+            {
+              "type": "text",
+              "content": "**מה הוורקפלואו עושה:**\n\nבודק שהכל נבדק כמו שצריך:\n• מוודא שכל Test Cases רצו\n• בודק שאין באגים פתוחים\n• מאמת שעמדו בקריטריוני הקבלה\n• בודק שהתיעוד מעודכן\n• מוודא שבדיקות הרגרסיה עברו",
+              "markdown": false
+            },
+            {
+              "type": "callout",
+              "variant": "warning",
+              "title": "אזהרה",
+              "content": "אל תעברו Story בלי להריץ story-done! זה מונע באגים שחוזרים בעתיד."
+            }
+          ]
+        },
+        {
+          "id": "workflow-code-review",
+          "title": "code-review - ביקורת קוד מבחינת בדיקות",
+          "content": [
+            {
+              "type": "text",
+              "content": "**מתי להשתמש:** כש-Dev Agent (Amelia) סיים לכתוב קוד",
+              "markdown": true
+            },
+            {
+              "type": "text",
+              "content": "**מה הוורקפלואו עושה:**\n\nמבחינת בדיקות, Murat יכול לעזור ב:\n• בדיקת קוד הבדיקות (אם יש)\n• זיהוי קוד שצריך בדיקות נוספות\n• הצעת שיפורים ב-Testability\n• בדיקת Error Handling\n• וידוא שיש Logging מתאים",
+              "markdown": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תכנון בדיקות מקצועי עם BMAD",
+      "id": "test-planning"
+    },
+    {
+      "type": "text",
+      "content": "הנה תהליך מלא לתכנון בדיקות עם BMAD:",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תהליך 4 שלבים",
+      "id": "four-step-process"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "gap": "md",
+      "items": [
+        [
+          {
+            "type": "card",
+            "variant": "outlined",
+            "title": "שלב 1: תכנון אסטרטגי",
+            "content": [
+              {
+                "type": "text",
+                "content": "**הריצו:** test-arch\n\n**קבלו:**\n• Master Test Plan\n• Test Strategy\n• סיכונים מזוהים\n• Test Pyramid\n\n**זמן:** 1-2 שעות לפיצ'ר בינוני",
+                "markdown": true
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "variant": "outlined",
+            "title": "שלב 2: תכנון ברמת Story",
+            "content": [
+              {
+                "type": "text",
+                "content": "**עבדו עם:** Murat (TEA)\n\n**צרו:**\n• Test Plan לכל Story\n• רשימת Test Cases\n• זיהוי Edge Cases\n• קביעת עדיפויות\n\n**זמן:** 30-60 דקות ל-Story",
+                "markdown": true
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "variant": "outlined",
+            "title": "שלב 3: כתיבת Test Cases",
+            "content": [
+              {
+                "type": "text",
+                "content": "**עבדו עם:** Murat\n\n**כתבו:**\n• Happy Path\n• Negative Cases\n• Edge Cases\n• Performance Tests\n• Security Tests\n\n**זמן:** 2-4 שעות ל-Story",
+                "markdown": true
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "variant": "outlined",
+            "title": "שלב 4: ביצוע ודיווח",
+            "content": [
+              {
+                "type": "text",
+                "content": "**בצעו את הבדיקות**\n\n**דווחו:**\n• באגים שנמצאו\n• כיסוי הבדיקות\n• סטטוס איכות\n• המליצו על שחרור\n\n**זמן:** משתנה לפי פיצ'ר",
+                "markdown": true
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה מלאה: תכנון בדיקות לפיצ'ר Login",
+      "id": "example-login"
+    },
+    {
+      "type": "text",
+      "content": "בואו נראה דוגמה קונקרטית - תכנון בדיקות לפיצ'ר התחברות:",
+      "markdown": false
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "# שיחה עם Murat (TEA)\n\nאתם: \"Hi Murat, אני צריך לתכנן בדיקות לפיצ'ר Login. \nהדרישות:\n- התחברות עם Email + Password\n- Remember Me checkbox\n- Forgot Password link\n- Social Login (Google, Facebook)\n- הגבלת ניסיונות כושלים (5 max)\n- שימוש ב-JWT tokens\"\n\nMurat: \"Got it! Let me create a comprehensive test plan.\nI'll cover:\n1. Functional Tests (Login flows)\n2. Security Tests (SQL Injection, XSS, Brute Force)\n3. UI/UX Tests (responsiveness, error messages)\n4. Performance Tests (concurrent logins)\n5. Integration Tests (social providers)\n\nLet's start with the Master Test Plan...\"",
+      "filename": "תרחיש דוגמה"
+    },
+    {
+      "type": "text",
+      "content": "**Murat יצור עבורכם:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "Master Test Plan - אסטרטגיה כללית"
+        },
+        {
+          "content": "Test Cases - 30-50 תרחישים מפורטים"
+        },
+        {
+          "content": "Security Checklist - בדיקות אבטחה ספציפיות"
+        },
+        {
+          "content": "Automation Recommendations - מה לאוטמט קודם"
+        },
+        {
+          "content": "Risk Matrix - זיהוי סיכונים ועדיפויות"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאה",
+      "content": "תוך שעה תקבלו תכנית בדיקות מקיפה שמכסה את כל ההיבטים - Functional, Security, Performance, UX."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תרחישים מעשיים מהעבודה שלך",
+      "id": "practical-scenarios"
+    },
+    {
+      "type": "text",
+      "content": "הנה תרחישים נפוצים מהעבודה היומיומית שלכם, ואיך BMAD עוזר:",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 1: קיבלתם Story חדש לבדיקה",
+      "id": "scenario-1"
+    },
+    {
+      "type": "text",
+      "content": "**המצב:**\nה-PM (John) יצר Story חדש ב-Jira. הוא מסומן 'Ready for Dev' אבל אין תכנון בדיקות.",
+      "markdown": true
+    },
+    {
+      "type": "text",
+      "content": "**מה אתם עושים:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "פותחים את Murat (TEA)"
+        },
+        {
+          "content": "מעתיקים את ה-Story description"
+        },
+        {
+          "content": "שואלים: 'Murat, can you help me create a test plan for this Story?'"
+        },
+        {
+          "content": "Murat מנתח את הדרישות ושואל שאלות הבהרה"
+        },
+        {
+          "content": "Murat יוצר Test Plan עם 10-20 Test Cases"
+        },
+        {
+          "content": "אתם עוברים על ה-Test Cases, מאשרים, ומתחילים לבדוק"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "טיפ",
+      "content": "אל תשכחו להריץ story-ready לפני שמתחילים את הפיתוח - זה חוסך הרבה זמן!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 2: באג חוזר שוב ושוב (Regression)",
+      "id": "scenario-2"
+    },
+    {
+      "type": "text",
+      "content": "**המצב:**\nבאג שתיקנתם חזר שוב בגרסה חדשה. צריך למנוע את זה בעתיד.",
+      "markdown": true
+    },
+    {
+      "type": "text",
+      "content": "**מה אתם עושים:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "פותחים את Murat ומסבירים את הבאג"
+        },
+        {
+          "content": "שואלים: 'How can I prevent this from happening again?'"
+        },
+        {
+          "content": "Murat מציע: הוספת בדיקה אוטומטית"
+        },
+        {
+          "content": "Murat כותב עבורכם Cypress/Playwright test"
+        },
+        {
+          "content": "אתם מוסיפים את הבדיקה ל-CI/CD"
+        },
+        {
+          "content": "מעכשיו הבאג לא יכול לחזור בלי שתדעו!"
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "language": "typescript",
+      "code": "// דוגמה: Murat יצר עבורכם בדיקה אוטומטית\ndescribe('Login - Prevent Regression Bug #123', () => {\n  it('should not allow login with expired password reset token', () => {\n    // Given: User requested password reset 25 hours ago\n    const expiredToken = generateExpiredToken(25);\n    \n    // When: User tries to reset with expired token\n    cy.visit(`/reset-password?token=${expiredToken}`);\n    cy.get('[data-testid=\"new-password\"]').type('NewPass123!');\n    cy.get('[data-testid=\"submit-btn\"]').click();\n    \n    // Then: Should show error and not reset password\n    cy.get('[data-testid=\"error-msg\"]')\n      .should('contain', 'Token expired');\n    \n    // And: Old password should still work\n    cy.login('user@example.com', 'OldPassword123');\n    cy.url().should('include', '/dashboard');\n  });\n});",
+      "filename": "login-regression.spec.ts",
+      "showLineNumbers": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 3: צריך לכתוב Master Test Plan לפיצ'ר גדול",
+      "id": "scenario-3"
+    },
+    {
+      "type": "text",
+      "content": "**המצב:**\nהצוות מתחיל Epic גדול (למשל: Payment System). צריך תכנית בדיקות מקיפה.",
+      "markdown": true
+    },
+    {
+      "type": "text",
+      "content": "**מה אתם עושים:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "פותחים את BMAD Master"
+        },
+        {
+          "content": "מריצים: *test-arch"
+        },
+        {
+          "content": "עונים על שאלות Murat (מה המערכת, מה הסיכונים, מה קריטי)"
+        },
+        {
+          "content": "Murat יוצר Master Test Plan מפורט עם Test Pyramid, סיכונים, אסטרטגיה"
+        },
+        {
+          "content": "אתם עוברים על התכנית עם ה-Tech Lead"
+        },
+        {
+          "content": "מתחילים לעבוד לפי התכנית!"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "עבודה עם הצוות",
+      "id": "team-work"
+    },
+    {
+      "type": "text",
+      "content": "בתור בודק תוכנה, אתם עובדים עם כמעט כל הצוות. הנה איך BMAD עוזר בתקשורת:",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "עבודה עם PM (John)",
+      "id": "work-with-pm"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "John יוצר Stories עם קריטריוני קבלה - אתם עוזרים לוודא שהם ניתנים לבדיקה"
+        },
+        {
+          "content": "אתם מריצים story-ready ומאתרים חוסרים"
+        },
+        {
+          "content": "John מתקן את הדרישות לפני שהפיתוח מתחיל"
+        },
+        {
+          "content": "חוסכים הרבה זמן ומניעים באגים!"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "עבודה עם Developer (Amelia)",
+      "id": "work-with-dev"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "Amelia כותבת קוד - אתם בודקים עם Murat"
+        },
+        {
+          "content": "אתם מוצאים באג - Murat עוזר לכתוב Bug Report ברור"
+        },
+        {
+          "content": "Amelia מתקנת - אתם מריצים Regression Tests"
+        },
+        {
+          "content": "תהליך חלק ומקצועי!"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "עבודה עם Architect (Winston)",
+      "id": "work-with-architect"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "Winston מתכנן ארכיטקטורה - אתם מציעים שיפורים ל-Testability"
+        },
+        {
+          "content": "אתם מבקשים: 'Make it easier to test' - Winston מתאים את העיצוב"
+        },
+        {
+          "content": "אתם משתפים את ה-Master Test Plan - Winston מוודא שהארכיטקטורה תומכת בו"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תקשורת טובה יותר",
+      "content": "כשכולם משתמשים ב-BMAD, יש שפה משותפת. קל יותר להעביר מידע, לבקש דברים, ולעבוד ביעילות."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Best Practices לבודקי תוכנה",
+      "id": "best-practices"
+    },
+    {
+      "type": "text",
+      "content": "הנה שיטות עבודה מומלצות מניסיון השטח:",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "1. תכננו לפני שבודקים",
+      "id": "bp-plan-first"
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "כלל הזהב",
+      "content": "אל תתחילו לבדוק בלי Test Plan. השקיעו 30 דקות בתכנון - זה חוסך שעות של בדיקות חסרות."
+    },
+    {
+      "type": "text",
+      "content": "**איך לעשות:**\n• הריצו test-arch לפיצ'רים גדולים\n• צרו Test Plan לכל Story\n• קבלו אישור מה-Team Lead לפני שמתחילים",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "2. תעדו הכל",
+      "id": "bp-document"
+    },
+    {
+      "type": "text",
+      "content": "**מה לתעד:**\n• Test Plans\n• Test Cases (כולל Expected Results)\n• Bug Reports מפורטים\n• Test Results\n• Lessons Learned",
+      "markdown": false
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "למה זה חשוב?",
+      "content": "תיעוד טוב מאפשר לכם (ולאחרים) לחזור ולהבין מה נבדק, איך, ומה התוצאות. זה גם עוזר בבדיקות רגרסיה."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "3. אוטמטו בחוכמה",
+      "id": "bp-automate-smart"
+    },
+    {
+      "type": "text",
+      "content": "**לא כל דבר צריך אוטומציה!**\n\n**כן לאוטמט:**\n• Happy Path flows\n• בדיקות רגרסיה\n• בדיקות Smoke\n• API Tests\n• Performance Tests\n\n**לא לאוטמט:**\n• בדיקות חד-פעמיות\n• בדיקות UX מורכבות\n• בדיקות שמשתנות כל הזמן\n• בדיקות שקל יותר לעשות ידנית",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "4. שתפו פעולה מוקדם",
+      "id": "bp-collaborate-early"
+    },
+    {
+      "type": "text",
+      "content": "**אל תחכו לסוף!**\n\n• הצטרפו ל-Story Planning\n• תנו feedback על Acceptance Criteria\n• הריצו story-ready לפני הפיתוח\n• עבדו עם המפתחים תוך כדי\n• בדקו Incrementally, לא רק בסוף",
+      "markdown": false
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "Shift Left",
+      "content": "ככל שתזהו בעיות מוקדם יותר, כך זול יותר לתקן אותן. שילוב מוקדם בתהליך = פחות באגים!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "5. למדו מהבאגים",
+      "id": "bp-learn-bugs"
+    },
+    {
+      "type": "text",
+      "content": "**כל באג = שיעור:**\n\n• למה לא מצאתם את הבאג לפני?\n• מה צריך לשפר בתהליך?\n• אילו Test Cases חסרים?\n• איך למנוע בעיות דומות?",
+      "markdown": false
+    },
+    {
+      "type": "text",
+      "content": "**עשו Retrospective בדיקות:**\n• פעם בשבועיים\n• עברו על הבאגים שנמצאו\n• זהו דפוסים\n• שפרו את התהליך",
+      "markdown": false
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שאלות נפוצות",
+      "id": "faq"
+    },
+    {
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "faq-1",
+          "title": "האם BMAD מחליף את הכלים שלי (Jira, TestRail, וכו')?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**לא!** BMAD לא מחליף את הכלים הקיימים - הוא משלים אותם.\n\n**איך זה עובד:**\n• אתם מקבלים Stories ב-Jira\n• משתמשים ב-BMAD לתכנון הבדיקות\n• מתעדים ב-TestRail או ב-Jira\n• מריצים בדיקות אוטומטיות ב-CI/CD\n\n**BMAD עוזר ב:**\n• תכנון ואסטרטגיה\n• יצירת Test Cases\n• כתיבת קוד בדיקות\n• שיפור התהליך",
+              "markdown": true
+            }
+          ]
+        },
+        {
+          "id": "faq-2",
+          "title": "האם צריך ידע בתכנות כדי להשתמש ב-BMAD?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**תלוי מה אתם עושים:**\n\n**לא צריך תכנות:**\n• תכנון Test Strategy\n• יצירת Master Test Plans\n• כתיבת Test Cases\n• בדיקות ידניות\n\n**כן צריך תכנות (בסיסי):**\n• כתיבת בדיקות אוטומטיות\n• שילוב ב-CI/CD\n• יצירת Test Frameworks\n\n**אבל!** גם אם אין לכם רקע תכנותי, Murat יכול לכתוב קוד בדיקות עבורכם. אתם פשוט מסבירים מה לבדוק, והוא כותב את הקוד.",
+              "markdown": true
+            }
+          ]
+        },
+        {
+          "id": "faq-3",
+          "title": "איך BMAD עוזר בבדיקות אוטומציה?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**Murat עוזר בכמה דרכים:**\n\n**1. תכנון אסטרטגיית אוטומציה:**\n• מה כדאי לאוטמט\n• איזה Framework להשתמש\n• איך לארגן את הבדיקות\n\n**2. כתיבת קוד:**\n• Cypress tests\n• Playwright tests\n• Jest unit tests\n• API tests (REST/GraphQL)\n\n**3. שיפור קוד קיים:**\n• Code review לבדיקות\n• הצעות לשיפור\n• תיקון בדיקות שבורות\n\n**4. שילוב ב-CI/CD:**\n• הגדרת GitHub Actions\n• Jenkins pipelines\n• GitLab CI",
+              "markdown": true
+            }
+          ]
+        },
+        {
+          "id": "faq-4",
+          "title": "כמה זמן לוקח ללמוד BMAD לבודק תוכנה?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**תלוי ברמת השליטה שאתם רוצים:**\n\n**שימוש בסיסי:** 1-2 ימים\n• התקנה\n• הכרת Murat (TEA)\n• תכנון Test Plan ראשון\n• הרצת וורקפלואו ראשון\n\n**שימוש מקצועי:** 1-2 שבועות\n• שליטה בכל הוורקפלואים\n• יכולת לתכנן Master Test Plans\n• יצירת בדיקות אוטומטיות\n• עבודה צוותית יעילה\n\n**שליטה מלאה:** חודש\n• התאמה אישית\n• יצירת Workflows מותאמים\n• הדרכת צוות\n• שיפור תהליכים",
+              "markdown": true
+            }
+          ]
+        },
+        {
+          "id": "faq-5",
+          "title": "מה ההבדל בין TEA לבין Developer Agent?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**Murat (TEA) - Test Expert Architect:**\n• מתמקד בבדיקות ואיכות\n• יוצר Test Plans ו-Test Cases\n• מומחה ל-Test Automation\n• מבין Security, Performance, Edge Cases\n• חושב מנקודת מבט של תקלות\n\n**Amelia (Developer Agent):**\n• מתמקדת בכתיבת קוד ייצור\n• מבינה ארכיטקטורה ותכנון\n• יוצרת APIs, Components, Logic\n• כותבת Unit Tests\n• חושבת מנקודת מבט של פתרונות\n\n**מתי להשתמש בשניהם:**\n• Amelia כותבת קוד → Murat בודק\n• Murat מוצא באג → Amelia מתקנת\n• Amelia שואלת 'איך לבדוק?' → Murat עונה\n• עבודה משותפת = איכות גבוהה!",
+              "markdown": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "סיכום ומה הלאה",
+      "id": "summary"
+    },
+    {
+      "type": "text",
+      "content": "סיימתם את המדריך! הנה מה למדתם:",
+      "markdown": false
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מה למדתם",
+      "content": "✓ להכיר את Murat (TEA) ולעבוד איתו ביעילות\n✓ להשתמש בוורקפלואים: test-arch, story-ready, story-done\n✓ לתכנן בדיקות מקצועיות - Master Test Plan, Test Cases, Automation\n✓ לעבוד עם הצוות בצורה חלקה\n✓ להפעיל Best Practices מהשטח"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הצעדים הבאים שלכם",
+      "id": "next-steps"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "**התקינו את BMAD** בפרויקט שלכם (אם עוד לא)"
+        },
+        {
+          "content": "**הריצו test-arch** על פיצ'ר אמיתי"
+        },
+        {
+          "content": "**צרו Test Plan** לפחות ל-Story אחד"
+        },
+        {
+          "content": "**כתבו בדיקה אוטומטית אחת** עם עזרת Murat"
+        },
+        {
+          "content": "**שתפו את הצוות** - הראו להם מה למדתם"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מדריכים מומלצים להמשך",
+      "id": "recommended-guides"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "gap": "md",
+      "items": [
+        [
+          {
+            "type": "card",
+            "variant": "elevated",
+            "title": "מדריך אגנטים - TEA + UX",
+            "content": [
+              {
+                "type": "text",
+                "content": "הכירו לעומק את Murat ואת שאר האגנטים שקשורים לאיכות.",
+                "markdown": false
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "variant": "elevated",
+            "title": "מדריך וורקפלואים - Testing",
+            "content": [
+              {
+                "type": "text",
+                "content": "למדו את כל הוורקפלואים הקשורים לבדיקות ואיכות בפירוט.",
+                "markdown": false
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "variant": "elevated",
+            "title": "Best Practices",
+            "content": [
+              {
+                "type": "text",
+                "content": "שיטות עבודה מתקדמות לעבודה עם BMAD בצוותים גדולים.",
+                "markdown": false
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "variant": "elevated",
+            "title": "מקרי מבחן ותרגילים",
+            "content": [
+              {
+                "type": "text",
+                "content": "תרגלו על פרויקטים אמיתיים - תרחישים מהחיים.",
+                "markdown": false
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "זכרו",
+      "content": "איכות היא לא רק תפקיד של QA - זה אחריות של כל הצוות. BMAD עוזר לכם להיות השומרים על האיכות, אבל הצלחה אמיתית מגיעה כשכולם עובדים ביחד!"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מזל טוב!",
+      "content": "סיימתם את המדריך לבודקי תוכנה! אתם מוכנים לשפר את איכות התוכנה בפרויקט שלכם עם BMAD. בהצלחה! 🎯"
+    }
+  ]
+}
+

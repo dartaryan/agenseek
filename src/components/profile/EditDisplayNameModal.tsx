@@ -1,8 +1,11 @@
-import { useState } from 'react';
-import { IconUser, IconX } from '@tabler/icons-react';
+import { useState, useEffect } from 'react';
+import { IconX } from '@tabler/icons-react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
+import { UserAvatar } from '../ui/user-avatar';
+import { supabase } from '../../lib/supabase';
 import { hasHebrewCharacters } from '../../lib/utils/detectLanguage';
+import type { AvatarConfig } from '../../lib/avatar';
 
 /**
  * Edit Display Name Modal
@@ -14,6 +17,7 @@ import { hasHebrewCharacters } from '../../lib/utils/detectLanguage';
 
 interface EditDisplayNameModalProps {
   currentName: string;
+  userId: string;
   isOpen: boolean;
   onClose: () => void;
   onSave: (newName: string) => Promise<void>;
@@ -21,6 +25,7 @@ interface EditDisplayNameModalProps {
 
 export function EditDisplayNameModal({
   currentName,
+  userId,
   isOpen,
   onClose,
   onSave,
@@ -28,6 +33,29 @@ export function EditDisplayNameModal({
   const [newName, setNewName] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState('');
+  const [avatarConfig, setAvatarConfig] = useState<AvatarConfig | null>(null);
+
+  // Load avatar configuration
+  useEffect(() => {
+    async function loadAvatar() {
+      if (!userId) return;
+
+      const { data } = await supabase
+        .from('profiles')
+        .select('avatar_style, avatar_seed, avatar_options')
+        .eq('id', userId)
+        .single();
+
+      if (data?.avatar_style) {
+        setAvatarConfig({
+          style: data.avatar_style as any,
+          seed: data.avatar_seed || userId,
+          options: data.avatar_options || {},
+        });
+      }
+    }
+    loadAvatar();
+  }, [userId]);
 
   const handleSave = async () => {
     setError('');
@@ -68,8 +96,8 @@ export function EditDisplayNameModal({
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
-          <div className="flex items-center gap-2">
-            <IconUser className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+          <div className="flex items-center gap-3">
+            <UserAvatar config={avatarConfig} userId={userId} size="sm" />
             <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
               עדכון שם תצוגה
             </h2>

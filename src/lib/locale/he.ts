@@ -328,6 +328,35 @@ export interface LocaleStrings {
       neverActive: string;
       adminRole: string;
       regularUser: string;
+      // Story 9.3 - Content Analytics
+      analytics: {
+        title: string;
+        subtitle: string;
+        totalNotes: string;
+        totalTasks: string;
+        totalComments: string;
+        avgSessionDuration: string;
+        minutes: string;
+        categoryPerformance: string;
+        filterByCategory: string;
+        allCategories: string;
+        guidePerformance: string;
+        category: string;
+        helpfulVotes: string;
+        comments: string;
+        engagement: string;
+        high: string;
+        medium: string;
+        low: string;
+        exportCSV: string;
+        loading: string;
+        noData: string;
+        views: string;
+        uniqueViewers: string;
+        avgTime: string;
+        completionRate: string;
+        guideTitle: string;
+      };
     };
   };
 
@@ -609,6 +638,20 @@ export interface LocaleStrings {
     viewComment: string;
     newNotification: string;
     allRead: string;
+  };
+
+  // Avatar (Story 0.3)
+  avatar: {
+    change: string;
+    select: string;
+    preview: string;
+    save: string;
+    cancel: string;
+    success: string;
+    error: string;
+    style: string;
+    profileAvatar: string;
+    editProfile: string;
   };
 }
 
@@ -924,6 +967,35 @@ export const hebrewLocale: LocaleStrings = {
       neverActive: 'מעולם לא היה פעיל',
       adminRole: 'מנהל',
       regularUser: 'משתמש רגיל',
+      // Story 9.3 - Content Analytics
+      analytics: {
+        title: 'ניתוח ביצועי תוכן',
+        subtitle: 'צפה בביצועי המדריכים והמעורבות של המשתמשים',
+        totalNotes: 'סה״כ הערות',
+        totalTasks: 'סה״כ משימות',
+        totalComments: 'סה״כ תגובות',
+        avgSessionDuration: 'משך ממוצע לישיבה',
+        minutes: 'דקות',
+        categoryPerformance: 'ביצועים לפי קטגוריה',
+        filterByCategory: 'סינון לפי קטגוריה',
+        allCategories: 'כל הקטגוריות',
+        guidePerformance: 'ביצועי מדריכים',
+        category: 'קטגוריה',
+        helpfulVotes: 'הצבעות מועילות',
+        comments: 'תגובות',
+        engagement: 'מעורבות',
+        high: 'גבוהה',
+        medium: 'בינונית',
+        low: 'נמוכה',
+        exportCSV: 'ייצא CSV',
+        loading: 'טוען...',
+        noData: 'אין נתונים',
+        views: 'צפיות',
+        uniqueViewers: 'צופים ייחודיים',
+        avgTime: 'זמן ממוצע',
+        completionRate: 'שיעור השלמה',
+        guideTitle: 'כותרת',
+      },
     },
   },
 
@@ -1201,5 +1273,19 @@ export const hebrewLocale: LocaleStrings = {
     viewComment: 'צפה בתגובה',
     newNotification: 'התראה חדשה',
     allRead: 'כל ההתראות נקראו',
+  },
+
+  // Avatar (Story 0.3)
+  avatar: {
+    change: 'שנה אווטר',
+    select: 'בחר אווטר',
+    preview: 'תצוגה מקדימה',
+    save: 'שמור אווטר',
+    cancel: 'ביטול',
+    success: 'האווטר עודכן בהצלחה',
+    error: 'שגיאה בשמירת אווטר',
+    style: 'סגנון אווטר',
+    profileAvatar: 'אווטר פרופיל',
+    editProfile: 'ערוך פרופיל ואווטר',
   },
 };
