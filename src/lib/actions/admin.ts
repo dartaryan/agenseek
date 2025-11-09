@@ -586,25 +586,42 @@ export async function fetchUserDetails(userId: string): Promise<UserDetails | nu
  * Delete a user and all associated data
  * WARNING: This is a destructive operation
  * @param userId User ID to delete
+ * Story 11.1: Fixed to properly delete from auth.users
  */
 export async function deleteUser(userId: string): Promise<void> {
   try {
-    // Delete user profile (cascading deletes should handle related data via RLS)
-    // In production, you may want to soft-delete or archive users instead
-    const { error } = await supabase
-      .from('profiles')
-      .delete()
-      .eq('id', userId);
+    // Call secure database function that:
+    // 1. Verifies caller is admin
+    // 2. Deletes from profiles (CASCADE handles related data)
+    // 3. Deletes from auth.users (requires SECURITY DEFINER)
+    // 4. Logs action to admin audit log
+    const { data, error } = await supabase.rpc('admin_delete_user', {
+      p_user_id: userId
+    });
 
-    if (error) throw error;
+    if (error) {
+      console.error('RPC error deleting user:', error);
+      throw new Error(error.message);
+    }
 
-    // Note: Supabase RLS and foreign key constraints should cascade delete:
+    // Check function result
+    if (!data || !data.success) {
+      const errorMessage = data?.error || 'Unknown error occurred';
+      console.error('Function error deleting user:', errorMessage);
+      throw new Error(errorMessage);
+    }
+
+    // Success - user deleted from both profiles and auth.users
+    // Cascade deletes handled:
     // - user_progress
     // - user_activity
-    // - notes
-    // - tasks
-    // - comments
-    // If not configured, you'd need to manually delete each table
+    // - user_notes
+    // - user_tasks
+    // - guide_comments
+    // - comment_votes
+    // - guide_bookmarks
+    // - user_achievements
+    // - notifications
   } catch (error) {
     console.error('Error deleting user:', error);
     throw error;

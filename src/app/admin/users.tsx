@@ -135,12 +135,19 @@ export function UserManagementPage() {
 
   // Handle delete user
   const handleDeleteUser = async (userId: string) => {
-    // Confirm deletion
-    const confirmed = window.confirm(
+    // First confirmation - show detailed warning
+    const firstConfirm = window.confirm(
       hebrewLocale.pages.admin.confirmDeleteUserMessage
     );
 
-    if (!confirmed) return;
+    if (!firstConfirm) return;
+
+    // Second confirmation - extra safety for destructive action
+    const secondConfirm = window.confirm(
+      'האם אתה בטוח ב-100%? זו ההזדמנות האחרונה לבטל!'
+    );
+
+    if (!secondConfirm) return;
 
     setDeletingUserId(userId);
     try {
@@ -159,7 +166,9 @@ export function UserManagementPage() {
       }
     } catch (error) {
       console.error('Error deleting user:', error);
-      alert(hebrewLocale.pages.admin.userDeleteFailed);
+      // Show more detailed error message
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      alert(`${hebrewLocale.pages.admin.userDeleteFailed}\n\nשגיאה: ${errorMessage}`);
     } finally {
       setDeletingUserId(null);
     }

@@ -8,6 +8,7 @@ import React from 'react';
 import type { CardBlock as CardBlockType, ContentBlock } from '@/types/content-blocks';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
+import TextBlock from './TextBlock';
 
 interface CardBlockProps {
   block: CardBlockType;
@@ -23,11 +24,8 @@ function NestedContentRenderer({ blocks }: { blocks: ContentBlock[] }) {
       {blocks.map((block) => {
         switch (block.type) {
           case 'text':
-            return (
-              <p key={block.id} className="text-slate-700 dark:text-slate-300 leading-relaxed">
-                {block.content}
-              </p>
-            );
+            // Use TextBlock component for proper markdown parsing
+            return <TextBlock key={block.id} block={block} />;
           case 'heading': {
             const headingTag = `h${block.level}`;
             const headingProps = {

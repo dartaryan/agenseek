@@ -98,37 +98,104 @@
       "type": "grid",
       "id": "roles-grid",
       "columns": 2,
+      "gap": "md",
       "items": [
-        {
-          "title": "Marketing / שיווק",
-          "content": "מנהלי שיווק, יוצרי תוכן, מנהלי קמפיינים, Social Media Managers",
-          "icon": "IconSpeakerphone"
-        },
-        {
-          "title": "Sales / מכירות",
-          "content": "מנהלי מכירות, Account Managers, Pre-sales, Customer Success",
-          "icon": "IconShoppingCart"
-        },
-        {
-          "title": "HR / משאבי אנוש",
-          "content": "מנהלי HR, Recruiters, People Ops, Training & Development",
-          "icon": "IconUsers"
-        },
-        {
-          "title": "Operations / תפעול",
-          "content": "Operations Managers, Admin, Finance, Legal",
-          "icon": "IconSettings"
-        },
-        {
-          "title": "Support / תמיכה",
-          "content": "Customer Support, Technical Support, Community Management",
-          "icon": "IconHeadset"
-        },
-        {
-          "title": "Business / עסקי",
-          "content": "Business Analysts, Strategy, Partnerships, Consulting",
-          "icon": "IconBriefcase"
-        }
+        [
+          {
+            "id": "role-marketing",
+            "type": "card",
+            "variant": "default",
+            "title": "Marketing / שיווק",
+            "content": [
+              {
+                "id": "role-marketing-text",
+                "type": "text",
+                "content": "מנהלי שיווק, יוצרי תוכן, מנהלי קמפיינים, Social Media Managers",
+                "markdown": false
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "id": "role-sales",
+            "type": "card",
+            "variant": "default",
+            "title": "Sales / מכירות",
+            "content": [
+              {
+                "id": "role-sales-text",
+                "type": "text",
+                "content": "מנהלי מכירות, Account Managers, Pre-sales, Customer Success",
+                "markdown": false
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "id": "role-hr",
+            "type": "card",
+            "variant": "default",
+            "title": "HR / משאבי אנוש",
+            "content": [
+              {
+                "id": "role-hr-text",
+                "type": "text",
+                "content": "מנהלי HR, Recruiters, People Ops, Training & Development",
+                "markdown": false
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "id": "role-operations",
+            "type": "card",
+            "variant": "default",
+            "title": "Operations / תפעול",
+            "content": [
+              {
+                "id": "role-operations-text",
+                "type": "text",
+                "content": "Operations Managers, Admin, Finance, Legal",
+                "markdown": false
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "id": "role-support",
+            "type": "card",
+            "variant": "default",
+            "title": "Support / תמיכה",
+            "content": [
+              {
+                "id": "role-support-text",
+                "type": "text",
+                "content": "Customer Support, Technical Support, Community Management",
+                "markdown": false
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "id": "role-business",
+            "type": "card",
+            "variant": "default",
+            "title": "Business / עסקי",
+            "content": [
+              {
+                "id": "role-business-text",
+                "type": "text",
+                "content": "Business Analysts, Strategy, Partnerships, Consulting",
+                "markdown": false
+              }
+            ]
+          }
+        ]
       ]
     },
     {

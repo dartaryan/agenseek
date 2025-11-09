@@ -7,6 +7,7 @@
 import React from 'react';
 import type { GridBlock as GridBlockType, ContentBlock } from '@/types/content-blocks';
 import { cn } from '@/lib/utils';
+import TextBlock from './TextBlock';
 
 interface GridBlockProps {
   block: GridBlockType;
@@ -25,11 +26,8 @@ function NestedContentRenderer({ blocks }: { blocks: ContentBlock[] }) {
 
         switch (block.type) {
           case 'text':
-            return (
-              <p key={uniqueKey} className="text-slate-700 dark:text-slate-300 leading-relaxed">
-                {block.content}
-              </p>
-            );
+            // Use TextBlock component for proper markdown parsing
+            return <TextBlock key={uniqueKey} block={block} />;
           case 'heading': {
             const headingTag = `h${block.level}`;
             const headingProps = {

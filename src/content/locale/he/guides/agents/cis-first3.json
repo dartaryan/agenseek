@@ -117,33 +117,74 @@
     },
     {
       "type": "grid",
+      "id": "cis-benefits-grid",
       "columns": 2,
       "gap": "md",
       "items": [
-        {
-          "type": "card",
-          "icon": "Clock",
-          "title": "מהיר יותר",
-          "content": "אג'נטים יכולים לעבוד במקביל במקום ברצף"
-        },
-        {
-          "type": "card",
-          "icon": "BulbFilled",
-          "title": "איכות גבוהה",
-          "content": "כל אג'נט תורם את המומחיות שלו"
-        },
-        {
-          "type": "card",
-          "icon": "CircleCheck",
-          "title": "פחות שגיאות",
-          "content": "אג'נטים בודקים אחד את השני"
-        },
-        {
-          "type": "card",
-          "icon": "Refresh",
-          "title": "עקביות מלאה",
-          "content": "כולם עובדים על אותו מידע"
-        }
+        [
+          {
+            "id": "benefit-faster",
+            "type": "card",
+            "variant": "default",
+            "title": "מהיר יותר",
+            "content": [
+              {
+                "id": "benefit-faster-text",
+                "type": "text",
+                "content": "אג'נטים יכולים לעבוד במקביל במקום ברצף",
+                "markdown": false
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "id": "benefit-quality",
+            "type": "card",
+            "variant": "default",
+            "title": "איכות גבוהה",
+            "content": [
+              {
+                "id": "benefit-quality-text",
+                "type": "text",
+                "content": "כל אג'נט תורם את המומחיות שלו",
+                "markdown": false
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "id": "benefit-errors",
+            "type": "card",
+            "variant": "default",
+            "title": "פחות שגיאות",
+            "content": [
+              {
+                "id": "benefit-errors-text",
+                "type": "text",
+                "content": "אג'נטים בודקים אחד את השני",
+                "markdown": false
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "id": "benefit-consistency",
+            "type": "card",
+            "variant": "default",
+            "title": "עקביות מלאה",
+            "content": [
+              {
+                "id": "benefit-consistency-text",
+                "type": "text",
+                "content": "כולם עובדים על אותו מידע",
+                "markdown": false
+              }
+            ]
+          }
+        ]
       ]
     },
     {

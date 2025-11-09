@@ -1103,7 +1103,7 @@ export const hebrewLocale: LocaleStrings = {
       viewAsUser: 'צפה כמשתמש',
       deleteUser: 'מחק משתמש',
       confirmDeleteUser: 'האם למחוק משתמש?',
-      confirmDeleteUserMessage: 'האם אתה בטוח שברצונך למחוק משתמש זה? פעולה זו תמחק את כל הנתונים המשוייכים למשתמש ואינה הפיכה.',
+      confirmDeleteUserMessage: '⚠️ אזהרה: מחיקת משתמש היא פעולה בלתי הפיכה!\n\nפעולה זו תמחק לצמיתות:\n• פרופיל משתמש והתחברות\n• כל ההתקדמות והפעילות\n• הערות, משימות ותגובות\n• כל הנתונים האחרים\n\nהאם אתה בטוח לחלוטין שברצונך למחוק משתמש זה?',
       userDeleted: 'המשתמש נמחק בהצלחה',
       userDeleteFailed: 'שגיאה במחיקת המשתמש',
       usersPerPage: '50 משתמשים לדף',
