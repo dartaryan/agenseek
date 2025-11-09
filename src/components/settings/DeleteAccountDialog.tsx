@@ -61,7 +61,7 @@ export function DeleteAccountDialog({ open, onOpenChange }: DeleteAccountDialogP
         // Show success message
         toast({
           title: he.deleteSuccessMessage,
-          description: 'נתנתק אותך עכשיו.',
+          description: 'מקווים לראות אותך שוב!',
           variant: 'default',
         });
 

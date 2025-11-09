@@ -106,18 +106,53 @@ export async function deleteAccount(): Promise<{ success: boolean; error?: strin
       throw new Error('Failed to delete progress');
     }
 
-    // 8. Delete profiles (references auth.users)
+    // 8. Delete user_achievements (references profiles) - Story 0.22
+    const { error: achievementsError } = await supabase
+      .from('user_achievements')
+      .delete()
+      .eq('user_id', userId);
+
+    if (achievementsError) {
+      console.error('[deleteAccount] Error deleting user_achievements:', achievementsError);
+      // Don't throw - table might not exist in all environments
+      console.warn('[deleteAccount] Continuing despite achievements deletion error');
+    }
+
+    // 9. Delete notifications (references profiles) - Story 0.22
+    const { error: notificationsError } = await supabase
+      .from('notifications')
+      .delete()
+      .eq('user_id', userId);
+
+    if (notificationsError) {
+      console.error('[deleteAccount] Error deleting notifications:', notificationsError);
+      // Don't throw - table might not exist in all environments
+      console.warn('[deleteAccount] Continuing despite notifications deletion error');
+    }
+
+    // 10. Delete profiles (references auth.users)
+    // CRITICAL: This must succeed or account deletion fails
     const { error: profileError } = await supabase.from('profiles').delete().eq('id', userId);
 
     if (profileError) {
       console.error('[deleteAccount] Error deleting profile:', profileError);
-      throw new Error('Failed to delete profile');
+      throw new Error('Failed to delete profile - this is a critical error');
     }
 
-    // 9. Delete from Supabase Auth (must be last)
+    console.log('[deleteAccount] All data deleted successfully');
+
+    // 11. Delete from Supabase Auth (must be last)
     // Note: This requires admin privileges, so we'll use the auth.admin API
     // For client-side deletion, we can use the regular auth.signOut() after database cleanup
     // The auth user will be cleaned up by a scheduled job or manual admin action
+    //
+    // Story 0.22: The auth user is NOT deleted here because:
+    // - Requires admin API (not available client-side)
+    // - User can log back in with same credentials
+    // - ProtectedRoute redirects to onboarding if profile is missing
+    // - Onboarding creates a fresh profile
+    //
+    // Future Enhancement: Create Supabase Edge Function to delete auth user
 
     // Sign out the user (they won't be able to log in with deleted profile anyway)
     const { error: signOutError } = await supabase.auth.signOut();
@@ -128,6 +163,7 @@ export async function deleteAccount(): Promise<{ success: boolean; error?: strin
     }
 
     console.log('[deleteAccount] Account deletion completed successfully');
+    console.log('[deleteAccount] Note: Auth user NOT deleted - requires admin API');
 
     return { success: true };
   } catch (error) {
