@@ -115,7 +115,7 @@ export function AdminDashboardPage() {
           </div>
 
           <Select value={dateRange} onValueChange={(value) => setDateRange(value as DateRange)}>
-            <SelectTrigger className="w-[200px]">
+            <SelectTrigger className="w-full sm:w-[200px] min-h-[44px]">
               <SelectValue placeholder={hebrewLocale.pages.admin.dateRange} />
             </SelectTrigger>
             <SelectContent>
@@ -165,8 +165,8 @@ export function AdminDashboardPage() {
         )}
 
         {/* Activity Graph */}
-        <Card className="p-6">
-          <h3 className="text-lg font-semibold mb-4">{hebrewLocale.pages.admin.activityGraph}</h3>
+        <Card className="p-4 md:p-6">
+          <h3 className="text-base md:text-lg font-semibold mb-4">{hebrewLocale.pages.admin.activityGraph}</h3>
           {activityData.length === 0 ? (
             <div className="h-64 flex items-center justify-center text-gray-400">
               {hebrewLocale.pages.admin.noData}
@@ -177,14 +177,17 @@ export function AdminDashboardPage() {
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis
                   dataKey="date"
-                  tick={{ fontSize: 12 }}
+                  tick={{ fontSize: 10 }}
+                  angle={-45}
+                  textAnchor="end"
+                  height={60}
                   tickFormatter={(value) => new Date(value).toLocaleDateString('he-IL', { month: 'short', day: 'numeric' })}
                 />
-                <YAxis />
+                <YAxis tick={{ fontSize: 10 }} />
                 <Tooltip
                   labelFormatter={(value) => new Date(value).toLocaleDateString('he-IL', { year: 'numeric', month: 'long', day: 'numeric' })}
                 />
-                <Legend />
+                <Legend wrapperStyle={{ fontSize: '12px' }} />
                 <Line
                   type="monotone"
                   dataKey="activeUsers"
@@ -207,14 +210,15 @@ export function AdminDashboardPage() {
         </Card>
 
         {/* Popular Guides Table */}
-        <Card className="p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold">{hebrewLocale.pages.admin.popularGuides}</h3>
+        <Card className="p-4 md:p-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+            <h3 className="text-base md:text-lg font-semibold">{hebrewLocale.pages.admin.popularGuides}</h3>
             <Button
               variant="outline"
               size="sm"
               onClick={handleExportPopularGuides}
               disabled={popularGuides.length === 0}
+              className="min-h-[44px] w-full sm:w-auto"
             >
               <IconDownload size={16} className="ml-2" />
               {hebrewLocale.pages.admin.exportCSV}
@@ -227,7 +231,7 @@ export function AdminDashboardPage() {
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <Table>
+              <Table className="min-w-[500px]">
                 <TableHeader>
                   <TableRow>
                     <TableHead>{hebrewLocale.pages.admin.guideTitle}</TableHead>
@@ -271,14 +275,15 @@ export function AdminDashboardPage() {
         </Card>
 
         {/* Recent Activity Table */}
-        <Card className="p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold">{hebrewLocale.pages.admin.recentActivity}</h3>
+        <Card className="p-4 md:p-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+            <h3 className="text-base md:text-lg font-semibold">{hebrewLocale.pages.admin.recentActivity}</h3>
             <Button
               variant="outline"
               size="sm"
               onClick={handleExportRecentActivity}
               disabled={recentActivity.length === 0}
+              className="min-h-[44px] w-full sm:w-auto"
             >
               <IconDownload size={16} className="ml-2" />
               {hebrewLocale.pages.admin.exportCSV}
@@ -291,7 +296,7 @@ export function AdminDashboardPage() {
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <Table>
+              <Table className="min-w-[500px]">
                 <TableHeader>
                   <TableRow>
                     <TableHead>{hebrewLocale.pages.admin.activityType}</TableHead>

@@ -115,41 +115,42 @@ export function AdminNotificationPreferencesPage() {
   }
 
   return (
-    <div className="p-8">
-      <div className="max-w-4xl mx-auto space-y-8">
+    <div className="p-4 md:p-6 lg:p-8">
+      <div className="max-w-4xl mx-auto space-y-6 md:space-y-8">
         {/* Header */}
         <div className="space-y-2">
           <div className="flex items-center gap-3">
-            <IconSettings size={32} className="text-emerald-600" />
-            <h1 className="text-4xl font-bold text-foreground">{locale.preferencesTitle}</h1>
+            <IconSettings size={24} className="text-emerald-600 md:w-8 md:h-8" />
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">{locale.preferencesTitle}</h1>
           </div>
-          <p className="text-muted-foreground">{locale.preferencesDescription}</p>
+          <p className="text-sm md:text-base text-muted-foreground">{locale.preferencesDescription}</p>
         </div>
 
         {/* Preferences Grid */}
         <div className="space-y-6">
           {/* New User Digest */}
-          <Card className="p-6">
+          <Card className="p-4 md:p-6">
             <div className="space-y-4">
-              <div className="flex items-start justify-between">
-                <div className="space-y-1">
-                  <h3 className="text-lg font-semibold">{locale.newUserDigestLabel}</h3>
-                  <p className="text-sm text-muted-foreground">{locale.newUserDigestDescription}</p>
+              <div className="flex items-start justify-between gap-4">
+                <div className="space-y-1 flex-1">
+                  <h3 className="text-base md:text-lg font-semibold">{locale.newUserDigestLabel}</h3>
+                  <p className="text-xs md:text-sm text-muted-foreground">{locale.newUserDigestDescription}</p>
                 </div>
                 <Switch
                   checked={preferences.new_user_digest_enabled}
                   onCheckedChange={(checked) => updatePreference('new_user_digest_enabled', checked)}
+                  className="shrink-0 min-w-[44px] min-h-[24px]"
                 />
               </div>
 
               {preferences.new_user_digest_enabled && (
-                <div className="flex items-center gap-4 pt-2 border-t">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 pt-2 border-t">
                   <Label className="text-sm font-medium">{locale.frequency}:</Label>
                   <Select
                     value={preferences.new_user_digest_frequency}
                     onValueChange={(value) => updatePreference('new_user_digest_frequency', value)}
                   >
-                    <SelectTrigger className="w-[180px]">
+                    <SelectTrigger className="w-full sm:w-[180px] min-h-[44px]">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -164,27 +165,28 @@ export function AdminNotificationPreferencesPage() {
           </Card>
 
           {/* Content Flagged */}
-          <Card className="p-6">
+          <Card className="p-4 md:p-6">
             <div className="space-y-4">
-              <div className="flex items-start justify-between">
-                <div className="space-y-1">
-                  <h3 className="text-lg font-semibold">{locale.contentFlaggedLabel}</h3>
-                  <p className="text-sm text-muted-foreground">{locale.contentFlaggedDescription}</p>
+              <div className="flex items-start justify-between gap-4">
+                <div className="space-y-1 flex-1">
+                  <h3 className="text-base md:text-lg font-semibold">{locale.contentFlaggedLabel}</h3>
+                  <p className="text-xs md:text-sm text-muted-foreground">{locale.contentFlaggedDescription}</p>
                 </div>
                 <Switch
                   checked={preferences.content_flagged_enabled}
                   onCheckedChange={(checked) => updatePreference('content_flagged_enabled', checked)}
+                  className="shrink-0 min-w-[44px] min-h-[24px]"
                 />
               </div>
 
               {preferences.content_flagged_enabled && (
-                <div className="flex items-center gap-4 pt-2 border-t">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 pt-2 border-t">
                   <Label className="text-sm font-medium">{locale.frequency}:</Label>
                   <Select
                     value={preferences.content_flagged_frequency}
                     onValueChange={(value) => updatePreference('content_flagged_frequency', value)}
                   >
-                    <SelectTrigger className="w-[180px]">
+                    <SelectTrigger className="w-full sm:w-[180px] min-h-[44px]">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -199,7 +201,7 @@ export function AdminNotificationPreferencesPage() {
           </Card>
 
           {/* Low Engagement */}
-          <Card className="p-6">
+          <Card className="p-4 md:p-6">
             <div className="space-y-4">
               <div className="flex items-start justify-between">
                 <div className="space-y-1">
@@ -234,7 +236,7 @@ export function AdminNotificationPreferencesPage() {
           </Card>
 
           {/* Performance Issues */}
-          <Card className="p-6">
+          <Card className="p-4 md:p-6">
             <div className="space-y-4">
               <div className="flex items-start justify-between">
                 <div className="space-y-1">
@@ -269,7 +271,7 @@ export function AdminNotificationPreferencesPage() {
           </Card>
 
           {/* Milestones */}
-          <Card className="p-6">
+          <Card className="p-4 md:p-6">
             <div className="space-y-4">
               <div className="flex items-start justify-between">
                 <div className="space-y-1">
@@ -310,7 +312,7 @@ export function AdminNotificationPreferencesPage() {
             size="lg"
             onClick={savePreferences}
             disabled={isSaving}
-            className="min-w-[200px]"
+            className="w-full sm:w-auto min-w-[200px] min-h-[48px]"
           >
             {isSaving ? (
               'שומר...'

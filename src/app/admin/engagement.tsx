@@ -155,36 +155,40 @@ export default function EngagementReportPage() {
   }
 
   return (
-    <div className="container mx-auto p-6 space-y-6" dir="rtl">
+    <div className="container mx-auto p-4 md:p-6 space-y-6" dir="rtl">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">{t.title}</h1>
-          <p className="text-muted-foreground mt-1">{t.subtitle}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground">{t.title}</h1>
+          <p className="text-sm md:text-base text-muted-foreground mt-1">{t.subtitle}</p>
         </div>
-        <Button onClick={handleExportAll} variant="outline">
+        <Button 
+          onClick={handleExportAll} 
+          variant="outline"
+          className="w-full sm:w-auto min-h-[44px]"
+        >
           <IconDownload className="w-4 h-4 ml-2" />
           {t.exportCSV}
         </Button>
       </div>
 
       {/* User Segmentation */}
-      <Card className="p-6">
-        <h2 className="text-2xl font-bold text-foreground mb-6">{t.userSegmentation}</h2>
+      <Card className="p-4 md:p-6">
+        <h2 className="text-lg md:text-2xl font-bold text-foreground mb-4 md:mb-6">{t.userSegmentation}</h2>
 
         {/* Segment Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           {segments.map((segment) => (
             <Card key={segment.segment} className="p-4 border-2" style={{ borderColor: getSegmentColor(segment.segment) }}>
               <div className="flex items-start justify-between mb-2">
                 <div>
-                  <h3 className="text-lg font-semibold text-foreground">{segment.segmentName}</h3>
-                  <p className="text-sm text-muted-foreground">{segment.description}</p>
+                  <h3 className="text-base md:text-lg font-semibold text-foreground">{segment.segmentName}</h3>
+                  <p className="text-xs md:text-sm text-muted-foreground">{segment.description}</p>
                 </div>
-                <IconUsers className="w-5 h-5 text-muted-foreground" />
+                <IconUsers className="w-5 h-5 text-muted-foreground shrink-0" />
               </div>
               <div className="mt-4">
-                <div className="text-3xl font-bold" style={{ color: getSegmentColor(segment.segment) }}>
+                <div className="text-2xl md:text-3xl font-bold" style={{ color: getSegmentColor(segment.segment) }}>
                   {segment.userCount}
                 </div>
                 <div className="text-sm text-muted-foreground mt-1">
@@ -195,7 +199,7 @@ export default function EngagementReportPage() {
                 onClick={() => handleExportSegment(segment)}
                 variant="outline"
                 size="sm"
-                className="w-full mt-4"
+                className="w-full mt-4 min-h-[44px]"
               >
                 <IconDownload className="w-4 h-4 ml-2" />
                 {t.exportSegment}
@@ -209,8 +213,14 @@ export default function EngagementReportPage() {
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={segments}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="segmentName" />
-              <YAxis />
+              <XAxis 
+                dataKey="segmentName" 
+                tick={{ fontSize: 10 }}
+                angle={-45}
+                textAnchor="end"
+                height={60}
+              />
+              <YAxis tick={{ fontSize: 10 }} />
               <Tooltip />
               <Bar dataKey="userCount" name={t.users}>
                 {segments.map((segment) => (
@@ -223,8 +233,8 @@ export default function EngagementReportPage() {
       </Card>
 
       {/* Engagement Funnel */}
-      <Card className="p-6">
-        <h2 className="text-2xl font-bold text-foreground mb-6">{t.engagementFunnel}</h2>
+      <Card className="p-4 md:p-6">
+        <h2 className="text-lg md:text-2xl font-bold text-foreground mb-4 md:mb-6">{t.engagementFunnel}</h2>
 
         <div className="space-y-4">
           {funnelData.map((step, index) => (
@@ -260,12 +270,11 @@ export default function EngagementReportPage() {
       </Card>
 
       {/* Activity Heatmap */}
-      <Card className="p-6">
-        <h2 className="text-2xl font-bold text-foreground mb-6">{t.activityHeatmap}</h2>
+      <Card className="p-4 md:p-6">
+        <h2 className="text-lg md:text-2xl font-bold text-foreground mb-4 md:mb-6">{t.activityHeatmap}</h2>
 
         <div className="overflow-x-auto">
-          <div className="inline-block min-w-full">
-            <div className="grid grid-cols-25 gap-1" style={{ gridTemplateColumns: 'auto repeat(24, 1fr)' }}>
+            <div className="grid grid-cols-25 gap-1 min-w-[600px]" style={{ gridTemplateColumns: 'auto repeat(24, 1fr)' }}>
               {/* Header row - Hours */}
               <div className="text-xs text-muted-foreground p-1"></div>
               {Array.from({ length: 24 }, (_, hour) => (
@@ -295,7 +304,6 @@ export default function EngagementReportPage() {
                 </div>
               ))}
             </div>
-          </div>
         </div>
 
         {/* Legend */}
@@ -315,12 +323,12 @@ export default function EngagementReportPage() {
       </Card>
 
       {/* Cohort Analysis */}
-      <Card className="p-6">
-        <h2 className="text-2xl font-bold text-foreground mb-6">{t.cohortAnalysis}</h2>
+      <Card className="p-4 md:p-6">
+        <h2 className="text-lg md:text-2xl font-bold text-foreground mb-4 md:mb-6">{t.cohortAnalysis}</h2>
 
         {cohortData.length > 0 ? (
           <div className="overflow-x-auto">
-            <Table>
+            <Table className="min-w-[500px]">
               <TableHeader>
                 <TableRow>
                   <TableHead className="text-right">

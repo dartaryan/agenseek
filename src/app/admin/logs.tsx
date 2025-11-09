@@ -240,17 +240,17 @@ export default function AdminActionLogPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-6" dir="rtl">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-4 md:p-6" dir="rtl">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl shadow-lg">
-              <IconClipboardList className="w-6 h-6 text-white" />
+            <div className="p-2 md:p-3 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl shadow-lg">
+              <IconClipboardList className="w-5 h-5 md:w-6 md:h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-slate-800">{locale.pageTitle}</h1>
-              <p className="text-slate-600">{locale.description}</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-slate-800">{locale.pageTitle}</h1>
+              <p className="text-sm md:text-base text-slate-600">{locale.description}</p>
             </div>
           </div>
         </div>
@@ -333,11 +333,11 @@ export default function AdminActionLogPage() {
 
               {/* Apply/Clear Buttons */}
               <div className="flex gap-2 lg:col-span-2">
-                <Button onClick={applyFilters} className="flex-1">
+                <Button onClick={applyFilters} className="flex-1 min-h-[44px]">
                   <IconFilter className="w-4 h-4 ml-2" />
                   {locale.applyFilters}
                 </Button>
-                <Button onClick={clearFilters} variant="outline" className="flex-1">
+                <Button onClick={clearFilters} variant="outline" className="flex-1 min-h-[44px]">
                   <IconX className="w-4 h-4 ml-2" />
                   {locale.clearFilters}
                 </Button>
@@ -347,16 +347,16 @@ export default function AdminActionLogPage() {
         </Card>
 
         {/* Action Bar */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="text-sm text-slate-600">
             {locale.showing} {startIndex}-{endIndex} {locale.of} {totalCount} {locale.results}
           </div>
-          <div className="flex gap-2">
-            <Button onClick={loadLogs} variant="outline" size="sm" disabled={loading}>
+          <div className="flex gap-2 w-full sm:w-auto">
+            <Button onClick={loadLogs} variant="outline" size="sm" disabled={loading} className="flex-1 sm:flex-none min-h-[44px]">
               <IconRefresh className={`w-4 h-4 ml-2 ${loading ? 'animate-spin' : ''}`} />
               {locale.refresh}
             </Button>
-            <Button onClick={exportToCSV} variant="outline" size="sm" disabled={exporting}>
+            <Button onClick={exportToCSV} variant="outline" size="sm" disabled={exporting} className="flex-1 sm:flex-none min-h-[44px]">
               <IconDownload className="w-4 h-4 ml-2" />
               {exporting ? locale.exportingData : locale.exportCSV}
             </Button>
@@ -452,12 +452,13 @@ export default function AdminActionLogPage() {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex items-center justify-center gap-2">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
             <Button
               onClick={goToPreviousPage}
               disabled={currentPage === 1}
               variant="outline"
               size="sm"
+              className="w-full sm:w-auto min-h-[44px]"
             >
               <IconChevronRight className="w-4 h-4" />
               {locale.previousPage}
@@ -472,6 +473,7 @@ export default function AdminActionLogPage() {
               disabled={currentPage === totalPages}
               variant="outline"
               size="sm"
+              className="w-full sm:w-auto min-h-[44px]"
             >
               {locale.nextPage}
               <IconChevronLeft className="w-4 h-4 mr-2" />

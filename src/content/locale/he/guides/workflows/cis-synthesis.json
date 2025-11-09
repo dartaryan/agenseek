@@ -1,0 +1,1303 @@
+{
+  "metadata": {
+    "id": "workflows-cis-synthesis",
+    "slug": "workflows-cis-synthesis",
+    "title": "מדריך וורקפלואים - חלק 5: סינתזה ותרחישים מורכבים",
+    "description": "סיכום מקיף של כל הוורקפלואים ב-BMAD - איך כל 50+ הוורקפלואים עובדים יחד במחזור חיים מלא. תרחישים מורכבים, קבלת החלטות, custom workflows, והפיכה למומחי תהליכים.",
+    "category": "workflows",
+    "difficulty": "advanced",
+    "estimatedMinutes": 50,
+    "icon": "IconGitMerge",
+    "tags": ["וורקפלואים", "סינתזה", "תרחישים-מורכבים", "אינטגרציה", "מחזור-חיים", "מומחים"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "מסע הוורקפלואים: סיכום המסע",
+      "level": 2,
+      "anchor": "journey-summary"
+    },
+    {
+      "id": "toc-2",
+      "title": "מפת כל הוורקפלואים (50+)",
+      "level": 2,
+      "anchor": "all-workflows-map"
+    },
+    {
+      "id": "toc-3",
+      "title": "מתי להשתמש במה? מדריך החלטות",
+      "level": 2,
+      "anchor": "decision-guide"
+    },
+    {
+      "id": "toc-4",
+      "title": "תרחיש 1: פרויקט חדש מקצה לקצה",
+      "level": 2,
+      "anchor": "scenario-new-project"
+    },
+    {
+      "id": "toc-5",
+      "title": "תרחיש 2: פיצ'ר גדול בפרויקט קיים",
+      "level": 2,
+      "anchor": "scenario-big-feature"
+    },
+    {
+      "id": "toc-6",
+      "title": "תרחיש 3: תיקון באג קריטי",
+      "level": 2,
+      "anchor": "scenario-critical-bug"
+    },
+    {
+      "id": "toc-7",
+      "title": "תרחיש 4: רפקטורינג ארכיטקטוני",
+      "level": 2,
+      "anchor": "scenario-refactoring"
+    },
+    {
+      "id": "toc-8",
+      "title": "תרחיש 5: משחק חדש מאפס",
+      "level": 2,
+      "anchor": "scenario-new-game"
+    },
+    {
+      "id": "toc-9",
+      "title": "שילוב וורקפלואים: Patterns מתקדמים",
+      "level": 2,
+      "anchor": "advanced-patterns"
+    },
+    {
+      "id": "toc-10",
+      "title": "Custom Workflows: יצירת תהליכים משלכם",
+      "level": 2,
+      "anchor": "custom-workflows"
+    },
+    {
+      "id": "toc-11",
+      "title": "אופטימיזציה: איך לעבוד מהר יותר",
+      "level": 2,
+      "anchor": "optimization"
+    },
+    {
+      "id": "toc-12",
+      "title": "טעויות נפוצות ואיך להימנע מהן",
+      "level": 2,
+      "anchor": "common-mistakes"
+    },
+    {
+      "id": "toc-13",
+      "title": "שאלות נפוצות - מתקדמים",
+      "level": 2,
+      "anchor": "faq"
+    },
+    {
+      "id": "toc-14",
+      "title": "סיכום הסדרה והמשך הדרך",
+      "level": 2,
+      "anchor": "series-summary"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מדריך וורקפלואים - חלק 5: סינתזה ותרחישים מורכבים",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "🎉 ברוכים הבאים לחלק האחרון!",
+      "content": "הגעתם לשיא המסע! במדריך זה נרכיב את כל הידע שצברתם לתמונה אחת גדולה. תלמדו איך כל 50+ הוורקפלואים משתלבים במחזור חיים מלא, תראו תרחישים מורכבים מהעולם האמיתי, ותהפכו למומחי workflows."
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "דרישות מוקדמות - חשוב!",
+      "content": "המדריך הזה מניח שקראתם את כל 4 החלקים הקודמים ויש לכם הבנה טובה של כל הוורקפלואים העיקריים. אם לא - חזרו ותקראו אותם לפני שממשיכים כאן."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "מסע הוורקפלואים: סיכום המסע",
+      "id": "journey-summary"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה למדנו עד כה?",
+      "id": "what-we-learned"
+    },
+    {
+      "type": "text",
+      "content": "במשך 4 חלקים, עברנו מסע מרתק דרך כל הוורקפלואים של BMAD-METHOD. בואו נזכר במה למדנו בכל שלב:",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "**חלק 1א - מבוא וקריטיים:** הכרנו את מושג הוורקפלואים, למדנו איך הם עובדים, והכרנו את 5 הוורקפלואים הקריטיים שחייבים להכיר",
+        "**חלק 1ב - Phase 0-1 (Idea to Brief):** מרעיון לבריף - brainstorming, research, product-brief, game-brief, והגדרת חזון המוצר",
+        "**חלק 2א - Phase 2 Core (Spec + Arch):** ממפרט לארכיטקטורה - PRD, tech-spec, architecture, create-epics-and-stories",
+        "**חלק 2ב - Phase 2 Design (UX + GDD):** עיצוב וחוויית משתמש - create-ux-design, gdd, narrative",
+        "**חלק 3א - Solutioning:** הכנת Stories לפיתוח - epic-tech-context, story-ready, solutioning-gate-check",
+        "**חלק 3ב - Sprint Setup:** תכנון הספרינט - sprint-planning, backlog management, תעדוף",
+        "**חלק 3ג - Development:** תהליך הפיתוח - story-context, dev-story, code-review, story-done",
+        "**חלק 3ד - Management:** ניהול שוטף - workflow-status, retrospective, correct-course",
+        "**חלק 4 - Testing & Quality:** בדיקות - test-arch, test-strategy, test-plans, ביצוע בדיקות"
+      ]
+    },
+    {
+      "type": "text",
+      "content": "זה מסע מרשים! אבל עכשיו השאלה האמיתית היא: **איך מחברים את כל זה ביחד?**\n\nזה בדיוק מה שנלמד במדריך הזה.",
+      "markdown": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "למה צריך סינתזה?",
+      "id": "why-synthesis"
+    },
+    {
+      "type": "text",
+      "content": "במדריכים הקודמים למדנו כל וורקפלו בנפרד. זה נחוץ ללמידה, אבל בעולם האמיתי:",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**פרויקטים הם מורכבים** - צריך להריץ עשרות וורקפלואים בסדר הנכון",
+        "**תהליכים משתלבים** - פלט של וורקפלו אחד הוא קלט לאחר",
+        "**צריך לקבל החלטות** - מתי להריץ מה? באיזה שלב? עם איזה אגנט?",
+        "**יש מצבים מיוחדים** - לא כל פרויקט זהה, צריך גמישות",
+        "**חשוב לחסוך זמן** - אופטימיזציה נכונה יכולה לחסוך שעות רבות"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "המטרה של המדריך הזה",
+      "content": "לתת לכם **תמונה כוללת ומעשית** של איך להשתמש בוורקפלואים בפרויקטים אמיתיים. תצאו מכאן עם היכולת לתכנן ולהוציא לפועל פרויקטים מורכבים מקצה לקצה."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "מפת כל הוורקפלואים (50+)",
+      "id": "all-workflows-map"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "סקירה מלאה: כל הוורקפלואים לפי שלבים",
+      "id": "complete-overview"
+    },
+    {
+      "type": "text",
+      "content": "בואו נציג את **כל הוורקפלואים** במפה מסודרת לפי מחזור החיים של פרויקט. זה יעזור לכם לראות את התמונה הגדולה.",
+      "markdown": true
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "Phase 0: Ideation & Discovery",
+      "id": "phase0-workflows"
+    },
+    {
+      "type": "text",
+      "content": "**מטרה:** מרעיון מעורפל לחזון ברור\n\n**וורקפלואים:**",
+      "markdown": true
+    },
+    {
+      "type": "table",
+      "headers": ["#", "וורקפלו", "אגנט", "תפוקה", "זמן"],
+      "rows": [
+        ["1", "brainstorming", "PM / BMAD Master", "רשימת רעיונות מסודרת", "20-30 דק'"],
+        ["2", "research", "Analyst", "מחקר שוק ומתחרים", "1-2 שעות"],
+        ["3", "brainstorm-project", "PM", "רעיונות מפורטים למוצר", "30-45 דק'"],
+        ["4", "brainstorm-game", "Game Designer", "רעיונות למשחק", "30-45 דק'"]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "טיפ: Phase 0",
+      "content": "בשלב הזה אל תיכנסו לפרטים טכניים. התמקדו בחזון, בבעיה שאתם פותרים, ובערך למשתמש. הפרטים יבואו בשלבים הבאים."
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "Phase 1: Product Definition",
+      "id": "phase1-workflows"
+    },
+    {
+      "type": "text",
+      "content": "**מטרה:** מחזון לבריף מפורט\n\n**וורקפלואים:**",
+      "markdown": true
+    },
+    {
+      "type": "table",
+      "headers": ["#", "וורקפלו", "אגנט", "תפוקה", "זמן"],
+      "rows": [
+        ["5", "product-brief", "PM", "Product Brief מקיף", "1-2 שעות"],
+        ["6", "game-brief", "Game Designer", "Game Brief מפורט", "1-2 שעות"]
+      ]
+    },
+    {
+      "type": "text",
+      "content": "**לאחר Phase 1 יש לכם:** מסמך ברור שמגדיר **מה** אתם בונים, **למי**, **למה**, ומה **הצלחה** נראית.",
+      "markdown": true
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "Phase 2: Specification & Design",
+      "id": "phase2-workflows"
+    },
+    {
+      "type": "text",
+      "content": "**מטרה:** מבריף למפרט מפורט + תכנון\n\n**וורקפלואים:**",
+      "markdown": true
+    },
+    {
+      "type": "table",
+      "headers": ["#", "וורקפלו", "אגנט", "תפוקה", "זמן"],
+      "rows": [
+        ["7", "prd", "PM", "Product Requirements Document", "2-4 שעות"],
+        ["8", "tech-spec", "Architect", "Technical Specification", "2-4 שעות"],
+        ["9", "architecture", "Architect", "Architecture Design Document", "2-4 שעות"],
+        ["10", "create-ux-design", "UX Designer", "UX Design + Wireframes", "2-3 שעות"],
+        ["11", "gdd", "Game Designer", "Game Design Document", "3-5 שעות"],
+        ["12", "narrative", "Game Designer", "Narrative Design Document", "1-2 שעות"],
+        ["13", "create-epics-and-stories", "PM + Analyst", "Epics + User Stories", "2-3 שעות"]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "חשוב: Phase 2 הוא הכבד ביותר",
+      "content": "זה השלב שבו מושקעים הכי הרבה זמן וחשיבה. PRD + Tech Spec + Architecture + UX יכולים לקחת 10-20 שעות עבודה. אבל השקעה נכונה כאן חוסכת **שבועות** של תיקונים בהמשך!"
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "Phase 3: Solutioning & Sprint Setup",
+      "id": "phase3-workflows"
+    },
+    {
+      "type": "text",
+      "content": "**מטרה:** מ-Stories לתוכניות פיתוח מוכנות\n\n**וורקפלואים:**",
+      "markdown": true
+    },
+    {
+      "type": "table",
+      "headers": ["#", "וורקפלו", "אגנט", "תפוקה", "זמן"],
+      "rows": [
+        ["14", "epic-tech-context", "Architect", "טכני context ל-Epic", "30-60 דק'"],
+        ["15", "story-context", "Dev", "הבנת Story טכנית", "15-30 דק'"],
+        ["16", "story-ready", "Dev/Architect", "Story מוכנה לפיתוח", "30-45 דק'"],
+        ["17", "solutioning-gate-check", "Architect", "אישור טכני", "20-30 דק'"],
+        ["18", "sprint-planning", "SM", "Sprint Plan", "1-2 שעות"]
+      ]
+    },
+    {
+      "type": "text",
+      "content": "**לאחר Phase 3 יש לכם:** Backlog מוכן, Stories מתועדפות, Sprint מתוכנן, והצוות מוכן להתחיל לפתח.",
+      "markdown": true
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "Phase 4: Development",
+      "id": "phase4-workflows"
+    },
+    {
+      "type": "text",
+      "content": "**מטרה:** מ-Story מוכנה לקוד עובד\n\n**וורקפלואים:**",
+      "markdown": true
+    },
+    {
+      "type": "table",
+      "headers": ["#", "וורקפלו", "אגנט", "תפוקה", "זמן"],
+      "rows": [
+        ["19", "dev-story", "Dev", "קוד מוכן ל-review", "שעות-ימים"],
+        ["20", "code-review", "Dev/Architect", "קוד מאושר", "30-60 דק'"],
+        ["21", "story-done", "Dev", "Story מושלמת", "15-30 דק'"]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "Phase 5: Testing & Quality",
+      "id": "phase5-workflows"
+    },
+    {
+      "type": "text",
+      "content": "**מטרה:** הבטחת איכות\n\n**וורקפלואים:**",
+      "markdown": true
+    },
+    {
+      "type": "table",
+      "headers": ["#", "וורקפלו", "אגנט", "תפוקה", "זמן"],
+      "rows": [
+        ["22", "test-arch", "TEA", "Master Test Plan", "2-3 שעות"],
+        ["23", "test-strategy", "TEA", "Test Strategy", "1-2 שעות"],
+        ["24", "test-plan", "TEA", "Test Plan מפורט", "1-2 שעות"],
+        ["25", "test-cases", "TEA", "Test Cases", "1-3 שעות"]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "Phase 6: Project Management",
+      "id": "phase6-workflows"
+    },
+    {
+      "type": "text",
+      "content": "**מטרה:** מעקב, ניתוח, ושיפור\n\n**וורקפלואים:**",
+      "markdown": true
+    },
+    {
+      "type": "table",
+      "headers": ["#", "וורקפלו", "אגנט", "תפוקה", "זמן"],
+      "rows": [
+        ["26", "workflow-status", "SM", "סטטוס פרויקט", "30-45 דק'"],
+        ["27", "retrospective", "SM", "Retro + Action Items", "1-1.5 שעות"],
+        ["28", "correct-course", "SM/PM", "תיקון מסלול", "1-2 שעות"]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "Phase 7: Documentation",
+      "id": "phase7-workflows"
+    },
+    {
+      "type": "text",
+      "content": "**מטרה:** תיעוד איכותי\n\n**וורקפלואים:**",
+      "markdown": true
+    },
+    {
+      "type": "table",
+      "headers": ["#", "וורקפלו", "אגנט", "תפוקה", "זמן"],
+      "rows": [
+        ["29", "document-project", "Tech Writer", "תיעוד מקיף", "3-5 שעות"]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "סיכום: 29 וורקפלואים עיקריים",
+      "id": "main-workflows-summary"
+    },
+    {
+      "type": "text",
+      "content": "אלו **29 הוורקפלואים העיקריים** שלמדנו. אבל יש עוד:",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**Workflow Meta:** workflow-init, workflow-status (למטא-ניהול של וורקפלואים)",
+        "**Support:** create-story (יצירת Story בודדת)",
+        "**Game Specific:** וורקפלואים נוספים למשחקים",
+        "**Custom:** וורקפלואים מותאמים אישית שיצרתם"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "המפה המלאה",
+      "content": "עם 29 הוורקפלואים האלה (+ וריאציות), יש לכם **כלי מקיף** לניהול כל סוגי הפרויקטים. השאלה היא: **מתי להשתמש במה?**"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "מתי להשתמש במה? מדריך החלטות",
+      "id": "decision-guide"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "עץ החלטות: איזה וורקפלו להריץ?",
+      "id": "decision-tree"
+    },
+    {
+      "type": "text",
+      "content": "הנה מדריך קבלת החלטות מהיר שעוזר לכם לבחור את הוורקפלו הנכון:",
+      "markdown": true
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "title": "📌 יש לי רעיון חדש למוצר/פיצ'ר",
+          "content": "**אם זה רעיון מעורפל:**\n→ התחילו ב-`brainstorming` (PM / BMAD Master)\n→ המשיכו ל-`research` (Analyst)\n\n**אם זה רעיון בשל יותר:**\n→ קפצו ישר ל-`product-brief` או `game-brief`"
+        },
+        {
+          "title": "🎯 יש לי Product Brief, מה הלאה?",
+          "content": "**רצף מומלץ:**\n1. `prd` - הגדרת דרישות (PM)\n2. `tech-spec` - מפרט טכני (Architect)\n3. `architecture` - תכנון ארכיטקטורה (Architect)\n4. `create-ux-design` - עיצוב (UX Designer)\n5. `create-epics-and-stories` - פירוק ל-Stories (PM)"
+        },
+        {
+          "title": "📝 יש לי Epics & Stories, איך מתחילים לפתח?",
+          "content": "**לפני הספרינט הראשון:**\n1. `epic-tech-context` - הוסיפו context טכני לכל Epic (Architect)\n2. `test-arch` - תכננו את אסטרטגיית הבדיקות (TEA)\n3. `sprint-planning` - תכננו Sprint (SM)\n\n**אחר כך לכל Story:**\n1. `story-context` - הבינו את Story (Dev)\n2. `story-ready` - ודאו שמוכנה (Dev/Architect)\n3. `dev-story` - פתחו (Dev)\n4. `code-review` - Code Review (Dev/Architect)\n5. `story-done` - סיימו (Dev)"
+        },
+        {
+          "title": "🐛 יש באג קריטי בפרודקשן!",
+          "content": "**Hotfix Flow:**\n1. קפצו ישר ל-`create-story` - צרו Story לבאג\n2. `story-context` - הבינו את הבעיה\n3. `dev-story` - תקנו\n4. `code-review` - ודאו שהתיקון תקין\n5. `story-done` - Deploy\n\n**אחר כך:** הריצו `retrospective` להבין למה זה קרה"
+        },
+        {
+          "title": "🔄 רוצים לעשות רפקטורינג גדול",
+          "content": "**Refactoring Flow:**\n1. `architecture` - תכננו את הארכיטקטורה החדשה (Architect)\n2. `tech-spec` - כתבו מפרט טכני (Architect)\n3. `create-epics-and-stories` - פרקו ל-Stories קטנות\n4. `epic-tech-context` - הוסיפו context\n5. המשיכו בתהליך רגיל של Story Context → Dev → Review → Done"
+        },
+        {
+          "title": "📊 רוצים לבדוק איך הפרויקט מתקדם",
+          "content": "**Status Check:**\n→ הריצו `workflow-status` (SM) - תקבלו דוח מצב מקיף\n\n**בסוף Sprint:**\n→ הריצו `retrospective` (SM) - למידה ושיפור\n\n**אם יש בעיות:**\n→ הריצו `correct-course` (SM/PM) - תיקון מסלול"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "חוקי האצבע למתי להריץ מה",
+      "id": "rules-of-thumb"
+    },
+    {
+      "type": "text",
+      "content": "כמה עקרונות כלליים שעוזרים לקבל החלטות:",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "**אל תדלגו על Phase 0-2** - ההשקעה בתכנון חוסכת זמן אדיר בפיתוח",
+        "**עדיף וורקפלו קצר מדי מאשר קפיצה ישירה לקוד** - 15 דקות תכנון > 2 שעות דיבאגינג",
+        "**השתמשו ב-story-context לפני כל Story** - גם אם נראית פשוטה",
+        "**Code Review הוא חובה** - לא אופציונלי",
+        "**Retrospective אחרי כל Sprint** - למידה מתמדת",
+        "**Test Architecture בתחילת הפרויקט** - לא בסוף",
+        "**Documentation לא רק בסוף** - תעדו תוך כדי"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "הטעות הכי נפוצה",
+      "content": "אנשים קופצים ישר לקוד ומדלגים על התכנון. **זה תמיד חוזר לנשוך אתכם.** 30 דקות תכנון יכולות לחסוך **שבועות** של רה-ארכיטקטורה."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תרחיש 1: פרויקט חדש מקצה לקצה",
+      "id": "scenario-new-project"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הסיטואציה",
+      "id": "scenario1-situation"
+    },
+    {
+      "type": "text",
+      "content": "**אתם בונים אפליקציית Task Management חדשה מאפס.**\n\n**דרישות:**\n- Web App (React + Node.js)\n- ניהול משימות, פרויקטים, צוותים\n- אינטגרציה עם Calendar\n- Mobile-first design\n\n**צוות:** 3 מפתחים, 1 QA, 1 UX Designer\n\n**זמן:** 3 חודשים\n\nבואו נראה **את כל הוורקפלואים** שתריצו מהתחלה ועד הסוף.",
+      "markdown": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 1: Ideation (שבוע 1)",
+      "id": "scenario1-ideation"
+    },
+    {
+      "type": "tabs",
+      "tabs": [
+        {
+          "label": "יום 1-2",
+          "content": "**Brainstorming & Research**\n\n```bash\n@pm\n*brainstorm-project\n```\n\n**תפוקה:** 10-15 רעיונות לפיצ'רים\n\n**אחר כך:**\n```bash\n@analyst\n*research\n```\n\n**תפוקה:** מחקר על Trello, Asana, Monday - מה עובד, מה לא"
+        },
+        {
+          "label": "יום 3-4",
+          "content": "**Product Brief**\n\n```bash\n@pm\n*product-brief\n```\n\n**תפוקה:** Product Brief מקיף (10-15 עמודים)\n- Vision & Mission\n- Target Users\n- Core Features\n- Success Metrics\n- Timeline & Budget"
+        },
+        {
+          "label": "יום 5",
+          "content": "**Review & Alignment**\n\nפגישה עם הצוות:\n- Review של ה-Brief\n- שאלות והבהרות\n- Alignment על החזון\n\n**לא וורקפלו אלא פגישה אנושית!**"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 2: Specification (שבוע 2-3)",
+      "id": "scenario1-specification"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# שבוע 2: PRD + Tech Spec + UX\n@pm\n*prd\n# → PRD מפורט (30-40 עמודים)\n\n@architect\n*tech-spec\n# → Tech Spec (20-25 עמודים)\n\n@architect\n*architecture\n# → Architecture Document + Diagrams\n\n@ux-designer\n*create-ux-design\n# → Wireframes + User Flows + Design System\n\n# שבוע 3: Epics & Stories\n@pm\n*create-epics-and-stories\n# → 8-10 Epics, 60-80 Stories"
+    },
+    {
+      "type": "text",
+      "content": "**תוצאה בסוף שבוע 3:** מפרט מלא, ארכיטקטורה מוגדרת, עיצוב מוכן, ו-Backlog של Stories מוכן לעבודה.",
+      "markdown": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 3: Solutioning (שבוע 4)",
+      "id": "scenario1-solutioning"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# הוסיפו טכני Context לכל Epic\n@architect\n*epic-tech-context\n# → חזרו על זה 8-10 פעמים (Epic אחד בכל פעם)\n\n# תכננו את אסטרטגיית הבדיקות\n@tea\n*test-arch\n# → Master Test Plan\n\n@tea\n*test-strategy\n# → Test Strategy Document\n\n# תכננו את Sprint הראשון\n@sm\n*sprint-planning\n# → Sprint 1 Plan (10-12 Stories)"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 4-11: Development (שבוע 5-11, 7 ספרינטים)",
+      "id": "scenario1-development"
+    },
+    {
+      "type": "text",
+      "content": "עכשיו מתחיל תהליך הפיתוח החוזר. **לכל Sprint** תריצו:",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# תחילת Sprint (יום ראשון)\n@sm\n*sprint-planning\n# → בחירת 10-12 Stories\n\n# לכל Story בספרינט:\n@dev\n*story-context\n# → הבנת הדרישות (15-30 דק')\n\n@dev\n*story-ready\n# → בדיקת מוכנות (20 דק')\n\n@dev\n*dev-story\n# → פיתוח (שעות-ימים)\n\n@dev\n*code-review\n# → סקירת קוד (30-60 דק')\n\n@dev\n*story-done\n# → סיום והעלאה (20 דק')\n\n# סוף Sprint (יום חמישי)\n@sm\n*retrospective\n# → למידה מהספרינט\n\n@sm\n*workflow-status\n# → בדיקת סטטוס הפרויקט"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "פירוט: 7 ספרינטים",
+      "content": "במהלך 7 השבועות האלה תריצו **כל וורקפלו פיתוח 60-80 פעמים** (אחד לכל Story). זה הלב של הפרויקט!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 12: Testing & Quality (שבוע 12)",
+      "id": "scenario1-testing"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# בדיקות מקיפות לפני Launch\n@tea\n*test-plan\n# → Test Plans ל-Features עיקריים\n\n# ריצת בדיקות ידניות + אוטומטיות\n# תיקון באגים שנמצאו\n\n@tech-writer\n*document-project\n# → תיעוד למשתמשים ומפתחים"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "סיכום תרחיש 1",
+      "id": "scenario1-summary"
+    },
+    {
+      "type": "text",
+      "content": "**סה\"כ וורקפלואים שהרצנו:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**Phase 0-2:** 10 וורקפלואים (תכנון)",
+        "**Solutioning:** 15 וורקפלואים (Epic Context + Test Arch)",
+        "**Development:** ~350 וורקפלואים (5 לכל Story × 70 Stories)",
+        "**Management:** 14 וורקפלואים (Sprint Planning + Retro × 7)",
+        "**Testing:** 5 וורקפלואים",
+        "**סה\"כ: ~394 וורקפלואים בפרויקט של 3 חודשים!**"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "המסקנה",
+      "content": "וורקפלואים הם המנוע שמניע את הפרויקט. **כל וורקפלו** חוסך זמן, מפחית שגיאות, ומבטיח איכות גבוהה."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תרחיש 2: פיצ'ר גדול בפרויקט קיים",
+      "id": "scenario-big-feature"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הסיטואציה",
+      "id": "scenario2-situation"
+    },
+    {
+      "type": "text",
+      "content": "**הפרויקט קיים וממשיך להתפתח.**\n\n**צריך להוסיף:** Real-time Collaboration (כמו Google Docs)\n\n**זמן משוער:** 3-4 שבועות\n\n**השאלה:** באילו וורקפלואים להשתמש?",
+      "markdown": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הפתרון: Feature Flow",
+      "id": "scenario2-solution"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# שלב 1: תכנון (יום 1-2)\n@pm\n*prd\n# → PRD לפיצ'ר החדש (5-8 עמודים)\n\n@architect\n*tech-spec\n# → Tech Spec (WebSockets, Conflict Resolution)\n\n@ux-designer\n*create-ux-design\n# → UX Design (Cursors, Presence, Updates)\n\n# שלב 2: פירוק (יום 3)\n@pm\n*create-epics-and-stories\n# → 1 Epic, 12-15 Stories\n\n@architect\n*epic-tech-context\n# → Context טכני\n\n# שלב 3-6: פיתוח (שבוע 2-5)\n# רצו את תהליך הפיתוח הרגיל:\n# story-context → dev-story → code-review → story-done\n# × 12-15 Stories\n\n# שלב 7: בדיקות (שבוע 6)\n@tea\n*test-plan\n# → Test Plan לפיצ'ר\n\n# בדיקות + Launch"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "ההבדל מפרויקט חדש",
+      "content": "בפיצ'ר בפרויקט קיים - **דילגתם על Phase 0-1** (אין צורך ב-brainstorming/research/brief), והתחלתם ישר מ-PRD. זה חוסך 1-2 שבועות!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תרחיש 3: תיקון באג קריטי",
+      "id": "scenario-critical-bug"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הסיטואציה",
+      "id": "scenario3-situation"
+    },
+    {
+      "type": "text",
+      "content": "**בפרודקשן:** באג קריטי - משתמשים לא יכולים להתחבר!\n\n**זמן:** צריך לתקן **עכשיו**\n\n**השאלה:** איזה וורקפלואים להריץ כשהבית בוער?",
+      "markdown": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הפתרון: Hotfix Flow",
+      "id": "scenario3-solution"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# Hotfix Flow - מהיר ומינימלי\n\n# 1. תעדו את הבעיה (5 דקות)\n@pm\n*create-story\n# → Story לבאג (כותרת + תיאור קצר)\n\n# 2. הבינו (10 דקות)\n@dev\n*story-context\n# → הבנת השורש של הבעיה\n\n# 3. תקנו (30-120 דקות)\n@dev\n*dev-story\n# → תיקון הבאג\n\n# 4. בדקו היטב! (15 דקות)\n@dev\n*code-review\n# → Code Review זריז אבל קפדני\n\n# 5. Deploy (10 דקות)\n@dev\n*story-done\n# → Deploy לפרודקשן\n\n# 6. למידה (אחר כך, באותו יום)\n@sm\n*retrospective\n# → למה זה קרה? איך למנוע?"
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "חשוב: אל תדלגו על Code Review!",
+      "content": "גם בהוטפיקס דחוף - **Code Review הוא חובה**. תיקון מהיר שמוסיף באג נוסף רק יחמיר את המצב. 15 דקות review יכולות לחסוך שעות של כאב."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תרחיש 4: רפקטורינג ארכיטקטוני",
+      "id": "scenario-refactoring"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הסיטואציה",
+      "id": "scenario4-situation"
+    },
+    {
+      "type": "text",
+      "content": "**הקוד הישן לא מתאים יותר.**\n\nרוצים לעבור מ-REST API ל-GraphQL, לשנות את ארכיטקטורת ה-State Management, ולשפר Performance.\n\n**זמן משוער:** 2-3 חודשים\n\n**השאלה:** איך מתכננים רפקטורינג גדול?",
+      "markdown": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הפתרון: Refactoring Flow",
+      "id": "scenario4-solution"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# שלב 1: תכנון אדריכלי (שבוע 1)\n@architect\n*architecture\n# → Architecture Document חדש\n\n@architect\n*tech-spec\n# → מפרט טכני מפורט\n\n# שלב 2: פירוק למשימות (שבוע 2)\n@pm\n*create-epics-and-stories\n# → 3-5 Epics, 40-50 Stories\n\n@architect\n*epic-tech-context\n# → Context טכני לכל Epic\n\n@tea\n*test-arch\n# → אסטרטגיית בדיקות לוודא שלא שוברים דברים\n\n# שלב 3-10: רפקטורינג הדרגתי (שבוע 3-10)\n# אסטרטגיה: Strangler Fig Pattern\n# כל Sprint:\n# - לוקחים חלק קטן\n# - מרפקטרים\n# - כותבים טסטים\n# - מוודאים שהכל עובד\n# - Deploy\n\n# תהליך רגיל של:\n# story-context → dev-story → code-review → story-done\n\n# שלב 11: Cleanup (שבוע 11-12)\n# הסרת קוד ישן, תיעוד, אופטימיזציה"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "המפתח: הדרגתיות",
+      "content": "רפקטורינג גדול **לא נעשה בבת אחת**. פרקו ל-Stories קטנות, תעשו אותן אחת אחת, ושמרו על המערכת עובדת כל הזמן. זה לוקח יותר זמן אבל הרבה פחות מסוכן."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תרחיש 5: משחק חדש מאפס",
+      "id": "scenario-new-game"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הסיטואציה",
+      "id": "scenario5-situation"
+    },
+    {
+      "type": "text",
+      "content": "**בונים משחק 2D Platformer חדש.**\n\n**פלטפורמה:** Unity\n**ז'אנר:** Adventure Platformer\n**זמן:** 6-9 חודשים\n\n**השאלה:** איזה וורקפלואים ייחודיים למשחקים?",
+      "markdown": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הפתרון: Game Development Flow",
+      "id": "scenario5-solution"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# Phase 0: Ideation (שבוע 1)\n@game-designer\n*brainstorm-game\n# → רעיונות למשחק\n\n@game-designer\n*game-brief\n# → Game Brief (Concept, Mechanics, Art Style)\n\n# Phase 1: Design (שבוע 2-4)\n@game-designer\n*gdd\n# → Game Design Document מקיף (50+ עמודים)\n\n@game-designer\n*narrative\n# → Narrative Design (Story, Characters, Dialogue)\n\n@game-architect\n*architecture\n# → Game Architecture (Systems, Components)\n\n# Phase 2: Planning (שבוע 5-6)\n@pm\n*create-epics-and-stories\n# → פירוק ל-Features\n# Epic 1: Core Movement\n# Epic 2: Combat System  \n# Epic 3: Level Design\n# Epic 4: Enemy AI\n# Epic 5: UI/Menus\n# וכו'\n\n@game-architect\n*epic-tech-context\n\n@tea\n*test-arch\n# → Test Strategy למשחקים\n\n# Phase 3-8: Development (חודש 2-7)\n# תהליך רגיל:\n# sprint-planning → story-context → dev-story\n#   → code-review → story-done → retrospective\n\n# Phase 9: Polish & Testing (חודש 8-9)\n@tea\n*test-plan\n# → Playtesting Plans\n\n@tech-writer\n*document-project\n# → Game Documentation"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "וורקפלואים ייחודיים למשחקים",
+      "content": "למשחקים יש 3 אגנטים ייחודיים (Game Designer, Game Architect, Game Dev) ו-3 וורקפלואים ייחודיים (brainstorm-game, game-brief, gdd, narrative). מלבד זה - התהליך דומה מאוד לפיתוח אפליקציה רגילה!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שילוב וורקפלואים: Patterns מתקדמים",
+      "id": "advanced-patterns"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Pattern 1: Parallel Workflows",
+      "id": "pattern-parallel"
+    },
+    {
+      "type": "text",
+      "content": "**מתי להשתמש:** כשיש לכם מספר אגנטים/אנשים והתהליכים בלתי-תלויים.\n\n**דוגמה:**",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# במקביל - שלושה אגנטים עובדים:\n\n# אגנט 1: PM\n@pm\n*prd\n\n# אגנט 2: Architect (במקביל)\n@architect  \n*tech-spec\n\n# אגנט 3: UX Designer (במקביל)\n@ux-designer\n*create-ux-design\n\n# תוצאה: חוסכים זמן - במקום 6 שעות → 2-3 שעות!"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "יתרון: מהירות",
+      "content": "Parallel Workflows יכולים לחסוך **50-70% מהזמן** בשלבי התכנון. במקום לעבוד בסדר - תעבדו במקביל!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Pattern 2: Sequential with Feedback",
+      "id": "pattern-sequential"
+    },
+    {
+      "type": "text",
+      "content": "**מתי להשתמש:** כשפלט של וורקפלו אחד הוא קלט לאחר.\n\n**דוגמה:**",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# Sequential: כל וורקפלו תלוי בקודם\n\n# שלב 1\n@pm\n*product-brief\n# → Product Brief (10 עמודים)\n\n# שלב 2 (תלוי בשלב 1)\n@pm  \n*prd\n# ← קורא את ה-Brief\n# → PRD (30 עמודים)\n\n# שלב 3 (תלוי בשלב 2)\n@architect\n*tech-spec\n# ← קורא את ה-PRD\n# → Tech Spec (25 עמודים)\n\n# שלב 4 (תלוי בשלב 3)\n@architect\n*architecture\n# ← קורא את ה-Tech Spec\n# → Architecture Doc"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Pattern 3: Iterative Refinement",
+      "id": "pattern-iterative"
+    },
+    {
+      "type": "text",
+      "content": "**מתי להשתמש:** כשצריך לחזור ולשפר.\n\n**דוגמה:**",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# איטרציה 1\n@architect\n*architecture\n# → גרסה ראשונה\n\n# Code Review + Feedback\n# \"חסר Caching Strategy\"\n\n# איטרציה 2\n@architect\n*architecture\n# → גרסה 2 (with Caching)\n\n# Code Review + Feedback\n# \"מה עם Scalability?\"\n\n# איטרציה 3\n@architect\n*architecture\n# → גרסה סופית (Caching + Scalability)"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "טיפ: Iterative Refinement",
+      "content": "**עדיף 3 גרסאות קצרות מאשר 1 גרסה מושלמת.** תתחילו עם גרסה בסיסית, תקבלו פידבק, תשפרו. זה יותר מהיר ויותר טוב!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Pattern 4: Hotfix + Retro",
+      "id": "pattern-hotfix-retro"
+    },
+    {
+      "type": "text",
+      "content": "**מתי להשתמש:** אחרי כל תקלה קריטית.\n\n**דוגמה:**",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# תקלה קרתה!\n\n# שלב 1: תיקון מהיר\n@dev\n*story-context → *dev-story → *code-review → *story-done\n# → הבעיה נפתרה\n\n# שלב 2: למידה (אחרי שהאש כבתה)\n@sm\n*retrospective\n# → מה קרה? למה? איך למנוע?\n# → Action Items\n\n# שלב 3: שיפור התהליך\n@architect\n*architecture\n# → עדכון Architecture (אם צריך)\n\n@tea\n*test-strategy\n# → הוספת טסטים למנוע בעתיד"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Custom Workflows: יצירת תהליכים משלכם",
+      "id": "custom-workflows"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מתי צריך Custom Workflow?",
+      "id": "when-custom"
+    },
+    {
+      "type": "text",
+      "content": "ה-29 וורקפלואים העיקריים מכסים 95% מהמקרים. אבל לפעמים יש צורך ב-Custom Workflow:",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**תהליך ייחודי לארגון שלכם** - למשל: Compliance Review, Security Audit",
+        "**אינטגרציה עם כלים חיצוניים** - Jira, GitHub Actions, CI/CD",
+        "**אופטימיזציה ספציפית** - שילוב של מספר וורקפלואים לתהליך אחד",
+        "**תחום מיוחד** - ML/AI, Hardware, Embedded Systems"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך יוצרים Custom Workflow?",
+      "id": "how-to-custom"
+    },
+    {
+      "type": "text",
+      "content": "**תהליך יצירת Custom Workflow:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "**זהו את הצורך** - מה חסר בוורקפלואים הקיימים?",
+        "**תכננו את התהליך** - מה הקלט? מה הפלט? מה השלבים?",
+        "**בחרו אגנט** - איזה אגנט מתאים?",
+        "**צרו YAML** - קובץ workflow.yaml מותאם",
+        "**בדקו** - הריצו על פרויקט טסט",
+        "**שפרו** - לפי הפידבק",
+        "**תעדו** - כתבו מדריך שימוש"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה: Security Review Workflow",
+      "id": "example-security"
+    },
+    {
+      "type": "text",
+      "content": "נניח שהארגון שלכם דורש **Security Review** לפני Deploy. הנה איך יוצרים Custom Workflow:",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# security-review.yaml\nname: security-review\ndescription: Security Review לפני Production Deploy\nagent: architect\ninputs:\n  - story_id\n  - code_changes\n  - dependencies\nsteps:\n  - check_vulnerabilities\n  - review_authentication\n  - check_data_encryption\n  - validate_input_sanitization\n  - review_authorization\noutputs:\n  - security_report\n  - issues_list\n  - approval_status"
+    },
+    {
+      "type": "text",
+      "content": "**איך משתמשים:**",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "@architect\n*security-review\n# → Security Report + Issues List + Approval"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "אופטימיזציה: איך לעבוד מהר יותר",
+      "id": "optimization"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "טכניקות אופטימיזציה",
+      "id": "optimization-techniques"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "title": "1. Batch Processing - עיבוד קבוצתי",
+          "content": "במקום להריץ `epic-tech-context` 10 פעמים בנפרד, תעשו:\n\n```bash\n# במקום:\n*epic-tech-context (Epic 1)\n*epic-tech-context (Epic 2)\n*epic-tech-context (Epic 3)\n# ... 10 פעמים\n\n# תעשו:\n# הכינו רשימה של כל ה-Epics\n# הריצו batch של epic-tech-context\n# → חוסך 30-40% מהזמן\n```"
+        },
+        {
+          "title": "2. Template Reuse - שימוש חוזר בתבניות",
+          "content": "**צרו ספריית תבניות:**\n- Product Brief Template\n- PRD Template\n- Tech Spec Template\n- Test Plan Template\n\n**יתרון:** במקום להתחיל מאפס - התחילו מתבנית 80% מוכנה."
+        },
+        {
+          "title": "3. Context Caching - שמירת קונטקסט",
+          "content": "**שמרו קונטקסט חשוב:**\n- Architecture Decisions\n- Code Style Guidelines\n- Testing Standards\n\n**איך זה עוזר:** האגנטים לא צריכים \"ללמוד\" מחדש בכל פעם. הם מתחילים עם הידע המצטבר."
+        },
+        {
+          "title": "4. Skip Non-Critical - דלגו על לא-חיוני",
+          "content": "**לא כל וורקפלו חייב להתבצע תמיד:**\n\n**חובה:**\n- story-context, dev-story, code-review, story-done\n- test-arch (בתחילת פרויקט)\n\n**אופציונלי (לפי שיקול דעת):**\n- story-ready (אם Story ממש פשוטה)\n- retrospective (אם Sprint היה חלק)\n- document-project (אפשר לעשות בסוף)"
+        },
+        {
+          "title": "5. Automate Repetitive - אוטומציה",
+          "content": "**אוטומציה של משימות חוזרות:**\n- CI/CD pipeline → אוטומט את code-review הבסיסי\n- Linters → בדיקות קוד אוטומטיות\n- Test Runners → הרצת טסטים אוטומטית\n\n**תן לאגנטים להתמקד בחשיבה, לא בשגרה.**"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "לפני ואחרי אופטימיזציה",
+      "id": "before-after-optimization"
+    },
+    {
+      "type": "table",
+      "headers": ["תהליך", "לפני", "אחרי", "חיסכון"],
+      "rows": [
+        ["Epic Tech Context (×10)", "10 שעות", "6 שעות", "40%"],
+        ["Sprint Planning", "2 שעות", "1 שעה", "50%"],
+        ["Documentation", "5 שעות", "2 שעות", "60%"],
+        ["Code Review", "60 דק'", "30 דק'", "50%"],
+        ["**סה\"כ בפרויקט**", "**400 שעות**", "**250 שעות**", "**38%**"]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "אופטימיזציה = זמן + איכות",
+      "content": "אופטימיזציה נכונה יכולה לחסוך **30-40% מהזמן** בלי לפגוע באיכות. למעשה - לרוב האיכות רק עולה!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "טעויות נפוצות ואיך להימנע מהן",
+      "id": "common-mistakes"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Top 10 טעויות",
+      "id": "top-10-mistakes"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "title": "1. לדלג על Phase 0-2 (תכנון)",
+          "content": "**הטעות:** \"בואו נתחיל לקודד ישר, נחסוך זמן!\"\n\n**למה זה רע:** תסיימו עם ארכיטקטורה לא טובה, רה-רייט, ושבועות של תיקונים.\n\n**הפתרון:** תשקיעו 1-2 שבועות בתכנון. זה חוסך חודשים בהמשך."
+        },
+        {
+          "title": "2. לא לעשות Code Review",
+          "content": "**הטעות:** \"אני Senior, לא צריך Review\"\n\n**למה זה רע:** באגים, Technical Debt, ידע לא משותף.\n\n**הפתרון:** Code Review תמיד. גם ל-Seniors. גם בהוטפיקס."
+        },
+        {
+          "title": "3. להריץ רק וורקפלו אחד ולקפוץ לקוד",
+          "content": "**הטעות:** \"עשיתי story-context, בא נקודד!\"\n\n**למה זה רע:** חסר story-ready, חסר הכנה, הסיכוי לבאגים גבוה.\n\n**הפתרון:** עקבו אחר הרצף המלא: context → ready → dev → review → done."
+        },
+        {
+          "title": "4. לא לתעד תוך כדי",
+          "content": "**הטעות:** \"נתעד בסוף\"\n\n**למה זה רע:** בסוף אף פעם לא מתעדים. או שמתעדים גרוע.\n\n**הפתרון:** תיעוד תוך כדי. כל Epic מתועד, כל Story מתועדת."
+        },
+        {
+          "title": "5. לדלג על Retrospective",
+          "content": "**הטעות:** \"הספרינט הסתיים, בואו נמשיך\"\n\n**למה זה רע:** לא לומדים מטעויות, חוזרים על אותן בעיות.\n\n**הפתרון:** Retro חובה אחרי כל Sprint. 1 שעה שמשפרת את כל הספרינטים הבאים."
+        },
+        {
+          "title": "6. לא להריץ Test Architecture בהתחלה",
+          "content": "**הטעות:** \"נכתוב טסטים אחר כך\"\n\n**למה זה רע:** אחר כך = אף פעם. או טסטים גרועים.\n\n**הפתרון:** test-arch בתחילת הפרויקט. תכננו את אסטרטגיית הבדיקות מראש."
+        },
+        {
+          "title": "7. להריץ יותר מדי וורקפלואים במקביל",
+          "content": "**הטעות:** \"בואו נריץ 5 וורקפלואים ביחד!\"\n\n**למה זה רע:** בלבול, חוסר פוקוס, שגיאות.\n\n**הפתרון:** מקסימום 2-3 במקביל. רק אם הם באמת בלתי-תלויים."
+        },
+        {
+          "title": "8. לא לעדכן Context בין וורקפלואים",
+          "content": "**הטעות:** האגנטים לא יודעים מה קרה בוורקפלו הקודם\n\n**למה זה רע:** החלטות לא מעודכנות, חוסר עקביות.\n\n**הפתרון:** תמיד תעבירו את הקונטקסט. כל וורקפלו צריך לדעת מה היה לפניו."
+        },
+        {
+          "title": "9. לשכוח workflow-status",
+          "content": "**הטעות:** לא בודקים איפה הפרויקט עומד\n\n**למה זה רע:** מאבדים מסלול, לא יודעים מה הסטטוס.\n\n**הפתרון:** workflow-status כל שבוע. זה לוקח 30 דקות ומציל מהפתעות."
+        },
+        {
+          "title": "10. לא להתאים את התהליך",
+          "content": "**הטעות:** \"זה מה שכתוב במדריך, צריך לעשות בדיוק ככה\"\n\n**למה זה רע:** כל פרויקט שונה. One size doesn't fit all.\n\n**הפתרון:** התאימו! השתמשו ב-80% מהוורקפלואים, שנו 20%. תתאימו לצרכים שלכם."
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שאלות נפוצות - מתקדמים",
+      "id": "faq"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "title": "איך עובדים עם מספר צוותים במקביל?",
+          "content": "**אסטרטגיה:**\n1. **חלקו את ה-Backlog** - כל צוות לוקח Epics משלו\n2. **תיאום שבועי** - workflow-status משותף\n3. **ארכיטקטורה משותפת** - Architecture Document אחד, מעודכן\n4. **Code Review צולב** - צוותים עושים Review אחד לשני\n5. **Retro משותפת** - פעם בחודש, כל הצוותים"
+        },
+        {
+          "title": "מה עושים כשוורקפלו לוקח יותר מדי זמן?",
+          "content": "**פתרונות:**\n1. **פרקו לחלקים** - PRD גדול? תעשו אותו ב-2 איטרציות\n2. **השתמשו בתבניות** - Template ממלא 50% מהעבודה\n3. **Parallel Processing** - מספר אגנטים במקביל\n4. **Context Reuse** - אל תתחילו מאפס בכל פעם\n5. **בדקו אם באמת צריך** - אולי אפשר לדלג?"
+        },
+        {
+          "title": "איך שומרים עקביות בין וורקפלואים?",
+          "content": "**שמירת עקביות:**\n1. **Architecture Decision Records (ADRs)** - תעדו החלטות\n2. **Style Guides** - קוד, תיעוד, תכנון\n3. **Templates** - תבניות סטנדרטיות\n4. **Context Sharing** - כל אגנט רואה מה האחרים עשו\n5. **Code Review** - הגנה אחרונה מפני אי-עקביות"
+        },
+        {
+          "title": "מה ההבדל בין BMAD Workflows ל-Agile?",
+          "content": "**BMAD משלים את Agile, לא מחליף:**\n- **Agile:** התהליך הכללי (Sprints, Standups, Retros)\n- **BMAD Workflows:** הכלים לביצוע המשימות בתוך Agile\n\n**דוגמה:**\n- **Agile:** \"תכננו Sprint, תפתחו Stories\"\n- **BMAD:** sprint-planning, story-context, dev-story, code-review\n\n**BMAD נותן את ה-HOW לתוך ה-WHAT של Agile.**"
+        },
+        {
+          "title": "האם אפשר להשתמש ב-BMAD ב-Waterfall?",
+          "content": "**כן! BMAD עובד גם ב-Waterfall:**\n\n**Phase 1: Requirements** → product-brief, prd\n**Phase 2: Design** → architecture, create-ux-design\n**Phase 3: Implementation** → dev-story, code-review\n**Phase 4: Testing** → test-arch, test-plan\n**Phase 5: Deployment** → story-done\n**Phase 6: Maintenance** → workflow-status\n\n**ההבדל:** בWaterfall תעשו כל Phase בבת אחת לכל הפרויקט. ב-Agile תעשו אותם בלולאה לכל Sprint."
+        },
+        {
+          "title": "איך מודדים הצלחה של Workflows?",
+          "content": "**מדדי הצלחה:**\n1. **Velocity** - כמה Stories מסיימים בSprin?t\n2. **Quality** - כמה באגים בפרודקשן?\n3. **Time to Market** - כמה זמן מרעיון ל-Deploy?\n4. **Team Satisfaction** - הצוות מרוצה?\n5. **Documentation Coverage** - כמה מתועד?\n6. **Technical Debt** - כמה \"חובות טכניים\"?\n\n**טיפ:** תעקבו אחרי המדדים האלה לפני ואחרי אימוץ BMAD."
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "סיכום הסדרה והמשך הדרך",
+      "id": "series-summary"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "המסע שלנו: מסקירה לסינתזה",
+      "id": "journey-recap"
+    },
+    {
+      "type": "text",
+      "content": "**ברכותינו! הגעתם לסוף סדרת מדריכי הוורקפלואים!**\n\nבמהלך 5 חלקים מקיפים, עברנו יחד מסע מרתק דרך כל הוורקפלואים של BMAD-METHOD:",
+      "markdown": true
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "items": [
+        {
+          "title": "חלק 1א",
+          "content": "מבוא לוורקפלואים והכרת הוורקפלואים הקריטיים - הבסיס שלכם"
+        },
+        {
+          "title": "חלק 1ב-2ב",
+          "content": "Phase 0-2: מרעיון למפרט - brainstorming, brief, PRD, Architecture, UX, GDD"
+        },
+        {
+          "title": "חלק 3א-3ד",
+          "content": "Phase 3: Solutioning, Sprint Setup, Development, Management - הפיכת תכנון לקוד"
+        },
+        {
+          "title": "חלק 4",
+          "content": "Testing & Quality - הבטחת איכות גבוהה בכל שלב"
+        },
+        {
+          "title": "חלק 5 (זה!)",
+          "content": "סינתזה ותרחישים מורכבים - המבט הכולל והתמונה הגדולה"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה למדתם?",
+      "id": "what-you-learned"
+    },
+    {
+      "type": "text",
+      "content": "אחרי קריאת כל המדריכים האלה, אתם מומחים ב:",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "**29+ וורקפלואים עיקריים** - מה כל אחד עושה, מתי להשתמש, איך להריץ",
+        "**מחזור חיים מלא** - מרעיון ל-Deploy ועד תחזוקה שוטפת",
+        "**תרחישים מורכבים** - פרויקט חדש, פיצ'ר, הוטפיקס, רפקטורינג, משחק",
+        "**Patterns מתקדמים** - Parallel, Sequential, Iterative, Hotfix+Retro",
+        "**Custom Workflows** - איך ליצור וורקפלואים מותאמים אישית",
+        "**אופטימיזציה** - איך לחסוך 30-40% מהזמן בלי לפגוע באיכות",
+        "**טעויות נפוצות** - ואיך להימנע מהן",
+        "**קבלת החלטות** - מתי להשתמש במה, איך לבחור"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "🎉 אתם מומחי Workflows!",
+      "content": "יש לכם את כל הידע הדרוש כדי לתכנן ולהוציא לפועל פרויקטים מורכבים מקצה לקצה. זה הישג משמעותי!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "המשך הדרך: Next Steps",
+      "id": "next-steps"
+    },
+    {
+      "type": "text",
+      "content": "אז מה עושים עכשיו? הנה המלצות למשך הדרך:",
+      "markdown": true
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "title": "1. התנסות ראשונית - תרגול מעשי",
+          "content": "**צרו פרויקט טסט:**\n- בחרו רעיון פשוט (למשל: Todo App)\n- הריצו את כל התהליך מקצה לקצה\n- עקבו אחרי כל וורקפלו\n- תעדו מה עבד, מה לא\n\n**מטרה:** להבין לעומק איך הכל עובד ביחד."
+        },
+        {
+          "title": "2. אימוץ בפרויקט אמיתי",
+          "content": "**התחילו עם פיצ'ר קטן:**\n- בחרו Story או Epic קטן בפרויקט הנוכחי\n- הריצו את הוורקפלואים הרלוונטיים\n- השוו: איך הייתם עושים בלי BMAD vs עם BMAD\n- מדדו: זמן, באגים, שביעות רצון\n\n**מטרה:** להרגיש את התועלת בפועל."
+        },
+        {
+          "title": "3. הרחבה לצוות",
+          "content": "**שיתוף ידע:**\n- שתפו את המדריכים האלה עם הצוות\n- ארגנו workshop פנימי (2-3 שעות)\n- הדגימו על דוגמה\n- תנו להם לתרגל\n\n**מטרה:** להפוך את BMAD לשפה משותפת של הצוות."
+        },
+        {
+          "title": "4. התאמה אישית",
+          "content": "**צרו את התהליך שלכם:**\n- זהו מה עובד לכם / מה לא\n- התאימו וורקפלואים\n- צרו Custom Workflows לצרכים ייחודיים\n- תעדו את התהליך שלכם\n\n**מטרה:** BMAD שמותאם במיוחד לארגון שלכם."
+        },
+        {
+          "title": "5. למידה מתמדת",
+          "content": "**המשיכו ללמוד:**\n- קראו את מדריכי האגנטים (אם טרם)\n- התעמקו במדריכי Role הרלוונטיים לכם\n- חפשו Best Practices נוספות\n- הצטרפו לקהילת BMAD (אם יש)\n\n**מטרה:** להישאר מעודכנים ולהמשיך להשתפר."
+        },
+        {
+          "title": "6. תרומה לקהילה",
+          "content": "**שתפו את הידע:**\n- כתבו על החוויה שלכם\n- שתפו Case Studies\n- תרמו Custom Workflows\n- עזרו למתחילים\n\n**מטרה:** לתרום בחזרה ולעזור לאחרים."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "משאבים נוספים",
+      "id": "additional-resources"
+    },
+    {
+      "type": "text",
+      "content": "**מומלץ לקרוא גם:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**מדריכי אגנטים** - חלק 1-5: הכירו לעומק את כל 11 האגנטים",
+        "**מדריכי Roles** - מדריך ספציפי לתפקיד שלכם (Dev, PM, Architect, QA, UX...)",
+        "**Best Practices** - טיפים ושיטות עבודה מומלצות",
+        "**Case Studies** - מקרי מבחן ותרגילים מעשיים",
+        "**FAQ** - שאלות ותשובות מורחבות"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "המסר האחרון",
+      "id": "final-message"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "הסוד של הצלחה עם Workflows",
+      "content": "**הצלחה עם BMAD-Workflows לא באה מידע על כל וורקפלו.**\n\nהיא באה מ:\n- **הבנה של התמונה הגדולה** - איך הכל מתחבר\n- **שיקול דעת** - מתי להשתמש במה\n- **גמישות** - התאמה לצרכים שלכם\n- **תרגול** - ככל שתשתמשו יותר, תשתפרו\n- **למידה מתמדת** - אף פעם לא מפסיקים ללמוד\n\n**אתם כבר יודעים את הכל. עכשיו רק צריך לתרגל!**"
+    },
+    {
+      "type": "text",
+      "content": "**תודה שהשקעתם את הזמן ללמוד את סדרת מדריכי הוורקפלואים.**\n\nאתם עכשיו מצוידים בידע, בכלים, ובביטחון להוציא לפועל פרויקטים מורכבים ברמה מקצועית.\n\n**בהצלחה במסע שלכם! 🚀**",
+      "markdown": true
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "סיימתם! מה הלאה?",
+      "content": "✅ **השלמתם את מדריך הוורקפלואים המקיף ביותר!**\n\n📚 **מומלץ להמשיך ל:**\n- מדריכי האגנטים (חלק 1-5)\n- מדריך Role הספציפי שלכם\n- Best Practices למתקדמים\n- Case Studies ותרגילים\n\n💡 **זכרו:** הכי חשוב זה להתחיל! קחו פרויקט קטן ותתנסו."
+    }
+  ],
+  "relatedGuides": [
+    "workflows-intro-critical",
+    "workflows-phase0-1",
+    "workflows-phase2-core",
+    "workflows-phase2-design",
+    "workflows-solutioning",
+    "workflows-sprint-setup",
+    "workflows-development",
+    "workflows-management",
+    "workflows-testing",
+    "agents-synthesis",
+    "best-practices"
+  ],
+  "prerequisites": [
+    "workflows-intro-critical",
+    "workflows-phase0-1",
+    "workflows-phase2-core",
+    "workflows-phase2-design",
+    "workflows-solutioning",
+    "workflows-sprint-setup",
+    "workflows-development",
+    "workflows-management",
+    "workflows-testing"
+  ],
+  "nextSteps": [
+    "agents-intro-pm-analyst",
+    "best-practices",
+    "case-studies-part1"
+  ]
+}
+

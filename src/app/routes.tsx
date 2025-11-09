@@ -34,10 +34,10 @@ const SearchResultsPage = lazy(() => import('./search').then(m => ({ default: m.
 // Admin pages - lazy loaded (heavy analytics components)
 const AdminDashboardPage = lazy(() => import('./admin').then(m => ({ default: m.AdminDashboardPage })));
 const UserManagementPage = lazy(() => import('./admin/users').then(m => ({ default: m.UserManagementPage })));
-const ContentAnalyticsPage = lazy(() => import('./admin/analytics'));
-const EngagementReportPage = lazy(() => import('./admin/engagement'));
+const ContentAnalyticsPage = lazy(() => import('./admin/analytics.tsx'));
+const EngagementReportPage = lazy(() => import('./admin/engagement.tsx'));
 const AdminNotificationPreferencesPage = lazy(() => import('./admin/notifications/preferences').then(m => ({ default: m.AdminNotificationPreferencesPage })));
-const AdminActionLogPage = lazy(() => import('./admin/logs'));
+const AdminActionLogPage = lazy(() => import('./admin/logs.tsx'));
 
 /**
  * Suspense wrapper for lazy loaded routes

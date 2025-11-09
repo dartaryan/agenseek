@@ -206,14 +206,14 @@ export function UserManagementPage() {
   }
 
   return (
-    <div className="p-8">
+    <div className="p-4 md:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="space-y-2">
-          <h1 className="text-4xl font-bold text-foreground">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
             {hebrewLocale.pages.admin.userManagement}
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-sm md:text-base text-muted-foreground">
             {hebrewLocale.pages.admin.userManagementDescription}
           </p>
         </div>
@@ -237,12 +237,12 @@ export function UserManagementPage() {
             </div>
 
             {/* Sort and Export */}
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
               <Select
                 value={sortColumn}
                 onValueChange={(value) => handleSortChange(value as SortColumn)}
               >
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-full sm:w-[180px] min-h-[44px]">
                   <SelectValue placeholder={hebrewLocale.pages.admin.sortBy} />
                 </SelectTrigger>
                 <SelectContent>
@@ -266,6 +266,7 @@ export function UserManagementPage() {
                 size="default"
                 onClick={handleExportCSV}
                 disabled={users.length === 0}
+                className="w-full sm:w-auto min-h-[44px]"
               >
                 <IconDownload size={16} className="ml-2" />
                 {hebrewLocale.pages.admin.exportCSV}
@@ -275,14 +276,194 @@ export function UserManagementPage() {
         </Card>
 
         {/* Users Table */}
-        <Card className="p-6">
+        <Card className="p-4 md:p-6">
           {users.length === 0 ? (
             <div className="text-center py-12 text-gray-400">
               {hebrewLocale.pages.admin.noData}
             </div>
           ) : (
-            <div className="overflow-x-auto">
-              <Table>
+            <>
+              {/* Mobile Card View */}
+              <div className="md:hidden space-y-4">
+                {users.map((user) => (
+                  <Card key={user.id} className="p-4 space-y-3">
+                    {/* User Header */}
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-base truncate">
+                          {user.displayName}
+                        </h3>
+                        <p className="text-sm text-muted-foreground truncate">
+                          {user.email}
+                        </p>
+                      </div>
+                      <span
+                        className={`inline-flex px-2 py-1 rounded-full text-xs font-semibold shrink-0 ${
+                          user.isAdmin
+                            ? 'bg-emerald-100 text-emerald-800'
+                            : 'bg-muted text-gray-800'
+                        }`}
+                      >
+                        {user.isAdmin
+                          ? hebrewLocale.pages.admin.adminRole
+                          : hebrewLocale.pages.admin.regularUser}
+                      </span>
+                    </div>
+
+                    {/* User Details */}
+                    <div className="grid grid-cols-2 gap-3 text-sm">
+                      <div>
+                        <span className="text-muted-foreground">
+                          {hebrewLocale.pages.admin.joinedDate}:
+                        </span>
+                        <p className="font-medium">
+                          {new Date(user.createdAt).toLocaleDateString('he-IL', { month: 'short', day: 'numeric' })}
+                        </p>
+                      </div>
+                      <div>
+                        <span className="text-muted-foreground">
+                          {hebrewLocale.pages.admin.lastActive}:
+                        </span>
+                        <p className="font-medium">
+                          {user.lastActiveAt
+                            ? formatDistanceToNow(new Date(user.lastActiveAt), {
+                                addSuffix: true,
+                                locale: he,
+                              })
+                            : hebrewLocale.pages.admin.neverActive}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Progress Bar */}
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-muted-foreground">
+                          {hebrewLocale.pages.admin.progress}
+                        </span>
+                        <span className="font-semibold">{user.progressPercentage}%</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div
+                          className="bg-emerald-500 h-2 rounded-full transition-all"
+                          style={{ width: `${user.progressPercentage}%` }}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Expand Button */}
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full min-h-[44px]"
+                      onClick={() => handleToggleExpand(user.id)}
+                    >
+                      {expandedUserId === user.id ? (
+                        <>
+                          <IconChevronUp size={16} className="ml-2" />
+                          הסתר פרטים
+                        </>
+                      ) : (
+                        <>
+                          <IconChevronDown size={16} className="ml-2" />
+                          הצג פרטים
+                        </>
+                      )}
+                    </Button>
+
+                    {/* Expanded Details */}
+                    {expandedUserId === user.id && (
+                      <div className="pt-4 border-t space-y-4">
+                        {isLoadingDetails ? (
+                          <div className="text-center py-4 text-muted-foreground">
+                            {hebrewLocale.pages.admin.loading}
+                          </div>
+                        ) : userDetails ? (
+                          <>
+                            {/* Profile Details */}
+                            <div className="space-y-2">
+                              <h4 className="font-semibold text-sm">
+                                {hebrewLocale.pages.admin.profileDetails}
+                              </h4>
+                              <div className="space-y-1 text-sm">
+                                <div>
+                                  <span className="text-muted-foreground">
+                                    {hebrewLocale.pages.admin.role}:
+                                  </span>{' '}
+                                  <span>{userDetails.profile.selectedRole || '-'}</span>
+                                </div>
+                                <div>
+                                  <span className="text-muted-foreground">תחומי עניין:</span>{' '}
+                                  <span>
+                                    {userDetails.profile.selectedInterests.length > 0
+                                      ? userDetails.profile.selectedInterests.join(', ')
+                                      : '-'}
+                                  </span>
+                                </div>
+                                <div>
+                                  <span className="text-muted-foreground">רמת ניסיון:</span>{' '}
+                                  <span>{userDetails.profile.experienceLevel || '-'}</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Progress & Activity */}
+                            <div className="grid grid-cols-2 gap-3 text-sm">
+                              <div className="space-y-1">
+                                <p className="font-semibold text-xs text-muted-foreground">מדריכים</p>
+                                <p>הושלמו: <span className="font-semibold text-emerald-600">{userDetails.progress.guidesCompleted}</span></p>
+                                <p>בתהליך: <span className="font-semibold text-amber-600">{userDetails.progress.guidesInProgress}</span></p>
+                              </div>
+                              <div className="space-y-1">
+                                <p className="font-semibold text-xs text-muted-foreground">פעילות</p>
+                                <p>הערות: <span className="font-semibold">{userDetails.activity.notesCount}</span></p>
+                                <p>משימות: <span className="font-semibold">{userDetails.activity.tasksCount}</span></p>
+                              </div>
+                            </div>
+
+                            {/* Action Buttons */}
+                            <div className="flex flex-col gap-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="w-full min-h-[44px]"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleViewAsUser();
+                                }}
+                              >
+                                <IconEye size={16} className="ml-2" />
+                                {hebrewLocale.pages.admin.viewAsUser}
+                              </Button>
+                              <Button
+                                variant="destructive"
+                                size="sm"
+                                className="w-full min-h-[44px]"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleDeleteUser(user.id);
+                                }}
+                                disabled={deletingUserId === user.id}
+                              >
+                                <IconTrash size={16} className="ml-2" />
+                                {hebrewLocale.pages.admin.deleteUser}
+                              </Button>
+                            </div>
+                          </>
+                        ) : (
+                          <div className="text-center py-4 text-red-500">
+                            שגיאה בטעינת פרטי משתמש
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </Card>
+                ))}
+              </div>
+
+              {/* Desktop Table View */}
+              <div className="hidden md:block overflow-x-auto">
+                <Table>
                 <TableHeader>
                   <TableRow>
                     <TableHead className="w-12"></TableHead>
@@ -549,24 +730,26 @@ export function UserManagementPage() {
                   ))}
                 </TableBody>
               </Table>
-            </div>
+              </div>
+            </>
           )}
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex items-center justify-between mt-6 pt-6 border-t">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6 pt-6 border-t">
               <div className="text-sm text-muted-foreground">
                 {hebrewLocale.pages.admin.pageOf
                   .replace('{current}', String(currentPage + 1))
                   .replace('{total}', String(totalPages))}
               </div>
 
-              <div className="flex gap-2">
+              <div className="flex gap-2 w-full sm:w-auto">
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={handlePrevPage}
                   disabled={currentPage === 0}
+                  className="flex-1 sm:flex-none min-h-[44px]"
                 >
                   <IconArrowRight size={16} className="ml-2" />
                   {hebrewLocale.pages.admin.prevPage}
@@ -577,6 +760,7 @@ export function UserManagementPage() {
                   size="sm"
                   onClick={handleNextPage}
                   disabled={currentPage >= totalPages - 1}
+                  className="flex-1 sm:flex-none min-h-[44px]"
                 >
                   {hebrewLocale.pages.admin.nextPage}
                   <IconArrowLeft size={16} className="mr-2" />

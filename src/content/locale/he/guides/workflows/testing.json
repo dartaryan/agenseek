@@ -1,0 +1,920 @@
+{
+  "metadata": {
+    "id": "workflows-testing",
+    "slug": "workflows-testing",
+    "title": "מדריך וורקפלואים - חלק 4: Testing & Quality",
+    "description": "וורקפלואים לבדיקות ואיכות - תכנון מאסטר טסט, יצירת תוכניות בדיקה, ביצוע בדיקות, ודיווח באגים. הבטחת איכות גבוהה לאורך כל תהליך הפיתוח.",
+    "category": "workflows",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 40,
+    "icon": "IconTestPipe",
+    "tags": ["וורקפלואים", "בדיקות", "איכות", "QA", "testing", "automation"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "Testing & Quality: סקירה",
+      "level": 2,
+      "anchor": "testing-overview"
+    },
+    {
+      "id": "toc-2",
+      "title": "test-arch - תכנון ארכיטקטורת בדיקות",
+      "level": 2,
+      "anchor": "test-arch"
+    },
+    {
+      "id": "toc-3",
+      "title": "Test Strategy - אסטרטגיית בדיקות",
+      "level": 2,
+      "anchor": "test-strategy"
+    },
+    {
+      "id": "toc-4",
+      "title": "Test Plans & Cases - תוכניות ותרחישי בדיקה",
+      "level": 2,
+      "anchor": "test-plans"
+    },
+    {
+      "id": "toc-5",
+      "title": "אינטגרציה עם תהליך הפיתוח",
+      "level": 2,
+      "anchor": "dev-integration"
+    },
+    {
+      "id": "toc-6",
+      "title": "תהליך מלא - דוגמה מקצה לקצה",
+      "level": 2,
+      "anchor": "full-process"
+    },
+    {
+      "id": "toc-7",
+      "title": "שאלות נפוצות",
+      "level": 2,
+      "anchor": "faq"
+    },
+    {
+      "id": "toc-8",
+      "title": "סיכום ומסקנות",
+      "level": 2,
+      "anchor": "summary"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מדריך וורקפלואים - חלק 4: Testing & Quality",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "על מה המדריך הזה?",
+      "content": "במדריך זה נלמד על Testing & Quality - איך מתכננים, כותבים, ומבצעים בדיקות מקצועיות. נכיר את הוורקפלואים לתכנון ארכיטקטורת בדיקות, יצירת אסטרטגיית testing, כתיבת תוכניות בדיקה, והשילוב עם תהליך הפיתוח."
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "דרישות מוקדמות",
+      "content": "לפני שמתחילים את המדריך הזה, מומלץ לקרוא את חלק 3ג (Development Flow) כדי להבין איך הבדיקות משתלבות בתהליך הפיתוח."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Testing & Quality: סקירה",
+      "id": "testing-overview"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה Testing & Quality ב-BMAD?",
+      "id": "what-is-testing"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**Testing & Quality** ב-BMAD הוא **תהליך מובנה להבטחת איכות** - מתכנון אסטרטגיית בדיקות, דרך יצירת תוכניות בדיקה, ועד ביצוע ודיווח.\n\n**במילים פשוטות:** זה לא רק \"לבדוק שהקוד עובד\" - זה **לתכנן מראש** מה לבדוק, **איך לבדוק**, ו**מתי לבדוק**, כדי להבטיח איכות גבוהה בכל שלב."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "למה צריך תהליך בדיקות מובנה?",
+      "id": "why-testing"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**בלי תהליך מובנה:**\n- בודקים אד-הוק (\"אולי נבדוק את זה\")\n- מפספסים באגים קריטיים\n- אין אוטומציה\n- בדיקות חוזרות על עצמן\n- לא יודעים מה כבר נבדק\n\n**עם תהליך מובנה:**\n- **תכנון מראש** - יודעים מה לבדוק\n- **כיסוי מלא** - לא מפספסים דברים\n- **אוטומציה** - בדיקות רצות אוטומטית\n- **יעילות** - לא מבזבזים זמן\n- **מעקב** - תמיד יודעים את מצב האיכות"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הוורקפלואים של Testing & Quality",
+      "id": "testing-workflows"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**ב-BMAD אין וורקפלוא אחד \"לבדיקות\"** - במקום זה, יש **תהליך שלם** שמשתלב עם הפיתוח:"
+    },
+    {
+      "type": "table",
+      "headers": ["שלב", "מה קורה", "מי מעורב"],
+      "rows": [
+        ["test-arch", "תכנון ארכיטקטורת הבדיקות", "TEA + Architect"],
+        ["Test Strategy", "הגדרת אסטרטגיית הבדיקות", "TEA + PM"],
+        ["Test Plans", "יצירת תוכניות בדיקה מפורטות", "TEA"],
+        ["Test Cases", "כתיבת תרחישי בדיקה ספציפיים", "TEA + QA"],
+        ["Integration", "שילוב בדיקות בפיתוח", "Dev + TEA"],
+        ["Execution", "ביצוע וריצת בדיקות", "QA + Automation"],
+        ["Reporting", "דיווח ומעקב אחר באגים", "QA + SM"]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "המטרה",
+      "content": "בסוף התהליך יש לכם מערך בדיקות מקצועי - תוכניות ברורות, בדיקות אוטומטיות, ואיכות גבוהה מובטחת!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלושת רמות הבדיקות",
+      "id": "test-levels"
+    },
+    {
+      "type": "accordion",
+      "variant": "default",
+      "items": [
+        {
+          "id": "level-unit",
+          "title": "Unit Tests - בדיקות יחידה",
+          "content": "**מה:** בדיקות של פונקציות/מחלקות בודדות\n\n**מתי:** במהלך הפיתוח\n**מי:** המפתח\n**כמה:** הכי הרבה (70-80% מהבדיקות)\n\n**דוגמה:** בדיקה שפונקציה `calculateTotal()` מחזירה את הסכום הנכון"
+        },
+        {
+          "id": "level-integration",
+          "title": "Integration Tests - בדיקות אינטגרציה",
+          "content": "**מה:** בדיקות של אינטראקציה בין מודולים\n\n**מתי:** אחרי פיתוח של מספר מודולים\n**מי:** QA + Dev\n**כמה:** בינוני (15-20%)\n\n**דוגמה:** בדיקה שהאפליקציה מתחברת למסד הנתונים ושומרת נתונים נכון"
+        },
+        {
+          "id": "level-e2e",
+          "title": "E2E Tests - בדיקות מקצה לקצה",
+          "content": "**מה:** בדיקות של תרחישי משתמש מלאים\n\n**מתי:** לפני שחרור גרסה\n**מי:** QA\n**כמה:** מעט (5-10%)\n\n**דוגמה:** בדיקה שמשתמש יכול להירשם, להתחבר, ולבצע רכישה מקצה לקצה"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "test-arch - תכנון ארכיטקטורת בדיקות",
+      "id": "test-arch"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה test-arch?",
+      "id": "what-is-test-arch"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**test-arch** היא **ארכיטקטורת הבדיקות** של הפרויקט - המסגרת הכללית להבטחת איכות.\n\n**מה זה כולל?**\n- **Test Pyramid** - חלוקה בין Unit, Integration, E2E\n- **Test Frameworks** - איזה כלים נשתמש\n- **Test Environment** - איפה רצות הבדיקות\n- **CI/CD Integration** - אוטומציה\n- **Test Data Strategy** - איך מנהלים נתוני בדיקה"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מתי מתכננים test-arch?",
+      "id": "when-test-arch"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**התזמון הנכון:**\n1. **אחרי architecture** - כשיש ארכיטקטורת מערכת\n2. **לפני הפיתוח** - כדי שהמפתחים ידעו מה לבדוק\n3. **אחת לפרויקט** - לא צריך לעשות בכל Epic"
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "חשוב!",
+      "content": "test-arch זה החלטה ארכיטקטונית - צריך לעשות אותה מוקדם ולעדכן רק כשיש שינויים משמעותיים בפרויקט."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך זה עובד?",
+      "id": "test-arch-how"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        {
+          "text": "**ניתוח הארכיטקטורה** - קריאת architecture.md, tech-spec.md"
+        },
+        {
+          "text": "**זיהוי נקודות בדיקה** - מה צריך לבדוק? (APIs, UI, DB, Logic)"
+        },
+        {
+          "text": "**בחירת frameworks** - Jest, Cypress, Playwright, Selenium?"
+        },
+        {
+          "text": "**תכנון Test Pyramid** - כמה Unit/Integration/E2E"
+        },
+        {
+          "text": "**הגדרת סביבות** - Dev, Staging, Production"
+        },
+        {
+          "text": "**אסטרטגיית נתונים** - Mocks, Fixtures, Test DB"
+        },
+        {
+          "text": "**CI/CD Integration** - GitHub Actions, Jenkins?"
+        },
+        {
+          "text": "**יצירת מסמך** - test-architecture.md"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה - Test Architecture Document",
+      "id": "test-arch-example"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "# Test Architecture - Agenseek Platform\n\n**תאריך:** 2024-01-15\n**מחבר:** Murat (TEA)\n**סטטוס:** Approved\n\n## 1. Test Pyramid Strategy\n\n```\n        /\\      E2E Tests\n       /  \\     (10% - 50 tests)\n      /____\\    \n     /      \\   Integration Tests\n    /        \\  (20% - 100 tests)\n   /__________\\\n  /            \\ Unit Tests\n /              \\ (70% - 350 tests)\n/________________\\\n```\n\n**חלוקה:**\n- **70% Unit Tests** (350 tests)\n  - פונקציות, hooks, utilities\n  - מהיר, יציב, קל לתחזוקה\n- **20% Integration Tests** (100 tests)\n  - API endpoints, DB queries\n  - בדיקת אינטראקציות\n- **10% E2E Tests** (50 tests)\n  - תרחישי משתמש קריטיים\n  - Happy paths + Edge cases\n\n## 2. Test Frameworks\n\n### Frontend\n- **Unit/Integration:** Vitest + React Testing Library\n- **E2E:** Playwright\n- **Component Testing:** Storybook\n\n### Backend\n- **Unit:** Jest (Node.js)\n- **Integration:** Supertest (API tests)\n- **DB:** PostgreSQL Test Container\n\n### Reasoning:\n- Vitest - מהיר, תואם ל-Vite\n- Playwright - E2E מודרני, תומך בכל הדפדפנים\n- Jest - סטנדרט בתעשייה\n\n## 3. Test Environments\n\n### Local (Dev Machine)\n- Unit + Integration רצים מקומי\n- E2E נגד localhost:5173\n- Test DB: PostgreSQL Docker\n\n### CI (GitHub Actions)\n- כל הבדיקות רצות על כל PR\n- E2E נגד preview environment\n- Test coverage reports\n\n### Staging\n- Smoke tests יומיים\n- E2E מלאים לפני release\n- נתוני בדיקה מבוקרים\n\n## 4. Test Data Strategy\n\n### Unit Tests\n- **Mocks** - MockedSupabaseClient\n- **Fixtures** - mockUser, mockGuide\n- לא צריך DB אמיתי\n\n### Integration Tests\n- **Test DB** - PostgreSQL Container\n- **Seed Data** - סקריפט לטעינת נתונים\n- ניקוי אחרי כל test suite\n\n### E2E Tests\n- **Staging DB** - עותק של Production\n- **Test Users** - testuser@example.com\n- **Reset Script** - מאפס נתונים לפני ריצה\n\n## 5. CI/CD Integration\n\n### GitHub Actions Workflow\n\n```yaml\nname: Test Suite\n\non: [push, pull_request]\n\njobs:\n  unit-tests:\n    runs-on: ubuntu-latest\n    steps:\n      - npm run test:unit\n      - upload coverage\n  \n  integration-tests:\n    runs-on: ubuntu-latest\n    services:\n      postgres: ...\n    steps:\n      - npm run test:integration\n  \n  e2e-tests:\n    runs-on: ubuntu-latest\n    steps:\n      - npm run test:e2e\n      - upload screenshots\n```\n\n### Gates\n- **Minimum Coverage:** 80%\n- **All Tests Pass:** Required\n- **No Flaky Tests:** Max 2 retries\n\n## 6. Test Coverage Goals\n\n| Type | Target | Current | Status |\n|------|--------|---------|--------|\n| Unit | 80% | 75% | 🟡 |\n| Integration | 70% | 68% | 🟡 |\n| E2E | Critical paths | 90% | 🟢 |\n\n## 7. Test Automation\n\n### Pre-commit Hooks\n- Lint\n- Unit tests (affected files)\n- Type checking\n\n### Pre-push Hooks\n- Full unit test suite\n- Integration tests\n\n### PR Merge\n- All tests (Unit + Integration + E2E)\n- Coverage reports\n- Performance benchmarks\n\n## 8. Performance Testing\n\n- **Load Tests:** k6 (100 concurrent users)\n- **API Response Time:** < 200ms (p95)\n- **Page Load:** < 2s (LCP)\n\n---\n\n**סיכום:** ארכיטקטורה מקיפה עם Test Pyramid מאוזן, כלים מודרניים, ואוטומציה מלאה!",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך מריצים test-arch?",
+      "id": "run-test-arch"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# אצל TEA Agent\n@murat\n\nצריך לתכנן את ארכיטקטורת הבדיקות של הפרויקט.\n\nהקבצים הרלוונטיים:\n- docs/architecture/architecture.md\n- docs/tech-spec.md\n- package.json (רשימת dependencies)",
+      "showLineNumbers": false
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "טיפ",
+      "content": "TEA Agent יקרא את הארכיטקטורה ויציע test architecture מותאמת. אתם יכולים לשנות/להתאים לפני אישור!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Test Strategy - אסטרטגיית בדיקות",
+      "id": "test-strategy"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זו Test Strategy?",
+      "id": "what-is-strategy"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**Test Strategy** היא **תוכנית הבדיקות הכוללת** - מה נבדוק, מתי, ועד כמה.\n\n**ההבדל מ-test-arch:**\n- **test-arch** = הכלים והמסגרת (\"איך נבדוק\")\n- **Test Strategy** = התוכנית הספציפית (\"מה נבדוק בדיוק\")"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה כולל ב-Test Strategy?",
+      "id": "strategy-contents"
+    },
+    {
+      "type": "accordion",
+      "variant": "default",
+      "items": [
+        {
+          "id": "strategy-scope",
+          "title": "Scope - היקף הבדיקות",
+          "content": "**מה נכנס:**\n- כל ה-Stories בספרינט/Epic\n- Features חדשים\n- Bug fixes\n- Regression (תכונות קיימות)\n\n**מה לא נכנס:**\n- תכונות deprecated\n- Third-party libraries\n- תשתיות (AWS, DB engine)"
+        },
+        {
+          "id": "strategy-approach",
+          "title": "Approach - גישת הבדיקות",
+          "content": "**אסטרטגיות:**\n- **Risk-based** - בודקים קודם דברים קריטיים\n- **Exploratory** - בדיקות אד-הוק חופשיות\n- **Scripted** - בדיקות לפי תוכנית\n- **Automated** - בדיקות אוטומטיות\n\n**מומלץ:** שילוב של הכל!"
+        },
+        {
+          "id": "strategy-criteria",
+          "title": "Entry/Exit Criteria - קריטריוני כניסה/יציאה",
+          "content": "**Entry Criteria (מתי מתחילים לבדוק):**\n- Dev הכריז \"Done\"\n- Code Review עבר\n- Unit Tests עברו\n- Build הצליח\n\n**Exit Criteria (מתי מסיימים):**\n- כל הבדיקות עברו\n- אין באגים קריטיים\n- Coverage > 80%\n- Performance requirements התקיימו"
+        },
+        {
+          "id": "strategy-resources",
+          "title": "Resources - משאבים",
+          "content": "**אנשים:**\n- 2 QA Engineers\n- 1 Test Automation Engineer\n- 3 Developers (unit tests)\n\n**כלים:**\n- Vitest, Playwright\n- GitHub Actions (CI)\n- Test DB\n\n**זמן:**\n- 30% מזמן הפיתוח לבדיקות"
+        },
+        {
+          "id": "strategy-risks",
+          "title": "Risks - סיכונים",
+          "content": "**סיכונים מזוהים:**\n1. **Flaky tests** - בדיקות שלא יציבות\n   - מיטיגציה: Retry mechanism, בדיקת stability\n\n2. **Slow E2E** - בדיקות E2E לוקחות זמן\n   - מיטיגציה: Parallelization, Test sharding\n\n3. **Test Data** - נתוני בדיקה לא עקביים\n   - מיטיגציה: Seed scripts, Cleanup hooks"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה - Test Strategy לEpic 5",
+      "id": "strategy-example"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "# Test Strategy - Epic 5: User Authentication\n\n**תאריך:** 2024-01-20\n**Scope:** Stories 5.1-5.7\n**TEA:** Murat\n\n## 1. Scope\n\n### In Scope\n- 5.1: User Registration\n- 5.2: User Login\n- 5.3: Password Reset\n- 5.4: Profile Management\n- 5.5: Email Verification\n- 5.6: OAuth Integration (Google)\n- 5.7: Session Management\n\n### Out of Scope\n- Admin authentication (Epic 6)\n- 2FA (Epic 7)\n\n## 2. Test Approach\n\n### Levels\n- **Unit Tests:** 80 tests (פונקציות auth)\n- **Integration Tests:** 30 tests (API endpoints)\n- **E2E Tests:** 15 tests (User flows)\n\n### Priority\n1. **P0 (Critical):** Login, Registration\n2. **P1 (High):** Password Reset, OAuth\n3. **P2 (Medium):** Profile, Email verify\n4. **P3 (Low):** Edge cases\n\n## 3. Test Types\n\n### Functional Testing\n- ✅ Happy paths (כל התרחישים הנורמליים)\n- ✅ Negative tests (קלט לא תקין)\n- ✅ Boundary tests (גבולות)\n\n### Non-Functional Testing\n- ✅ Security (SQL injection, XSS)\n- ✅ Performance (response time < 300ms)\n- ✅ Usability (UX flow)\n\n### Regression Testing\n- ✅ כל ה-E2E tests הקיימים\n- ✅ Smoke tests על features קיימים\n\n## 4. Entry/Exit Criteria\n\n### Entry Criteria\n- [x] כל ה-Stories בסטטוס \"Dev Done\"\n- [x] Code Review עבר\n- [x] Unit Tests Coverage > 75%\n- [x] Build עובר ב-CI\n\n### Exit Criteria\n- [ ] כל Test Cases עברו\n- [ ] אין באגים P0/P1\n- [ ] Coverage > 80%\n- [ ] Performance tests עברו\n- [ ] Security scan ללא issues\n\n## 5. Test Environment\n\n- **Dev:** localhost (developer testing)\n- **Staging:** staging.agenseek.com\n- **CI:** GitHub Actions (automatic)\n\n**Test Data:**\n- `testuser1@example.com` / `Test123!`\n- `testuser2@example.com` / `Test456!`\n\n## 6. Schedule\n\n| Day | Activity |\n|-----|----------|\n| 1-2 | Unit Tests (Dev) |\n| 3-4 | Integration Tests |\n| 5 | E2E Tests |\n| 6 | Regression + Bug fixing |\n| 7 | Final validation |\n\n## 7. Risks & Mitigation\n\n### Risk 1: OAuth integration flaky\n**Impact:** High\n**Likelihood:** Medium\n**Mitigation:** Mock OAuth in tests, real OAuth only in E2E\n\n### Risk 2: Email sending slow\n**Impact:** Medium\n**Likelihood:** High\n**Mitigation:** Mock email service, async testing\n\n## 8. Deliverables\n\n- [x] Test Plan (פרטים מלאים)\n- [x] Test Cases (רשימה מלאה)\n- [ ] Test Execution Report\n- [ ] Bug Report (אם יש)\n- [ ] Coverage Report\n\n---\n\n**אושר על ידי:** John (PM), Murat (TEA)",
+      "showLineNumbers": false
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאה",
+      "content": "עכשיו יש לנו תוכנית ברורה - יודעים מה לבדוק, איך, ומתי. אפשר להתחיל לכתוב Test Plans!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Test Plans & Cases - תוכניות ותרחישי בדיקה",
+      "id": "test-plans"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה Test Plan?",
+      "id": "what-is-test-plan"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**Test Plan** היא **מסמך מפורט של בדיקות ספציפיות** ל-Story או Feature.\n\n**מה זה כולל?**\n- רשימת Test Cases (תרחישי בדיקה)\n- צעדים מדויקים לכל בדיקה\n- תוצאות צפויות\n- Test Data\n- סביבת הריצה"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה Test Case?",
+      "id": "what-is-test-case"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**Test Case** הוא **תרחיש בדיקה בודד** - סט של צעדים ותוצאה צפויה.\n\n**מבנה:**\n1. **Test Case ID** - מזהה ייחודי\n2. **Title** - כותרת מתארת\n3. **Preconditions** - תנאים התחלתיים\n4. **Steps** - צעדי הבדיקה\n5. **Expected Result** - תוצאה צפויה\n6. **Priority** - P0/P1/P2/P3"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה - Test Plan ל-Story 5.1",
+      "id": "test-plan-example"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "# Test Plan - Story 5.1: User Registration\n\n**תאריך:** 2024-01-22\n**Tester:** QA Team\n**Status:** Ready\n\n## Test Cases\n\n### TC-5.1.1: הרשמה מוצלחת (Happy Path)\n\n**Priority:** P0 (Critical)\n\n**Preconditions:**\n- אין משתמש עם האימייל testuser@example.com\n- דף ההרשמה נטען\n\n**Steps:**\n1. פתח את `/register`\n2. מלא שם: \"Test User\"\n3. מלא אימייל: \"testuser@example.com\"\n4. מלא סיסמה: \"Test123!\"\n5. אשר סיסמה: \"Test123!\"\n6. סמן את \"אני מסכים לתנאים\"\n7. לחץ \"הירשם\"\n\n**Expected Result:**\n- המשתמש נרשם בהצלחה\n- הופיע מסך \"בדוק את המייל לאימות\"\n- נשלח מייל אימות\n- המשתמש קיים ב-DB עם status=\"pending_verification\"\n\n---\n\n### TC-5.1.2: הרשמה עם אימייל קיים\n\n**Priority:** P0 (Critical)\n\n**Preconditions:**\n- קיים משתמש עם existing@example.com\n\n**Steps:**\n1. פתח `/register`\n2. מלא שם: \"Test User\"\n3. מלא אימייל: \"existing@example.com\"\n4. מלא סיסמה: \"Test123!\"\n5. אשר סיסמה: \"Test123!\"\n6. סמן תנאים\n7. לחץ \"הירשם\"\n\n**Expected Result:**\n- הצגת שגיאה: \"האימייל כבר קיים במערכת\"\n- המשתמש לא נרשם\n- לא נשלח מייל\n\n---\n\n### TC-5.1.3: הרשמה עם סיסמה חלשה\n\n**Priority:** P1 (High)\n\n**Preconditions:**\n- דף ההרשמה נטען\n\n**Steps:**\n1. פתח `/register`\n2. מלא שם: \"Test User\"\n3. מלא אימייל: \"weak@example.com\"\n4. מלא סיסמה: \"123\" (חלשה!)\n5. אשר סיסמה: \"123\"\n6. סמן תנאים\n7. לחץ \"הירשם\"\n\n**Expected Result:**\n- הצגת שגיאה: \"הסיסמה חייבת להיות לפחות 8 תווים עם אות גדולה ומספר\"\n- השדה \"סיסמה\" מסומן באדום\n- המשתמש לא נרשם\n\n---\n\n### TC-5.1.4: הרשמה עם אימייל לא תקין\n\n**Priority:** P1 (High)\n\n**Preconditions:**\n- דף ההרשמה נטען\n\n**Steps:**\n1. פתח `/register`\n2. מלא שם: \"Test User\"\n3. מלא אימייל: \"notanemail\" (לא תקין)\n4. מלא סיסמה: \"Test123!\"\n5. לחץ על שדה אחר (blur)\n\n**Expected Result:**\n- הצגת שגיאה: \"אנא הזן כתובת אימייל תקינה\"\n- השדה \"אימייל\" מסומן באדום\n- כפתור \"הירשם\" disabled\n\n---\n\n### TC-5.1.5: הרשמה בלי לסמן תנאים\n\n**Priority:** P1 (High)\n\n**Preconditions:**\n- דף ההרשמה נטען\n\n**Steps:**\n1. פתח `/register`\n2. מלא שם, אימייל, סיסמה (כולם תקינים)\n3. אל תסמן \"אני מסכים לתנאים\"\n4. לחץ \"הירשם\"\n\n**Expected Result:**\n- הצגת שגיאה: \"חייב לאשר את תנאי השימוש\"\n- המשתמש לא נרשם\n\n---\n\n### TC-5.1.6: הרשמה עם סיסמאות לא תואמות\n\n**Priority:** P1 (High)\n\n**Preconditions:**\n- דף ההרשמה נטען\n\n**Steps:**\n1. פתח `/register`\n2. מלא שם, אימייל\n3. מלא סיסמה: \"Test123!\"\n4. אשר סיסמה: \"Test456!\" (שונה!)\n5. לחץ \"הירשם\"\n\n**Expected Result:**\n- הצגת שגיאה: \"הסיסמאות לא תואמות\"\n- המשתמש לא נרשם\n\n---\n\n### TC-5.1.7: הרשמה עם שדה ריק\n\n**Priority:** P2 (Medium)\n\n**Preconditions:**\n- דף ההרשמה נטען\n\n**Steps:**\n1. פתח `/register`\n2. השאר את שדה \"שם\" ריק\n3. מלא אימייל, סיסמה (תקינים)\n4. לחץ \"הירשם\"\n\n**Expected Result:**\n- הצגת שגיאה: \"שם הוא שדה חובה\"\n- המשתמש לא נרשם\n\n---\n\n### TC-5.1.8: הרשמה עם תווים מיוחדים בשם\n\n**Priority:** P3 (Low)\n\n**Preconditions:**\n- דף ההרשמה נטען\n\n**Steps:**\n1. פתח `/register`\n2. מלא שם: \"<script>alert('xss')</script>\"\n3. מלא אימייל, סיסמה (תקינים)\n4. לחץ \"הירשם\"\n\n**Expected Result:**\n- התווים המיוחדים escaped\n- המשתמש נרשם אבל השם מאוחסן בצורה בטוחה (לא מבוצע קוד)\n\n---\n\n## Summary\n\n**סה\"כ Test Cases:** 8\n- **P0:** 2\n- **P1:** 4\n- **P2:** 1\n- **P3:** 1\n\n**Estimated Time:** 2 hours (manual testing)\n\n**Automation:** TC-5.1.1 to TC-5.1.7 (7/8 automated)",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך יוצרים Test Plan?",
+      "id": "create-test-plan"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# אצל TEA Agent\n@murat\n\nצור Test Plan ל-Story 5.1 (User Registration).\n\nהקבצים:\n- docs/stories/5.1-user-registration.md\n- src/app/auth/register.tsx",
+      "showLineNumbers": false
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "טיפ",
+      "content": "TEA Agent יקרא את ה-Story, ינתח את הדרישות, ויצור Test Plan מקיף עם כל התרחישים הרלוונטיים!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "טיפים לכתיבת Test Cases טובים",
+      "id": "test-case-tips"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "items": [
+        {
+          "id": "tip-1",
+          "content": {
+            "type": "card",
+            "title": "ברור ומפורט",
+            "description": "כל צעד חייב להיות ברור - מישהו אחר צריך להבין מה לעשות",
+            "variant": "default"
+          }
+        },
+        {
+          "id": "tip-2",
+          "content": {
+            "type": "card",
+            "title": "תוצאה מדידה",
+            "description": "Expected Result חייב להיות מדיד - \"עובד\" זה לא מספיק, \"הצגת מסך X\" זה טוב",
+            "variant": "default"
+          }
+        },
+        {
+          "id": "tip-3",
+          "content": {
+            "type": "card",
+            "title": "כיסוי מלא",
+            "description": "Happy path + Negative cases + Edge cases + Boundary tests",
+            "variant": "default"
+          }
+        },
+        {
+          "id": "tip-4",
+          "content": {
+            "type": "card",
+            "title": "אינדפנדנט",
+            "description": "כל Test Case עצמאי - לא תלוי בתוצאות של אחרים",
+            "variant": "default"
+          }
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "אינטגרציה עם תהליך הפיתוח",
+      "id": "dev-integration"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך הבדיקות משתלבות בפיתוח?",
+      "id": "integration-how"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**בדיקות זה לא \"משהו שקורה בסוף\"** - הן **חלק אינטגרלי מהפיתוח** בכל שלב!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Shift-Left Testing",
+      "id": "shift-left"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**Shift-Left** = להתחיל לבדוק מוקדם יותר (\"שמאלה\" בטיימליין)."
+    },
+    {
+      "type": "table",
+      "headers": ["שלב", "מה נבדק", "מי בודק"],
+      "rows": [
+        ["story-ready", "האם ה-Story ברורה וניתנת לבדיקה?", "TEA + PM"],
+        ["dev-story (TDD)", "כתיבת Unit Tests לפני הקוד", "Developer"],
+        ["code-review", "בדיקת Test Coverage", "Reviewer"],
+        ["PR", "ריצת כל הבדיקות אוטומטית", "CI/CD"],
+        ["story-done", "בדיקת QA ידנית + אוטומטית", "QA + TEA"],
+        ["Merge", "Regression Tests", "CI/CD"]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "TDD - Test Driven Development",
+      "id": "tdd"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**TDD** = כותבים את הבדיקה **לפני** הקוד!"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        {
+          "text": "**Red** - כותבים test שנכשל (כי עוד אין קוד)"
+        },
+        {
+          "text": "**Green** - כותבים מינימום קוד שיעביר את הבדיקה"
+        },
+        {
+          "text": "**Refactor** - משפרים את הקוד (הבדיקה כבר עוברת)"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "למה TDD טוב?",
+      "content": "TDD מבטיח שכל הקוד מכוסה בבדיקות, שהקוד ניתן לבדיקה (testable), ושאתם ממש מבינים את הדרישות לפני שכותבים קוד!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה - TDD לפונקציה",
+      "id": "tdd-example"
+    },
+    {
+      "type": "code",
+      "language": "typescript",
+      "code": "// ✅ שלב 1: RED - כותבים Test קודם\n// src/utils/validation.test.ts\n\nimport { validatePassword } from './validation';\n\ntest('validatePassword - should return true for valid password', () => {\n  expect(validatePassword('Test123!')).toBe(true);\n});\n\ntest('validatePassword - should return false for short password', () => {\n  expect(validatePassword('123')).toBe(false);\n});\n\ntest('validatePassword - should return false for no uppercase', () => {\n  expect(validatePassword('test123!')).toBe(false);\n});\n\n// ❌ הבדיקות נכשלות - עוד אין את הפונקציה!\n\n// ✅ שלב 2: GREEN - כותבים את הקוד\n// src/utils/validation.ts\n\nexport function validatePassword(password: string): boolean {\n  if (password.length < 8) return false;\n  if (!/[A-Z]/.test(password)) return false;\n  if (!/[0-9]/.test(password)) return false;\n  return true;\n}\n\n// ✅ הבדיקות עוברות!\n\n// ✅ שלב 3: REFACTOR - משפרים\n// src/utils/validation.ts\n\nconst PASSWORD_MIN_LENGTH = 8;\nconst HAS_UPPERCASE = /[A-Z]/;\nconst HAS_NUMBER = /[0-9]/;\n\nexport function validatePassword(password: string): boolean {\n  if (password.length < PASSWORD_MIN_LENGTH) return false;\n  if (!HAS_UPPERCASE.test(password)) return false;\n  if (!HAS_NUMBER.test(password)) return false;\n  return true;\n}\n\n// ✅ הבדיקות עדיין עוברות, אבל הקוד יותר קריא!",
+      "showLineNumbers": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "CI/CD Integration - ריצה אוטומטית",
+      "id": "ci-cd"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**כל בדיקה צריכה לרוץ אוטומטית!**"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# .github/workflows/test.yml\n\nname: Test Suite\n\non:\n  push:\n    branches: [main, dev]\n  pull_request:\n    branches: [main]\n\njobs:\n  # Job 1: Unit Tests\n  unit-tests:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v3\n      - uses: actions/setup-node@v3\n        with:\n          node-version: '20'\n      - run: npm ci\n      - run: npm run test:unit\n      - run: npm run coverage\n      - uses: codecov/codecov-action@v3\n        with:\n          files: ./coverage/coverage-final.json\n\n  # Job 2: Integration Tests\n  integration-tests:\n    runs-on: ubuntu-latest\n    services:\n      postgres:\n        image: postgres:15\n        env:\n          POSTGRES_PASSWORD: postgres\n        options: >-\n          --health-cmd pg_isready\n          --health-interval 10s\n          --health-timeout 5s\n          --health-retries 5\n    steps:\n      - uses: actions/checkout@v3\n      - uses: actions/setup-node@v3\n      - run: npm ci\n      - run: npm run test:integration\n        env:\n          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test\n\n  # Job 3: E2E Tests\n  e2e-tests:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v3\n      - uses: actions/setup-node@v3\n      - run: npm ci\n      - run: npx playwright install --with-deps\n      - run: npm run build\n      - run: npm run test:e2e\n      - uses: actions/upload-artifact@v3\n        if: failure()\n        with:\n          name: playwright-screenshots\n          path: test-results/\n\n  # Job 4: Quality Gate\n  quality-gate:\n    needs: [unit-tests, integration-tests, e2e-tests]\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo \"All tests passed! ✅\"",
+      "showLineNumbers": false
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "Quality Gates",
+      "content": "אסור למרג׳ PR אם הבדיקות נכשלות! GitHub יכול לחסום merge אוטומטית עד שכל הבדיקות עוברות."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תהליך מלא - דוגמה מקצה לקצה",
+      "id": "full-process"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "בואו נעבור על **דוגמה מלאה** של תהליך בדיקות מקצה לקצה ל-Story 5.1 (User Registration)."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 1: story-ready - בדיקת Testability",
+      "id": "process-step1"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**לפני שמתחילים לפתח**, TEA בודק אם ה-Story ניתנת לבדיקה."
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "@murat\n\nבדוק את Story 5.1 - האם היא ניתנת לבדיקה?\n\nהקובץ: docs/stories/5.1-user-registration.md",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**TEA בודק:**\n- האם הדרישות ברורות?\n- האם יש Acceptance Criteria?\n- האם ניתן לכתוב Test Cases?\n- האם יש Mock data?\n\n**תוצאה:** ✅ Story מוכנה לפיתוח + רשימת Test Cases ראשונית"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 2: dev-story - TDD Development",
+      "id": "process-step2"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**המפתח מתחיל עם TDD:**"
+    },
+    {
+      "type": "code",
+      "language": "typescript",
+      "code": "// 1. כותב Unit Test ראשון\ntest('register - should create user successfully', async () => {\n  const user = await register({\n    name: 'Test User',\n    email: 'test@example.com',\n    password: 'Test123!'\n  });\n  \n  expect(user).toBeDefined();\n  expect(user.email).toBe('test@example.com');\n  expect(user.status).toBe('pending_verification');\n});\n\n// 2. מריץ - נכשל (אין עוד קוד)\n// ❌ FAIL: register is not defined\n\n// 3. כותב את הקוד\nexport async function register(data) {\n  // ... implementation\n  return { email: data.email, status: 'pending_verification' };\n}\n\n// 4. מריץ - עובר!\n// ✅ PASS",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 3: code-review - בדיקת Coverage",
+      "id": "process-step3"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**ה-Reviewer בודק:**\n- האם יש Unit Tests לקוד החדש?\n- האם ה-Coverage > 80%?\n- האם הבדיקות עוברות?\n\n**בדיקה:**"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "npm run test:coverage\n\n# Output:\n# ✅ Coverage: 85%\n# ✅ All tests passing\n# ✅ Approved for merge",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 4: PR Merge - Automated Testing",
+      "id": "process-step4"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**GitHub Actions רצים אוטומטית:**"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        {
+          "text": "Unit Tests (350 tests) - ✅ עבר"
+        },
+        {
+          "text": "Integration Tests (100 tests) - ✅ עבר"
+        },
+        {
+          "text": "E2E Tests (50 tests) - ✅ עבר"
+        },
+        {
+          "text": "Coverage Check (>80%) - ✅ עבר"
+        },
+        {
+          "text": "Lint + Type Check - ✅ עבר"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "הכל עבר!",
+      "content": "ה-PR אושר אוטומטית, הקוד מורג׳ל ל-main, והוא deployed ל-staging!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 5: story-done - Final QA",
+      "id": "process-step5"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**QA בודק ב-staging:**"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        {
+          "text": "מריץ את כל ה-Test Cases מה-Test Plan"
+        },
+        {
+          "text": "בודק Exploratory (בדיקות חופשיות)"
+        },
+        {
+          "text": "מדווח על באגים (אם יש)"
+        },
+        {
+          "text": "מאשר את ה-Story"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**תוצאה:**\n- 7/8 Test Cases עברו ✅\n- 1 Bug נמצא (קוסמטי) 🐛\n- ה-Bug תוקן ב-PR נוסף\n- Story אושרה! ✅"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרשים התהליך המלא",
+      "id": "full-process-diagram"
+    },
+    {
+      "type": "code",
+      "language": "mermaid",
+      "code": "graph TD\n    A[Story Ready] --> B[TEA: Testability Check]\n    B --> C{Testable?}\n    C -->|No| D[PM: Fix Story]\n    D --> B\n    C -->|Yes| E[Dev: TDD Development]\n    E --> F[Write Unit Test]\n    F --> G[Write Code]\n    G --> H[Test Passes?]\n    H -->|No| G\n    H -->|Yes| I[Code Review]\n    I --> J{Coverage > 80%?}\n    J -->|No| E\n    J -->|Yes| K[PR to Main]\n    K --> L[CI: Automated Tests]\n    L --> M{All Pass?}\n    M -->|No| N[Fix Issues]\n    N --> E\n    M -->|Yes| O[Merge to Main]\n    O --> P[Deploy to Staging]\n    P --> Q[QA: Manual Testing]\n    Q --> R{Bugs Found?}\n    R -->|Yes| S[Create Bug Report]\n    S --> E\n    R -->|No| T[Story Done!]\n    T --> U[Deploy to Production]",
+      "showLineNumbers": false
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שאלות נפוצות",
+      "id": "faq"
+    },
+    {
+      "type": "accordion",
+      "variant": "default",
+      "items": [
+        {
+          "id": "faq-1",
+          "title": "מי אחראי על הבדיקות?",
+          "content": "**כולם!**\n\n**Developer:**\n- Unit Tests (70%)\n- Integration Tests (חלק)\n- TDD\n\n**QA:**\n- Integration Tests (חלק)\n- E2E Tests\n- Manual Testing\n- Bug Reports\n\n**TEA:**\n- Test Architecture\n- Test Strategy\n- Test Plans\n- Test Automation\n\n**כולם ביחד** - אחראים על איכות הקוד!"
+        },
+        {
+          "id": "faq-2",
+          "title": "כמה זמן לוקחות בדיקות?",
+          "content": "**תלוי בפרויקט, אבל כלל אצבע:**\n\n**Unit Tests:**\n- כתיבה: 10-20% מזמן הפיתוח\n- ריצה: 1-5 דקות (כל הסט)\n\n**Integration Tests:**\n- כתיבה: 5-10% מזמן הפיתוח\n- ריצה: 5-15 דקות\n\n**E2E Tests:**\n- כתיבה: 5-10% מזמן הפיתוח\n- ריצה: 10-30 דקות\n\n**סה\"כ:** 20-40% מזמן הפיתוח\n\n**אבל:**\nהבדיקות חוסכות הרבה יותר זמן בטווח הארוך - פחות באגים, פחות debugging, פחות regressions!"
+        },
+        {
+          "id": "faq-3",
+          "title": "מה עושים עם Flaky Tests?",
+          "content": "**Flaky Test** = בדיקה שלפעמים עוברת ולפעמים נכשלת (בלי שינוי בקוד)\n\n**סיבות נפוצות:**\n1. **Timing issues** - async operations לא ממתינים מספיק\n2. **Test order dependency** - test תלוי בסדר הריצה\n3. **External dependencies** - API, DB, network\n4. **Test data** - נתונים לא עקביים\n\n**פתרונות:**\n1. **הוסיפו Retries** (1-2 ניסיונות)\n2. **תקנו Timing** - waitFor, expect.poll()\n3. **בידוד** - כל test עצמאי\n4. **Mock External** - אל תסמכו על API חיצוני\n5. **קבועו Test Data** - fixtures, seeding\n\n**אם לא מוצאים פתרון:**\nסמנו כ-`test.skip()` עד לתיקון - אל תשאירו flaky test שמפריע!"
+        },
+        {
+          "id": "faq-4",
+          "title": "האם צריך 100% Coverage?",
+          "content": "**לא!** 100% Coverage זה **לא המטרה**.\n\n**למה?**\n- יש קוד שלא צריך בדיקות (getters/setters פשוטים)\n- לפעמים זה waste of time\n- Coverage גבוה לא מבטיח איכות\n\n**מה כן צריך?**\n- **80-90% Coverage** - יעד טוב\n- **100% של Critical paths** - הקוד החשוב\n- **0% של Trivial code** - זה בסדר\n\n**החשוב:**\n**איכות** של הבדיקות, לא **כמות**!\n\nמוטב 50 בדיקות טובות מ-200 בדיקות חלשות."
+        },
+        {
+          "id": "faq-5",
+          "title": "מתי כותבים E2E Tests?",
+          "content": "**E2E Tests זה יקר (זמן + תחזוקה)** - השתמשו בהם בחוכמה!\n\n**כן כתוב E2E:**\n- **Critical User Journeys** - רכישה, הרשמה, login\n- **High Risk Features** - תשלומים, נתונים רגישים\n- **Regression-prone** - תכונות שמתקלקלות הרבה\n\n**לא כתוב E2E:**\n- **יכול להיבדק ב-Unit** - לוגיקה פשוטה\n- **Low Risk** - תכונות לא קריטיות\n- **תכונות חדשות בלתי יציבות** - חכו שיתייצבו\n\n**כלל אצבע:**\n5-10 E2E Tests שמכסים את ה-critical paths זה מספיק לרוב הפרויקטים!"
+        },
+        {
+          "id": "faq-6",
+          "title": "איך מטפלים ב-Test Data?",
+          "content": "**אסטרטגיות לנתוני בדיקה:**\n\n### 1. Mocks & Stubs (Unit Tests)\n```typescript\nconst mockUser = {\n  id: '1',\n  email: 'test@example.com'\n};\n```\n**יתרונות:** מהיר, יציב, לא צריך DB\n\n### 2. Fixtures (Integration Tests)\n```typescript\nconst fixtures = {\n  users: [user1, user2],\n  guides: [guide1, guide2]\n};\n```\n**יתרונות:** נתונים קבועים, ניתן לשליטה\n\n### 3. Factories (Dynamic)\n```typescript\nconst user = userFactory.create({\n  email: 'unique@example.com'\n});\n```\n**יתרונות:** נתונים ייחודיים, פחות conflicts\n\n### 4. Test DB (E2E Tests)\n- DB נפרד לבדיקות\n- Seed script לטעינת נתונים\n- Cleanup אחרי כל suite\n\n**Best Practice:**\nשלבו את כולם - Mocks ל-unit, Fixtures ל-integration, Test DB ל-E2E!"
+        },
+        {
+          "id": "faq-7",
+          "title": "מה לעשות כשבדיקות איטיות?",
+          "content": "**בדיקות איטיות = בעיה!**\n\nאם הן לוקחות יותר מ-10 דקות, אף אחד לא ירצה להריץ אותן.\n\n**פתרונות:**\n\n### 1. Parallelization\n```bash\n# הרץ בדיקות במקביל\nnpm run test -- --maxWorkers=4\n```\n\n### 2. Test Sharding\n```bash\n# חלק לקבוצות\nnpm run test:shard-1\nnpm run test:shard-2\n```\n\n### 3. Smart Test Selection\n- רק בדיקות של קבצים ששונו\n- דלג על E2E ב-dev\n\n### 4. Optimize Tests\n- הפחת setup/teardown\n- השתמש ב-mocks במקום real dependencies\n- קבץ integration tests\n\n### 5. CI Caching\n- cache dependencies\n- cache build outputs\n\n**יעד:** Unit+Integration < 5 דקות, E2E < 15 דקות"
+        },
+        {
+          "id": "faq-8",
+          "title": "איך משכנעים את הצוות לכתוב בדיקות?",
+          "content": "**אתגר נפוץ!** מפתחים לפעמים רואים בדיקות כ-\"waste of time\".\n\n**איך לשכנע:**\n\n### 1. הראו ROI\n- \"הבאג הזה היה נתפס בבדיקה\"\n- \"חסכנו 3 שעות debugging\"\n- \"אין לנו regressions מאז שהתחלנו\"\n\n### 2. הפכו את זה לקל\n- Templates לבדיקות\n- Helpers ו-Utilities\n- Documentation טוב\n\n### 3. הכניסו לתרבות\n- Code Review דורש tests\n- Coverage gate ב-CI\n- חוגגו coverage milestones\n\n### 4. TDD Workshops\n- הדרכות מעשיות\n- Pair Programming\n- Show & Tell\n\n### 5. תנו דוגמה\n- המנהלים כותבים tests\n- הסניורים מנחים\n- אוירה של איכות\n\n**בסופו של דבר:**\nאחרי שיראו כמה באגים נתפסו ב-CI במקום ב-production - הם יבינו את הערך!"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "סיכום ומסקנות",
+      "id": "summary"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**במדריך זה למדנו:**\n\n**תהליך הבדיקות המלא:**\n1. **test-arch** - תכנון ארכיטקטורת בדיקות (frameworks, pyramid, CI/CD)\n2. **Test Strategy** - אסטרטגיה מפורטת (scope, approach, criteria)\n3. **Test Plans & Cases** - תוכניות ותרחישי בדיקה ספציפיים\n4. **Integration** - שילוב בדיקות בכל שלב של הפיתוח (TDD, CI/CD)\n5. **Execution** - ריצה, דיווח, ושיפור מתמיד"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "העקרונות המרכזיים",
+      "id": "key-principles"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "items": [
+        {
+          "id": "principle-1",
+          "content": {
+            "type": "card",
+            "title": "Shift-Left",
+            "description": "בדוק מוקדם - לא רק בסוף. TDD, תכנון מראש, ומניעת באגים לפני שהם קורים",
+            "variant": "default"
+          }
+        },
+        {
+          "id": "principle-2",
+          "content": {
+            "type": "card",
+            "title": "Test Pyramid",
+            "description": "70% Unit, 20% Integration, 10% E2E - הרבה בדיקות מהירות, מעט בדיקות איטיות",
+            "variant": "default"
+          }
+        },
+        {
+          "id": "principle-3",
+          "content": {
+            "type": "card",
+            "title": "Automation",
+            "description": "כל בדיקה רצה אוטומטית - ב-CI, לפני merge, ולפני deploy",
+            "variant": "default"
+          }
+        },
+        {
+          "id": "principle-4",
+          "content": {
+            "type": "card",
+            "title": "איכות על כמות",
+            "description": "מוטב 50 בדיקות טובות מ-200 חלשות. Coverage לא הכל - אפקטיביות חשובה יותר",
+            "variant": "default"
+          }
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה הלאה?",
+      "id": "whats-next"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**עכשיו שאתם יודעים על Testing & Quality**, המשיכו ללמוד:\n\n**חלק 5: סינתזה ותרחישים מורכבים**\n- שילוב כל הוורקפלואים\n- תרחישים מורכבים\n- פרויקט מקצה לקצה\n\nזה ישלים את הידע שלכם על **כל מחזור החיים של פרויקט BMAD**!"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "טיפ אחרון",
+      "content": "בדיקות טובות הן ההשקעה הכי משתלמת בפיתוח תוכנה. הן חוסכות זמן, מונעות באגים, ונותנות ביטחון לעשות שינויים. התחילו קטן - Unit Tests, TDD, CI/CD - והמשיכו משם!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "משאבים נוספים",
+      "id": "resources"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "items": [
+        {
+          "id": "resource-1",
+          "content": {
+            "type": "card",
+            "title": "מדריך לבודקי תוכנה",
+            "description": "כל מה ש-QA צריך לדעת על BMAD",
+            "link": "/guides/role-qa-testers",
+            "variant": "default"
+          }
+        },
+        {
+          "id": "resource-2",
+          "content": {
+            "type": "card",
+            "title": "Development Flow",
+            "description": "איך הבדיקות משתלבות בפיתוח",
+            "link": "/guides/workflows-development",
+            "variant": "default"
+          }
+        },
+        {
+          "id": "resource-3",
+          "content": {
+            "type": "card",
+            "title": "TEA Agent",
+            "description": "הכרת Murat - מומחה הבדיקות",
+            "link": "/guides/agents-tea-ux",
+            "variant": "default"
+          }
+        },
+        {
+          "id": "resource-4",
+          "content": {
+            "type": "card",
+            "title": "שאלות ותשובות",
+            "description": "FAQ על בדיקות ואיכות",
+            "link": "/guides/faq-development",
+            "variant": "default"
+          }
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מזל טוב! סיימתם את חלק 4!",
+      "content": "עכשיו אתם יודעים לתכנן ולהריץ בדיקות מקצועיות עם BMAD - מ-test architecture ועד automation מלא. המשיכו לחלק 5 (CIS & Synthesis) כדי לראות איך כל הוורקפלואים עובדים יחד!"
+    }
+  ]
+}
+

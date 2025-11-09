@@ -163,18 +163,22 @@ export default function ContentAnalyticsPage() {
   };
 
   return (
-    <div className="container mx-auto py-8 px-4 max-w-[1400px]">
+    <div className="container mx-auto py-4 md:py-6 lg:py-8 px-4 max-w-[1400px]">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 md:mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-foreground dark:text-gray-100">
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground dark:text-gray-100">
             {t.title}
           </h1>
-          <p className="text-muted-foreground dark:text-gray-400 mt-2">
+          <p className="text-sm md:text-base text-muted-foreground dark:text-gray-400 mt-1 md:mt-2">
             {t.subtitle}
           </p>
         </div>
-        <Button onClick={handleExport} disabled={loading || guides.length === 0}>
+        <Button
+          onClick={handleExport}
+          disabled={loading || guides.length === 0}
+          className="w-full sm:w-auto min-h-[44px]"
+        >
           <IconDownload className="w-4 h-4 ml-2" />
           {t.exportCSV}
         </Button>
@@ -252,33 +256,41 @@ export default function ContentAnalyticsPage() {
 
       {/* Category Performance Chart */}
       {categoryData.length > 0 && (
-        <Card className="p-6 mb-8">
-          <h2 className="text-xl font-bold text-foreground dark:text-gray-100 mb-4">
+        <Card className="p-4 md:p-6 mb-6 md:mb-8">
+          <h2 className="text-lg md:text-xl font-bold text-foreground dark:text-gray-100 mb-4">
             {t.categoryPerformance}
           </h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={categoryData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="category" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="totalViews" fill="#10B981" name="סה״כ צפיות" />
-              <Bar dataKey="avgCompletionRate" fill="#3B82F6" name="אחוז השלמה ממוצע" />
-            </BarChart>
-          </ResponsiveContainer>
+          <div className="w-full overflow-hidden">
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={categoryData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis
+                  dataKey="category"
+                  tick={{ fontSize: 10 }}
+                  angle={-45}
+                  textAnchor="end"
+                  height={60}
+                />
+                <YAxis tick={{ fontSize: 10 }} />
+                <Tooltip />
+                <Legend wrapperStyle={{ fontSize: '12px' }} />
+                <Bar dataKey="totalViews" fill="#10B981" name="סה״כ צפיות" />
+                <Bar dataKey="avgCompletionRate" fill="#3B82F6" name="אחוז השלמה ממוצע" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         </Card>
       )}
 
       {/* Filters */}
-      <Card className="p-6 mb-6">
+      <Card className="p-4 md:p-6 mb-6">
         <div className="flex items-center gap-4">
           <div className="flex-1">
             <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block">
               {t.filterByCategory}
             </label>
             <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-              <SelectTrigger>
+              <SelectTrigger className="min-h-[44px]">
                 <SelectValue placeholder={t.allCategories} />
               </SelectTrigger>
               <SelectContent>
@@ -295,8 +307,8 @@ export default function ContentAnalyticsPage() {
       </Card>
 
       {/* Guide Performance Table */}
-      <Card className="p-6">
-        <h2 className="text-xl font-bold text-foreground dark:text-gray-100 mb-4">
+      <Card className="p-4 md:p-6">
+        <h2 className="text-lg md:text-xl font-bold text-foreground dark:text-gray-100 mb-4">
           {t.guidePerformance}
         </h2>
 
@@ -310,7 +322,7 @@ export default function ContentAnalyticsPage() {
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <Table>
+            <Table className="min-w-[500px]">
               <TableHeader>
                 <TableRow>
                   <TableHead className="text-right">{t.guideTitle}</TableHead>
