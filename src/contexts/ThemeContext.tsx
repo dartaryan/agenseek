@@ -35,7 +35,26 @@ export function ThemeProvider({
   defaultTheme = 'system',
   storageKey = STORAGE_KEY,
 }: ThemeProviderProps) {
+  // Story 0.15: Temporarily force light mode while dark mode toggle is hidden
+  const FORCE_LIGHT_MODE = true;
+
   const [theme, setThemeState] = useState<Theme>(() => {
+    // Story 0.15: Force light mode while toggle is hidden
+    if (FORCE_LIGHT_MODE) {
+      // Clear any dark mode setting from localStorage
+      if (typeof window !== 'undefined') {
+        try {
+          const stored = localStorage.getItem(storageKey);
+          if (stored === 'dark' || stored === 'system') {
+            localStorage.setItem(storageKey, 'light');
+          }
+        } catch (e) {
+          console.error('[ThemeProvider] Failed to update localStorage:', e);
+        }
+      }
+      return 'light';
+    }
+
     // Try to load theme from localStorage on mount
     if (typeof window !== 'undefined') {
       try {
@@ -54,17 +73,20 @@ export function ThemeProvider({
 
   // Resolve theme based on preference and system settings
   useEffect(() => {
+    // Story 0.15: Force light mode while toggle is hidden
     let resolved: ResolvedTheme = 'light';
 
-    if (theme === 'system') {
-      // Check system preference
-      if (typeof window !== 'undefined') {
-        resolved = window.matchMedia('(prefers-color-scheme: dark)').matches
-          ? 'dark'
-          : 'light';
+    if (!FORCE_LIGHT_MODE) {
+      if (theme === 'system') {
+        // Check system preference
+        if (typeof window !== 'undefined') {
+          resolved = window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light';
+        }
+      } else {
+        resolved = theme as ResolvedTheme;
       }
-    } else {
-      resolved = theme as ResolvedTheme;
     }
 
     setResolvedTheme(resolved);
@@ -80,14 +102,15 @@ export function ThemeProvider({
 
   // Listen for system theme changes when using 'system' mode
   useEffect(() => {
-    if (theme !== 'system') return;
+    // Story 0.15: Skip system theme listener when forcing light mode
+    if (FORCE_LIGHT_MODE || theme !== 'system') return;
 
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    
+
     const handleChange = (e: MediaQueryListEvent) => {
       const newResolved = e.matches ? 'dark' : 'light';
       setResolvedTheme(newResolved);
-      
+
       const root = document.documentElement;
       root.classList.remove('light', 'dark');
       root.classList.add(newResolved);

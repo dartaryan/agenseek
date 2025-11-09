@@ -47,14 +47,14 @@ export function SettingsPage() {
     <div className="px-4 md:px-6 lg:px-8 py-6 md:py-8">
       <div className="max-w-[1600px] mx-auto space-y-8">
         <div className="space-y-2">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">{hebrewLocale.pages.settings.title}</h1>
-          <p className="text-sm md:text-base text-gray-600">{hebrewLocale.pages.settings.description}</p>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">{hebrewLocale.pages.settings.title}</h1>
+          <p className="text-sm md:text-base text-muted-foreground">{hebrewLocale.pages.settings.description}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Profile Avatar - Story 0.3 */}
           <Card className="p-6 space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">פרופיל</h3>
+            <h3 className="text-lg font-semibold text-foreground">פרופיל</h3>
             <div className="flex items-center gap-4">
               <UserAvatar
                 config={avatarConfig}
@@ -62,15 +62,15 @@ export function SettingsPage() {
                 size="lg"
               />
               <div className="flex-1">
-                <p className="text-sm font-medium text-gray-900 dark:text-white">
+                <p className="text-sm font-medium text-foreground">
                   {profile?.display_name || 'משתמש'}
                 </p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <p className="text-sm text-muted-foreground">
                   {user?.email}
                 </p>
                 <Link
                   to="/profile"
-                  className="text-sm text-emerald-600 hover:text-emerald-700 dark:text-emerald-500 dark:hover:text-emerald-400"
+                  className="text-sm text-primary hover:underline"
                 >
                   ערוך פרופיל ואווטר
                 </Link>
@@ -79,40 +79,40 @@ export function SettingsPage() {
           </Card>
 
           <Card className="p-6 space-y-4">
-            <h3 className="text-lg font-semibold">התראות</h3>
-            <p className="text-gray-500">הגדרות התראות יגיעו בקרוב</p>
+            <h3 className="text-lg font-semibold text-foreground">התראות</h3>
+            <p className="text-muted-foreground">הגדרות התראות יגיעו בקרוב</p>
           </Card>
 
           <Card className="p-6 space-y-4">
-            <h3 className="text-lg font-semibold">מראה</h3>
-            <p className="text-gray-500">הגדרות ערכת נושא ותצוגה יגיעו בקרוב</p>
+            <h3 className="text-lg font-semibold text-foreground">מראה</h3>
+            <p className="text-muted-foreground">הגדרות ערכת נושא ותצוגה יגיעו בקרוב</p>
           </Card>
 
           <Card className="p-6 space-y-4">
-            <h3 className="text-lg font-semibold">פרטיות</h3>
-            <p className="text-gray-500">בקרות פרטיות יגיעו בקרוב</p>
+            <h3 className="text-lg font-semibold text-foreground">פרטיות</h3>
+            <p className="text-muted-foreground">בקרות פרטיות יגיעו בקרוב</p>
           </Card>
 
           <Card className="p-6 space-y-4">
-            <h3 className="text-lg font-semibold">שפה</h3>
-            <p className="text-gray-500">תמיכה ב-RTL לעברית ויכולות דו-לשוניות</p>
+            <h3 className="text-lg font-semibold text-foreground">שפה</h3>
+            <p className="text-muted-foreground">תמיכה ב-RTL לעברית ויכולות דו-לשוניות</p>
           </Card>
 
           {/* Danger Zone - Account Deletion */}
-          <Card className="p-6 space-y-3 border-red-200">
+          <Card className="p-6 space-y-3 border-red-200 dark:border-red-900">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-semibold text-gray-900">{he.title}</h3>
-              <IconAlertTriangle className="w-5 h-5 text-red-500" />
+              <h3 className="text-lg font-semibold text-foreground">{he.title}</h3>
+              <IconAlertTriangle className="w-5 h-5 text-red-500 dark:text-red-400" />
             </div>
 
-            <p className="text-sm text-gray-600">{he.warningDataLoss}</p>
+            <p className="text-sm text-muted-foreground">{he.warningDataLoss}</p>
 
             {/* Delete Button */}
             <div className="pt-1">
               <Button
                 variant="outline"
                 onClick={() => setIsDeleteDialogOpen(true)}
-                className="text-red-600 border-red-300 hover:bg-red-50 hover:text-red-700"
+                className="text-red-600 dark:text-red-400 border-red-300 dark:border-red-800 hover:bg-red-50 dark:hover:bg-red-950/30 hover:text-red-700 dark:hover:text-red-300"
               >
                 <IconTrash className="w-4 h-4 mr-2" />
                 {he.deleteAccountButton}

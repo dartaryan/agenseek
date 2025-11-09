@@ -1,0 +1,891 @@
+{
+  "metadata": {
+    "id": "workflows-development",
+    "slug": "workflows-development",
+    "title": "מדריך וורקפלואים - חלק 3ג: Development Flow",
+    "description": "תהליך הפיתוח המלא מקצה לקצה - story-context, dev-story, code-review, story-done. איך לוקחים Story מוכנה והופכים אותה לקוד עובד, מבודק, ומאושר.",
+    "category": "workflows",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 40,
+    "icon": "IconCode",
+    "tags": ["וורקפלואים", "פיתוח", "development", "code-review", "story"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "Development Flow: סקירה",
+      "level": 2,
+      "anchor": "dev-flow-overview"
+    },
+    {
+      "id": "toc-2",
+      "title": "story-context - הכנת הקונטקסט",
+      "level": 2,
+      "anchor": "story-context"
+    },
+    {
+      "id": "toc-3",
+      "title": "dev-story - פיתוח הסטורי",
+      "level": 2,
+      "anchor": "dev-story"
+    },
+    {
+      "id": "toc-4",
+      "title": "code-review - סקירת קוד",
+      "level": 2,
+      "anchor": "code-review"
+    },
+    {
+      "id": "toc-5",
+      "title": "story-done - סיום הסטורי",
+      "level": 2,
+      "anchor": "story-done"
+    },
+    {
+      "id": "toc-6",
+      "title": "תהליך מלא - דוגמה מקצה לקצה",
+      "level": 2,
+      "anchor": "full-process"
+    },
+    {
+      "id": "toc-7",
+      "title": "שאלות נפוצות",
+      "level": 2,
+      "anchor": "faq"
+    },
+    {
+      "id": "toc-8",
+      "title": "סיכום ומעבר לניהול הפרויקט",
+      "level": 2,
+      "anchor": "summary"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מדריך וורקפלואים - חלק 3ג: Development Flow",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "על מה המדריך הזה?",
+      "content": "במדריך זה נלמד על Development Flow - תהליך הפיתוח המלא. איך לוקחים Story שמוכנה לפיתוח (עברה Solutioning) ומפתחים אותה מקצה לקצה: הכנת קונטקסט, כתיבת קוד, בדיקות, code review, וסיום."
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "דרישות מוקדמות",
+      "content": "לפני שמתחילים את המדריך הזה, מומלץ לקרוא את חלק 3א (Solutioning) ו-3ב (Sprint Setup). המדריך הזה מתאר את העבודה היומיומית של המפתח על Stories שכבר מוכנות לפיתוח."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Development Flow: סקירה",
+      "id": "dev-flow-overview"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה Development Flow?",
+      "id": "what-is-dev-flow"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**Development Flow** הוא **תהליך הפיתוח המלא של Story** - מרגע שהיא מוכנה לפיתוח ועד שהיא מושלמת ויכולה לעלות לפרודקשן.\n\n**במילים פשוטות:** יש לכם Story עם Tasks מוגדרות, Acceptance Criteria, ו-Tech Context. עכשיו צריך **לכתוב את הקוד**, **לבדוק שזה עובד**, **לעבור Code Review**, ו**לסמן את זה כמוכן**."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "למה צריך תהליך מובנה?",
+      "id": "why-structured-process"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**בלי תהליך:**\n- כל מפתח עובד בצורה שונה\n- קשה לעקוב אחר התקדמות\n- Code Review אקראי או חסר\n- איכות לא עקבית\n\n**עם Development Flow:**\n- **תהליך אחיד** - כולם עושים את אותו הדבר\n- **עקיבות קלה** - יודעים בדיוק איפה כל Story\n- **איכות גבוהה** - Code Review חובה לפני סיום\n- **תיעוד אוטומטי** - הכל מתועד בזמן העבודה"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "4 הוורקפלואים של Development Flow",
+      "id": "four-workflows"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        {
+          "text": "**story-context** - יצירת קובץ קונטקסט עם כל המידע הרלוונטי לפיתוח"
+        },
+        {
+          "text": "**dev-story** - הפיתוח עצמו - כתיבת קוד, בדיקות, ועמידה ב-DoD"
+        },
+        {
+          "text": "**code-review** - סקירת קוד ואיכות על ידי Senior Developer"
+        },
+        {
+          "text": "**story-done** - סיום הסטורי והעברה ל-Done"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**כל וורקפלוא בונה על הקודם** - אי אפשר לדלג על שלבים!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "התהליך המלא במבט-על",
+      "id": "process-overview"
+    },
+    {
+      "type": "code",
+      "language": "mermaid",
+      "code": "graph LR\n    A[Story Ready] --> B[story-context]\n    B --> C[dev-story]\n    C --> D[code-review]\n    D --> E{עבר Review?}\n    E -->|כן| F[story-done]\n    E -->|לא| C\n    F --> G[Story Done!]",
+      "showLineNumbers": false
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "המטרה",
+      "content": "בסוף התהליך יש לכם קוד עובד, מבודק, עבר Code Review, ומוכן לעלות לפרודקשן - והכל מתועד!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "story-context - הכנת הקונטקסט",
+      "id": "story-context"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה story-context?",
+      "id": "what-is-story-context"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**story-context** הוא וורקפלוא שיוצר **קובץ XML עם כל המידע הרלוונטי** לפיתוח הסטורי.\n\n**מה זה אומר?** הוא אוסף מכל התיעוד שלכם (PRD, Tech Spec, Architecture, UX Design, Epic) את החלקים שקשורים לסטורי הזה, ושם אותם בקובץ אחד נוח."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "למה צריך את זה?",
+      "id": "why-story-context"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**הבעיה בלי story-context:**\n\nכשמתחילים לפתח, צריך למצוא:\n- **PRD** - מה התכונה הזו אמורה לעשות?\n- **Tech Spec** - איך צריך לממש את זה?\n- **Architecture** - איך זה משתלב במערכת?\n- **UX Design** - איך זה צריך להיראות?\n- **Epic** - מה הקונטקסט הרחב?\n\n**זה לוקח זמן**, וקל לפספס משהו!\n\n**הפתרון עם story-context:**\n\n**הוורקפלוא אוסף את כל זה אוטומטית** ושם בקובץ אחד. פשוט מריצים `@story-context` ויש קובץ עם כל מה שצריך!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך זה עובד?",
+      "id": "how-story-context-works"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        {
+          "text": "**מזהה את הסטורי** - מוצא את ה-Story הבא שמוכן לפיתוח (או שאתם מציינים איזה)"
+        },
+        {
+          "text": "**מחלץ Epic Number** - מהמספר של הסטורי (למשל: 5.3 → Epic 5)"
+        },
+        {
+          "text": "**אוסף תיעוד רלוונטי** - מחפש PRD, Tech Spec, Architecture, UX, ו-Epic"
+        },
+        {
+          "text": "**בונה קובץ XML** - שם את כל המידע בפורמט מובנה"
+        },
+        {
+          "text": "**שומר לצד הסטורי** - הקובץ נשמר כ-`{story-key}.context.xml`"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה - מה יש בקובץ context?",
+      "id": "context-file-example"
+    },
+    {
+      "type": "code",
+      "language": "xml",
+      "code": "<?xml version=\"1.0\"?>\n<story-context>\n  <metadata>\n    <story-key>5-3-user-profile</story-key>\n    <epic-num>5</epic-num>\n    <created>2024-01-15</created>\n  </metadata>\n  \n  <prd>\n    <!-- חלק רלוונטי מה-PRD על תכונות המשתמש -->\n  </prd>\n  \n  <tech-spec>\n    <!-- הספק הטכני של Epic 5 -->\n  </tech-spec>\n  \n  <architecture>\n    <!-- ארכיטקטורה רלוונטית -->\n  </architecture>\n  \n  <ux-design>\n    <!-- עיצוב ה-UI של פרופיל משתמש -->\n  </ux-design>\n  \n  <epic>\n    <!-- Epic 5 המלא -->\n  </epic>\n</story-context>",
+      "showLineNumbers": false
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "טיפ",
+      "content": "קובץ ה-context הזה מועבר ל-dev-story כך שהאגנט שמפתח יודע בדיוק מה לעשות!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך מריצים story-context?",
+      "id": "run-story-context"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# אופציה 1: הסטורי הבא שמוכן לפיתוח\n@story-context\n\n# אופציה 2: סטורי ספציפי\n@story-context\nאני רוצה context לסטורי 5.3 (user-profile)",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה קורה אחרי?",
+      "id": "after-story-context"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**אחרי שהוורקפלוא מסתיים:**\n\n1. **יש קובץ context** - `docs/stories/5-3-user-profile.context.xml`\n2. **קובץ זה זמין** - לאגנט שמפתח (dev-story)\n3. **מוכן לפיתוח** - עכשיו אפשר להתחיל לכתוב קוד!"
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "חשוב!",
+      "content": "אם התיעוד שלכם לא מלא (חסר PRD או Tech Spec למשל), הוורקפלוא יודיע על זה ויעבוד עם מה שיש. זה סימן שצריך להשלים תיעוד!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "dev-story - פיתוח הסטורי",
+      "id": "dev-story"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה dev-story?",
+      "id": "what-is-dev-story"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**dev-story** הוא **הוורקפלוא המרכזי** של הפיתוח - כאן **נכתב הקוד בפועל**.\n\n**מה הוא עושה?**\n- קורא את קובץ ה-context\n- עובר על כל ה-Tasks בסטורי\n- מממש אותם אחד אחרי השני\n- כותב בדיקות\n- בודק שהכל עובד\n- מעדכן את הסטורי עם ההתקדמות"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך זה עובד?",
+      "id": "how-dev-story-works"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        {
+          "text": "**קריאת Context** - טוען את קובץ ה-context (אם קיים) + את קובץ הסטורי"
+        },
+        {
+          "text": "**סקירת Tasks** - מזהה את כל המשימות ותת-המשימות שצריך לעשות"
+        },
+        {
+          "text": "**פיתוח איטרטיבי** - עובד משימה אחת בכל פעם:\n   - כותב קוד\n   - מריץ בדיקות\n   - מתקן שגיאות\n   - מסמן משימה כהושלמה"
+        },
+        {
+          "text": "**בדיקת DoD** - בודק שכל ה-Definition of Done התקיים"
+        },
+        {
+          "text": "**עדכון הסטורי** - משנה סטטוס ל-\"Ready for Review\""
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה - מבנה של Story עם Tasks",
+      "id": "story-tasks-example"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "story:\n  number: \"5.3\"\n  title: \"User Profile Management\"\n  status: \"in-progress\"\n  \n  tasks:\n    - id: \"task-1\"\n      title: \"Create User Profile Component\"\n      status: \"done\"\n      subtasks:\n        - \"Design component structure\"\n        - \"Implement form validation\"\n        - \"Add responsive layout\"\n    \n    - id: \"task-2\"\n      title: \"Connect to Backend API\"\n      status: \"in-progress\"\n      subtasks:\n        - \"Create API service\"\n        - \"Add error handling\"\n        - \"Write unit tests\"\n    \n  definition_of_done:\n    - \"All tests passing\"\n    - \"Code reviewed\"\n    - \"Documentation updated\"\n    - \"No linter errors\"",
+      "showLineNumbers": true
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**האגנט עובד משימה אחת בכל פעם** ומעדכן את ה-status בזמן אמת!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך מריצים dev-story?",
+      "id": "run-dev-story"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# אופציה 1: הסטורי הבא שמוכן לפיתוח\n@dev-story\n\n# אופציה 2: סטורי ספציפי\n@dev-story\nבואו נפתח את סטורי 5.3\n\n# אופציה 3: המשך סטורי קיים\n@dev-story\nהמשך עם הסטורי הנוכחי",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה קורה בזמן הפיתוח?",
+      "id": "during-development"
+    },
+    {
+      "type": "accordion",
+      "variant": "default",
+      "items": [
+        {
+          "id": "dev-step-1",
+          "title": "שלב 1: הכנה",
+          "content": "**האגנט:**\n- קורא את context\n- מזהה Tasks\n- בונה תוכנית עבודה\n- שואל הבהרות אם צריך"
+        },
+        {
+          "id": "dev-step-2",
+          "title": "שלב 2: פיתוח",
+          "content": "**האגנט:**\n- כותב קוד לכל Task\n- מריץ בדיקות\n- מתקן שגיאות\n- שואל feedback אם צריך"
+        },
+        {
+          "id": "dev-step-3",
+          "title": "שלב 3: בדיקות",
+          "content": "**האגנט:**\n- מריץ כל הבדיקות\n- בודק linter\n- בודק DoD\n- מדווח על תוצאות"
+        },
+        {
+          "id": "dev-step-4",
+          "title": "שלב 4: סיום",
+          "content": "**האגנט:**\n- מסמן Tasks כהושלמו\n- משנה סטטוס ל-Ready for Review\n- מעדכן את קובץ הסטורי\n- מדווח על סיום"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שיטות עבודה מומלצות",
+      "id": "dev-best-practices"
+    },
+    {
+      "type": "table",
+      "headers": ["עשה", "אל תעשה"],
+      "rows": [
+        ["התחל עם story-context", "תפתח בלי context"],
+        ["עבוד Task אחד בכל פעם", "תנסה לעשות הכל ביחד"],
+        ["הרץ בדיקות אחרי כל שינוי", "תחכה לסוף"],
+        ["שאל הבהרות אם צריך", "תנחש מה לעשות"],
+        ["עדכן את הסטורי בזמן אמת", "תשכח לתעד"]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "טיפ זהב",
+      "content": "אם הוורקפלוא נתקע או יש בעיה - פשוט עצרו אותו, תקנו את הבעיה, והריצו שוב. הוא ימשיך מהמקום שעצר!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "code-review - סקירת קוד",
+      "id": "code-review"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה code-review?",
+      "id": "what-is-code-review"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**code-review** הוא וורקפלוא שמבצע **סקירת קוד מקצועית** על סטורי שמוכן לבדיקה.\n\n**מה הוא בודק?**\n- **איכות קוד** - האם הקוד קריא ותחזוקתי?\n- **עקביות** - האם הקוד תואם לסטנדרטים של הפרויקט?\n- **בדיקות** - האם יש בדיקות מספיקות?\n- **ביצועים** - האם הקוד יעיל?\n- **אבטחה** - האם יש בעיות אבטחה פוטנציאליות?"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "למה צריך Code Review?",
+      "id": "why-code-review"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**בלי Code Review:**\n- באגים עוברים לפרודקשן\n- קוד לא עקבי\n- בעיות אבטחה נשארות\n- איכות נמוכה\n\n**עם Code Review:**\n- **מוצאים באגים מוקדם** - לפני שהם בפרודקשן\n- **שומרים על איכות** - כל הקוד עובר בדיקה\n- **לומדים ומשתפרים** - הצוות לומד משגיאות\n- **ביטחון** - יודעים שהקוד בדוק"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך זה עובד?",
+      "id": "how-code-review-works"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        {
+          "text": "**מזהה Story** - מוצא Story עם סטטוס \"Ready for Review\""
+        },
+        {
+          "text": "**טוען Context** - קורא את story-context + Tech Spec + Architecture"
+        },
+        {
+          "text": "**בודק קוד** - עובר על כל הקבצים שהשתנו ובודק:\n   - Code quality\n   - Best practices\n   - Security\n   - Performance\n   - Tests"
+        },
+        {
+          "text": "**מחפש בעיות** - משתמש ב-MCP servers ו-web search למציאת best practices עדכניות"
+        },
+        {
+          "text": "**יוצר דוח** - כותב review notes עם:\n   - בעיות שנמצאו\n   - המלצות לשיפור\n   - Action items\n   - החלטה: Approved / Changes Requested"
+        },
+        {
+          "text": "**מעדכן הסטורי** - מוסיף את ה-review notes לקובץ הסטורי"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה - תוצאת Code Review",
+      "id": "code-review-example"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "## Code Review - Story 5.3\n\n**תאריך:** 2024-01-15\n**סטטוס:** Changes Requested\n\n### סיכום\n✅ הקוד עובד ועומד ב-acceptance criteria\n⚠️ נמצאו 3 בעיות שצריך לתקן לפני merge\n\n### בעיות קריטיות\n1. **Security Issue** - Password validation חלשה\n   - קובץ: `src/auth/validation.ts`\n   - פתרון: השתמש ב-zod schema עם regex חזק יותר\n\n2. **Performance** - N+1 query problem\n   - קובץ: `src/api/users.ts`\n   - פתרון: השתמש ב-joins במקום queries נפרדים\n\n### המלצות לשיפור\n1. הוסף error logging\n2. שפר את ה-TypeScript types\n3. הוסף integration test\n\n### Action Items\n- [ ] תקן password validation\n- [ ] תקן N+1 query\n- [ ] הוסף logging\n- [ ] הרץ code-review שוב אחרי תיקונים",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך מריצים code-review?",
+      "id": "run-code-review"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# אופציה 1: הסטורי הבא שמוכן ל-review\n@code-review\n\n# אופציה 2: סטורי ספציפי\n@code-review\nאני רוצה review על סטורי 5.3",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה קורה אחרי?",
+      "id": "after-code-review"
+    },
+    {
+      "type": "accordion",
+      "variant": "default",
+      "items": [
+        {
+          "id": "review-approved",
+          "title": "אם ה-Review אושר (Approved)",
+          "content": "**המצב:**\n- הסטורי נשאר ב-\"Ready for Review\"\n- יש דוח review חיובי\n- אפשר להמשיך ל-story-done\n\n**הצעד הבא:**\nפשוט מריצים `@story-done` וסוגרים את הסטורי!"
+        },
+        {
+          "id": "review-changes",
+          "title": "אם צריך תיקונים (Changes Requested)",
+          "content": "**המצב:**\n- הסטורי חוזר ל-\"In Progress\"\n- יש רשימת Action Items\n- צריך לתקן ולהריץ review שוב\n\n**התהליך:**\n1. תקנו את הבעיות\n2. הריצו `@dev-story` אם צריך קוד נוסף\n3. הריצו `@code-review` שוב\n4. אם עבר - עברו ל-`@story-done`"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "טיפ",
+      "content": "הוורקפלוא משתמש ב-MCP servers (אם זמינים) כדי למצוא best practices עדכניות. זה אומר שה-review מתעדכן כל הזמן עם הסטנדרטים החדשים ביותר!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "story-done - סיום הסטורי",
+      "id": "story-done"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה story-done?",
+      "id": "what-is-story-done"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**story-done** הוא הוורקפלוא הפשוט ביותר - הוא **מסמן סטורי כמושלם** ומעביר אותו ל-Done.\n\n**זה הצעד האחרון!** אחרי שהסטורי:\n- ✅ פותח (dev-story)\n- ✅ עבר Code Review (code-review)\n- ✅ עומד בכל ה-DoD\n\nאז אפשר להריץ story-done!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה הוא עושה?",
+      "id": "what-story-done-does"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        {
+          "text": "**מזהה Story** - מוצא Story שמוכן לסיום"
+        },
+        {
+          "text": "**מעדכן סטטוס** - משנה מ-\"Ready for Review\" ל-\"Done\""
+        },
+        {
+          "text": "**מעדכן קובץ status** - משנה את הסטטוס ב-sprint-status.yaml"
+        },
+        {
+          "text": "**מתקדם בתור** - מזהה את הסטורי הבא שצריך לפתח"
+        },
+        {
+          "text": "**מדווח** - מציג סיכום של מה נעשה ומה הבא"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך מריצים story-done?",
+      "id": "run-story-done"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# אופציה 1: הסטורי הבא שמוכן לסיום\n@story-done\n\n# אופציה 2: סטורי ספציפי\n@story-done\nסיימתי סטורי 5.3",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה קורה אחרי?",
+      "id": "after-story-done"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**אחרי שהוורקפלוא מסתיים:**\n\n1. **הסטורי במצב Done** - מסומן כהושלם\n2. **הסטטוס עודכן** - ב-sprint-status.yaml\n3. **התור התקדם** - הסטורי הבא זמין לפיתוח\n4. **אפשר להתחיל הבא** - פשוט מריצים שוב `@story-context` על הסטורי הבא!"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מזל טוב!",
+      "content": "סיימתם Story מקצה לקצה! הקוד שלכם עובד, בדוק, עבר Review, ומוכן לעלות לפרודקשן. זה ההצלחה של Development Flow!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "טיפים לסיום",
+      "id": "done-tips"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        {
+          "text": "**תמיד וודאו** ש-Code Review עבר לפני story-done"
+        },
+        {
+          "text": "**בדקו DoD** - כל הפריטים מסומנים"
+        },
+        {
+          "text": "**עדכנו תיעוד** - אם צריך"
+        },
+        {
+          "text": "**עשו commit + push** - הקוד ב-git"
+        },
+        {
+          "text": "**התכוננו להבא** - הסטורי הבא מחכה!"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תהליך מלא - דוגמה מקצה לקצה",
+      "id": "full-process"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "בואו נעבור על **דוגמה מלאה** של פיתוח Story מהתחלה עד סוף. נראה איך כל הוורקפלואים עובדים ביחד."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "התרחיש: Story 5.3 - User Profile Management",
+      "id": "scenario"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**המצב:**\n- יש לנו Story 5.3 שמוכנה לפיתוח\n- היא עברה Solutioning\n- יש לה Tasks מוגדרות ו-DoD\n- נכנסנו לספרינט\n\n**המטרה:** לפתח את הסטורי מקצה לקצה עד Done."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "צעד 1: יצירת Context",
+      "id": "step-1-context"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# מריצים story-context\n@story-context",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**מה קורה:**\n- הוורקפלוא מזהה Story 5.3\n- אוסף PRD, Tech Spec (Epic 5), Architecture, UX\n- יוצר קובץ `5-3-user-profile.context.xml`\n- מדווח: \"Context נוצר בהצלחה!\""
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "צעד 2: פיתוח הסטורי",
+      "id": "step-2-dev"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# מריצים dev-story\n@dev-story",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**מה קורה:**\n\n1. **האגנט קורא:**\n   - קובץ Context\n   - קובץ הסטורי עם Tasks\n   - DoD\n\n2. **האגנט מפתח Task 1:**\n   - יוצר User Profile Component\n   - מוסיף form validation\n   - מוסיף responsive layout\n   - מריץ בדיקות\n   - מסמן Task 1 כהושלם\n\n3. **האגנט מפתח Task 2:**\n   - יוצר API service\n   - מוסיף error handling\n   - כותב unit tests\n   - מריץ בדיקות\n   - מסמן Task 2 כהושלם\n\n4. **האגנט בודק DoD:**\n   - ✅ All tests passing\n   - ✅ No linter errors\n   - ✅ Documentation updated\n   - ✅ Ready for Review\n\n5. **האגנט מעדכן:**\n   - משנה סטטוס ל-\"Ready for Review\"\n   - מדווח: \"הסטורי מוכן ל-Code Review!\""
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "צעד 3: Code Review",
+      "id": "step-3-review"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# מריצים code-review\n@code-review",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**מה קורה:**\n\n1. **האגנט בודק:**\n   - Code quality ✅\n   - Best practices ✅\n   - Security ⚠️ (מצא בעיה קטנה)\n   - Performance ✅\n   - Tests ✅\n\n2. **האגנט כותב דוח:**\n   - בעיה: Password validation צריכה שיפור\n   - המלצה: הוסף regex חזק יותר\n   - סטטוס: Changes Requested\n\n3. **האגנט מעדכן:**\n   - מחזיר הסטורי ל-\"In Progress\"\n   - מוסיף Action Items\n   - מדווח: \"נמצאה בעיה אחת - תקנו ותריצו שוב\""
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "צעד 4: תיקון והרצה מחדש",
+      "id": "step-4-fix"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# מתקנים את הבעיה\n@dev-story\nתקן את password validation\n\n# מריצים review שוב\n@code-review",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**מה קורה:**\n\n1. **dev-story:**\n   - מתקן את password validation\n   - מריץ בדיקות\n   - משנה ל-\"Ready for Review\" שוב\n\n2. **code-review:**\n   - בודק שוב\n   - הכל עובר! ✅\n   - סטטוס: Approved\n   - מדווח: \"Code Review עבר בהצלחה!\""
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "צעד 5: סיום הסטורי",
+      "id": "step-5-done"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# מסיימים את הסטורי\n@story-done",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**מה קורה:**\n- משנה סטטוס ל-\"Done\"\n- מעדכן sprint-status.yaml\n- מזהה הסטורי הבא (5.4)\n- מדווח: \"Story 5.3 הושלם! הבא בתור: Story 5.4\"\n\n**סיימנו!** 🎉"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "התוצאה",
+      "content": "Story 5.3 מושלם מקצה לקצה - קוד עובד, בדוק, עבר Review, ב-git, ומוכן לפרודקשן. זמן כולל: ~2-4 שעות (תלוי במורכבות)."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרשים התהליך המלא",
+      "id": "full-process-diagram"
+    },
+    {
+      "type": "code",
+      "language": "mermaid",
+      "code": "sequenceDiagram\n    participant Dev as Developer\n    participant SC as story-context\n    participant DS as dev-story\n    participant CR as code-review\n    participant SD as story-done\n    \n    Dev->>SC: @story-context\n    SC->>SC: Collect docs\n    SC-->>Dev: Context ready\n    \n    Dev->>DS: @dev-story\n    DS->>DS: Develop Task 1\n    DS->>DS: Develop Task 2\n    DS->>DS: Check DoD\n    DS-->>Dev: Ready for Review\n    \n    Dev->>CR: @code-review\n    CR->>CR: Review code\n    CR-->>Dev: Changes Requested\n    \n    Dev->>DS: Fix issues\n    DS-->>Dev: Ready for Review\n    \n    Dev->>CR: @code-review again\n    CR-->>Dev: Approved!\n    \n    Dev->>SD: @story-done\n    SD-->>Dev: Story Done! 🎉",
+      "showLineNumbers": false
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שאלות נפוצות",
+      "id": "faq"
+    },
+    {
+      "type": "accordion",
+      "variant": "default",
+      "items": [
+        {
+          "id": "faq-1",
+          "title": "האם חובה להריץ story-context לפני dev-story?",
+          "content": "**לא חובה, אבל מומלץ מאוד!**\n\ndev-story יכול לעבוד גם בלי context, אבל:\n- האגנט יצטרך למצוא את המידע בעצמו\n- זה יקח יותר זמן\n- יכול לפספס מידע חשוב\n\n**המלצה:** תמיד הריצו story-context קודם!"
+        },
+        {
+          "id": "faq-2",
+          "title": "מה אם dev-story נתקע באמצע?",
+          "content": "**אין בעיה!**\n\nפשוט:\n1. עצרו את הוורקפלוא\n2. בדקו מה הבעיה\n3. תקנו אם צריך\n4. הריצו `@dev-story` שוב\n\nהוא יראה שכבר יש Tasks שהושלמו וימשיך מהמקום שעצר!"
+        },
+        {
+          "id": "faq-3",
+          "title": "האם אפשר לדלג על Code Review?",
+          "content": "**טכנית כן, אבל ממש לא מומלץ!**\n\nCode Review:\n- מוצא באגים מוקדם\n- שומר על איכות\n- מונע בעיות אבטחה\n\n**אפשר לדלג רק אם:**\n- זה תיקון דחוף (hotfix)\n- השינוי מינימלי מאוד\n- יש review ידני אחר\n\n**אחרת:** תמיד הריצו code-review!"
+        },
+        {
+          "id": "faq-4",
+          "title": "איך מתקנים סטורי שנכשל ב-Code Review?",
+          "content": "**התהליך:**\n\n1. קראו את ה-review notes\n2. הבינו מה צריך לתקן\n3. הריצו `@dev-story` עם ההבהרה:\n   ```\n   @dev-story\n   תקן את password validation לפי ה-review notes\n   ```\n4. אחרי התיקון - הריצו `@code-review` שוב\n5. אם עבר - הריצו `@story-done`"
+        },
+        {
+          "id": "faq-5",
+          "title": "מה ההבדל בין dev-story ל-story-done?",
+          "content": "**dev-story:**\n- כותב קוד\n- מריץ בדיקות\n- מממש Tasks\n- משנה ל-\"Ready for Review\"\n\n**story-done:**\n- רק משנה סטטוס\n- מעדכן sprint-status\n- מזהה הסטורי הבא\n- לא כותב קוד!\n\n**במילים פשוטות:**\ndev-story = עושה את העבודה\nstory-done = סוגר את הסטורי"
+        },
+        {
+          "id": "faq-6",
+          "title": "איך מפתחים כמה Stories במקביל?",
+          "content": "**אפשר, אבל צריך לציין מפורש:**\n\n```bash\n# Story 5.3\n@dev-story\nבואו נפתח את סטורי 5.3\n\n# Story 5.4 במקביל\n@dev-story\nבואו נפתח את סטורי 5.4\n```\n\n**חשוב:**\n- תמיד ציינו איזה Story\n- אל תבלבלו בין Stories\n- עדיפים תמיד לעבוד אחד אחרי השני"
+        },
+        {
+          "id": "faq-7",
+          "title": "מה אם אין לי Tech Spec או Architecture?",
+          "content": "**לא נורא!**\n\nstory-context יעבוד עם מה שיש:\n- אם יש PRD בלבד - יעבוד עם זה\n- אם חסר UX - יתעלם\n- אם חסר הרבה - יזהיר אבל ימשיך\n\n**אבל:**\nככל שיש יותר תיעוד, האיכות תהיה יותר טובה!\n\n**המלצה:**\nלפחות PRD + Epic צריך להיות."
+        },
+        {
+          "id": "faq-8",
+          "title": "איך אני יודע שהסטורי באמת Done?",
+          "content": "**הסטורי Done רק אם:**\n\n✅ כל ה-Tasks הושלמו\n✅ כל ה-DoD התקיים\n✅ Code Review עבר (Approved)\n✅ הוורקפלוא story-done הסתיים\n✅ הסטטוס ב-sprint-status הוא \"Done\"\n\n**אם משהו חסר:**\nהסטורי לא Done! תקנו מה שחסר."
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "סיכום ומעבר לניהול הפרויקט",
+      "id": "summary"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**במדריך זה למדנו:**\n\n**4 הוורקפלואים של Development Flow:**\n1. **story-context** - יוצר קובץ context עם כל המידע\n2. **dev-story** - מפתח את הסטורי מקצה לקצה\n3. **code-review** - עושה סקירת קוד מקצועית\n4. **story-done** - מסמן הסטורי כהושלם\n\n**התהליך המלא:**\nStory Ready → Context → Dev → Review → (Fix?) → Done!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה הלאה?",
+      "id": "whats-next"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**עכשיו שאתם יודעים לפתח Stories**, הצעד הבא הוא **ניהול הפרויקט**:\n\n**חלק 3ד: Project Management**\n- workflow-status - מעקב אחר התקדמות\n- correct-course - תיקון כיוון\n- retrospective - רטרוספקטיבה\n\nזה יעזור לכם **לעקוב אחר הכל**, **לזהות בעיות**, ו**לשפר את התהליך**!"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "טיפ אחרון",
+      "content": "Development Flow הוא הלב של BMAD - תתרגלו אותו טוב! אחרי 3-5 Stories זה יהפוך לטבעי ותוכלו לעבוד מהר מאוד."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "משאבים נוספים",
+      "id": "resources"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "items": [
+        {
+          "id": "resource-1",
+          "content": {
+            "type": "card",
+            "title": "מדריך למפתחים",
+            "description": "כל מה שמפתח צריך לדעת על BMAD",
+            "link": "/guides/role-developers",
+            "variant": "default"
+          }
+        },
+        {
+          "id": "resource-2",
+          "content": {
+            "type": "card",
+            "title": "Sprint Setup",
+            "description": "איך לתכנן ולנהל ספרינט",
+            "link": "/guides/workflows-sprint-setup",
+            "variant": "default"
+          }
+        },
+        {
+          "id": "resource-3",
+          "content": {
+            "type": "card",
+            "title": "Solutioning",
+            "description": "איך להכין Stories לפיתוח",
+            "link": "/guides/workflows-solutioning",
+            "variant": "default"
+          }
+        },
+        {
+          "id": "resource-4",
+          "content": {
+            "type": "card",
+            "title": "שאלות ותשובות",
+            "description": "FAQ על BMAD",
+            "link": "/guides/faq-basics",
+            "variant": "default"
+          }
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מזל טוב! סיימתם את חלק 3ג!",
+      "content": "עכשיו אתם יודעים לפתח Stories מקצה לקצה עם BMAD. המשיכו לחלק 3ד (Project Management) כדי ללמוד איך לנהל את הכל!"
+    }
+  ]
+}
+

@@ -295,15 +295,15 @@ export function GuidesPage() {
   ]);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+      <div className="bg-card border-b border-border">
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             {/* Title and count - Story 10.5: Responsive typography */}
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">מדריכים</h1>
-              <p className="mt-1 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+              <h1 className="text-2xl sm:text-3xl font-bold text-foreground">מדריכים</h1>
+              <p className="mt-1 text-xs sm:text-sm text-muted-foreground">
                 {filteredAndSortedGuides.length} מדריכים
                 {filteredAndSortedGuides.length !== totalCount && ` מתוך ${totalCount}`}
               </p>
@@ -326,7 +326,7 @@ export function GuidesPage() {
               </Select>
 
               {/* View mode toggle */}
-              <div className="flex items-center gap-1 bg-gray-100 dark:bg-gray-700 p-1 rounded-lg">
+              <div className="flex items-center gap-1 bg-muted p-1 rounded-lg">
                 <Button
                   variant={viewMode === 'grid' ? 'default' : 'ghost'}
                   size="sm"
@@ -366,7 +366,7 @@ export function GuidesPage() {
           {/* Active filter chips */}
           {activeFilterChips.length > 0 && (
             <div className="mt-4 flex flex-wrap items-center gap-2">
-              <span className="text-sm text-gray-600 dark:text-gray-400">סינון פעיל:</span>
+              <span className="text-sm text-muted-foreground">סינון פעיל:</span>
               {activeFilterChips.map((chip) => (
                 <motion.div
                   key={chip.id}
@@ -408,8 +408,8 @@ export function GuidesPage() {
             className={cn(
               'lg:w-55 flex-shrink-0',
               'fixed lg:static inset-y-0 right-0 z-40 lg:z-0',
-              'bg-white dark:bg-gray-800 lg:bg-transparent',
-              'border-l lg:border-none border-gray-200 dark:border-gray-700',
+              'bg-card lg:bg-transparent',
+              'border-l lg:border-none border-border',
               'transform lg:transform-none transition-transform duration-300',
               'p-6 lg:p-0',
               'overflow-y-auto',
@@ -428,8 +428,8 @@ export function GuidesPage() {
 
             <div className="space-y-6 mt-12 lg:mt-0">
               {/* Category filters */}
-              <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-                <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
+              <div className="bg-card p-4 rounded-lg border border-border">
+                <h3 className="text-sm font-semibold text-foreground mb-3">
                   קטגוריות
                 </h3>
                 <div className="space-y-2">
@@ -450,7 +450,7 @@ export function GuidesPage() {
                           className="flex items-center justify-between flex-1 cursor-pointer text-sm"
                         >
                           <span>{config.label}</span>
-                          <span className="text-xs text-gray-500 dark:text-gray-400">
+                          <span className="text-xs text-muted-foreground">
                             ({count})
                           </span>
                         </Label>
@@ -461,8 +461,8 @@ export function GuidesPage() {
               </div>
 
               {/* Difficulty filters */}
-              <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-                <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
+              <div className="bg-card p-4 rounded-lg border border-border">
+                <h3 className="text-sm font-semibold text-foreground mb-3">
                   רמת קושי
                 </h3>
                 <div className="space-y-2">
@@ -490,8 +490,8 @@ export function GuidesPage() {
               </div>
 
               {/* Status filter */}
-              <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-                <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">סטטוס</h3>
+              <div className="bg-card p-4 rounded-lg border border-border">
+                <h3 className="text-sm font-semibold text-foreground mb-3">סטטוס</h3>
                 <div className="space-y-2">
                   {Object.entries(STATUS_FILTERS).map(([key, config]) => {
                     const status = key as StatusFilter;
@@ -505,7 +505,7 @@ export function GuidesPage() {
                           'w-full text-right px-3 py-2 rounded-md text-sm transition-colors',
                           isSelected
                             ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 font-medium'
-                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                            : 'text-foreground hover:bg-muted'
                         )}
                       >
                         {config.label}
@@ -542,11 +542,11 @@ export function GuidesPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-center py-16"
               >
-                <IconSearch className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                <IconSearch className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-foreground mb-2">
                   לא נמצאו מדריכים
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-6">
+                <p className="text-muted-foreground mb-6">
                   נסה לשנות את הסינונים או לנקות אותם
                 </p>
                 {hasActiveFilters() && (

@@ -1,0 +1,789 @@
+{
+  "metadata": {
+    "id": "cis-last2",
+    "slug": "cis-last2",
+    "title": "מדריך אג'נטים - חלק 4ב: שילוב בין אג'נטים (2 אחרונים)",
+    "description": "המשך תרחישי CIS מתקדמים - שיתוף פעולה בין TEA, UX Designer ו-Tech Writer. אופטימיזציה, פתרון בעיות, וטיפים מקצועיים לעבודה עם מספר אג'נטים.",
+    "category": "agents",
+    "difficulty": "advanced",
+    "estimatedMinutes": 35,
+    "icon": "Users",
+    "tags": ["אג'נטים", "CIS", "party-mode", "שיתוף-פעולה", "TEA", "UX", "Tech-Writer"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "מבוא: המשך CIS",
+      "level": 2,
+      "anchor": "intro"
+    },
+    {
+      "id": "toc-2",
+      "title": "תרחיש 4: UX + TEA + Dev",
+      "level": 2,
+      "anchor": "scenario-4"
+    },
+    {
+      "id": "toc-3",
+      "title": "תרחיש 5: מחזור שלם - PM עד Tech Writer",
+      "level": 2,
+      "anchor": "scenario-5"
+    },
+    {
+      "id": "toc-4",
+      "title": "אופטימיזציה של שילובי אג'נטים",
+      "level": 2,
+      "anchor": "optimization"
+    },
+    {
+      "id": "toc-5",
+      "title": "פתרון בעיות נפוצות",
+      "level": 2,
+      "anchor": "troubleshooting"
+    },
+    {
+      "id": "toc-6",
+      "title": "שאלות נפוצות",
+      "level": 2,
+      "anchor": "faq"
+    },
+    {
+      "id": "toc-7",
+      "title": "סיכום והצעד הבא",
+      "level": 2,
+      "anchor": "summary"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מדריך אג'נטים - חלק 4ב: שילוב בין אג'נטים (המשך)",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "המשך המדריך המתקדם",
+      "content": "חלק 2 בסדרת CIS - עוד תרחישים מורכבים, אופטימיזציה, ופתרון בעיות בעבודה עם מספר אג'נטים"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "מבוא: המשך CIS",
+      "id": "intro"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "בחלק הקודם למדנו על **CIS (Collective Intelligence System)** והכרנו 3 תרחישי שיתוף פעולה בסיסיים. עכשיו נעמיק - נראה תרחישים מורכבים יותר, נלמד איך לאופטם את העבודה, ונפתור בעיות נפוצות.\n\nהחלק הזה מתמקד בשילובים שכוללים את האג'נטים המתמחים - **UX Designer, TEA, ו-Tech Writer**. אלו אג'נטים שבדרך כלל נכנסים לתמונה בשלבים מאוחרים יותר, ויש להם צורך חזק בתיאום עם כל שאר הצוות."
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "המלצה",
+      "content": "אם לא קראתם את חלק 4א, מומלץ לקרוא אותו קודם - הוא מניח את התשתית לתרחישים המתקדמים כאן"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תרחיש 4: UX + TEA + Dev (Feature Polish)",
+      "id": "scenario-4"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "המטרה",
+      "content": "קחת פיצ'ר שכבר עובד ולהפוך אותו ל-production-ready - עיצוב מלוטש, בדיקות מקיפות, ואיכות גבוהה"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "אתם סיימתם MVP של **מערכת הודעות real-time** באפליקציה. הקוד עובד, אבל זה עדיין לא מוכן להשקה - צריך לשפר את ה-UX, לבדוק לעומק, ולוודא שהכל איכותי."
+    },
+    {
+      "type": "grid",
+      "columns": 3,
+      "gap": "md",
+      "items": [
+        {
+          "type": "card",
+          "icon": "Palette",
+          "title": "UX Designer",
+          "content": "משפר - עיצוב, אנימציות, נגישות"
+        },
+        {
+          "type": "card",
+          "icon": "TestPipe",
+          "title": "TEA",
+          "content": "בודק - edge cases, performance, UX"
+        },
+        {
+          "type": "card",
+          "icon": "Code",
+          "title": "Dev",
+          "content": "מממש - תיקונים, שיפורים, אופטימיזציות"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "התהליך",
+      "id": "scenario-4-process"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 1: UX Designer מנתח**\n- בודק את ה-MVP הקיים\n- מזהה 5 בעיות UX קריטיות\n- מציע שיפורים: animations, loading states, error messages\n\n**שלב 2: TEA כותב test plan**\n- 15 test cases לזרימות משתמש\n- 8 tests לתרחישי network failure\n- 5 tests לנגישות (WCAG)\n\n**שלב 3: Dev מממש**\n- מתקן בעיות UX אחת אחת\n- מוסיף loading skeletons\n- מטפל בכל ה-edge cases\n\n**שלב 4: Review משולש**\n- UX Designer בודק pixels ואינטראקציות\n- TEA מריץ את כל הבדיקות\n- Dev עושה code review עצמי\n\n**שלב 5: Final polish**\n- UX מאשר עיצוב סופי\n- TEA מאשר שכל הבדיקות עוברות\n- Ready for production!"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאה",
+      "content": "8 שעות: מ-MVP ל-production-ready feature עם איכות גבוהה. זה הכוח של שיתוף פעולה צמוד!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "קוד לדוגמה: הפעלת התרחיש",
+      "id": "scenario-4-code"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "@bmad-master\n\nהפעל *party-mode עם:\n- UX Designer\n- TEA\n- Dev\n\nאני רוצה לקחת את מערכת ההודעות שבנינו\nולהפוך אותה ל-production-ready:\n- שיפורי UX\n- בדיקות מקיפות\n- טיפול ב-edge cases"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תרחיש 5: מחזור שלם - PM עד Tech Writer",
+      "id": "scenario-5"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "המטרה",
+      "content": "לעבור מחזור חיים מלא של פיצ'ר - מרעיון ועד תיעוד מלא וכולל"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "זה התרחיש המתקדם ביותר - **5 אג'נטים** עובדים יחד על פיצ'ר אחד מקצה לקצה. זה מחקה צוות פיתוח אמיתי במלוא הדרו, והוא מדגים את המקסימום שאפשר להשיג עם CIS."
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "הפיצ'ר: **API webhooks ציבורי** - מפתחים חיצוניים יוכלו לרשום webhooks ולקבל התראות על אירועים במערכת."
+    },
+    {
+      "type": "grid",
+      "columns": 3,
+      "gap": "md",
+      "items": [
+        {
+          "type": "card",
+          "icon": "Briefcase",
+          "title": "PM",
+          "content": "Phase 1: הגדרת דרישות ו-MVP"
+        },
+        {
+          "type": "card",
+          "icon": "BuildingArch",
+          "title": "Architect",
+          "content": "Phase 2: תכנון ארכיטקטורה"
+        },
+        {
+          "type": "card",
+          "icon": "Code",
+          "title": "Dev",
+          "content": "Phase 3: מימוש"
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "gap": "md",
+      "items": [
+        {
+          "type": "card",
+          "icon": "TestPipe",
+          "title": "TEA",
+          "content": "Phase 4: בדיקות מקיפות"
+        },
+        {
+          "type": "card",
+          "icon": "Book",
+          "title": "Tech Writer",
+          "content": "Phase 5: תיעוד ומדריכים"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "המחזור המלא",
+      "id": "scenario-5-cycle"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "phase-1",
+          "title": "Phase 1: Discovery (PM) - 45 דקות",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**PM מגדיר:**\n- למה צריך webhooks? (integration עם מערכות חיצוניות)\n- מי קהל היעד? (developers חיצוניים)\n- מה ה-MVP? (5 אירועים בסיסיים: user.created, order.placed, payment.completed, subscription.updated, user.deleted)\n- מה הצלחה? (20 integrands ראשונים בחודש הראשון)"
+            },
+            {
+              "type": "callout",
+              "variant": "success",
+              "title": "תוצר",
+              "content": "מסמך דרישות מפורט - 3 עמודים"
+            }
+          ]
+        },
+        {
+          "id": "phase-2",
+          "title": "Phase 2: Architecture (Architect + PM) - 1.5 שעות",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**Architect מתכנן:**\n- Queue-based (RabbitMQ)\n- Retry mechanism (3 attempts)\n- Rate limiting (100/min per webhook)\n- Security (HMAC signatures)\n- Database (webhooks table: id, url, events[], secret, status)"
+            },
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**PM מאשר:**\n- האם זה עומד בדרישות? ✅\n- האם זה scalable? ✅\n- זמן פיתוח מוערך: 2 שבועות ✅"
+            },
+            {
+              "type": "callout",
+              "variant": "success",
+              "title": "תוצר",
+              "content": "מסמך ארכיטקטורה + ER diagram"
+            }
+          ]
+        },
+        {
+          "id": "phase-3",
+          "title": "Phase 3: Development (Dev + Architect) - 1 שבוע",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**Dev מממש:**\n- `/api/webhooks` endpoints (CRUD)\n- Webhook dispatcher service\n- Retry mechanism\n- Signature verification\n\n**Architect עושה code review:**\n- בודק שהמימוש עומד בתכנון\n- מזהה optimization opportunities\n- מאשר merge לmain"
+            },
+            {
+              "type": "callout",
+              "variant": "success",
+              "title": "תוצר",
+              "content": "קוד עובד + unit tests"
+            }
+          ]
+        },
+        {
+          "id": "phase-4",
+          "title": "Phase 4: Testing (TEA + Dev) - 2 ימים",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**TEA כותב:**\n- 25 integration tests\n- 15 edge cases\n- Performance tests (1000 webhooks/sec)\n- Security tests (signature tampering)\n\n**Dev מתקן:**\n- 3 באגים שנמצאו\n- Performance bottleneck אחד\n- כל ה-tests עוברים ✅"
+            },
+            {
+              "type": "callout",
+              "variant": "success",
+              "title": "תוצר",
+              "content": "Test suite מקיף + באגים מתוקנים"
+            }
+          ]
+        },
+        {
+          "id": "phase-5",
+          "title": "Phase 5: Documentation (Tech Writer + כולם) - 1 יום",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**Tech Writer יוצר:**\n- API Reference (כל ה-endpoints)\n- Quick Start Guide (5 דקות להתחלה)\n- Advanced Guide (signatures, retries, rate limits)\n- Code examples (JavaScript, Python, PHP)\n- Troubleshooting section\n\n**Review צולב:**\n- Dev בודק שהקוד בדוגמאות עובד\n- Architect בודק שהארכיטקטורה מוסברת נכון\n- PM בודק שהתיעוד מתאר את הדרישות המקוריות"
+            },
+            {
+              "type": "callout",
+              "variant": "success",
+              "title": "תוצר",
+              "content": "תיעוד מלא + code samples"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאה סופית",
+      "content": "10 ימי עבודה: מרעיון לפיצ'ר מלא בייצור עם תיעוד מצוין. עם אג'נט אחד זה היה לוקח חודש!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "קוד לדוגמה: מחזור מלא",
+      "id": "scenario-5-code"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "# Phase 1: Discovery\n@pm-agent\n*product-brief לפיצ'ר webhooks API\n\n# Phase 2: Architecture\n@bmad-master\n*party-mode: Architect, PM\nתכננו ארכיטקטורה לפיצ'ר webhooks\n\n# Phase 3: Development\n@bmad-master\n*party-mode: Dev, Architect\nממשו את ה-webhooks API לפי הארכיטקטורה\n\n# Phase 4: Testing\n@bmad-master\n*party-mode: TEA, Dev\nכתבו test suite מקיף ותקנו באגים\n\n# Phase 5: Documentation\n@bmad-master\n*party-mode: Tech Writer, Dev, Architect, PM\nתעדו את ה-API במלואו"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "אופטימיזציה של שילובי אג'נטים",
+      "id": "optimization"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "אחרי שניסיתם כמה תרחישים, הגיע הזמן לשפר. הנה הטיפים המקצועיים שיעזרו לכם לעבוד מהר יותר ובאיכות גבוהה יותר."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "1. תזמון נכון",
+      "id": "opt-timing"
+    },
+    {
+      "type": "table",
+      "headers": [
+        { "content": "אג'נט" },
+        { "content": "מתי להזמין" },
+        { "content": "למה" }
+      ],
+      "rows": [
+        {
+          "cells": [
+            { "content": "PM" },
+            { "content": "תחילת הפרויקט" },
+            { "content": "מגדיר דרישות - כולם צריכים אותן" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "Analyst" },
+            { "content": "עם PM" },
+            { "content": "מחקר מיד אחרי החלטה על רעיון" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "Architect" },
+            { "content": "אחרי PRD" },
+            { "content": "צריך דרישות ברורות לתכנון" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "UX Designer" },
+            { "content": "מקביל לארכיטקטורה" },
+            { "content": "יכול לעבוד בצד על עיצוב" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "Dev" },
+            { "content": "אחרי ארכיטקטורה" },
+            { "content": "צריך תכנון לפני קוד" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "TEA" },
+            { "content": "לפני הפיתוח!" },
+            { "content": "כתיבת tests לפני קוד (TDD)" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "Tech Writer" },
+            { "content": "כשהקוד עובד" },
+            { "content": "צריך משהו עובד לתעד" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "2. חלוקת עבודה מקבילית",
+      "id": "opt-parallel"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "לא כל האג'נטים צריכים לעבוד ברצף. הרבה עבודות יכולות להתבצע **במקביל**:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        {
+          "content": "**Architect + UX Designer** - בזמן שהארכיטקט מתכנן את ה-backend, ה-UX יכול לעצב את ה-frontend"
+        },
+        {
+          "content": "**Dev + TEA** - בזמן שה-Dev כותב פיצ'ר אחד, TEA יכול לכתוב tests לפיצ'ר הבא"
+        },
+        {
+          "content": "**PM + Tech Writer** - בזמן שה-PM מתכנן פיצ'ר חדש, Tech Writer יכול לתעד פיצ'ר שסיימו"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "Tip",
+      "content": "חלקו את הפרויקט למשימות עצמאיות וחלקו אותן בין אג'נטים - זה יחסוך המון זמן!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "3. Context Handoffs מסודרים",
+      "id": "opt-handoffs"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "כשאג'נט אחד מסיים ומועבר לאחר, תוודאו שהמעבר חלק:"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "# ❌ לא טוב\nאתם: \"@dev-agent תממש את זה\"\n\n# ✅ טוב\nאתם: \"@dev-agent\nקרא את הקובץ docs/prd.md ו-docs/architecture.md\nואז תממש את הפיצ'ר webhooks לפי המפרט\""
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "4. שימוש נבון ב-Party Mode",
+      "id": "opt-party"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "לא צריך את כל האג'נטים כל הזמן. הפעילו party mode רק כשבאמת צריך:"
+    },
+    {
+      "type": "table",
+      "headers": [
+        { "content": "סיטואציה" },
+        { "content": "Party Mode?" },
+        { "content": "מספר אג'נטים" }
+      ],
+      "rows": [
+        {
+          "cells": [
+            { "content": "משימה פשוטה" },
+            { "content": "לא" },
+            { "content": "1" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "פיצ'ר בודד" },
+            { "content": "כן" },
+            { "content": "2-3" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "החלטה ארכיטקטונית" },
+            { "content": "כן" },
+            { "content": "3-4" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "brainstorming" },
+            { "content": "כן" },
+            { "content": "4-6" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "code review" },
+            { "content": "אולי" },
+            { "content": "2" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "פתרון בעיות נפוצות",
+      "id": "troubleshooting"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "עבודה עם מספר אג'נטים יכולה להיות מורכבת. הנה הבעיות הנפוצות ביותר ואיך לפתור אותן."
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "problem-1",
+          "title": "בעיה 1: אג'נטים לא מסכימים",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**תסמינים:** Dev אומר A, Architect אומר B, UX אומר C.\n\n**סיבה:** כל אג'נט רואה את הבעיה מזווית שלו.\n\n**פתרון:**\n1. תשאלו כל אחד **למה** הוא חושב ככה\n2. זהו את נקודות המחלוקת האמיתיות\n3. תחליטו לפי עדיפויות הפרויקט\n4. תסבירו את ההחלטה לכולם"
+            },
+            {
+              "type": "code",
+              "language": "markdown",
+              "code": "אתם: \"@architect למה אתה ממליץ על מיקרוסרוויסים?\"\nArchitect: \"כי... [נימוקים]\"\n\nאתם: \"@dev למה אתה מעדיף מונוליט?\"\nDev: \"כי... [נימוקים]\"\n\nאתם: \"אוקיי, נלך על מונוליט כרגע בגלל X, Y, Z.\n@architect מסכים?\""
+            }
+          ]
+        },
+        {
+          "id": "problem-2",
+          "title": "בעיה 2: אג'נט לא מבין את הקונטקסט",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**תסמינים:** אג'נט שואל שאלות שכבר ענינו עליהן.\n\n**סיבה:** לא קרא את הקבצים הרלוונטיים.\n\n**פתרון:**\n1. תפנו אותו במפורש לקבצים\n2. תנו לו סיכום קצר של מה היה עד עכשיו\n3. תבקשו אותו לאשר שהוא הבין"
+            },
+            {
+              "type": "code",
+              "language": "markdown",
+              "code": "אתם: \"@tea-agent\nקודם כל קרא:\n1. docs/prd.md\n2. docs/architecture.md\n3. src/webhooks/README.md\n\nאחרי שתקרא, אשר לי שהבנת מה אנחנו בונים.\nואז תכין test plan.\""
+            }
+          ]
+        },
+        {
+          "id": "problem-3",
+          "title": "בעיה 3: יותר מדי רעש",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**תסמינים:** 5 אג'נטים מדברים בו-זמנית, קשה לעקוב.\n\n**סיבה:** יותר מדי אג'נטים לסוג המשימה.\n\n**פתרון:**\n1. תעצרו את הסשן\n2. תחלקו למשימות קטנות יותר\n3. תעבדו עם 2-3 אג'נטים לכל משימה"
+            },
+            {
+              "type": "callout",
+              "variant": "warning",
+              "title": "כלל אצבע",
+              "content": "אם יש יותר מ-4 אג'נטים בסשן ואתם מרגישים overwhelmed - זה סימן לפצל"
+            }
+          ]
+        },
+        {
+          "id": "problem-4",
+          "title": "בעיה 4: אג'נט יושב בטל",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**תסמינים:** אג'נט בסשן אבל לא תורם.\n\n**סיבה:** אין לו מה לעשות בשלב הזה.\n\n**פתרון:**\n1. תודו לו ותן לו לעזוב\n2. תזמנו אותו בחזרה כשצריך\n3. לא חייבים לשמור אג'נטים \"למקרה\""
+            },
+            {
+              "type": "code",
+              "language": "markdown",
+              "code": "אתם: \"תודה @ux-designer! זה הכל לעכשיו.\nנזמין אותך בחזרה כשהקוד יהיה מוכן לpolish.\""
+            }
+          ]
+        },
+        {
+          "id": "problem-5",
+          "title": "בעיה 5: Context loss בין סשנים",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**תסמינים:** סשן חדש, אג'נטים לא זוכרים מה היה.\n\n**סיבה:** זה סשן חדש, צריך לטעון מחדש.\n\n**פתרון:**\n1. **תשמרו כל תוצר בקובץ**\n2. בתחילת סשן חדש - תפנו את כולם לקבצים\n3. השתמשו ב-BMAD Master לסיכום סשנים"
+            },
+            {
+              "type": "code",
+              "language": "markdown",
+              "code": "# בסוף כל סשן\nאתם: \"@bmad-master תסכם לי את הסשן הזה\nומה הקבצים שנוצרו\"\n\n# בתחילת סשן חדש\nאתם: \"@architect קרא את docs/session-summary.md\nואת docs/architecture.md לפני שנמשיך\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שאלות נפוצות",
+      "id": "faq"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "faq-1",
+          "title": "מה קורה אם אני מוסיף אג'נט באמצע party mode?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**זה עובד מצוין!** האג'נט החדש יקרא את כל ה-conversation אוטומטית ויבין את הקונטקסט. פשוט תזמין אותו והוא יצטרף."
+            },
+            {
+              "type": "code",
+              "language": "markdown",
+              "code": "# באמצע סשן\nאתם: \"@tea-agent הצטרף בבקשה, אנחנו צריכים\nלדבר על testing strategy\"\n\nTEA: \"שלום! קראתי את הconversation.\nאני רואה שאתם בונים webhooks API...\""
+            }
+          ]
+        },
+        {
+          "id": "faq-2",
+          "title": "האם אפשר להסיר אג'נט מ-party mode?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**כן.** פשוט תודו לו ותמשיכו. הוא כבר לא יגיב אלא אם תזמין אותו מפורשות שוב."
+            }
+          ]
+        },
+        {
+          "id": "faq-3",
+          "title": "כמה זמן party mode יכול לרוץ?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**ללא הגבלה.** אבל מעשית, רוב הסשנים הם 30 דקות עד 3 שעות. אחרי זה כדאי להפסיק, לשמור את התוצרים, ולהתחיל סשן חדש."
+            }
+          ]
+        },
+        {
+          "id": "faq-4",
+          "title": "האם אג'נטים יכולים \"לדבר\" ביניהם בלי שאני מתערב?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**כן!** אתם יכולים לבקש מהם לדון ביניהם:\n\n`\"@architect ו-@dev, דונו ביניכם על הבחירה הטובה ביותר\"`\n\nהם יחליפו רעיונות ויגיעו להסכמה (או שיבקשו מכם להכריע)."
+            }
+          ]
+        },
+        {
+          "id": "faq-5",
+          "title": "מה עדיף - party mode או אג'נטים בודדים?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**תלוי במשימה:**\n\n**Party Mode טוב ל:**\n- החלטות מורכבות\n- פיצ'רים גדולים\n- brainstorming\n- integration בין תחומים\n\n**אג'נט בודד טוב ל:**\n- משימות פשוטות\n- execution ממוקד\n- כשאתם בדיוק יודעים מה צריך"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "סיכום והצעד הבא",
+      "id": "summary"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "השלמתם את חלק 4ב!",
+      "content": "אתם מכירים כעת את כל תרחישי ה-CIS המתקדמים, יודעים לאופטם, ויודעים לפתור בעיות"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "בחלק הזה למדנו:\n\n✅ **תרחיש 4:** UX + TEA + Dev לFeature Polish\n✅ **תרחיש 5:** מחזור מלא מ-PM עד Tech Writer\n✅ **אופטימיזציה:** תזמון, עבודה מקבילית, handoffs\n✅ **פתרון בעיות:** 5 בעיות נפוצות ואיך לפתור\n✅ **FAQ:** כל השאלות על CIS"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הצעד הבא: סינתזה",
+      "id": "next-synthesis"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "עכשיו שאתם מכירים את כל האג'נטים (חלק 1-3) ויודעים לשלב ביניהם (חלק 4א-4ב), הגיע הזמן לראות את **התמונה הגדולה**."
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "חלק 5: סינתזה ותמונה כוללת",
+      "content": "במדריך הבא נראה איך כל האג'נטים עובדים יחד במחזור חיים שלם של פרויקט - מרעיון עד production. תקבלו מודל מנטלי שלם של איך BMAD עובד בעולם האמיתי."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        {
+          "content": "קחו הפסקה - ספגו את המידע"
+        },
+        {
+          "content": "נסו תרחיש אחד מהמדריך הזה בפרויקט שלכם"
+        },
+        {
+          "content": "כשתרגישו מוכנים, עברו לחלק 5"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "המלצה",
+      "content": "נסו את תרחיש 4 (UX + TEA + Dev) קודם - הוא קצר וממחיש יפה את הכוח של שיתוף פעולה צמוד"
+    }
+  ],
+  "relatedGuides": [
+    "agents-cis-first3",
+    "agents-synthesis",
+    "agents-tea-ux",
+    "agents-techwriter-master",
+    "ux-designers",
+    "qa-testers"
+  ],
+  "prerequisites": [
+    "agents-intro-pm-analyst",
+    "agents-architect-sm-dev",
+    "agents-tea-ux",
+    "agents-techwriter-master",
+    "agents-cis-first3"
+  ],
+  "nextSteps": [
+    "agents-synthesis",
+    "workflows-intro-critical",
+    "best-practices"
+  ]
+}
+

@@ -650,7 +650,7 @@ export function GuideReaderPage() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400">טוען מדריך...</p>
+          <p className="mt-4 text-muted-foreground dark:text-gray-400">טוען מדריך...</p>
         </div>
       </div>
     );
@@ -661,7 +661,7 @@ export function GuideReaderPage() {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center space-y-4">
-          <p className="text-xl text-gray-900 dark:text-gray-100">{error || 'המדריך לא נמצא'}</p>
+          <p className="text-xl text-foreground dark:text-gray-100">{error || 'המדריך לא נמצא'}</p>
           <Button onClick={() => navigate('/guides')}>חזרה לספרייה</Button>
         </div>
       </div>
@@ -740,7 +740,7 @@ export function GuideReaderPage() {
           <CommentThread guideSlug={slug || ''} />
 
           {/* Bottom pagination */}
-          <div className="flex items-center justify-between mt-12 pt-6 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between mt-12 pt-6 border-t border-border dark:border-gray-700">
             {prev ? (
               <Button
                 onClick={() => navigate(`/guides/${prev.id}`)}

@@ -110,7 +110,7 @@ export function OnboardingWizardPage() {
       <AnimatedBackground variant="auth" />
 
       {/* Progress Stepper - Fixed at top with padding */}
-      <div className="w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 py-6 px-6 sticky top-0 z-20 shadow-sm">
+      <div className="w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-border dark:border-gray-700 py-6 px-6 sticky top-0 z-20 shadow-sm">
         <ProgressDots currentStep={currentStep} totalSteps={TOTAL_STEPS} />
       </div>
 
@@ -221,7 +221,7 @@ function WelcomeStep({ onNext, onSkip }: WelcomeStepProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4"
+        className="text-4xl md:text-5xl font-bold text-foreground dark:text-white mb-4"
       >
         ברוכים הבאים ל-Agenseek!
       </motion.h1>
@@ -231,7 +231,7 @@ function WelcomeStep({ onNext, onSkip }: WelcomeStepProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
-        className="text-lg text-gray-600 dark:text-gray-400 mb-12 max-w-xl mx-auto leading-relaxed"
+        className="text-lg text-muted-foreground dark:text-gray-400 mb-12 max-w-xl mx-auto leading-relaxed"
       >
         מסע הלמידה האישי שלך ב-BMAD מתחיל כאן. נעזור לך לגלות את התוכן הנכון, לעקוב אחר ההתקדמות שלך
         ולהתחבר לצוות שלך.
@@ -253,7 +253,7 @@ function WelcomeStep({ onNext, onSkip }: WelcomeStepProps) {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }}>
           <button
             onClick={onSkip}
-            className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 text-sm underline underline-offset-4 transition-colors"
+            className="text-muted-foreground dark:text-gray-400 hover:text-foreground dark:hover:text-gray-300 text-sm underline underline-offset-4 transition-colors"
           >
             אעשה זאת מאוחר יותר
           </button>
@@ -422,10 +422,10 @@ function RoleStep({ selectedRole, onSelectRole, onNext, onBack }: RoleStepProps)
         transition={{ delay: 0.1 }}
         className="text-center mb-8"
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground dark:text-white mb-3">
           מה התפקיד שלך?
         </h2>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-muted-foreground dark:text-gray-400">
           זה עוזר לנו להמליץ על התוכן הרלוונטי ביותר עבורך
         </p>
       </motion.div>
@@ -453,7 +453,7 @@ function RoleStep({ selectedRole, onSelectRole, onNext, onBack }: RoleStepProps)
               className={`p-5 rounded-xl text-left transition-all duration-300 ${
                 isSelected
                   ? 'bg-primary/10 border-2 border-primary shadow-lg shadow-primary/20'
-                  : 'bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 hover:shadow-md'
+                  : 'bg-white dark:bg-gray-800 border-2 border-border dark:border-gray-700 hover:border-primary/50 hover:shadow-md'
               }`}
             >
               <div className="flex items-start gap-3">
@@ -461,7 +461,7 @@ function RoleStep({ selectedRole, onSelectRole, onNext, onBack }: RoleStepProps)
                   className={`p-2 rounded-lg transition-colors ${
                     isSelected
                       ? 'bg-primary text-white'
-                      : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                      : 'bg-muted dark:bg-gray-700 text-muted-foreground dark:text-gray-400'
                   }`}
                 >
                   <Icon className="w-6 h-6" stroke={1.5} />
@@ -469,12 +469,12 @@ function RoleStep({ selectedRole, onSelectRole, onNext, onBack }: RoleStepProps)
                 <div className="flex-1 min-w-0">
                   <h3
                     className={`font-semibold mb-1 transition-colors ${
-                      isSelected ? 'text-primary' : 'text-gray-900 dark:text-white'
+                      isSelected ? 'text-primary' : 'text-foreground dark:text-white'
                     }`}
                   >
                     {role.title}
                   </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+                  <p className="text-sm text-muted-foreground dark:text-gray-400 line-clamp-2">
                     {role.description}
                   </p>
                 </div>
@@ -531,10 +531,10 @@ function InterestsStep({
         transition={{ delay: 0.1 }}
         className="text-center mb-8"
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground dark:text-white mb-3">
           מה מעניין אותך?
         </h2>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-muted-foreground dark:text-gray-400">
           בחר נושאים שתרצה לחקור (ניתן לבחור מספר נושאים או אף אחד)
         </p>
       </motion.div>
@@ -562,25 +562,25 @@ function InterestsStep({
               className={`p-4 rounded-xl text-center transition-all duration-300 ${
                 isSelected
                   ? 'bg-primary text-white shadow-lg shadow-primary/30'
-                  : 'bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 hover:shadow-md'
+                  : 'bg-white dark:bg-gray-800 border-2 border-border dark:border-gray-700 hover:border-primary/50 hover:shadow-md'
               }`}
             >
               <div className="flex flex-col items-center gap-3">
                 <div
                   className={`p-3 rounded-lg transition-colors ${
-                    isSelected ? 'bg-white/20' : 'bg-gray-100 dark:bg-gray-700'
+                    isSelected ? 'bg-white/20' : 'bg-muted dark:bg-gray-700'
                   }`}
                 >
                   <Icon
                     className={`w-8 h-8 ${
-                      isSelected ? 'text-white' : 'text-gray-600 dark:text-gray-400'
+                      isSelected ? 'text-white' : 'text-muted-foreground dark:text-gray-400'
                     }`}
                     stroke={1.5}
                   />
                 </div>
                 <h3
                   className={`font-semibold text-sm transition-colors ${
-                    isSelected ? 'text-white' : 'text-gray-900 dark:text-white'
+                    isSelected ? 'text-white' : 'text-foreground dark:text-white'
                   }`}
                 >
                   {interest.title}
@@ -596,7 +596,7 @@ function InterestsStep({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
-        className="text-center mb-6 text-sm text-gray-500 dark:text-gray-400"
+        className="text-center mb-6 text-sm text-muted-foreground dark:text-gray-400"
       >
         {selectedInterests.length === 0
           ? 'טרם נבחרו תחומי עניין'
@@ -682,10 +682,10 @@ function ExperienceStep({
         transition={{ delay: 0.1 }}
         className="text-center mb-8"
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground dark:text-white mb-3">
           מה רמת הניסיון שלך?
         </h2>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-muted-foreground dark:text-gray-400">
           זה עוזר לנו להמליץ על תוכן ברמת הקושי המתאימה עבורך
         </p>
       </motion.div>
@@ -713,14 +713,14 @@ function ExperienceStep({
               className={`p-6 rounded-2xl text-center transition-all duration-300 ${
                 isSelected
                   ? 'bg-primary/10 border-2 border-primary shadow-xl shadow-primary/20'
-                  : 'bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50 hover:shadow-lg'
+                  : 'bg-white dark:bg-gray-800 border-2 border-border dark:border-gray-700 hover:border-primary/50 hover:shadow-lg'
               }`}
             >
               <div className="flex flex-col items-center gap-4">
                 {/* Icon */}
                 <div
                   className={`p-4 rounded-xl transition-colors ${
-                    isSelected ? 'bg-primary/20' : 'bg-gray-100 dark:bg-gray-700'
+                    isSelected ? 'bg-primary/20' : 'bg-muted dark:bg-gray-700'
                   }`}
                 >
                   <Icon
@@ -732,14 +732,14 @@ function ExperienceStep({
                 {/* Title */}
                 <h3
                   className={`text-xl font-bold transition-colors ${
-                    isSelected ? 'text-primary' : 'text-gray-900 dark:text-white'
+                    isSelected ? 'text-primary' : 'text-foreground dark:text-white'
                   }`}
                 >
                   {level.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                <p className="text-sm text-muted-foreground dark:text-gray-400 leading-relaxed">
                   {level.description}
                 </p>
               </div>
@@ -980,7 +980,7 @@ function LearningPathStep({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4"
+          className="text-3xl md:text-4xl font-bold text-foreground dark:text-white mb-4"
         >
           יוצר את נתיב הלמידה שלך...
         </motion.h2>
@@ -989,7 +989,7 @@ function LearningPathStep({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="text-lg text-gray-600 dark:text-gray-400"
+          className="text-lg text-muted-foreground dark:text-gray-400"
         >
           אנחנו מתאימים אישית את מסע ה-BMAD שלך על סמך הבחירות שלך
         </motion.p>
@@ -1023,10 +1023,10 @@ function LearningPathStep({
           </motion.div>
         </div>
 
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground dark:text-white mb-3">
           נתיב הלמידה האישי שלך
         </h2>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-muted-foreground dark:text-gray-400">
           מבוסס על תפקידך, תחומי העניין ורמת הניסיון שלך
         </p>
       </motion.div>
@@ -1039,12 +1039,12 @@ function LearningPathStep({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 + sectionIndex * 0.2 }}
-            className="bg-white dark:bg-gray-800 rounded-xl p-6 border-2 border-gray-200 dark:border-gray-700"
+            className="bg-white dark:bg-gray-800 rounded-xl p-6 border-2 border-border dark:border-gray-700"
           >
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+            <h3 className="text-xl font-bold text-foreground dark:text-white mb-2">
               {section.category}
             </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{section.description}</p>
+            <p className="text-sm text-muted-foreground dark:text-gray-400 mb-4">{section.description}</p>
 
             <div className="space-y-3">
               {section.guides.map((guide, guideIndex) => (
@@ -1053,19 +1053,19 @@ function LearningPathStep({
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.4 + sectionIndex * 0.2 + guideIndex * 0.1 }}
-                  className="flex items-start gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  className="flex items-start gap-3 p-3 rounded-lg bg-muted/50 dark:bg-gray-700/50 hover:bg-muted dark:hover:bg-gray-700 transition-colors"
                 >
                   <div className="mt-0.5">
                     <IconCheck className="w-5 h-5 text-primary" stroke={2} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
+                    <h4 className="font-semibold text-foreground dark:text-white mb-1">
                       {guide.title}
                     </h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                    <p className="text-sm text-muted-foreground dark:text-gray-400 mb-2">
                       {guide.description}
                     </p>
-                    <span className="inline-flex items-center text-xs text-gray-500 dark:text-gray-500">
+                    <span className="inline-flex items-center text-xs text-muted-foreground dark:text-muted-foreground">
                       <IconClock className="w-3 h-3 ml-1" />
                       {guide.estimatedMinutes} דקות
                     </span>
@@ -1084,7 +1084,7 @@ function LearningPathStep({
         transition={{ delay: 0.8 }}
         className="text-center mb-6 p-4 bg-primary/5 rounded-lg border border-primary/20"
       >
-        <p className="text-sm text-gray-700 dark:text-gray-300">
+        <p className="text-sm text-foreground dark:text-gray-300">
           <span className="font-semibold text-primary">
             {guideSections.reduce((total, section) => total + section.guides.length, 0)} מדריכים
           </span>{' '}

@@ -121,9 +121,9 @@ export function AdminNotificationPreferencesPage() {
         <div className="space-y-2">
           <div className="flex items-center gap-3">
             <IconSettings size={32} className="text-emerald-600" />
-            <h1 className="text-4xl font-bold text-gray-900">{locale.preferencesTitle}</h1>
+            <h1 className="text-4xl font-bold text-foreground">{locale.preferencesTitle}</h1>
           </div>
-          <p className="text-gray-600">{locale.preferencesDescription}</p>
+          <p className="text-muted-foreground">{locale.preferencesDescription}</p>
         </div>
 
         {/* Preferences Grid */}
@@ -134,7 +134,7 @@ export function AdminNotificationPreferencesPage() {
               <div className="flex items-start justify-between">
                 <div className="space-y-1">
                   <h3 className="text-lg font-semibold">{locale.newUserDigestLabel}</h3>
-                  <p className="text-sm text-gray-600">{locale.newUserDigestDescription}</p>
+                  <p className="text-sm text-muted-foreground">{locale.newUserDigestDescription}</p>
                 </div>
                 <Switch
                   checked={preferences.new_user_digest_enabled}
@@ -169,7 +169,7 @@ export function AdminNotificationPreferencesPage() {
               <div className="flex items-start justify-between">
                 <div className="space-y-1">
                   <h3 className="text-lg font-semibold">{locale.contentFlaggedLabel}</h3>
-                  <p className="text-sm text-gray-600">{locale.contentFlaggedDescription}</p>
+                  <p className="text-sm text-muted-foreground">{locale.contentFlaggedDescription}</p>
                 </div>
                 <Switch
                   checked={preferences.content_flagged_enabled}
@@ -204,7 +204,7 @@ export function AdminNotificationPreferencesPage() {
               <div className="flex items-start justify-between">
                 <div className="space-y-1">
                   <h3 className="text-lg font-semibold">{locale.lowEngagementLabel}</h3>
-                  <p className="text-sm text-gray-600">{locale.lowEngagementDescription}</p>
+                  <p className="text-sm text-muted-foreground">{locale.lowEngagementDescription}</p>
                 </div>
                 <Switch
                   checked={preferences.low_engagement_enabled}
@@ -239,7 +239,7 @@ export function AdminNotificationPreferencesPage() {
               <div className="flex items-start justify-between">
                 <div className="space-y-1">
                   <h3 className="text-lg font-semibold">{locale.performanceIssuesLabel}</h3>
-                  <p className="text-sm text-gray-600">{locale.performanceIssuesDescription}</p>
+                  <p className="text-sm text-muted-foreground">{locale.performanceIssuesDescription}</p>
                 </div>
                 <Switch
                   checked={preferences.performance_issues_enabled}
@@ -274,7 +274,7 @@ export function AdminNotificationPreferencesPage() {
               <div className="flex items-start justify-between">
                 <div className="space-y-1">
                   <h3 className="text-lg font-semibold">{locale.milestonesLabel}</h3>
-                  <p className="text-sm text-gray-600">{locale.milestonesDescription}</p>
+                  <p className="text-sm text-muted-foreground">{locale.milestonesDescription}</p>
                 </div>
                 <Switch
                   checked={preferences.milestones_enabled}

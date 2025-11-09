@@ -206,8 +206,8 @@ export function TasksPage() {
         {/* Header - Story 10.5: Responsive typography */}
         <div className="flex items-center justify-between">
           <div className="space-y-1">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">{he.title}</h1>
-            <div className="flex items-center gap-4 text-xs sm:text-sm text-gray-600">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">{he.title}</h1>
+            <div className="flex items-center gap-4 text-xs sm:text-sm text-muted-foreground">
               <span>
                 {he.todoCount} ({stats.todo})
               </span>
@@ -248,10 +248,10 @@ export function TasksPage() {
             ) : tasks.length === 0 ? (
               <Card className="p-12">
                 <div className="text-center space-y-4">
-                  <IconChecklist className="w-16 h-16 mx-auto text-gray-300" />
+                  <IconChecklist className="w-16 h-16 mx-auto text-muted-foreground opacity-40" />
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900">{he.noTasks}</h3>
-                    <p className="text-gray-600 mt-1">{he.noTasksDescription}</p>
+                    <h3 className="text-lg font-semibold text-foreground">{he.noTasks}</h3>
+                    <p className="text-muted-foreground mt-1">{he.noTasksDescription}</p>
                   </div>
                   <Button
                     onClick={handleNewTask}
@@ -294,7 +294,7 @@ export function TasksPage() {
 
                 return (
                   <div key={guideSlug} className="space-y-3">
-                    <h2 className="text-xl font-semibold text-gray-900">{guideTitle}</h2>
+                    <h2 className="text-xl font-semibold text-foreground">{guideTitle}</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
                       {guideTasks.map((task) => {
                         const subTaskStats = getSubTaskStats(task.id);
@@ -320,10 +320,10 @@ export function TasksPage() {
               {tasks.length === 0 && (
                 <Card className="p-12">
                   <div className="text-center space-y-4">
-                    <IconChecklist className="w-16 h-16 mx-auto text-gray-300" />
+                    <IconChecklist className="w-16 h-16 mx-auto text-muted-foreground opacity-40" />
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900">{he.noTasks}</h3>
-                      <p className="text-gray-600 mt-1">{he.noTasksDescription}</p>
+                      <h3 className="text-lg font-semibold text-foreground">{he.noTasks}</h3>
+                      <p className="text-muted-foreground mt-1">{he.noTasksDescription}</p>
                     </div>
                   </div>
                 </Card>
@@ -340,10 +340,10 @@ export function TasksPage() {
             ) : tasks.length === 0 ? (
               <Card className="p-12">
                 <div className="text-center space-y-4">
-                  <IconChecklist className="w-16 h-16 mx-auto text-gray-300" />
+                  <IconChecklist className="w-16 h-16 mx-auto text-muted-foreground opacity-40" />
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900">{he.noTasks}</h3>
-                    <p className="text-gray-600 mt-1">{he.noTasksDescription}</p>
+                    <h3 className="text-lg font-semibold text-foreground">{he.noTasks}</h3>
+                    <p className="text-muted-foreground mt-1">{he.noTasksDescription}</p>
                   </div>
                   <Button
                     onClick={handleNewTask}
@@ -457,10 +457,10 @@ export function TasksPage() {
               {tasks.length === 0 && (
                 <Card className="p-12">
                   <div className="text-center space-y-4">
-                    <IconChecklist className="w-16 h-16 mx-auto text-gray-300" />
+                    <IconChecklist className="w-16 h-16 mx-auto text-muted-foreground opacity-40" />
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900">{he.noTasks}</h3>
-                      <p className="text-gray-600 mt-1">{he.noTasksDescription}</p>
+                      <h3 className="text-lg font-semibold text-foreground">{he.noTasks}</h3>
+                      <p className="text-muted-foreground mt-1">{he.noTasksDescription}</p>
                     </div>
                   </div>
                 </Card>

@@ -226,7 +226,7 @@ export function ProgressDetailsPage() {
   if (!progressData) {
     return (
       <div className="flex items-center justify-center min-h-[50vh]">
-        <p className="text-gray-600 dark:text-gray-400">לא ניתן לטעון את הנתונים</p>
+        <p className="text-muted-foreground">לא ניתן לטעון את הנתונים</p>
       </div>
     );
   }
@@ -238,10 +238,10 @@ export function ProgressDetailsPage() {
         <div className="space-y-4">
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
                 {hebrewLocale.pages.progress.heroTitle}
               </h1>
-              <p className="text-gray-600 dark:text-gray-400 mt-2">
+              <p className="text-muted-foreground mt-2">
                 {hebrewLocale.pages.progress.heroDescription}
               </p>
             </div>
@@ -265,7 +265,7 @@ export function ProgressDetailsPage() {
                     stroke="currentColor"
                     strokeWidth={10}
                     fill="none"
-                    className="text-gray-200 dark:text-gray-700"
+                    className="text-muted opacity-50"
                   />
                   <circle
                     cx={60}
@@ -283,7 +283,7 @@ export function ProgressDetailsPage() {
                   />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <div className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+                  <div className="text-2xl md:text-3xl font-bold text-foreground">
                     {progressData.overallProgress}%
                   </div>
                 </div>
@@ -295,7 +295,7 @@ export function ProgressDetailsPage() {
                   <div className="text-xl md:text-2xl font-bold text-emerald-600 dark:text-emerald-400">
                     {progressData.guidesCompleted}
                   </div>
-                  <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
+                  <div className="text-xs md:text-sm text-muted-foreground">
                     {hebrewLocale.dashboard.guidesCompleted}
                   </div>
                 </div>
@@ -303,15 +303,15 @@ export function ProgressDetailsPage() {
                   <div className="text-xl md:text-2xl font-bold text-blue-600 dark:text-blue-400">
                     {progressData.guidesInProgress}
                   </div>
-                  <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
+                  <div className="text-xs md:text-sm text-muted-foreground">
                     {hebrewLocale.dashboard.guidesInProgress}
                   </div>
                 </div>
                 <div className="space-y-1 text-center md:text-right">
-                  <div className="text-xl md:text-2xl font-bold text-gray-600 dark:text-gray-400">
+                  <div className="text-xl md:text-2xl font-bold text-muted-foreground">
                     {progressData.guidesNotStarted}
                   </div>
-                  <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
+                  <div className="text-xs md:text-sm text-muted-foreground">
                     {hebrewLocale.pages.progress.statusNotStarted}
                   </div>
                 </div>
@@ -322,7 +322,7 @@ export function ProgressDetailsPage() {
 
         {/* Category Breakdown Section */}
         <Card className="p-4 md:p-6">
-          <h2 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-lg md:text-xl font-bold text-foreground mb-4">
             {hebrewLocale.pages.progress.categoryBreakdown}
           </h2>
 
@@ -400,7 +400,7 @@ export function ProgressDetailsPage() {
         {/* All Guides Section with Filters */}
         <div className="space-y-4">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-xl md:text-2xl font-bold text-foreground">
               {hebrewLocale.pages.progress.allGuides}
             </h2>
 
@@ -455,11 +455,11 @@ export function ProgressDetailsPage() {
 
             {getFilteredGuides(progressData.allGuidesWithProgress).length === 0 && (
               <Card className="p-12 text-center">
-                <IconBook className="w-16 h-16 text-gray-400 mx-auto mb-4" stroke={1.5} />
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                <IconBook className="w-16 h-16 text-muted-foreground opacity-40 mx-auto mb-4" stroke={1.5} />
+                <h3 className="text-lg font-semibold text-foreground mb-2">
                   {hebrewLocale.pages.progress.noGuides}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-muted-foreground">
                   {hebrewLocale.pages.progress.noGuidesDescription}
                 </p>
               </Card>
@@ -523,7 +523,7 @@ function CategorySection({
         <div className="flex items-center justify-between w-full pr-4">
           <div className="flex items-center gap-3">
             <div className="text-emerald-600 dark:text-emerald-400">{icon}</div>
-            <span className="font-medium text-gray-900 dark:text-white">{label}</span>
+            <span className="font-medium text-foreground">{label}</span>
           </div>
           <div className="flex items-center gap-2">
             {isComplete ? (
@@ -534,7 +534,7 @@ function CategorySection({
                 </span>
               </div>
             ) : (
-              <span className="text-sm text-gray-600 dark:text-gray-400">
+              <span className="text-sm text-muted-foreground">
                 {progress.completed} {hebrewLocale.dashboard.categoryProgress} {progress.total}
               </span>
             )}
@@ -546,14 +546,14 @@ function CategorySection({
           {/* Progress Bar */}
           <div className="space-y-2 px-1">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-600 dark:text-gray-400">
+              <span className="text-muted-foreground">
                 {progress.percentage}% {hebrewLocale.dashboard.categoryCompleted}
               </span>
-              <span className="text-gray-600 dark:text-gray-400">
+              <span className="text-muted-foreground">
                 {progress.completed} / {progress.total}
               </span>
             </div>
-            <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+            <div className="h-2 bg-muted rounded-full overflow-hidden">
               <div
                 className="h-full bg-emerald-500 dark:bg-emerald-400 rounded-full transition-all duration-500 ease-out"
                 style={{ width: `${progress.percentage}%` }}
@@ -575,7 +575,7 @@ function CategorySection({
             ))}
 
             {filteredGuides.length === 0 && (
-              <p className="text-sm text-gray-500 dark:text-gray-400 text-center py-4">
+              <p className="text-sm text-muted-foreground text-center py-4">
                 {hebrewLocale.pages.progress.noGuides}
               </p>
             )}
@@ -625,7 +625,7 @@ function GuideProgressCard({
       );
     } else {
       return (
-        <div className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-400 rounded-full text-xs font-medium">
+        <div className="px-2 py-1 bg-muted text-muted-foreground rounded-full text-xs font-medium">
           {hebrewLocale.pages.progress.statusNotStarted}
         </div>
       );
@@ -641,7 +641,7 @@ function GuideProgressCard({
             <IconBook className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5 sm:mt-0" stroke={1.5} />
             <Link
               to={`/guides/${guide.id}`}
-              className="font-semibold text-sm md:text-base text-gray-900 dark:text-white hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors flex-1 min-w-0"
+              className="font-semibold text-sm md:text-base text-foreground hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors flex-1 min-w-0"
             >
               {guide.title}
             </Link>
@@ -650,7 +650,7 @@ function GuideProgressCard({
 
           {/* Progress bar for in-progress guides */}
           {!guide.completed && guide.progress_percent > 0 && (
-            <div className="h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+            <div className="h-1.5 bg-muted rounded-full overflow-hidden">
               <div
                 className="h-full bg-blue-500 dark:bg-blue-400 rounded-full transition-all duration-300"
                 style={{ width: `${guide.progress_percent}%` }}
@@ -659,7 +659,7 @@ function GuideProgressCard({
           )}
 
           {/* Meta info */}
-          <div className="flex items-center gap-3 md:gap-4 text-xs md:text-sm text-gray-600 dark:text-gray-400 flex-wrap">
+          <div className="flex items-center gap-3 md:gap-4 text-xs md:text-sm text-muted-foreground flex-wrap">
             {/* Time spent */}
             {guide.time_spent_seconds > 0 && (
               <div className="flex items-center gap-1">

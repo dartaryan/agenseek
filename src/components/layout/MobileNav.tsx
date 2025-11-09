@@ -8,8 +8,7 @@ import {
   IconChartBar,
   IconSettings,
   IconLogout,
-  IconMoon,
-  IconSun,
+  // Story 0.15: IconMoon, IconSun temporarily removed (theme toggle hidden)
   IconShieldCog,
   IconUsers,
   IconTrendingUp,
@@ -26,7 +25,8 @@ import { Button } from '../ui/button';
 import { UserAvatar } from '../ui/user-avatar';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import { useTheme } from '../../contexts/ThemeContext';
+// Story 0.15: useTheme temporarily disabled (theme toggle hidden)
+// import { useTheme } from '../../contexts/ThemeContext';
 import { signOut } from '../../lib/auth';
 import { supabase } from '../../lib/supabase';
 import { cn } from '../../lib/utils';
@@ -79,7 +79,8 @@ export function MobileNav() {
   const navigate = useNavigate();
   const location = useLocation();
   const { user, profile } = useAuth();
-  const { setTheme, resolvedTheme } = useTheme();
+  // Story 0.15: Theme toggle temporarily disabled
+  // const { setTheme, resolvedTheme } = useTheme();
 
   // Story 0.3: Load avatar configuration
   useEffect(() => {
@@ -126,9 +127,10 @@ export function MobileNav() {
     }
   };
 
-  const toggleTheme = () => {
-    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
-  };
+  // Story 0.15: Theme toggle function temporarily disabled
+  // const toggleTheme = () => {
+  //   setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
+  // };
 
   const displayName = profile?.display_name || user?.email?.split('@')[0] || 'משתמש';
 
@@ -229,7 +231,7 @@ export function MobileNav() {
 
         {/* Footer Section */}
         <div className="border-t border-border p-4 space-y-2">
-          {/* Theme Toggle */}
+          {/* Theme Toggle - Story 0.6 / Story 0.15 - Temporarily hidden until dark mode is polished
           <Button
             variant="outline"
             className="w-full justify-start gap-3 min-h-[44px]"
@@ -248,6 +250,7 @@ export function MobileNav() {
               </>
             )}
           </Button>
+          */}
 
           {/* Sign Out Button */}
           <Button

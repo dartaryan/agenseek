@@ -18,20 +18,31 @@
     <meta name="theme-color" content="#10b981" />
     <meta name="description" content="BMAD Learning Hub - מרכז הלמידה של BMAD" />
 
-    <!-- Story 0.6: Prevent flash of wrong theme on page load -->
+    <!-- Story 0.6 / Story 0.15: Prevent flash of wrong theme on page load -->
     <script>
       try {
-        const theme = localStorage.getItem('agenseek-theme') || 'system';
-        let resolved = 'light';
-        
-        if (theme === 'system') {
-          resolved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        // Story 0.15: Force light mode while dark mode toggle is hidden
+        const FORCE_LIGHT_MODE = true;
+
+        if (FORCE_LIGHT_MODE) {
+          // Force light mode and update localStorage
+          localStorage.setItem('agenseek-theme', 'light');
+          document.documentElement.classList.add('light');
+          document.documentElement.setAttribute('data-theme', 'light');
         } else {
-          resolved = theme;
+          // Normal theme logic (will be restored in Story 0.15)
+          const theme = localStorage.getItem('agenseek-theme') || 'system';
+          let resolved = 'light';
+
+          if (theme === 'system') {
+            resolved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          } else {
+            resolved = theme;
+          }
+
+          document.documentElement.classList.add(resolved);
+          document.documentElement.setAttribute('data-theme', resolved);
         }
-        
-        document.documentElement.classList.add(resolved);
-        document.documentElement.setAttribute('data-theme', resolved);
       } catch (e) {
         // Silently fail if localStorage is not available
       }

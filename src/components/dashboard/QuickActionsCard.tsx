@@ -43,10 +43,10 @@ export function QuickActionsCard() {
       <div className="space-y-4">
         {/* Header */}
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+          <h3 className="text-lg font-semibold text-foreground">
             {hebrewLocale.dashboard.quickActions}
           </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-sm text-muted-foreground">
             {hebrewLocale.dashboard.quickActionsDescription}
           </p>
         </div>
@@ -59,7 +59,7 @@ export function QuickActionsCard() {
               <Button
                 key={action.to}
                 variant="outline"
-                className="h-auto py-6 flex-col gap-3 hover:border-emerald-500 dark:hover:border-emerald-500 transition-all group"
+                className="h-auto py-6 flex-col gap-3 hover:border-primary transition-all group"
                 asChild
               >
                 <Link to={action.to}>
@@ -68,7 +68,7 @@ export function QuickActionsCard() {
                   >
                     <Icon className="w-6 h-6" stroke={1.5} />
                   </div>
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                  <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                     {action.label}
                   </span>
                 </Link>

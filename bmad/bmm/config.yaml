@@ -14,5 +14,5 @@ tea_use_mcp_enhancements: false
 # Core Configuration Values
 user_name: Ben
 communication_language: English
-document_output_language: English
+document_output_language: Hebrew
 output_folder: '{project-root}/docs'

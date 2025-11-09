@@ -222,23 +222,23 @@
   {
     "id": "agents-cis-last2",
     "title": "מדריך אגנטים - חלק 4ב: שילוב בין אגנטים (2 אחרונים)",
-    "description": "המשך תרחישי שיתוף פעולה - TEA + UX + Tech Writer. איך להעביר מידע בין שלבי הפרויקט ולשמור על רצף עבודה קוהרנטי.",
+    "description": "המשך תרחישי CIS מתקדמים - שיתוף פעולה בין TEA, UX Designer ו-Tech Writer. אופטימיזציה, פתרון בעיות, וטיפים מקצועיים לעבודה עם מספר אג'נטים.",
     "category": "agents",
     "difficulty": "advanced",
     "estimatedMinutes": 35,
-    "icon": "IconRobot",
-    "tags": ["אגנטים", "שיתוף-פעולה", "אינטגרציה", "תיאום"],
+    "icon": "Users",
+    "tags": ["אגנטים", "CIS", "party-mode", "שיתוף-פעולה", "TEA", "UX", "Tech-Writer"],
     "path": "agents/cis-last2.json"
   },
   {
     "id": "agents-synthesis",
     "title": "מדריך אגנטים - חלק 5: סינתזה ותמונה כוללת",
-    "description": "איך כל האגנטים עובדים יחד במחזור חיים שלם של פרויקט. תמונה כוללת של המערכת - מרעיון עד השקה לייצור.",
+    "description": "הסיכום המקיף של כל מדריכי האג'נטים - איך כל 11 האג'נטים עובדים יחד במחזור חיים שלם של פרויקט. מתי להשתמש במי, תרחישים מורכבים, והמלצות למומחים.",
     "category": "agents",
     "difficulty": "advanced",
     "estimatedMinutes": 45,
-    "icon": "IconRobot",
-    "tags": ["אגנטים", "סינתזה", "מחזור-חיים", "תמונה-כוללת"],
+    "icon": "Stars",
+    "tags": ["אג'נטים", "סינתזה", "תמונה-כוללת", "מחזור-חיים", "מומחים"],
     "path": "agents/synthesis.json"
   },
   {
@@ -288,34 +288,34 @@
   {
     "id": "workflows-solutioning",
     "title": "מדריך וורקפלואים - חלק 3א: Solutioning (Ready for Dev)",
-    "description": "וורקפלואים להכנת Stories למימוש - create-epics-stories, story-context, story-ready, solutioning-gate-check. הפיכת מפרטים לתוכנית מימוש ברורה.",
+    "description": "וורקפלואים להכנת Stories לפיתוח - epic-tech-context, story-ready, solutioning-gate-check. מעבירים Stories ממפרט לקוד.",
     "category": "workflows",
     "difficulty": "intermediate",
     "estimatedMinutes": 45,
-    "icon": "IconGitBranch",
-    "tags": ["וורקפלואים", "solutioning", "stories", "תכנון-מימוש"],
+    "icon": "IconChecklist",
+    "tags": ["וורקפלואים", "solutioning", "stories", "תכנון", "פיתוח"],
     "path": "workflows/solutioning.json"
   },
   {
     "id": "workflows-sprint-setup",
     "title": "מדריך וורקפלואים - חלק 3ב: Sprint Setup",
-    "description": "וורקפלואים לתכנון ספרינטים - sprint-planning, epic-tech-context. הכנת הצוות לעבודה, חלוקת משימות, והגדרת יעדי ספרינט.",
+    "description": "וורקפלואים לתכנון ספרינטים - sprint-planning, backlog management, ותעדוף Stories. הכנת הצוות לעבודה, חלוקת משימות, והגדרת יעדי ספרינט.",
     "category": "workflows",
     "difficulty": "intermediate",
     "estimatedMinutes": 35,
-    "icon": "IconGitBranch",
-    "tags": ["וורקפלואים", "ספרינט", "תכנון", "אג'ייל"],
+    "icon": "IconCalendarEvent",
+    "tags": ["וורקפלואים", "ספרינט", "תכנון", "אג'ייל", "backlog"],
     "path": "workflows/sprint-setup.json"
   },
   {
     "id": "workflows-development",
     "title": "מדריך וורקפלואים - חלק 3ג: Development Flow",
-    "description": "וורקפלואים למימוש - dev-story, code-review, story-done. תהליך הפיתוח השוטף - כתיבת קוד, ביקורת, ובדיקות.",
+    "description": "תהליך הפיתוח המלא מקצה לקצה - story-context, dev-story, code-review, story-done. איך לוקחים Story מוכנה והופכים אותה לקוד עובד, מבודק, ומאושר.",
     "category": "workflows",
     "difficulty": "intermediate",
     "estimatedMinutes": 40,
-    "icon": "IconGitBranch",
-    "tags": ["וורקפלואים", "פיתוח", "code-review", "קוד"],
+    "icon": "IconCode",
+    "tags": ["וורקפלואים", "פיתוח", "development", "code-review", "story"],
     "path": "workflows/development.json"
   },
   {

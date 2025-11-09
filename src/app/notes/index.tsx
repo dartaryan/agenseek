@@ -197,8 +197,8 @@ export function NotesPage() {
         {/* Header - Story 10.5: Responsive typography */}
         <div className="flex items-center justify-between">
           <div className="space-y-1">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">{he.title}</h1>
-            <p className="text-sm md:text-base text-gray-600">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">{he.title}</h1>
+            <p className="text-sm md:text-base text-muted-foreground">
               {notes.length} {he.notesCount}
             </p>
           </div>
@@ -217,7 +217,7 @@ export function NotesPage() {
             {/* Search */}
             <div className="lg:col-span-2">
               <div className="relative">
-                <IconSearch className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <IconSearch className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <Input
                   type="text"
                   placeholder={he.searchNotes}
@@ -281,15 +281,15 @@ export function NotesPage() {
 
           {/* Clear Filters */}
           {hasActiveFilters && (
-            <div className="mt-3 flex items-center justify-between pt-3 border-t border-gray-200">
-              <p className="text-sm text-gray-600">
+            <div className="mt-3 flex items-center justify-between pt-3 border-t border-border">
+              <p className="text-sm text-muted-foreground">
                 {filteredAndSortedNotes.length} מתוך {notes.length} הערות
               </p>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={clearFilters}
-                className="text-gray-600 hover:text-gray-900"
+                className="text-muted-foreground hover:text-foreground"
               >
                 <IconX className="w-4 h-4 mr-1" />
                 נקה מסננים
@@ -306,12 +306,12 @@ export function NotesPage() {
         ) : filteredAndSortedNotes.length === 0 ? (
           <Card className="p-12">
             <div className="text-center space-y-4">
-              <IconNote className="w-16 h-16 mx-auto text-gray-300" />
+              <IconNote className="w-16 h-16 mx-auto text-muted-foreground opacity-40" />
               <div>
-                <h3 className="text-lg font-semibold text-gray-900">
+                <h3 className="text-lg font-semibold text-foreground">
                   {notes.length === 0 ? he.noNotes : 'לא נמצאו הערות'}
                 </h3>
-                <p className="text-gray-600 mt-1">
+                <p className="text-muted-foreground mt-1">
                   {notes.length === 0
                     ? he.noNotesDescription
                     : 'נסה לשנות את המסננים או החיפוש'}

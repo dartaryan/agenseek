@@ -81,7 +81,7 @@ const InProgressGuideItem = React.memo(function InProgressGuideItem({ guide }: {
   return (
     <Link
       to={`/guides/${guide.id}`}
-      className="block p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-md transition-all duration-200 group"
+      className="block p-4 rounded-lg border border-border hover:border-primary hover:shadow-md transition-all duration-200 group"
     >
       <div className="flex items-start gap-3">
         {/* Icon */}
@@ -91,10 +91,10 @@ const InProgressGuideItem = React.memo(function InProgressGuideItem({ guide }: {
 
         {/* Content */}
         <div className="flex-1 min-w-0">
-          <h4 className="font-semibold text-gray-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors line-clamp-1">
+          <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-1">
             {guide.title}
           </h4>
-          <div className="flex flex-col gap-1 mt-1 text-xs text-gray-600 dark:text-gray-400">
+          <div className="flex flex-col gap-1 mt-1 text-xs text-muted-foreground">
             <div className="flex items-center gap-3">
               <span className="flex items-center gap-1">
                 <TablerIcons.IconClock className="w-3 h-3" stroke={1.5} />
@@ -104,7 +104,7 @@ const InProgressGuideItem = React.memo(function InProgressGuideItem({ guide }: {
               <span>{hebrewLocale.dashboard.lastReadAt}: {formatTimeAgo(guide.last_read_at)}</span>
             </div>
             {guide.last_position && (
-              <div className="text-emerald-600 dark:text-emerald-400 font-medium">
+              <div className="text-primary font-medium">
                 {hebrewLocale.dashboard.lastSection}: {formatSectionName(guide.last_position)}
               </div>
             )}
@@ -113,13 +113,13 @@ const InProgressGuideItem = React.memo(function InProgressGuideItem({ guide }: {
           {/* Progress Bar */}
           <div className="mt-3">
             <div className="flex items-center justify-between text-xs mb-1">
-              <span className="text-gray-600 dark:text-gray-400">
+              <span className="text-muted-foreground">
                 {Math.round(guide.progress_percent)}% הושלם
               </span>
             </div>
-            <div className="h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+            <div className="h-1.5 bg-muted rounded-full overflow-hidden">
               <div
-                className="h-full bg-emerald-500 rounded-full transition-all duration-500"
+                className="h-full bg-primary rounded-full transition-all duration-500"
                 style={{ width: `${guide.progress_percent}%` }}
               />
             </div>
@@ -128,7 +128,7 @@ const InProgressGuideItem = React.memo(function InProgressGuideItem({ guide }: {
 
         {/* Arrow Icon */}
         <TablerIcons.IconArrowRight
-          className="w-5 h-5 text-gray-400 group-hover:text-emerald-500 transition-colors flex-shrink-0"
+          className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0"
           stroke={1.5}
         />
       </div>
@@ -145,10 +145,10 @@ export const ContinueReadingCard = React.memo(function ContinueReadingCard({ inP
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            <h3 className="text-lg font-semibold text-foreground">
               {hebrewLocale.dashboard.continueReading}
             </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-muted-foreground">
               {hebrewLocale.dashboard.continueReadingDescription}
             </p>
           </div>
@@ -163,10 +163,10 @@ export const ContinueReadingCard = React.memo(function ContinueReadingCard({ inP
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center py-8 text-center">
-            <div className="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-3">
-              <TablerIcons.IconBook className="w-8 h-8 text-gray-400" stroke={1.5} />
+            <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-3">
+              <TablerIcons.IconBook className="w-8 h-8 text-muted-foreground" stroke={1.5} />
             </div>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
+            <p className="text-muted-foreground mb-4">
               {hebrewLocale.dashboard.noInProgressGuides}
             </p>
             <Button variant="default" asChild>

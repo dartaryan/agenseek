@@ -1,7 +1,7 @@
 # 📊 מעקב התקדמות מדריכים - Guides Progress Tracker
 
 **תאריך עדכון:** 9 נובמבר 2025
-**סטטוס:** 24/47 הושלמו (51%)
+**סטטוס:** 29/47 הושלמו (62%)
 
 ---
 
@@ -24,10 +24,10 @@
 | FAQ | 6 | 1 | 5 | 17% |
 | Onboarding | 3 | 2 | 1 | 67% |
 | Roles | 9 | 9 | 0 | 100% |
-| Agents | 8 | 6 | 2 | 75% |
-| Workflows | 10 | 4 | 6 | 40% |
+| Agents | 8 | 8 | 0 | 100% |
+| Workflows | 10 | 7 | 3 | 70% |
 | Practical | 9 | 0 | 9 | 0% |
-| **סה"כ** | **47** | **24** | **23** | **51%** |
+| **סה"כ** | **47** | **29** | **18** | **62%** |
 
 ---
 
@@ -85,11 +85,11 @@
 | 28 | `role-non-technical` | מדריך לתפקידים לא טכניים | roles | ✅ |
 | 29 | `agents-game-agents` | מדריך אגנטים - חלק 3: אגנטי משחקים | agents | ✅ |
 | 30 | `agents-cis-first3` | מדריך אגנטים - חלק 4א: שילוב בין אגנטים (3 ראשונים) | agents | ✅ |
-| 31 | `agents-cis-last2` | מדריך אגנטים - חלק 4ב: שילוב בין אגנטים (2 אחרונים) | agents | ⏳ |
-| 32 | `agents-synthesis` | מדריך אגנטים - חלק 5: סינתזה ותמונה כוללת | agents | ⏳ |
-| 33 | `workflows-solutioning` | מדריך וורקפלואים - חלק 3א: Solutioning (Ready for Dev) | workflows | ⏳ |
-| 34 | `workflows-sprint-setup` | מדריך וורקפלואים - חלק 3ב: Sprint Setup | workflows | ⏳ |
-| 35 | `workflows-development` | מדריך וורקפלואים - חלק 3ג: Development Flow | workflows | ⏳ |
+| 31 | `agents-cis-last2` | מדריך אגנטים - חלק 4ב: שילוב בין אגנטים (2 אחרונים) | agents | ✅ |
+| 32 | `agents-synthesis` | מדריך אגנטים - חלק 5: סינתזה ותמונה כוללת | agents | ✅ |
+| 33 | `workflows-solutioning` | מדריך וורקפלואים - חלק 3א: Solutioning (Ready for Dev) | workflows | ✅ |
+| 34 | `workflows-sprint-setup` | מדריך וורקפלואים - חלק 3ב: Sprint Setup | workflows | ✅ |
+| 35 | `workflows-development` | מדריך וורקפלואים - חלק 3ג: Development Flow | workflows | ✅ |
 | 36 | `workflows-management` | מדריך וורקפלואים - חלק 3ד: Project Management | workflows | ⏳ |
 | 37 | `workflows-testing` | מדריך וורקפלואים - חלק 4: Testing & Quality | workflows | ⏳ |
 | 38 | `workflows-cis-synthesis` | מדריך וורקפלואים - חלק 5: סינתזה ותרחישים מורכבים | workflows | ⏳ |
@@ -104,7 +104,7 @@
 | 47 | `faq-development` | שאלות ותשובות - חלק 3א: פיתוח | faq | ⏳ |
 | 48 | `faq-team` | שאלות ותשובות - חלק 3ב: עבודה צוותית | faq | ⏳ |
 
-**סטטוס P2:** ✅ 5/27 הושלמו (19%)
+**סטטוס P2:** ✅ 9/27 הושלמו (33%)
 
 ---
 
@@ -112,26 +112,26 @@
 
 **🎉 כל מדריכי P1 הושלמו!**
 **🎉 כל מדריכי Roles הושלמו! (9/9 - 100%)**
-**✅ agents-cis-first3 הושלם!**
+**🎉 כל מדריכי Agents הושלמו! (8/8 - 100%)**
 
 **המדריך הבא הוא מ-P2:**
 
-### 📌 `agents-cis-last2`
+### 📌 `workflows-management`
 
 **פרטים:**
-- **כותרת:** מדריך אגנטים - חלק 4ב: שילוב בין אגנטים (2 אחרונים)
-- **קטגוריה:** agents
-- **רמת קושי:** advanced
+- **כותרת:** מדריך וורקפלואים - חלק 3ד: Project Management
+- **קטגוריה:** workflows
+- **רמת קושי:** intermediate
 - **זמן קריאה:** 35 דקות
 - **עדיפות:** 🟢 P2
 
 **קבצים לקרוא:**
 1. `content-stories/FOR-AI-AGENTS.md` - הפרומפט המלא
-2. `content-stories/stories/agents/cis-last2.md` - הסטורי המפורט
-3. `src/content/locale/he/guides/agents/cis-first3.json` - מדריך אגנטים קודם (דוגמה)
+2. `content-stories/stories/workflows/management.md` - הסטורי המפורט
+3. `src/content/locale/he/guides/workflows/development.json` - מדריך וורקפלואים קודם (דוגמה)
 
 **היכן לשמור:**
-- `src/content/locale/he/guides/agents/cis-last2.json`
+- `src/content/locale/he/guides/workflows/management.json`
 
 **לא לשכוח:**
 - לעדכן את הקובץ הזה (GUIDES-PROGRESS-TRACKER.md)
@@ -168,15 +168,18 @@ src/content/locale/he/guides/
 │   ├── tea-ux.json ✅
 │   ├── techwriter-master.json ✅
 │   ├── game-agents.json ✅
-│   ├── cis-first3.json ⏳
-│   ├── cis-last2.json ⏳
-│   └── synthesis.json ⏳
+│   ├── cis-first3.json ✅
+│   ├── cis-last2.json ✅
+│   └── synthesis.json ✅
 ├── workflows/
 │   ├── intro-critical.json ✅
 │   ├── phase0-1.json ✅
 │   ├── phase2-core.json ✅
 │   ├── phase2-design.json ✅
-│   └── [6 מדריכים נוספים - כולם ⏳]
+│   ├── solutioning.json ✅
+│   ├── sprint-setup.json ✅
+│   ├── development.json ✅
+│   └── [3 מדריכים נוספים - כולם ⏳]
 └── practical/
     └── [9 מדריכים - כולם ⏳]
 ```
@@ -262,19 +265,24 @@ src/content/locale/he/guides/
 8. senior-managers - מדריך למנהלים בכירים
 9. non-technical - מדריך לתפקידים לא טכניים
 
-### ✅ Agents (6/8 - 75%)
+### ✅ Agents (8/8 - 100%) 🎉
 1. intro-pm-analyst - מדריך אגנטים - חלק 1א: מבוא + PM + Analyst
 2. architect-sm-dev - מדריך אגנטים - חלק 1ב: Architect + SM + Dev
 3. tea-ux - מדריך אגנטים - חלק 2א: TEA + UX Designer
 4. techwriter-master - מדריך אגנטים - חלק 2ב: Tech Writer + BMAD Master
 5. game-agents - מדריך אגנטים - חלק 3: אגנטי משחקים
 6. cis-first3 - מדריך אגנטים - חלק 4א: שילוב בין אגנטים (3 ראשונים)
+7. cis-last2 - מדריך אגנטים - חלק 4ב: שילוב בין אגנטים (2 אחרונים)
+8. synthesis - מדריך אגנטים - חלק 5: סינתזה ותמונה כוללת
 
-### ✅ Workflows (4/10 - 40%)
+### ✅ Workflows (7/10 - 70%)
 1. intro-critical - מדריך וורקפלואים - חלק 1א: מבוא + וורקפלואים קריטיים
 2. phase0-1 - מדריך וורקפלואים - חלק 1ב: Phase 0-1 (Idea to Brief)
 3. phase2-core - מדריך וורקפלואים - חלק 2א: Phase 2 Core (Spec + Arch)
 4. phase2-design - מדריך וורקפלואים - חלק 2ב: Phase 2 Design (UX + GDD)
+5. solutioning - מדריך וורקפלואים - חלק 3א: Solutioning (Ready for Dev)
+6. sprint-setup - מדריך וורקפלואים - חלק 3ב: Sprint Setup
+7. development - מדריך וורקפלואים - חלק 3ג: Development Flow
 
 ---
 

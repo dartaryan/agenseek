@@ -1,0 +1,770 @@
+{
+  "metadata": {
+    "id": "workflows-sprint-setup",
+    "slug": "workflows-sprint-setup",
+    "title": "מדריך וורקפלואים - חלק 3ב: Sprint Setup",
+    "description": "וורקפלואים לתכנון ספרינטים - sprint-planning, backlog management, ותעדוף Stories. הכנת הצוות לעבודה, חלוקת משימות, והגדרת יעדי ספרינט.",
+    "category": "workflows",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 35,
+    "icon": "IconCalendarEvent",
+    "tags": ["וורקפלואים", "ספרינט", "תכנון", "אג'ייל", "backlog"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "Sprint Setup: סקירה",
+      "level": 2,
+      "anchor": "sprint-setup-overview"
+    },
+    {
+      "id": "toc-2",
+      "title": "sprint-planning - תכנון ספרינט",
+      "level": 2,
+      "anchor": "sprint-planning"
+    },
+    {
+      "id": "toc-3",
+      "title": "Backlog Management - ניהול תור המשימות",
+      "level": 2,
+      "anchor": "backlog-management"
+    },
+    {
+      "id": "toc-4",
+      "title": "תעדוף Stories - קביעת עדיפויות",
+      "level": 2,
+      "anchor": "story-prioritization"
+    },
+    {
+      "id": "toc-5",
+      "title": "תהליך מלא - מ-Backlog ל-Sprint Active",
+      "level": 2,
+      "anchor": "full-process"
+    },
+    {
+      "id": "toc-6",
+      "title": "שאלות נפוצות",
+      "level": 2,
+      "anchor": "faq"
+    },
+    {
+      "id": "toc-7",
+      "title": "סיכום ומעבר ל-Development",
+      "level": 2,
+      "anchor": "summary"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מדריך וורקפלואים - חלק 3ב: Sprint Setup",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "על מה המדריך הזה?",
+      "content": "במדריך זה נלמד על Sprint Setup - איך לתכנן ספרינט, לנהל backlog, ולתעדף Stories. זה השלב שבו Stories מוכנות הופכות לתוכנית עבודה ממשית לצוות."
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "דרישות מוקדמות",
+      "content": "לפני שמתחילים את המדריך הזה, מומלץ לקרוא את חלק 3א (Solutioning) ולהבין איך מכינים Stories לפיתוח. Sprint Setup בא אחרי שיש Stories מוכנות."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Sprint Setup: סקירה",
+      "id": "sprint-setup-overview"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה Sprint Setup?",
+      "id": "what-is-sprint-setup"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**Sprint Setup** הוא התהליך שבו לוקחים **Stories מוכנות** (שעברו Solutioning) ו**מארגנים אותן לספרינט עבודה**.\n\n**במילים פשוטות:** יש לכם backlog של Stories מוכנות, ועכשיו צריך **להחליט מה נעשה בספרינט הבא**, **מי יעשה מה**, ו**מה המטרה**."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "למה Sprint Setup חשוב?",
+      "id": "why-sprint-setup-important"
+    },
+    {
+      "type": "text",
+      "content": "בלי Sprint Setup טוב, הצוות:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**לא יודע מה הסדר עדיפויות** - כולם עובדים על דברים שונים",
+        "**לא מתאם ביניהם** - dependencies לא מטופלים",
+        "**לא יודע מתי נגמר הספרינט** - אין מטרה ברורה",
+        "**עובד על יותר מדי דברים** - overcommitment",
+        "**לא רואה את התמונה הגדולה** - איך Stories מתחברים למטרה"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "Sprint Setup טוב",
+      "content": "כל חבר צוות יודע בדיוק מה לעשות, באיזה סדר, ולמה זה חשוב. יש מטרה ברורה לספרינט, וכולם מחויבים לאותה מטרה."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הוורקפלואים של Sprint Setup",
+      "id": "workflows-list"
+    },
+    {
+      "type": "text",
+      "content": "Sprint Setup כולל 3 פעילויות עיקריות:"
+    },
+    {
+      "type": "table",
+      "headers": ["פעילות", "אחראי", "מתי", "תפוקה", "זמן"],
+      "rows": [
+        ["Backlog Management", "PM + SM", "שוטף, כל יום", "Backlog מסודר ומתועדף", "30-60 דקות"],
+        ["Story Prioritization", "PM + Stakeholders", "שבועי", "רשימת עדיפויות ברורה", "1-2 שעות"],
+        ["Sprint Planning", "כל הצוות", "תחילת ספרינט", "Sprint Goal + Sprint Backlog", "2-3 שעות"]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "הסדר הנכון",
+      "content": "Backlog Management שוטף → תעדוף Stories שבועי → Sprint Planning בתחילת כל ספרינט. זה הזרימה הטבעית."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "sprint-planning - תכנון ספרינט",
+      "id": "sprint-planning"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה Sprint Planning?",
+      "id": "sprint-planning-what"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**Sprint Planning** הוא פגישת תכנון שבה **כל הצוות יושב ביחד** ומחליט:\n1. **מה המטרה של הספרינט הזה?** (Sprint Goal)\n2. **אילו Stories נכנסים?** (Sprint Backlog)\n3. **מי עושה מה?** (Assignment)\n4. **איך נודע שסיימנו?** (Definition of Done)"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מבנה Sprint Planning Meeting",
+      "id": "sprint-planning-structure"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "sp-part1",
+          "title": "חלק 1: Sprint Goal (30 דקות)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מטרה:** הגדרת **למה** אנחנו עושים את הספרינט הזה\n\n**שאלות:**\n- מה אנחנו רוצים להשיג?\n- מה הערך העסקי?\n- למה זה חשוב עכשיו?\n\n**דוגמה:**\n❌ **רע:** \"לעשות 5 Stories מ-Epic 5\"\n✅ **טוב:** \"לאפשר למשתמשים להתחבר עם אימייל וסיסמה\"\n\n**למה זה חשוב?**\nSprint Goal נותן **מטרה משותפת** לצוות. כשצריך לקבל החלטות (\"האם לעשות את זה?\") - שואלים: \"זה תורם ל-Sprint Goal?\""
+            },
+            {
+              "type": "callout",
+              "variant": "tip",
+              "title": "Sprint Goal טוב",
+              "content": "Sprint Goal טוב הוא: ממוקד (single goal), מדיד (אפשר לדעת אם השגנו), בעל ערך (משתמשים מרוויחים משהו), וריאליסטי (ניתן להשגה בספרינט)."
+            }
+          ]
+        },
+        {
+          "id": "sp-part2",
+          "title": "חלק 2: Story Selection (1-1.5 שעות)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מטרה:** בחירת **אילו Stories** נכנסים לספרינט\n\n**תהליך:**\n\n**שלב 1: קיבולת Capacity (15 דקות)**\n```\nמי זמין בספרינט?\n- Alex: 5 ימים × 6h = 30h\n- Sarah: 4 ימים × 6h = 24h (יום חופש)\n- Mike: 5 ימים × 6h = 30h\n\nסה\"כ: 84 שעות זמינות\nBuffer (20%): 17 שעות\nקיבולת ספרינט: 67 שעות\n```\n\n**שלב 2: בחירת Stories (45 דקות)**\n- PM מציג Stories לפי עדיפות (מהגבוה לנמוך)\n- Architect מסביר Technical Solution בקצרה\n- צוות מאשר שהם מבינים\n- צוות מעריך / מאשר את ה-estimate\n- מוסיפים ל-Sprint Backlog\n- חוזרים עד שמגיעים לקיבולת\n\n**דוגמה:**\n```\nStories בחירה:\n1. Story 5.1: Auth Service (8h) ✅ → 8h total\n2. Story 5.2: Login Page (6h) ✅ → 14h total\n3. Story 5.3: Forgot Password (8h) ✅ → 22h total\n4. Story 5.4: Email Verification (10h) ✅ → 32h total\n5. Story 5.5: User Profile (12h) ✅ → 44h total\n6. Story 5.6: Avatar Upload (8h) ✅ → 52h total\n7. Story 5.7: Password Change (6h) ✅ → 58h total\n8. Story 5.8: Session Management (9h) ⚠️ → 67h total (בדיוק!)\n9. Story 5.9: Remember Me (5h) ❌ → 72h (מעל קיבולת)\n\nSpring Backlog: Stories 5.1-5.8 (67h / 67h capacity)\n```\n\n**שלב 3: Dependencies Check (15 דקות)**\n- בודקים שכל Story יכול להתחיל\n- מזהים dependencies בין Stories\n- קובעים סדר ביצוע\n\n**דוגמה:**\n```\nStory 5.2 (Login) תלוי ב-5.1 (Auth Service)\n→ Alex עושה 5.1 ראשון\n→ רק אז Sarah יכולה להתחיל 5.2\n```"
+            }
+          ]
+        },
+        {
+          "id": "sp-part3",
+          "title": "חלק 3: Task Assignment (30-45 דקות)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מטרה:** קביעת **מי עושה מה**\n\n**תהליך:**\n\n**אופציה 1: Assignment מיידי**\n- צוות מתנדב / PM מקצה\n- כל Story מקבל owner\n- רושמים ב-Sprint Backlog\n\n**אופציה 2: Pull System**\n- Stories ב-Sprint Backlog ללא owner\n- מפתחים \"מושכים\" Story כשמסיימים\n- יותר גמיש אבל צריך ניהול\n\n**דוגמה - Assignment מיידי:**\n```markdown\n## Sprint 3 Backlog\n\n### Week 1\n**Alex:**\n- Story 5.1: Auth Service (8h) - Days 1-2\n- Story 5.3: Forgot Password (8h) - Days 3-4\n- Story 5.7: Password Change (6h) - Day 5\n\n**Sarah:**\n- Story 5.2: Login Page (6h) - Days 2-3 (תלוי ב-5.1)\n- Story 5.4: Email Verification (10h) - Days 3-5\n\n**Mike:**\n- Story 5.5: User Profile (12h) - Days 1-3\n- Story 5.6: Avatar Upload (8h) - Days 3-5\n\n### Week 2 (if needed)\n**Alex:**\n- Story 5.8: Session Management (9h) - Days 1-2\n\n**Buffer:** 17h מתוכננים לשינויים / בעיות\n```\n\n**Dependencies Map:**\n```\n5.1 (Alex Day 1-2)\n  ↓\n5.2 (Sarah Day 2-3) → 5.3 (Alex Day 3-4)\n                      ↓\n5.5 (Mike Day 1-3) → 5.4 (Sarah Day 3-5)\n  ↓\n5.6 (Mike Day 3-5) → 5.7 (Alex Day 5)\n                      ↓\n                    5.8 (Alex Week 2)\n```"
+            },
+            {
+              "type": "callout",
+              "variant": "warning",
+              "title": "אזהרה - Overcommitment",
+              "content": "אל תמלאו את כל הקיבולת! השאירו buffer של 15-20% לבעיות בלתי צפויות, שינויים, ו-stories קטנות שצצות באמצע."
+            }
+          ]
+        },
+        {
+          "id": "sp-part4",
+          "title": "חלק 4: Definition of Done (15 דקות)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מטרה:** הסכמה על **מה אומר \"סיימנו\"**\n\n**Definition of Done לכל Story:**\n✅ קוד כתוב ועובד\n✅ Unit tests עוברים (coverage > 80%)\n✅ Code review עבר\n✅ QA בדק ואישר\n✅ תיעוד עודכן\n✅ Deployed ל-staging\n✅ Acceptance Criteria עומדים\n✅ PM אישר\n\n**Definition of Done לספרינט:**\n✅ כל Stories הושלמו לפי DoD\n✅ Sprint Goal הושג\n✅ אין bugs קריטיים\n✅ Demo מוכן\n✅ Retrospective נעשתה\n\n**למה זה חשוב?**\nאין \"כמעט סיימתי\" - או שהכל Done או שלא. זה מונע חוב טכני ומבטיח איכות."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך מריצים Sprint Planning ב-BMAD?",
+      "id": "sprint-planning-how"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "@sm hi\n*sprint-planning\n\n# Bob (Scrum Master) ינחה אתכם דרך התהליך",
+      "showLineNumbers": false
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאת Sprint Planning מוצלח",
+      "content": "בסוף Sprint Planning יש לכם: Sprint Goal ברור, Sprint Backlog מוגדר, task assignments ברורים, וצוות מחויב להצלחה!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Backlog Management - ניהול תור המשימות",
+      "id": "backlog-management"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה Product Backlog?",
+      "id": "backlog-what"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**Product Backlog** הוא **רשימת כל העבודה** שצריך לעשות בפרויקט - Stories, Bugs, Technical Debt, Research.\n\n**במילים פשוטות:** תור של דברים לעשות, ממויין לפי עדיפות (הכי חשוב למעלה)."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מבנה Product Backlog",
+      "id": "backlog-structure"
+    },
+    {
+      "type": "tabs",
+      "tabs": [
+        {
+          "id": "backlog-now",
+          "label": "Now (Top 10)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**10 Stories הבאים** שיכנסו לספרינט\n\n**מאפיינים:**\n✅ **מוכנים לפיתוח** - עברו story-ready\n✅ **Technical Solution קיים**\n✅ **Estimate מדויק**\n✅ **AC ברורים**\n✅ **Dependencies מזוהים**\n\n**דוגמה:**\n```markdown\n## Now - Sprint 3 & 4\n\n1. Story 5.1: Auth Service - 8h - READY ✅\n2. Story 5.2: Login Page - 6h - READY ✅\n3. Story 5.3: Forgot Password - 8h - READY ✅\n4. Story 5.4: Email Verification - 10h - READY ✅\n5. Story 5.5: User Profile - 12h - READY ✅\n6. Story 5.6: Avatar Upload - 8h - IN PROGRESS 🔄\n7. Story 5.7: Password Change - 6h - IN PROGRESS 🔄\n8. Story 5.8: Session Management - 9h - PENDING ⏳\n9. Story 5.9: Remember Me - 5h - PENDING ⏳\n10. Story 5.10: Logout Flow - 4h - PENDING ⏳\n```\n\n**מי מנהל:** PM + SM\n**עדכון:** יומי"
+            }
+          ]
+        },
+        {
+          "id": "backlog-next",
+          "label": "Next (20-30 Stories)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**Stories לספרינטים הבאים** (2-4 ספרינטים)\n\n**מאפיינים:**\n📝 **מוגדרים טוב** - יש AC ותיאור\n🔄 **בתהליך הכנה** - story-ready מתוכנן\n⚠️ **Estimate ראשוני** - לא מדויק לגמרי\n🔗 **Epic מוגדר**\n\n**דוגמה:**\n```markdown\n## Next - Sprints 5-7\n\n### Epic 6: User Settings (Sprint 5-6)\n11. Story 6.1: Settings Page - 8h\n12. Story 6.2: Theme Toggle - 4h\n13. Story 6.3: Language Selector - 6h\n14. Story 6.4: Notification Prefs - 10h\n...\n\n### Epic 7: Social Features (Sprint 6-7)\n21. Story 7.1: Friend Requests - 12h\n22. Story 7.2: User Search - 8h\n...\n\n### Technical Debt\n30. Refactor Auth Module - 16h\n31. Add Integration Tests - 12h\n```\n\n**מי מנהל:** PM\n**עדכון:** שבועי"
+            }
+          ]
+        },
+        {
+          "id": "backlog-later",
+          "label": "Later (הכל האחר)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**רעיונות, פיצ'רים עתידיים, ו-\"נחמד לקבל\"**\n\n**מאפיינים:**\n💡 **רעיונות ראשוניים** - לא מפורטים\n📅 **לא דחוף** - אולי נעשה, אולי לא\n❓ **לא מוערך** - אין estimate\n🎯 **לא מוגדר** - צריך refinement\n\n**דוגמה:**\n```markdown\n## Later - Maybe Someday\n\n### Epic 10: Advanced Features\n- Story 10.1: Two-Factor Authentication\n- Story 10.2: OAuth Login (Google, Facebook)\n- Story 10.3: Biometric Login\n\n### Epic 11: Analytics\n- Story 11.1: User Analytics Dashboard\n- Story 11.2: Usage Reports\n\n### Ideas\n- Gamification\n- Dark Mode\n- Mobile App\n- API v2\n```\n\n**מי מנהל:** PM + Stakeholders\n**עדכון:** חודשי / רבעוני"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Backlog Refinement - חידוד התור",
+      "id": "backlog-refinement"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**Backlog Refinement** הוא פעילות שוטפת של **הכנת Stories** לספרינטים הבאים."
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "כלל 10% / 1-2 Sprints Ahead",
+      "content": "צוות משקיע ~10% מהזמן ב-refinement. מטרה: תמיד יש 1-2 ספרינטים של Stories מוכנות מראש."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "**PM מביא Story** מ-Next ל-Now",
+        "**צוות קורא** את התיאור ו-AC",
+        "**שואלים שאלות** - \"מה זה אומר?\", \"למה זה?\", \"איך בודקים?\"",
+        "**Architect מתכנן** - story-ready session (אם צריך)",
+        "**צוות מעריך** - כמה זמן זה ייקח?",
+        "**PM מעדכן** את העדיפות",
+        "**Story עובר ל-Now** - מוכן לספרינט הבא!"
+      ]
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# Backlog Refinement Session (שבועי, 1-2 שעות)\n@pm hi\n*backlog-refinement\n\n# John ינחה דרך התהליך",
+      "showLineNumbers": false
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תעדוף Stories - קביעת עדיפויות",
+      "id": "story-prioritization"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "למה תעדוף חשוב?",
+      "id": "prioritization-why"
+    },
+    {
+      "type": "text",
+      "content": "לא ניתן לעשות הכל בבת אחת. תעדוף עוזר להחליט:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**מה עושים קודם?** - הכי חשוב למעלה",
+        "**מה דוחים?** - פחות חשוב למטה או מחוץ ל-backlog",
+        "**איפה משקיעים משאבים?** - פוקוס על הערך הגבוה ביותר",
+        "**מה מוותרים עליו?** - לפעמים צריך לומר \"לא\""
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מתודות תעדוף",
+      "id": "prioritization-methods"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "prio-value-effort",
+          "title": "1. Value vs Effort (מטריצה)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**גישה:** תעדוף לפי ערך עסקי לעומת מאמץ טכני\n\n**מטריצה:**\n```\n        High Value\n            ↑\n    Q2      |      Q1\n  (Later)   |   (Do First!) ← עדיפות גבוהה\n  ─────────────────────────── High Effort\n  Low Effort →\n    Q3      |      Q4\n (Quick Win)|   (Avoid)\n            ↓\n        Low Value\n```\n\n**Q1: High Value + Low Effort** → **עדיפות 1** 🔥\n- Story 5.1: Auth Service (value: 10, effort: 8h)\n- Story 5.2: Login Page (value: 10, effort: 6h)\n\n**Q2: High Value + High Effort** → **עדיפות 2** 📅\n- Story 10.1: Two-Factor Auth (value: 8, effort: 20h)\n\n**Q3: Low Value + Low Effort** → **עדיפות 3** ⚡\n- Story 6.2: Theme Toggle (value: 4, effort: 4h)\n\n**Q4: Low Value + High Effort** → **אל תעשה** ❌\n- Story X.X: Custom Emoji System (value: 2, effort: 40h)"
+            }
+          ]
+        },
+        {
+          "id": "prio-moscow",
+          "title": "2. MoSCoW (Must/Should/Could/Won't)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**גישה:** סיווג Stories לפי רמת חובה\n\n**Must Have:** 🔴 **חובה מוחלטת**\n- בלי זה המוצר לא עובד\n- חוסם release\n- דרישה חוקית\n\n**דוגמה:**\n- Story 5.1: Auth Service\n- Story 5.2: Login Page\n- Story 5.10: Logout\n\n---\n\n**Should Have:** 🟡 **חשוב מאוד**\n- מוסיף ערך משמעותי\n- משתמשים מצפים לזה\n- אבל אפשר בלעדיו (לזמן קצר)\n\n**דוגמה:**\n- Story 5.3: Forgot Password\n- Story 5.4: Email Verification\n- Story 6.1: User Profile\n\n---\n\n**Could Have:** 🟢 **נחמד לקבל**\n- משפר חוויה\n- לא קריטי\n- אפשר לדחות\n\n**דוגמה:**\n- Story 6.2: Dark Mode\n- Story 6.3: Avatar Upload\n\n---\n\n**Won't Have (this time):** ⚪ **לא הפעם**\n- רעיון טוב\n- אבל לא עכשיו\n- אולי בעתיד\n\n**דוגמה:**\n- Story 10.1: OAuth Login\n- Story 11.1: Analytics"
+            }
+          ]
+        },
+        {
+          "id": "prio-rice",
+          "title": "3. RICE Score (Reach, Impact, Confidence, Effort)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**גישה:** ניקוד מתמטי לפי 4 פרמטרים\n\n**נוסחה:**\n```\nRICE Score = (Reach × Impact × Confidence) / Effort\n```\n\n**פרמטרים:**\n\n**Reach (טווח הגעה):** כמה משתמשים מושפעים?\n- 100% משתמשים = 10\n- 50% משתמשים = 5\n- 10% משתמשים = 1\n\n**Impact (השפעה):** כמה זה משפיע על כל משתמש?\n- Massive = 3\n- High = 2\n- Medium = 1\n- Low = 0.5\n\n**Confidence (ביטחון):** כמה אנחנו בטוחים בהערכות?\n- 100% = 1.0\n- 80% = 0.8\n- 50% = 0.5\n\n**Effort (מאמץ):** כמה זמן זה לוקח? (אדם-שעות)\n\n**דוגמה - Story 5.2: Login Page:**\n```\nReach: 100% users = 10\nImpact: Massive (core feature) = 3\nConfidence: 100% (we know how) = 1.0\nEffort: 6 hours\n\nRICE = (10 × 3 × 1.0) / 6 = 30 / 6 = 5.0\n```\n\n**דוגמה - Story 6.2: Dark Mode:**\n```\nReach: 30% users = 3\nImpact: Medium (nice to have) = 1\nConfidence: 80% = 0.8\nEffort: 8 hours\n\nRICE = (3 × 1 × 0.8) / 8 = 2.4 / 8 = 0.3\n```\n\n**התוצאה:**\nLogin Page (5.0) > Dark Mode (0.3)\n→ Login קודם!"
+            }
+          ]
+        },
+        {
+          "id": "prio-kano",
+          "title": "4. Kano Model (סוגי פיצ'רים)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**גישה:** סיווג לפי השפעה על שביעות רצון המשתמש\n\n**Basic Needs (צרכים בסיסיים):** 📦\n- אם אין → משתמש ממש לא מרוצה\n- אם יש → משתמש ניטרלי (\"זה ברור\")\n\n**דוגמה:**\n- Login, Logout, Save Data\n\n**עדיפות:** 🔥 גבוהה מאוד (must have)\n\n---\n\n**Performance Needs (ביצועים):** 📈\n- יותר = טוב יותר\n- קשר לינארי\n\n**דוגמה:**\n- זמן טעינה, מהירות חיפוש, accuracy\n\n**עדיפות:** 🟡 בינונית-גבוהה\n\n---\n\n**Excitement Features (פיצ'רים מפתיעים):** ⭐\n- אם אין → לא מפריע (לא ציפו)\n- אם יש → WOW! שביעות רצון גבוהה\n\n**דוגמה:**\n- AI suggestions, Dark mode, Animations\n\n**עדיפות:** 🟢 נמוכה-בינונית (differentiation)\n\n---\n\n**Indifferent (אדישים):** ⚪\n- לא משנה אם יש או אין\n- משתמשים לא אכפת להם\n\n**דוגמה:**\n- תכונות מסובכות שאף אחד לא מבין\n\n**עדיפות:** ❌ אל תבנה!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "שלב מתודות",
+      "content": "אין מתודה \"הכי טובה\". השתמש ב-MoSCoW לסיווג ראשוני, ואז RICE לדירוג בתוך כל קטגוריה. זה מאוד יעיל!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תהליך מלא - מ-Backlog ל-Sprint Active",
+      "id": "full-process"
+    },
+    {
+      "type": "text",
+      "content": "בואו נראה תהליך מלא של Sprint Setup:"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "ציר זמן - שבועיים לפני תחילת ספרינט",
+      "id": "two-weeks-timeline"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "timeline-2weeks",
+          "title": "שבועיים לפני: Backlog Refinement",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מטרה:** להכין Stories לספרינט הבא\n\n**פעילויות:**\n\n**יום שני (2 שעות):**\n- PM מביא 15 Stories מ-Later ל-Next\n- צוות קורא וש ואל שאלות\n- מחליטים אילו 10 Stories נכין\n\n**יום שלישי-רביעי:**\n- Architect + Dev מריצים story-ready ל-5 Stories\n- Technical Solutions מוכנות\n\n**יום חמישי:**\n- PM + Architect מריצים solutioning-gate-check\n- כל 5 Stories עברו ✅\n\n**סוף שבוע:**\n✅ 5 Stories מוכנות ב-Now\n✅ עוד 5 Stories בתהליך הכנה"
+            }
+          ]
+        },
+        {
+          "id": "timeline-1week",
+          "title": "שבוע לפני: תעדוף וחידוד",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מטרה:** לתעדף ולחדד את ה-backlog\n\n**פעילויות:**\n\n**יום שני (1 שעה):**\n- PM + Stakeholders מריצים תעדוף\n- משתמשים ב-RICE scoring\n- מסדרים את ה-backlog\n\n**יום שלישי-רביעי:**\n- המשך story-ready ל-5 Stories נוספות\n- סה\"כ 10 Stories מוכנות\n\n**יום חמישי (1 שעה):**\n- Backlog Refinement session\n- צוות סוקר את 10 Stories המוכנות\n- שואלים שאלות אחרונות\n\n**סוף שבוע:**\n✅ 10 Stories מוכנות ב-Now\n✅ Backlog ממויין לפי עדיפות\n✅ צוות מכיר את ה-Stories"
+            }
+          ]
+        },
+        {
+          "id": "timeline-day0",
+          "title": "יום הספרינט: Sprint Planning",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מטרה:** לתכנן את הספרינט\n\n**Sprint Planning Meeting (2-3 שעות):**\n\n**9:00-9:30 - Sprint Goal:**\n- PM מציג את המטרה: \"Enable user authentication\"\n- צוות מסכים\n\n**9:30-11:00 - Story Selection:**\n- PM מציג 10 Stories לפי עדיפות\n- צוות בוחר 7 Stories (67h / 67h capacity)\n- Dependencies מזוהים\n\n**11:00-11:30 - Task Assignment:**\n- צוות מתנדב / PM מקצה\n- כל Story יש owner\n\n**11:30-12:00 - Definition of Done:**\n- צוות מסכים על DoD\n- Sprint Commitment\n\n**12:00 - Sprint Starts! 🚀**\n\n**תוצאה:**\n```markdown\n## Sprint 3 Plan\n\n**Sprint Goal:** Enable user authentication\n\n**Sprint Backlog:**\n1. Story 5.1: Auth Service (Alex, 8h)\n2. Story 5.2: Login Page (Sarah, 6h)\n3. Story 5.3: Forgot Password (Alex, 8h)\n4. Story 5.4: Email Verification (Sarah, 10h)\n5. Story 5.5: User Profile (Mike, 12h)\n6. Story 5.6: Avatar Upload (Mike, 8h)\n7. Story 5.7: Password Change (Alex, 6h)\n\n**Total:** 67h / 67h capacity\n**Buffer:** 17h\n\n**Duration:** 2 weeks (Sep 1 - Sep 14)\n\n**Definition of Done:**\n- Code written & working\n- Tests pass (>80% coverage)\n- Code review approved\n- QA tested\n- Deployed to staging\n```"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "Sprint מוכן להתחלה!",
+      "content": "עכשיו יש לכם ספרינט מתוכנן עם מטרה ברורה, Stories מוכנות, ו-צוות מחויב. אפשר להתחיל לעבוד!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שאלות נפוצות",
+      "id": "faq"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "faq-1",
+          "title": "כמה זמן צריך Sprint Planning?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**תלוי באורך הספרינט:**\n\n**ספרינט שבוע:** 1-1.5 שעות\n**ספרינט שבועיים:** 2-3 שעות\n**ספרינט 3 שבועות:** 3-4 שעות\n**ספרינט חודש:** 4-6 שעות\n\n**כלל אצבע:** ~2 שעות לכל שבוע ספרינט\n\n**למה לא יותר?**\nאם Sprint Planning לוקח יותר זמן - זה אומר שלא עשיתם מספיק refinement מראש!"
+            }
+          ]
+        },
+        {
+          "id": "faq-2",
+          "title": "מה אם לא מסיימים את כל הספרינט?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**זה קורה!** לא תמיד מצליחים להשלים הכל.\n\n**מה לעשות:**\n\n**1. Retrospective (רטרו):**\n- למה לא הצלחנו?\n- Overcommitment? Blockers? בעיות טכניות?\n- מה נשנה?\n\n**2. Story לא גמור:**\n- אם Story כמעט גמור (>80%) → העבר לספרינט הבא, תסיים ראשון\n- אם Story רק התחיל (<20%) → החזר ל-backlog, תעדף מחדש\n\n**3. הפקת לקחים:**\n- Estimates לא מדויקים → שפר הערכות\n- Dependencies בלוקרו → זהה dependencies טוב יותר\n- Scope Creep → הדק AC טוב יותר\n\n**4. שינוי קיבולת:**\n- אם זה קורה כל ספרינט → אולי הקיבולת גבוהה מדי\n- הורד את הקיבולת ב-10-20%"
+            }
+          ]
+        },
+        {
+          "id": "faq-3",
+          "title": "האם אפשר להוסיף Stories באמצע הספרינט?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**תלוי בדחיפות:**\n\n**✅ כן, אם:**\n- **Bug קריטי** שחוסם production\n- **Blocker** שמונע מהצוות להמשיך\n- **דרישה חוקית** דחופה\n\n**תהליך:**\n1. PM + SM מעריכים את הדחיפות\n2. צוות מעריך את הזמן הנדרש\n3. מחליטים **מה להוציא** מהספרינט (same capacity!)\n4. מוסיפים Story חדש\n5. מעדכנים Sprint Backlog\n\n**❌ לא, אם:**\n- \"נחמד לקבל\" - זה מחכה לספרינט הבא\n- \"בוס ביקש\" - אבל לא דחוף\n- \"זה קל\" - עדיין, זה Sprint Commitment\n\n**כלל אצבע:**\nSpring Backlog הוא **commitment**. שינויים רק במקרים חריגים!"
+            }
+          ]
+        },
+        {
+          "id": "faq-4",
+          "title": "איך מתמודדים עם דרישות משתנות?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**אג'ייל = אמור להיות גמיש, נכון?**\n\nכן, אבל גמישות לא אומרת **כאוס**.\n\n**עקרונות:**\n\n**1. Stable Sprint:**\n- ברגע שספרינט התחיל → Sprint Backlog קפוא\n- דרישות חדשות → ל-backlog, לא לספרינט הנוכחי\n\n**2. Flexible Backlog:**\n- Backlog מתעדכן כל הזמן\n- Priorities משתנים\n- Stories מתווספים / מוסרים\n\n**3. אבל:**\n- אם דרישה **שוברת את הנחות היסוד** → Sprint Review / עצירה\n- דוגמה: \"המוצר כבר לא רלוונטי\" → צריך לדבר!\n\n**Best Practice:**\n```\nקבוע: Sprint Backlog (2 weeks)\nגמיש: Product Backlog (תמיד)\n```\n\n**אנלוגיה:**\nספרינט = רכבת שיצאה מהתחנה\nBacklog = לוח הזמנים שיכול להשתנות"
+            }
+          ]
+        },
+        {
+          "id": "faq-5",
+          "title": "איך לעבוד עם צוות מבוזר (remote)?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**Sprint Setup עובד מצוין גם ב-remote!**\n\n**כלים:**\n- **Sprint Planning:** Zoom / Teams + Miro / Figma board\n- **Backlog:** Jira / Azure DevOps / Linear\n- **תעדוף:** Miro board + voting\n- **Communication:** Slack / Teams\n\n**טיפים:**\n\n**1. היו סינכרוניים ב-Sprint Planning:**\n- כל הצוות על Zoom\n- Screen sharing של backlog\n- Real-time collaboration\n\n**2. היו אסינכרוניים ב-Refinement:**\n- Stories מתפרסמים מראש\n- צוות קורא async\n- שאלות ב-Slack\n- Refinement meeting קצר יותר\n\n**3. תעדוף async:**\n- PM שולח Stories עם RICE scores\n- צוות מצביע (👍/👎)\n- PM מסכם ומסדר\n\n**4. Daily Updates:**\n- Stand-up async ב-Slack (״מה עשיתי, מה אעשה, blockers\")\n- Sprint board מעודכן תמיד\n\n**5. Time Zones:**\n- Sprint Planning בזמן שמתאים לכולם\n- רוטציה של זמנים אם צריך\n- הקלטה לאלו שלא יכלו"
+            }
+          ]
+        },
+        {
+          "id": "faq-6",
+          "title": "איך מודדים הצלחה של ספרינט?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מטריקות Sprint:**\n\n**1. Sprint Goal Achievement:**\n- האם השגנו את ה-Sprint Goal?\n- ✅ כן = הצלחה\n- ❌ לא = צריך לחקור למה\n\n**2. Velocity (מהירות):**\n```\nVelocity = Story Points שהושלמו\n\nSpring 1: 40 points\nSpring 2: 45 points\nSpring 3: 48 points\n→ Velocity עולה = טוב!\n\nSpring 4: 30 points\n→ Velocity ירד = מה קרה?\n```\n\n**3. Sprint Completion Rate:**\n```\nCompletion = Stories שהושלמו / Stories שתוכננו\n\nSpring 3: 7/7 = 100% ✅\nSpring 4: 5/7 = 71% ⚠️\n→ Overcommitment?\n```\n\n**4. Carry-Over Rate:**\n```\nCarry-Over = Stories שעברו לספרינט הבא\n\nIdeal: 0-10%\nOK: 10-20%\nBad: >20% → בעיה!\n```\n\n**5. Team Happiness:**\n- צוות מרגיש טוב?\n- לחץ סביר?\n- Sprint היה productive?\n\n**מטרה:**\n- **Velocity יציב** (לא עולה/יורד בצורה קיצונית)\n- **Completion rate גבוה** (>80%)\n- **Team happy** 😊"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "סיכום ומעבר ל-Development",
+      "id": "summary"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה למדנו במדריך הזה?",
+      "id": "what-learned"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "במדריך זה כיסינו את **Sprint Setup** - איך להפוך Stories מוכנות לתוכנית עבודה:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**sprint-planning** - תכנון ספרינט עם Sprint Goal, Story Selection, ו-Task Assignment",
+        "**Backlog Management** - ניהול Product Backlog ו-Refinement שוטף",
+        "**תעדוף Stories** - מתודות לקביעת עדיפויות (MoSCoW, RICE, Value/Effort)",
+        "**תהליך מלא** - מ-Backlog ל-Sprint Active בשבועיים",
+        "**Best Practices** - כמה זמן, איך להתמודד עם שינויים, ו-מטריקות הצלחה"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "התפוקות של Sprint Setup",
+      "id": "deliverables"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "items": [
+        [
+          {
+            "type": "card",
+            "title": "Sprint Goal",
+            "content": [
+              {
+                "type": "text",
+                "content": "מטרה ברורה לספרינט שכל הצוות מחויב אליה"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "title": "Sprint Backlog",
+            "content": [
+              {
+                "type": "text",
+                "content": "רשימת Stories שייעשו בספרינט עם assignments"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "title": "Product Backlog (מעודכן)",
+            "content": [
+              {
+                "type": "text",
+                "content": "Backlog ממויין ומתועדף עם Stories מוכנות מראש"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "title": "Team Alignment",
+            "content": [
+              {
+                "type": "text",
+                "content": "צוות מסונכרן ויודע בדיוק מה לעשות"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "כל הכבוד - Sprint Setup הושלם!",
+      "content": "אתם מוכנים להתחיל לעבוד! יש לכם ספרינט מתוכנן, Stories מוכנות, וצוות מחויב. עכשיו אפשר לעבור לפיתוח!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "המדריכים הבאים בסדרה",
+      "id": "next-guides"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "items": [
+        [
+          {
+            "type": "card",
+            "title": "חלק 3א: Solutioning",
+            "content": [
+              {
+                "type": "text",
+                "content": "epic-tech-context, story-ready, gate-check - איך מכינים Stories לפיתוח"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "title": "חלק 3ג: Development Flow",
+            "content": [
+              {
+                "type": "text",
+                "content": "dev-story, code-review, story-done - תהליך הפיתוח השוטף"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה עושים עכשיו?",
+      "id": "what-now"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "**הריצו Sprint Planning** - קחו את ה-backlog שלכם ותכננו ספרינט אמיתי",
+        "**נהלו את ה-Backlog** - התחילו refinement שוטף עם הצוות",
+        "**תעדפו Stories** - השתמשו ב-RICE או MoSCoW כדי לסדר את העדיפויות",
+        "**מדדו הצלחה** - עקבו אחרי Velocity ו-Completion Rate",
+        "**קראו את המדריך הבא** - Development Flow (איך מפתחים Stories)"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "טיפ אחרון",
+      "content": "Sprint Planning טוב = ספרינט חלק. השקיעו בתכנון ותראו איך הפיתוח זורם!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מדריך Sprint Setup הושלם!",
+      "content": "אתם עכשיו יודעים איך לתכנן ספרינטים, לנהל backlog, ולתעדף Stories. ספרינט מוצלח מתחיל בתכנון טוב!"
+    }
+  ],
+  "relatedGuides": [
+    "workflows-solutioning",
+    "workflows-development",
+    "workflows-management",
+    "agents-architect-sm-dev",
+    "role-project-managers"
+  ],
+  "prerequisites": [
+    "workflows-intro-critical",
+    "workflows-solutioning"
+  ],
+  "nextSteps": [
+    "workflows-development",
+    "workflows-management"
+  ]
+}
+

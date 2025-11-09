@@ -167,10 +167,10 @@ export default function ContentAnalyticsPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+          <h1 className="text-3xl font-bold text-foreground dark:text-gray-100">
             {t.title}
           </h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-2">
+          <p className="text-muted-foreground dark:text-gray-400 mt-2">
             {t.subtitle}
           </p>
         </div>
@@ -185,10 +185,10 @@ export default function ContentAnalyticsPage() {
         <Card className="p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+              <p className="text-sm text-muted-foreground dark:text-gray-400 mb-1">
                 {t.totalNotes}
               </p>
-              <p className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+              <p className="text-3xl font-bold text-foreground dark:text-gray-100">
                 {summary.totalNotes.toLocaleString('he-IL')}
               </p>
             </div>
@@ -201,10 +201,10 @@ export default function ContentAnalyticsPage() {
         <Card className="p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+              <p className="text-sm text-muted-foreground dark:text-gray-400 mb-1">
                 {t.totalTasks}
               </p>
-              <p className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+              <p className="text-3xl font-bold text-foreground dark:text-gray-100">
                 {summary.totalTasks.toLocaleString('he-IL')}
               </p>
             </div>
@@ -217,10 +217,10 @@ export default function ContentAnalyticsPage() {
         <Card className="p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+              <p className="text-sm text-muted-foreground dark:text-gray-400 mb-1">
                 {t.totalComments}
               </p>
-              <p className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+              <p className="text-3xl font-bold text-foreground dark:text-gray-100">
                 {summary.totalComments.toLocaleString('he-IL')}
               </p>
             </div>
@@ -233,13 +233,13 @@ export default function ContentAnalyticsPage() {
         <Card className="p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+              <p className="text-sm text-muted-foreground dark:text-gray-400 mb-1">
                 {t.avgSessionDuration}
               </p>
-              <p className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+              <p className="text-3xl font-bold text-foreground dark:text-gray-100">
                 {summary.avgSessionDurationMinutes}
               </p>
-              <p className="text-xs text-gray-500 dark:text-gray-500">
+              <p className="text-xs text-muted-foreground dark:text-muted-foreground">
                 {t.minutes}
               </p>
             </div>
@@ -253,7 +253,7 @@ export default function ContentAnalyticsPage() {
       {/* Category Performance Chart */}
       {categoryData.length > 0 && (
         <Card className="p-6 mb-8">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+          <h2 className="text-xl font-bold text-foreground dark:text-gray-100 mb-4">
             {t.categoryPerformance}
           </h2>
           <ResponsiveContainer width="100%" height={300}>
@@ -296,17 +296,17 @@ export default function ContentAnalyticsPage() {
 
       {/* Guide Performance Table */}
       <Card className="p-6">
-        <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+        <h2 className="text-xl font-bold text-foreground dark:text-gray-100 mb-4">
           {t.guidePerformance}
         </h2>
 
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <div className="text-gray-500">{t.loading}</div>
+            <div className="text-muted-foreground">{t.loading}</div>
           </div>
         ) : guides.length === 0 ? (
           <div className="flex items-center justify-center py-12">
-            <div className="text-gray-500">{t.noData}</div>
+            <div className="text-muted-foreground">{t.noData}</div>
           </div>
         ) : (
           <div className="overflow-x-auto">
@@ -384,7 +384,7 @@ export default function ContentAnalyticsPage() {
                     <TableCell className="font-medium text-right max-w-xs truncate">
                       {guide.guideTitle}
                     </TableCell>
-                    <TableCell className="text-right text-gray-600 dark:text-gray-400">
+                    <TableCell className="text-right text-muted-foreground dark:text-gray-400">
                       {guide.category}
                     </TableCell>
                     <TableCell className="text-right">

@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { motion } from 'framer-motion';
 import { IconBrandGoogle, IconLock, IconMail, IconLoader2 } from '@tabler/icons-react';
+// Story 0.15: IconMoon, IconSun temporarily removed (theme toggle hidden)
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
@@ -12,6 +13,8 @@ import { Checkbox } from '../../components/ui/checkbox';
 import { AnimatedBackground } from '../../components/ui/AnimatedBackground';
 import { useToast } from '../../hooks/use-toast';
 import { useAuth } from '../../hooks/useAuth';
+// Story 0.15: useTheme temporarily disabled (theme toggle hidden)
+// import { useTheme } from '../../contexts/ThemeContext';
 import { signIn, signInWithProvider } from '../../lib/auth';
 import { hebrewLocale } from '../../lib/locale/he';
 import { loginSchema, type LoginFormData } from '../../lib/validation/authSchemas';
@@ -26,6 +29,8 @@ export function LoginPage() {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { user, isLoading: authLoading } = useAuth();
+  // Story 0.15: Theme toggle temporarily disabled
+  // const { setTheme, resolvedTheme } = useTheme();
   const [isLoading, setIsLoading] = useState(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const he = hebrewLocale.auth;
@@ -101,9 +106,25 @@ export function LoginPage() {
   };
 
   return (
-    <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-4">
+    <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-emerald-950 dark:via-emerald-900 dark:to-teal-950 p-4">
       {/* Story 6.15: Animated background shapes */}
       <AnimatedBackground variant="auth" />
+
+      {/* Story 0.6 / Story 0.15: Theme Toggle - Temporarily hidden until dark mode is polished
+      <Button
+        variant="outline"
+        size="icon"
+        onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+        className="fixed top-4 left-4 z-50 bg-background/80 backdrop-blur-sm"
+        aria-label={resolvedTheme === 'dark' ? 'עבור למצב בהיר' : 'עבור למצב כהה'}
+      >
+        {resolvedTheme === 'dark' ? (
+          <IconSun className="h-5 w-5" />
+        ) : (
+          <IconMoon className="h-5 w-5" />
+        )}
+      </Button>
+      */}
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -111,7 +132,7 @@ export function LoginPage() {
         transition={{ duration: 0.5 }}
         className="w-full max-w-md relative z-10"
       >
-        <Card className="p-8 space-y-6 shadow-xl backdrop-blur-xl bg-white/90 border border-white/20">
+        <Card className="p-8 space-y-6 shadow-xl backdrop-blur-xl bg-white/90 dark:bg-card/90 border border-white/20 dark:border-border">
           {/* Header */}
           <div className="text-center space-y-4">
             <img
@@ -120,15 +141,15 @@ export function LoginPage() {
               className="h-12 w-auto mx-auto"
             />
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold text-emerald-600">{he.brandName}</h1>
-              <p className="text-gray-600">{he.brandSubtitle}</p>
+              <h1 className="text-3xl font-bold text-primary">{he.brandName}</h1>
+              <p className="text-muted-foreground">{he.brandSubtitle}</p>
             </div>
           </div>
 
           {/* Title */}
           <div className="space-y-2">
-            <h2 className="text-2xl font-semibold text-center">{he.welcomeBack}</h2>
-            <p className="text-center text-gray-500 text-sm">{he.loginToAccount}</p>
+            <h2 className="text-2xl font-semibold text-center text-foreground">{he.welcomeBack}</h2>
+            <p className="text-center text-muted-foreground text-sm">{he.loginToAccount}</p>
           </div>
 
           {/* Google OAuth - Story 2.4 */}
@@ -151,10 +172,10 @@ export function LoginPage() {
           {/* Divider */}
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t border-gray-300 dark:border-gray-600" />
+              <span className="w-full border-t border-border" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">
+              <span className="px-2 bg-background text-muted-foreground">
                 או
               </span>
             </div>
@@ -166,7 +187,7 @@ export function LoginPage() {
             <div className="space-y-2">
               <Label htmlFor="email">{he.email}</Label>
               <div className="relative">
-                <IconMail className="absolute left-3 top-3 h-5 w-5 text-gray-400" aria-hidden="true" />
+                <IconMail className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" aria-hidden="true" />
                 <Input
                   id="email"
                   type="email"
@@ -186,7 +207,7 @@ export function LoginPage() {
             <div className="space-y-2">
               <Label htmlFor="password">{he.password}</Label>
               <div className="relative">
-                <IconLock className="absolute left-3 top-3 h-5 w-5 text-gray-400" aria-hidden="true" />
+                <IconLock className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" aria-hidden="true" />
                 <Input
                   id="password"
                   type="password"
@@ -215,7 +236,7 @@ export function LoginPage() {
                   {he.rememberMe}
                 </Label>
               </div>
-              <Link to="/auth/forgot-password" className="text-sm text-emerald-600 hover:underline">
+              <Link to="/auth/forgot-password" className="text-sm text-primary hover:underline">
                 {he.forgotPassword}
               </Link>
             </div>
@@ -223,7 +244,7 @@ export function LoginPage() {
             {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full bg-emerald-600 hover:bg-emerald-700"
+              className="w-full"
               disabled={isLoading}
             >
               {isLoading ? he.loginButtonLoading : he.loginButton}
@@ -231,9 +252,9 @@ export function LoginPage() {
           </form>
 
           {/* Register Link */}
-          <p className="text-center text-sm text-gray-500">
+          <p className="text-center text-sm text-muted-foreground">
             {he.noAccount}{' '}
-            <Link to="/auth/register" className="text-emerald-600 hover:underline font-semibold">
+            <Link to="/auth/register" className="text-primary hover:underline font-semibold">
               {he.registerLink}
             </Link>
           </p>

@@ -17,12 +17,12 @@ export default function GuideLibraryDemo() {
   const demoGuides = catalog.slice(0, 6);
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
+    <div className="min-h-screen bg-background p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8 text-right">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">ספריית המדריכים</h1>
-          <p className="text-lg text-gray-600">דוגמאות לכרטיסי מדריכים במצבים שונים</p>
+          <h1 className="text-4xl font-bold text-foreground mb-2">ספריית המדריכים</h1>
+          <p className="text-lg text-muted-foreground">דוגמאות לכרטיסי מדריכים במצבים שונים</p>
         </div>
 
         {/* Guide Cards Grid - Different States */}

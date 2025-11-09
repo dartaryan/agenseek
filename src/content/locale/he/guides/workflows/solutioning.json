@@ -1,0 +1,1030 @@
+{
+  "metadata": {
+    "id": "workflows-solutioning",
+    "slug": "workflows-solutioning",
+    "title": "מדריך וורקפלואים - חלק 3א: Solutioning (Ready for Dev)",
+    "description": "וורקפלואים להכנת Stories לפיתוח - epic-tech-context, story-ready, solutioning-gate-check. מעבירים Stories ממפרט לקוד.",
+    "category": "workflows",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 45,
+    "icon": "IconChecklist",
+    "tags": ["וורקפלואים", "solutioning", "stories", "תכנון", "פיתוח"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "Phase 3 Solutioning: סקירה",
+      "level": 2,
+      "anchor": "solutioning-overview"
+    },
+    {
+      "id": "toc-2",
+      "title": "epic-tech-context - הקשר טכני לאפיק",
+      "level": 2,
+      "anchor": "epic-tech-context"
+    },
+    {
+      "id": "toc-3",
+      "title": "story-ready - הכנת Story לפיתוח",
+      "level": 2,
+      "anchor": "story-ready"
+    },
+    {
+      "id": "toc-4",
+      "title": "solutioning-gate-check - בדיקת מוכנות",
+      "level": 2,
+      "anchor": "solutioning-gate-check"
+    },
+    {
+      "id": "toc-5",
+      "title": "תהליך מלא מקצה לקצה",
+      "level": 2,
+      "anchor": "full-process"
+    },
+    {
+      "id": "toc-6",
+      "title": "שאלות נפוצות",
+      "level": 2,
+      "anchor": "faq"
+    },
+    {
+      "id": "toc-7",
+      "title": "סיכום ומעבר ל-Sprint Planning",
+      "level": 2,
+      "anchor": "summary"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מדריך וורקפלואים - חלק 3א: Solutioning (Ready for Dev)",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "על מה המדריך הזה?",
+      "content": "במדריך זה נלמד על Phase 3 Solutioning - איך לקחת Stories שנוצרו ב-Phase 2 ולהכין אותם לפיתוח. נעבור על epic-tech-context, story-ready, ו-solutioning-gate-check."
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "דרישות מוקדמות",
+      "content": "לפני שמתחילים את המדריך הזה, מומלץ לקרוא את חלק 2א (Phase 2 Core) ולהבין איך יוצרים PRD, Architecture, ו-Stories. Solutioning בא אחרי שיש לנו Stories מוכנים."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Phase 3 Solutioning: סקירה",
+      "id": "solutioning-overview"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה Phase 3 Solutioning?",
+      "id": "what-is-solutioning"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**Phase 3 Solutioning** הוא השלב שבו לוקחים Stories שנוצרו ב-Phase 2 (PRD → Architecture → Epics & Stories) ו**מכינים אותם לפיתוח**.\n\n**במילים פשוטות:** יש לכם Stories עם Acceptance Criteria ותיאור כללי, אבל המפתחים עדיין לא יכולים להתחיל לקודד. צריך **לפתור את הפרטים הטכניים**, **לתכנן את הפתרון**, ו**לוודא שהכל ברור**."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "למה Phase הזה חשוב?",
+      "id": "why-solutioning-important"
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "טעות נפוצה מספר 1",
+      "content": "הרבה צוותים קופצים ישירות מ-Stories לקוד. \"יש לנו Stories, בואו נקודד!\" התוצאה? מפתחים תקועים, שאלות אין סוף, פתרונים לא עקביים, ושינויים אדריכליים באמצע הספרינט."
+    },
+    {
+      "type": "text",
+      "content": "למה לא לדלג על Solutioning:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**מפתחים מבינים בדיוק מה לעשות** - אין \"אממ, איך בדיוק עושים את זה?\"",
+        "**פתרון מוסכם מראש** - כל הצוות מסכים על הגישה הטכנית",
+        "**מונע divergence** - כל מפתח לא ממציא פתרון אחר",
+        "**מגלה בעיות מוקדם** - עדיף לגלות שמשהו לא ברור לפני שכתבתם קוד",
+        "**הערכת זמן מדויקת** - מפתחים יכולים להעריך טוב יותר כשהפתרון ברור",
+        "**חוסך זמן ותקציב** - שעתיים תכנון חוסכות שבוע של refactoring"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הוורקפלואים של Phase 3 Solutioning",
+      "id": "workflows-list"
+    },
+    {
+      "type": "text",
+      "content": "Phase 3 Solutioning כולל 3 וורקפלואים עיקריים:"
+    },
+    {
+      "type": "table",
+      "headers": ["וורקפלו", "אגנט", "מתי להשתמש", "תפוקה", "זמן"],
+      "rows": [
+        ["epic-tech-context", "Architect", "פעם אחת לכל Epic", "Technical Context Doc", "2-4 שעות"],
+        ["story-ready", "Architect + Dev", "לכל Story לפני פיתוח", "Technical Solution + Tasks", "30-90 דקות"],
+        ["solutioning-gate-check", "PM + Architect", "לפני Sprint Planning", "Readiness Report", "1-2 שעות"]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "הסדר הנכון",
+      "content": "epic-tech-context פעם אחת לכל Epic → story-ready לכל Story באפיק → solutioning-gate-check לפני Sprint Planning. זה הזרימה הטבעית."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מתי עושים Solutioning?",
+      "id": "when-solutioning"
+    },
+    {
+      "type": "tabs",
+      "tabs": [
+        {
+          "id": "timing-epic",
+          "label": "ברמת Epic",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**epic-tech-context - מתי?**\n\n✅ **עושים:**\n- אחרי שיצרתם Epic עם Stories\n- לפני שמתחילים story-ready לכל Story\n- פעם אחת לכל Epic\n\n❌ **לא עושים:**\n- לפני שיש Epic מוגדר\n- אם האפיק טריוויאלי מאוד (UI משתנה, bug fix)\n\n**דוגמה:**\nEpic 5: User Authentication\n- יש 8 Stories (Login, Register, Forgot Password, וכו')\n- מריצים epic-tech-context **פעם אחת** כדי להגדיר Approach כללי\n- זה נותן הקשר טכני לכל 8 ה-Stories"
+            }
+          ]
+        },
+        {
+          "id": "timing-story",
+          "label": "ברמת Story",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**story-ready - מתי?**\n\n✅ **עושים:**\n- לכל Story לפני שהיא נכנסת לספרינט\n- אחרי epic-tech-context (אם יש)\n- כשמפתח עומד להתחיל לעבוד על Story\n\n❌ **לא עושים:**\n- לכל ה-Stories בבת אחת (too much upfront planning)\n- אם Story טריוויאלית מאוד (typo fix)\n\n**דוגמה:**\nStory 5.3: Implement Forgot Password Flow\n- מריצים story-ready **לפני הספרינט**\n- מפתח מקבל Technical Solution ברור\n- מתחיל לקודד בביטחון"
+            }
+          ]
+        },
+        {
+          "id": "timing-gate",
+          "label": "Gate Check",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**solutioning-gate-check - מתי?**\n\n✅ **עושים:**\n- לפני Sprint Planning\n- אחרי שעשינו story-ready ל-Stories המיועדות\n- כדי לוודא שהכל מוכן\n\n❌ **לא עושים:**\n- באמצע הספרינט\n- אם אין Stories מוכנות\n\n**דוגמה:**\nSpring 3 Planning מחר:\n- יש 5 Stories מ-Epic 5 שאמורות להיכנס\n- מריצים solutioning-gate-check **היום**\n- מוודאים שכל 5 Stories מוכנות לפיתוח\n- אם יש בעיה - מתקנים לפני Sprint Planning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "כלל אצבע",
+      "content": "אם מפתח שואל \"איך בדיוק עושים את זה?\" - זה אומר ש-story-ready לא נעשה טוב מספיק. Story מוכנה = מפתח יודע בדיוק איך להתחיל."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "epic-tech-context - הקשר טכני לאפיק",
+      "id": "epic-tech-context"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה epic-tech-context?",
+      "id": "epic-tech-context-what"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**epic-tech-context** הוא וורקפלו שיוצר **הקשר טכני אחיד** לכל Epic. במקום שכל Story תפתור את הבעיות הטכניות בצורה שונה, יש **גישה אחת מוסכמת** לכל האפיק.\n\n**זה כמו:**\n- **Architect מכין \"מפת דרכים טכנית\"** לכל האפיק\n- **כל Story יודעת איזה דרך לקחת**\n- **אין improvisation טכנית** באמצע"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה בתוך Technical Context Document?",
+      "id": "epic-tech-context-contents"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "etc-section1",
+          "title": "1. Technical Approach (גישה טכנית)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n- **High-Level Approach** - איך פותרים את האפיק מבחינה טכנית?\n- **Key Technologies** - אילו טכנולוגיות נשתמש?\n- **Architecture Patterns** - אילו דפוסים אדריכליים?\n- **Integration Points** - איפה האפיק משתלב עם מערכות אחרות?\n\n**דוגמה - Epic 5: User Authentication:**\n\n**Approach:**\n- JWT-based authentication\n- Supabase Auth integration\n- Zustand for client state\n- React Router protected routes\n\n**Technologies:**\n- Backend: Supabase Auth APIs\n- Frontend: React + Zustand + React Router\n- Storage: LocalStorage for tokens\n- Validation: Zod schemas\n\n**Patterns:**\n- HOC for route protection\n- Custom hooks for auth state (useAuth)\n- Centralized auth service\n\n**למה זה חשוב:** כל Story באפיק תשתמש באותה גישה - אין \"Story אחד עם JWT ואחר עם Sessions\""
+            }
+          ]
+        },
+        {
+          "id": "etc-section2",
+          "title": "2. Shared Components & Utilities (קומפוננטים משותפים)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n- **Components** - קומפוננטים שכל Stories ישתמשו בהם\n- **Utilities** - פונקציות עזר משותפות\n- **Services** - שירותים משותפים\n- **Types** - טייפים משותפים\n\n**דוגמה:**\n\n**Components:**\n```typescript\n// AuthProvider.tsx - HOC for auth context\n// ProtectedRoute.tsx - Route wrapper\n// AuthForm.tsx - Shared form layout\n// PasswordStrength.tsx - Password indicator\n```\n\n**Utilities:**\n```typescript\n// validateEmail(email: string): boolean\n// hashPassword(password: string): string\n// generateToken(): string\n// isTokenExpired(token: string): boolean\n```\n\n**Services:**\n```typescript\n// authService.ts - All auth operations\n//   - login(email, password)\n//   - register(email, password, name)\n//   - logout()\n//   - resetPassword(email)\n```\n\n**Types:**\n```typescript\n// User, AuthState, LoginCredentials, etc.\n```\n\n**למה זה חשוב:** מונע code duplication - כל Story יודע מה כבר קיים ומה צריך לבנות"
+            }
+          ]
+        },
+        {
+          "id": "etc-section3",
+          "title": "3. Data Models & Schema (מודלים ו-סכמות)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n- **Database Schema** - טבלאות ושדות\n- **API Contracts** - מה נשלח ומה חוזר\n- **State Shape** - איך state נראה\n- **Validation Rules** - כללי ולידציה\n\n**דוגמה:**\n\n**Database (Supabase):**\n```sql\ntable users {\n  id: uuid primary key\n  email: string unique not null\n  name: string\n  avatar_url: string\n  created_at: timestamp\n  updated_at: timestamp\n}\n\ntable sessions {\n  id: uuid primary key\n  user_id: uuid references users\n  token: string\n  expires_at: timestamp\n}\n```\n\n**API Contract:**\n```typescript\n// POST /auth/login\nRequest: { email: string, password: string }\nResponse: { user: User, token: string, expiresIn: number }\n\n// POST /auth/register\nRequest: { email: string, password: string, name: string }\nResponse: { user: User, token: string }\n```\n\n**State Shape:**\n```typescript\ninterface AuthState {\n  user: User | null;\n  token: string | null;\n  isAuthenticated: boolean;\n  isLoading: boolean;\n  error: string | null;\n}\n```\n\n**למה זה חשוב:** כל Story מדברת באותה \"שפה\" - אותם types, אותם fields"
+            }
+          ]
+        },
+        {
+          "id": "etc-section4",
+          "title": "4. Error Handling & Edge Cases (טיפול בשגיאות)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n- **Error Types** - אילו שגיאות יכולות לקרות\n- **Error Messages** - מה להציג למשתמש\n- **Retry Logic** - מתי לנסות שוב\n- **Fallbacks** - מה קורה במצבי קיצון\n\n**דוגמה:**\n\n**Error Types:**\n```typescript\nenum AuthError {\n  INVALID_CREDENTIALS = 'Invalid email or password',\n  EMAIL_EXISTS = 'Email already registered',\n  WEAK_PASSWORD = 'Password too weak',\n  NETWORK_ERROR = 'Network error, please try again',\n  TOKEN_EXPIRED = 'Session expired, please login again'\n}\n```\n\n**Error Handling:**\n- Network errors → Retry 3 times\n- Invalid credentials → Show error, don't retry\n- Token expired → Redirect to login\n- Validation errors → Show field-specific errors\n\n**Edge Cases:**\n- User refreshes during login → Restore from LocalStorage\n- Multiple tabs → Sync state across tabs (BroadcastChannel)\n- Offline → Show \"You're offline\" message\n- Token expires mid-session → Silent refresh or redirect\n\n**למה זה חשוב:** עקביות ב-UX - כל Stories מטפלות בשגיאות אותו הדבר"
+            }
+          ]
+        },
+        {
+          "id": "etc-section5",
+          "title": "5. Testing Strategy (אסטרטגיית בדיקות)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n- **Unit Tests** - מה לבדוק ברמת פונקציה\n- **Integration Tests** - מה לבדוק ברמת זרימה\n- **E2E Tests** - מה לבדוק ברמת משתמש\n- **Test Data** - איך ליצור דאטה לטסטים\n\n**דוגמה:**\n\n**Unit Tests:**\n```typescript\n// validateEmail()\n// hashPassword()\n// isTokenExpired()\n// Each utility function\n```\n\n**Integration Tests:**\n```typescript\n// Full login flow (authService.login)\n// Full register flow (authService.register)\n// Token refresh flow\n// Logout flow\n```\n\n**E2E Tests:**\n```typescript\n// User can register → login → see dashboard\n// User can't access protected route without login\n// User can reset password via email\n```\n\n**Test Data:**\n```typescript\n// Mock users: testUser1@example.com, testUser2@example.com\n// Mock tokens: valid, expired, invalid\n// Mock responses: success, error\n```\n\n**למה זה חשוב:** כל Story נבדקת אותו הדבר - אין \"Story אחד עם טסטים ואחר בלי\""
+            }
+          ]
+        },
+        {
+          "id": "etc-section6",
+          "title": "6. Performance & Security (ביצועים ואבטחה)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n- **Performance Targets** - זמני תגובה נדרשים\n- **Caching Strategy** - מה לקשר ולכמה זמן\n- **Security Measures** - איך לשמור על אבטחה\n- **Rate Limiting** - הגבלות שימוש\n\n**דוגמה:**\n\n**Performance:**\n- Login: < 500ms\n- Register: < 800ms\n- Token refresh: < 200ms\n- State hydration: < 100ms\n\n**Caching:**\n- User profile: cache 5 minutes\n- Auth token: cache until expiry\n- Don't cache: passwords, sensitive data\n\n**Security:**\n- Always HTTPS\n- Tokens in HTTP-only cookies (not LocalStorage if possible)\n- CSRF protection\n- XSS protection (sanitize inputs)\n- Rate limit: 5 login attempts per minute per IP\n- Password min 8 chars, 1 upper, 1 lower, 1 number\n\n**Rate Limiting:**\n- Login: 5 attempts/minute\n- Register: 3 attempts/hour per IP\n- Password reset: 1 attempt/5 minutes\n\n**למה זה חשוב:** כל Stories עוקבות אחרי אותן נורמות אבטחה וביצועים"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך מריצים?",
+      "id": "epic-tech-context-how"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# שלב 1: טעינת Architect\n@architect hi\n\n# שלב 2: בחירת epic-tech-context\n*epic-tech-context\n\n# Winston יוביל אתכם דרך תהליך יצירת Technical Context",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה מפורטת - תהליך יצירת epic-tech-context",
+      "id": "epic-tech-context-example"
+    },
+    {
+      "type": "text",
+      "content": "תרחיש: יצירת Technical Context ל-Epic 5: User Authentication"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "etc-process-step1",
+          "title": "שלב 1: Winston מנתח את האפיק",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**Winston אומר:**\n\"שלום! אני רואה שיש Epic 5: User Authentication עם 8 Stories. בואו ניצור הקשר טכני אחיד.\"\n\n**Winston קורא:**\n- Epic 5 Description\n- כל 8 ה-Stories (Login, Register, Forgot Password, וכו')\n- PRD relevant sections\n- Architecture document\n\n**Winston שואל:**\n\"ספרו לי - האם יש כבר authentication במערכת? או זה חדש לגמרי?\""
+            }
+          ]
+        },
+        {
+          "id": "etc-process-step2",
+          "title": "שלב 2: קביעת Technical Approach",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**Winston:**\n\"בואו נחליט על הגישה הטכנית. אני ממליץ:\"\n\n**Approach:**\n1. **Backend:** Supabase Auth (כבר משולב)\n2. **State Management:** Zustand store לאובייקט user\n3. **Routing:** React Router v6 עם ProtectedRoute wrapper\n4. **Storage:** LocalStorage לטוקן (אלטרנטיבה: Cookies)\n5. **Validation:** Zod schemas לכל forms\n\n**Winston מסביר:**\n\"למה Supabase Auth? כי הוא:\n- Built-in email verification\n- Built-in password reset\n- Secure by default\n- Scales automatically\n- Less code to maintain\n\nאתם מסכימים?\"\n\n**אתם:**\n\"כן, נשמע מצוין!\"\n\n**Winston:**\n\"נהדר! אני מתעד את זה ב-Technical Context Document.\""
+            }
+          ]
+        },
+        {
+          "id": "etc-process-step3",
+          "title": "שלב 3: הגדרת Shared Components",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**Winston:**\n\"עכשיו בואו נגדיר מה משותף לכל Stories:\"\n\n**Shared Components:**\n1. `AuthProvider.tsx` - Context provider לכל אפליקציה\n2. `ProtectedRoute.tsx` - HOC לroutes מוגנות\n3. `AuthForm.tsx` - Layout משותף לכל טפסי Auth\n4. `PasswordStrength.tsx` - אינדיקטור חוזק סיסמה\n5. `EmailInput.tsx` - Input מ-validated לאימייל\n\n**Shared Services:**\n1. `authService.ts` - כל הלוגיקה של Auth\n   ```typescript\n   export const authService = {\n     login: async (email, password) => {...},\n     register: async (email, password, name) => {...},\n     logout: async () => {...},\n     resetPassword: async (email) => {...},\n     verifyEmail: async (token) => {...}\n   };\n   ```\n\n**Shared Store:**\n```typescript\ninterface AuthState {\n  user: User | null;\n  isAuthenticated: boolean;\n  isLoading: boolean;\n  error: string | null;\n  login: (email, password) => Promise<void>;\n  logout: () => Promise<void>;\n}\n```\n\n**Winston:**\n\"כל Story תשתמש בקומפוננטים האלה - אין צורך להמציא מחדש!\""
+            }
+          ]
+        },
+        {
+          "id": "etc-process-step4",
+          "title": "שלב 4: הגדרת Data Models",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**Winston:**\n\"בואו נגדיר את המודלים - איך data נראה:\"\n\n**User Model:**\n```typescript\ninterface User {\n  id: string;\n  email: string;\n  name: string;\n  avatar_url?: string;\n  email_verified: boolean;\n  created_at: string;\n  updated_at: string;\n}\n```\n\n**API Contracts:**\n```typescript\n// POST /auth/login\nRequest: { email: string; password: string }\nResponse: { user: User; session: Session }\nErrors: 400 (invalid), 401 (unauthorized), 500 (server)\n\n// POST /auth/register\nRequest: { email: string; password: string; name: string }\nResponse: { user: User; session: Session }\nErrors: 400 (validation), 409 (email exists), 500\n```\n\n**Validation Schemas (Zod):**\n```typescript\nconst loginSchema = z.object({\n  email: z.string().email('Invalid email'),\n  password: z.string().min(1, 'Password required')\n});\n\nconst registerSchema = z.object({\n  email: z.string().email('Invalid email'),\n  password: z.string()\n    .min(8, 'Min 8 characters')\n    .regex(/[A-Z]/, 'Must contain uppercase')\n    .regex(/[a-z]/, 'Must contain lowercase')\n    .regex(/[0-9]/, 'Must contain number'),\n  name: z.string().min(2, 'Min 2 characters')\n});\n```\n\n**Winston:**\n\"עכשיו כל Story יודעת בדיוק איזה types להשתמש!\""
+            }
+          ]
+        },
+        {
+          "id": "etc-process-step5",
+          "title": "שלב 5: Error Handling Strategy",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**Winston:**\n\"בואו נגדיר איך מטפלים בשגיאות:\"\n\n**Error Hierarchy:**\n```typescript\nenum AuthErrorCode {\n  INVALID_CREDENTIALS = 'auth/invalid-credentials',\n  EMAIL_EXISTS = 'auth/email-exists',\n  WEAK_PASSWORD = 'auth/weak-password',\n  NETWORK_ERROR = 'auth/network-error',\n  TOKEN_EXPIRED = 'auth/token-expired',\n  RATE_LIMIT = 'auth/rate-limit'\n}\n```\n\n**Error Messages (Hebrew):**\n```typescript\nconst errorMessages: Record<AuthErrorCode, string> = {\n  'auth/invalid-credentials': 'אימייל או סיסמה שגויים',\n  'auth/email-exists': 'האימייל כבר רשום במערכת',\n  'auth/weak-password': 'הסיסמה חלשה מדי',\n  'auth/network-error': 'בעיית תקשורת, נסה שוב',\n  'auth/token-expired': 'פג תוקף, התחבר מחדש',\n  'auth/rate-limit': 'יותר מדי ניסיונות, המתן מספר דקות'\n};\n```\n\n**Retry Logic:**\n- Network errors: retry 3 times with exponential backoff\n- Validation errors: don't retry, show message\n- Rate limit: don't retry, show countdown\n\n**Winston:**\n\"כל Story תטפל בשגיאות באותה דרך - UX עקבי!\""
+            }
+          ]
+        },
+        {
+          "id": "etc-process-step6",
+          "title": "שלב 6: סיכום והמסירה",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**אחרי 2-4 שעות של עבודה עם Winston:**\n\n✅ **Technical Context Document מוכן!**\n\n**תוכן:**\n- Technical Approach מוגדר\n- Shared Components list\n- Data Models ו-Schemas\n- Error Handling Strategy\n- Testing Guidelines\n- Security & Performance targets\n\n**הקובץ:**\n`docs/epics/epic-5-authentication/tech-context.md`\n\n**Winston:**\n\"המסמך מוכן! עכשיו כשעובדים על כל Story ב-Epic 5:\n1. קוראים את ה-Technical Context\n2. עוקבים אחרי הגישה שהוגדרה\n3. משתמשים ב-Shared Components\n4. מטפלים בשגיאות כמו שהוגדר\n\nזה יבטיח עקביות ואיכות!\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מה קיבלתם?",
+      "content": "Technical Context מקיף שכל מפתח יכול לקחת ולהשתמש בו כשעובד על Story מהאפיק. אין צורך להמציא פתרונות - הכל כבר מוגדר!"
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "טיפ חשוב",
+      "content": "epic-tech-context הוא מסמך חי! אם בזמן הפיתוח מגלים שצריך לשנות משהו בגישה, עדכנו את המסמך. Winston תמיד זמין לעזור עם עדכונים."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "story-ready - הכנת Story לפיתוח",
+      "id": "story-ready"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה story-ready?",
+      "id": "story-ready-what"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**story-ready** הוא וורקפלו שלוקח Story בודד ו**מכין אותו לפיתוח מיידי**. זה השלב שבו מחליטים **איך בדיוק** לממש את ה-Story, **איזה קוד לכתוב**, ו**איזה משימות צריך לעשות**.\n\n**זה כמו:**\n- **Architect + Dev מתכננים את הפתרון** ביחד\n- **מפרקים את ה-Story למשימות קטנות**\n- **מוודאים שהכל ברור** לפני שמתחילים לקודד"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה בתוך story-ready Session?",
+      "id": "story-ready-contents"
+    },
+    {
+      "type": "text",
+      "content": "story-ready עובד בפורמט של session קצרה (30-90 דקות) שבה Architect ו-Developer מתכננים ביחד:"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "**קריאת Story** - הבנת ה-Acceptance Criteria וה-Technical Context",
+        "**תכנון פתרון** - איך ממשים את זה בקוד?",
+        "**פירוק למשימות** - רשימת tasks ברורה",
+        "**זיהוי dependencies** - מה צריך לפני? מה צריך אחרי?",
+        "**הערכת זמן** - כמה זמן זה ייקח?",
+        "**תיעוד הפתרון** - כתיבת Technical Solution"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה מפורטת - Story 5.3: Implement Forgot Password",
+      "id": "story-ready-example"
+    },
+    {
+      "type": "tabs",
+      "tabs": [
+        {
+          "id": "sr-step1",
+          "label": "שלב 1: הבנה",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**Winston + Alex (Developer) יושבים ביחד:**\n\n**Winston:**\n\"בואו נעבור על Story 5.3: Implement Forgot Password Flow\"\n\n**Acceptance Criteria:**\n✓ משתמש יכול להזין אימייל\n✓ מערכת שולחת קישור איפוס לאימייל\n✓ משתמש לוחץ על קישור\n✓ משתמש מזין סיסמה חדשה\n✓ סיסמה מתעדכנת במערכת\n✓ משתמש יכול להתחבר עם סיסמה חדשה\n\n**Technical Context (מ-epic-tech-context):**\n- Supabase Auth API\n- authService.resetPassword()\n- Zod validation\n- Hebrew error messages\n\n**Alex:**\n\"הבנתי. אז אנחנו משתמשים ב-Supabase built-in reset?\"\n\n**Winston:**\n\"בדיוק! זה חוסך לנו קוד.\""
+            }
+          ]
+        },
+        {
+          "id": "sr-step2",
+          "label": "שלב 2: תכנון",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**Winston:**\n\"בואו נתכנן את הפתרון:\"\n\n**Solution Design:**\n\n**1. UI Components:**\n- `/forgot-password` - דף לבקשת איפוס\n- `/reset-password?token=xxx` - דף לאיפוס בפועל\n- שניהם משתמשים ב-`AuthForm` layout (מה-tech-context)\n\n**2. Backend Integration:**\n```typescript\n// Step 1: User requests reset\nawait supabase.auth.resetPasswordForEmail(email, {\n  redirectTo: `${window.location.origin}/reset-password`\n});\n\n// Step 2: User clicks link → lands on /reset-password\n// Step 3: User submits new password\nawait supabase.auth.updateUser({\n  password: newPassword\n});\n```\n\n**3. State Management:**\n- Loading state while sending email\n- Success message \"check your email\"\n- Error handling (email not found, network error)\n\n**4. Validation:**\n```typescript\nconst forgotPasswordSchema = z.object({\n  email: z.string().email('אימייל לא תקין')\n});\n\nconst resetPasswordSchema = z.object({\n  password: z.string()\n    .min(8, 'לפחות 8 תווים')\n    .regex(/[A-Z]/, 'חייב אות גדולה')\n    .regex(/[0-9]/, 'חייב ספרה'),\n  confirmPassword: z.string()\n}).refine(data => data.password === data.confirmPassword, {\n  message: 'הסיסמאות לא תואמות',\n  path: ['confirmPassword']\n});\n```\n\n**Alex:**\n\"ברור! אז 2 דפים, 2 זרימות נפרדות. איפה נשים את הקבצים?\"\n\n**Winston:**\n\"src/app/auth/forgot-password.tsx ו-reset-password.tsx\""
+            }
+          ]
+        },
+        {
+          "id": "sr-step3",
+          "label": "שלב 3: משימות",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**Winston:**\n\"בואו נפרק למשימות קונקרטיות:\"\n\n**Tasks:**\n\n**T1. Create ForgotPassword Component** (2h)\n- Form עם email input\n- Submit handler\n- Validation עם Zod\n- Success message\n- Error handling\n\n**T2. Create ResetPassword Component** (2h)\n- Form עם password + confirmPassword\n- Token parsing מה-URL\n- Submit handler\n- Password strength indicator\n- Error handling\n\n**T3. Add to authService** (1h)\n```typescript\nresetPasswordRequest: async (email: string) => {...}\nresetPasswordConfirm: async (token: string, newPassword: string) => {...}\n```\n\n**T4. Add Routes** (30m)\n```typescript\n<Route path=\"/forgot-password\" element={<ForgotPassword />} />\n<Route path=\"/reset-password\" element={<ResetPassword />} />\n```\n\n**T5. Add Navigation Links** (30m)\n- Login page: \"שכחת סיסמה?\"\n- Reset page: \"חזרה להתחברות\"\n\n**T6. Tests** (2h)\n- Unit: validation functions\n- Integration: reset flow\n- E2E: full user journey\n\n**סה\"כ Estimate: 8 hours (1 day)**\n\n**Alex:**\n\"נראה מציאותי. אני יכול לסיים את זה ביום עבודה אחד.\""
+            }
+          ]
+        },
+        {
+          "id": "sr-step4",
+          "label": "שלב 4: תיעוד",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**Winston מתעד הכל:**\n\n**Technical Solution Document:**\n\n```markdown\n# Story 5.3: Implement Forgot Password Flow\n\n## Approach\nUsing Supabase Auth built-in password reset flow\n\n## Components\n1. ForgotPasswordPage - /forgot-password\n2. ResetPasswordPage - /reset-password\n\n## API Calls\n- supabase.auth.resetPasswordForEmail()\n- supabase.auth.updateUser()\n\n## Validation\n- Email format (Zod)\n- Password strength (8+ chars, uppercase, number)\n- Password confirmation match\n\n## Error Handling\n- Email not found → \"אם האימייל קיים, נשלח קישור\"\n- Network error → \"בעיית תקשורת\"\n- Invalid token → \"הקישור לא תקין או פג תוקפו\"\n\n## Tasks\n[6 tasks listed above]\n\n## Estimate\n8 hours (1 day)\n\n## Dependencies\n- Supabase Auth configured ✅\n- AuthForm component exists ✅\n- authService exists ✅\n```\n\n**קובץ נשמר:**\n`docs/stories/story-5.3-technical-solution.md`\n\n**Winston:**\n\"המסמך מוכן! Alex, אתה יכול להתחיל לעבוד על זה.\"\n\n**Alex:**\n\"מעולה! הכל ברור לי. אני מתחיל!\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מה קיבלנו?",
+      "content": "Story מוכן לפיתוח! יש פתרון ברור, משימות מוגדרות, הערכת זמן, ומפתח שיודע בדיוק מה לעשות."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך מריצים story-ready?",
+      "id": "story-ready-how"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# אופציה 1: Architect + Dev ביחד\n@architect hi\n*story-ready\n# Winston מנחה את השיחה עם המפתח\n\n# אופציה 2: Dev לבד (אם בטוח)\n@dev hi\n*story-context\n# Alex קורא Technical Context ומתכנן בעצמו",
+      "showLineNumbers": false
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "מתי Architect צריך להיות מעורב?",
+      "content": "Story מורכב או חדש → Architect + Dev ביחד. Story פשוט או דומה לאחרים → Dev יכול לעשות בעצמו עם story-context."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "solutioning-gate-check - בדיקת מוכנות",
+      "id": "solutioning-gate-check"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה solutioning-gate-check?",
+      "id": "solutioning-gate-check-what"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**solutioning-gate-check** הוא בדיקה אחרונה לפני Sprint Planning שמוודאת ש**כל Stories מוכנות לפיתוח**. זה כמו checklist שעוברים על כל Story ושואלים: \"האם מפתח יכול להתחיל לעבוד על זה מחר?\"\n\n**זה כמו:**\n- **QA לתהליך התכנון** - בודקים שהתכנון טוב\n- **Gate** שצריך לעבור לפני Sprint\n- **מזהה בעיות מוקדם** - לפני שמפתחים תקועים"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה בודקים ב-Gate Check?",
+      "id": "solutioning-gate-check-checklist"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "gc-check1",
+          "title": "✓ Technical Context קיים",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**בודקים:**\n- האם יש epic-tech-context למ-Epic?\n- האם הוא מעודכן?\n- האם כל המפתחים קראו אותו?\n\n**אם לא:**\n🔴 **BLOCKER** - לא ניתן להתחיל את הספרינט\n→ צריך ליצור Technical Context תחילה"
+            }
+          ]
+        },
+        {
+          "id": "gc-check2",
+          "title": "✓ כל Story עבר story-ready",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**בודקים:**\n- האם יש Technical Solution לכל Story?\n- האם הפתרון ברור?\n- האם יש tasks מוגדרים?\n\n**אם לא:**\n🟡 **WARNING** - Story לא מוכן\n→ צריך לעשות story-ready או להוציא מהספרינט"
+            }
+          ]
+        },
+        {
+          "id": "gc-check3",
+          "title": "✓ Dependencies מזוהים",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**בודקים:**\n- האם Story תלוי ב-Story אחר?\n- האם ה-Dependencies מסומנים?\n- האם הסדר ברור?\n\n**דוגמה:**\nStory 5.3 (Forgot Password) תלוי ב-Story 5.1 (Auth Service)\n→ צריך לעשות 5.1 לפני 5.3\n\n**אם לא:**\n🟡 **WARNING** - יכול לגרום לchurn\n→ צריך לזהות ולתעדף נכון"
+            }
+          ]
+        },
+        {
+          "id": "gc-check4",
+          "title": "✓ Acceptance Criteria ברורים",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**בודקים:**\n- האם AC כתובים בצורה ברורה?\n- האם ניתן לבדוק אותם?\n- האם כולם מסכימים מה \"Done\" אומר?\n\n**דוגמה טובה:**\n✅ \"משתמש יכול להזין אימייל ולקבל קישור איפוס\"\n✅ \"לחיצה על קישור מעבירה לדף איפוס סיסמה\"\n✅ \"משתמש יכול להזין סיסמה חדשה (8+ תווים)\"\n\n**דוגמה רעה:**\n❌ \"לממש reset password\"\n❌ \"צריך לעבוד\"\n\n**אם לא:**\n🟡 **WARNING** - אי-בהירות\n→ צריך לחדד את ה-AC"
+            }
+          ]
+        },
+        {
+          "id": "gc-check5",
+          "title": "✓ Estimate סביר",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**בודקים:**\n- האם יש הערכת זמן?\n- האם זה סביר לפי המורכבות?\n- האם המפתח מסכים?\n\n**כללי אצבע:**\n- 1-3 שעות: Story פשוט\n- 4-8 שעות: Story בינוני (1 יום)\n- 9-16 שעות: Story מורכב (2 ימים)\n- 16+ שעות: **TOO BIG** - צריך לפצל!\n\n**אם לא:**\n🟠 **ISSUE** - אי-וודאות\n→ צריך story-ready טוב יותר"
+            }
+          ]
+        },
+        {
+          "id": "gc-check6",
+          "title": "✓ צוות מסכים",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**בודקים:**\n- האם הצוות הטכני מסכים על הפתרון?\n- האם PM מסכים שזה עונה על הדרישות?\n- האם יש התנגדויות?\n\n**מי צריך לאשר:**\n- ✅ Architect (הפתרון נכון טכנית?)\n- ✅ Developer (אני מבין ויכול לממש?)\n- ✅ PM (זה עונה על הצרכים?)\n- ✅ QA (אני יכול לבדוק את זה?)\n\n**אם לא:**\n🔴 **BLOCKER** - אין הסכמה\n→ צריך דיון נוסף"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך מריצים?",
+      "id": "solutioning-gate-check-how"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# לפני Sprint Planning\n@pm hi\n*solutioning-gate-check\n\n# John עובר על כל Stories ובודק את ה-checklist",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תוצאת Gate Check",
+      "id": "solutioning-gate-check-result"
+    },
+    {
+      "type": "tabs",
+      "tabs": [
+        {
+          "id": "gc-pass",
+          "label": "✅ עבר",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**כל Stories עברו את הבדיקות!**\n\n**סטטוס:** 🟢 READY FOR SPRINT\n\n**מה הלאה:**\n1. Sprint Planning מחר\n2. מתחילים לעבוד על Stories\n3. אין blockers צפויים\n\n**דוגמה:**\n```\nSprint 3 Stories:\n✅ Story 5.1: Auth Service (8h) - READY\n✅ Story 5.2: Login Page (6h) - READY  \n✅ Story 5.3: Forgot Password (8h) - READY\n\nTotal: 22 hours (2.75 days)\nStatus: 🟢 READY\n```"
+            }
+          ]
+        },
+        {
+          "id": "gc-issues",
+          "label": "🟡 בעיות",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**יש בעיות שצריך לתקן!**\n\n**סטטוס:** 🟡 NEEDS WORK\n\n**מה לעשות:**\n1. תקן את הבעיות שזוהו\n2. הרץ Gate Check שוב\n3. רק אז Sprint Planning\n\n**דוגמה:**\n```\nSprint 3 Stories:\n✅ Story 5.1: Auth Service (8h) - READY\n🟡 Story 5.2: Login Page - ISSUES\n   - Missing Technical Solution\n   - AC not clear enough\n   → Action: Run story-ready session\n   \n✅ Story 5.3: Forgot Password (8h) - READY\n\nStatus: 🟡 2/3 READY\nAction: Fix 5.2 before Sprint Planning\n```"
+            }
+          ]
+        },
+        {
+          "id": "gc-block",
+          "label": "🔴 Blocker",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**יש Blockers קריטיים!**\n\n**סטטוס:** 🔴 NOT READY\n\n**מה לעשות:**\n1. עצור את Sprint Planning\n2. פתור את ה-Blockers\n3. שקול להחליף Stories\n\n**דוגמה:**\n```\nSprint 3 Stories:\n✅ Story 5.1: Auth Service (8h) - READY\n🔴 Story 5.2: Login Page - BLOCKED\n   - No epic-tech-context for Epic 5!\n   - Dependency on 5.1 not clear\n   → Action: Create tech-context first\n   \n⏸️ Story 5.3: Forgot Password - WAITING\n   - Depends on 5.2\n\nStatus: 🔴 BLOCKED\nAction: Create Epic 5 tech-context NOW\n        Reschedule Sprint Planning\n```"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "אל תדלג על Gate Check!",
+      "content": "מפתים לדלג ולהתחיל את הספרינט. אבל 30 דקות של Gate Check חוסכות שבוע של בלבול ושאלות אין סוף."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תהליך מלא מקצה לקצה",
+      "id": "full-process"
+    },
+    {
+      "type": "text",
+      "content": "בואו נראה איך כל Phase 3 Solutioning עובד בתהליך מלא:"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "טיימליין של שבוע אחד",
+      "id": "one-week-timeline"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "day-monday",
+          "title": "יום שני: epic-tech-context",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**בוקר (2-3 שעות):**\n- `@architect hi` → `*epic-tech-context`\n- Winston יוצר Technical Context ל-Epic 5\n- תוצאה: `docs/epics/epic-5/tech-context.md`\n\n**אחר-הצהריים (1 שעה):**\n- Team meeting: Winston מציג את ה-Tech Context\n- כל הצוות קורא ומבין את הגישה\n- שאלות והבהרות\n\n**סוף היום:**\n✅ Tech Context מוכן ומאושר\n✅ כולם מבינים את הגישה"
+            }
+          ]
+        },
+        {
+          "id": "day-tuesday",
+          "title": "יום שלישי: story-ready (Stories 1-2)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**בוקר (90 דקות):**\n- Story 5.1: Auth Service\n- Winston + Alex מריצים story-ready\n- תוצאה: Technical Solution + Tasks\n\n**אחר-הצהריים (90 דקות):**\n- Story 5.2: Login Page  \n- Winston + Sarah מריצים story-ready\n- תוצאה: Technical Solution + Tasks\n\n**סוף היום:**\n✅ 2 Stories מוכנות לפיתוח"
+            }
+          ]
+        },
+        {
+          "id": "day-wednesday",
+          "title": "יום רביעי: story-ready (Stories 3-4)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**בוקר (90 דקות):**\n- Story 5.3: Forgot Password\n- Winston + Alex מריצים story-ready\n- תוצאה: Technical Solution + Tasks\n\n**אחר-הצהריים (90 דקות):**\n- Story 5.4: Email Verification\n- Winston + Sarah מריצים story-ready\n- תוצאה: Technical Solution + Tasks\n\n**סוף היום:**\n✅ 4 Stories מוכנות סה\"כ"
+            }
+          ]
+        },
+        {
+          "id": "day-thursday",
+          "title": "יום חמישי: בחירת Stories + Gate Check",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**בוקר (1 שעה):**\n- PM + Architect בוחרים אילו Stories ייכנסו לספרינט הבא\n- לפי קיבולת הצוות: ~40 story points\n- בוחרים: Stories 5.1, 5.2, 5.3 (22 שעות)\n\n**אחר-הצהריים (1 שעה):**\n- `@pm hi` → `*solutioning-gate-check`\n- John עובר על כל 3 Stories\n- בודק את כל ה-checklist items\n\n**תוצאה:**\n```\n✅ Story 5.1 - READY\n✅ Story 5.2 - READY\n🟡 Story 5.3 - Minor issue: AC needs clarification\n```\n\n**תיקון מיידי (30 דקות):**\n- מחדדים את ה-AC של 5.3\n- רץ Gate Check שוב\n- ✅ כל Stories מוכנות!\n\n**סוף היום:**\n✅ 3 Stories עברו Gate Check\n✅ מוכנים ל-Sprint Planning מחר"
+            }
+          ]
+        },
+        {
+          "id": "day-friday",
+          "title": "יום שישי: Sprint Planning",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**Sprint Planning Meeting (2 שעות):**\n\n**חלק 1 - Sprint Goal (30 דקות):**\n\"Implement core authentication flows\"\n\n**חלק 2 - Story Review (1 שעה):**\n- עוברים על כל Story\n- כולם כבר מכירים את הפתרון (story-ready!)\n- אין שאלות טכניות (Tech Context!)\n- פשוט מסכימים על tasks ו-estimates\n\n**חלק 3 - Sprint Commit (30 דקות):**\n```\nSprint 3 Commitment:\n- Story 5.1: Auth Service (Alex, 8h)\n- Story 5.2: Login Page (Sarah, 6h)\n- Story 5.3: Forgot Password (Alex, 8h)\n\nTotal: 22h / 40h capacity (55%)\nBuffer: 18h for other work + unexpected issues\n```\n\n**תוצאה:**\n✅ Sprint מתוכנן\n✅ כולם יודעים מה לעשות\n✅ ביטחון גבוה בהצלחה\n\n**שבוע הבא:**\n💻 Development begins!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "סה\"כ: שבוע מ-Epic ל-Sprint Ready",
+      "content": "השקעה של שבוע בתכנון מבטיחה ספרינט חלק, ללא blockers, ללא שאלות טכניות, ומפתחים שיודעים בדיוק מה לעשות!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שאלות נפוצות",
+      "id": "faq"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "faq-1",
+          "title": "האם אני חייב לעשות epic-tech-context לכל Epic?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**תלוי במורכבות:**\n\n✅ **כן, תעשה:**\n- Epic מורכב עם 5+ Stories\n- Epic שמשנה ארכיטקטורה\n- Epic שמשתמש בטכנולוגיות חדשות\n- Epic שצריך עקביות בין Stories\n\n❌ **אולי לא:**\n- Epic פשוט עם 2-3 Stories זהים\n- Epic של bug fixes\n- Epic של UI tweaks\n\n**כלל אצבע:** אם אתה חושש שכל Story יפתור את הבעיה אחרת - תעשה tech-context!"
+            }
+          ]
+        },
+        {
+          "id": "faq-2",
+          "title": "כמה זמן לוקח story-ready?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**תלוי במורכבות Story:**\n\n**Story פשוט:** 30-45 דקות\n- הפתרון די ברור\n- רוב החלטות כבר התקבלו ב-tech-context\n- פשוט צריך לפרק למשימות\n\n**Story בינוני:** 45-90 דקות\n- צריך לחשוב על הפתרון\n- יש כמה אופציות\n- צריך לדון ולהחליט\n\n**Story מורכב:** 90-120 דקות\n- פתרון לא ברור\n- צריך מחקר\n- הרבה edge cases\n\n**כלל אצבע:** 1 שעה ממוצע לכל Story"
+            }
+          ]
+        },
+        {
+          "id": "faq-3",
+          "title": "מה אם מוצאים בעיה בזמן הפיתוח?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**זה נורמלי!** לא תמיד מתכננים הכל מושלם.\n\n**מה לעשות:**\n\n**1. בעיה קטנה (< 1 שעה):**\n- מפתח פותר בעצמו\n- מעדכן את ה-Technical Solution\n- ממשיך\n\n**2. בעיה בינונית (1-3 שעות):**\n- מפתח מדבר עם Architect\n- מתכננים פתרון חלופי\n- מעדכנים Tech Context אם צריך\n- ממשיכים\n\n**3. בעיה גדולה (3+ שעות / blocker):**\n- עוצרים!\n- מדברים עם PM + Architect + צוות\n- מחליטים: לפתור? לדחות? לשנות approach?\n- אם משנים approach → עדכן Tech Context!\n\n**Best Practice:** Stand-up היומי הוא המקום המושלם להעלות בעיות מוקדם."
+            }
+          ]
+        },
+        {
+          "id": "faq-4",
+          "title": "מי מבצע את story-ready - Architect או Developer?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**תלוי ברמת המורכבות:**\n\n**Architect + Developer ביחד:**\n- Story מורכב טכנית\n- פתרון לא ברור\n- צריך החלטות אדריכליות\n- מפתח junior\n\n**Developer לבד (עם story-context):**\n- Story פשוט\n- פתרון ברור מה-tech-context\n- מפתח senior\n- כבר עשו דומה\n\n**כלל אצבע:**\n- Sprint הראשון של Epic → Architect מעורב\n- Sprints הבאים → Developer יכול לבד\n\n**דוגמה:**\nEpic 5 Sprint 1:\n- Stories 5.1-5.3 → Architect + Dev (ללמוד את הדפוסים)\n\nEpic 5 Sprint 2:\n- Stories 5.4-5.6 → Dev לבד (כבר מכירים)"
+            }
+          ]
+        },
+        {
+          "id": "faq-5",
+          "title": "איך אני יודע ש-Story באמת מוכן?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**\"Definition of Ready\" ל-Story:**\n\n✅ **Acceptance Criteria:**\n- כתובים בצורה ברורה\n- ניתנים לבדיקה\n- כולם מסכימים\n\n✅ **Technical Solution:**\n- יש מסמך Technical Solution\n- הפתרון ברור ומפורט\n- כולל דוגמאות קוד\n\n✅ **Tasks:**\n- Story מפורק למשימות (< 4h כל אחת)\n- כל task ברור\n- יש estimate\n\n✅ **Dependencies:**\n- כל dependencies מזוהים\n- בסדר נכון\n\n✅ **Team Alignment:**\n- Architect אישר את הפתרון\n- Developer מבין ויכול לממש\n- QA יודע איך לבדוק\n- PM מסכים שזה עונה על הצרכים\n\n**אם כל אלה מסומנים ✅ → Story READY!**"
+            }
+          ]
+        },
+        {
+          "id": "faq-6",
+          "title": "כמה Stories צריך להכין מראש?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**\"Just Enough\" Planning:**\n\n**מומלץ:**\n- 1-2 Sprints מראש מוכנות (10-15 Stories)\n- לא יותר!\n\n**למה לא יותר?**\n- Requirements משתנים\n- לומדים דברים חדשים בפיתוח\n- תכנון מוקדם מדי = waste\n\n**למה לא פחות?**\n- צריך buffer\n- צוות יכול להתחיל Story מיד\n- אין המתנה\n\n**Best Practice:**\n- **Sprint N** → מפתחים עובדים\n- **Sprint N+1** → Stories מוכנות, מחכות\n- **Sprint N+2** → Stories בתהליך הכנה\n\n**דוגמה:**\nהיום Sprint 3:\n- Sprint 3 Stories → בפיתוח\n- Sprint 4 Stories → מוכנות (story-ready done)\n- Sprint 5 Stories → בתהליך (epic-tech-context done)\n\nכך יש תמיד buffer!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "סיכום ומעבר ל-Sprint Planning",
+      "id": "summary"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה למדנו במדריך הזה?",
+      "id": "what-learned"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "במדריך זה כיסינו את **Phase 3 Solutioning** - איך להכין Stories לפיתוח באמצעות 3 וורקפלואים:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**epic-tech-context** - יצירת הקשר טכני אחיד לכל Epic (פעם אחת)",
+        "**story-ready** - הכנת Story בודד לפיתוח עם פתרון ברור ומשימות",
+        "**solutioning-gate-check** - בדיקה אחרונה שכל Stories מוכנות לפני Sprint",
+        "**תהליך מלא** - מ-Epic ל-Sprint Ready בשבוע אחד",
+        "**Best Practices** - מתי להשתמש, כמה לתכנן מראש, מי מעורב"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "התפוקות של Phase 3 Solutioning",
+      "id": "deliverables"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "items": [
+        [
+          {
+            "type": "card",
+            "title": "Technical Context Document",
+            "content": [
+              {
+                "type": "text",
+                "content": "הקשר טכני אחיד לכל Epic עם גישה, components, ו-standards"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "title": "Technical Solutions",
+            "content": [
+              {
+                "type": "text",
+                "content": "פתרון טכני מפורט לכל Story עם tasks והערכת זמן"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "title": "Readiness Report",
+            "content": [
+              {
+                "type": "text",
+                "content": "דוח מוכנות שמוודא שכל Stories עברו את כל הבדיקות"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "title": "Ready Stories",
+            "content": [
+              {
+                "type": "text",
+                "content": "Stories מוכנים לפיתוח שמפתחים יכולים להתחיל לעבוד עליהם מיד"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "כל הכבוד - Phase 3 Solutioning הושלם!",
+      "content": "אתם מוכנים לעבור ל-Sprint Planning! יש לכם Stories מוכנות, פתרונות ברורים, ומפתחים שיודעים בדיוק מה לעשות."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "המדריכים הבאים בסדרה",
+      "id": "next-guides"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "items": [
+        [
+          {
+            "type": "card",
+            "title": "חלק 2א: Phase 2 Core",
+            "content": [
+              {
+                "type": "text",
+                "content": "PRD, Architecture, Epics & Stories - איך מגיעים לכאן"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "title": "חלק 3ב: Sprint Setup",
+            "content": [
+              {
+                "type": "text",
+                "content": "sprint-planning, sprint-review, retrospective - ניהול הספרינט"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה עושים עכשיו?",
+      "id": "what-now"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "**נסו את הוורקפלואים** - קחו Epic אמיתי ועברו את epic-tech-context",
+        "**תרגלו story-ready** - קחו Story אחד ותכננו אותו עם Architect",
+        "**הריצו Gate Check** - לפני Sprint Planning הבא, בדקו שהכל מוכן",
+        "**תעדו הכל** - כל tech-context ו-solution נשמרים למדור העתיד",
+        "**קראו את המדריך הבא** - Sprint Setup או Development Flow"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "טיפ אחרון",
+      "content": "Solutioning הוא ההבדל בין \"מפתחים מתחילים לעבוד מיד\" ל\"מפתחים תקועים עם שאלות\". השקיעו בזה - זה משתלם!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מדריך Phase 3 Solutioning הושלם!",
+      "content": "אתם עכשיו יודעים איך לקחת Stories מ-Phase 2 ולהכין אותם לפיתוח עם epic-tech-context, story-ready, ו-solutioning-gate-check. ספרינט חלק מתחיל כאן!"
+    }
+  ],
+  "relatedGuides": [
+    "workflows-phase2-core",
+    "workflows-sprint-setup",
+    "workflows-development",
+    "agents-architect-sm-dev",
+    "role-architects"
+  ],
+  "prerequisites": [
+    "workflows-intro-critical",
+    "workflows-phase2-core"
+  ],
+  "nextSteps": [
+    "workflows-sprint-setup",
+    "workflows-development"
+  ]
+}
+

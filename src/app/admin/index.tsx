@@ -110,8 +110,8 @@ export function AdminDashboardPage() {
         {/* Header with Date Range Filter - Story 10.5: Responsive typography */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="space-y-2">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">{hebrewLocale.pages.admin.title}</h1>
-            <p className="text-sm md:text-base text-gray-600">{hebrewLocale.pages.admin.description}</p>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">{hebrewLocale.pages.admin.title}</h1>
+            <p className="text-sm md:text-base text-muted-foreground">{hebrewLocale.pages.admin.description}</p>
           </div>
 
           <Select value={dateRange} onValueChange={(value) => setDateRange(value as DateRange)}>
@@ -309,7 +309,7 @@ export function AdminDashboardPage() {
                         </span>
                       </TableCell>
                       <TableCell className="font-medium">{activity.userName}</TableCell>
-                      <TableCell className="text-gray-600">{activity.targetSlug || '-'}</TableCell>
+                      <TableCell className="text-muted-foreground">{activity.targetSlug || '-'}</TableCell>
                       <TableCell className="text-gray-500 text-sm">
                         {formatDistanceToNow(new Date(activity.createdAt), {
                           addSuffix: true,

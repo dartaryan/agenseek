@@ -47,12 +47,13 @@
 - ✅ Story 0.3 - Avatar System
 - ✅ Story 0.4 - UX Polish
 - ✅ Story 0.5 - Avatar Expansion & Onboarding (Completed Nov 9, 2025)
+- ✅ Story 0.6 - Dark Mode Infrastructure (Completed Nov 9, 2025)
+- 🚧 Story 0.14 - Avatar Completion (Completed Nov 9, 2025)
 
 ### Pending (To Execute)
 
 | # | Story | Points | Time | Priority |
 |---|-------|--------|------|----------|
-| 0.6 | Dark Mode Full Implementation | 3 | ~8h | P1 |
 | 0.7 | Avatar Real-time Update | 1 | ~2h | P2 |
 | 0.8 | Admin Mobile Responsiveness | 2 | ~6.5h | P1 |
 | 0.9 | Settings Implementation | 5 | ~7.5h | P2 |
@@ -60,8 +61,11 @@
 | 0.11 | Documentation Organization | 2 | ~1.5h | P2 |
 | 0.12 | Console Log Cleanup | 1 | ~2h | P2 |
 | 0.13 | Installation Guide Access | 1 | ~1.5h | P2 |
+| 0.15 | Dark Mode Polish & Implementation | 3 | 2-3 sessions | P2 |
 
 **Total:** 23 points, ~2-3 weeks
+
+**Note:** Story 0.6 implemented the dark mode infrastructure, but the theme toggle is temporarily hidden until Story 0.15 completes the visual polish and styling refinements.
 
 ---
 

@@ -195,10 +195,10 @@ export function UserManagementPage() {
       <div className="p-8">
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="space-y-2">
-            <h1 className="text-4xl font-bold text-gray-900">
+            <h1 className="text-4xl font-bold text-foreground">
               {hebrewLocale.pages.admin.userManagement}
             </h1>
-            <p className="text-gray-600">{hebrewLocale.pages.admin.loading}</p>
+            <p className="text-muted-foreground">{hebrewLocale.pages.admin.loading}</p>
           </div>
         </div>
       </div>
@@ -210,10 +210,10 @@ export function UserManagementPage() {
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="space-y-2">
-          <h1 className="text-4xl font-bold text-gray-900">
+          <h1 className="text-4xl font-bold text-foreground">
             {hebrewLocale.pages.admin.userManagement}
           </h1>
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             {hebrewLocale.pages.admin.userManagementDescription}
           </p>
         </div>
@@ -287,7 +287,7 @@ export function UserManagementPage() {
                   <TableRow>
                     <TableHead className="w-12"></TableHead>
                     <TableHead
-                      className="cursor-pointer hover:bg-gray-50"
+                      className="cursor-pointer hover:bg-muted/50"
                       onClick={() => handleSortChange('displayName')}
                     >
                       <div className="flex items-center gap-2">
@@ -298,7 +298,7 @@ export function UserManagementPage() {
                       </div>
                     </TableHead>
                     <TableHead
-                      className="cursor-pointer hover:bg-gray-50"
+                      className="cursor-pointer hover:bg-muted/50"
                       onClick={() => handleSortChange('email')}
                     >
                       <div className="flex items-center gap-2">
@@ -310,7 +310,7 @@ export function UserManagementPage() {
                     </TableHead>
                     <TableHead>{hebrewLocale.pages.admin.role}</TableHead>
                     <TableHead
-                      className="cursor-pointer hover:bg-gray-50"
+                      className="cursor-pointer hover:bg-muted/50"
                       onClick={() => handleSortChange('createdAt')}
                     >
                       <div className="flex items-center gap-2">
@@ -322,7 +322,7 @@ export function UserManagementPage() {
                     </TableHead>
                     <TableHead>{hebrewLocale.pages.admin.lastActive}</TableHead>
                     <TableHead
-                      className="cursor-pointer hover:bg-gray-50"
+                      className="cursor-pointer hover:bg-muted/50"
                       onClick={() => handleSortChange('progressPercentage')}
                     >
                       <div className="flex items-center gap-2">
@@ -340,7 +340,7 @@ export function UserManagementPage() {
                       {/* Main Row */}
                       <TableRow
                         key={user.id}
-                        className="cursor-pointer hover:bg-gray-50"
+                        className="cursor-pointer hover:bg-muted/50"
                         onClick={() => handleToggleExpand(user.id)}
                       >
                         <TableCell>
@@ -351,13 +351,13 @@ export function UserManagementPage() {
                           )}
                         </TableCell>
                         <TableCell className="font-medium">{user.displayName}</TableCell>
-                        <TableCell className="text-gray-600">{user.email}</TableCell>
+                        <TableCell className="text-muted-foreground">{user.email}</TableCell>
                         <TableCell>
                           <span
                             className={`inline-flex px-2 py-1 rounded-full text-xs font-semibold ${
                               user.isAdmin
                                 ? 'bg-emerald-100 text-emerald-800'
-                                : 'bg-gray-100 text-gray-800'
+                                : 'bg-muted text-gray-800'
                             }`}
                           >
                             {user.isAdmin
@@ -365,10 +365,10 @@ export function UserManagementPage() {
                               : hebrewLocale.pages.admin.regularUser}
                           </span>
                         </TableCell>
-                        <TableCell className="text-gray-600">
+                        <TableCell className="text-muted-foreground">
                           {new Date(user.createdAt).toLocaleDateString('he-IL')}
                         </TableCell>
-                        <TableCell className="text-gray-600 text-sm">
+                        <TableCell className="text-muted-foreground text-sm">
                           {user.lastActiveAt
                             ? formatDistanceToNow(new Date(user.lastActiveAt), {
                                 addSuffix: true,
@@ -392,27 +392,27 @@ export function UserManagementPage() {
                       {/* Expanded Details Row */}
                       {expandedUserId === user.id && (
                         <TableRow>
-                          <TableCell colSpan={7} className="bg-gray-50 p-6">
+                          <TableCell colSpan={7} className="bg-muted/50 p-6">
                             {isLoadingDetails ? (
-                              <div className="text-center py-4 text-gray-500">
+                              <div className="text-center py-4 text-muted-foreground">
                                 {hebrewLocale.pages.admin.loading}
                               </div>
                             ) : userDetails ? (
                               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 {/* Profile Details */}
                                 <div className="space-y-3">
-                                  <h4 className="font-semibold text-gray-900">
+                                  <h4 className="font-semibold text-foreground">
                                     {hebrewLocale.pages.admin.profileDetails}
                                   </h4>
                                   <div className="space-y-2 text-sm">
                                     <div>
-                                      <span className="text-gray-500">
+                                      <span className="text-muted-foreground">
                                         {hebrewLocale.pages.admin.email}:
                                       </span>{' '}
                                       <span className="font-medium">{userDetails.profile.email}</span>
                                     </div>
                                     <div>
-                                      <span className="text-gray-500">
+                                      <span className="text-muted-foreground">
                                         {hebrewLocale.pages.admin.role}:
                                       </span>{' '}
                                       <span className="font-medium">
@@ -420,7 +420,7 @@ export function UserManagementPage() {
                                       </span>
                                     </div>
                                     <div>
-                                      <span className="text-gray-500">תחומי עניין:</span>{' '}
+                                      <span className="text-muted-foreground">תחומי עניין:</span>{' '}
                                       <span className="font-medium">
                                         {userDetails.profile.selectedInterests.length > 0
                                           ? userDetails.profile.selectedInterests.join(', ')
@@ -428,7 +428,7 @@ export function UserManagementPage() {
                                       </span>
                                     </div>
                                     <div>
-                                      <span className="text-gray-500">רמת ניסיון:</span>{' '}
+                                      <span className="text-muted-foreground">רמת ניסיון:</span>{' '}
                                       <span className="font-medium">
                                         {userDetails.profile.experienceLevel || '-'}
                                       </span>
@@ -438,12 +438,12 @@ export function UserManagementPage() {
 
                                 {/* Progress Details */}
                                 <div className="space-y-3">
-                                  <h4 className="font-semibold text-gray-900">
+                                  <h4 className="font-semibold text-foreground">
                                     {hebrewLocale.pages.admin.progressDetails}
                                   </h4>
                                   <div className="space-y-2 text-sm">
                                     <div>
-                                      <span className="text-gray-500">
+                                      <span className="text-muted-foreground">
                                         {hebrewLocale.pages.admin.totalProgress}:
                                       </span>{' '}
                                       <span className="font-medium">
@@ -451,7 +451,7 @@ export function UserManagementPage() {
                                       </span>
                                     </div>
                                     <div>
-                                      <span className="text-gray-500">
+                                      <span className="text-muted-foreground">
                                         {hebrewLocale.pages.admin.userGuidesCompleted}:
                                       </span>{' '}
                                       <span className="font-medium text-emerald-600">
@@ -459,7 +459,7 @@ export function UserManagementPage() {
                                       </span>
                                     </div>
                                     <div>
-                                      <span className="text-gray-500">
+                                      <span className="text-muted-foreground">
                                         {hebrewLocale.pages.admin.userGuidesInProgress}:
                                       </span>{' '}
                                       <span className="font-medium text-amber-600">
@@ -471,24 +471,24 @@ export function UserManagementPage() {
 
                                 {/* Activity Details */}
                                 <div className="space-y-3">
-                                  <h4 className="font-semibold text-gray-900">
+                                  <h4 className="font-semibold text-foreground">
                                     {hebrewLocale.pages.admin.activityDetails}
                                   </h4>
                                   <div className="space-y-2 text-sm">
                                     <div>
-                                      <span className="text-gray-500">
+                                      <span className="text-muted-foreground">
                                         {hebrewLocale.pages.admin.notesCount}:
                                       </span>{' '}
                                       <span className="font-medium">{userDetails.activity.notesCount}</span>
                                     </div>
                                     <div>
-                                      <span className="text-gray-500">
+                                      <span className="text-muted-foreground">
                                         {hebrewLocale.pages.admin.tasksCount}:
                                       </span>{' '}
                                       <span className="font-medium">{userDetails.activity.tasksCount}</span>
                                     </div>
                                     <div>
-                                      <span className="text-gray-500">
+                                      <span className="text-muted-foreground">
                                         {hebrewLocale.pages.admin.commentsCount}:
                                       </span>{' '}
                                       <span className="font-medium">
@@ -496,7 +496,7 @@ export function UserManagementPage() {
                                       </span>
                                     </div>
                                     <div>
-                                      <span className="text-gray-500">
+                                      <span className="text-muted-foreground">
                                         {hebrewLocale.pages.admin.lastActivityDate}:
                                       </span>{' '}
                                       <span className="font-medium">
@@ -555,7 +555,7 @@ export function UserManagementPage() {
           {/* Pagination */}
           {totalPages > 1 && (
             <div className="flex items-center justify-between mt-6 pt-6 border-t">
-              <div className="text-sm text-gray-600">
+              <div className="text-sm text-muted-foreground">
                 {hebrewLocale.pages.admin.pageOf
                   .replace('{current}', String(currentPage + 1))
                   .replace('{total}', String(totalPages))}

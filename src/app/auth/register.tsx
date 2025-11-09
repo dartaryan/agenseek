@@ -9,6 +9,8 @@ import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import { AnimatedBackground } from '../../components/ui/AnimatedBackground';
 import { useToast } from '../../hooks/use-toast';
+// Story 0.15: useTheme temporarily disabled (theme toggle hidden)
+// import { useTheme } from '../../contexts/ThemeContext';
 import { signUp, signInWithProvider } from '../../lib/auth';
 import { hebrewLocale } from '../../lib/locale/he';
 import { registerSchema, type RegisterFormData } from '../../lib/validation/authSchemas';
@@ -20,6 +22,7 @@ import {
   IconX,
   IconBrandGoogle,
   IconLoader2,
+  // Story 0.15: IconMoon, IconSun temporarily removed (theme toggle hidden)
 } from '@tabler/icons-react';
 import AgenseekLogo from '../../assets/agenseek-logo.svg';
 
@@ -63,7 +66,7 @@ function PasswordStrength({ password }: { password: string }) {
           <div
             key={level}
             className={`h-1 flex-1 rounded-full transition-colors ${
-              level <= strength.score ? strength.color : 'bg-gray-200'
+              level <= strength.score ? strength.color : 'bg-gray-200 dark:bg-gray-700'
             }`}
           />
         ))}
@@ -71,7 +74,7 @@ function PasswordStrength({ password }: { password: string }) {
 
       {/* Strength label */}
       {strength.label && (
-        <p className="text-xs font-medium text-gray-600">
+        <p className="text-xs font-medium text-muted-foreground">
           {he.passwordStrength}{' '}
           <span className={strength.color.replace('bg-', 'text-')}>{strength.label}</span>
         </p>
@@ -82,11 +85,11 @@ function PasswordStrength({ password }: { password: string }) {
         {checks.map((check, index) => (
           <div key={index} className="flex items-center gap-2 text-xs">
             {check.valid ? (
-              <IconCheck className="w-3 h-3 text-emerald-600" />
+              <IconCheck className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
             ) : (
-              <IconX className="w-3 h-3 text-gray-400" />
+              <IconX className="w-3 h-3 text-muted-foreground" />
             )}
-            <span className={check.valid ? 'text-emerald-600' : 'text-gray-500'}>
+            <span className={check.valid ? 'text-emerald-600 dark:text-emerald-400' : 'text-muted-foreground'}>
               {check.label}
             </span>
           </div>
@@ -104,6 +107,8 @@ function PasswordStrength({ password }: { password: string }) {
 export function RegisterPage() {
   const navigate = useNavigate();
   const { toast } = useToast();
+  // Story 0.15: Theme toggle temporarily disabled
+  // const { setTheme, resolvedTheme } = useTheme();
   const [isLoading, setIsLoading] = useState(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const he = hebrewLocale.auth;
@@ -185,9 +190,25 @@ export function RegisterPage() {
   };
 
   return (
-    <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-4">
+    <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-emerald-950 dark:via-emerald-900 dark:to-teal-950 p-4">
       {/* Story 6.15: Animated background shapes */}
       <AnimatedBackground variant="auth" />
+
+      {/* Story 0.6 / Story 0.15: Theme Toggle - Temporarily hidden until dark mode is polished
+      <Button
+        variant="outline"
+        size="icon"
+        onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+        className="fixed top-4 left-4 z-50 bg-background/80 backdrop-blur-sm"
+        aria-label={resolvedTheme === 'dark' ? 'עבור למצב בהיר' : 'עבור למצב כהה'}
+      >
+        {resolvedTheme === 'dark' ? (
+          <IconSun className="h-5 w-5" />
+        ) : (
+          <IconMoon className="h-5 w-5" />
+        )}
+      </Button>
+      */}
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -195,7 +216,7 @@ export function RegisterPage() {
         transition={{ duration: 0.5 }}
         className="w-full max-w-md relative z-10"
       >
-        <Card className="p-8 space-y-6 shadow-xl backdrop-blur-xl bg-white/90 border border-white/20">
+        <Card className="p-8 space-y-6 shadow-xl backdrop-blur-xl bg-white/90 dark:bg-card/90 border border-white/20 dark:border-border">
           {/* Header */}
           <div className="text-center space-y-4">
             <img
@@ -204,10 +225,10 @@ export function RegisterPage() {
               className="h-12 w-auto mx-auto"
             />
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold text-emerald-600">{he.brandName}</h1>
-              <p className="text-gray-600">{he.brandSubtitle}</p>
-              <h2 className="text-2xl font-semibold pt-2">{he.registerTitle}</h2>
-              <p className="text-sm text-gray-500">{he.createAccountSubtitle}</p>
+              <h1 className="text-3xl font-bold text-primary">{he.brandName}</h1>
+              <p className="text-muted-foreground">{he.brandSubtitle}</p>
+              <h2 className="text-2xl font-semibold pt-2 text-foreground">{he.registerTitle}</h2>
+              <p className="text-sm text-muted-foreground">{he.createAccountSubtitle}</p>
             </div>
           </div>
 
@@ -231,10 +252,10 @@ export function RegisterPage() {
           {/* Divider */}
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t border-gray-300 dark:border-gray-600" />
+              <span className="w-full border-t border-border" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">
+              <span className="px-2 bg-background text-muted-foreground">
                 או
               </span>
             </div>
@@ -246,7 +267,7 @@ export function RegisterPage() {
             <div className="space-y-2">
               <Label htmlFor="displayName">{he.displayName}</Label>
               <div className="relative">
-                <IconUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" aria-hidden="true" />
+                <IconUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" aria-hidden="true" />
                 <Input
                   id="displayName"
                   type="text"
@@ -267,7 +288,7 @@ export function RegisterPage() {
             <div className="space-y-2">
               <Label htmlFor="email">{he.email}</Label>
               <div className="relative">
-                <IconMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" aria-hidden="true" />
+                <IconMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" aria-hidden="true" />
                 <Input
                   id="email"
                   type="email"
@@ -286,7 +307,7 @@ export function RegisterPage() {
             <div className="space-y-2">
               <Label htmlFor="password">{he.password}</Label>
               <div className="relative">
-                <IconLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" aria-hidden="true" />
+                <IconLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" aria-hidden="true" />
                 <Input
                   id="password"
                   type="password"
@@ -308,7 +329,7 @@ export function RegisterPage() {
             <div className="space-y-2">
               <Label htmlFor="confirmPassword">{he.confirmPassword}</Label>
               <div className="relative">
-                <IconLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" aria-hidden="true" />
+                <IconLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" aria-hidden="true" />
                 <Input
                   id="confirmPassword"
                   type="password"
@@ -332,9 +353,9 @@ export function RegisterPage() {
           </form>
 
           {/* Login Link */}
-          <p className="text-center text-sm text-gray-500">
+          <p className="text-center text-sm text-muted-foreground">
             {he.haveAccount}{' '}
-            <Link to="/auth/login" className="text-emerald-600 hover:underline font-medium">
+            <Link to="/auth/login" className="text-primary hover:underline font-semibold">
               {he.loginLink}
             </Link>
           </p>

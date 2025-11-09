@@ -8,6 +8,8 @@ import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import { useToast } from '../../hooks/use-toast';
+// Story 0.15: useTheme temporarily disabled (theme toggle hidden)
+// import { useTheme } from '../../contexts/ThemeContext';
 import { resetPassword } from '../../lib/auth';
 import { hebrewLocale } from '../../lib/locale/he';
 import {
@@ -15,6 +17,7 @@ import {
   type ForgotPasswordFormData,
 } from '../../lib/validation/authSchemas';
 import { IconMail, IconArrowLeft } from '@tabler/icons-react';
+// Story 0.15: IconMoon, IconSun temporarily removed (theme toggle hidden)
 import AgenseekLogo from '../../assets/agenseek-logo.svg';
 
 /**
@@ -24,6 +27,8 @@ import AgenseekLogo from '../../assets/agenseek-logo.svg';
  */
 export function ForgotPasswordPage() {
   const { toast } = useToast();
+  // Story 0.15: Theme toggle temporarily disabled
+  // const { setTheme, resolvedTheme } = useTheme();
   const [isLoading, setIsLoading] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
   const he = hebrewLocale.auth;
@@ -63,14 +68,30 @@ export function ForgotPasswordPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-4">
+    <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-emerald-950 dark:via-emerald-900 dark:to-teal-950 p-4">
+      {/* Story 0.6 / Story 0.15: Theme Toggle - Temporarily hidden until dark mode is polished
+      <Button
+        variant="outline"
+        size="icon"
+        onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+        className="fixed top-4 left-4 z-50 bg-background/80 backdrop-blur-sm"
+        aria-label={resolvedTheme === 'dark' ? 'עבור למצב בהיר' : 'עבור למצב כהה'}
+      >
+        {resolvedTheme === 'dark' ? (
+          <IconSun className="h-5 w-5" />
+        ) : (
+          <IconMoon className="h-5 w-5" />
+        )}
+      </Button>
+      */}
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="w-full max-w-md"
       >
-        <Card className="p-8 space-y-6 shadow-xl border-emerald-100">
+        <Card className="p-8 space-y-6 shadow-xl backdrop-blur-xl bg-white/90 dark:bg-card/90 border border-white/20 dark:border-border">
           {/* Header */}
           <div className="text-center space-y-4">
             <img
@@ -79,10 +100,10 @@ export function ForgotPasswordPage() {
               className="h-12 w-auto mx-auto"
             />
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold text-emerald-600">{he.brandName}</h1>
-              <p className="text-gray-600">{he.brandSubtitle}</p>
-              <h2 className="text-2xl font-semibold pt-2">{he.forgotPasswordTitle}</h2>
-              <p className="text-sm text-gray-500">
+              <h1 className="text-3xl font-bold text-primary">{he.brandName}</h1>
+              <p className="text-muted-foreground">{he.brandSubtitle}</p>
+              <h2 className="text-2xl font-semibold pt-2 text-foreground">{he.forgotPasswordTitle}</h2>
+              <p className="text-sm text-muted-foreground">
                 {emailSent ? he.forgotPasswordSuccess : he.forgotPasswordSubtitle}
               </p>
             </div>
@@ -96,7 +117,7 @@ export function ForgotPasswordPage() {
                 <div className="space-y-2">
                   <Label htmlFor="email">{he.email}</Label>
                   <div className="relative">
-                    <IconMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    <IconMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
                     <Input
                       id="email"
                       type="email"
@@ -118,7 +139,7 @@ export function ForgotPasswordPage() {
               <div className="flex items-center justify-center">
                 <Link
                   to="/auth/login"
-                  className="text-sm text-gray-600 hover:text-emerald-600 flex items-center gap-1"
+                  className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1"
                 >
                   <IconArrowLeft className="w-4 h-4" />
                   {he.backToLogin}
@@ -131,16 +152,16 @@ export function ForgotPasswordPage() {
               <div className="space-y-4">
                 {/* Success Icon */}
                 <div className="flex justify-center">
-                  <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center">
-                    <IconMail className="w-8 h-8 text-emerald-600" />
+                  <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center">
+                    <IconMail className="w-8 h-8 text-primary" />
                   </div>
                 </div>
 
                 {/* Instructions */}
                 <div className="text-center space-y-2">
-                  <p className="text-gray-600">{he.sentResetLinkTo}</p>
-                  <p className="font-semibold text-gray-900">{getValues('email')}</p>
-                  <p className="text-sm text-gray-500 pt-2">{he.emailExpiryNote}</p>
+                  <p className="text-muted-foreground">{he.sentResetLinkTo}</p>
+                  <p className="font-semibold text-foreground">{getValues('email')}</p>
+                  <p className="text-sm text-muted-foreground pt-2">{he.emailExpiryNote}</p>
                 </div>
 
                 {/* Didn't receive email? */}
@@ -151,7 +172,7 @@ export function ForgotPasswordPage() {
                       setEmailSent(false);
                       handleSubmit(onSubmit)();
                     }}
-                    className="text-sm text-emerald-600 hover:underline"
+                    className="text-sm text-primary hover:underline"
                   >
                     {he.didntReceiveEmail}
                   </button>

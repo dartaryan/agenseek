@@ -65,7 +65,7 @@ interface StatCardProps {
 
 function StatCard({ icon: Icon, label, value, iconColor, trend }: StatCardProps) {
   return (
-    <div className="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow">
+    <div className="p-4 bg-card rounded-lg border border-border shadow-md hover:shadow-lg transition-shadow">
       {/* Story 6.10: Horizontal layout with ample spacing, stacked vertically */}
       <div className="flex items-center gap-4">
         {/* Icon - small and subtle */}
@@ -76,14 +76,14 @@ function StatCard({ icon: Icon, label, value, iconColor, trend }: StatCardProps)
         {/* Content - takes available space */}
         <div className="flex-1 min-w-0">
           <div
-            className="text-2xl font-bold text-gray-900 dark:text-white truncate mb-1"
+            className="text-2xl font-bold text-foreground truncate mb-1"
             title={typeof value === 'string' ? value : String(value)}
           >
             {value}
           </div>
 
           <div
-            className="text-sm text-gray-600 dark:text-gray-400 truncate"
+            className="text-sm text-muted-foreground truncate"
             lang="he"
             dir="rtl"
             title={label}
@@ -130,16 +130,16 @@ export function DashboardStats({
         {/* Header with Expand/Collapse Button */}
         <div className="flex items-start justify-between gap-2">
           <div className="flex-1">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            <h3 className="text-lg font-semibold text-foreground">
               {hebrewLocale.dashboard.statistics}
             </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-muted-foreground">
               {hebrewLocale.dashboard.statisticsDescription}
             </p>
           </div>
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 rounded-lg transition-colors"
+            className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-primary hover:bg-emerald-50 dark:hover:bg-emerald-950/30 rounded-lg transition-colors"
             aria-label={isExpanded ? 'כווץ' : 'הרחב'}
           >
             {isExpanded ? (

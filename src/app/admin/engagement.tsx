@@ -159,8 +159,8 @@ export default function EngagementReportPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">{t.title}</h1>
-          <p className="text-gray-600 mt-1">{t.subtitle}</p>
+          <h1 className="text-3xl font-bold text-foreground">{t.title}</h1>
+          <p className="text-muted-foreground mt-1">{t.subtitle}</p>
         </div>
         <Button onClick={handleExportAll} variant="outline">
           <IconDownload className="w-4 h-4 ml-2" />
@@ -170,7 +170,7 @@ export default function EngagementReportPage() {
 
       {/* User Segmentation */}
       <Card className="p-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">{t.userSegmentation}</h2>
+        <h2 className="text-2xl font-bold text-foreground mb-6">{t.userSegmentation}</h2>
 
         {/* Segment Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
@@ -178,16 +178,16 @@ export default function EngagementReportPage() {
             <Card key={segment.segment} className="p-4 border-2" style={{ borderColor: getSegmentColor(segment.segment) }}>
               <div className="flex items-start justify-between mb-2">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900">{segment.segmentName}</h3>
-                  <p className="text-sm text-gray-600">{segment.description}</p>
+                  <h3 className="text-lg font-semibold text-foreground">{segment.segmentName}</h3>
+                  <p className="text-sm text-muted-foreground">{segment.description}</p>
                 </div>
-                <IconUsers className="w-5 h-5 text-gray-500" />
+                <IconUsers className="w-5 h-5 text-muted-foreground" />
               </div>
               <div className="mt-4">
                 <div className="text-3xl font-bold" style={{ color: getSegmentColor(segment.segment) }}>
                   {segment.userCount}
                 </div>
-                <div className="text-sm text-gray-600 mt-1">
+                <div className="text-sm text-muted-foreground mt-1">
                   {segment.percentage}% {t.percent}
                 </div>
               </div>
@@ -224,15 +224,15 @@ export default function EngagementReportPage() {
 
       {/* Engagement Funnel */}
       <Card className="p-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">{t.engagementFunnel}</h2>
+        <h2 className="text-2xl font-bold text-foreground mb-6">{t.engagementFunnel}</h2>
 
         <div className="space-y-4">
           {funnelData.map((step, index) => (
             <div key={index} className="relative">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-lg font-semibold text-gray-900">{step.step}</span>
+                <span className="text-lg font-semibold text-foreground">{step.step}</span>
                 <div className="flex items-center gap-4">
-                  <span className="text-sm text-gray-600">
+                  <span className="text-sm text-muted-foreground">
                     {step.userCount} {t.users} ({step.percentage}%)
                   </span>
                   {step.dropOffRate > 0 && (
@@ -261,15 +261,15 @@ export default function EngagementReportPage() {
 
       {/* Activity Heatmap */}
       <Card className="p-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">{t.activityHeatmap}</h2>
+        <h2 className="text-2xl font-bold text-foreground mb-6">{t.activityHeatmap}</h2>
 
         <div className="overflow-x-auto">
           <div className="inline-block min-w-full">
             <div className="grid grid-cols-25 gap-1" style={{ gridTemplateColumns: 'auto repeat(24, 1fr)' }}>
               {/* Header row - Hours */}
-              <div className="text-xs text-gray-600 p-1"></div>
+              <div className="text-xs text-muted-foreground p-1"></div>
               {Array.from({ length: 24 }, (_, hour) => (
-                <div key={hour} className="text-xs text-gray-600 text-center p-1">
+                <div key={hour} className="text-xs text-muted-foreground text-center p-1">
                   {hour}
                 </div>
               ))}
@@ -277,7 +277,7 @@ export default function EngagementReportPage() {
               {/* Heatmap rows - Days */}
               {Array.from({ length: 7 }, (_, day) => (
                 <div key={day} className="contents">
-                  <div className="text-xs text-gray-600 p-1 flex items-center">
+                  <div className="text-xs text-muted-foreground p-1 flex items-center">
                     {dayNames[day]}
                   </div>
                   {Array.from({ length: 24 }, (_, hour) => {
@@ -300,7 +300,7 @@ export default function EngagementReportPage() {
 
         {/* Legend */}
         <div className="flex items-center justify-center gap-2 mt-6">
-          <span className="text-sm text-gray-600">{t.activityLevel}:</span>
+          <span className="text-sm text-muted-foreground">{t.activityLevel}:</span>
           <div className="flex items-center gap-1">
             {[0, 0.2, 0.4, 0.6, 0.8, 1].map((intensity) => (
               <div
@@ -316,7 +316,7 @@ export default function EngagementReportPage() {
 
       {/* Cohort Analysis */}
       <Card className="p-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">{t.cohortAnalysis}</h2>
+        <h2 className="text-2xl font-bold text-foreground mb-6">{t.cohortAnalysis}</h2>
 
         {cohortData.length > 0 ? (
           <div className="overflow-x-auto">
@@ -359,7 +359,7 @@ export default function EngagementReportPage() {
                             style={{ width: `${cohort.retentionRate}%` }}
                           />
                         </div>
-                        <span className="text-sm text-gray-600 w-12 text-left">{cohort.retentionRate}%</span>
+                        <span className="text-sm text-muted-foreground w-12 text-left">{cohort.retentionRate}%</span>
                       </div>
                     </TableCell>
                     <TableCell>
@@ -370,7 +370,7 @@ export default function EngagementReportPage() {
                             style={{ width: `${cohort.completionRate}%` }}
                           />
                         </div>
-                        <span className="text-sm text-gray-600 w-12 text-left">{cohort.completionRate}%</span>
+                        <span className="text-sm text-muted-foreground w-12 text-left">{cohort.completionRate}%</span>
                       </div>
                     </TableCell>
                   </TableRow>
@@ -379,7 +379,7 @@ export default function EngagementReportPage() {
             </Table>
           </div>
         ) : (
-          <div className="text-center py-12 text-gray-500">
+          <div className="text-center py-12 text-muted-foreground">
             {t.noData}
           </div>
         )}

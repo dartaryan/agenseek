@@ -417,10 +417,10 @@ export function ProfilePage() {
       <div className="px-4 md:px-6 lg:px-8 py-6 md:py-8">
         <div className="max-w-[1600px] mx-auto space-y-8">
           <div className="space-y-2">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
               {hebrewLocale.pages.profile.title}
             </h1>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-muted-foreground">
               {hebrewLocale.pages.profile.description}
             </p>
           </div>
@@ -429,7 +429,7 @@ export function ProfilePage() {
             {/* Account Details */}
             <Card className="p-6 space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">פרטי חשבון</h3>
+                <h3 className="text-lg font-semibold text-foreground">פרטי חשבון</h3>
                 <Button
                   onClick={() => setIsEditingDisplayName(true)}
                   variant="outline"
@@ -440,14 +440,14 @@ export function ProfilePage() {
               </div>
 
               {/* Avatar Display and Edit - Story 0.3 */}
-              <div className="flex items-center gap-4 pb-4 border-b border-gray-200 dark:border-gray-700">
+              <div className="flex items-center gap-4 pb-4 border-b border-border">
                 <UserAvatar
                   config={avatarConfig}
                   userId={user?.id}
                   size="xl"
                 />
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <p className="text-sm font-medium text-foreground mb-2">
                     אווטר פרופיל
                   </p>
                   <Button
@@ -461,7 +461,7 @@ export function ProfilePage() {
                 </div>
               </div>
 
-              <div className="space-y-2 text-gray-600 dark:text-gray-400">
+              <div className="space-y-2 text-muted-foreground">
                 <p>
                   <strong>שם תצוגה:</strong> {profile?.display_name || 'לא הוגדר'}
                 </p>
@@ -478,7 +478,7 @@ export function ProfilePage() {
           {/* Learning Preferences */}
           <Card className="p-6 space-y-6">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+              <h3 className="text-lg font-semibold text-foreground">
                 העדפות למידה
               </h3>
               {!isEditing && (
@@ -499,7 +499,7 @@ export function ProfilePage() {
               <div className="space-y-4">
                 {/* Role */}
                 <div>
-                  <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                  <h4 className="text-sm font-semibold text-foreground mb-2">
                     תפקיד
                   </h4>
                   {selectedRole ? (
@@ -517,13 +517,13 @@ export function ProfilePage() {
                       })()}
                     </div>
                   ) : (
-                    <p className="text-gray-500 dark:text-gray-400 text-sm">לא נבחר</p>
+                    <p className="text-muted-foreground text-sm">לא נבחר</p>
                   )}
                 </div>
 
                 {/* Interests */}
                 <div>
-                  <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                  <h4 className="text-sm font-semibold text-foreground mb-2">
                     תחומי עניין
                   </h4>
                   {selectedInterests.length > 0 ? (
@@ -544,13 +544,13 @@ export function ProfilePage() {
                       })}
                     </div>
                   ) : (
-                    <p className="text-gray-500 dark:text-gray-400 text-sm">לא נבחרו</p>
+                    <p className="text-muted-foreground text-sm">לא נבחרו</p>
                   )}
                 </div>
 
                 {/* Experience */}
                 <div>
-                  <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                  <h4 className="text-sm font-semibold text-foreground mb-2">
                     רמת ניסיון
                   </h4>
                   {selectedExperience ? (
@@ -568,11 +568,11 @@ export function ProfilePage() {
                       })()}
                     </div>
                   ) : (
-                    <p className="text-gray-500 dark:text-gray-400 text-sm">לא נבחר</p>
+                    <p className="text-muted-foreground text-sm">לא נבחר</p>
                   )}
                 </div>
 
-                <p className="text-sm text-gray-500 dark:text-gray-400 pt-2">
+                <p className="text-sm text-muted-foreground pt-2">
                   <IconCheck className="w-4 h-4 inline ml-1" />
                   ההעדפות שלך משפיעות על המלצות המדריכים בדף הבית ובמעקב התקדמות
                 </p>
@@ -582,7 +582,7 @@ export function ProfilePage() {
               <div className="space-y-6">
                 {/* Role Selection */}
                 <div>
-                  <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                  <h4 className="text-sm font-semibold text-foreground mb-3">
                     תפקיד
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -596,7 +596,7 @@ export function ProfilePage() {
                           className={`p-3 rounded-lg text-right transition-all duration-200 ${
                             isSelected
                               ? 'bg-primary/10 border-2 border-primary'
-                              : 'bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50'
+                              : 'bg-card border-2 border-border hover:border-primary/50'
                           }`}
                         >
                           <div className="flex items-start gap-2">
@@ -604,7 +604,7 @@ export function ProfilePage() {
                               className={`p-1.5 rounded-md ${
                                 isSelected
                                   ? 'bg-primary text-white'
-                                  : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                                  : 'bg-muted text-muted-foreground'
                               }`}
                             >
                               <Icon className="w-4 h-4" />
@@ -614,12 +614,12 @@ export function ProfilePage() {
                                 className={`font-medium text-sm ${
                                   isSelected
                                     ? 'text-primary'
-                                    : 'text-gray-900 dark:text-white'
+                                    : 'text-foreground'
                                 }`}
                               >
                                 {role.title}
                               </h5>
-                              <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-2">
+                              <p className="text-xs text-muted-foreground line-clamp-2">
                                 {role.description}
                               </p>
                             </div>
@@ -632,7 +632,7 @@ export function ProfilePage() {
 
                 {/* Interests Selection */}
                 <div>
-                  <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                  <h4 className="text-sm font-semibold text-foreground mb-3">
                     תחומי עניין
                   </h4>
                   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -646,24 +646,24 @@ export function ProfilePage() {
                           className={`p-3 rounded-lg text-center transition-all duration-200 ${
                             isSelected
                               ? 'bg-primary text-white'
-                              : 'bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50'
+                              : 'bg-card border-2 border-border hover:border-primary/50'
                           }`}
                         >
                           <div className="flex flex-col items-center gap-2">
                             <div
                               className={`p-2 rounded-md ${
-                                isSelected ? 'bg-white/20' : 'bg-gray-100 dark:bg-gray-700'
+                                isSelected ? 'bg-white/20' : 'bg-muted'
                               }`}
                             >
                               <Icon
                                 className={`w-5 h-5 ${
-                                  isSelected ? 'text-white' : 'text-gray-600 dark:text-gray-400'
+                                  isSelected ? 'text-white' : 'text-muted-foreground'
                                 }`}
                               />
                             </div>
                             <span
                               className={`text-xs font-medium ${
-                                isSelected ? 'text-white' : 'text-gray-900 dark:text-white'
+                                isSelected ? 'text-white' : 'text-foreground'
                               }`}
                             >
                               {interest.title}
@@ -677,7 +677,7 @@ export function ProfilePage() {
 
                 {/* Experience Selection */}
                 <div>
-                  <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                  <h4 className="text-sm font-semibold text-foreground mb-3">
                     רמת ניסיון
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -691,13 +691,13 @@ export function ProfilePage() {
                           className={`p-4 rounded-lg text-center transition-all duration-200 ${
                             isSelected
                               ? 'bg-primary/10 border-2 border-primary'
-                              : 'bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 hover:border-primary/50'
+                              : 'bg-card border-2 border-border hover:border-primary/50'
                           }`}
                         >
                           <div className="flex flex-col items-center gap-3">
                             <div
                               className={`p-3 rounded-lg ${
-                                isSelected ? 'bg-primary/20' : 'bg-gray-100 dark:bg-gray-700'
+                                isSelected ? 'bg-primary/20' : 'bg-muted'
                               }`}
                             >
                               <Icon
@@ -711,12 +711,12 @@ export function ProfilePage() {
                                 className={`font-bold ${
                                   isSelected
                                     ? 'text-primary'
-                                    : 'text-gray-900 dark:text-white'
+                                    : 'text-foreground'
                                 }`}
                               >
                                 {level.title}
                               </h5>
-                              <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                              <p className="text-xs text-muted-foreground mt-1">
                                 {level.description}
                               </p>
                             </div>

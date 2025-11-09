@@ -9,12 +9,15 @@ import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import { AnimatedBackground } from '../../components/ui/AnimatedBackground';
 import { useToast } from '../../hooks/use-toast';
+// Story 0.15: useTheme temporarily disabled (theme toggle hidden)
+// import { useTheme } from '../../contexts/ThemeContext';
 import { updatePassword } from '../../lib/auth';
 import { supabase } from '../../lib/supabase';
 import { hebrewLocale } from '../../lib/locale/he';
 import { resetPasswordSchema } from '../../lib/validation/authSchemas';
 import type { ResetPasswordFormData } from '../../lib/validation/authSchemas';
 import { IconLock, IconCheck, IconX, IconAlertCircle } from '@tabler/icons-react';
+// Story 0.15: IconMoon, IconSun temporarily removed (theme toggle hidden)
 import AgenseekLogo from '../../assets/agenseek-logo.svg';
 
 /**
@@ -37,11 +40,11 @@ function PasswordStrength({ password }: { password: string }) {
       {checks.map((check, index) => (
         <div key={index} className="flex items-center gap-2 text-xs">
           {check.valid ? (
-            <IconCheck className="w-3 h-3 text-emerald-600" />
+            <IconCheck className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
           ) : (
-            <IconX className="w-3 h-3 text-gray-400" />
+            <IconX className="w-3 h-3 text-muted-foreground" />
           )}
-          <span className={check.valid ? 'text-emerald-600' : 'text-gray-500'}>{check.label}</span>
+          <span className={check.valid ? 'text-emerald-600 dark:text-emerald-400' : 'text-muted-foreground'}>{check.label}</span>
         </div>
       ))}
     </div>
@@ -56,6 +59,8 @@ function PasswordStrength({ password }: { password: string }) {
 export function ResetPasswordPage() {
   const navigate = useNavigate();
   const { toast } = useToast();
+  // Story 0.15: Theme toggle temporarily disabled
+  // const { setTheme, resolvedTheme } = useTheme();
   const [isLoading, setIsLoading] = useState(false);
   const [isValidToken, setIsValidToken] = useState<boolean | null>(null);
   const he = hebrewLocale.auth;
@@ -131,14 +136,30 @@ export function ResetPasswordPage() {
   // Loading state while checking token
   if (isValidToken === null) {
     return (
-      <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50">
+      <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-emerald-950 dark:via-emerald-900 dark:to-teal-950">
         {/* Story 6.15: Animated background shapes */}
         <AnimatedBackground variant="auth" />
 
-        <Card className="w-full max-w-md p-8 backdrop-blur-xl bg-white/90 border border-white/20 relative z-10">
+        {/* Story 0.6 / Story 0.15: Theme Toggle - Temporarily hidden until dark mode is polished
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+          className="fixed top-4 left-4 z-50 bg-background/80 backdrop-blur-sm"
+          aria-label={resolvedTheme === 'dark' ? 'עבור למצב בהיר' : 'עבור למצב כהה'}
+        >
+          {resolvedTheme === 'dark' ? (
+            <IconSun className="h-5 w-5" />
+          ) : (
+            <IconMoon className="h-5 w-5" />
+          )}
+        </Button>
+        */}
+
+        <Card className="w-full max-w-md p-8 backdrop-blur-xl bg-white/90 dark:bg-card/90 border border-white/20 dark:border-border relative z-10">
           <div className="text-center space-y-4">
-            <div className="animate-spin w-8 h-8 border-4 border-emerald-600 border-t-transparent rounded-full mx-auto" />
-            <p className="text-gray-600">{he.verifyingLink}</p>
+            <div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full mx-auto" />
+            <p className="text-muted-foreground">{he.verifyingLink}</p>
           </div>
         </Card>
       </div>
@@ -148,9 +169,25 @@ export function ResetPasswordPage() {
   // Invalid token state
   if (isValidToken === false) {
     return (
-      <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-4">
+      <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-emerald-950 dark:via-emerald-900 dark:to-teal-950 p-4">
         {/* Story 6.15: Animated background shapes */}
         <AnimatedBackground variant="auth" />
+
+        {/* Story 0.6 / Story 0.15: Theme Toggle - Temporarily hidden until dark mode is polished
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+          className="fixed top-4 left-4 z-50 bg-background/80 backdrop-blur-sm"
+          aria-label={resolvedTheme === 'dark' ? 'עבור למצב בהיר' : 'עבור למצב כהה'}
+        >
+          {resolvedTheme === 'dark' ? (
+            <IconSun className="h-5 w-5" />
+          ) : (
+            <IconMoon className="h-5 w-5" />
+          )}
+        </Button>
+        */}
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -158,18 +195,18 @@ export function ResetPasswordPage() {
           transition={{ duration: 0.5 }}
           className="w-full max-w-md relative z-10"
         >
-          <Card className="p-8 space-y-6 shadow-xl backdrop-blur-xl bg-white/90 border border-white/20">
+          <Card className="p-8 space-y-6 shadow-xl backdrop-blur-xl bg-white/90 dark:bg-card/90 border border-white/20 dark:border-border">
             <div className="text-center space-y-4">
               <div className="flex justify-center">
-                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
-                  <IconAlertCircle className="w-8 h-8 text-red-600" />
+                <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center">
+                  <IconAlertCircle className="w-8 h-8 text-red-600 dark:text-red-400" />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <h2 className="text-2xl font-semibold">{he.invalidResetLink}</h2>
-                <p className="text-gray-600">{he.tokenInvalidDescription}</p>
-                <p className="text-sm text-gray-500">{he.tokenExpiredNote}</p>
+                <h2 className="text-2xl font-semibold text-foreground">{he.invalidResetLink}</h2>
+                <p className="text-muted-foreground">{he.tokenInvalidDescription}</p>
+                <p className="text-sm text-muted-foreground">{he.tokenExpiredNote}</p>
               </div>
 
               <Button className="w-full" asChild>
@@ -188,9 +225,25 @@ export function ResetPasswordPage() {
 
   // Valid token - show password reset form
   return (
-    <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 p-4">
+    <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-emerald-950 dark:via-emerald-900 dark:to-teal-950 p-4">
       {/* Story 6.15: Animated background shapes */}
       <AnimatedBackground variant="auth" />
+
+      {/* Story 0.6 / Story 0.15: Theme Toggle - Temporarily hidden until dark mode is polished
+      <Button
+        variant="outline"
+        size="icon"
+        onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+        className="fixed top-4 left-4 z-50 bg-background/80 backdrop-blur-sm"
+        aria-label={resolvedTheme === 'dark' ? 'עבור למצב בהיר' : 'עבור למצב כהה'}
+      >
+        {resolvedTheme === 'dark' ? (
+          <IconSun className="h-5 w-5" />
+        ) : (
+          <IconMoon className="h-5 w-5" />
+        )}
+      </Button>
+      */}
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -198,7 +251,7 @@ export function ResetPasswordPage() {
         transition={{ duration: 0.5 }}
         className="w-full max-w-md relative z-10"
       >
-        <Card className="p-8 space-y-6 shadow-xl backdrop-blur-xl bg-white/90 border border-white/20">
+        <Card className="p-8 space-y-6 shadow-xl backdrop-blur-xl bg-white/90 dark:bg-card/90 border border-white/20 dark:border-border">
           {/* Header */}
           <div className="text-center space-y-4">
             <img
@@ -207,10 +260,10 @@ export function ResetPasswordPage() {
               className="h-12 w-auto mx-auto"
             />
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold text-emerald-600">{he.brandName}</h1>
-              <p className="text-gray-600">{he.brandSubtitle}</p>
-              <h2 className="text-2xl font-semibold pt-2">{he.setNewPasswordTitle}</h2>
-              <p className="text-sm text-gray-500">{he.setNewPasswordSubtitle}</p>
+              <h1 className="text-3xl font-bold text-primary">{he.brandName}</h1>
+              <p className="text-muted-foreground">{he.brandSubtitle}</p>
+              <h2 className="text-2xl font-semibold pt-2 text-foreground">{he.setNewPasswordTitle}</h2>
+              <p className="text-sm text-muted-foreground">{he.setNewPasswordSubtitle}</p>
             </div>
           </div>
 
@@ -220,7 +273,7 @@ export function ResetPasswordPage() {
             <div className="space-y-2">
               <Label htmlFor="password">{he.newPassword}</Label>
               <div className="relative">
-                <IconLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <IconLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
                 <Input
                   id="password"
                   type="password"
@@ -239,7 +292,7 @@ export function ResetPasswordPage() {
             <div className="space-y-2">
               <Label htmlFor="confirmPassword">{he.confirmPassword}</Label>
               <div className="relative">
-                <IconLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <IconLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
                 <Input
                   id="confirmPassword"
                   type="password"
@@ -260,9 +313,9 @@ export function ResetPasswordPage() {
           </form>
 
           {/* Cancel Link */}
-          <p className="text-center text-sm text-gray-500">
+          <p className="text-center text-sm text-muted-foreground">
             {he.rememberPassword}{' '}
-            <Link to="/auth/login" className="text-emerald-600 hover:underline font-medium">
+            <Link to="/auth/login" className="text-primary hover:underline font-semibold">
               {he.loginLink}
             </Link>
           </p>

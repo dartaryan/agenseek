@@ -195,26 +195,43 @@
   }
 
   .dark {
-    /* Story 0.6: Dark green theme instead of gray/slate */
-    --background: 160 50% 8%;      /* Deep emerald green background */
-    --foreground: 150 30% 95%;     /* Soft off-white with green tint */
-    --card: 160 40% 12%;            /* Slightly lighter green for cards */
-    --card-foreground: 150 25% 95%;
-    --popover: 160 45% 10%;         /* Dark green for popovers */
-    --popover-foreground: 150 25% 95%;
-    --primary: 142 76% 36%;         /* Keep emerald primary */
+    /* Story 0.6: Production-ready dark theme - MAXIMUM READABILITY */
+    /* Base colors */
+    --background: 160 35% 12%;      /* Dark emerald green background */
+    --foreground: 150 10% 98%;      /* Maximum contrast white text */
+
+    /* Card surfaces - HIGHLY VISIBLE with strong contrast */
+    --card: 160 25% 22%;            /* Cards 10% lighter than background - VERY noticeable */
+    --card-foreground: 150 10% 98%;
+
+    /* Popovers and overlays */
+    --popover: 160 30% 18%;
+    --popover-foreground: 150 10% 98%;
+
+    /* Primary brand color */
+    --primary: 142 76% 45%;         /* Brighter for dark mode visibility */
     --primary-foreground: 0 0% 100%;
-    --secondary: 145 74% 69%;
-    --secondary-foreground: 160 50% 8%;
-    --muted: 160 35% 20%;           /* Muted dark green */
-    --muted-foreground: 150 20% 70%;
-    --accent: 173 80% 40%;          /* Keep teal accent */
+
+    /* Secondary elements */
+    --secondary: 145 50% 60%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted elements - HIGHLY READABLE */
+    --muted: 160 20% 25%;           /* Muted backgrounds */
+    --muted-foreground: 150 8% 82%; /* HIGHLY readable muted text - 82% lightness */
+
+    /* Accent */
+    --accent: 173 80% 50%;
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 160 30% 18%;          /* Dark green borders */
-    --input: 160 35% 15%;           /* Dark green inputs */
-    --ring: 142 76% 36%;
+
+    /* Destructive/Error */
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders - HIGHLY VISIBLE */
+    --border: 160 15% 32%;          /* Strong visible borders */
+    --input: 160 20% 20%;           /* Input backgrounds */
+    --ring: 142 76% 45%;
   }
 
   * {
