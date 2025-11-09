@@ -109,9 +109,9 @@ The `phase2-design.json` guide file had **incorrectly structured grid items**.
 #### 4. `src/app/routes.tsx`
 
 **Fix #5: Admin Logs Lazy Import (Line 40)**
-- Fixed lazy import for AdminActionLogPage with proper default export handling
-- Changed from `import('./admin/logs')` to `import('./admin/logs').then(m => ({ default: m.default }))`
-- Fixes module resolution error (TS2307)
+- Fixed lazy import for AdminActionLogPage with explicit index path
+- Changed from `import('./admin/logs')` to `import('./admin/logs/index')`
+- Fixes module resolution error (TS2307) that only occurred on Vercel build environment
 
 ---
 
@@ -239,6 +239,16 @@ Fix TypeScript build errors
 - Build now passes successfully
 ```
 **Commit Hash:** a38e4f7
+
+**Commit #5: Final Module Resolution Fix**
+```
+Fix admin logs import with explicit index path
+
+- Changed from './admin/logs' to './admin/logs/index'
+- Resolves TypeScript module resolution error on Vercel
+- Build now passes successfully
+```
+**Commit Hash:** 5dd2424
 
 ---
 
