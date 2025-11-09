@@ -1195,30 +1195,54 @@
       "type": "grid",
       "columns": 2,
       "items": [
-        {
-          "type": "card",
-          "title": "PRD או Tech-Spec",
-          "description": "מסמך מפורט עם כל הדרישות, פיצ'רים, ו-acceptance criteria",
-          "icon": "IconFileText"
-        },
-        {
-          "type": "card",
-          "title": "Architecture Document",
-          "description": "תוכנית ארכיטקטונית עם דיאגרמות, טכנולוגיות, ו-tradeoffs",
-          "icon": "IconBuilding"
-        },
-        {
-          "type": "card",
-          "title": "Epics & Stories",
-          "description": "פירוק מלא למשימות מוכנות למימוש עם אומדני זמן",
-          "icon": "IconListCheck"
-        },
-        {
-          "type": "card",
-          "title": "Gate Check Report",
-          "description": "אישור מוכנות עם זיהוי סיכונים וממצאים",
-          "icon": "IconChecklist"
-        }
+        [
+          {
+            "type": "card",
+            "title": "PRD או Tech-Spec",
+            "content": [
+              {
+                "type": "text",
+                "content": "מסמך מפורט עם כל הדרישות, פיצ'רים, ו-acceptance criteria"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "title": "Architecture Document",
+            "content": [
+              {
+                "type": "text",
+                "content": "תוכנית ארכיטקטונית עם דיאגרמות, טכנולוגיות, ו-tradeoffs"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "title": "Epics & Stories",
+            "content": [
+              {
+                "type": "text",
+                "content": "פירוק מלא למשימות מוכנות למימוש עם אומדני זמן"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "title": "Gate Check Report",
+            "content": [
+              {
+                "type": "text",
+                "content": "אישור מוכנות עם זיהוי סיכונים וממצאים"
+              }
+            ]
+          }
+        ]
       ]
     },
     {

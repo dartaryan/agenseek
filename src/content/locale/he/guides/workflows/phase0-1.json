@@ -924,18 +924,30 @@
       "type": "grid",
       "columns": 2,
       "items": [
-        {
-          "type": "card",
-          "title": "חלק 2א: Phase 2 Core",
-          "description": "prd, tech-spec, architecture - מפרט וארכיטקטורה מפורטים",
-          "icon": "IconFileText"
-        },
-        {
-          "type": "card",
-          "title": "חלק 2ב: Phase 2 Design",
-          "description": "create-ux-design, gdd, narrative - עיצוב וחוויית משתמש",
-          "icon": "IconPalette"
-        }
+        [
+          {
+            "type": "card",
+            "title": "חלק 2א: Phase 2 Core",
+            "content": [
+              {
+                "type": "text",
+                "content": "prd, tech-spec, architecture - מפרט וארכיטקטורה מפורטים"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "title": "חלק 2ב: Phase 2 Design",
+            "content": [
+              {
+                "type": "text",
+                "content": "create-ux-design, gdd, narrative - עיצוב וחוויית משתמש"
+              }
+            ]
+          }
+        ]
       ]
     },
     {
