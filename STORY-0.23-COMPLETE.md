@@ -1,7 +1,7 @@
 # Story 0.23: Fix Onboarding Infinite Loop
 
 **Type**: Bug Fix (Critical)
-**Status**: Complete  
+**Status**: Complete
 **Priority**: Critical
 **Hebrew Issue**: "בעיה ממש חמורה, ברגע שמישהו נרשם - הוא מגיע לאון בורדינג וזה תקוע שם"
 
@@ -27,7 +27,7 @@ The issue was a classic **race condition** between database update and React sta
 ### The Flow (BEFORE Fix):
 
 ```typescript
-1. User clicks "התחל ללמוד!" 
+1. User clicks "התחל ללמוד!"
 2. Update database: completed_onboarding = true ✅
 3. Call refreshProfile() (async) ⏳
 4. Wait 1500ms for confetti 🎉
@@ -100,13 +100,13 @@ let profileUpdated = false;
 
 while (attempts < maxAttempts && !profileUpdated) {
   await new Promise((resolve) => setTimeout(resolve, 100));
-  
+
   const { data: verifyProfile } = await supabase
     .from('profiles')
     .select('completed_onboarding')
     .eq('id', userId)
     .single();
-  
+
   if (verifyProfile?.completed_onboarding === true) {
     profileUpdated = true;
   } else {

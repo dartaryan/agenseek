@@ -905,7 +905,7 @@ function LearningPathStep({
 
     try {
       console.log('[Onboarding] Starting completion process...');
-      
+
       // Save preferences to profile
       const { error } = await supabase
         .from('profiles')
@@ -935,14 +935,14 @@ function LearningPathStep({
 
       while (attempts < maxAttempts && !profileUpdated) {
         await new Promise((resolve) => setTimeout(resolve, 100));
-        
+
         // Verify via direct database query
         const { data: verifyProfile } = await supabase
           .from('profiles')
           .select('completed_onboarding')
           .eq('id', userId)
           .single();
-        
+
         if (verifyProfile?.completed_onboarding === true) {
           profileUpdated = true;
           console.log(`[Onboarding] ✓ Profile verified (attempt ${attempts + 1}/${maxAttempts})`);
@@ -984,7 +984,7 @@ function LearningPathStep({
       // Wait a moment for confetti before redirecting
       await new Promise((resolve) => setTimeout(resolve, 1500));
       console.log('[Onboarding] Navigating to dashboard...');
-      
+
       // Navigate to dashboard
       onComplete();
     } catch (error) {
