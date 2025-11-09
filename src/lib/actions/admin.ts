@@ -595,9 +595,9 @@ export async function deleteUser(userId: string): Promise<void> {
     // 2. Deletes from profiles (CASCADE handles related data)
     // 3. Deletes from auth.users (requires SECURITY DEFINER)
     // 4. Logs action to admin audit log
-    const { data, error } = await supabase.rpc('admin_delete_user', {
+    const { data, error } = await supabase.rpc('admin_delete_user' as any, {
       p_user_id: userId
-    });
+    }) as { data: { success: boolean; error?: string } | null; error: any };
 
     if (error) {
       console.error('RPC error deleting user:', error);
