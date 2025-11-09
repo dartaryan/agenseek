@@ -64,11 +64,13 @@ export function OnboardingWizardPage() {
 
   const handleSkip = async () => {
     if (!user?.id) {
-      console.error('No user ID found');
+      console.error('[Onboarding] No user ID found');
       return;
     }
 
     try {
+      console.log('[Onboarding Skip] Starting skip process...');
+      
       // Mark onboarding as completed even when skipped
       const { error } = await supabase
         .from('profiles')
@@ -79,17 +81,57 @@ export function OnboardingWizardPage() {
         .eq('id', user.id);
 
       if (error) throw error;
+      console.log('[Onboarding Skip] Profile updated in database');
 
-      // Refresh the profile in auth context
+      // CRITICAL FIX: Verify profile update completed before navigating
+      // Same fix as handleComplete to prevent infinite loop
+      console.log('[Onboarding Skip] Verifying profile update...');
+
+      // Poll database to confirm update (max 3 seconds)
+      const maxAttempts = 30;
+      let attempts = 0;
+      let profileUpdated = false;
+
+      while (attempts < maxAttempts && !profileUpdated) {
+        await new Promise((resolve) => setTimeout(resolve, 100));
+        
+        const { data: verifyProfile } = await supabase
+          .from('profiles')
+          .select('completed_onboarding')
+          .eq('id', user.id)
+          .single();
+        
+        if (verifyProfile?.completed_onboarding === true) {
+          profileUpdated = true;
+          console.log(`[Onboarding Skip] ✓ Profile verified (attempt ${attempts + 1}/${maxAttempts})`);
+        } else {
+          attempts++;
+        }
+      }
+
+      if (!profileUpdated) {
+        console.error('[Onboarding Skip] Profile verification timeout!');
+        throw new Error('לא הצלחנו לאמת את עדכון הפרופיל');
+      }
+
+      // NOW refresh the profile in AuthContext
       await refreshProfile();
+      console.log('[Onboarding Skip] AuthContext refreshed');
+
+      // Wait for React state propagation
+      await new Promise((resolve) => setTimeout(resolve, 150));
+      console.log('[Onboarding Skip] State propagation complete');
 
       toast({
         title: 'און בורדינג דולג',
         description: 'ניתן להשלים את הפרופיל שלך בכל עת מההגדרות.',
       });
+      
+      // Navigate to dashboard
+      console.log('[Onboarding Skip] Navigating to dashboard...');
       navigate('/dashboard');
     } catch (error) {
-      console.error('Error skipping onboarding:', error);
+      console.error('[Onboarding Skip] Error:', error);
       toast({
         title: 'שגיאה',
         description: 'נכשל בדילוג על און בורדינג. אנא נסה שוב.',
