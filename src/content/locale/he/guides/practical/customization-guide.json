@@ -1,0 +1,949 @@
+{
+  "metadata": {
+    "id": "customization-guide",
+    "slug": "customization-guide",
+    "title": "מדריך התאמה אישית של BMAD",
+    "description": "מדריך מקיף ליצירת אגנטים, וורקפלואים ותבניות מותאמות אישית. למדו איך להתאים את BMAD בדיוק לצרכים של הארגון שלכם - מאגנטים ייחודיים לתחומים ספציפיים ועד תבניות קוד ותהליכי עבודה ארגוניים.",
+    "category": "practical",
+    "difficulty": "advanced",
+    "estimatedMinutes": 45,
+    "icon": "IconWand",
+    "tags": ["התאמה-אישית", "קונפיגורציה", "אגנטים", "וורקפלואים", "תבניות", "ארגון"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "למה להתאים אישית את BMAD?",
+      "level": 2,
+      "anchor": "why-customize"
+    },
+    {
+      "id": "toc-2",
+      "title": "יצירת אגנטים מותאמים אישית - מדריך מעמיק",
+      "level": 2,
+      "anchor": "custom-agents-deep-dive"
+    },
+    {
+      "id": "toc-3",
+      "title": "יצירת וורקפלואים מותאמים אישית",
+      "level": 2,
+      "anchor": "custom-workflows-deep-dive"
+    },
+    {
+      "id": "toc-4",
+      "title": "תבניות קוד (Code Templates)",
+      "level": 2,
+      "anchor": "code-templates"
+    },
+    {
+      "id": "toc-5",
+      "title": "תבניות מסמכים (Document Templates)",
+      "level": 2,
+      "anchor": "document-templates"
+    },
+    {
+      "id": "toc-6",
+      "title": "כללי עבודה ארגוניים (Organizational Rules)",
+      "level": 2,
+      "anchor": "organizational-rules"
+    },
+    {
+      "id": "toc-7",
+      "title": "דוגמאות מעשיות מהשטח",
+      "level": 2,
+      "anchor": "practical-examples"
+    },
+    {
+      "id": "toc-8",
+      "title": "שיתוף והפצה של התאמות",
+      "level": 2,
+      "anchor": "sharing-customizations"
+    },
+    {
+      "id": "toc-9",
+      "title": "ניהול גרסאות וזמין התאמות",
+      "level": 2,
+      "anchor": "versioning-customizations"
+    },
+    {
+      "id": "toc-10",
+      "title": "Best Practices להתאמה אישית",
+      "level": 2,
+      "anchor": "customization-best-practices"
+    },
+    {
+      "id": "toc-11",
+      "title": "תרחישי התאמה נפוצים",
+      "level": 2,
+      "anchor": "common-customization-scenarios"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מדריך התאמה אישית של BMAD",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "למי מיועד מדריך זה?",
+      "content": "מדריך זה מיועד לצוותים וארגונים שרוצים להתאים את BMAD לצרכים הייחודיים שלהם - תהליכי עבודה ספציפיים, תחומי מומחיות ייחודיים, וסטנדרטים ארגוניים."
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מה תלמדו כאן?",
+      "content": "איך ליצור אגנטים ווורקפלואים מותאמים אישית, לבנות תבניות קוד ומסמכים, להגדיר כללי עבודה ארגוניים, ולנהל את ההתאמות האישיות שלכם לאורך זמן."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "למה להתאים אישית את BMAD?",
+      "id": "why-customize"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "BMAD מגיע עם מערך מושלם של אגנטים ווורקפלואים, אבל לכל ארגון יש צרכים ייחודיים:\n\n**תרחישים נפוצים להתאמה אישית:**\n- תחום מומחיות ייחודי לארגון (למשל: Embedded Systems, IoT, Blockchain)\n- תהליכי עבודה ספציפיים לחברה (למשל: תהליך אישור פנימי, compliance checks)\n- סטנדרטים ארגוניים (למשל: coding standards, documentation format)\n- אינטגרציה עם כלים פנימיים (למשל: מערכת ניהול פרויקטים פנימית)\n- שפות תכנות או טכנולוגיות ספציפיות שלא מכוסות באגנטים הקיימים"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**היתרונות של התאמה אישית:**\n- התאמה מדויקת לתהליכי העבודה שלכם\n- עקביות בין כל הצוות\n- אוטומציה של תהליכים ייחודיים\n- שיפור היעילות\n- שמירה על סטנדרטים ארגוניים"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "יצירת אגנטים מותאמים אישית - מדריך מעמיק",
+      "id": "custom-agents-deep-dive"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "אגנטים מותאמים אישית הם הלב של ההתאמה האישית. הם מאפשרים לכם ליצור מומחים וירטואליים לכל תחום שאתם צריכים."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "אנטומיה של אגנט מותאם אישית",
+      "id": "agent-anatomy"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "כל אגנט מותאם אישית מורכב מ-5 חלקים עיקריים:"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "Metadata - מידע בסיסי על האגנט",
+          "children": [
+            { "content": "name - שם האגנט" },
+            { "content": "description - תיאור קצר" }
+          ]
+        },
+        {
+          "content": "Activation - תהליך הפעלה",
+          "children": [
+            { "content": "צעדים שהאגנט מבצע בהפעלה" },
+            { "content": "טעינת config וקבצים" }
+          ]
+        },
+        {
+          "content": "Persona - אישיות האגנט",
+          "children": [
+            { "content": "role - התפקיד" },
+            { "content": "identity - הזהות והמומחיות" },
+            { "content": "communication_style - סגנון תקשורת" },
+            { "content": "principles - עקרונות עבודה" }
+          ]
+        },
+        {
+          "content": "Menu - תפריט פעולות",
+          "children": [
+            { "content": "פקודות זמינות" },
+            { "content": "workflows קשורים" },
+            { "content": "actions מותאמות" }
+          ]
+        },
+        {
+          "content": "Custom Actions (אופציונלי) - לוגיקה מיוחדת"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מדריך צעד-אחר-צעד ליצירת אגנט",
+      "id": "step-by-step-agent-creation"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "בואו ניצור אגנט **Security Specialist** מאפס:"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "---\nname: \"security-specialist\"\ndescription: \"Security & Compliance Specialist Agent\"\n---\n\nYou must fully embody this agent's persona and follow all activation instructions exactly as specified.\n\n```xml\n<agent id=\"custom/security-specialist\" name=\"sara\" title=\"Security Specialist\" icon=\"IconShield\">\n\n<!-- שלב 1: הגדרת Activation -->\n<activation critical=\"MANDATORY\">\n  <step n=\"1\">Load persona from this current agent file</step>\n  <step n=\"2\">🚨 IMMEDIATE ACTION:\n    - Load and read {project-root}/bmad/bmm/config.yaml\n    - Store ALL fields as session variables\n    - VERIFY: If config not loaded, STOP and report error\n  </step>\n  <step n=\"3\">Remember: user's name is {user_name}</step>\n  <step n=\"4\">ALWAYS communicate in {communication_language}</step>\n  <step n=\"5\">Load organization security policies from {project-root}/.bmad/security-policies.yaml</step>\n  <step n=\"6\">Show greeting using {user_name}, then display numbered list of ALL menu items</step>\n  <step n=\"7\">STOP and WAIT for user input - do NOT execute menu items automatically</step>\n  <step n=\"8\">On user input: Number → execute menu item[n] | Text → case-insensitive substring match</step>\n</activation>\n\n<!-- שלב 2: הגדרת Persona -->\n<persona>\n  <role>Security & Compliance Expert</role>\n  \n  <identity>\n    מומחית אבטחת מידע ו-compliance מנוסה עם 10+ שנות ניסיון.\n    מתמחה ב:\n    - Security code review (OWASP Top 10)\n    - Penetration testing & vulnerability assessment\n    - Compliance (GDPR, SOC2, ISO 27001, HIPAA)\n    - Security architecture & threat modeling\n    - Incident response & forensics\n    - DevSecOps practices\n  </identity>\n  \n  <communication_style>\n    ברור ומדויק, עם דגש על הסברת סיכונים בצורה מעשית.\n    משתמשת בדוגמאות ממשיות ומספקת המלצות ברורות לתיקון.\n    מאוזנת בין אבטחה לפרקטיות - מבינה שצריך גם לייצר תוצרים.\n  </communication_style>\n  \n  <principles>\n    - Security by design - לא afterthought\n    - Defense in depth - שכבות הגנה\n    - Least privilege - הרשאות מינימליות\n    - Assume breach - תמיד להניח שיכול להיות פריצה\n    - Compliance is not security - אבל חובה לעמוד בדרישות\n    - Education over enforcement - ללמד ולא רק לאכוף\n  </principles>\n</persona>\n\n<!-- שלב 3: הגדרת Menu -->\n<menu>\n  <item cmd=\"*help\">Show numbered menu</item>\n  \n  <!-- Security Code Review -->\n  <item cmd=\"*code-review\" \n        action=\"Perform comprehensive security code review. Analyze code for OWASP Top 10 vulnerabilities, insecure dependencies, hardcoded secrets, and security anti-patterns. Generate detailed report with severity levels and remediation steps.\">\n    סקירת אבטחה של קוד (Security Code Review)\n  </item>\n  \n  <!-- Threat Modeling -->\n  <item cmd=\"*threat-model\" \n        action=\"Create threat model for the system. Use STRIDE methodology to identify threats. Generate attack trees, data flow diagrams, and mitigation strategies.\">\n    תכנון מודל איומים (Threat Modeling)\n  </item>\n  \n  <!-- Security Architecture Review -->\n  <item cmd=\"*arch-review\" \n        action=\"Review system architecture for security concerns. Check authentication/authorization design, data encryption, network security, API security, and infrastructure hardening.\">\n    סקירת ארכיטקטורת אבטחה\n  </item>\n  \n  <!-- Penetration Testing Plan -->\n  <item cmd=\"*pentest-plan\" \n        workflow=\"{project-root}/.bmad/custom-workflows/penetration-testing.yaml\">\n    תכנון מבחן חדירה (Penetration Testing Plan)\n  </item>\n  \n  <!-- Compliance Check -->\n  <item cmd=\"*compliance\" \n        action=\"Check compliance with selected standard (GDPR, SOC2, ISO 27001, HIPAA, PCI-DSS). Generate compliance checklist, identify gaps, and create remediation plan.\">\n    בדיקת עמידה בתקנים (Compliance Check)\n  </item>\n  \n  <!-- Security Policy -->\n  <item cmd=\"*create-policy\" \n        action=\"Create security policy document for selected area (password policy, access control, data classification, incident response, etc). Use organization templates and best practices.\">\n    יצירת מדיניות אבטחה (Security Policy)\n  </item>\n  \n  <!-- Incident Response -->\n  <item cmd=\"*incident\" \n        action=\"Guide through incident response process. Document incident, assess impact, contain threat, eradicate cause, recover systems, and create post-mortem report.\">\n    טיפול באירוע אבטחה (Incident Response)\n  </item>\n  \n  <!-- Security Training -->\n  <item cmd=\"*training\" \n        action=\"Create security awareness training material for developers/users. Cover common threats, best practices, and real-world examples.\">\n    יצירת חומרי הדרכה באבטחה\n  </item>\n  \n  <item cmd=\"*exit\">Exit with confirmation</item>\n</menu>\n\n<!-- שלב 4: Custom Prompts (אופציונלי) -->\n<prompts>\n  <prompt id=\"code-review-detailed\">\n    Perform a detailed security code review:\n    \n    1. **Input Validation:**\n       - Check for SQL injection vulnerabilities\n       - Check for XSS vulnerabilities\n       - Validate all user inputs\n       - Check for command injection\n    \n    2. **Authentication & Authorization:**\n       - Verify proper authentication mechanisms\n       - Check authorization at every endpoint\n       - Look for privilege escalation risks\n       - Check session management\n    \n    3. **Data Protection:**\n       - Verify encryption at rest and in transit\n       - Check for hardcoded secrets\n       - Verify secure key management\n       - Check for sensitive data exposure\n    \n    4. **Dependencies:**\n       - Scan for vulnerable dependencies\n       - Check for outdated packages\n       - Verify supply chain security\n    \n    5. **Error Handling:**\n       - Check for information leakage in errors\n       - Verify proper error handling\n       - Check logging practices\n    \n    Generate a comprehensive report with:\n    - Executive summary\n    - Detailed findings (Critical, High, Medium, Low)\n    - Proof of concept where applicable\n    - Remediation steps for each finding\n    - References to security standards\n  </prompt>\n</prompts>\n\n</agent>\n```",
+      "filename": ".bmad/custom-agents/security-specialist.mdc",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הסבר המרכיבים",
+      "id": "component-explanation"
+    },
+    {
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "explain-metadata",
+          "title": "Metadata - מידע בסיסי",
+          "content": [
+            {
+              "id": "explain-metadata-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**name:** המזהה הייחודי של האגנט (באנגלית, ללא רווחים)\n\n**description:** תיאור קצר למה האגנט משמש\n\n**דוגמה:**\n```yaml\nname: \"security-specialist\"\ndescription: \"Security & Compliance Specialist Agent\"\n```"
+            }
+          ]
+        },
+        {
+          "id": "explain-activation",
+          "title": "Activation - תהליך הפעלה",
+          "content": [
+            {
+              "id": "explain-activation-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**מטרה:** להגדיר מה קורה כשהאגנט מופעל\n\n**צעדים חשובים:**\n- טעינת קובץ config\n- קריאת קבצים נוספים (מדיניות, תבניות)\n- ברכה למשתמש\n- הצגת תפריט\n- המתנה לקלט\n\n**טיפ:** השתמשו ב-`{project-root}` לנתיבים יחסיים"
+            }
+          ]
+        },
+        {
+          "id": "explain-persona",
+          "title": "Persona - אישיות האגנט",
+          "content": [
+            {
+              "id": "explain-persona-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**role:** התפקיד של האגנט (למשל: Security Expert)\n\n**identity:** תיאור מפורט של הידע והניסיון של האגנט. זה מה שמגדיר את המומחיות.\n\n**communication_style:** איך האגנט מדבר - פורמלי? ידידותי? טכני?\n\n**principles:** העקרונות המנחים את החלטות האגנט\n\n**חשוב:** ה-persona הוא מה שקובע איך האגנט יתנהג!"
+            }
+          ]
+        },
+        {
+          "id": "explain-menu",
+          "title": "Menu - תפריט פעולות",
+          "content": [
+            {
+              "id": "explain-menu-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**מבנה item:**\n\n```xml\n<item cmd=\"*command-name\" \n      action=\"מה האגנט עושה\"\n      workflow=\"נתיב לוורקפלו\">\n  תיאור למשתמש\n</item>\n```\n\n**action:** פקודה פשוטה - האגנט מבצע את מה שכתוב\n\n**workflow:** הפניה לוורקפלו מורכב\n\n**טיפ:** התחילו עם 5-8 פקודות. אפשר להוסיף אחר כך."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "טיפים ליצירת אגנטים איכותיים",
+      "id": "quality-agent-tips"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "Persona מפורט = אגנט טוב יותר",
+          "children": [
+            { "content": "תארו את תחום המומחיות בדיוק" },
+            { "content": "ציינו ניסיון וכישורים ספציפיים" },
+            { "content": "הוסיפו עקרונות עבודה ברורים" }
+          ]
+        },
+        {
+          "content": "תפריט ברור ומאורגן",
+          "children": [
+            { "content": "קבצו פקודות לפי נושא" },
+            { "content": "השתמשו בשמות תיאוריים" },
+            { "content": "הוסיפו תיאור קצר לכל פקודה" }
+          ]
+        },
+        {
+          "content": "בדקו את האגנט",
+          "children": [
+            { "content": "הפעילו והריצו כל פקודה" },
+            { "content": "בדקו שהתגובות רלוונטיות" },
+            { "content": "תקנו בעיות ושפרו" }
+          ]
+        },
+        {
+          "content": "תעדו את האגנט",
+          "children": [
+            { "content": "כתבו קובץ README" },
+            { "content": "הוסיפו דוגמאות שימוש" },
+            { "content": "תעדו שינויים" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "טיפ מקצועי",
+      "content": "התחילו מאגנט קיים שדומה לצורך שלכם. העתיקו, שנו את ה-persona ואת התפריט, ובדקו. זה הדרך המהירה ביותר ליצור אגנט איכותי."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "יצירת וורקפלואים מותאמים אישית",
+      "id": "custom-workflows-deep-dive"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "וורקפלואים מותאמים אישית מאפשרים לאוטמט תהליכים מורכבים ייחודיים לארגון שלכם."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "אנטומיה של וורקפלו",
+      "id": "workflow-anatomy"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "כל וורקפלו מורכב מ-4 חלקים עיקריים:"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        { "content": "Metadata - מידע בסיסי (id, name, description, version)" },
+        { "content": "Agents - רשימת האגנטים המשתתפים" },
+        { "content": "Phases - שלבים של הוורקפלו" },
+        { "content": "Outputs - תוצרים שהוורקפלו מייצר" }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה: וורקפלו Security Review מלא",
+      "id": "security-review-workflow"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# .bmad/custom-workflows/security-review.yaml\nworkflow:\n  id: security-review\n  name: Comprehensive Security Review\n  description: תהליך סקירת אבטחה מקיף לפני release\n  version: 1.0\n  author: Security Team\n  agents:\n    - architect\n    - dev\n    - security-specialist  # אגנט מותאם אישית\n    - tea\n\nphases:\n  # Phase 1: Pre-Review Preparation\n  - phase: 1\n    name: הכנה לסקירה\n    agent: dev\n    description: איסוף מידע והכנת המערכת לסקירה\n    steps:\n      - step: 1\n        title: Update dependencies\n        action: update_all_dependencies\n        validation:\n          - no_critical_vulnerabilities\n      \n      - step: 2\n        title: Run automated security scans\n        action: run_security_scans\n        tools:\n          - npm audit\n          - snyk test\n          - eslint security plugin\n        validation:\n          - scan_completed\n          - results_documented\n      \n      - step: 3\n        title: Generate dependency tree\n        action: create_dependency_report\n        output: docs/security/dependency-tree.md\n\n  # Phase 2: Architecture Security Review\n  - phase: 2\n    name: סקירת ארכיטקטורת אבטחה\n    agent: architect\n    description: בדיקת העיצוב והארכיטקטורה מזווית אבטחתית\n    steps:\n      - step: 1\n        title: Review authentication design\n        action: review_auth_architecture\n        checklist:\n          - Password hashing algorithm (bcrypt/argon2)\n          - Session management\n          - Token expiration\n          - Multi-factor authentication\n      \n      - step: 2\n        title: Review authorization model\n        action: review_authorization\n        checklist:\n          - Role-based access control (RBAC)\n          - Permission granularity\n          - Privilege escalation prevention\n      \n      - step: 3\n        title: Data flow analysis\n        action: analyze_data_flows\n        output: docs/security/data-flow-diagram.mmd\n        validation:\n          - all_data_classified\n          - encryption_documented\n\n  # Phase 3: Code Security Review\n  - phase: 3\n    name: סקירת אבטחת קוד\n    agent: security-specialist\n    description: סקירה מעמיקה של הקוד לזיהוי פגיעויות\n    steps:\n      - step: 1\n        title: OWASP Top 10 check\n        action: check_owasp_top10\n        areas:\n          - Injection flaws (SQL, NoSQL, Command)\n          - Broken authentication\n          - Sensitive data exposure\n          - XML External Entities (XXE)\n          - Broken access control\n          - Security misconfiguration\n          - Cross-Site Scripting (XSS)\n          - Insecure deserialization\n          - Using components with known vulnerabilities\n          - Insufficient logging & monitoring\n      \n      - step: 2\n        title: Check for hardcoded secrets\n        action: scan_for_secrets\n        tools:\n          - git-secrets\n          - truffleHog\n        validation:\n          - no_secrets_found\n      \n      - step: 3\n        title: API security review\n        action: review_api_security\n        checklist:\n          - Authentication on all endpoints\n          - Rate limiting\n          - Input validation\n          - CORS configuration\n          - API versioning\n      \n      - step: 4\n        title: Generate security report\n        action: create_security_report\n        output: docs/security/code-review-report.md\n        include:\n          - Executive summary\n          - Critical findings\n          - High/Medium/Low findings\n          - Remediation recommendations\n\n  # Phase 4: Penetration Testing\n  - phase: 4\n    name: בדיקות חדירה\n    agent: security-specialist\n    description: מבחני חדירה ידניים ואוטומטיים\n    approval_required: true\n    steps:\n      - step: 1\n        title: Automated penetration testing\n        action: run_automated_pentest\n        tools:\n          - OWASP ZAP\n          - Burp Suite\n        target_environment: staging\n      \n      - step: 2\n        title: Manual penetration testing\n        action: manual_pentest\n        areas:\n          - Authentication bypass attempts\n          - Authorization bypass attempts\n          - Business logic flaws\n          - Session management\n        duration: 4 hours\n      \n      - step: 3\n        title: Document findings\n        action: document_pentest_results\n        output: docs/security/pentest-report.md\n\n  # Phase 5: Testing & Validation\n  - phase: 5\n    name: בדיקות ואימות\n    agent: tea\n    description: וידוא שכל התיקונים עובדים\n    steps:\n      - step: 1\n        title: Security test cases\n        action: create_security_tests\n        coverage:\n          - Authentication tests\n          - Authorization tests\n          - Input validation tests\n          - XSS prevention tests\n          - SQL injection prevention tests\n      \n      - step: 2\n        title: Run security test suite\n        action: run_security_tests\n        validation:\n          - all_tests_pass\n          - coverage_above_90\n      \n      - step: 3\n        title: Regression testing\n        action: run_regression_tests\n        validation:\n          - no_regressions\n\n  # Phase 6: Documentation & Sign-off\n  - phase: 6\n    name: תיעוד וחתימה\n    agent: security-specialist\n    description: סיכום הסקירה והנפקת אישור\n    steps:\n      - step: 1\n        title: Create executive summary\n        action: create_executive_summary\n        output: docs/security/executive-summary.md\n      \n      - step: 2\n        title: Create remediation plan\n        action: create_remediation_plan\n        output: docs/security/remediation-plan.md\n        include:\n          - Timeline\n          - Priorities\n          - Assigned owners\n      \n      - step: 3\n        title: Security sign-off\n        action: security_signoff\n        approval_required: true\n        approvers:\n          - security_team_lead\n          - ciso\n        output: docs/security/security-signoff.md\n\noutputs:\n  - docs/security/dependency-tree.md\n  - docs/security/data-flow-diagram.mmd\n  - docs/security/code-review-report.md\n  - docs/security/pentest-report.md\n  - docs/security/executive-summary.md\n  - docs/security/remediation-plan.md\n  - docs/security/security-signoff.md\n\npost_workflow:\n  - action: notify_team\n    channel: slack\n    message: \"Security review completed. Check docs/security/ for reports.\"\n  \n  - action: create_jira_tickets\n    for_each: finding\n    priority_mapping:\n      critical: P0\n      high: P1\n      medium: P2\n      low: P3",
+      "filename": ".bmad/custom-workflows/security-review.yaml",
+      "showLineNumbers": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מרכיבים מתקדמים בוורקפלואים",
+      "id": "advanced-workflow-components"
+    },
+    {
+      "type": "table",
+      "caption": "תכונות מתקדמות בוורקפלואים",
+      "headers": ["תכונה", "מתי להשתמש", "דוגמה"],
+      "rows": [
+        ["approval_required", "צעדים קריטיים", "deployment, data deletion"],
+        ["validation", "וידוא שצעד הצליח", "tests_pass, no_errors"],
+        ["rollback_on_failure", "צעדים מסוכנים", "deployment, migration"],
+        ["conditional_steps", "לוגיקה מותנית", "if error_count > 0"],
+        ["parallel_execution", "צעדים בלתי-תלויים", "multiple scans"],
+        ["timeout", "הגבלת זמן", "long_running_tests"],
+        ["retry_on_failure", "צעדים שיכולים להיכשל", "network calls"]
+      ],
+      "alignment": ["left", "left", "left"]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תבניות קוד (Code Templates)",
+      "id": "code-templates"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "תבניות קוד מאפשרות לשמור על עקביות ולזרז את הפיתוח."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "יצירת תבניות קוד",
+      "id": "creating-code-templates"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "תבניות נשמרות ב-`.bmad/templates/code/` ויכולות להכיל placeholders שימולאו בזמן השימוש."
+    },
+    {
+      "type": "code",
+      "language": "typescript",
+      "code": "// .bmad/templates/code/react-component.template.tsx\nimport React from 'react';\nimport { {{IMPORTS}} } from '{{IMPORT_PATH}}';\n\ninterface {{COMPONENT_NAME}}Props {\n  {{PROPS}}\n}\n\n/**\n * {{DESCRIPTION}}\n * \n * @component\n * @example\n * ```tsx\n * <{{COMPONENT_NAME}} {{EXAMPLE_PROPS}} />\n * ```\n */\nexport const {{COMPONENT_NAME}}: React.FC<{{COMPONENT_NAME}}Props> = ({\n  {{DESTRUCTURED_PROPS}}\n}) => {\n  // State\n  {{STATE_DECLARATIONS}}\n\n  // Effects\n  {{EFFECTS}}\n\n  // Handlers\n  {{HANDLERS}}\n\n  // Render\n  return (\n    <div className=\"{{CSS_CLASS}}\">\n      {{COMPONENT_CONTENT}}\n    </div>\n  );\n};\n\n{{COMPONENT_NAME}}.displayName = '{{COMPONENT_NAME}}';\n\nexport default {{COMPONENT_NAME}};",
+      "filename": ".bmad/templates/code/react-component.template.tsx",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שימוש בתבניות",
+      "id": "using-code-templates"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# הגדרה בconfig.yaml\ntemplates:\n  code:\n    react_component: '.bmad/templates/code/react-component.template.tsx'\n    api_route: '.bmad/templates/code/api-route.template.ts'\n    test_file: '.bmad/templates/code/test.template.ts'\n  \n  # הגדרת default values\n  defaults:\n    author: 'Dev Team'\n    license: 'MIT'\n    organization: 'Acme Corp'",
+      "filename": "bmad/bmm/config.yaml",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמאות נוספות לתבניות",
+      "id": "more-template-examples"
+    },
+    {
+      "type": "tabs",
+      "defaultTab": "api",
+      "items": [
+        {
+          "id": "api",
+          "label": "API Route",
+          "content": "```typescript\n// .bmad/templates/code/api-route.template.ts\nimport { Request, Response } from 'express';\nimport { {{IMPORTS}} } from '{{IMPORT_PATH}}';\n\n/**\n * {{DESCRIPTION}}\n * @route {{METHOD}} {{ROUTE_PATH}}\n * @access {{ACCESS_LEVEL}}\n */\nexport const {{HANDLER_NAME}} = async (\n  req: Request,\n  res: Response\n) => {\n  try {\n    // Validate input\n    {{VALIDATION}}\n\n    // Business logic\n    {{BUSINESS_LOGIC}}\n\n    // Return response\n    res.status({{SUCCESS_CODE}}).json({\n      success: true,\n      data: {{RESPONSE_DATA}}\n    });\n  } catch (error) {\n    console.error('Error in {{HANDLER_NAME}}:', error);\n    res.status({{ERROR_CODE}}).json({\n      success: false,\n      error: error.message\n    });\n  }\n};\n```"
+        },
+        {
+          "id": "test",
+          "label": "Test File",
+          "content": "```typescript\n// .bmad/templates/code/test.template.ts\nimport { describe, it, expect, beforeEach, afterEach } from '{{TEST_FRAMEWORK}}';\nimport { {{IMPORTS}} } from '{{IMPORT_PATH}}';\n\ndescribe('{{TEST_SUITE_NAME}}', () => {\n  beforeEach(() => {\n    {{SETUP}}\n  });\n\n  afterEach(() => {\n    {{CLEANUP}}\n  });\n\n  describe('{{FEATURE_NAME}}', () => {\n    it('should {{TEST_CASE_1}}', () => {\n      {{TEST_CODE_1}}\n      expect({{ASSERTION_1}}).toBe({{EXPECTED_1}});\n    });\n\n    it('should {{TEST_CASE_2}}', () => {\n      {{TEST_CODE_2}}\n      expect({{ASSERTION_2}}).toBe({{EXPECTED_2}});\n    });\n\n    it('should handle errors gracefully', () => {\n      {{ERROR_TEST_CODE}}\n      expect({{ERROR_ASSERTION}}).toThrow();\n    });\n  });\n});\n```"
+        },
+        {
+          "id": "service",
+          "label": "Service Class",
+          "content": "```typescript\n// .bmad/templates/code/service.template.ts\nimport { {{IMPORTS}} } from '{{IMPORT_PATH}}';\n\n/**\n * {{DESCRIPTION}}\n * @class {{SERVICE_NAME}}\n */\nexport class {{SERVICE_NAME}} {\n  private {{PRIVATE_FIELDS}};\n\n  constructor({{CONSTRUCTOR_PARAMS}}) {\n    {{CONSTRUCTOR_BODY}}\n  }\n\n  /**\n   * {{METHOD_1_DESCRIPTION}}\n   */\n  async {{METHOD_1_NAME}}({{METHOD_1_PARAMS}}): Promise<{{METHOD_1_RETURN}}> {\n    {{METHOD_1_BODY}}\n  }\n\n  /**\n   * {{METHOD_2_DESCRIPTION}}\n   */\n  async {{METHOD_2_NAME}}({{METHOD_2_PARAMS}}): Promise<{{METHOD_2_RETURN}}> {\n    {{METHOD_2_BODY}}\n  }\n}\n```"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תבניות מסמכים (Document Templates)",
+      "id": "document-templates"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "תבניות מסמכים מבטיחות שכל המסמכים בארגון נראים אותו הדבר ומכילים את כל המידע הנדרש."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תבנית PRD ארגונית",
+      "id": "organizational-prd-template"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "# Product Requirements Document (PRD)\n<!-- Template Version: 2.0 -->\n<!-- Organization: {{ORG_NAME}} -->\n\n## Document Information\n\n| Field | Value |\n|-------|-------|\n| **Product Name** | {{PRODUCT_NAME}} |\n| **Document Owner** | {{OWNER_NAME}} |\n| **Created Date** | {{CREATED_DATE}} |\n| **Last Updated** | {{UPDATED_DATE}} |\n| **Status** | {{STATUS}} |\n| **Version** | {{VERSION}} |\n| **Stakeholders** | {{STAKEHOLDERS}} |\n| **Approval Status** | {{APPROVAL_STATUS}} |\n\n---\n\n## 1. Executive Summary\n<!-- 2-3 paragraphs max -->\n\n{{EXECUTIVE_SUMMARY}}\n\n**Business Impact:**\n- Revenue: {{REVENUE_IMPACT}}\n- Users: {{USER_IMPACT}}\n- Strategic Alignment: {{STRATEGIC_ALIGNMENT}}\n\n---\n\n## 2. Problem Statement\n\n### 2.1 Current Situation\n{{CURRENT_SITUATION}}\n\n### 2.2 Problem Description\n{{PROBLEM_DESCRIPTION}}\n\n### 2.3 User Pain Points\n{{USER_PAIN_POINTS}}\n\n### 2.4 Business Impact of Problem\n{{BUSINESS_IMPACT}}\n\n---\n\n## 3. Goals & Success Metrics\n\n### 3.1 Primary Goals\n{{PRIMARY_GOALS}}\n\n### 3.2 Success Metrics (KPIs)\n\n| Metric | Current | Target | Timeline |\n|--------|---------|--------|----------|\n| {{METRIC_1}} | {{CURRENT_1}} | {{TARGET_1}} | {{TIMELINE_1}} |\n| {{METRIC_2}} | {{CURRENT_2}} | {{TARGET_2}} | {{TIMELINE_2}} |\n| {{METRIC_3}} | {{CURRENT_3}} | {{TARGET_3}} | {{TIMELINE_3}} |\n\n### 3.3 OKRs (if applicable)\n{{OKRS}}\n\n---\n\n## 4. User Personas\n\n{{USER_PERSONAS}}\n\n---\n\n## 5. User Stories & Use Cases\n\n{{USER_STORIES}}\n\n---\n\n## 6. Functional Requirements\n\n### 6.1 Must Have (P0)\n{{MUST_HAVE_REQUIREMENTS}}\n\n### 6.2 Should Have (P1)\n{{SHOULD_HAVE_REQUIREMENTS}}\n\n### 6.3 Nice to Have (P2)\n{{NICE_TO_HAVE_REQUIREMENTS}}\n\n---\n\n## 7. Non-Functional Requirements\n\n### 7.1 Performance\n{{PERFORMANCE_REQUIREMENTS}}\n\n### 7.2 Security\n{{SECURITY_REQUIREMENTS}}\n\n### 7.3 Compliance\n{{COMPLIANCE_REQUIREMENTS}}\n\n### 7.4 Accessibility\n{{ACCESSIBILITY_REQUIREMENTS}}\n\n---\n\n## 8. Design & UX\n\n### 8.1 User Flows\n{{USER_FLOWS}}\n\n### 8.2 Wireframes\n{{WIREFRAMES}}\n\n### 8.3 Design System\n{{DESIGN_SYSTEM}}\n\n---\n\n## 9. Technical Considerations\n\n### 9.1 Architecture\n{{ARCHITECTURE_OVERVIEW}}\n\n### 9.2 Dependencies\n{{DEPENDENCIES}}\n\n### 9.3 Risks & Mitigations\n\n| Risk | Impact | Probability | Mitigation |\n|------|--------|-------------|------------|\n| {{RISK_1}} | {{IMPACT_1}} | {{PROB_1}} | {{MIT_1}} |\n| {{RISK_2}} | {{IMPACT_2}} | {{PROB_2}} | {{MIT_2}} |\n\n---\n\n## 10. Timeline & Milestones\n\n{{TIMELINE}}\n\n---\n\n## 11. Resources Required\n\n### 11.1 Team\n{{TEAM_REQUIREMENTS}}\n\n### 11.2 Budget\n{{BUDGET}}\n\n### 11.3 Tools & Infrastructure\n{{TOOLS_INFRASTRUCTURE}}\n\n---\n\n## 12. Open Questions\n\n{{OPEN_QUESTIONS}}\n\n---\n\n## 13. Approvals\n\n| Stakeholder | Role | Status | Date |\n|-------------|------|--------|------|\n| {{APPROVER_1}} | {{ROLE_1}} | {{STATUS_1}} | {{DATE_1}} |\n| {{APPROVER_2}} | {{ROLE_2}} | {{STATUS_2}} | {{DATE_2}} |\n\n---\n\n## 14. Change Log\n\n| Version | Date | Author | Changes |\n|---------|------|--------|----------|\n| {{VERSION}} | {{DATE}} | {{AUTHOR}} | {{CHANGES}} |\n\n---\n\n**Document Classification:** {{CLASSIFICATION}}\n**Distribution:** {{DISTRIBUTION}}\n\n*This document follows {{ORG_NAME}} PRD standards v2.0*",
+      "filename": ".bmad/templates/documents/prd-template.md",
+      "showLineNumbers": false
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "שימוש בתבניות מסמכים",
+      "content": "האגנט PM יכול להשתמש בתבנית הזו אוטומטית כשמריצים workflow product-brief או prd. פשוט הגדירו את הנתיב בconfig.yaml."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "כללי עבודה ארגוניים (Organizational Rules)",
+      "id": "organizational-rules"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "כללי עבודה ארגוניים מבטיחים שכל הצוות עובד לפי אותם סטנדרטים."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "יצירת קובץ כללים ארגוני",
+      "id": "creating-org-rules"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# .bmad/organizational-rules.yaml\norganization:\n  name: Acme Corporation\n  industry: FinTech\n  size: 500+ employees\n  locations: [USA, Israel, UK]\n\ncoding_standards:\n  # Code Style\n  code_style: airbnb\n  linter: eslint\n  formatter: prettier\n  \n  # Languages\n  primary_languages:\n    - typescript\n    - python\n    - go\n  \n  # Naming Conventions\n  naming:\n    files: kebab-case\n    variables: camelCase\n    constants: UPPER_SNAKE_CASE\n    classes: PascalCase\n    functions: camelCase\n  \n  # Code Quality\n  quality:\n    test_coverage_minimum: 80\n    code_review_required: true\n    min_reviewers: 2\n    linting_required: true\n    type_checking: strict\n\nsecurity_policies:\n  # Authentication\n  authentication:\n    method: OAuth2 + JWT\n    mfa_required: true\n    session_timeout: 30  # minutes\n    password_policy:\n      min_length: 12\n      require_uppercase: true\n      require_lowercase: true\n      require_numbers: true\n      require_special: true\n      history: 5  # can't reuse last 5 passwords\n  \n  # Data Protection\n  data_protection:\n    encryption_at_rest: required\n    encryption_in_transit: required\n    pii_handling: strict\n    data_retention_days: 90\n    gdpr_compliant: true\n  \n  # Code Security\n  code_security:\n    dependency_scanning: required\n    secrets_scanning: required\n    sast_scanning: required  # Static Application Security Testing\n    dast_scanning: required  # Dynamic Application Security Testing\n    penetration_testing: quarterly\n\ndocumentation_standards:\n  # Code Documentation\n  code_documentation:\n    inline_comments: required_for_complex_logic\n    function_docs: jsdoc\n    readme_required: true\n    architecture_docs: required\n  \n  # API Documentation\n  api_documentation:\n    format: OpenAPI 3.0\n    examples_required: true\n    versioning: required\n  \n  # User Documentation\n  user_documentation:\n    format: markdown\n    screenshots: required\n    videos: recommended\n\nversion_control:\n  # Git Workflow\n  workflow: GitFlow\n  main_branch: main\n  develop_branch: develop\n  feature_branch_prefix: feature/\n  bugfix_branch_prefix: bugfix/\n  release_branch_prefix: release/\n  \n  # Commit Standards\n  commit_format: conventional_commits  # feat:, fix:, docs:, etc.\n  commit_signing: required\n  \n  # PR Standards\n  pull_requests:\n    template_required: true\n    description_min_length: 50\n    linked_issue_required: true\n    tests_required: true\n    approval_required: true\n    min_approvers: 2\n\ntesting_standards:\n  # Test Coverage\n  coverage:\n    unit_tests: 80\n    integration_tests: 60\n    e2e_tests: critical_paths\n  \n  # Test Frameworks\n  frameworks:\n    unit: jest\n    integration: jest\n    e2e: playwright\n  \n  # Testing Requirements\n  requirements:\n    pre_commit: unit_tests\n    pre_merge: all_tests\n    pre_deploy: all_tests + manual_qa\n\ndeployment_standards:\n  # Environments\n  environments:\n    - development\n    - staging\n    - production\n  \n  # CI/CD\n  cicd:\n    platform: GitHub Actions\n    auto_deploy_dev: true\n    auto_deploy_staging: on_merge_to_develop\n    auto_deploy_prod: manual_approval\n  \n  # Deployment Process\n  process:\n    approval_required_for_prod: true\n    approvers:\n      - tech_lead\n      - product_owner\n    rollback_plan: required\n    monitoring_period: 1_hour\n    canary_deployment: 10_percent_first\n\ncompliance_requirements:\n  # Regulations\n  regulations:\n    - GDPR\n    - SOC2\n    - PCI-DSS  # we handle payments\n  \n  # Audit\n  audit:\n    frequency: quarterly\n    documentation: comprehensive\n    access_logs: 1_year_retention\n  \n  # Privacy\n  privacy:\n    data_classification: required\n    privacy_by_design: required\n    dpia_required: for_new_features  # Data Protection Impact Assessment\n\ncommunication_standards:\n  # Channels\n  channels:\n    urgent: phone\n    important: slack\n    updates: email\n    documentation: confluence\n  \n  # Meetings\n  meetings:\n    daily_standup: 15_minutes\n    sprint_planning: 4_hours_max\n    sprint_review: 2_hours_max\n    retrospective: 1.5_hours_max\n\nagent_specific_rules:\n  # PM Agent\n  pm:\n    prd_template: '.bmad/templates/documents/prd-template.md'\n    approval_workflow: required\n    stakeholder_signoff: required\n  \n  # Architect Agent\n  architect:\n    adr_required: for_major_decisions  # Architecture Decision Records\n    tech_stack_approval: required\n    security_review: required\n  \n  # Dev Agent\n  dev:\n    code_style: '.bmad/config/eslint.json'\n    test_coverage: 80\n    pr_template: '.bmad/templates/pr-template.md'\n  \n  # Security Agent\n  security:\n    security_review: before_release\n    pentest: quarterly\n    compliance_check: required",
+      "filename": ".bmad/organizational-rules.yaml",
+      "showLineNumbers": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הטמעת הכללים באגנטים",
+      "id": "embedding-rules-in-agents"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "כל אגנט יכול לטעון את הכללים הארגוניים בactivation:"
+    },
+    {
+      "type": "code",
+      "language": "xml",
+      "code": "<activation>\n  <step n=\"1\">Load config from {project-root}/bmad/bmm/config.yaml</step>\n  <step n=\"2\">Load organizational rules from {project-root}/.bmad/organizational-rules.yaml</step>\n  <step n=\"3\">CRITICAL: Follow ALL organizational rules throughout the session</step>\n  <step n=\"4\">When in doubt, refer to organizational rules</step>\n</activation>",
+      "language": "xml",
+      "showLineNumbers": false
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "חשוב!",
+      "content": "כללים ארגוניים עוקפים כללים כלליים. אם יש סתירה, הכללים הארגוניים מנצחים."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "דוגמאות מעשיות מהשטח",
+      "id": "practical-examples"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "בואו נראה כמה תרחישים אמיתיים של התאמה אישית:"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה 1: סטארטאפ FinTech",
+      "id": "example-fintech-startup"
+    },
+    {
+      "type": "accordion",
+      "allowMultiple": false,
+      "items": [
+        {
+          "id": "fintech-challenge",
+          "title": "האתגר",
+          "content": [
+            {
+              "id": "fintech-challenge-text",
+              "type": "text",
+              "markdown": true,
+              "content": "סטארטאפ FinTech עם דרישות compliance מחמירות (PCI-DSS, SOC2). צריך לוודא שכל קוד עובר ביקורת אבטחה לפני production."
+            }
+          ]
+        },
+        {
+          "id": "fintech-solution",
+          "title": "הפתרון",
+          "content": [
+            {
+              "id": "fintech-solution-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**1. יצרו אגנט Compliance Specialist:**\n- מומחה ב-PCI-DSS ו-SOC2\n- בודק כל PR עבור compliance\n- מייצר דוחות audit\n\n**2. הוסיפו שלב compliance לכל workflow:**\n- לפני merge ל-main\n- compliance-check חובה\n- אישור מ-compliance officer\n\n**3. תבניות מסמכים:**\n- Data Processing Agreement\n- Security Assessment Report\n- Compliance Checklist\n\n**תוצאה:** עברו audit של SOC2 בפעם הראשונה ללא findings."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה 2: חברת Enterprise עם צוותים מרובים",
+      "id": "example-enterprise-multi-team"
+    },
+    {
+      "type": "accordion",
+      "allowMultiple": false,
+      "items": [
+        {
+          "id": "enterprise-challenge",
+          "title": "האתגר",
+          "content": [
+            {
+              "id": "enterprise-challenge-text",
+              "type": "text",
+              "markdown": true,
+              "content": "50 צוותי פיתוח ב-5 מדינות. כל צוות עובד אחרת, אין עקביות, קשה לנהל."
+            }
+          ]
+        },
+        {
+          "id": "enterprise-solution",
+          "title": "הפתרון",
+          "content": [
+            {
+              "id": "enterprise-solution-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**1. כללים ארגוניים מרכזיים:**\n- organizational-rules.yaml משותף\n- כל צוות חייב לעקוב\n- סטנדרטים אחידים\n\n**2. תבניות משותפות:**\n- תבניות קוד לכל שפה\n- תבניות מסמכים\n- תבניות PR/Issue\n\n**3. אגנט Enterprise Compliance:**\n- בודק שכולם עוקבים אחר הסטנדרטים\n- מזהה חריגות\n- מייצר דוחות ברמת ארגון\n\n**תוצאה:** עקביות של 95% בין כל הצוותים תוך 3 חודשים."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה 3: חברת משחקים",
+      "id": "example-game-company"
+    },
+    {
+      "type": "accordion",
+      "allowMultiple": false,
+      "items": [
+        {
+          "id": "game-challenge",
+          "title": "האתגר",
+          "content": [
+            {
+              "id": "game-challenge-text",
+              "type": "text",
+              "markdown": true,
+              "content": "פיתוח משחקים דורש תהליכים שונים - game design, level design, balancing, QA של משחקים."
+            }
+          ]
+        },
+        {
+          "id": "game-solution",
+          "title": "הפתרון",
+          "content": [
+            {
+              "id": "game-solution-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**1. אגנטים מיוחדים (BMAD כבר כולל!):**\n- Game Designer\n- Game Architect\n- Game Developer\n\n**2. וורקפלואים ייחודיים:**\n- game-brief → gdd → narrative\n- level-design workflow\n- game-balancing workflow\n\n**3. תבניות game-specific:**\n- GDD (Game Design Document)\n- Level Design Doc\n- Balancing Spreadsheets\n\n**תוצאה:** קיצרו זמן פיתוח ב-30%, שיפרו איכות המשחקים."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שיתוף והפצה של התאמות",
+      "id": "sharing-customizations"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "אחרי שיצרתם התאמות מצוינות, אתם רוצים לשתף אותן עם הצוות או עם הקהילה."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שיתוף פנימי (בתוך הארגון)",
+      "id": "internal-sharing"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "שמרו הכל ב-Git repository מרכזי",
+          "children": [
+            { "content": "`.bmad/` directory בשורש" },
+            { "content": "כל הצוותים משתמשים באותו repo" }
+          ]
+        },
+        {
+          "content": "יצרו documentation מקיף",
+          "children": [
+            { "content": "README.md מפורט" },
+            { "content": "דוגמאות שימוש" },
+            { "content": "Troubleshooting guide" }
+          ]
+        },
+        {
+          "content": "הדרכה לצוותים",
+          "children": [
+            { "content": "סדנאות onboarding" },
+            { "content": "Office hours לשאלות" },
+            { "content": "Slack channel לתמיכה" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שיתוף ציבורי (קהילת BMAD)",
+      "id": "public-sharing"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "פרסמו ב-GitHub",
+          "children": [
+            { "content": "Repository ציבורי" },
+            { "content": "רישיון ברור (MIT, Apache, וכו')" }
+          ]
+        },
+        {
+          "content": "רשמו ב-BMAD Registry (אם קיים)",
+          "children": [
+            { "content": "אגנטים ווורקפלואים שימושיים" },
+            { "content": "מידע מפורט" },
+            { "content": "דירוג וביקורות" }
+          ]
+        },
+        {
+          "content": "שתפו בקהילה",
+          "children": [
+            { "content": "Discord/Slack של BMAD" },
+            { "content": "Blog posts" },
+            { "content": "Presentations בכנסים" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "ניהול גרסאות של התאמות",
+      "id": "versioning-customizations"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "התאמות משתנות לאורך זמן - חשוב לנהל גרסאות כמו שמנהלים קוד."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מערכת גרסאות",
+      "id": "versioning-system"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# כל אגנט/וורקפלו צריך גרסה\nworkflow:\n  id: security-review\n  name: Security Review\n  version: 2.1.0  # major.minor.patch\n  changelog:\n    - version: 2.1.0\n      date: 2024-01-15\n      changes:\n        - Added pentest automation\n        - Improved reporting\n    - version: 2.0.0\n      date: 2023-12-01\n      changes:\n        - Breaking: Changed approval flow\n        - Added compliance checks\n    - version: 1.0.0\n      date: 2023-10-15\n      changes:\n        - Initial release",
+      "language": "yaml",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Semantic Versioning",
+      "id": "semantic-versioning"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "עקבו אחר Semantic Versioning (SemVer):"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        { "content": "**MAJOR** (1.0.0 → 2.0.0): שינויים breaking - לא תואם אחורה" },
+        { "content": "**MINOR** (1.0.0 → 1.1.0): תכונות חדשות - תואם אחורה" },
+        { "content": "**PATCH** (1.0.0 → 1.0.1): תיקוני באגים - תואם אחורה" }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Best Practices להתאמה אישית",
+      "id": "customization-best-practices"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "10 כללי הזהב",
+      "id": "golden-rules"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "**התחילו קטן** - אל תיצרו 20 אגנטים בבת אחת",
+          "children": [
+            { "content": "התחילו עם 1-2 אגנטים קריטיים" },
+            { "content": "בדקו שהם עובדים טוב" },
+            { "content": "רק אז הוסיפו עוד" }
+          ]
+        },
+        {
+          "content": "**תעדו הכל** - אם זה לא מתועד, זה לא קיים",
+          "children": [
+            { "content": "README לכל אגנט/וורקפלו" },
+            { "content": "דוגמאות שימוש" },
+            { "content": "Troubleshooting" }
+          ]
+        },
+        {
+          "content": "**בדקו לפני production** - אל תבדקו על משתמשים אמיתיים",
+          "children": [
+            { "content": "סביבת test נפרדת" },
+            { "content": "בדיקות מקיפות" },
+            { "content": "User acceptance testing" }
+          ]
+        },
+        {
+          "content": "**שמרו עקביות** - סטנדרטים אחידים",
+          "children": [
+            { "content": "מבנה קבצים אחיד" },
+            { "content": "conventions אחידות" },
+            { "content": "קוד איכותי" }
+          ]
+        },
+        {
+          "content": "**גרסאות וגיבויים** - תמיד אפשר לחזור אחורה",
+          "children": [
+            { "content": "Git לכל שינוי" },
+            { "content": "גרסאות ברורות" },
+            { "content": "Rollback plan" }
+          ]
+        },
+        {
+          "content": "**שיתוף פעולה** - לא לעבוד בבידוד",
+          "children": [
+            { "content": "Code reviews" },
+            { "content": "שיתוף ידע" },
+            { "content": "למידה מהקהילה" }
+          ]
+        },
+        {
+          "content": "**אבטחה ראשון** - תמיד",
+          "children": [
+            { "content": "אל תשמרו secrets בקוד" },
+            { "content": "הרשאות מינימליות" },
+            { "content": "סקירת אבטחה" }
+          ]
+        },
+        {
+          "content": "**מדדו הצלחה** - איך אתם יודעים שזה עובד?",
+          "children": [
+            { "content": "הגדירו KPIs" },
+            { "content": "עקבו אחרי שימוש" },
+            { "content": "שפרו לפי נתונים" }
+          ]
+        },
+        {
+          "content": "**תחזוקה שוטפת** - לא פרויקט חד-פעמי",
+          "children": [
+            { "content": "עדכנו באופן קבוע" },
+            { "content": "תקנו באגים" },
+            { "content": "הוסיפו תכונות" }
+          ]
+        },
+        {
+          "content": "**למדו מטעויות** - retrospectives",
+          "children": [
+            { "content": "מה עבד?" },
+            { "content": "מה לא עבד?" },
+            { "content": "מה לשפר?" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תרחישי התאמה נפוצים",
+      "id": "common-customization-scenarios"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "טבלה מסכמת של תרחישים נפוצים והפתרונות:"
+    },
+    {
+      "type": "table",
+      "caption": "תרחישי התאמה ופתרונות מומלצים",
+      "headers": ["תרחיש", "פתרון מומלץ", "מורכבות"],
+      "rows": [
+        ["תחום מומחיות ייחודי", "אגנט מותאם + וורקפלואים", "בינונית"],
+        ["תהליך אישור פנימי", "וורקפלו עם approval gates", "נמוכה"],
+        ["סטנדרטים ארגוניים", "organizational-rules.yaml", "נמוכה"],
+        ["אינטגרציה עם כלי פנימי", "אגנט מותאם + API calls", "גבוהה"],
+        ["תבניות קוד ספציפיות", "code templates + אגנט Dev", "נמוכה"],
+        ["compliance (GDPR/SOC2)", "אגנט Compliance + workflows", "גבוהה"],
+        ["CI/CD מותאם", "custom workflows + GitHub Actions", "בינונית"],
+        ["דוחות מנהלים", "אגנט Reports + תבניות", "בינונית"],
+        ["multi-tenant setup", "config per tenant + rules", "גבוהה"],
+        ["localization (i18n)", "תבניות רב-לשוניות", "בינונית"]
+      ],
+      "alignment": ["left", "left", "center"]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מזל טוב!",
+      "content": "סיימתם את המדריך להתאמה אישית. עכשיו אתם יכולים להתאים את BMAD בדיוק לצרכים שלכם. התחילו קטן, בדקו, ולמדו. בהצלחה!"
+    }
+  ],
+  "relatedGuides": [
+    "advanced-setup",
+    "best-practices",
+    "integration-systems",
+    "configuration-management"
+  ],
+  "prerequisites": [
+    "quick-start",
+    "onboarding-week1",
+    "best-practices"
+  ],
+  "nextSteps": [
+    "integration-systems",
+    "configuration-management",
+    "case-studies-part1"
+  ]
+}
+
