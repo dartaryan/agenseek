@@ -10,6 +10,11 @@ import {
   IconLogout,
   IconMoon,
   IconSun,
+  IconShieldCog,
+  IconUsers,
+  IconTrendingUp,
+  IconClipboardList,
+  IconUser,
 } from '@tabler/icons-react';
 import {
   Sheet,
@@ -24,6 +29,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { signOut } from '../../lib/auth';
 import { supabase } from '../../lib/supabase';
 import { cn } from '../../lib/utils';
+import { hebrewLocale } from '../../lib/locale/he';
 import type { AvatarConfig } from '../../lib/avatar';
 
 interface NavItem {
@@ -38,11 +44,20 @@ const NAV_ITEMS: NavItem[] = [
   { icon: IconNotes, label: 'הערות', href: '/notes' },
   { icon: IconChecklist, label: 'משימות', href: '/tasks' },
   { icon: IconChartBar, label: 'התקדמות', href: '/progress' },
+  { icon: IconUser, label: 'פרופיל', href: '/profile' },
   { icon: IconSettings, label: 'הגדרות', href: '/settings' },
 ];
 
+const ADMIN_ITEMS: NavItem[] = [
+  { icon: IconShieldCog, label: 'ניהול', href: '/admin' },
+  { icon: IconUsers, label: 'ניהול משתמשים', href: '/admin/users' },
+  { icon: IconChartBar, label: 'אנליטיקה', href: '/admin/analytics' },
+  { icon: IconTrendingUp, label: 'דוח מעורבות', href: '/admin/engagement' },
+  { icon: IconClipboardList, label: 'יומן פעולות', href: '/admin/logs' },
+];
+
 /**
- * MobileNav Component - Story 6.11
+ * MobileNav Component - Story 6.11 + Story 10.1
  *
  * Mobile navigation drawer with hamburger menu for screens <768px
  * Features:
@@ -50,10 +65,12 @@ const NAV_ITEMS: NavItem[] = [
  * - Touch-friendly navigation items (min 44x44px)
  * - Active route highlighting
  * - User profile section
+ * - Admin section (Story 10.1 - shown for admin users)
  * - Theme toggle
  * - Sign out button
  * - Backdrop click and ESC key to close
  * - Focus trap and accessibility features
+ * - Body scroll lock while drawer is open (via Sheet component)
  */
 export function MobileNav() {
   const [open, setOpen] = useState(false);
@@ -150,6 +167,7 @@ export function MobileNav() {
 
         {/* Main Navigation */}
         <nav className="flex-1 flex flex-col p-2 overflow-y-auto" role="navigation">
+          {/* Primary Navigation Items */}
           {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
             const isActive = location.pathname === item.href ||
@@ -171,6 +189,36 @@ export function MobileNav() {
               </button>
             );
           })}
+
+          {/* Admin Section - Story 10.1: Only visible for admin users */}
+          {profile?.is_admin && (
+            <div className="mt-4 pt-4 border-t">
+              <p className="px-4 mb-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                {hebrewLocale.sections.administration}
+              </p>
+              {ADMIN_ITEMS.map((item) => {
+                const Icon = item.icon;
+                const isActive = location.pathname === item.href ||
+                  (item.href === '/admin' && location.pathname === '/admin');
+
+                return (
+                  <button
+                    key={item.href}
+                    onClick={() => handleNavClick(item.href)}
+                    aria-current={isActive ? 'page' : undefined}
+                    className={cn(
+                      'flex items-center gap-3 px-4 py-3 rounded-lg text-base transition-colors',
+                      'hover:bg-accent min-h-[44px]',
+                      isActive && 'bg-primary/10 text-primary font-semibold'
+                    )}
+                  >
+                    <Icon className="h-6 w-6" aria-hidden="true" />
+                    <span>{item.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </nav>
 
         {/* Footer Section */}
