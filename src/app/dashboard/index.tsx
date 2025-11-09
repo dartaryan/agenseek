@@ -538,18 +538,18 @@ export function DashboardPage() {
 
       <div className="px-4 md:px-6 lg:px-8 py-6 md:py-8 max-w-[1600px] mx-auto">
         <div className="space-y-8">
-          {/* Welcome Header */}
+          {/* Welcome Header - Story 10.5: Responsive typography */}
         <div className="space-y-2">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
             {getGreeting()}, {displayName}!
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-sm md:text-base text-gray-600 dark:text-gray-400">
             {hebrewLocale.dashboard.welcomeBack} לאג'נסיק - המשך במסע הלמידה שלך
           </p>
         </div>
 
-        {/* Main Grid - 3 columns responsive */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
+        {/* Main Grid - 3 columns responsive: 1 col mobile, 2 col tablet, 3 col desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
           {/* Left Column - Progress & Stats */}
           <div className="space-y-6">
             <OverallProgressCard
@@ -583,12 +583,12 @@ export function DashboardPage() {
           </div>
         </div>
 
-        {/* Story 6.8: Notes and Tasks Statistics - 2 Column Grid */}
+        {/* Story 6.8: Notes and Tasks Statistics - 2 Column Grid (responsive) */}
         <div className="mt-8">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-4">
             הלמידה שלי
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 lg:gap-6">
             <NotesStatisticsCard statistics={dashboardData.notesStatistics} />
             <TasksStatisticsCard statistics={dashboardData.tasksStatistics} />
           </div>

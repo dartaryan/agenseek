@@ -175,14 +175,15 @@ export function SearchResultsPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-5xl">
-      {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">חיפוש</h1>
-        <p className="text-muted-foreground">
-          חפש מדריכים, הערות ומשימות
-        </p>
-      </div>
+    <div className="px-4 md:px-6 lg:px-8 py-6 md:py-8">
+      <div className="max-w-[1600px] mx-auto space-y-6">
+        {/* Header - Story 10.5: Responsive typography */}
+        <div>
+          <h1 className="text-2xl sm:text-3xl font-bold mb-2">חיפוש</h1>
+          <p className="text-sm md:text-base text-muted-foreground">
+            חפש מדריכים, הערות ומשימות
+          </p>
+        </div>
 
       {/* Search Form */}
       <form onSubmit={handleSearch} className="mb-6">

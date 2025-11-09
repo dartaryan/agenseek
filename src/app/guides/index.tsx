@@ -300,10 +300,10 @@ export function GuidesPage() {
       <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            {/* Title and count */}
+            {/* Title and count - Story 10.5: Responsive typography */}
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">מדריכים</h1>
-              <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">מדריכים</h1>
+              <p className="mt-1 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                 {filteredAndSortedGuides.length} מדריכים
                 {filteredAndSortedGuides.length !== totalCount && ` מתוך ${totalCount}`}
               </p>

@@ -105,13 +105,13 @@ export function AdminDashboardPage() {
   }
 
   return (
-    <div className="p-8">
-      <div className="max-w-7xl mx-auto space-y-8">
-        {/* Header with Date Range Filter */}
+    <div className="px-4 md:px-6 lg:px-8 py-6 md:py-8">
+      <div className="max-w-[1600px] mx-auto space-y-8">
+        {/* Header with Date Range Filter - Story 10.5: Responsive typography */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="space-y-2">
-            <h1 className="text-4xl font-bold text-gray-900">{hebrewLocale.pages.admin.title}</h1>
-            <p className="text-gray-600">{hebrewLocale.pages.admin.description}</p>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">{hebrewLocale.pages.admin.title}</h1>
+            <p className="text-sm md:text-base text-gray-600">{hebrewLocale.pages.admin.description}</p>
           </div>
 
           <Select value={dateRange} onValueChange={(value) => setDateRange(value as DateRange)}>

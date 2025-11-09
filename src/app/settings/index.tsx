@@ -44,11 +44,11 @@ export function SettingsPage() {
   }, [user?.id]);
 
   return (
-    <div className="p-8">
-      <div className="max-w-7xl mx-auto space-y-8">
+    <div className="px-4 md:px-6 lg:px-8 py-6 md:py-8">
+      <div className="max-w-[1600px] mx-auto space-y-8">
         <div className="space-y-2">
-          <h1 className="text-4xl font-bold text-gray-900">{hebrewLocale.pages.settings.title}</h1>
-          <p className="text-gray-600">{hebrewLocale.pages.settings.description}</p>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">{hebrewLocale.pages.settings.title}</h1>
+          <p className="text-sm md:text-base text-gray-600">{hebrewLocale.pages.settings.description}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -197,11 +197,11 @@ export function TasksPage() {
   return (
     <div className="px-4 md:px-6 lg:px-8 py-6 md:py-8" dir="rtl">
       <div className="max-w-[1600px] mx-auto space-y-6">
-        {/* Header */}
+        {/* Header - Story 10.5: Responsive typography */}
         <div className="flex items-center justify-between">
           <div className="space-y-1">
-            <h1 className="text-4xl font-bold text-gray-900">{he.title}</h1>
-            <div className="flex items-center gap-4 text-sm text-gray-600">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">{he.title}</h1>
+            <div className="flex items-center gap-4 text-xs sm:text-sm text-gray-600">
               <span>
                 {he.todoCount} ({stats.todo})
               </span>
@@ -257,7 +257,7 @@ export function TasksPage() {
                 </div>
               </Card>
             ) : (
-              <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
                 {tasks.map((task) => {
                   const subTaskStats = getSubTaskStats(task.id);
                   return (
@@ -289,7 +289,7 @@ export function TasksPage() {
                 return (
                   <div key={guideSlug} className="space-y-3">
                     <h2 className="text-xl font-semibold text-gray-900">{guideTitle}</h2>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
                       {guideTasks.map((task) => {
                         const subTaskStats = getSubTaskStats(task.id);
                         return (
@@ -371,7 +371,7 @@ export function TasksPage() {
                     <div className="w-3 h-3 rounded-full bg-red-500" />
                     <span>עדיפות גבוהה ({tasksByPriority.high.length})</span>
                   </h2>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
                     {tasksByPriority.high.map((task) => {
                       const subTaskStats = getSubTaskStats(task.id);
                       return (
@@ -399,7 +399,7 @@ export function TasksPage() {
                     <div className="w-3 h-3 rounded-full bg-yellow-500" />
                     <span>עדיפות בינונית ({tasksByPriority.medium.length})</span>
                   </h2>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
                     {tasksByPriority.medium.map((task) => {
                       const subTaskStats = getSubTaskStats(task.id);
                       return (
@@ -427,7 +427,7 @@ export function TasksPage() {
                     <div className="w-3 h-3 rounded-full bg-green-500" />
                     <span>עדיפות נמוכה ({tasksByPriority.low.length})</span>
                   </h2>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
                     {tasksByPriority.low.map((task) => {
                       const subTaskStats = getSubTaskStats(task.id);
                       return (
