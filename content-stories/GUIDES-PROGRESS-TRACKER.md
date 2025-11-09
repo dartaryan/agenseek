@@ -1,7 +1,7 @@
 # 📊 מעקב התקדמות מדריכים - Guides Progress Tracker
 
 **תאריך עדכון:** 9 נובמבר 2025
-**סטטוס:** 15/47 הושלמו (32%)
+**סטטוס:** 17/47 הושלמו (36%)
 
 ---
 
@@ -25,9 +25,9 @@
 | Onboarding | 3 | 2 | 1 | 67% |
 | Roles | 9 | 6 | 3 | 67% |
 | Agents | 8 | 4 | 4 | 50% |
-| Workflows | 10 | 0 | 10 | 0% |
+| Workflows | 10 | 2 | 8 | 20% |
 | Practical | 9 | 0 | 9 | 0% |
-| **סה"כ** | **47** | **15** | **32** | **32%** |
+| **סה"כ** | **47** | **17** | **30** | **36%** |
 
 ---
 
@@ -61,8 +61,8 @@
 | 13 | `agents-architect-sm-dev` | מדריך אגנטים - חלק 1ב: Architect + SM + Dev | agents | ✅ |
 | 14 | `agents-tea-ux` | מדריך אגנטים - חלק 2א: TEA + UX Designer | agents | ✅ |
 | 15 | `agents-techwriter-master` | מדריך אגנטים - חלק 2ב: Tech Writer + BMAD Master | agents | ✅ |
-| 16 | `workflows-intro-critical` | מדריך וורקפלואים - חלק 1א: מבוא + וורקפלואים קריטיים | workflows | ⏳ |
-| 17 | `workflows-phase0-1` | מדריך וורקפלואים - חלק 1ב: Phase 0-1 (Idea to Brief) | workflows | ⏳ |
+| 16 | `workflows-intro-critical` | מדריך וורקפלואים - חלק 1א: מבוא + וורקפלואים קריטיים | workflows | ✅ |
+| 17 | `workflows-phase0-1` | מדריך וורקפלואים - חלק 1ב: Phase 0-1 (Idea to Brief) | workflows | ✅ |
 | 18 | `workflows-phase2-core` | מדריך וורקפלואים - חלק 2א: Phase 2 Core (Spec + Arch) | workflows | ⏳ |
 | 19 | `workflows-phase2-design` | מדריך וורקפלואים - חלק 2ב: Phase 2 Design (UX + GDD) | workflows | ⏳ |
 | 20 | `best-practices` | שיטות עבודה מומלצות | practical | ⏳ |
@@ -72,7 +72,7 @@
 | 24 | `faq-workflows` | שאלות ותשובות - חלק 2ב: וורקפלואים | faq | ⏳ |
 | 25 | `onboarding-month1` | הדרכה לחודש הראשון | onboarding | ⏳ |
 
-**סטטוס P1:** ✅ 11/15 הושלמו (73%)
+**סטטוס P1:** ✅ 13/15 הושלמו (87%)
 
 ---
 
@@ -112,26 +112,26 @@
 
 **לפי עדיפות P1, המדריך הבא הוא:**
 
-### 📌 `workflows-intro-critical`
+### 📌 `workflows-phase2-core`
 
 **פרטים:**
-- **כותרת:** מדריך וורקפלואים - חלק 1א: מבוא + וורקפלואים קריטיים
+- **כותרת:** מדריך וורקפלואים - חלק 2א: Phase 2 Core (Spec + Arch)
 - **קטגוריה:** workflows
-- **רמת קושי:** beginner
-- **זמן קריאה:** 30 דקות
+- **רמת קושי:** intermediate
+- **זמן קריאה:** 45 דקות
 - **עדיפות:** 🟡 P1
 
 **קבצים לקרוא:**
 1. `content-stories/FOR-AI-AGENTS.md` - הפרומפט המלא (חשוב! כולל הנחיות ליצירה בחלקים)
-2. `content-stories/stories/workflows/intro-critical.md` - הסטורי המפורט
-3. `src/content/locale/he/guides/agents/intro-pm-analyst.json` - דוגמה מסדרת מדריכים
-4. `src/content/locale/he/guides/core/quick-start.json` - דוגמה מוכנה
+2. `content-stories/stories/workflows/phase2-core.md` - הסטורי המפורט
+3. `src/content/locale/he/guides/workflows/phase0-1.json` - המדריך הקודם בסדרה
+4. `src/content/locale/he/guides/agents/intro-pm-analyst.json` - דוגמה מסדרת מדריכים
 
 **היכן לשמור:**
-- `src/content/locale/he/guides/workflows/intro-critical.json`
+- `src/content/locale/he/guides/workflows/phase2-core.json`
 
 **לא לשכוח:**
-- **זה מדריך מבוא (30 דקות) - סביר להניח שאפשר בחלק אחד**
+- **זה מדריך intermediate (45 דקות) - עשוי לדרוש יצירה בחלקים של 700 שורות**
 - לעדכן את `src/content/locale/he/guides/index.json` (אם צריך)
 - לעדכן את הקובץ הזה (GUIDES-PROGRESS-TRACKER.md)
 
@@ -156,8 +156,8 @@ src/content/locale/he/guides/
 │   ├── product-managers.json ✅
 │   ├── architects.json ✅
 │   ├── qa-testers.json ✅
-│   ├── ux-designers.json ⏳
-│   ├── project-managers.json ⏳
+│   ├── ux-designers.json ✅
+│   ├── project-managers.json ✅
 │   ├── game-developers.json ⏳
 │   ├── senior-managers.json ⏳
 │   └── non-technical.json ⏳
@@ -171,7 +171,9 @@ src/content/locale/he/guides/
 │   ├── cis-last2.json ⏳
 │   └── synthesis.json ⏳
 ├── workflows/
-│   └── [10 מדריכים - כולם ⏳]
+│   ├── intro-critical.json ✅
+│   ├── phase0-1.json ✅
+│   └── [8 מדריכים נוספים - כולם ⏳]
 └── practical/
     └── [9 מדריכים - כולם ⏳]
 ```

@@ -47,6 +47,10 @@ const Toast = React.forwardRef<
     <ToastPrimitives.Root
       ref={ref}
       className={cn(toastVariants({ variant }), className)}
+      // Story 10.3: Explicit ARIA attributes for accessibility
+      role={variant === 'destructive' ? 'alert' : 'status'}
+      aria-live={variant === 'destructive' ? 'assertive' : 'polite'}
+      aria-atomic="true"
       {...props}
     />
   );
@@ -79,9 +83,10 @@ const ToastClose = React.forwardRef<
       className
     )}
     toast-close=""
+    aria-label="סגור הודעה"
     {...props}
   >
-    <X className="h-4 w-4" />
+    <X className="h-4 w-4" aria-hidden="true" />
   </ToastPrimitives.Close>
 ));
 ToastClose.displayName = ToastPrimitives.Close.displayName;

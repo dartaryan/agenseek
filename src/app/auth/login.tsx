@@ -162,38 +162,44 @@ export function LoginPage() {
 
           {/* Login Form */}
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            {/* Email Field */}
+            {/* Email Field - Story 10.3: Added autocomplete and ARIA attributes */}
             <div className="space-y-2">
               <Label htmlFor="email">{he.email}</Label>
               <div className="relative">
-                <IconMail className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                <IconMail className="absolute left-3 top-3 h-5 w-5 text-gray-400" aria-hidden="true" />
                 <Input
                   id="email"
                   type="email"
                   placeholder={he.emailPlaceholder}
                   className="pl-10"
+                  autoComplete="email"
+                  aria-invalid={errors.email ? 'true' : 'false'}
+                  aria-describedby={errors.email ? 'email-error' : undefined}
                   {...register('email')}
                   disabled={isLoading}
                 />
               </div>
-              {errors.email && <p className="text-sm text-red-600">{errors.email.message}</p>}
+              {errors.email && <p id="email-error" className="text-sm text-red-600" role="alert">{errors.email.message}</p>}
             </div>
 
-            {/* Password Field */}
+            {/* Password Field - Story 10.3: Added autocomplete and ARIA attributes */}
             <div className="space-y-2">
               <Label htmlFor="password">{he.password}</Label>
               <div className="relative">
-                <IconLock className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                <IconLock className="absolute left-3 top-3 h-5 w-5 text-gray-400" aria-hidden="true" />
                 <Input
                   id="password"
                   type="password"
                   placeholder={he.passwordPlaceholder}
                   className="pl-10"
+                  autoComplete="current-password"
+                  aria-invalid={errors.password ? 'true' : 'false'}
+                  aria-describedby={errors.password ? 'password-error' : undefined}
                   {...register('password')}
                   disabled={isLoading}
                 />
               </div>
-              {errors.password && <p className="text-sm text-red-600">{errors.password.message}</p>}
+              {errors.password && <p id="password-error" className="text-sm text-red-600" role="alert">{errors.password.message}</p>}
             </div>
 
             {/* Remember Me & Forgot Password */}

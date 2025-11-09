@@ -147,9 +147,9 @@ export function Sidebar() {
           </div>
         )}
 
-        {/* Navigation - only visible when expanded */}
+        {/* Navigation - only visible when expanded - Story 10.3: Added aria-label */}
         {!isCollapsed && (
-          <nav className="flex-1 space-y-1 px-3 py-4">
+          <nav className="flex-1 space-y-1 px-3 py-4" aria-label="ניווט ראשי">
             {/* Main Navigation */}
             <div className="space-y-1">
               {navigationItems.map((item) => {
@@ -164,8 +164,9 @@ export function Sidebar() {
                         ? 'bg-emerald-100 text-emerald-900'
                         : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                     )}
+                    aria-current={isActive(item.href) ? 'page' : undefined}
                   >
-                    <Icon className="w-5 h-5" stroke={1.5} />
+                    <Icon className="w-5 h-5" stroke={1.5} aria-hidden="true" />
                     <span className="flex-1">{item.name}</span>
                     {/* Story 7.5: Keyboard shortcut hint */}
                     {item.shortcut && (
@@ -194,8 +195,9 @@ export function Sidebar() {
                           ? 'bg-emerald-100 text-emerald-900'
                           : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                       )}
+                      aria-current={isActive(item.href) ? 'page' : undefined}
                     >
-                      <Icon className="w-5 h-5" stroke={1.5} />
+                      <Icon className="w-5 h-5" stroke={1.5} aria-hidden="true" />
                       <span>{item.name}</span>
                     </Link>
                   );

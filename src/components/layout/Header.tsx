@@ -90,7 +90,7 @@ export const Header = forwardRef<HeaderRef>(function Header(_props, ref) {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60" role="banner">
       <div className="container flex h-16 items-center justify-between px-4 md:px-6 gap-4">
         {/* Logo */}
         <div className="flex items-center gap-2 shrink-0">
@@ -145,8 +145,8 @@ export const Header = forwardRef<HeaderRef>(function Header(_props, ref) {
             {profile?.is_admin && <AdminNotificationBell />}
 
             {/* Theme Toggle - Placeholder for future */}
-            <Button variant="ghost" size="sm" disabled>
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <Button variant="ghost" size="sm" disabled aria-label="החלף ערכת נושא (בקרוב)">
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -160,7 +160,7 @@ export const Header = forwardRef<HeaderRef>(function Header(_props, ref) {
             {user && (
               <div className="flex items-center gap-3">
                 <Link to="/profile">
-                  <Button variant="ghost" size="sm" className="gap-2">
+                  <Button variant="ghost" size="sm" className="gap-2" aria-label={`פרופיל של ${profile?.display_name || user.email?.split('@')[0]}`}>
                     <UserAvatar
                       config={avatarConfig}
                       userId={user.id}
@@ -171,7 +171,7 @@ export const Header = forwardRef<HeaderRef>(function Header(_props, ref) {
                     </span>
                   </Button>
                 </Link>
-                <Button variant="ghost" size="sm" onClick={handleSignOut}>
+                <Button variant="ghost" size="sm" onClick={handleSignOut} aria-label="התנתק מהמערכת">
                   {hebrewLocale.actions.logout}
                 </Button>
               </div>

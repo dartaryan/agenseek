@@ -246,17 +246,20 @@ export function RegisterPage() {
             <div className="space-y-2">
               <Label htmlFor="displayName">{he.displayName}</Label>
               <div className="relative">
-                <IconUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <IconUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" aria-hidden="true" />
                 <Input
                   id="displayName"
                   type="text"
                   placeholder={he.displayNamePlaceholder}
                   className="pl-10"
+                  autoComplete="name"
+                  aria-invalid={errors.displayName ? 'true' : 'false'}
+                  aria-describedby={errors.displayName ? 'displayName-error' : undefined}
                   {...register('displayName')}
                 />
               </div>
               {errors.displayName && (
-                <p className="text-sm text-red-600">{errors.displayName.message}</p>
+                <p id="displayName-error" className="text-sm text-red-600" role="alert">{errors.displayName.message}</p>
               )}
             </div>
 
@@ -264,32 +267,38 @@ export function RegisterPage() {
             <div className="space-y-2">
               <Label htmlFor="email">{he.email}</Label>
               <div className="relative">
-                <IconMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <IconMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" aria-hidden="true" />
                 <Input
                   id="email"
                   type="email"
                   placeholder={he.emailPlaceholder}
                   className="pl-10"
+                  autoComplete="email"
+                  aria-invalid={errors.email ? 'true' : 'false'}
+                  aria-describedby={errors.email ? 'email-error' : undefined}
                   {...register('email')}
                 />
               </div>
-              {errors.email && <p className="text-sm text-red-600">{errors.email.message}</p>}
+              {errors.email && <p id="email-error" className="text-sm text-red-600" role="alert">{errors.email.message}</p>}
             </div>
 
             {/* Password */}
             <div className="space-y-2">
               <Label htmlFor="password">{he.password}</Label>
               <div className="relative">
-                <IconLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <IconLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" aria-hidden="true" />
                 <Input
                   id="password"
                   type="password"
                   placeholder={he.newPasswordPlaceholder}
                   className="pl-10"
+                  autoComplete="new-password"
+                  aria-invalid={errors.password ? 'true' : 'false'}
+                  aria-describedby={errors.password ? 'password-error' : undefined}
                   {...register('password')}
                 />
               </div>
-              {errors.password && <p className="text-sm text-red-600">{errors.password.message}</p>}
+              {errors.password && <p id="password-error" className="text-sm text-red-600" role="alert">{errors.password.message}</p>}
 
               {/* Password Strength Indicator */}
               <PasswordStrength password={password} />
@@ -299,17 +308,20 @@ export function RegisterPage() {
             <div className="space-y-2">
               <Label htmlFor="confirmPassword">{he.confirmPassword}</Label>
               <div className="relative">
-                <IconLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <IconLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" aria-hidden="true" />
                 <Input
                   id="confirmPassword"
                   type="password"
                   placeholder={he.confirmPasswordPlaceholder}
                   className="pl-10"
+                  autoComplete="new-password"
+                  aria-invalid={errors.confirmPassword ? 'true' : 'false'}
+                  aria-describedby={errors.confirmPassword ? 'confirmPassword-error' : undefined}
                   {...register('confirmPassword')}
                 />
               </div>
               {errors.confirmPassword && (
-                <p className="text-sm text-red-600">{errors.confirmPassword.message}</p>
+                <p id="confirmPassword-error" className="text-sm text-red-600" role="alert">{errors.confirmPassword.message}</p>
               )}
             </div>
 

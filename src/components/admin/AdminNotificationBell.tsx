@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { IconBell, IconCheck, IconSettings, IconTrash } from '@tabler/icons-react';
+import { IconBell, IconCheck, IconSettings, IconTrash, IconShieldCheck } from '@tabler/icons-react';
 import { hebrewLocale } from '@/lib/locale/he';
 import {
   fetchAdminNotifications,
@@ -207,7 +207,7 @@ export function AdminNotificationBell() {
           className="relative"
           aria-label={locale.bellIcon}
         >
-          <IconBell size={20} />
+          <IconShieldCheck size={20} className="text-amber-600" />
           {unreadCount > 0 && (
             <Badge
               variant="destructive"
@@ -219,7 +219,7 @@ export function AdminNotificationBell() {
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="end" className="w-96 max-h-[600px]">
+      <DropdownMenuContent align="end" className="w-96 max-h-[600px] bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/90 dark:bg-slate-800/95 dark:supports-[backdrop-filter]:bg-slate-800/90">
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3 border-b">
           <h3 className="font-semibold text-lg">{locale.title}</h3>

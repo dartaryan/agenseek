@@ -1,0 +1,860 @@
+{
+  "metadata": {
+    "id": "workflows-intro-critical",
+    "slug": "workflows-intro-critical",
+    "title": "מדריך וורקפלואים - חלק 1א: מבוא + וורקפלואים קריטיים",
+    "description": "מבוא לוורקפלואים ב-BMAD. מהם וורקפלואים, איך הם עובדים, והכרת הוורקפלואים הקריטיים ביותר שחייבים להכיר.",
+    "category": "workflows",
+    "difficulty": "beginner",
+    "estimatedMinutes": 30,
+    "icon": "IconGitBranch",
+    "tags": ["וורקפלואים", "תהליכים", "מבוא", "יסודות"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "מה זה Workflow?",
+      "level": 2,
+      "anchor": "what-is-workflow"
+    },
+    {
+      "id": "toc-2",
+      "title": "workflow-status - ה-GPS של BMAD",
+      "level": 2,
+      "anchor": "workflow-status"
+    },
+    {
+      "id": "toc-3",
+      "title": "workflow-init - נקודת ההתחלה",
+      "level": 2,
+      "anchor": "workflow-init"
+    },
+    {
+      "id": "toc-4",
+      "title": "מחזור חיים של פרויקט",
+      "level": 2,
+      "anchor": "project-lifecycle"
+    },
+    {
+      "id": "toc-5",
+      "title": "תרחיש מלא",
+      "level": 2,
+      "anchor": "full-scenario"
+    },
+    {
+      "id": "toc-6",
+      "title": "שאלות נפוצות",
+      "level": 2,
+      "anchor": "faq"
+    },
+    {
+      "id": "toc-7",
+      "title": "סיכום ומה הלאה",
+      "level": 2,
+      "anchor": "summary"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מדריך וורקפלואים - חלק 1א: מבוא + וורקפלואים קריטיים",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "על מה המדריך הזה?",
+      "content": "במדריך זה תלמדו מה זה Workflow ב-BMAD, למה הם חשובים, ואיך להשתמש בשני הוורקפלואים הקריטיים ביותר שכל משתמש חייב להכיר: workflow-status ו-workflow-init."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "מה זה Workflow?",
+      "id": "what-is-workflow"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הגדרה",
+      "id": "workflow-definition"
+    },
+    {
+      "type": "text",
+      "content": "**Workflow** (זרימת עבודה) ב-BMAD הוא תהליך עבודה מובנה ואוטומטי שמדריך אתכם צעד אחר צעד דרך משימה מורכבת. במקום לנחש מה לעשות הלאה או לשכוח שלבים חשובים, הוורקפלו מבטיח שתעשו הכל בסדר הנכון, עם כל המידע הדרוש."
+    },
+    {
+      "type": "text",
+      "content": "כל וורקפלו הוא כמו מתכון מפורט לבישול - הוא אומר לכם בדיוק איזה מרכיבים צריך, באיזה סדר להוסיף אותם, ואיך לדעת שהתוצאה מושלמת."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "למה צריך Workflows?",
+      "id": "why-workflows"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**עקביות** - כל פעם שאתם מריצים וורקפלו, אתם מקבלים תוצאה באיכות זהה",
+        "**ללא פיספוסים** - הוורקפלו מוודא שלא שכחתם שום שלב חשוב",
+        "**חיסכון בזמן** - אין צורך לחשוב מה לעשות הלאה, הוורקפלו מדריך אתכם",
+        "**למידה מהירה** - גם אם אתם חדשים, הוורקפלו מלמד אתכם את השיטה הנכונה",
+        "**שיפור מתמיד** - וורקפלואים מתעדכנים עם Best Practices העדכניות ביותר"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "יתרון מרכזי",
+      "content": "במקום לזכור עשרות פרטים על איך לכתוב PRD או Tech Spec, אתם פשוט מריצים את הוורקפלו המתאים והוא מדריך אתכם בדיוק מה לעשות."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "סוגי Workflows ב-BMAD",
+      "id": "workflow-types"
+    },
+    {
+      "type": "text",
+      "content": "ב-BMAD יש מעל 30 וורקפלואים שונים, מחולקים לקטגוריות:"
+    },
+    {
+      "type": "tabs",
+      "tabs": [
+        {
+          "id": "critical-workflows",
+          "label": "קריטיים",
+          "content": [
+            {
+              "type": "text",
+              "content": "**workflow-status** - בדיקת מצב הפרויקט והמלצה מה לעשות הלאה\n\n**workflow-init** - אתחול פרויקט חדש עם מסלול עבודה מובנה"
+            }
+          ]
+        },
+        {
+          "id": "ideation-workflows",
+          "label": "רעיונות ותכנון",
+          "content": [
+            {
+              "type": "text",
+              "content": "**brainstorm-project** - Brainstorming מובנה לפרויקט\n\n**product-brief** - יצירת תקציר מוצר\n\n**game-brief** - תקציר משחק\n\n**research** - מחקר מעמיק"
+            }
+          ]
+        },
+        {
+          "id": "specification-workflows",
+          "label": "מפרט וארכיטקטורה",
+          "content": [
+            {
+              "type": "text",
+              "content": "**prd** - מסמך דרישות מוצר מפורט\n\n**tech-spec** - מפרט טכני\n\n**architecture** - תכנון ארכיטקטורה\n\n**create-ux-design** - עיצוב חוויית משתמש"
+            }
+          ]
+        },
+        {
+          "id": "development-workflows",
+          "label": "פיתוח וביצוע",
+          "content": [
+            {
+              "type": "text",
+              "content": "**create-epics-and-stories** - פירוק PRD לסיפורים\n\n**sprint-planning** - תכנון ספרינט\n\n**dev-story** - פיתוח סיפור\n\n**code-review** - ביקורת קוד"
+            }
+          ]
+        },
+        {
+          "id": "management-workflows",
+          "label": "ניהול ואיכות",
+          "content": [
+            {
+              "type": "text",
+              "content": "**retrospective** - רטרוספקטיבה\n\n**correct-course** - תיקון מסלול\n\n**solutioning-gate-check** - בדיקת מוכנות לפיתוח"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "מאיפה מתחילים?",
+      "content": "אם אתם חדשים, התחילו עם שני הוורקפלואים הקריטיים: workflow-status ו-workflow-init. שאר הוורקפלואים תלמדו לפי הצורך."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "workflow-status - ה-GPS של BMAD",
+      "id": "workflow-status"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה עושה?",
+      "id": "status-what"
+    },
+    {
+      "type": "text",
+      "content": "**workflow-status** הוא כמו מערכת GPS לפרויקט שלכם. הוא בודק איפה אתם נמצאים במחזור החיים של הפרויקט, מה כבר השלמתם, ומה צריך לעשות הלאה."
+    },
+    {
+      "type": "text",
+      "content": "הוורקפלו סורק את תיקיית הפרויקט שלכם, מחפש קבצים ומסמכים (PRD, Tech Spec, Stories וכו'), ובונה תמונת מצב מדויקת של הפרויקט."
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "המלצה מספר 1",
+      "content": "זה הוורקפלו הראשון שצריך להריץ בכל פעם שאתם עובדים על פרויקט - חדש או קיים. הוא חוסך זמן ומונע טעויות."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מתי להשתמש?",
+      "id": "status-when"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**בפעם הראשונה שאתם עובדים על פרויקט** - כדי להבין מה כבר קיים",
+        "**אחרי הפסקה** - חזרתם לפרויקט אחרי שבוע? הריצו workflow-status לזכור איפה הייתם",
+        "**לפני תכנון הצעד הבא** - רוצים לדעת מה לעשות? תשאלו את ה-GPS",
+        "**כשאתם לא בטוחים** - תמיד אפשר להריץ workflow-status לקבל כיוון",
+        "**לפני הצגה להנהלה** - להבין בדיוק מה הסטטוס של הפרויקט"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך מריצים?",
+      "id": "status-how"
+    },
+    {
+      "type": "text",
+      "content": "להריץ את workflow-status אפשר דרך כל אגנט ב-BMAD:"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# דרך 1: טעינת אגנט כלשהו\n@pm hi\n# ואז בחירה מהתפריט:\n*workflow-status\n\n# דרך 2: טעינת BMAD Master\n@bmad-master hi\n*workflow-status\n\n# דרך 3: אגנט אחר\n@analyst hi\n*workflow-status",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה מפורטת",
+      "id": "status-example"
+    },
+    {
+      "type": "text",
+      "content": "בואו נראה איך workflow-status עובד בפועל:"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "status-step1",
+          "title": "שלב 1: טעינת אגנט",
+          "content": [
+            {
+              "type": "code",
+              "language": "bash",
+              "code": "@pm hi",
+              "showLineNumbers": false
+            },
+            {
+              "type": "text",
+              "content": "John (מנהל המוצר) נכנס לעבודה ומציג תפריט."
+            }
+          ]
+        },
+        {
+          "id": "status-step2",
+          "title": "שלב 2: בחירת workflow-status",
+          "content": [
+            {
+              "type": "code",
+              "language": "bash",
+              "code": "*workflow-status",
+              "showLineNumbers": false
+            },
+            {
+              "type": "text",
+              "content": "John מתחיל לסרוק את תיקיית הפרויקט."
+            }
+          ]
+        },
+        {
+          "id": "status-step3",
+          "title": "שלב 3: סריקת הפרויקט",
+          "content": [
+            {
+              "type": "text",
+              "content": "הוורקפלו בודק:\n\n- האם יש קובץ `bmad-project.yaml`?\n- האם יש תיקיית `docs/`?\n- מה הקבצים בתוך `docs/`? (PRD, Tech Spec, Stories?)\n- האם יש קוד בתיקיית `src/`?\n- האם יש בדיקות?"
+            }
+          ]
+        },
+        {
+          "id": "status-step4",
+          "title": "שלב 4: דוח סטטוס",
+          "content": [
+            {
+              "type": "text",
+              "content": "**דוגמת תוצאה:**\n\n---\n\n📊 **סטטוס פרויקט: TaskMaster Pro**\n\n✅ **מה כבר קיים:**\n- Product Brief (`docs/product-brief.md`)\n- PRD מלא (`docs/prd.md`)\n- 5 Epics עם 23 Stories (`docs/epics/`)\n\n⏳ **מה חסר:**\n- Tech Spec / Architecture\n- תכנון ספרינט ראשון\n- Story Context לסטוריז\n\n🎯 **המלצה הבאה:**\nכדאי להריץ `*architecture` (דרך Architect) כדי לתכנן את הארכיטקטורה לפני שמתחילים לפתח."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "טיפ מקצועי",
+      "content": "הריצו workflow-status כל פעם שאתם פותחים את הפרויקט לאחר הפסקה. זה יזכיר לכם בדיוק איפה עצרתם ומה הצעד הלוגי הבא."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "workflow-init - נקודת ההתחלה",
+      "id": "workflow-init"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה עושה?",
+      "id": "init-what"
+    },
+    {
+      "type": "text",
+      "content": "**workflow-init** הוא הוורקפלו שמאתחל פרויקט חדש ב-BMAD. הוא יוצר את מבנה התיקיות, יוצר קובץ תצורה (`bmad-project.yaml`), ובונה לכם מסלול עבודה מותאם אישית בהתאם לסוג הפרויקט ולגודל שלו."
+    },
+    {
+      "type": "text",
+      "content": "הוורקפלו שואל אתכם שאלות על הפרויקט - מה השם, איזה סוג (web app, API, game וכו'), מה הגודל (קטן/בינוני/גדול), ולפי זה בונה תוכנית עבודה מותאמת."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מתי להשתמש?",
+      "id": "init-when"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**כשמתחילים פרויקט חדש לגמרי** - זה הצעד הראשון",
+        "**כשאתם רוצים לאמץ BMAD לפרויקט קיים** - הוורקפלו יבנה את המבנה הנכון",
+        "**כשאתם לא בטוחים מאיפה להתחיל** - workflow-init מגדיר לכם מסלול ברור"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "שימו לב",
+      "content": "אם הפרויקט שלכם כבר קיים עם קוד וקבצים, אל דאגה - workflow-init לא ימחק כלום. הוא רק יוסיף את המבנה של BMAD לצד מה שכבר יש."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך מריצים?",
+      "id": "init-how"
+    },
+    {
+      "type": "text",
+      "content": "להריץ את workflow-init אפשר דרך כמעט כל אגנט:"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# דרך מומלצת: BMAD Master\n@bmad-master hi\n*workflow-init\n\n# אפשרויות נוספות:\n@pm hi\n*workflow-init\n\n@analyst hi\n*workflow-init",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה מפורטת",
+      "id": "init-example"
+    },
+    {
+      "type": "text",
+      "content": "בואו נראה תרחיש מלא של אתחול פרויקט חדש:"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "init-step1",
+          "title": "שלב 1: טעינת אגנט והרצת workflow-init",
+          "content": [
+            {
+              "type": "code",
+              "language": "bash",
+              "code": "@bmad-master hi\n*workflow-init",
+              "showLineNumbers": false
+            }
+          ]
+        },
+        {
+          "id": "init-step2",
+          "title": "שלב 2: שאלות על הפרויקט",
+          "content": [
+            {
+              "type": "text",
+              "content": "**BMAD Master שואל:**\n\n❓ מה שם הפרויקט?\n→ תשובה: TaskMaster Pro\n\n❓ איזה סוג פרויקט? (Web App / Mobile App / API / Game / Other)\n→ תשובה: Web App\n\n❓ מה גודל הפרויקט? (Small / Medium / Large)\n→ תשובה: Medium\n\n❓ האם יש כבר קוד בפרויקט? (Yes / No)\n→ תשובה: No"
+            }
+          ]
+        },
+        {
+          "id": "init-step3",
+          "title": "שלב 3: יצירת מבנה הפרויקט",
+          "content": [
+            {
+              "type": "text",
+              "content": "הוורקפלו יוצר:\n\n```\nproject-root/\n├── bmad-project.yaml           # קובץ תצורה\n├── docs/                       # תיקיית מסמכים\n│   ├── README.md\n│   ├── briefs/                # תקצירים\n│   ├── specs/                 # מפרטים\n│   ├── epics/                 # אפיקים וסיפורים\n│   └── architecture/          # ארכיטקטורה\n├── .bmad/                      # קבצי עזר פנימיים\n└── [הקוד שלכם...]\n```"
+            }
+          ]
+        },
+        {
+          "id": "init-step4",
+          "title": "שלב 4: הגדרת מסלול עבודה",
+          "content": [
+            {
+              "type": "text",
+              "content": "**BMAD Master ממליץ על מסלול העבודה:**\n\n📋 **מסלול עבודה מומלץ לפרויקט Medium Web App:**\n\n**Phase 1: Ideation & Research** (1-2 שבועות)\n1. `*brainstorm-project` (עם Analyst) - רעיון ראשוני\n2. `*product-brief` (עם Analyst) - תקציר מוצר\n3. `*research` (עם Analyst) - מחקר מתחרים\n\n**Phase 2: Specification** (2-3 שבועות)\n4. `*prd` (עם PM) - מסמך דרישות\n5. `*architecture` (עם Architect) - תכנון ארכיטקטורה\n6. `*create-ux-design` (עם UX Designer) - עיצוב\n\n**Phase 3: Planning** (1 שבוע)\n7. `*create-epics-and-stories` (עם PM) - פירוק לסיפורים\n8. `*sprint-planning` (עם SM) - תכנון ספרינט\n\n**Phase 4: Development** (רציף)\n9. `*dev-story` (עם DEV) - פיתוח\n10. `*code-review` (עם DEV) - ביקורת קוד"
+            }
+          ]
+        },
+        {
+          "id": "init-step5",
+          "title": "שלב 5: הצעד הבא",
+          "content": [
+            {
+              "type": "text",
+              "content": "**BMAD Master אומר:**\n\n✅ **הפרויקט אותחל בהצלחה!**\n\n🎯 **הצעד הבא המומלץ:**\nהריצו `@analyst hi` ואז `*brainstorm-project` כדי להתחיל לגבש את הרעיון.\n\nאם אתם רוצים לבדוק את הסטטוס בכל שלב, תמיד אפשר להריץ `*workflow-status`."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מה קיבלתם?",
+      "content": "אחרי workflow-init יש לכם מבנה פרויקט ברור, קובץ תצורה שנשמר, ותוכנית עבודה מפורטת. עכשיו אתם יודעים בדיוק מה לעשות הלאה!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "מחזור חיים של פרויקט",
+      "id": "project-lifecycle"
+    },
+    {
+      "type": "text",
+      "content": "כל פרויקט ב-BMAD עובר במחזור חיים מובנה. הבנת המחזור הזה תעזור לכם להבין איזה וורקפלו להשתמש מתי."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Phase 0-1: Ideation (רעיון)",
+      "id": "phase-ideation"
+    },
+    {
+      "type": "text",
+      "content": "**מטרה:** לקחת רעיון מעורפל ולהפוך אותו לתקציר מוצר ברור."
+    },
+    {
+      "type": "card",
+      "title": "וורקפלואים ב-Phase זה",
+      "description": "brainstorm-project, product-brief, game-brief, research, document-project",
+      "icon": "IconBulb"
+    },
+    {
+      "type": "text",
+      "content": "**תפוקות:** Product Brief, מחקר ראשוני, הבנת השוק והמתחרים"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Phase 2: Solutioning (פתרון)",
+      "id": "phase-solutioning"
+    },
+    {
+      "type": "text",
+      "content": "**מטרה:** להפוך את התקציר למפרט מפורט וארכיטקטורה מוגדרת."
+    },
+    {
+      "type": "card",
+      "title": "וורקפלואים ב-Phase זה",
+      "description": "prd, tech-spec, architecture, create-ux-design, gdd, narrative",
+      "icon": "IconFileText"
+    },
+    {
+      "type": "text",
+      "content": "**תפוקות:** PRD / Tech Spec, Architecture Docs, UX Design, תוכניות טכניות"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Phase 3: Planning (תכנון)",
+      "id": "phase-planning"
+    },
+    {
+      "type": "text",
+      "content": "**מטרה:** לפרק את המפרט לסיפורים ניתנים למימוש ולתכנן ספרינטים."
+    },
+    {
+      "type": "card",
+      "title": "וורקפלואים ב-Phase זה",
+      "description": "create-epics-and-stories, story-context, story-ready, sprint-planning, epic-tech-context",
+      "icon": "IconListCheck"
+    },
+    {
+      "type": "text",
+      "content": "**תפוקות:** Epics, Stories, Story Context, תוכנית ספרינט"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Phase 4: Implementation (מימוש)",
+      "id": "phase-implementation"
+    },
+    {
+      "type": "text",
+      "content": "**מטרה:** לכתוב קוד, לבצע ביקורות, ולסיים סיפורים."
+    },
+    {
+      "type": "card",
+      "title": "וורקפלואים ב-Phase זה",
+      "description": "dev-story, code-review, story-done",
+      "icon": "IconCode"
+    },
+    {
+      "type": "text",
+      "content": "**תפוקות:** קוד עובד, בדיקות, documentation"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Phase 5: Management (ניהול)",
+      "id": "phase-management"
+    },
+    {
+      "type": "text",
+      "content": "**מטרה:** לנהל את הפרויקט, לתקן מסלול, ולשפר תהליכים."
+    },
+    {
+      "type": "card",
+      "title": "וורקפלואים ב-Phase זה",
+      "description": "workflow-status, retrospective, correct-course, solutioning-gate-check",
+      "icon": "IconChartLine"
+    },
+    {
+      "type": "text",
+      "content": "**תפוקות:** דוחות סטטוס, תיקוני מסלול, שיפורי תהליך"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "זה לא ליניארי!",
+      "content": "למרות שיש מחזור חיים ברור, אתם לא חייבים לעבור את כל השלבים בסדר קפדני. לפעמים תחזרו אחורה, תדלגו קדימה, או תעבדו במקביל על כמה phases."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תרחיש מלא: מרעיון לקוד",
+      "id": "full-scenario"
+    },
+    {
+      "type": "text",
+      "content": "בואו נראה תרחיש מלא של פרויקט חדש מתחילתו ועד לתחילת הפיתוח:"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "הפרויקט: TaskMaster Pro",
+      "content": "אפליקציית ניהול משימות לצוותים קטנים. רעיון ראשוני: \"משהו כמו Trello אבל יותר פשוט\""
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "scenario-day1",
+          "title": "יום 1: אתחול ו-Brainstorming",
+          "content": [
+            {
+              "type": "text",
+              "content": "**בוקר:**\n1. `@bmad-master hi` → `*workflow-init`\n2. מילוי פרטי הפרויקט: TaskMaster Pro, Web App, Medium\n3. קבלת מבנה פרויקט ומסלול עבודה\n\n**אחר הצהריים:**\n1. `@analyst hi` → `*brainstorm-project`\n2. Mary (Analyst) שואלת שאלות על הרעיון\n3. מגבשים Product Brief ראשוני\n\n**תוצאה:** `docs/briefs/product-brief.md` מוכן!"
+            }
+          ]
+        },
+        {
+          "id": "scenario-week1",
+          "title": "שבוע 1: מחקר ו-PRD",
+          "content": [
+            {
+              "type": "text",
+              "content": "**ימים 2-3:**\n1. `@analyst hi` → `*research`\n2. מחקר מתחרים: Trello, Asana, Monday\n3. זיהוי פערים והזדמנויות\n\n**ימים 4-5:**\n1. `@pm hi` → `*prd`\n2. John (PM) שואל שאלות מפורטות\n3. יצירת PRD מקיף עם כל הדרישות\n\n**תוצאה:** `docs/specs/prd.md` מלא ומפורט!"
+            }
+          ]
+        },
+        {
+          "id": "scenario-week2",
+          "title": "שבוע 2: ארכיטקטורה ו-UX",
+          "content": [
+            {
+              "type": "text",
+              "content": "**ימים 6-8:**\n1. `@architect hi` → `*architecture`\n2. Winston (Architect) מתכנן את הארכיטקטורה\n3. בחירת טכנולוגיות: React, Node.js, PostgreSQL\n\n**ימים 9-10:**\n1. `@ux-designer hi` → `*create-ux-design`\n2. Sally (UX Designer) יוצרת wireframes\n3. תכנון חוויית משתמש\n\n**תוצאה:** ארכיטקטורה מוגדרת + עיצוב מוכן!"
+            }
+          ]
+        },
+        {
+          "id": "scenario-week3",
+          "title": "שבוע 3: פירוק לסיפורים",
+          "content": [
+            {
+              "type": "text",
+              "content": "**ימים 11-12:**\n1. `@pm hi` → `*create-epics-and-stories`\n2. John מפרק את ה-PRD ל-5 Epics ו-27 Stories\n3. תיעדוף סיפורים לפי חשיבות\n\n**ימים 13-14:**\n1. `@sm hi` → `*sprint-planning`\n2. Bob (SM) מכין ספרינט ראשון עם 8 Stories\n3. קביעת יעדי ספרינט\n\n**תוצאה:** ספרינט 1 מוכן להתחלה!"
+            }
+          ]
+        },
+        {
+          "id": "scenario-week4",
+          "title": "שבוע 4: תחילת פיתוח",
+          "content": [
+            {
+              "type": "text",
+              "content": "**יום 15:**\n1. `@dev hi` → `*dev-story` (Story 1.1)\n2. Amelia (DEV) מתחילה לממש\n3. קוד נכתב, בדיקות נוספות\n\n**לפני התחלה:**\n`@pm hi` → `*workflow-status` לוודא שהכל מוכן\n\n**אחרי סיום Story:**\n`@dev hi` → `*story-done` לסגירת הסיפור\n\n**תוצאה:** הפיתוח החל! 🚀"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מה למדנו?",
+      "content": "בארבעה שבועות עברנו מרעיון מעורפל לפרויקט מתוכנן לחלוטין עם קוד שמתחיל להיכתב. זה הכוח של וורקפלואים מובנים!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שאלות נפוצות (FAQ)",
+      "id": "faq"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שאלות כלליות",
+      "id": "faq-general"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "faq-1",
+          "title": "האם אני חייב להריץ את כל הוורקפלואים?",
+          "content": [
+            {
+              "type": "text",
+              "content": "לא! תלוי בגודל ובמורכבות של הפרויקט. פרויקט קטן עשוי להסתפק ב-Tech Spec בלי PRD מלא, ופרויקט בינוני עשוי לדלג על Brainstorming אם הרעיון כבר ברור.\n\nכלל אצבע: הריצו workflow-status והוא יגיד לכם מה באמת צריך."
+            }
+          ]
+        },
+        {
+          "id": "faq-2",
+          "title": "מה קורה אם אני מפספס וורקפלו?",
+          "content": [
+            {
+              "type": "text",
+              "content": "אין בעיה! אפשר תמיד לחזור אחורה ולהריץ וורקפלו שחסר. לדוגמה, אם התחלתם לפתח בלי Architecture, אפשר לעצור, להריץ `*architecture`, ולהמשיך.\n\nBMAD לא כופה עליכם מסלול קפדני - הוא מנחה אתכם."
+            }
+          ]
+        },
+        {
+          "id": "faq-3",
+          "title": "איך אני יודע איזה אגנט להשתמש לאיזה וורקפלו?",
+          "content": [
+            {
+              "type": "text",
+              "content": "כל אגנט מציג תפריט עם הוורקפלואים שהוא יכול להריץ. לדוגמה:\n\n- PM (John) → prd, tech-spec, create-epics-and-stories\n- Architect (Winston) → architecture\n- DEV (Amelia) → dev-story, code-review\n\nבמקרה של ספק, הריצו workflow-status והוא יגיד לכם איזה אגנט לטעון."
+            }
+          ]
+        },
+        {
+          "id": "faq-4",
+          "title": "האם אפשר להתאים וורקפלו לצרכים שלי?",
+          "content": [
+            {
+              "type": "text",
+              "content": "כן! כל וורקפלו שואל שאלות ומתאים את עצמו לתשובות שלכם. בנוסף, אפשר ליצור וורקפלואים מותאמים אישית (נושא מתקדם שנכסה במדריכים אחרים)."
+            }
+          ]
+        },
+        {
+          "id": "faq-5",
+          "title": "מה ההבדל בין workflow-status ל-workflow-init?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**workflow-init:** מריצים פעם אחת בתחילת פרויקט חדש. הוא בונה מבנה ומסלול עבודה.\n\n**workflow-status:** מריצים כל פעם שאתם רוצים לדעת איפה אתם עומדים ומה לעשות הלאה. זה כלי שימושי לאורך כל הפרויקט."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שאלות טכניות",
+      "id": "faq-technical"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "faq-6",
+          "title": "איפה הקבצים שהוורקפלואים יוצרים?",
+          "content": [
+            {
+              "type": "text",
+              "content": "כל הקבצים נשמרים בתיקיית `docs/` בפרויקט:\n\n```\ndocs/\n├── briefs/          # Product Brief, Game Brief\n├── specs/           # PRD, Tech Spec\n├── architecture/    # ארכיטקטורה\n├── epics/           # Epics ו-Stories\n├── ux-design/       # עיצוב UX\n└── retrospectives/  # רטרוספקטיבות\n```"
+            }
+          ]
+        },
+        {
+          "id": "faq-7",
+          "title": "האם הוורקפלואים עובדים במצב offline?",
+          "content": [
+            {
+              "type": "text",
+              "content": "תלוי באגנטים שאתם משתמשים בהם. אם אתם עובדים עם מודלים מקומיים (Local LLMs), אז כן. אם אתם משתמשים ב-Claude / GPT דרך API, אז צריך חיבור לאינטרנט."
+            }
+          ]
+        },
+        {
+          "id": "faq-8",
+          "title": "האם אפשר להריץ מספר וורקפלואים במקביל?",
+          "content": [
+            {
+              "type": "text",
+              "content": "טכנית כן, אבל לא מומלץ. כל וורקפלו צריך מידע מהוורקפלואים הקודמים, אז עדיף להריץ אותם ברצף.\n\nיוצא מן הכלל: אם מספר אנשים עובדים על הפרויקט, כל אחד יכול להריץ וורקפלו אחר."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "סיכום ומה הלאה",
+      "id": "summary"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה למדנו?",
+      "id": "what-we-learned"
+    },
+    {
+      "type": "text",
+      "content": "במדריך זה למדנו:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**מה זה Workflow** - תהליך עבודה מובנה שמדריך אתכם צעד אחר צעד",
+        "**workflow-status** - הכלי הכי חשוב לבדיקת מצב הפרויקט",
+        "**workflow-init** - איך מאתחלים פרויקט חדש עם מסלול עבודה מובנה",
+        "**מחזור חיים של פרויקט** - 5 Phases מרעיון ועד קוד",
+        "**תרחיש מלא** - איך הכל מתחבר ביחד בפרויקט אמיתי"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "הנקודה המרכזית",
+      "content": "אתם לא צריכים לזכור הכל! תמיד אפשר להריץ workflow-status כדי לדעת מה הצעד הבא. זה ה-GPS שלכם בעולם BMAD."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "המדריכים הבאים בסדרה",
+      "id": "next-guides"
+    },
+    {
+      "type": "card",
+      "title": "חלק 1ב: Phase 0-1 (Idea to Brief)",
+      "description": "וורקפלואים לשלבים המוקדמים - brainstorming, product-brief, game-brief, research",
+      "icon": "IconBulb"
+    },
+    {
+      "type": "card",
+      "title": "חלק 2א: Phase 2 Core (Spec + Arch)",
+      "description": "וורקפלואים למפרט ותכנון - prd, tech-spec, architecture",
+      "icon": "IconFileText"
+    },
+    {
+      "type": "card",
+      "title": "חלק 2ב: Phase 2 Design (UX + GDD)",
+      "description": "וורקפלואים לעיצוב - create-ux-design, gdd, narrative",
+      "icon": "IconPalette"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה כדאי לעשות עכשיו?",
+      "id": "what-now"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "**נסו workflow-status** - בפרויקט קיים או חדש, הריצו אותו וראו מה קורה",
+        "**אתחלו פרויקט דמה** - צרו פרויקט קטן עם workflow-init כדי להרגיש איך זה עובד",
+        "**קראו על האגנטים** - אם עדיין לא, קראו את מדריך האגנטים חלק 1א + 1ב",
+        "**המשיכו לחלק הבא** - למדו על הוורקפלואים של Phase 0-1 במדריך הבא"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "מומלץ במיוחד",
+      "content": "אם אתם חדשים ב-BMAD, קראו גם את מדריך האגנטים (חלק 1א) כדי להבין מי הם האגנטים שמריצים את הוורקפלואים האלה."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "חלק 1א הושלם!",
+      "content": "כל הכבוד! אתם מכירים עכשיו את שני הוורקפלואים הכי חשובים ב-BMAD. המשיכו למדריך הבא ללמוד על וורקפלואים נוספים!"
+    }
+  ]
+}
+
