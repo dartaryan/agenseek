@@ -48,7 +48,7 @@ export function OnboardingWizardPage() {
   const [selectedExperience, setSelectedExperience] = useState<string | null>(null);
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { user, refreshProfile } = useAuth();
+  const { user, profile, refreshProfile } = useAuth();
 
   const handleNext = () => {
     if (currentStep < TOTAL_STEPS) {
@@ -904,6 +904,8 @@ function LearningPathStep({
     setIsSaving(true);
 
     try {
+      console.log('[Onboarding] Starting completion process...');
+      
       // Save preferences to profile
       const { error } = await supabase
         .from('profiles')
@@ -920,9 +922,50 @@ function LearningPathStep({
         .eq('id', userId);
 
       if (error) throw error;
+      console.log('[Onboarding] Profile updated in database');
 
-      // Refresh the profile in auth context so completed_onboarding is immediately reflected
+      // CRITICAL FIX: Verify profile update completed before navigating
+      // This prevents infinite redirect loop between onboarding and dashboard
+      console.log('[Onboarding] Verifying profile update...');
+
+      // Poll database to confirm update (max 3 seconds)
+      const maxAttempts = 30; // 30 attempts * 100ms = 3 seconds
+      let attempts = 0;
+      let profileUpdated = false;
+
+      while (attempts < maxAttempts && !profileUpdated) {
+        await new Promise((resolve) => setTimeout(resolve, 100));
+        
+        // Verify via direct database query
+        const { data: verifyProfile } = await supabase
+          .from('profiles')
+          .select('completed_onboarding')
+          .eq('id', userId)
+          .single();
+        
+        if (verifyProfile?.completed_onboarding === true) {
+          profileUpdated = true;
+          console.log(`[Onboarding] ✓ Profile verified (attempt ${attempts + 1}/${maxAttempts})`);
+        } else {
+          attempts++;
+          if (attempts % 5 === 0) {
+            console.log(`[Onboarding] Still waiting for DB update... (${attempts}/${maxAttempts})`);
+          }
+        }
+      }
+
+      if (!profileUpdated) {
+        console.error('[Onboarding] Profile verification timeout!');
+        throw new Error('לא הצלחנו לאמת את עדכון הפרופיל');
+      }
+
+      // NOW refresh the profile in AuthContext so ProtectedRoute won't redirect
       await refreshProfile();
+      console.log('[Onboarding] AuthContext refreshed with updated profile');
+
+      // Extra safety: wait for React state propagation
+      await new Promise((resolve) => setTimeout(resolve, 150));
+      console.log('[Onboarding] State propagation complete');
 
       // Fire confetti celebration
       confetti({
@@ -939,11 +982,13 @@ function LearningPathStep({
       });
 
       // Wait a moment for confetti before redirecting
-      setTimeout(() => {
-        onComplete();
-      }, 1500);
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      console.log('[Onboarding] Navigating to dashboard...');
+      
+      // Navigate to dashboard
+      onComplete();
     } catch (error) {
-      console.error('Error saving onboarding preferences:', error);
+      console.error('[Onboarding] Error saving onboarding preferences:', error);
       toast({
         title: 'שגיאה',
         description: 'שמירת ההעדפות נכשלה. אנא נסה שוב.',

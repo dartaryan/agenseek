@@ -1,12 +1,21 @@
 # Next Story to Implement
 
-**Last Completed:** Story 0.16 - Navigation Merge + Critical UX Fixes ✅
+**Last Completed:** Story 0.11 - Documentation Organization & Archive ✅
 
 **Completion Date:** November 9, 2025
 
 ---
 
 ## Recent Completions
+
+### Story 0.11 Summary ✅
+Successfully organized all historical documentation:
+- ✅ **Archive Structure**: Created comprehensive `docs/archive/` with stories, fixes, migrations, planning folders
+- ✅ **164 Files Archived**: Moved all completed stories, fix docs, and planning documents
+- ✅ **85% Reduction**: Root directory now has only 27 active files (down from ~130+)
+- ✅ **Git History Preserved**: All moves tracked with `git mv` for full traceability
+- ✅ **Archive README**: Created navigation guide for historical reference
+- ✅ Professional, clean repository structure with easy navigation
 
 ### Story 0.16 Summary ✅
 Successfully completed multiple critical UX fixes:
@@ -41,48 +50,35 @@ Implemented real-time avatar updates:
 
 ---
 
-## 🎯 Next Story: Story 0.10.1 - Journey Page Core & Data Layer
+## 🎯 Next Story: Story 0.12 - Remove Console Logs from Codebase
 
-**Parent:** Story 0.10 - My Learning Journey (מסלול הלמידה שלי)
-**Priority:** P1 (High)
-**Story Points:** 2-3
-**Estimated Time:** 2-3 days
+**Priority:** P2 (Nice to Have)
+**Story Points:** 1
+**Estimated Time:** ~2 hours
 **Status:** Ready for Implementation
-**Note:** Story 0.10 divided into 3 sub-stories (see STORY-0.10-DIVISION.md)
 
-### Story 0.10.1 Overview (Current)
+### Story 0.12 Overview (Current)
 
-Build the foundation of the learning journey system: functionality over aesthetics.
+Clean up the codebase by removing all debug console.log statements and implementing proper error handling.
 
-**Focus:** Core data layer and functional journey page
+**Focus:** Code quality and professional logging
 
 **Key Features:**
-- `/journey` route and page structure
-- `getJourneyData()` with all helper functions
-- Basic PhaseCard components (no animations yet)
-- Phase unlocking logic
-- Dashboard journey preview card
-- Mobile responsive layout
-- Journey state persistence
+- Remove all debug `console.log()` statements
+- Keep only intentional error logging
+- Add ESLint rule to prevent future console logs
+- Replace with proper error handling (toasts/alerts)
+- Implement consistent logging strategy
 
 **Deliverables:**
-- Fully functional journey page with accurate data
-- All 4 phases display correctly
-- Phase lock states work
-- Ready for animations (Story 0.10.2)
+- Zero debug console.logs in codebase
+- ESLint rule configured to warn on console statements
+- Proper error handling in place
+- Clean, production-ready code
 
-**Files to Create:**
-- `src/lib/journey.ts` - All data logic
-- `src/app/journey/index.tsx` - Main page
-- `src/components/journey/PhaseCard.tsx` - Phase display
-- `src/components/journey/JourneyHero.tsx` - Hero section
-- `src/components/dashboard/JourneyPreviewCard.tsx` - Dashboard widget
+**See:** `STORY-0.12.md` for complete details
 
-**See:** `STORY-0.10.1.md` for complete details
-
-**After 0.10.1:**
-- Story 0.10.2: Visual Polish & Animations (2 points, 2-3 days)
-- Story 0.10.3: Gamification & Integration (1 point, 1-2 days)
+**Note:** Story 0.10 (Learning Journey) can be resumed after completing Stories 0.11-0.13 cleanup tasks
 
 ---
 
@@ -139,39 +135,36 @@ After Story 0.6, continue with these in order:
 - ✅ Story 0.7 - Real-time Avatar Updates (Complete)
 - ✅ Story 0.8 - Admin Mobile Responsiveness (Complete)
 - ✅ Story 0.9 - Settings Implementation (Complete)
-- ⏩ **Story 0.10 - Learning Journey** (NEXT - divided into 0.10.1, 0.10.2, 0.10.3)
-- ⏸️ Story 0.11 - Documentation Archive
-- ⏸️ Story 0.12 - Console Log Cleanup
+- ⏸️ Story 0.10 - Learning Journey (Postponed - divided into 0.10.1, 0.10.2, 0.10.3)
+- ✅ Story 0.11 - Documentation Archive (Complete)
+- ⏩ **Story 0.12 - Console Log Cleanup** (NEXT)
 - ⏸️ Story 0.13 - Installation Guide
 - ✅ Story 0.16 - Navigation Merge + UX Fixes (Complete)
 
-**Total:** 10 of 14 complete (71%)
-**Remaining:** 4 stories, ~9 points
+**Total:** 11 of 14 complete (79%)
+**Remaining:** 3 stories, ~7 points
 **Note:** Story 0.6 (Dark Mode) postponed; Story 0.10 divided into 3 sub-stories; Story 0.16 was a quick UX improvement
 
 ---
 
-## 🚀 Getting Started with Story 0.10
+## 🚀 Getting Started with Story 0.12
 
 ```bash
-# Load Story 0.10
-Read file: STORY-0.10.md
+# Load Story 0.12
+Read file: STORY-0.12.md
 
 # Begin implementation
 Follow acceptance criteria in order:
-1. Create journey page structure
-2. Implement phase calculation logic
-3. Build PhaseCard components
-4. Add progress visualization
-5. Implement confetti celebrations
-6. Test phase unlocking logic
+1. Audit codebase for console.log usage
+2. Remove all debug console.logs
+3. Implement proper error handling
+4. Add ESLint rule to prevent future logs
+5. Test that no console logs remain
 ```
 
 ### ⚠️ Prerequisites
-Before starting Story 0.10, ensure:
-- Database migration from Story 0.9 is run (`20241109_add_user_preferences.sql`)
-- All existing guide data has phase assignments
-- User progress data is populated correctly
+Before starting Story 0.12:
+- None - this is a standalone cleanup story
 
 ---
 
@@ -179,13 +172,13 @@ Before starting Story 0.10, ensure:
 
 - **Full Execution Plan:** `STORY-0.X-EXECUTION-PLAN.md`
 - **Dev Prompt:** `DEV-PROMPT-0X-STORIES.md`
-- **Story 0.10 Details:** `STORY-0.10.md`
-- **Story 0.9 Completion:** `STORY-0.9-COMPLETE.md`
-- **Completed Stories:** `0X-STORIES-SUMMARY.md`
+- **Story 0.12 Details:** `STORY-0.12.md`
+- **Story 0.11 Completion:** `STORY-0.11-COMPLETE.md`
+- **Archive Navigation:** `docs/archive/README.md`
 
 ---
 
-**Recommendation:** Start Story 0.10 for major feature addition. Alternatively, complete Stories 0.7-0.8 first for incremental improvements.
+**Recommendation:** Continue with Story 0.12 for quick cleanup win, then Story 0.13, before resuming Story 0.10 (Learning Journey).
 
 ---
 
