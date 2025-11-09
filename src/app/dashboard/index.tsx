@@ -282,9 +282,9 @@ export function DashboardPage() {
         // Story 0.1: Fetch real badge data from user_achievements
         const { data: achievements } = await supabase
           .from('user_achievements')
-          .select('achievement_id, earned_at')
+          .select('badge_id, earned_at')
           .eq('user_id', user.id)
-          .not('earned_at', 'is', null); // Use JavaScript null, not string 'null'
+          .eq('earned', true); // Filter by earned flag
 
         const earnedBadges = achievements?.length || 0;
         const totalBadges = 10; // Total possible badges (can be updated when more achievements are added)

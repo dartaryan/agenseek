@@ -46,12 +46,12 @@
 - ✅ Story 0.2 - Hebrew UI Consistency
 - ✅ Story 0.3 - Avatar System
 - ✅ Story 0.4 - UX Polish
+- ✅ Story 0.5 - Avatar Expansion & Onboarding (Completed Nov 9, 2025)
 
 ### Pending (To Execute)
 
 | # | Story | Points | Time | Priority |
 |---|-------|--------|------|----------|
-| 0.5 | Avatar Expansion & Onboarding | 3 | ~4.5h | P2 |
 | 0.6 | Dark Mode Full Implementation | 3 | ~8h | P1 |
 | 0.7 | Avatar Real-time Update | 1 | ~2h | P2 |
 | 0.8 | Admin Mobile Responsiveness | 2 | ~6.5h | P1 |
