@@ -55,18 +55,19 @@ export function ProtectedRoute({
   }
 
   // Check onboarding status (skip for onboarding page itself)
-  if (!skipOnboardingCheck && profile && !profile.completed_onboarding) {
-    // User is authenticated but hasn't completed onboarding
-    console.log('Redirecting to onboarding: user has not completed onboarding');
-    return <Navigate to="/onboarding" replace />;
-  }
+  if (!skipOnboardingCheck) {
+    // Case 1: No profile at all (user exists but profile missing)
+    // This happens after account deletion - redirect to onboarding to recreate profile
+    if (!profile && user) {
+      console.log('[ProtectedRoute] No profile found for authenticated user - redirecting to onboarding');
+      return <Navigate to="/onboarding" replace />;
+    }
 
-  // If we need a profile but it's not loaded, show error
-  // This should rarely happen - usually profile loads successfully
-  if (!skipOnboardingCheck && !profile && user) {
-    console.error('Profile failed to load for authenticated user');
-    // Allow access anyway - profile might load on next navigation
-    // This prevents infinite loops
+    // Case 2: Profile exists but onboarding not completed
+    if (profile && !profile.completed_onboarding) {
+      console.log('[ProtectedRoute] User has not completed onboarding - redirecting');
+      return <Navigate to="/onboarding" replace />;
+    }
   }
 
   // Check admin requirement

@@ -35,6 +35,7 @@ interface PhaseCardProps {
   onGuideClick: (guideId: string) => void;
   isCurrentPhase: boolean;
   index?: number; // For stagger animation
+  nextRecommendedGuideId?: string | null; // Story 0.10.3
 }
 
 // Icon mapping
@@ -52,6 +53,7 @@ export function PhaseCard({
   onGuideClick,
   isCurrentPhase,
   index = 0,
+  nextRecommendedGuideId = null,
 }: PhaseCardProps) {
   const prefersReducedMotion = usePrefersReducedMotion();
   const Icon = PHASE_ICONS[phase.icon as keyof typeof PHASE_ICONS] || IconBook;
@@ -222,26 +224,29 @@ export function PhaseCard({
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <div className="p-6 space-y-3 bg-gray-50 dark:bg-gray-800/30">
+            <div className="p-6 bg-gray-50 dark:bg-gray-800/30">
               {phase.guides.length === 0 ? (
                 <p className="text-center text-gray-500 dark:text-gray-400 py-8">
                   אין מדריכים בקטגוריה זו
                 </p>
               ) : (
-                phase.guides.map((guide, guideIndex) => (
-                  <motion.div
-                    key={guide.id}
-                    initial={prefersReducedMotion ? undefined : { opacity: 0, x: -10 }}
-                    animate={prefersReducedMotion ? undefined : { opacity: 1, x: 0 }}
-                    transition={{ delay: guideIndex * 0.05 }}
-                  >
-                    <GuideItem
-                      guide={guide}
-                      onClick={() => onGuideClick(guide.id)}
-                      isLocked={isLocked}
-                    />
-                  </motion.div>
-                ))
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  {phase.guides.map((guide, guideIndex) => (
+                    <motion.div
+                      key={guide.id}
+                      initial={prefersReducedMotion ? undefined : { opacity: 0, y: 10 }}
+                      animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                      transition={{ delay: guideIndex * 0.05 }}
+                    >
+                      <GuideItem
+                        guide={guide}
+                        onClick={() => onGuideClick(guide.id)}
+                        isLocked={isLocked}
+                        isNextRecommended={guide.id === nextRecommendedGuideId}
+                      />
+                    </motion.div>
+                  ))}
+                </div>
               )}
             </div>
           </motion.div>
@@ -266,9 +271,10 @@ interface GuideItemProps {
   };
   onClick: () => void;
   isLocked: boolean;
+  isNextRecommended?: boolean; // Story 0.10.3
 }
 
-function GuideItem({ guide, onClick, isLocked }: GuideItemProps) {
+function GuideItem({ guide, onClick, isLocked, isNextRecommended = false }: GuideItemProps) {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   return (
@@ -280,15 +286,31 @@ function GuideItem({ guide, onClick, isLocked }: GuideItemProps) {
       }
       transition={{ duration: 0.15 }}
       className={cn(
-        'bg-white dark:bg-gray-900 rounded-lg border p-4 transition-colors',
+        'bg-white dark:bg-gray-900 rounded-lg border p-4 transition-colors relative',
         guide.completed
           ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-900/10'
-          : 'border-gray-200 dark:border-gray-700',
+          : isNextRecommended
+            ? 'border-2 border-emerald-500 dark:border-emerald-600 bg-emerald-50/50 dark:bg-emerald-950/30'
+            : 'border-gray-200 dark:border-gray-700',
         isLocked && 'opacity-50',
         !isLocked && 'cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800'
       )}
       onClick={!isLocked ? onClick : undefined}
     >
+      {/* Story 0.10.3: Next Recommended Badge */}
+      {isNextRecommended && !isLocked && !guide.completed && (
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          className="absolute top-2 left-2 z-10"
+        >
+          <span className="inline-flex items-center gap-1 px-3 py-1 bg-emerald-500 text-white text-xs font-semibold rounded-full shadow-md animate-pulse">
+            <IconArrowRight size={14} />
+            המלצה הבאה
+          </span>
+        </motion.div>
+      )}
+
       <div className="flex items-start gap-4">
         {/* Icon */}
         <div

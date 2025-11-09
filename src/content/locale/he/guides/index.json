@@ -526,5 +526,16 @@
     "icon": "IconCalendar",
     "tags": ["הדרכה", "חודש-ראשון", "onboarding", "מתקדם"],
     "path": "onboarding/month1.json"
+  },
+  {
+    "id": "case-studies-part1",
+    "title": "מקרי מבחן ותרגילים - חלק 1",
+    "description": "5 מקרי מבחן מפורטים מהחיים האמיתיים - SaaS, E-commerce, Mobile App, Enterprise, ו-Startup MVP. תלמדו איך להשתמש ב-BMAD בפרויקטים אמיתיים עם דוגמאות מלאות.",
+    "category": "practical",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 60,
+    "icon": "IconChecklist",
+    "tags": ["תרגילים", "מקרי-מבחן", "דוגמאות", "hands-on", "פרויקטים"],
+    "path": "practical/case-studies-part1.json"
   }
 ]

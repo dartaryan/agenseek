@@ -1,6 +1,8 @@
 /**
  * Story 5.3: Achievement Badge System
  * Defines all achievement types, badges, and unlock conditions
+ *
+ * Story 0.10.3: Added journey phase achievements
  */
 
 import {
@@ -14,6 +16,8 @@ import {
   IconChecklist,
   IconStar
 } from '@tabler/icons-react';
+import { supabase } from '@/lib/supabase';
+import { toast } from 'sonner';
 
 export type BadgeType = 'milestone' | 'streak' | 'skill' | 'special';
 
@@ -294,4 +298,103 @@ export const getBadgeProgress = (
     percentage,
   };
 };
+
+/**
+ * Journey Achievement System - Story 0.10.3
+ */
+
+/**
+ * Achievement titles for display
+ */
+const ACHIEVEMENT_TITLES: Record<string, string> = {
+  journey_core_complete: 'מסע מתחיל',
+  journey_recommended_complete: 'מסע מומחה',
+  journey_interests_complete: 'מסע מלומד',
+  journey_master: 'אמן המסע',
+};
+
+/**
+ * Get achievement title by ID
+ */
+function getAchievementTitle(achievementId: string): string {
+  return ACHIEVEMENT_TITLES[achievementId] || '';
+}
+
+/**
+ * Award phase completion achievement
+ *
+ * @param userId - User ID
+ * @param phaseId - Phase that was completed
+ * @param allPhasesComplete - Whether all 4 phases are complete
+ */
+export async function awardPhaseAchievement(
+  userId: string,
+  phaseId: 'core' | 'recommended' | 'interests' | 'optional',
+  allPhasesComplete: boolean
+) {
+  const achievementMap = {
+    core: 'journey_core_complete',
+    recommended: 'journey_recommended_complete',
+    interests: 'journey_interests_complete',
+    optional: null, // Optional doesn't get its own achievement
+  };
+
+  const achievementId = achievementMap[phaseId];
+
+  // Award phase achievement
+  if (achievementId) {
+    // Check if already earned
+    const { data: existingAchievement } = await supabase
+      .from('user_achievements')
+      .select('id')
+      .eq('user_id', userId)
+      .eq('badge_id', achievementId)
+      .single();
+
+    if (!existingAchievement) {
+      const { error } = await supabase.from('user_achievements').insert({
+        user_id: userId,
+        badge_id: achievementId,
+        badge_type: 'milestone', // Journey achievements are milestones
+        earned: true,
+        earned_at: new Date().toISOString(),
+      });
+
+      if (!error) {
+        toast.success('הישג חדש נפתח!', {
+          description: `קיבלת את ההישג: ${getAchievementTitle(achievementId)}`,
+          duration: 5000,
+        });
+      }
+    }
+  }
+
+  // Award master achievement if all phases complete
+  if (allPhasesComplete) {
+    // Check if already earned
+    const { data: existingMasterAchievement } = await supabase
+      .from('user_achievements')
+      .select('id')
+      .eq('user_id', userId)
+      .eq('badge_id', 'journey_master')
+      .single();
+
+    if (!existingMasterAchievement) {
+      const { error } = await supabase.from('user_achievements').insert({
+        user_id: userId,
+        badge_id: 'journey_master',
+        badge_type: 'milestone',
+        earned: true,
+        earned_at: new Date().toISOString(),
+      });
+
+      if (!error) {
+        toast.success('הישג נדיר! אמן המסע!', {
+          description: 'השלמת את כל 4 השלבים במסלול הלמידה!',
+          duration: 7000,
+        });
+      }
+    }
+  }
+}
 

@@ -11,11 +11,12 @@
  * - Hover animations with emerald glow
  *
  * Story 10.4: Optimized with React.memo to prevent unnecessary re-renders in lists
+ * Story 0.10.3: Journey phase badge integration
  */
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as TablerIcons from '@tabler/icons-react';
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
@@ -33,6 +34,9 @@ interface GuideCardProps {
 
   /** Optional: View mode (grid or list) */
   viewMode?: 'grid' | 'list';
+
+  /** Optional: Journey phase this guide belongs to (Story 0.10.3) */
+  journeyPhase?: 'core' | 'recommended' | 'interests' | 'optional' | null;
 
   /** Optional: Additional CSS classes */
   className?: string;
@@ -106,6 +110,35 @@ function getIconComponent(
 }
 
 /**
+ * Get journey phase badge configuration (Story 0.10.3)
+ */
+function getJourneyPhaseBadge(phase: 'core' | 'recommended' | 'interests' | 'optional') {
+  const config = {
+    core: {
+      label: 'ליבה',
+      color: 'bg-emerald-500 text-white border-emerald-600',
+      hoverColor: 'hover:bg-emerald-600',
+    },
+    recommended: {
+      label: 'מומלץ',
+      color: 'bg-purple-500 text-white border-purple-600',
+      hoverColor: 'hover:bg-purple-600',
+    },
+    interests: {
+      label: 'עניין',
+      color: 'bg-blue-500 text-white border-blue-600',
+      hoverColor: 'hover:bg-blue-600',
+    },
+    optional: {
+      label: 'אופציונלי',
+      color: 'bg-orange-500 text-white border-orange-600',
+      hoverColor: 'hover:bg-orange-600',
+    },
+  };
+  return config[phase];
+}
+
+/**
  * GuideCard Component
  * Memoized to prevent unnecessary re-renders when rendering large lists
  */
@@ -114,11 +147,22 @@ export const GuideCard = React.memo(function GuideCard({
   progressPercent = 0,
   isStarted = false,
   viewMode = 'grid',
+  journeyPhase = null,
   className,
 }: GuideCardProps) {
   const categoryConfig = CATEGORY_CONFIG[guide.category];
   const difficultyConfig = DIFFICULTY_CONFIG[guide.difficulty];
   const IconComponent = getIconComponent(guide.icon);
+  const navigate = useNavigate();
+
+  // Journey badge (Story 0.10.3)
+  const journeyBadgeConfig = journeyPhase ? getJourneyPhaseBadge(journeyPhase) : null;
+
+  const handleJourneyBadgeClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigate('/journey');
+  };
 
   // List view - horizontal compact layout
   if (viewMode === 'list') {
@@ -241,7 +285,23 @@ export const GuideCard = React.memo(function GuideCard({
       className={cn('h-full', className)}
     >
       <Link to={`/guides/${guide.id}`} className="block h-full">
-        <Card className="h-full flex flex-col overflow-hidden hover:border-emerald-500 transition-colors">
+        <Card className="h-full flex flex-col overflow-hidden hover:border-emerald-500 transition-colors relative">
+          {/* Journey Badge (Story 0.10.3) - Top Right Corner */}
+          {journeyBadgeConfig && (
+            <button
+              onClick={handleJourneyBadgeClick}
+              className={cn(
+                'absolute top-3 left-3 z-10 px-3 py-1 rounded-full text-xs font-semibold border transition-colors',
+                journeyBadgeConfig.color,
+                journeyBadgeConfig.hoverColor,
+                'shadow-md'
+              )}
+              title="חלק מהמסלול שלך - לחץ לעבור למסלול הלמידה"
+            >
+              {journeyBadgeConfig.label}
+            </button>
+          )}
+
           {/* Gradient Header with Icon */}
           <div
             className={cn(

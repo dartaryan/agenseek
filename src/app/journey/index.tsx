@@ -9,11 +9,13 @@
  *
  * This sub-story focuses on functionality and data accuracy.
  * Animations and gamification will be added in 0.10.2 and 0.10.3.
+ *
+ * Story 0.10.3: Next recommended guide highlight
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useAuth } from '@/hooks/useAuth';
-import { getJourneyData, type JourneyData, type PhaseData } from '@/lib/journey';
+import { getJourneyData, getNextRecommendedGuide, type JourneyData, type PhaseData } from '@/lib/journey';
 import { useNavigate } from 'react-router-dom';
 import { JourneyHero } from './components/JourneyHero';
 import { PhaseCard } from './components/PhaseCard';
@@ -103,6 +105,19 @@ export function JourneyPage() {
     navigate(`/guides/${guideId}`);
   };
 
+  // Story 0.10.3: Calculate next recommended guide
+  const nextRecommendedGuide = useMemo(() => {
+    if (!journeyData) return null;
+
+    const completedGuideIds = new Set(
+      journeyData.phases.flatMap((p) =>
+        p.guides.filter((g) => g.completed).map((g) => g.id)
+      )
+    );
+
+    return getNextRecommendedGuide(journeyData.phases, completedGuideIds);
+  }, [journeyData]);
+
   // Loading state
   if (isLoading) {
     return (
@@ -168,6 +183,7 @@ export function JourneyPage() {
                 onToggle={() => togglePhase(phase.id)}
                 onGuideClick={handleGuideClick}
                 isCurrentPhase={phase.id === journeyData.stats.currentPhase}
+                nextRecommendedGuideId={nextRecommendedGuide?.id || null}
               />
 
               {/* Enhanced Connecting Line (except for last phase) */}

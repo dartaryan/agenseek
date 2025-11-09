@@ -15,6 +15,7 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
   IconHome,
+  IconRoute,
   IconBook,
   IconNotes,
   IconChecklist,
@@ -36,6 +37,7 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { icon: IconHome, label: 'דף הבית', href: '/dashboard' },
+  { icon: IconRoute, label: 'מסלול הלמידה', href: '/journey' },
   { icon: IconBook, label: 'מדריכים', href: '/guides' },
   { icon: IconNotes, label: 'הערות', href: '/notes' },
   { icon: IconChecklist, label: 'משימות', href: '/tasks' },

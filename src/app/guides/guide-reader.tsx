@@ -1,5 +1,5 @@
 /**
- * Guide Reader Page - Story 4.5 + 4.6 + 4.7 + 4.8 + Story 5.1.1 + Story 5.1.2 + Story 6.3 + Story 6.7 + Story 10.2
+ * Guide Reader Page - Story 4.5 + 4.6 + 4.7 + 4.8 + Story 5.1.1 + Story 5.1.2 + Story 6.3 + Story 6.7 + Story 10.2 + Story 0.10.3
  *
  * 3-panel layout guide reader with:
  * - ToC sidebar (left/right based on RTL)
@@ -20,6 +20,7 @@
  * - Story 6.7: Quick task creation from guide with Ctrl+T shortcut
  * - Story 10.2: Mobile-optimized reading experience with swipe gestures, bottom action bar
  * - Story 10.4: Lazy load heavy modals (NoteEditorModal, TaskModal)
+ * - Story 0.10.3: Journey phase completion integration
  */
 
 import { useEffect, useState, useRef, useCallback, useMemo, lazy, Suspense } from 'react';
@@ -46,9 +47,13 @@ import { useAchievements } from '@/hooks/useAchievements';
 import { useSwipeGesture } from '@/hooks/useSwipeGesture'; // Story 10.2
 import { supabase } from '@/lib/supabase';
 import { toast } from '@/hooks/use-toast';
+import { toast as sonnerToast } from 'sonner'; // Story 0.10.3
 import MobileTocContext from '@/contexts/MobileTocContext';
 import type { Guide, GuideMetadata } from '@/types/content-blocks';
 import type { Database } from '@/types/database';
+// Story 0.10.3: Journey phase completion
+import { getJourneyData, handlePhaseCompletion, getNextRecommendedGuide } from '@/lib/journey';
+import type { UserLearningProfile } from '@/lib/learning-path';
 
 // Story 10.4: Lazy load heavy modals with editors
 const NoteEditorModal = lazy(() => import('@/components/notes/NoteEditorModal').then(m => ({ default: m.NoteEditorModal }))); // Story 6.3
@@ -422,6 +427,68 @@ export function GuideReaderPage() {
 
       // 6. Check for newly earned achievements (Story 5.3)
       const earnedBadge = await checkAndUpdateAchievements();
+
+      // 6.5. Check journey phase completion (Story 0.10.3)
+      try {
+        // Fetch user profile for journey categorization
+        const { data: profileData } = await supabase
+          .from('profiles')
+          .select('role, interests')
+          .eq('id', user.id)
+          .single();
+
+        if (profileData) {
+          const userProfile: UserLearningProfile = {
+            role: profileData.role || null,
+            interests: (profileData.interests as string[]) || [],
+          };
+
+          // Get fresh journey data to check phase completion
+          const journeyData = await getJourneyData(user.id, userProfile);
+
+          // Check if any phase was just completed
+          for (const phase of journeyData.phases) {
+            // If phase is 100% complete, check if this guide was the last one
+            if (phase.progress.percentage === 100) {
+              const wasJustCompleted = phase.guides.some(g => g.id === slug && g.completed);
+              if (wasJustCompleted) {
+                // Count how many phases are complete
+                const allPhasesComplete = journeyData.phases.every(p => p.status === 'completed');
+
+                // Trigger phase completion celebration
+                await handlePhaseCompletion(user.id, phase.id, allPhasesComplete);
+                break; // Only celebrate one phase at a time
+              }
+            }
+          }
+
+          // Update next guide recommendation with journey-aware logic
+          const journeyNextGuide = getNextRecommendedGuide(
+            journeyData.phases,
+            new Set(journeyData.phases.flatMap(p => p.guides.filter(g => g.completed).map(g => g.id)))
+          );
+
+          if (journeyNextGuide) {
+            // Show journey progress toast
+            const currentPhase = journeyData.phases.find(p => p.status === 'in_progress');
+            if (currentPhase) {
+              const remainingInPhase = currentPhase.guides.filter(g => !g.completed).length;
+
+              sonnerToast.success('השלמת מדריך!', {
+                description: `עוד ${remainingInPhase} מדריכים בשלב זה`,
+                action: {
+                  label: 'חזור למסלול הלמידה',
+                  onClick: () => navigate('/journey'),
+                },
+                duration: 5000,
+              });
+            }
+          }
+        }
+      } catch (journeyError) {
+        console.error('Error checking journey completion:', journeyError);
+        // Non-fatal, continue with normal completion flow
+      }
 
       // 7. Show success modal (confetti will fire automatically)
       setShowCompletionModal(true);

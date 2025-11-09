@@ -1,0 +1,1628 @@
+{
+  "metadata": {
+    "id": "case-studies-part1",
+    "slug": "case-studies-part1",
+    "title": "מקרי מבחן ותרגילים - חלק 1",
+    "description": "5 מקרי מבחן מפורטים מהחיים האמיתיים - SaaS, E-commerce, Mobile App, Enterprise, ו-Startup MVP. תלמדו איך להשתמש ב-BMAD בפרויקטים אמיתיים עם דוגמאות מלאות.",
+    "category": "practical",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 60,
+    "icon": "IconChecklist",
+    "tags": ["תרגילים", "מקרי-מבחן", "דוגמאות", "hands-on", "פרויקטים"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "מבוא למקרי המבחן",
+      "level": 2,
+      "anchor": "intro"
+    },
+    {
+      "id": "toc-2",
+      "title": "מקרה 1: פלטפורמת SaaS - מערכת ניהול משימות",
+      "level": 2,
+      "anchor": "case-1-saas"
+    },
+    {
+      "id": "toc-3",
+      "title": "מקרה 2: אתר מסחר אלקטרוני - חנות אופנה",
+      "level": 2,
+      "anchor": "case-2-ecommerce"
+    },
+    {
+      "id": "toc-4",
+      "title": "מקרה 3: אפליקציית מובייל - אפליקציית כושר",
+      "level": 2,
+      "anchor": "case-3-mobile"
+    },
+    {
+      "id": "toc-5",
+      "title": "מקרה 4: מערכת ארגונית - CRM למשרד עורכי דין",
+      "level": 2,
+      "anchor": "case-4-enterprise"
+    },
+    {
+      "id": "toc-6",
+      "title": "מקרה 5: MVP לסטארטאפ - פלטפורמת שיתוף רכב",
+      "level": 2,
+      "anchor": "case-5-mvp"
+    },
+    {
+      "id": "toc-7",
+      "title": "לקחים משותפים מכל המקרים",
+      "level": 2,
+      "anchor": "lessons"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מקרי מבחן ותרגילים - חלק 1",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "למידה מהשטח",
+      "content": "5 מקרי מבחן מפורטים מפרויקטים אמיתיים - תראו איך BMAD עובד בפועל, מהרעיון ועד ל-deployment."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "מבוא למקרי המבחן",
+      "id": "intro"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**למה מקרי מבחן?**\n\nהתיאוריה חשובה, אבל שום דבר לא מלמד כמו דוגמאות אמיתיות מהשטח. במדריך הזה תראו 5 פרויקטים שונים שנבנו עם BMAD - מתחילת הרעיון ועד למוצר המוגמר.\n\n**מה תלמדו:**\n\n**דוגמאות מעשיות** - איך משתמשים באגנטים ווורקפלואים בפרויקטים אמיתיים\n\n**תהליכי עבודה** - מהרעיון הראשוני ועד ל-production\n\n**החלטות ארכיטקטוניות** - למה בחרו בטכנולוגיות מסוימות\n\n**בעיות ופתרונות** - אתגרים שנתקלו בהם ואיך פתרו אותם\n\n**טיפים מקצועיים** - לקחים שלמדו בדרך"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "איך להשתמש במדריך הזה",
+      "content": "קראו כל מקרה לעומק, התמקדו בתהליך ולא רק בתוצאה. נסו לחשוב איך הייתם עושים דברים אחרת, ושאלו את עצמכם אילו עקרונות תוכלו ליישם בפרויקטים שלכם."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "מקרה 1: פלטפורמת SaaS - מערכת ניהול משימות",
+      "id": "case-1-saas"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "סקירה כללית",
+      "id": "case-1-overview"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**הפרויקט:** מערכת ניהול משימות צוותית (כמו Asana/Trello) למשרדים קטנים\n\n**הצוות:** מפתח Full-Stack אחד, מעצבת UX, ומנהלת מוצר\n\n**זמן פיתוח:** 3 חודשים\n\n**טכנולוגיות:** Next.js, TypeScript, PostgreSQL, Prisma, TailwindCSS\n\n**סטטוס:** הושק ב-Beta עם 50 משתמשים"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "האתגר",
+      "id": "case-1-challenge"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "הצוות רצה לבנות מערכת ניהול משימות פשוטה אך מקצועית. האתגרים העיקריים:\n\n**תכנון המוצר** - מה הפיצ'רים החיוניים ל-MVP?\n\n**ארכיטקטורה** - איך לבנות מערכת שתוכל לגדול?\n\n**UX** - איך ליצור ממשק אינטואיטיבי שלא דורש הדרכה?\n\n**פיתוח מהיר** - איך להשיק תוך 3 חודשים?\n\n**איכות** - איך לוודא שהמערכת יציבה ונטולת באגים?"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הפתרון עם BMAD",
+      "id": "case-1-solution"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 1: תכנון המוצר (שבוע 1-2)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "התחילו עם **אגנט PM (John)** והריצו את הוורקפלואים הבאים:"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# שלב 1: הבנת הפרויקט\n@pm workflow-init\n\n# שלב 2: מחקר שוק ותחרות\n@pm research\n\n# שלב 3: כתיבת Product Brief\n@pm product-brief",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**התוצאות:**\n\nמסמך Product Brief מפורט עם:\n- **חזון המוצר** - \"מערכת ניהול משימות פשוטה לצוותים קטנים\"\n- **קהל יעד** - משרדים של 5-20 עובדים\n- **3 פיצ'רים מרכזיים** - לוחות משימות, תגובות, התראות\n- **מה לא בונים ב-MVP** - אוטומציות, integratiזns, mobile app"
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "טיפ מקצועי",
+      "content": "הוורקפלואו research עזר להם להבין שהתחרות מציעה יותר מדי פיצ'רים - זה עזר להם להתמקד בפשטות כערך מוסף."
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 2: כתיבת מפרט (שבוע 2-3)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "המשיכו עם **אגנט PM** ליצירת PRD:"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# יצירת מסמך דרישות מפורט\n@pm prd",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**ה-PRD כלל:**\n- **User Stories** - 23 סטוריז מפורטות\n- **דרישות פונקציונליות** - מה המערכת חייבת לעשות\n- **דרישות לא-פונקציונליות** - ביצועים, אבטחה, נגישות\n- **קריטריוני הצלחה** - KPIs למדידה"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 3: עיצוב חוויית משתמש (שבוע 3-4)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "עבדו עם **אגנט UX Designer (Sally)**:"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# תכנון חווית משתמש\n@ux-designer create-ux-design",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**התוצר:**\n- **User Journey Maps** - מסע המשתמש המלא\n- **Wireframes** - 12 מסכים עיקריים\n- **Design System** - צבעים, טיפוגרפיה, קומפוננטים\n- **Prototype** - דמו אינטראקטיבי ב-Figma"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאה",
+      "content": "הצגת הפרוטוטייפ ל-10 לקוחות פוטנציאליים הניבה feedback חיובי ו-5 מתעניינים שהסכימו להיות Beta testers."
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 4: תכנון טכני (שבוע 4-5)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "עברו ל**אגנט Architect (Winston)** לתכנון הארכיטקטורה:"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# תכנון ארכיטקטורה\n@architect architecture\n\n# מפרט טכני מפורט\n@architect tech-spec",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**החלטות ארכיטקטוניות מרכזיות:**"
+    },
+    {
+      "type": "table",
+      "headers": ["החלטה", "טכנולוגיה שנבחרה", "למה"],
+      "rows": [
+        ["Frontend", "Next.js 14 + TypeScript", "SSR, SEO, Type Safety"],
+        ["Backend", "Next.js API Routes", "פשטות - אותו קודבייס"],
+        ["Database", "PostgreSQL + Prisma", "יחסי, Schema-first, Type-safe"],
+        ["Auth", "NextAuth.js", "מוכן, מאובטח, OAuth built-in"],
+        ["UI", "TailwindCSS + shadcn/ui", "מהיר, גמיש, נראה טוב"],
+        ["Hosting", "Vercel", "אופטימלי ל-Next.js, deploy פשוט"]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "למה הבחירות האלה?",
+      "content": "האגנט Architect המליץ על Next.js כי הוא משלב Frontend ו-Backend, מפחית complexity ומאפשר לצוות קטן לנהל הכל במקום אחד."
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 5: פיתוח (שבוע 5-11)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "המפתח עבד עם **אגנט Dev (Amelia)** בתהליך איטרטיבי:"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# לכל Story:\n\n# 1. הכנת Story לפיתוח\n@architect epic-tech-context\n@architect story-ready\n\n# 2. טעינת קונטקסט\n@dev story-context\n\n# 3. פיתוח\n@dev dev-story\n\n# 4. Code Review\n@dev code-review\n\n# 5. סיום\n@dev story-done",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**סדר הפיתוח (6 Epics):**"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "Epic 1: תשתית - Auth, DB Schema, Layout (שבוע 5-6)"
+        },
+        {
+          "content": "Epic 2: לוחות משימות - יצירה, עריכה, מחיקה (שבוע 6-7)"
+        },
+        {
+          "content": "Epic 3: משימות - CRUD, drag-and-drop, סטטוסים (שבוע 7-9)"
+        },
+        {
+          "content": "Epic 4: תגובות והתראות - real-time updates (שבוע 9-10)"
+        },
+        {
+          "content": "Epic 5: הרשאות - admin/member/guest (שבוע 10)"
+        },
+        {
+          "content": "Epic 6: polish - responsive, accessibility, performance (שבוע 11)"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "הערה חשובה",
+      "content": "האגנט Dev המליץ להתחיל עם תשתית חזקה (Epic 1) לפני פיתוח פיצ'רים - זה חסך המון זמן בהמשך."
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 6: בדיקות (שבוע 10-12)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "במקביל לפיתוח, **אגנט TEA (Murat)** תכנן את אסטרטגיית הבדיקות:"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# תכנון Master Test Plan\n@tea (תכנון מאסטר טסט)\n\n# יצירת תוכניות בדיקה לכל Epic\n@tea (תוכניות בדיקה)",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**אסטרטגיית הבדיקות:**"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "Unit Tests - Vitest לקומפוננטים קריטיים (70% coverage)"
+        },
+        {
+          "content": "Integration Tests - API routes עם mock DB"
+        },
+        {
+          "content": "E2E Tests - Playwright ל-5 תרחישי משתמש מרכזיים"
+        },
+        {
+          "content": "Manual Testing - 10 Beta users שבדקו בשבועיים האחרונים"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "התוצאות",
+      "id": "case-1-results"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**השקה מוצלחת:**\n- **Timeline** - 12 שבועות מרעיון ל-production (כמתוכנן!)\n- **באגים** - 8 באגים קלים בלבד ב-Beta (תוקנו תוך שבוע)\n- **ביצועים** - זמן טעינה ממוצע 1.2 שניות\n- **משתמשים** - 50 Beta users, 42 המשיכו לשימוש קבוע\n- **Feedback** - 4.6/5 כוכבים ממוצע מהמשתמשים"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**מדדי הצלחה עסקיים:**\n- **Conversion rate** - 84% מה-Beta users הפכו למשתמשים משלמים\n- **Churn** - 0% בחודשיים הראשונים\n- **NPS** - 72 (מצוין לתוצר חדש)"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "לקח מרכזי",
+      "content": "השימוש ב-BMAD עזר להם לשמור על תהליך מובנה למרות הצוות הקטן. כל אחד ידע מה לעשות בכל שלב, והתיעוד היה מצוין כך שכל החלטה הייתה מתועדת."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "טיפים לפרויקטים דומים",
+      "id": "case-1-tips"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "התחילו עם Product Brief מפורט - זה חוסך חודשים של שינויים בהמשך"
+        },
+        {
+          "content": "השקיעו בעיצוב UX לפני קוד - feedback מוקדם חוסך קוד מיותר"
+        },
+        {
+          "content": "תכננו ארכיטקטורה טובה מההתחלה - קשה לשנות אחר כך"
+        },
+        {
+          "content": "עבדו ב-Epics קצרים (1-2 שבועות) - זה מאפשר גמישות"
+        },
+        {
+          "content": "הכינו Beta users מראש - הם נותנים feedback חשוב לפני ההשקה"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "מקרה 2: אתר מסחר אלקטרוני - חנות אופנה",
+      "id": "case-2-ecommerce"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "סקירה כללית",
+      "id": "case-2-overview"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**הפרויקט:** אתר מסחר אלקטרוני לחנות בגדים קטנה שרצתה להתרחב לאונליין\n\n**הצוות:** 2 מפתחים (Frontend + Backend), מעצב, מנהלת מוצר\n\n**זמן פיתוח:** 4 חודשים\n\n**טכנולוגיות:** React, Node.js, Express, MongoDB, Stripe, AWS\n\n**סטטוס:** פעיל עם 500+ הזמנות בחודש"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "האתגר",
+      "id": "case-2-challenge"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "החנות הפיזית הייתה מצליחה, אבל הבעלים רצו לעבור לאונליין. האתגרים:\n\n**מעבר לדיגיטל** - איך לתרגם את החוויה הפיזית לאתר?\n\n**ניהול מלאי** - סנכרון בין החנות לאתר בזמן אמת\n\n**תשלומים ומשלוחים** - אינטגרציה עם ספקים חיצוניים\n\n**חוויית קנייה** - איך ליצור אתר שממיר מבקרים לקונים?\n\n**ביצועים** - עמידה בעומסים בתקופות sale"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הפתרון עם BMAD",
+      "id": "case-2-solution"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 1: הבנת הצורך העסקי (שבוע 1-2)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "התחילו עם **אגנט Analyst (Mary)** למחקר שוק:"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# מחקר שוק ותחרות\n@analyst research\n\n# ניתוח התנהגות משתמשים\n@analyst (user behavior analysis)",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**תובנות מרכזיות שנמצאו:**\n- **85% מהלקוחות** מחפשים מוצרים באינטרנט לפני שקונים בחנות\n- **קהל היעד** - נשים בגילאי 25-45, בעלות הכנסה בינונית-גבוהה\n- **המתחרים** חלשים בחוויית משתמש ושירות לקוחות\n- **הזדמנות** - שילוב בין קנייה אונליין לאיסוף בחנות (Click & Collect)"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 2: תכנון המוצר (שבוע 2-4)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "עברו ל**אגנט PM (John)** ליצירת אסטרטגיה:"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# יצירת Product Brief\n@pm product-brief\n\n# מסמך דרישות\n@pm prd",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**תכולת ה-PRD (39 User Stories ב-8 Epics):**"
+    },
+    {
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "epic-catalog",
+          "title": "Epic 1: קטלוג מוצרים",
+          "content": [
+            {
+              "id": "epic-catalog-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**פיצ'רים:**\n- דף קטגוריות עם פילטרים (צבע, מידה, מחיר, מותג)\n- דף מוצר מפורט עם תמונות, תיאור, ומידות\n- חיפוש מתקדם עם autocomplete\n- המלצות מוצרים (\"לקוחות שקנו את זה גם קנו...\")\n\n**User Stories:** 8 סטוריז"
+            }
+          ]
+        },
+        {
+          "id": "epic-cart",
+          "title": "Epic 2: עגלת קניות ותשלום",
+          "content": [
+            {
+              "id": "epic-cart-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**פיצ'רים:**\n- עגלה עם עדכון כמויות ומחיקת פריטים\n- שמירת עגלה למשתמשים רשומים\n- תהליך checkout ב-3 שלבים: פרטים → משלוח → תשלום\n- אינטגרציה עם Stripe לתשלומים\n- קופונים והנחות\n\n**User Stories:** 6 סטוריז"
+            }
+          ]
+        },
+        {
+          "id": "epic-user",
+          "title": "Epic 3: ניהול משתמשים",
+          "content": [
+            {
+              "id": "epic-user-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**פיצ'רים:**\n- הרשמה והתחברות (Email + Google)\n- איזור אישי - הזמנות קודמות, כתובות שמורות\n- Wishlist - שמירת מוצרים למועד מאוחר יותר\n- מעקב אחר הזמנה\n\n**User Stories:** 5 סטוריז"
+            }
+          ]
+        },
+        {
+          "id": "epic-inventory",
+          "title": "Epic 4: ניהול מלאי",
+          "content": [
+            {
+              "id": "epic-inventory-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**פיצ'רים:**\n- ממשק Admin לניהול מוצרים (CRUD)\n- סנכרון מלאי בין החנות הפיזית לאתר\n- התראות על מוצרים שנגמרו\n- ניהול מבצעים ו-sales\n\n**User Stories:** 7 סטוריז"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "החלטה אסטרטגית",
+      "content": "האגנט PM המליץ להתחיל עם 4 Epics מרכזיים ולהוסיף פיצ'רים נוספים (ביקורות, תוכנית נאמנות) בגרסה 2.0."
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 3: עיצוב חווית קנייה (שבוע 4-6)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "המעצב עבד עם **אגנט UX Designer (Sally)**:"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "@ux-designer create-ux-design",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**עקרונות עיצוב שהתקבלו:**"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "Clean & Minimal - דגש על התמונות של המוצרים"
+        },
+        {
+          "content": "Mobile-First - 70% מהגלישה בנייד"
+        },
+        {
+          "content": "Fast Checkout - פחות משלבים = יותר המרות"
+        },
+        {
+          "content": "Trust Signals - תגי אבטחה, ביקורות, מדיניות החזרות ברורה"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**תוצרי העיצוב:**\n- **UI Style Guide** - צבעים, פונטים, אייקונים\n- **22 מסכים מעוצבים** ב-Figma\n- **Prototype אינטראקטיבי** לבדיקה עם משתמשים\n- **Usability Testing** - 8 משתמשים פוטנציאליים בדקו את הפרוטוטייפ"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאת ה-Usability Testing",
+      "content": "7 מתוך 8 משתמשים הצליחו לסיים קנייה בפחות מ-3 דקות! זה שיפור של 60% לעומת אתר המתחרה הקרוב."
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 4: תכנון טכני ואינטגרציות (שבוע 6-8)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**אגנט Architect (Winston)** תכנן מערכת מורכבת יותר:"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "@architect architecture\n@architect tech-spec",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**האדריכלות שנבחרה:**"
+    },
+    {
+      "type": "table",
+      "headers": ["רכיב", "טכנולוגיה", "סיבה"],
+      "rows": [
+        ["Frontend", "React + TypeScript", "גמישות, SPA מהיר, Type Safety"],
+        ["Backend", "Node.js + Express", "קל, מהיר, ecosystem עשיר"],
+        ["Database", "MongoDB", "גמישות לשינויים, scale טוב"],
+        ["Payments", "Stripe", "אמין, תומך ב-IL, webhooks"],
+        ["Storage", "AWS S3", "תמונות מוצרים, storage זול"],
+        ["Hosting", "AWS EC2 + CloudFront", "performance, CDN"]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "אתגר מרכזי",
+      "content": "סנכרון מלאי בזמן אמת בין החנות הפיזית לאתר - הארכיטקט תכנן API לעדכון מלאי דרך POS system של החנות."
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 5-6: פיתוח והשקה (שבוע 8-16)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "שני המפתחים עבדו במקביל - אחד על Frontend ואחד על Backend, בתיאום הדוק עם **אגנט Dev**."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "התוצאות",
+      "id": "case-2-results"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**הצלחה מסחרית:**\n- **חודש ראשון:** 120 הזמנות, ₪45,000 הכנסות\n- **חודש שישי:** 500+ הזמנות, ₪180,000 הכנסות\n- **Conversion rate:** 3.2% (ממוצע בתחום: 2.1%)\n- **AOV (Average Order Value):** ₪360\n- **Customer retention:** 42% לקוחות חוזרים בתוך 3 חודשים"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "הפתעה חיובית",
+      "content": "פיצ'ר Click & Collect (קנייה אונליין + איסוף בחנות) היה פופולרי במיוחד - 35% מההזמנות! זה הביא גם תנועה לחנות הפיזית."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "לקחים",
+      "id": "case-2-lessons"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "מחקר משתמשים מוקדם חשף תובנות שהפכו להיות יתרון תחרותי"
+        },
+        {
+          "content": "השקעה ב-UX Design החזירה את עצמה פי 3 ב-conversion rate"
+        },
+        {
+          "content": "אינטגרציות (Stripe, AWS) לקחו זמן - צריך לתכנן 2x מהמשוער"
+        },
+        {
+          "content": "Soft launch עם 50 לקוחות נאמנים עזר לתקן באגים קריטיים"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "מקרה 3: אפליקציית מובייל - אפליקציית כושר",
+      "id": "case-3-mobile"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "סקירה כללית",
+      "id": "case-3-overview"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**הפרויקט:** אפליקציית אימונים אישיים מבוססת AI\n\n**הצוות:** מפתח React Native, Backend developer, UX designer, fitness expert\n\n**זמן פיתוח:** 5 חודשים\n\n**טכנולוגיות:** React Native, TypeScript, Firebase, Python (ML model)\n\n**סטטוס:** 5,000 משתמשים פעילים, 4.7★ ב-App Store"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "האתגר",
+      "id": "case-3-challenge"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**החזון:** אפליקציה שמייצרת תוכניות אימון מותאמות אישית על סמך רמת כושר, יעדים, וציוד זמין.\n\n**האתגרים המרכזיים:**\n- **Personalization** - איך ליצור תוכנית אימונים ייחודית לכל משתמש?\n- **Engagement** - איך לשמור על מוטיבציה לאורך זמן?\n- **Performance** - אפליקציה חלקה עם ווידאו ואנימציות\n- **Offline-first** - חלק מהמשתמשים מתאמנים במקומות ללא אינטרנט\n- **Platform parity** - חוויה זהה ב-iOS ו-Android"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הפתרון עם BMAD",
+      "id": "case-3-solution"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 1-2: Research & Product Design (שבוע 1-4)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "שילוב של **אגנט Analyst** ו-**אגנט PM**:"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# מחקר שוק מעמיק\n@analyst research\n\n# הגדרת המוצר\n@pm product-brief\n@pm prd",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**תובנות מרכזיות מהמחקר:**\n- **הבעיה הגדולה:** 73% מהמתאמנים נושרים תוך חודש - בגלל חוסר התאמה אישית\n- **קהל היעד:** מתחילים ובינוניים (לא מקצועניים)\n- **המוטיבטור העיקרי:** התקדמות ניכרת וגמיפיקציה\n- **הדרישה המפתיעה:** אימונים קצרים (15-30 דקות)"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 3: UX & Gamification (שבוע 4-7)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**אגנט UX Designer** עיצב חוויה מוטיבטית:"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "@ux-designer create-ux-design",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**עקרונות UX שהתקבלו:**"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "Onboarding מהיר - 60 שניות עד לאימון הראשון"
+        },
+        {
+          "content": "Progress visualization - גרפים ותגים של התקדמות"
+        },
+        {
+          "content": "Streaks & Achievements - תגים, רצפים, אתגרים שבועיים"
+        },
+        {
+          "content": "Social proof - שיתוף הישגים, קהילה"
+        },
+        {
+          "content": "Video-first - הדגמות ווידאו ברורות לכל תרגיל"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "החלטה קריטית",
+      "content": "האגנט UX המליץ להתמקד ב-3 סוגי אימונים בלבד (כוח, אירובי, גמישות) במקום 10+ קטגוריות שתכננו בהתחלה. זה פישט את הפיתוח ושיפר את החוויה."
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 4: ארכיטקטורה Mobile-First (שבוע 7-9)**"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "@architect architecture\n@architect tech-spec",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**החלטות טכנולוגיות:**"
+    },
+    {
+      "type": "table",
+      "headers": ["רכיב", "טכנולוגיה", "למה"],
+      "rows": [
+        ["Mobile", "React Native + TypeScript", "iOS + Android מקוד אחד"],
+        ["State", "Zustand + React Query", "פשוט, מהיר, caching חכם"],
+        ["Backend", "Firebase", "Real-time, Auth, Storage - all-in-one"],
+        ["AI Model", "Python + TensorFlow Lite", "רץ on-device, פרטיות"],
+        ["Video", "Vimeo API", "streaming איכותי, adaptive bitrate"],
+        ["Analytics", "Mixpanel", "event tracking מפורט"]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "למה Firebase?",
+      "content": "האגנט Architect המליץ על Firebase כי הוא מפשט משמעותית - Auth, Real-time DB, Storage, Analytics, ו-Push Notifications במקום אחד. לצוות קטן זה חוסך חודשים."
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 5-6: פיתוח (שבוע 9-20)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "הפיתוח בוצע ב-**7 Epics** עם **אגנט Dev:**"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "Onboarding & Profile - שאלון קצר, חישוב BMI, הגדרת יעדים"
+        },
+        {
+          "content": "Workout Generator - אלגוריתם ML שמייצר תוכנית מותאמת"
+        },
+        {
+          "content": "Workout Player - ווידאו, טיימר, מעקב אחר סטים וחזרות"
+        },
+        {
+          "content": "Progress Tracking - גרפים, סטטיסטיקות, היסטוריה"
+        },
+        {
+          "content": "Gamification - Streaks, badges, weekly challenges"
+        },
+        {
+          "content": "Social - שיתוף הישגים, קהילה קטנה"
+        },
+        {
+          "content": "Polish - אנימציות, transitions, micro-interactions"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "התוצאות",
+      "id": "case-3-results"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**מדדי הצלחה מרשימים:**\n- **Downloads:** 12,000 בחודשיים הראשונים\n- **DAU (Daily Active Users):** 5,000 (42% של הכל)\n- **Retention:** 68% לאחר שבוע, 41% לאחר חודש (פי 2 מהממוצע!)\n- **Rating:** 4.7 כוכבים (iOS), 4.6 (Android)\n- **Session length:** ממוצע 22 דקות"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "הסוד להצלחה",
+      "content": "הגמיפיקציה והאלגוריתם המותאם אישית יצרו engagement פי 2 מאפליקציות מתחרות. משתמשים חזרו כל יום בגלל ה-streaks!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "לקחים",
+      "id": "case-3-lessons"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "React Native עבד מצוין - 95% קוד משותף בין פלטפורמות"
+        },
+        {
+          "content": "Firebase חסך 6-8 שבועות פיתוח backend"
+        },
+        {
+          "content": "ה-ML model היה הכי מאתגר - לקח 3 שבועות במקום 1"
+        },
+        {
+          "content": "Beta testing עם 100 משתמשים היה קריטי - תיקנו 23 באגים חשובים"
+        },
+        {
+          "content": "הגמיפיקציה הייתה game-changer - השקעה של שבוע שהניבה retention פי 2"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "מקרה 4: מערכת ארגונית - CRM למשרד עורכי דין",
+      "id": "case-4-enterprise"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "סקירה כללית",
+      "id": "case-4-overview"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**הפרויקט:** מערכת CRM מותאמת למשרד עורכי דין בינוני (35 עורכי דין)\n\n**הצוות:** 3 מפתחים, ארכיטקט, PM, מומחה משפטי\n\n**זמן פיתוח:** 6 חודשים\n\n**טכנולוגיות:** Angular, .NET Core, SQL Server, Azure\n\n**סטטוס:** בשימוש יומיומי, 35 משתמשים פעילים"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "האתגר",
+      "id": "case-4-challenge"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**הצורך:** המשרד עבד עם מערכות מיושנות - Excel, Outlook, ותיקיות רשת.\n\n**הבעיות:**\n- **מידע מפוזר** - לקוחות, תיקים, תזכורות במקומות שונים\n- **חוסר שקיפות** - קשה לדעת מה הסטטוס של תיק\n- **דדליינים שנפספסו** - אין מערכת התראות מרכזית\n- **שיתוף פעולה** - קשה לעבוד על תיק משותף\n- **דוחות** - דיווח לשותפים לוקח שעות"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**דרישות ייחודיות:**\n- אבטחה מחמירה (סודיות עו\"ד-לקוח)\n- תאימות לתקנות (GDPR, חוק הגנת הפרטיות)\n- חיפוש מתקדם בתוך מסמכים\n- אינטגרציה עם Outlook ו-Word\n- Audit log מלא על כל פעולה"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הפתרון עם BMAD",
+      "id": "case-4-solution"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 1: Business Analysis (שבוע 1-3)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**אגנט Analyst (Mary)** ביצעה מחקר מעמיק:"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# ראיונות עם 15 עורכי דין\n@analyst (stakeholder interviews)\n\n# ניתוח תהליכי עבודה נוכחיים\n@analyst research",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**ממצאים מרכזיים:**\n- **תהליכי עבודה:** 8 תהליכים עיקריים זוהו\n- **Pain points:** 23 בעיות מרכזיות תועדו\n- **Must-have features:** 12 פיצ'רים קריטיים\n- **Nice-to-have:** 18 פיצ'רים משניים"
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "אתגר",
+      "content": "כל עורך דין רצה משהו אחר! האנליסטית עזרה למצוא את הדנומינטור המשותף ולתעדף."
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 2: תכנון המערכת (שבוע 3-6)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**אגנט PM** יצר PRD מפורט מאוד (89 User Stories!):"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "@pm product-brief\n@pm prd",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**12 Epics מרכזיים:**"
+    },
+    {
+      "type": "accordion",
+      "allowMultiple": false,
+      "items": [
+        {
+          "id": "epic-crm-1",
+          "title": "ניהול לקוחות",
+          "content": [
+            {
+              "id": "epic-crm-1-text",
+              "type": "text",
+              "content": "פרטי לקוחות, היסטוריה, אנשי קשר, מסמכים"
+            }
+          ]
+        },
+        {
+          "id": "epic-crm-2",
+          "title": "ניהול תיקים",
+          "content": [
+            {
+              "id": "epic-crm-2-text",
+              "type": "text",
+              "content": "יצירת תיקים, שיוך לעורכי דין, סטטוס, תיעוד"
+            }
+          ]
+        },
+        {
+          "id": "epic-crm-3",
+          "title": "לוח זמנים ותזכורות",
+          "content": [
+            {
+              "id": "epic-crm-3-text",
+              "type": "text",
+              "content": "דדליינים, דיונים, פגישות, התראות אוטומטיות"
+            }
+          ]
+        },
+        {
+          "id": "epic-crm-4",
+          "title": "ניהול מסמכים",
+          "content": [
+            {
+              "id": "epic-crm-4-text",
+              "type": "text",
+              "content": "העלאה, גרסאות, חיפוש full-text, תבניות"
+            }
+          ]
+        },
+        {
+          "id": "epic-crm-5",
+          "title": "דוחות ואנליטיקה",
+          "content": [
+            {
+              "id": "epic-crm-5-text",
+              "type": "text",
+              "content": "דשבורד מנהלים, שעות עבודה, הכנסות, KPIs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 3: ארכיטקטורה אבטחה-ראשונה (שבוע 6-9)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**אגנט Architect** תכנן מערכת enterprise-grade:"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "@architect architecture\n@architect tech-spec",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**החלטות ארכיטקטוניות:**"
+    },
+    {
+      "type": "table",
+      "headers": ["רכיב", "טכנולוגיה", "נימוק"],
+      "rows": [
+        ["Frontend", "Angular + TypeScript", "Enterprise-grade, TypeScript חזק"],
+        ["Backend", ".NET Core 8", "ביצועים, אבטחה, scalability"],
+        ["Database", "SQL Server", "דרישת הארגון, ACID compliance"],
+        ["Auth", "Azure AD", "SSO, MFA, Role-based access"],
+        ["Storage", "Azure Blob + encryption", "אבטחה, compliance"],
+        ["Search", "Elasticsearch", "חיפוש מתקדם במסמכים"]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "עקרון מנחה",
+      "content": "האבטחה והפרטיות היו בראש סדר העדיפויות - encryption at rest and in transit, audit logs, role-based permissions."
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 4-6: פיתוח, בדיקות, deployment (שבוע 9-24)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "3 מפתחים עבדו במקביל עם **אגנט Dev** ו-**אגנט TEA**."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "התוצאות",
+      "id": "case-4-results"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**הטמעה מוצלחת:**\n- **Adoption:** 100% של עורכי הדין השתמשו בתוך חודש\n- **Productivity:** שיפור של 35% בניהול זמן (פחות חיפושים)\n- **Deadlines:** 0 פספוסי דדליינים ב-6 חודשים (לעומת 12 בשנה שעברה)\n- **Satisfaction:** 8.4/10 ממוצע מהמשתמשים\n- **ROI:** המערכת החזירה את עצמה תוך 14 חודשים"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "הישג מפתיע",
+      "content": "השותפים הבכירים, שהיו ספקניים בהתחלה, הפכו לאלופים של המערכת אחרי שראו את הדשבורד הניהולי - לראשונה הם יכלו לראות מה קורה במשרד בזמן אמת."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "לקחים",
+      "id": "case-4-lessons"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "Business Analysis מעמיקה הייתה קריטית - הבנת 8 תהליכי עבודה הובילה לעיצוב נכון"
+        },
+        {
+          "content": "אבטחה מההתחלה - לא afterthought - חסכה refactoring גדול"
+        },
+        {
+          "content": "הדרכה והטמעה לקחו 3 שבועות - תכננו את זה מראש!"
+        },
+        {
+          "content": "Change management חשוב - חלק מהמשתמשים התנגדו לשינוי"
+        },
+        {
+          "content": "UAT (User Acceptance Testing) עם 10 עורכי דין מצא 47 בעיות usability"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "מקרה 5: MVP לסטארטאפ - פלטפורמת שיתוף רכב",
+      "id": "case-5-mvp"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "סקירה כללית",
+      "id": "case-5-overview"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**הפרויקט:** פלטפורמה לשיתוף נסיעות בין עיר לעיר (כמו BlaBlaCar)\n\n**הצוות:** 2 מפתחים (founder + 1), UX freelancer\n\n**זמן פיתוח:** 8 שבועות ל-MVP\n\n**טכנולוגיות:** Next.js, Supabase, Tailwind, MapBox\n\n**סטטוס:** Seed round של $200K לאחר הצגת MVP"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "האתגר",
+      "id": "case-5-challenge"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**הרקע:** Founder עם רעיון אבל תקציב קטן וזמן מוגבל.\n\n**המטרה:** ליצור MVP תוך 8 שבועות כדי להציג למשקיעים.\n\n**האתגרים:**\n- **Timeline קצר** - חייבים להשיק במהירות\n- **תקציב מוגבל** - לא יכולים לשכור צוות גדול\n- **Feature bloat** - פיתוי להוסיף יותר מדי פיצ'רים\n- **Quality vs Speed** - איך לשמור על איכות תוך פיתוח מהיר?\n- **Market validation** - איך לדעת שזה באמת צורך?"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הפתרון עם BMAD",
+      "id": "case-5-solution"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 1: Validation & Lean Canvas (שבוע 1)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "התחילו עם **אגנט PM** לאימות הרעיון:"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# מחקר מהיר וממוקד\n@pm research\n\n# product brief רזה (Lean)\n@pm product-brief",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**תובנות מהמחקר (שבוע אחד!):**\n- **Validation:** 47 ראיונות עם נוסעים פוטנציאליים → 83% מעוניינים\n- **המתחרים:** שחקן דומיננטי אחד, אבל UX גרוע ומחירים גבוהים\n- **ההזדמנות:** פלטפורמה פשוטה יותר, דמי עמלה נמוכים\n- **MVP Scope:** 3 תכונות מרכזיות בלבד"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "לקח מרכזי",
+      "content": "האגנט PM עזר להתמקד ב-**core value proposition** בלבד - יצירת נסיעה, חיפוש, והזמנה. הכל האחר נדחה לגרסאות עתידיות."
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 2: MVP Definition (שבוע 1-2)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "PRD אולטרה-ממוקד עם **12 User Stories בלבד:**"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "נהג יכול ליצור נסיעה (מוצא, יעד, תאריך, זמן, מחיר)"
+        },
+        {
+          "content": "נוסע יכול לחפש נסיעות זמינות"
+        },
+        {
+          "content": "נוסע יכול להזמין מקום"
+        },
+        {
+          "content": "נהג יכול לאשר/לדחות הזמנה"
+        },
+        {
+          "content": "התראות בסיסיות (SMS/Email)"
+        },
+        {
+          "content": "פרופיל משתמש פשוט"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "מה לא היה ב-MVP",
+      "content": "ביקורות, דירוגים, תשלומים אונליין, צ'אט, מפה אינטראקטיבית, אפליקציית מובייל - הכל נדחה!"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 3: Quick UX (שבוע 2)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "UX freelancer עבדה עם **אגנט UX Designer** לעיצוב מהיר:"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "@ux-designer create-ux-design",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**תוצרים:**\n- **Wireframes** של 8 מסכים בלבד\n- **Design System** קיים (Tailwind UI) - לא המציאו מחדש\n- **User Flow** פשוט: Search → Results → Book → Confirmation"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 4: Tech Stack מהיר (שבוע 2)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**אגנט Architect** המליץ על stack שמפחית זמן פיתוח:"
+    },
+    {
+      "type": "table",
+      "headers": ["רכיב", "טכנולוגיה", "למה"],
+      "rows": [
+        ["Fullstack", "Next.js 14", "Frontend + Backend בקודבייס אחד"],
+        ["Database", "Supabase", "Postgres + Auth + Storage + Realtime"],
+        ["UI", "Tailwind + shadcn/ui", "מהיר, לא צריך לעצב מאפס"],
+        ["Maps", "MapBox", "API פשוט, free tier נדיב"],
+        ["Hosting", "Vercel", "deploy ב-click, CI/CD מובנה"],
+        ["Notifications", "Resend", "Email API פשוט"]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "עקרון מנחה",
+      "content": "הארכיטקט המליץ: \"אל תבנו מאפס שום דבר שיש לו SaaS טוב. תתמקדו ב-core logic של המוצר שלכם.\""
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 5-7: פיתוח מהיר (שבוע 3-8)**"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "שני המפתחים עבדו במקביל עם **אגנט Dev** בספרינטים של שבוע:"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "**שבוע 3:** Auth + DB Schema + Landing"
+        },
+        {
+          "content": "**שבוע 4:** יצירת נסיעה + חיפוש בסיסי"
+        },
+        {
+          "content": "**שבוע 5:** הזמנה + אישור נהג"
+        },
+        {
+          "content": "**שבוע 6:** פרופיל משתמש + התראות"
+        },
+        {
+          "content": "**שבוע 7:** Polish + bug fixes"
+        },
+        {
+          "content": "**שבוע 8:** Beta testing עם 20 משתמשים"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "הלחץ היה אמיתי",
+      "content": "האגנט Dev עזר לתעדף - כל feature נבדק: \"האם זה blocking ל-MVP?\" אם לא - נדחה. רק כך הצליחו לעמוד ב-timeline."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "התוצאות",
+      "id": "case-5-results"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**הצלחה מעבר לציפיות:**\n- **Timeline:** השיקו תוך 8 שבועות (כמתוכנן!)\n- **Budget:** $12,000 (כולל SaaS subscriptions)\n- **Beta:** 20 משתמשים ביצעו 45 נסיעות בשבועיים\n- **Validation:** 92% אמרו שישתמשו שוב\n- **Funding:** הציגו למשקיעים → קיבלו $200K Seed"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**מדדי MVP:**\n- **Core functionality:** עבד ללא באגים קריטיים\n- **User feedback:** \"פשוט להשתמש, אבל חסר X\" (X = פיצ'רים שתכננו לגרסה 2)\n- **Conversion:** 68% מהחיפושים הפכו להזמנות\n- **Investor interest:** 3 משקיעים הציעו deals"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "המפתח להצלחה",
+      "content": "התמקדות לייזר ב-MVP האמיתי. הם השיקו מוצר עובד בחודשיים, לא מוצר \"מושלם\" בשישה חודשים. זה אפשר להם ללמוד מהר ולהתאים."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "לקחים",
+      "id": "case-5-lessons"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "MVP אמיתי = Minimum **Viable** Product, לא Minimum **Perfect** Product"
+        },
+        {
+          "content": "SaaS tools חסכו 4-5 שבועות פיתוח (Supabase, Vercel, Resend)"
+        },
+        {
+          "content": "התמקדות בפיצ'ר 1 שעובד מצוין עדיף על 5 פיצ'רים חצי-גמורים"
+        },
+        {
+          "content": "האגנט PM שיחק תפקיד קריטי ב\"לומר לא\" לפיצ'רים מפתים"
+        },
+        {
+          "content": "Beta testing חשוב - מצאו 12 UX issues שלא חשבו עליהם"
+        },
+        {
+          "content": "הזמן שחסכו בפיתוח השקיעו במחקר משתמשים - זה השתלם פי 10"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "לקחים משותפים מכל המקרים",
+      "id": "lessons"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "אחרי שראינו 5 פרויקטים שונים לחלוטין, בואו נסכם את העקרונות המשותפים שעזרו לכולם להצליח עם BMAD."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "1. תכנון לפני קוד",
+      "id": "lesson-planning"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**כל הפרויקטים** השקיעו 20-30% מהזמן בתכנון לפני שכתבו שורת קוד אחת."
+    },
+    {
+      "type": "table",
+      "headers": ["פרויקט", "זמן תכנון", "תוצאה"],
+      "rows": [
+        ["SaaS Platform", "2 שבועות מ-12", "0 refactoring גדול"],
+        ["E-commerce", "4 שבועות מ-16", "כל הפיצ'רים עבדו"],
+        ["Mobile App", "4 שבועות מ-20", "95% קוד נשאר"],
+        ["Enterprise CRM", "6 שבועות מ-24", "Architecture יציבה"],
+        ["Startup MVP", "2 שבועות מ-8", "השיקו בזמן"]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "המנטרה",
+      "content": "שבוע תכנון חוסך חודש פיתוח. תמיד."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "2. האגנטים והוורקפלואים הנכונים",
+      "id": "lesson-agents"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**השילוב המוצלח ביותר:**"
+    },
+    {
+      "type": "grid",
+      "columns": 3,
+      "gap": "md",
+      "items": [
+        {
+          "type": "card",
+          "icon": "IconUser",
+          "title": "PM + Analyst",
+          "content": "לתכנון המוצר - הבינו מה באמת צריך"
+        },
+        {
+          "type": "card",
+          "icon": "IconBuildingBridge",
+          "title": "Architect",
+          "content": "להחלטות טכניות - חסכו refactoring"
+        },
+        {
+          "type": "card",
+          "icon": "IconPalette",
+          "title": "UX Designer",
+          "content": "לחוויית משתמש - הגדילו conversion"
+        },
+        {
+          "type": "card",
+          "icon": "IconCode",
+          "title": "Dev",
+          "content": "לפיתוח איכותי - פחות באגים"
+        },
+        {
+          "type": "card",
+          "icon": "IconTestPipe",
+          "title": "TEA",
+          "content": "לבדיקות - וידאו איכות"
+        },
+        {
+          "type": "card",
+          "icon": "IconBook",
+          "title": "Tech Writer",
+          "content": "לתיעוד - מקל על תחזוקה"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "3. UX/UI קריטי להצלחה",
+      "id": "lesson-ux"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**כל פרויקט** שהשקיע ב-UX מוקדם ראה תוצאות מדידות:"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "**SaaS:** 4.6/5 rating מהמשתמשים → retention גבוה"
+        },
+        {
+          "content": "**E-commerce:** Conversion 3.2% (ממוצע 2.1%) → הכנסות ב-50%"
+        },
+        {
+          "content": "**Mobile:** Retention 41% (ממוצע 20%) → DAU פי 2"
+        },
+        {
+          "content": "**Enterprise:** Adoption 100% → משתמשים מרוצים"
+        },
+        {
+          "content": "**Startup:** 68% conversion → קיבלו funding"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "ROI של UX",
+      "content": "השקעה של שבוע-שבועיים ב-UX design החזירה את עצמה פי 3-10 בכל פרויקט."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "4. פשטות מנצחת",
+      "id": "lesson-simplicity"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**הפיתוי הגדול ביותר:** להוסיף \"עוד פיצ'ר אחד קטן\".\n\n**המציאות:** הפרויקטים המוצלחים אמרו \"לא\" הרבה יותר מ\"כן\"."
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**דוגמאות:**\n- **SaaS:** לא הוסיפו integrations ב-MVP\n- **E-commerce:** לא הוסיפו ביקורות בגרסה 1\n- **Mobile:** 3 סוגי אימון במקום 10\n- **Enterprise:** לא בנו BI מורכב\n- **Startup:** לא הוסיפו תשלומים אונליין"
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "זכרו",
+      "content": "Feature creep הורג פרויקטים. האגנטים עזרו לשמור על פוקוס."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "5. בדיקות מוקדם ולעתים קרובות",
+      "id": "lesson-testing"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**כל פרויקט** עשה איזשהו Beta/UAT לפני השקה רשמית:"
+    },
+    {
+      "type": "table",
+      "headers": ["פרויקט", "Beta Testers", "באגים שנמצאו", "זמן תיקון"],
+      "rows": [
+        ["SaaS Platform", "10 users", "8 באגים", "שבוע אחד"],
+        ["E-commerce", "50 לקוחות", "15 UX issues", "שבועיים"],
+        ["Mobile App", "100 users", "23 באגים", "שבוע אחד"],
+        ["Enterprise CRM", "10 עו\"ד", "47 usability issues", "3 שבועות"],
+        ["Startup MVP", "20 users", "12 UX issues", "שבוע אחד"]
+      ]
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**המסקנה:** Beta testing תמיד מוצא בעיות שלא חשבתם עליהן. תמיד."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "6. תיעוד = חיסכון בטווח הארוך",
+      "id": "lesson-documentation"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**המערכת ב-BMAD יוצרת תיעוד אוטומטית:**\n- **Product Brief** - למה בנינו את זה\n- **PRD** - מה בדיוק בנינו\n- **Tech Spec** - איך זה עובד\n- **Architecture docs** - למה בחרנו טכנולוגיות מסוימות\n- **Test Plans** - איך בדקנו"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "היתרון",
+      "content": "כשחבר צוות חדש הצטרף או שמישהו שאל \"למה עשיתם ככה?\", היה להם תיעוד מלא. חסך שעות הסברים."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "סיכום הסיכום",
+      "id": "final-summary"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**5 מקרי מבחן, 5 תחומים שונים, עקרון אחד:**"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "תהליך מובנה מנצח Chaos",
+      "content": "BMAD נותן לכם תהליך ברור, אגנטים מומחים, ווורקפלואים מוכחים. תעקבו אחריו, ותצליחו."
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**הצעד הבא שלכם:**"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "בחרו פרויקט (קטן בהתחלה)"
+        },
+        {
+          "content": "קראו את המדריך לתפקיד שלכם"
+        },
+        {
+          "content": "הריצו workflow-init עם BMAD Master"
+        },
+        {
+          "content": "עקבו אחר התהליך - אל תדלגו שלבים"
+        },
+        {
+          "content": "למדו מהטעויות שלכם"
+        },
+        {
+          "content": "חזרו על התהליך בפרויקט גדול יותר"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מזל טוב! סיימתם את מדריך מקרי המבחן - חלק 1",
+      "content": "ראיתם 5 פרויקטים אמיתיים מקצה לקצה. עכשיו אתם יודעים איך BMAD עובד בפועל, מה עובד ומה לא, ואיזה טעויות להימנע מהן. זמן ליישם את הלקחים בפרויקט שלכם!"
+    }
+  ]
+}
+

@@ -194,18 +194,19 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
         onOpenChange(false);
       },
     },
-    {
-      id: 'theme',
-      label: theme === 'dark' ? 'מצב בהיר' : 'מצב כהה',
-      icon: theme === 'dark' ? IconSun : IconMoon,
-      keywords: ['theme', 'dark', 'light', 'mode', 'ערכת', 'נושא', 'כהה', 'בהיר'],
-      action: () => {
-        toggleTheme();
-        setThemeState(getTheme());
-        // Don't close palette, allow multiple toggles
-      },
-      shortcut: 'Alt+T',
-    },
+    // Temporarily hidden - dark mode toggle
+    // {
+    //   id: 'theme',
+    //   label: theme === 'dark' ? 'מצב בהיר' : 'מצב כהה',
+    //   icon: theme === 'dark' ? IconSun : IconMoon,
+    //   keywords: ['theme', 'dark', 'light', 'mode', 'ערכת', 'נושא', 'כהה', 'בהיר'],
+    //   action: () => {
+    //     toggleTheme();
+    //     setThemeState(getTheme());
+    //     // Don't close palette, allow multiple toggles
+    //   },
+    //   shortcut: 'Alt+T',
+    // },
     {
       id: 'new-note',
       label: 'רשומה חדשה',

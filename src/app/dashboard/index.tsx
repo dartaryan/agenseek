@@ -19,7 +19,9 @@ import { PopularGuidesCard } from '../../components/dashboard/PopularGuidesCard'
 import { NotesStatisticsCard } from '../../components/dashboard/NotesStatisticsCard';
 import { TasksStatisticsCard } from '../../components/dashboard/TasksStatisticsCard';
 import { JourneyPreviewCard } from '../../components/dashboard/JourneyPreviewCard';
+import { JourneyCard } from '../../components/dashboard/JourneyCard';
 import { BrandedLoader } from '../../components/ui/branded-loader';
+import { getJourneyData, getNextRecommendedGuide, type JourneyData } from '../../lib/journey';
 import type { GuideCatalogEntry } from '../../types/guide-catalog';
 import type { CategorizedGuides } from '../../lib/learning-path';
 
@@ -86,6 +88,8 @@ interface DashboardData {
   // Story 6.8 additions
   notesStatistics: NotesStatistics;
   tasksStatistics: TasksStatistics;
+  // Story 0.18 addition
+  journeyData: JourneyData | null;
 }
 
 function getGreeting(): string {
@@ -431,6 +435,19 @@ export function DashboardPage() {
         const notesStatistics = await getNotesStatistics(user.id);
         const tasksStatistics = await getTasksStatistics(user.id);
 
+        // Story 0.18: Fetch journey data
+        let journeyData: JourneyData | null = null;
+        try {
+          journeyData = await getJourneyData(user.id, {
+            role: profile?.role,
+            interests: profile?.interests,
+            experience_level: profile?.experience_level,
+          });
+        } catch (error) {
+          console.error('Error fetching journey data:', error);
+          // Continue without journey data
+        }
+
         setDashboardData({
           guidesCompleted,
           guidesInProgress,
@@ -453,6 +470,8 @@ export function DashboardPage() {
           // Story 6.8 additions
           notesStatistics,
           tasksStatistics,
+          // Story 0.18 addition
+          journeyData,
         });
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
@@ -548,6 +567,44 @@ export function DashboardPage() {
             {hebrewLocale.dashboard.welcomeBack} לאג'נסיק - המשך במסע הלמידה שלך
           </p>
         </div>
+
+        {/* Story 0.18: Journey Card - Full Width */}
+        {dashboardData.journeyData && (() => {
+          const completedGuideIds = new Set(
+            dashboardData.journeyData.phases.flatMap((p) =>
+              p.guides.filter((g) => g.completed).map((g) => g.id)
+            )
+          );
+          const nextGuide = getNextRecommendedGuide(
+            dashboardData.journeyData.phases,
+            completedGuideIds
+          );
+          const currentPhase = dashboardData.journeyData.phases.find(
+            (p) => p.id === dashboardData.journeyData.stats.currentPhase
+          );
+
+          return (
+            <JourneyCard
+              overallProgress={dashboardData.journeyData.stats.overallProgress}
+              currentPhase={{
+                id: currentPhase?.id || '',
+                name: currentPhase?.title || '',
+                progress: currentPhase?.progress.percentage || 0,
+              }}
+              nextGuide={
+                nextGuide
+                  ? {
+                      id: nextGuide.id,
+                      title: nextGuide.title,
+                      estimatedMinutes: nextGuide.estimatedMinutes,
+                    }
+                  : null
+              }
+              totalGuides={dashboardData.journeyData.stats.totalGuides}
+              completedGuides={dashboardData.journeyData.stats.completedGuides}
+            />
+          );
+        })()}
 
         {/* Main Grid - 3 columns responsive: 1 col mobile, 2 col tablet, 3 col desktop */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-6">

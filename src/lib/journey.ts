@@ -7,10 +7,13 @@
  * - Progress calculation per phase
  * - Phase unlocking logic
  * - Overall journey statistics
+ *
+ * Story 0.10.3: Added phase completion handlers and gamification
  */
 
 import type { Database } from '@/types/database';
 import { getGuideCatalog } from '@/lib/guide-catalog';
+import type { GuideCatalogEntry } from '@/types/guide-catalog';
 import {
   categorizeGuidesByLearningPath,
   type UserLearningProfile,
@@ -18,6 +21,9 @@ import {
   isCategoryComplete,
 } from '@/lib/learning-path';
 import { supabase } from '@/lib/supabase';
+import { toast } from 'sonner';
+import { celebratePhaseCompletion } from '@/lib/celebrations';
+import { awardPhaseAchievement } from '@/lib/achievements';
 
 /**
  * Phase status types
@@ -372,5 +378,99 @@ export function getPhaseColorClasses(color: string) {
     hover: `hover:bg-${color}-600`,
     progress: `bg-${color}-500`,
   };
+}
+
+/**
+ * Story 0.10.3: Phase Completion & Gamification
+ */
+
+/**
+ * Handle phase completion with celebration and achievements
+ *
+ * @param userId - User ID
+ * @param phaseId - Phase that was completed
+ * @param allPhasesComplete - Whether all 4 phases are now complete
+ */
+export async function handlePhaseCompletion(
+  userId: string,
+  phaseId: 'core' | 'recommended' | 'interests' | 'optional',
+  allPhasesComplete: boolean
+) {
+  // 1. Celebrate with confetti
+  celebratePhaseCompletion(phaseId);
+
+  // 2. Show success toast
+  const phaseNames = {
+    core: 'מדריכי הליבה',
+    recommended: 'המדריכים המומלצים',
+    interests: 'תחומי העניין',
+    optional: 'החקור עוד',
+  };
+
+  toast.success(`מזל טוב! השלמת את ${phaseNames[phaseId]}`, {
+    description: 'השלב הבא נפתח - בוא נמשיך!',
+    duration: 5000,
+    action: {
+      label: 'עבור למסלול',
+      onClick: () => (window.location.href = '/journey'),
+    },
+  });
+
+  // 3. Award achievement
+  await awardPhaseAchievement(userId, phaseId, allPhasesComplete);
+
+  // 4. Show next phase unlock toast (if applicable)
+  if (!allPhasesComplete) {
+    const nextPhaseNames: Record<string, string> = {
+      core: 'מומלץ עבורך',
+      recommended: 'תחומי העניין שלך',
+      interests: 'חקור עוד',
+    };
+
+    if (nextPhaseNames[phaseId]) {
+      setTimeout(() => {
+        toast.info(`שלב חדש נפתח: ${nextPhaseNames[phaseId]}`, {
+          description: 'מדריכים חדשים זמינים עבורך',
+          duration: 4000,
+        });
+      }, 2000);
+    }
+  }
+}
+
+/**
+ * Get next recommended guide in the journey
+ *
+ * @param phases - All journey phases
+ * @param completedGuideIds - Set of completed guide IDs
+ * @returns Next guide to complete, or null if all complete
+ */
+export function getNextRecommendedGuide(
+  phases: PhaseData[],
+  completedGuideIds: Set<string>
+): GuideCatalogEntry | null {
+  // Find current phase (first in_progress phase)
+  const currentPhase = phases.find((p) => p.status === 'in_progress');
+  if (!currentPhase) return null;
+
+  // Find first incomplete guide in current phase
+  const nextGuideInPhase = currentPhase.guides.find(
+    (g) => !completedGuideIds.has(g.id)
+  );
+
+  if (nextGuideInPhase) {
+    // Find full guide entry from catalog
+    const catalog = getGuideCatalog();
+    return catalog.find(g => g.id === nextGuideInPhase.id) || null;
+  }
+
+  // If current phase complete, find first guide in next unlocked phase
+  const nextPhase = phases.find((p) => !p.status.match(/locked|completed/));
+  if (!nextPhase || nextPhase.guides.length === 0) return null;
+
+  const firstGuideInNextPhase = nextPhase.guides[0];
+  // Find full guide entry from catalog
+  const catalog = getGuideCatalog();
+  return catalog.find(g => g.id === firstGuideInNextPhase.id) || null;
 }
 

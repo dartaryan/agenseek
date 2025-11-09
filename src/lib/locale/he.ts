@@ -12,6 +12,7 @@ export interface LocaleStrings {
   // Navigation
   nav: {
     dashboard: string;
+    journey: string;
     guides: string;
     notes: string;
     tasks: string;
@@ -817,6 +818,7 @@ export interface LocaleStrings {
 export const hebrewLocale: LocaleStrings = {
   nav: {
     dashboard: 'לוח בקרה',
+    journey: 'מסלול הלמידה שלי',
     guides: 'מדריכים',
     notes: 'הערות',
     tasks: 'משימות',
