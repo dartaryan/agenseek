@@ -21,13 +21,13 @@
 | קטגוריה | סה"כ | הושלמו | נותרו | אחוז |
 |----------|------|---------|-------|------|
 || Core | 2 | 2 | 0 | 100% |
-|| FAQ | 6 | 5 | 1 | 83% |
+|| FAQ | 6 | 6 | 0 | 100% |
 || Onboarding | 3 | 2 | 1 | 67% |
 || Roles | 9 | 9 | 0 | 100% |
 || Agents | 8 | 8 | 0 | 100% |
 || Workflows | 10 | 10 | 0 | 100% |
 || Practical | 9 | 2 | 7 | 22% |
-|| **סה"כ** | **47** | **36** | **11** | **77%** |
+|| **סה"כ** | **47** | **37** | **10** | **79%** |
 
 ---
 
@@ -69,37 +69,37 @@
 || 21 | `learning-paths` | מסלולי למידה מומלצים | practical | ✅ |
 || 22 | `faq-installation` | שאלות ותשובות - חלק 1ב: התקנה | faq | ✅ |
 || 23 | `faq-agents` | שאלות ותשובות - אגנטים | faq | ✅ |
-|| 24 | `faq-workflows` | שאלות ותשובות - חלק 2ב: וורקפלואים | faq | ⏳ |
+|| 24 | `faq-workflows` | שאלות ותשובות - חלק 2ב: וורקפלואים | faq | ✅ |
 || 25 | `onboarding-month1` | הדרכה לחודש הראשון | onboarding | ⏳ |
 
-**סטטוס P1:** ✅ 19/20 הושלמו (95%)
+**סטטוס P1:** ✅ 20/20 הושלמו (100%)
 
 ---
 
 ## 🎯 המדריך הבא ליצירה
 
 **🎉 All P0 מדריכים הושלמו! (5/5 - 100%)**
-**🎉 כמעט סיימנו P1! (19/20 - 95%)**
+**🎉 🎊 All P1 מדריכים הושלמו! (20/20 - 100%)**
 
-**עכשיו ממשיכים עם P1:**
+**עכשיו ממשיכים עם מדריך נוסף:**
 
-### 📌 `faq-workflows`
+### 📌 `onboarding-month1`
 
 **פרטים:**
-- **כותרת:** שאלות ותשובות - וורקפלואים
-- **קטגוריה:** faq
+- **כותרת:** הדרכה לחודש הראשון
+- **קטגוריה:** onboarding
 - **רמת קושי:** intermediate
-- **זמן קריאה:** 25 דקות
+- **זמן קריאה:** 60 דקות
 - **עדיפות:** 🟡 P1
 
 **קבצים לקרוא:**
 1. `content-stories/FOR-AI-AGENTS.md` - הפרומפט המלא
-2. `content-stories/stories/faq/workflows.md` - הסטורי המפורט
-3. `src/content/locale/he/guides/faq/agents.json` - דוגמה רלוונטית (זה עתה נוצרה)
-4. `src/content/locale/he/guides/faq/basics.json` - דוגמה נוספת
+2. `content-stories/stories/onboarding/month1.md` - הסטורי המפורט
+3. `src/content/locale/he/guides/onboarding/week1.json` - דוגמה רלוונטית
+4. `src/content/locale/he/guides/onboarding/day1.json` - דוגמה נוספת
 
 **היכן לשמור:**
-- `src/content/locale/he/guides/faq/workflows.json`
+- `src/content/locale/he/guides/onboarding/month1.json`
 
 **לא לשכוח:**
 - לעדכן את הקובץ הזה (GUIDES-PROGRESS-TRACKER.md)
@@ -113,10 +113,11 @@
 1. quick-start - התחלה מהירה ל-BMAD-METHOD
 2. glossary - מילון מונחים מלא
 
-### ✅ FAQ (5/6 - 83%)
+### ✅ FAQ (6/6 - 100%) 🎉
 1. basics - שאלות ותשובות - יסודות
 2. installation - שאלות ותשובות - התקנה
-3. agents - שאלות ותשובות - אגנטים ⭐ **חדש!**
+3. agents - שאלות ותשובות - אגנטים
+4. workflows - שאלות ותשובות - וורקפלואים ⭐ **חדש!**
 
 ### ✅ Onboarding (2/3 - 67%)
 1. day1 - הדרכה ליום הראשון

@@ -57,15 +57,19 @@
 | 0.7 | Avatar Real-time Update | 1 | ~2h | P2 |
 | 0.8 | Admin Mobile Responsiveness | 2 | ~6.5h | P1 |
 | 0.9 | Settings Implementation | 5 | ~7.5h | P2 |
-| 0.10 | My Learning Journey | 5 | 6-9 days | P1 |
+| 0.10.1 | Journey Core & Data | 2-3 | 2-3 days | P1 |
+| 0.10.2 | Journey Animations | 2 | 2-3 days | P1 |
+| 0.10.3 | Journey Gamification | 1 | 1-2 days | P1 |
 | 0.11 | Documentation Organization | 2 | ~1.5h | P2 |
 | 0.12 | Console Log Cleanup | 1 | ~2h | P2 |
 | 0.13 | Installation Guide Access | 1 | ~1.5h | P2 |
 | 0.15 | Dark Mode Polish & Implementation | 3 | 2-3 sessions | P2 |
 
-**Total:** 23 points, ~2-3 weeks
+**Total:** 24-25 points, ~2-3 weeks
 
-**Note:** Story 0.6 implemented the dark mode infrastructure, but the theme toggle is temporarily hidden until Story 0.15 completes the visual polish and styling refinements.
+**Note:**
+- Story 0.6 implemented the dark mode infrastructure, but the theme toggle is temporarily hidden until Story 0.15 completes the visual polish and styling refinements.
+- Story 0.10 was divided into 3 sub-stories (0.10.1, 0.10.2, 0.10.3) for better manageability.
 
 ---
 

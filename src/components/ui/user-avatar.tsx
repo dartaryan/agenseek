@@ -1,7 +1,11 @@
 /**
  * User Avatar Component
  * Story 0.3: User Avatar Picture Selection
- * Displays user avatar using DiceBear with Agenseek logo as placeholder
+ * Story 0.10.1: Fixed avatar display - always shows selected avatar
+ * 
+ * Displays user avatar using DiceBear with Agenseek logo as loading placeholder.
+ * If no config is provided, generates a default avatar based on userId.
+ * Logo only shows briefly while the avatar image is loading.
  */
 
 import { useMemo, useState } from 'react';
@@ -25,15 +29,14 @@ const sizeClasses = {
 
 /**
  * User avatar component that renders DiceBear avatar
- * Shows Agenseek logo as placeholder while config loads from database
+ * 
+ * Shows Agenseek logo only briefly while the avatar image is loading.
+ * Always renders the avatar - either from provided config or generates default from userId.
  */
 export function UserAvatar({ config, userId, size = 'md', className }: UserAvatarProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   
-  // Only generate avatar if we have an actual config from the database
-  // If config is null, we're still loading from DB - show logo
-  const shouldShowAvatar = config !== null && config !== undefined;
-  
+  // Generate avatar config - either use provided config or generate default
   const avatarConfig = useMemo(() => {
     if (config) return config;
     if (userId) return getDefaultAvatarConfig(userId);
@@ -44,8 +47,8 @@ export function UserAvatar({ config, userId, size = 'md', className }: UserAvata
     return generateAvatarDataUrl(avatarConfig);
   }, [avatarConfig]);
 
-  // Show logo while config is loading OR while image is loading
-  const showPlaceholder = !shouldShowAvatar || !imageLoaded;
+  // Show logo only while image is still loading
+  const showPlaceholder = !imageLoaded;
 
   return (
     <div
@@ -55,7 +58,7 @@ export function UserAvatar({ config, userId, size = 'md', className }: UserAvata
         className
       )}
     >
-      {/* Placeholder - Agenseek Logo (shown until config loads AND image loads) */}
+      {/* Placeholder - Agenseek Logo (shown only while image is loading) */}
       {showPlaceholder && (
         <img
           src={AgenseekLogo}
@@ -65,20 +68,19 @@ export function UserAvatar({ config, userId, size = 'md', className }: UserAvata
         />
       )}
       
-      {/* Actual Avatar (only render when we have config) */}
-      {shouldShowAvatar && (
-        <img
-          src={avatarUrl}
-          alt="אווטר משתמש"
-          className={cn(
-            'w-full h-full transition-opacity duration-200',
-            imageLoaded ? 'opacity-100' : 'opacity-0'
-          )}
-          loading="lazy"
-          onLoad={() => setImageLoaded(true)}
-          style={{ position: imageLoaded ? 'static' : 'absolute' }}
-        />
-      )}
+      {/* Actual Avatar */}
+      <img
+        src={avatarUrl}
+        alt="אווטר משתמש"
+        className={cn(
+          'w-full h-full transition-opacity duration-200',
+          imageLoaded ? 'opacity-100' : 'opacity-0'
+        )}
+        loading="lazy"
+        onLoad={() => setImageLoaded(true)}
+        onError={() => setImageLoaded(true)} // Show even on error
+        style={{ position: imageLoaded ? 'static' : 'absolute' }}
+      />
     </div>
   );
 }

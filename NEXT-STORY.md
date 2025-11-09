@@ -1,59 +1,75 @@
 # Next Story to Implement
 
-**Last Completed:** Story 0.9 - Implement Settings Page Features ✅
+**Last Completed:** Story 0.10.1 - Merge Profile and Settings Navigation ✅
 
 **Completion Date:** November 9, 2025
 
 ---
 
-## Story 0.9 Summary
+## Recent Completions
 
+### Story 0.10.1 Summary ✅
+Successfully merged Profile and Settings into unified navigation:
+- ✅ Merged navigation items in Sidebar (Desktop)
+- ✅ Merged navigation items in Mobile drawer
+- ✅ Merged commands in Command Palette (Ctrl+K)
+- ✅ Updated Footer links
+- ✅ Profile page already served as unified "פרופיל והגדרות" page
+- ✅ All navigation now points to single `/profile` destination
+
+### Story 0.9 Summary ✅
 Successfully implemented comprehensive settings page features:
 - ✅ Notification preferences (email, in-app, frequency)
 - ✅ Appearance settings (theme, density, font-size, sidebar)
 - ✅ Privacy settings (visibility, analytics, GDPR export)
 - ✅ Language settings (UI language, date/number formats)
 - ✅ All preferences persist to database with optimistic updates
-- ✅ Build passes, no TypeScript errors
-- ✅ Database migration created for preference columns
 
-**Result:** Users can now fully customize their experience with persistent preferences.
+### Story 0.8 Summary ✅
+Made all admin pages mobile-responsive:
+- ✅ Admin dashboard responsive layout
+- ✅ Mobile navigation with hamburger menu
+- ✅ Card-based user management on mobile
+- ✅ Mobile-friendly forms and modals
+
+### Story 0.7 Summary ✅
+Implemented real-time avatar updates:
+- ✅ Extended AuthContext with updateAvatar method
+- ✅ Avatar reflects immediately across all components
+- ✅ No page refresh needed
+
+**Result:** Core settings, admin mobile, and avatar features complete.
 
 ---
 
 ## 🎯 Next Story: Story 0.10 - My Learning Journey (מסלול הלמידה שלי)
 
-**Priority:** P2 (Medium)
+**Priority:** P1 (High)
 **Story Points:** 5
 **Estimated Time:** 6-9 days
 **Status:** Ready for Implementation
+**Note:** May be divided into sub-stories for easier implementation
 
 ### Story 0.10 Overview
 
-Create visual learning journey page with phase-based progression and gamification.
+Build comprehensive learning journey system with visual roadmap, phase-based progression, and gamification.
+
+**Focus:** Visual roadmap showing user's learning journey through BMAD phases
 
 **Key Features:**
-- Visual roadmap with 4 learning phases
-- Phase-based progression (Core → Recommended → Interests → Optional)
-- Gamification elements (confetti, achievements, milestones)
-- `/journey` page with interactive phase cards
-- Progress tracking across phases
-- Motivational UI with completion celebrations
+- `/journey` route and page with visual roadmap
+- 4 phases: Discovery, Foundation, Application, Mastery
+- Phase unlocking based on guide completion
+- Progress tracking per phase
+- Gamification (badges, milestones)
+- Dashboard journey preview card
+- Mobile responsive journey view
 
-**Acceptance Criteria:**
-1. Journey page displays 4 phases with progress
-2. Guides organized by phase automatically
-3. Phase unlocking logic (Core must be done first)
-4. Confetti celebration on phase completion
-5. Visual progress indicators per phase
-6. Mobile-responsive journey view
-7. Achievement badges for milestones
-
-**Files to Create:**
-- `src/app/journey/index.tsx` (main journey page)
-- `src/components/journey/PhaseCard.tsx`
-- `src/components/journey/ProgressRoadmap.tsx`
-- `src/lib/utils/phaseCalculations.ts`
+**Deliverables:**
+- Fully functional journey page
+- Phase-based progression system
+- Visual journey roadmap
+- Integration with existing progress tracking
 
 **See:** `STORY-0.10.md` for complete details
 
@@ -63,20 +79,20 @@ Create visual learning journey page with phase-based progression and gamificatio
 
 After Story 0.6, continue with these in order:
 
-### Story 0.7: Real-time Avatar Update Reflection
+### ✅ Story 0.7: Real-time Avatar Update Reflection (COMPLETE)
 - **Points:** 1
 - **Time:** ~2h
-- **Description:** Create UserContext for global avatar state. Update avatar immediately across all components without page refresh.
+- **Completed:** November 9, 2025
 
-### Story 0.8: Admin Pages Mobile Responsiveness
+### ✅ Story 0.8: Admin Pages Mobile Responsiveness (COMPLETE)
 - **Points:** 2
 - **Time:** ~6.5h
-- **Description:** Make admin dashboard and all admin pages mobile-responsive with hamburger menu and card-based layouts.
+- **Completed:** November 9, 2025
 
-### Story 0.9: Implement Settings Page Features
+### ✅ Story 0.9: Implement Settings Page Features (COMPLETE)
 - **Points:** 5
 - **Time:** ~7.5h
-- **Description:** Notification preferences, appearance settings, privacy settings, language settings, data export (GDPR).
+- **Completed:** November 9, 2025
 
 ### Story 0.10: My Learning Journey (מסלול הלמידה שלי)
 - **Points:** 5
@@ -109,17 +125,18 @@ After Story 0.6, continue with these in order:
 - ✅ Story 0.4 - Story Tracking & Verification (Complete)
 - ✅ Story 0.5 - Avatar Expansion & Onboarding (Complete)
 - 🚫 Story 0.6 - Dark Mode (NOT DOING NOW - Postponed)
-- ⏸️ Story 0.7 - Real-time Avatar Updates
-- ⏸️ Story 0.8 - Admin Mobile Responsiveness
-- ✅ **Story 0.9 - Settings Implementation** (Complete)
+- ✅ Story 0.7 - Real-time Avatar Updates (Complete)
+- ✅ Story 0.8 - Admin Mobile Responsiveness (Complete)
+- ✅ Story 0.9 - Settings Implementation (Complete)
+- ✅ Story 0.10.1 - Merge Profile & Settings Navigation (Complete)
 - ⏩ **Story 0.10 - Learning Journey** (NEXT)
 - ⏸️ Story 0.11 - Documentation Archive
 - ⏸️ Story 0.12 - Console Log Cleanup
 - ⏸️ Story 0.13 - Installation Guide
 
-**Total:** 6 of 13 complete (46%)
-**Remaining:** 7 stories, ~13 points
-**Note:** Story 0.6 (Dark Mode) postponed
+**Total:** 10 of 14 complete (71%)
+**Remaining:** 4 stories, ~9 points
+**Note:** Story 0.6 (Dark Mode) postponed; Story 0.10.1 was a quick UX improvement
 
 ---
 

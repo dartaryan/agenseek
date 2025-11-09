@@ -6,7 +6,6 @@ import {
   IconNotes,
   IconChecklist,
   IconChartBar,
-  IconSettings,
   IconLogout,
   // Story 0.15: IconMoon, IconSun temporarily removed (theme toggle hidden)
   IconShieldCog,
@@ -45,8 +44,7 @@ const NAV_ITEMS: NavItem[] = [
   { icon: IconNotes, label: 'הערות', href: '/notes' },
   { icon: IconChecklist, label: 'משימות', href: '/tasks' },
   { icon: IconChartBar, label: 'התקדמות', href: '/progress' },
-  { icon: IconUser, label: 'פרופיל', href: '/profile' },
-  { icon: IconSettings, label: 'הגדרות', href: '/settings' },
+  { icon: IconUser, label: 'פרופיל והגדרות', href: '/profile' },
 ];
 
 const ADMIN_ITEMS: NavItem[] = [

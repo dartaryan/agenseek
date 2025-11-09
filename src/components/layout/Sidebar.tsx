@@ -5,7 +5,6 @@ import {
   IconNote,
   IconChecklist,
   IconUser,
-  IconSettings,
   IconShieldCog,
   IconUsers,
   IconChartBar,
@@ -40,8 +39,7 @@ const navigationItems: NavItem[] = [
   { name: hebrewLocale.nav.guides, href: '/guides', icon: IconBooks, shortcut: 'Alt+2' },
   { name: hebrewLocale.nav.notes, href: '/notes', icon: IconNote, shortcut: 'Alt+3' },
   { name: hebrewLocale.nav.tasks, href: '/tasks', icon: IconChecklist, shortcut: 'Alt+4' },
-  { name: hebrewLocale.nav.profile, href: '/profile', icon: IconUser, shortcut: 'Alt+5' },
-  { name: hebrewLocale.nav.settings, href: '/settings', icon: IconSettings },
+  { name: 'פרופיל והגדרות', href: '/profile', icon: IconUser, shortcut: 'Alt+5' },
 ];
 
 const adminItems: NavItem[] = [

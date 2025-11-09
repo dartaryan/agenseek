@@ -26,7 +26,7 @@ export function Footer() {
             <Link to="/guides" className="text-gray-600 hover:text-emerald-600 transition-colors">
               Guides
             </Link>
-            <Link to="/settings" className="text-gray-600 hover:text-emerald-600 transition-colors">
+            <Link to="/profile" className="text-gray-600 hover:text-emerald-600 transition-colors">
               Help & Support
             </Link>
             <a

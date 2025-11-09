@@ -28,7 +28,6 @@ import {
   IconNotes,
   IconChecklist,
   IconUser,
-  IconSettings,
   IconMoon,
   IconSun,
   IconPlus,
@@ -187,21 +186,11 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
     },
     {
       id: 'profile',
-      label: 'פרופיל',
+      label: 'פרופיל והגדרות',
       icon: IconUser,
-      keywords: ['profile', 'account', 'פרופיל', 'חשבון'],
+      keywords: ['profile', 'account', 'settings', 'preferences', 'פרופיל', 'חשבון', 'הגדרות'],
       action: () => {
         navigate('/profile');
-        onOpenChange(false);
-      },
-    },
-    {
-      id: 'settings',
-      label: 'הגדרות',
-      icon: IconSettings,
-      keywords: ['settings', 'preferences', 'הגדרות'],
-      action: () => {
-        navigate('/settings');
         onOpenChange(false);
       },
     },
