@@ -8,7 +8,13 @@
     "difficulty": "intermediate",
     "estimatedMinutes": 40,
     "icon": "IconBulb",
-    "tags": ["וורקפלואים", "תכנון", "בריף", "מחקר", "ideation"],
+    "tags": [
+      "וורקפלואים",
+      "תכנון",
+      "בריף",
+      "מחקר",
+      "ideation"
+    ],
     "author": "צוות BMAD",
     "version": "1.0"
   },
@@ -104,11 +110,13 @@
     },
     {
       "type": "text",
-      "content": "**Phase 0-1** (Ideation & Research) הוא השלב הראשון במחזור החיים של כל פרויקט. זה השלב שבו יש לכם רעיון - אולי מעורפל, אולי ברור - ואתם צריכים להפוך אותו למשהו מובנה שאפשר להתחיל לעבוד איתו."
+      "content": "**Phase 0-1** (Ideation & Research) הוא השלב הראשון במחזור החיים של כל פרויקט. זה השלב שבו יש לכם רעיון - אולי מעורפל, אולי ברור - ואתם צריכים להפוך אותו למשהו מובנה שאפשר להתחיל לעבוד איתו.",
+      "markdown": true
     },
     {
       "type": "text",
-      "content": "**המטרה של Phase זה:** לקחת רעיון ולהפוך אותו ל-Brief (תקציר) ברור שמכיל:\n\n- **מה** אנחנו בונים?\n- **למה** אנחנו בונים את זה?\n- **למי** זה מיועד?\n- **מה הערך** שזה מספק?\n- **איך** זה שונה ממה שכבר קיים?"
+      "content": "**המטרה של Phase זה:** לקחת רעיון ולהפוך אותו ל-Brief (תקציר) ברור שמכיל:\n\n- **מה** אנחנו בונים?\n- **למה** אנחנו בונים את זה?\n- **למי** זה מיועד?\n- **מה הערך** שזה מספק?\n- **איך** זה שונה ממה שכבר קיים?",
+      "markdown": true
     },
     {
       "type": "heading",
@@ -124,7 +132,8 @@
     },
     {
       "type": "text",
-      "content": "**למה לא לדלג:**"
+      "content": "**למה לא לדלג:**",
+      "markdown": true
     },
     {
       "type": "list",
@@ -151,13 +160,43 @@
     },
     {
       "type": "table",
-      "headers": ["וורקפלו", "אגנט", "מתי להשתמש", "תפוקה"],
+      "headers": [
+        "וורקפלו",
+        "אגנט",
+        "מתי להשתמש",
+        "תפוקה"
+      ],
       "rows": [
-        ["brainstorm-project", "Analyst", "רעיון ראשוני, צריך לפתח אותו", "רעיונות + כיוונים"],
-        ["product-brief", "Analyst", "רעיון ברור, צריך תקציר", "Product Brief"],
-        ["game-brief", "Game Designer", "רעיון למשחק", "Game Brief"],
-        ["research", "Analyst", "צריך נתונים ומחקר שוק", "מחקר מפורט"],
-        ["document-project", "Analyst", "יש פרויקט קיים ללא תיעוד", "תיעוד קיים"]
+        [
+          "brainstorm-project",
+          "Analyst",
+          "רעיון ראשוני, צריך לפתח אותו",
+          "רעיונות + כיוונים"
+        ],
+        [
+          "product-brief",
+          "Analyst",
+          "רעיון ברור, צריך תקציר",
+          "Product Brief"
+        ],
+        [
+          "game-brief",
+          "Game Designer",
+          "רעיון למשחק",
+          "Game Brief"
+        ],
+        [
+          "research",
+          "Analyst",
+          "צריך נתונים ומחקר שוק",
+          "מחקר מפורט"
+        ],
+        [
+          "document-project",
+          "Analyst",
+          "יש פרויקט קיים ללא תיעוד",
+          "תיעוד קיים"
+        ]
       ]
     },
     {
@@ -183,11 +222,13 @@
     },
     {
       "type": "text",
-      "content": "**brainstorm-project** הוא וורקפלו מובנה ל-Brainstorming על הפרויקט שלכם. הוא לא סתם \"בואו נזרוק רעיונות\" - זה תהליך שיטתי שמבוסס על מתודולוגיות Brainstorming מוכחות."
+      "content": "**brainstorm-project** הוא וורקפלו מובנה ל-Brainstorming על הפרויקט שלכם. הוא לא סתם \"בואו נזרוק רעיונות\" - זה תהליך שיטתי שמבוסס על מתודולוגיות Brainstorming מוכחות.",
+      "markdown": true
     },
     {
       "type": "text",
-      "content": "הוורקפלו מדריך אתכם דרך מספר שלבים:\n\n1. **הגדרת הבעיה** - מה הבעיה שאנחנו פותרים?\n2. **זיהוי קהל יעד** - למי זה מיועד?\n3. **חקר פתרונות קיימים** - מה כבר יש בשוק?\n4. **יצירת רעיונות** - מה אפשר לעשות אחרת?\n5. **הערכה וסינון** - איזה רעיונות שווים להמשיך?"
+      "content": "הוורקפלו מדריך אתכם דרך מספר שלבים:\n\n1. **הגדרת הבעיה** - מה הבעיה שאנחנו פותרים?\n2. **זיהוי קהל יעד** - למי זה מיועד?\n3. **חקר פתרונות קיימים** - מה כבר יש בשוק?\n4. **יצירת רעיונות** - מה אפשר לעשות אחרת?\n5. **הערכה וסינון** - איזה רעיונות שווים להמשיך?",
+      "markdown": true
     },
     {
       "type": "heading",
@@ -287,7 +328,8 @@
       "type": "callout",
       "variant": "success",
       "title": "מה קיבלתם?",
-      "content": "בסוף התהליך יש לכם קובץ brainstorm מפורט (`docs/brainstorm.md`) עם כל הרעיונות, ההערכות, והמלצה ברורה על הכיוון שכדאי להמשיך."
+      "content": "בסוף התהליך יש לכם קובץ brainstorm מפורט (`docs/brainstorm.md`) עם כל הרעיונות, ההערכות, והמלצה ברורה על הכיוון שכדאי להמשיך.",
+      "markdown": true
     },
     {
       "type": "divider"
@@ -306,11 +348,13 @@
     },
     {
       "type": "text",
-      "content": "**product-brief** יוצר תקציר מוצר (Product Brief) תמציתי ומדויק. זה מסמך של 2-4 עמודים שמסכם את הפרויקט ומשמש כנקודת ההתחלה לכל התכנון המפורט יותר (PRD, Tech Spec)."
+      "content": "**product-brief** יוצר תקציר מוצר (Product Brief) תמציתי ומדויק. זה מסמך של 2-4 עמודים שמסכם את הפרויקט ומשמש כנקודת ההתחלה לכל התכנון המפורט יותר (PRD, Tech Spec).",
+      "markdown": true
     },
     {
       "type": "text",
-      "content": "**Product Brief טוב כולל:**"
+      "content": "**Product Brief טוב כולל:**",
+      "markdown": true
     },
     {
       "type": "list",
@@ -369,7 +413,8 @@
     },
     {
       "type": "text",
-      "content": "**תרחיש:** יצירת Product Brief לאפליקציית ניהול משימות (אחרי ה-Brainstorming שעשינו למעלה)"
+      "content": "**תרחיש:** יצירת Product Brief לאפליקציית ניהול משימות (אחרי ה-Brainstorming שעשינו למעלה)",
+      "markdown": true
     },
     {
       "type": "accordion",
@@ -409,21 +454,41 @@
     },
     {
       "type": "text",
-      "content": "**game-brief** הוא הגרסה של product-brief למשחקים. הוא יוצר תקציר משחק (Game Brief) שמתאים למאפיינים הייחודיים של פיתוח משחקים."
+      "content": "**game-brief** הוא הגרסה של product-brief למשחקים. הוא יוצר תקציר משחק (Game Brief) שמתאים למאפיינים הייחודיים של פיתוח משחקים.",
+      "markdown": true
     },
     {
       "type": "text",
-      "content": "**ההבדל ממוצר רגיל:**"
+      "content": "**ההבדל ממוצר רגיל:**",
+      "markdown": true
     },
     {
       "type": "table",
-      "headers": ["Product Brief", "Game Brief"],
+      "headers": [
+        "Product Brief",
+        "Game Brief"
+      ],
       "rows": [
-        ["Problem/Solution", "Experience/Fun"],
-        ["Features", "Game Mechanics"],
-        ["User Journey", "Player Journey"],
-        ["Success Metrics", "Engagement + Monetization"],
-        ["Technical Constraints", "Platform + Performance"]
+        [
+          "Problem/Solution",
+          "Experience/Fun"
+        ],
+        [
+          "Features",
+          "Game Mechanics"
+        ],
+        [
+          "User Journey",
+          "Player Journey"
+        ],
+        [
+          "Success Metrics",
+          "Engagement + Monetization"
+        ],
+        [
+          "Technical Constraints",
+          "Platform + Performance"
+        ]
       ]
     },
     {
@@ -468,7 +533,8 @@
     },
     {
       "type": "text",
-      "content": "**תוצאה לדוגמה:**"
+      "content": "**תוצאה לדוגמה:**",
+      "markdown": true
     },
     {
       "type": "card",
@@ -478,7 +544,8 @@
     },
     {
       "type": "text",
-      "content": "**Core Loop:** חקור חדר → לחם → אסוף שלל → שדרג → חקור הלאה\n\n**Unique Mechanic:** Time Pressure - יש 60 שניות בכל חדר\n\n**Monetization:** Premium ($4.99) + Cosmetic DLC\n\n**Target:** שחקני Roguelike/Roguelite, גילאים 18-35"
+      "content": "**Core Loop:** חקור חדר → לחם → אסוף שלל → שדרג → חקור הלאה\n\n**Unique Mechanic:** Time Pressure - יש 60 שניות בכל חדר\n\n**Monetization:** Premium ($4.99) + Cosmetic DLC\n\n**Target:** שחקני Roguelike/Roguelite, גילאים 18-35",
+      "markdown": true
     },
     {
       "type": "divider"
@@ -497,7 +564,8 @@
     },
     {
       "type": "text",
-      "content": "**research** הוא וורקפלו למחקר שוק מקיף. הוא מדריך אתכם לעשות מחקר שיטתי על:\n\n- **מתחרים** - מי עושה משהו דומה?\n- **שוק** - מה גודל השוק? מה המגמות?\n- **טכנולוגיות** - מה הכלים והטכנולוגיות הרלוונטיות?\n- **משתמשים** - מה הם רוצים? מה כואב להם?"
+      "content": "**research** הוא וורקפלו למחקר שוק מקיף. הוא מדריך אתכם לעשות מחקר שיטתי על:\n\n- **מתחרים** - מי עושה משהו דומה?\n- **שוק** - מה גודל השוק? מה המגמות?\n- **טכנולוגיות** - מה הכלים והטכנולוגיות הרלוונטיות?\n- **משתמשים** - מה הם רוצים? מה כואב להם?",
+      "markdown": true
     },
     {
       "type": "callout",
@@ -599,7 +667,8 @@
       "type": "callout",
       "variant": "success",
       "title": "תוצאה",
-      "content": "קובץ מחקר מפורט (`docs/research.md`) עם כל הממצאים, ניתוחים, והמלצות מבוססות נתונים."
+      "content": "קובץ מחקר מפורט (`docs/research.md`) עם כל הממצאים, ניתוחים, והמלצות מבוססות נתונים.",
+      "markdown": true
     },
     {
       "type": "divider"
@@ -618,7 +687,8 @@
     },
     {
       "type": "text",
-      "content": "**document-project** הוא וורקפלו מיוחד לפרויקטים **קיימים** שאין להם תיעוד. זה מצב שקורה הרבה - יש קוד, יש פיצ'רים, אבל אין מסמך שמסביר מה בעצם הפרויקט עושה."
+      "content": "**document-project** הוא וורקפלו מיוחד לפרויקטים **קיימים** שאין להם תיעוד. זה מצב שקורה הרבה - יש קוד, יש פיצ'רים, אבל אין מסמך שמסביר מה בעצם הפרויקט עושה.",
+      "markdown": true
     },
     {
       "type": "callout",
@@ -628,7 +698,8 @@
     },
     {
       "type": "text",
-      "content": "**הוורקפלו:**\n\n1. סורק את הקוד והקבצים\n2. מזהה מבנה, טכנולוגיות, ופיצ'רים\n3. שואל אתכם שאלות הבהרה\n4. יוצר תיעוד מקיף של הפרויקט"
+      "content": "**הוורקפלו:**\n\n1. סורק את הקוד והקבצים\n2. מזהה מבנה, טכנולוגיות, ופיצ'רים\n3. שואל אתכם שאלות הבהרה\n4. יוצר תיעוד מקיף של הפרויקט",
+      "markdown": true
     },
     {
       "type": "heading",
@@ -673,7 +744,8 @@
     },
     {
       "type": "text",
-      "content": "**תוצאה:**\n\n- `docs/project-overview.md` - סקירה כללית\n- `docs/architecture/existing-architecture.md` - ארכיטקטורה נוכחית\n- `docs/features/existing-features.md` - פיצ'רים קיימים\n- `docs/tech-debt.md` - חובות טכניים שזוהו"
+      "content": "**תוצאה:**\n\n- `docs/project-overview.md` - סקירה כללית\n- `docs/architecture/existing-architecture.md` - ארכיטקטורה נוכחית\n- `docs/features/existing-features.md` - פיצ'רים קיימים\n- `docs/tech-debt.md` - חובות טכניים שזוהו",
+      "markdown": true
     },
     {
       "type": "callout",
@@ -879,7 +951,8 @@
     },
     {
       "type": "text",
-      "content": "במדריך זה למדנו את וורקפלואים של **Phase 0-1** - איך לקחת רעיון ולהפוך אותו ל-Brief מבוסס מחקר:"
+      "content": "במדריך זה למדנו את וורקפלואים של **Phase 0-1** - איך לקחת רעיון ולהפוך אותו ל-Brief מבוסס מחקר:",
+      "markdown": true
     },
     {
       "type": "list",
@@ -995,4 +1068,3 @@
     "workflows-phase2-design"
   ]
 }
-

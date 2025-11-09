@@ -8,7 +8,14 @@
     "difficulty": "intermediate",
     "estimatedMinutes": 45,
     "icon": "IconFileText",
-    "tags": ["וורקפלואים", "מפרט", "ארכיטקטורה", "תכנון", "PRD", "tech-spec"],
+    "tags": [
+      "וורקפלואים",
+      "מפרט",
+      "ארכיטקטורה",
+      "תכנון",
+      "PRD",
+      "tech-spec"
+    ],
     "author": "צוות BMAD",
     "version": "1.0"
   },
@@ -104,11 +111,13 @@
     },
     {
       "type": "text",
-      "content": "**Phase 2 (Solutioning)** הוא השלב שבו לוקחים רעיון ברור (Brief) והופכים אותו לתוכנית מימוש מפורטת. זה השלב הקריטי שבין \"אנחנו יודעים מה לבנות\" ל\"אנחנו מוכנים לבנות את זה\"."
+      "content": "**Phase 2 (Solutioning)** הוא השלב שבו לוקחים רעיון ברור (Brief) והופכים אותו לתוכנית מימוש מפורטת. זה השלב הקריטי שבין \"אנחנו יודעים מה לבנות\" ל\"אנחנו מוכנים לבנות את זה\".",
+      "markdown": true
     },
     {
       "type": "text",
-      "content": "**במילים אחרות:** אם Phase 0-1 עונה על **\"מה ולמה\"**, אז Phase 2 עונה על **\"איך בדיוק\"**."
+      "content": "**במילים אחרות:** אם Phase 0-1 עונה על **\"מה ולמה\"**, אז Phase 2 עונה על **\"איך בדיוק\"**.",
+      "markdown": true
     },
     {
       "type": "heading",
@@ -124,7 +133,8 @@
     },
     {
       "type": "text",
-      "content": "**למה לא לדלג:**"
+      "content": "**למה לא לדלג:**",
+      "markdown": true
     },
     {
       "type": "list",
@@ -177,13 +187,49 @@
     },
     {
       "type": "table",
-      "headers": ["וורקפלו", "אגנט", "מתי להשתמש", "תפוקה", "זמן"],
+      "headers": [
+        "וורקפלו",
+        "אגנט",
+        "מתי להשתמש",
+        "תפוקה",
+        "זמן"
+      ],
       "rows": [
-        ["prd", "PM", "פרויקט מוצר מורכב", "PRD מלא", "3-7 ימים"],
-        ["tech-spec", "PM/Architect", "פרויקט טכני/קטן יותר", "Tech Spec", "2-5 ימים"],
-        ["architecture", "Architect", "כל פרויקט", "Architecture Doc", "3-7 ימים"],
-        ["create-epics-stories", "PM", "אחרי PRD/Spec", "Epics + Stories", "2-5 ימים"],
-        ["solutioning-gate", "PM/Architect", "לפני פיתוח", "דוח מוכנות", "1 יום"]
+        [
+          "prd",
+          "PM",
+          "פרויקט מוצר מורכב",
+          "PRD מלא",
+          "3-7 ימים"
+        ],
+        [
+          "tech-spec",
+          "PM/Architect",
+          "פרויקט טכני/קטן יותר",
+          "Tech Spec",
+          "2-5 ימים"
+        ],
+        [
+          "architecture",
+          "Architect",
+          "כל פרויקט",
+          "Architecture Doc",
+          "3-7 ימים"
+        ],
+        [
+          "create-epics-stories",
+          "PM",
+          "אחרי PRD/Spec",
+          "Epics + Stories",
+          "2-5 ימים"
+        ],
+        [
+          "solutioning-gate",
+          "PM/Architect",
+          "לפני פיתוח",
+          "דוח מוכנות",
+          "1 יום"
+        ]
       ]
     },
     {
@@ -204,13 +250,31 @@
     },
     {
       "type": "table",
-      "headers": ["PRD", "Tech Spec"],
+      "headers": [
+        "PRD",
+        "Tech Spec"
+      ],
       "rows": [
-        ["מוצר עם משתמשים", "פרויקט טכני פנימי"],
-        ["פיצ'רים רבים", "פיצ'רים מעטים"],
-        ["צוות גדול (5+)", "צוות קטן (1-4)"],
-        ["דגש על חוויית משתמש", "דגש על ביצועים/טכנולוגיה"],
-        ["App, Website, Game", "API, Library, Tool, Microservice"]
+        [
+          "מוצר עם משתמשים",
+          "פרויקט טכני פנימי"
+        ],
+        [
+          "פיצ'רים רבים",
+          "פיצ'רים מעטים"
+        ],
+        [
+          "צוות גדול (5+)",
+          "צוות קטן (1-4)"
+        ],
+        [
+          "דגש על חוויית משתמש",
+          "דגש על ביצועים/טכנולוגיה"
+        ],
+        [
+          "App, Website, Game",
+          "API, Library, Tool, Microservice"
+        ]
       ]
     },
     {
@@ -242,11 +306,13 @@
     },
     {
       "type": "text",
-      "content": "**PRD (Product Requirements Document)** הוא המסמך המרכזי של המוצר שלכם. זה מסמך מפורט (10-30 עמודים) שמגדיר כל פיצ'ר, כל מסך, כל תרחיש שימוש - בדיוק איך המוצר אמור לעבוד מנקודת המבט של המשתמש."
+      "content": "**PRD (Product Requirements Document)** הוא המסמך המרכזי של המוצר שלכם. זה מסמך מפורט (10-30 עמודים) שמגדיר כל פיצ'ר, כל מסך, כל תרחיש שימוש - בדיוק איך המוצר אמור לעבוד מנקודת המבט של המשתמש.",
+      "markdown": true
     },
     {
       "type": "text",
-      "content": "**PRD טוב עונה על השאלות:**"
+      "content": "**PRD טוב עונה על השאלות:**",
+      "markdown": true
     },
     {
       "type": "list",
@@ -370,7 +436,8 @@
     },
     {
       "type": "text",
-      "content": "**תרחיש:** יצירת PRD ל-TaskMaster Pro (המשך לדוגמה מ-Phase 0-1)"
+      "content": "**תרחיש:** יצירת PRD ל-TaskMaster Pro (המשך לדוגמה מ-Phase 0-1)",
+      "markdown": true
     },
     {
       "type": "accordion",
@@ -466,11 +533,13 @@
     },
     {
       "type": "text",
-      "content": "**Tech Spec (Technical Specification)** הוא המקבילה הטכנית ל-PRD. בעוד ש-PRD מתמקד במה המשתמש רואה ועושה, Tech Spec מתמקד באיך המערכת עובדת מאחורי הקלעים."
+      "content": "**Tech Spec (Technical Specification)** הוא המקבילה הטכנית ל-PRD. בעוד ש-PRD מתמקד במה המשתמש רואה ועושה, Tech Spec מתמקד באיך המערכת עובדת מאחורי הקלעים.",
+      "markdown": true
     },
     {
       "type": "text",
-      "content": "**Tech Spec מתאים ל:**"
+      "content": "**Tech Spec מתאים ל:**",
+      "markdown": true
     },
     {
       "type": "list",
@@ -541,7 +610,8 @@
       "type": "callout",
       "variant": "success",
       "title": "תוצאה",
-      "content": "Tech Spec מפורט (`docs/specs/tech-spec.md`) שמגדיר בדיוק איך לבנות את המערכת מבחינה טכנית."
+      "content": "Tech Spec מפורט (`docs/specs/tech-spec.md`) שמגדיר בדיוק איך לבנות את המערכת מבחינה טכנית.",
+      "markdown": true
     },
     {
       "type": "callout",
@@ -566,11 +636,13 @@
     },
     {
       "type": "text",
-      "content": "**Architecture** (ארכיטקטורה) היא התוכנית הכוללת של איך המערכת בנויה ברמה הגבוהה. זה כמו תוכנית של בניין - לא כל הפרטים הקטנים, אבל מספיק כדי להבין את המבנה הכללי."
+      "content": "**Architecture** (ארכיטקטורה) היא התוכנית הכוללת של איך המערכת בנויה ברמה הגבוהה. זה כמו תוכנית של בניין - לא כל הפרטים הקטנים, אבל מספיק כדי להבין את המבנה הכללי.",
+      "markdown": true
     },
     {
       "type": "text",
-      "content": "**Architecture Document עונה על:**"
+      "content": "**Architecture Document עונה על:**",
+      "markdown": true
     },
     {
       "type": "list",
@@ -698,7 +770,8 @@
     },
     {
       "type": "text",
-      "content": "**Winston (Architect) עובד איתכם:**"
+      "content": "**Winston (Architect) עובד איתכם:**",
+      "markdown": true
     },
     {
       "type": "list",
@@ -742,21 +815,41 @@
     },
     {
       "type": "text",
-      "content": "**Epic** הוא פיצ'ר גדול שמחולק ל-Stories קטנים יותר."
+      "content": "**Epic** הוא פיצ'ר גדול שמחולק ל-Stories קטנים יותר.",
+      "markdown": true
     },
     {
       "type": "text",
-      "content": "**Story** הוא יחידת עבודה קטנה שמפתח יכול לממש בימים ספורים."
+      "content": "**Story** הוא יחידת עבודה קטנה שמפתח יכול לממש בימים ספורים.",
+      "markdown": true
     },
     {
       "type": "table",
-      "headers": ["Epic", "Story"],
+      "headers": [
+        "Epic",
+        "Story"
+      ],
       "rows": [
-        ["גדול", "קטן"],
-        ["2-6 שבועות", "1-5 ימים"],
-        ["\"Task Management\"", "\"Create Task Form\""],
-        ["רמה גבוהה", "ספציפי מאוד"],
-        ["מכיל Stories", "לא מתחלק יותר"]
+        [
+          "גדול",
+          "קטן"
+        ],
+        [
+          "2-6 שבועות",
+          "1-5 ימים"
+        ],
+        [
+          "\"Task Management\"",
+          "\"Create Task Form\""
+        ],
+        [
+          "רמה גבוהה",
+          "ספציפי מאוד"
+        ],
+        [
+          "מכיל Stories",
+          "לא מתחלק יותר"
+        ]
       ]
     },
     {
@@ -767,11 +860,13 @@
     },
     {
       "type": "text",
-      "content": "**create-epics-and-stories** לוקח את ה-PRD או Tech Spec ופורק אותו ל-Epics ו-Stories מוכנים למימוש."
+      "content": "**create-epics-and-stories** לוקח את ה-PRD או Tech Spec ופורק אותו ל-Epics ו-Stories מוכנים למימוש.",
+      "markdown": true
     },
     {
       "type": "text",
-      "content": "**התהליך:**"
+      "content": "**התהליך:**",
+      "markdown": true
     },
     {
       "type": "list",
@@ -853,7 +948,8 @@
       "type": "callout",
       "variant": "success",
       "title": "תוצאה",
-      "content": "קבצי Epics ו-Stories מובנים (`docs/epics/`) שכל Story מוכן למימוש - יש לו תיאור, acceptance criteria, ואומדן זמן."
+      "content": "קבצי Epics ו-Stories מובנים (`docs/epics/`) שכל Story מוכן למימוש - יש לו תיאור, acceptance criteria, ואומדן זמן.",
+      "markdown": true
     },
     {
       "type": "callout",
@@ -878,11 +974,13 @@
     },
     {
       "type": "text",
-      "content": "**Solutioning Gate Check** הוא \"בדיקת איכות\" לפני שמתחילים לפתח. זו נקודת עצירה שבה אנחנו שואלים: \"האם באמת מוכנים להתחיל לכתוב קוד?\""
+      "content": "**Solutioning Gate Check** הוא \"בדיקת איכות\" לפני שמתחילים לפתח. זו נקודת עצירה שבה אנחנו שואלים: \"האם באמת מוכנים להתחיל לכתוב קוד?\"",
+      "markdown": true
     },
     {
       "type": "text",
-      "content": "**המטרה:** למנוע מצב שבו מתחילים לפתח ואז מגלים שחסרים פרטים, יש סתירות, או שמשהו לא אפשרי."
+      "content": "**המטרה:** למנוע מצב שבו מתחילים לפתח ואז מגלים שחסרים פרטים, יש סתירות, או שמשהו לא אפשרי.",
+      "markdown": true
     },
     {
       "type": "heading",
@@ -1172,7 +1270,8 @@
     },
     {
       "type": "text",
-      "content": "במדריך זה כיסינו את **Phase 2 Core** - איך לקחת Brief ולהפוך אותו למפרט, ארכיטקטורה, ו-Stories מוכנים למימוש:"
+      "content": "במדריך זה כיסינו את **Phase 2 Core** - איך לקחת Brief ולהפוך אותו למפרט, ארכיטקטורה, ו-Stories מוכנים למימוש:",
+      "markdown": true
     },
     {
       "type": "list",
@@ -1324,4 +1423,3 @@
     "workflows-solutioning"
   ]
 }
-

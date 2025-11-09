@@ -8,7 +8,13 @@
     "difficulty": "advanced",
     "estimatedMinutes": 50,
     "icon": "IconBuilding",
-    "tags": ["ארכיטקטורה", "תכנון", "מערכות", "טכנולוגיות", "ADR"]
+    "tags": [
+      "ארכיטקטורה",
+      "תכנון",
+      "מערכות",
+      "טכנולוגיות",
+      "ADR"
+    ]
   },
   "tableOfContents": [
     {
@@ -142,7 +148,8 @@
       "type": "callout",
       "variant": "success",
       "title": "זמן משוער ללמידה",
-      "content": "**3-4 שעות** להבנת הכלים והתהליך. **שבועיים** לשליטה מלאה בעבודה יום-יומית. השקעה שמשתלמת!"
+      "content": "**3-4 שעות** להבנת הכלים והתהליך. **שבועיים** לשליטה מלאה בעבודה יום-יומית. השקעה שמשתלמת!",
+      "markdown": true
     },
     {
       "type": "divider"
@@ -174,19 +181,24 @@
       "variant": "ordered",
       "items": [
         {
-          "content": "**קראו את מדריך Winston** - הכירו את האגנט, המומחיות שלו, וסגנון העבודה"
+          "content": "**קראו את מדריך Winston** - הכירו את האגנט, המומחיות שלו, וסגנון העבודה",
+          "markdown": true
         },
         {
-          "content": "**הריצו `*workflow-init`** - הבינו את הפרויקט שלכם ומה צריך לתכנן"
+          "content": "**הריצו `*workflow-init`** - הבינו את הפרויקט שלכם ומה צריך לתכנן",
+          "markdown": true
         },
         {
-          "content": "**נסו `*architecture`** - צרו מסמך ארכיטקטורה פשוט לפרויקט קטן"
+          "content": "**נסו `*architecture`** - צרו מסמך ארכיטקטורה פשוט לפרויקט קטן",
+          "markdown": true
         },
         {
-          "content": "**למדו על ADRs** - הבינו מה זה Architecture Decision Records ולמה זה קריטי"
+          "content": "**למדו על ADRs** - הבינו מה זה Architecture Decision Records ולמה זה קריטי",
+          "markdown": true
         },
         {
-          "content": "**תרגלו `*tech-spec`** - צרו מפרט טכני למודול אחד"
+          "content": "**תרגלו `*tech-spec`** - צרו מפרט טכני למודול אחד",
+          "markdown": true
         }
       ]
     },
@@ -212,25 +224,32 @@
       "variant": "ordered",
       "items": [
         {
-          "content": "**קבלו PRD** - אם אין, תכתבו אחד פשוט או תשתמשו באגנט PM (John)"
+          "content": "**קבלו PRD** - אם אין, תכתבו אחד פשוט או תשתמשו באגנט PM (John)",
+          "markdown": true
         },
         {
-          "content": "**נתחו דרישות** - זהו דרישות ארכיטקטוניות קריטיות"
+          "content": "**נתחו דרישות** - זהו דרישות ארכיטקטוניות קריטיות",
+          "markdown": true
         },
         {
-          "content": "**בחרו דפוס ארכיטקטורה** - Monolith, Microservices, Serverless וכו'"
+          "content": "**בחרו דפוס ארכיטקטורה** - Monolith, Microservices, Serverless וכו'",
+          "markdown": true
         },
         {
-          "content": "**בחרו טכנולוגיות** - תעדו את ההחלטות וההנמקות"
+          "content": "**בחרו טכנולוגיות** - תעדו את ההחלטות וההנמקות",
+          "markdown": true
         },
         {
-          "content": "**צרו ADRs** - לפחות 3-5 החלטות משמעותיות"
+          "content": "**צרו ADRs** - לפחות 3-5 החלטות משמעותיות",
+          "markdown": true
         },
         {
-          "content": "**כתבו מסמך ארכיטקטורה** - באמצעות Winston"
+          "content": "**כתבו מסמך ארכיטקטורה** - באמצעות Winston",
+          "markdown": true
         },
         {
-          "content": "**הריצו Solutioning Gate Check** - ודאו שהתכנון מוכן למימוש"
+          "content": "**הריצו Solutioning Gate Check** - ודאו שהתכנון מוכן למימוש",
+          "markdown": true
         }
       ]
     },
@@ -238,7 +257,8 @@
       "type": "callout",
       "variant": "success",
       "title": "יעד שבוע 2",
-      "content": "בסוף השבוע, יש לכם מסמך ארכיטקטורה מלא עם ADRs, מוכן למסירה לצוות הפיתוח. **זה הניצחון שלכם!**"
+      "content": "בסוף השבוע, יש לכם מסמך ארכיטקטורה מלא עם ADRs, מוכן למסירה לצוות הפיתוח. **זה הניצחון שלכם!**",
+      "markdown": true
     },
     {
       "type": "heading",
@@ -319,28 +339,36 @@
       "variant": "unordered",
       "items": [
         {
-          "content": "**תכנון ארכיטקטורות מורכבות** - מונוליתים, מיקרוסרוויסים, Serverless, Event-Driven"
+          "content": "**תכנון ארכיטקטורות מורכבות** - מונוליתים, מיקרוסרוויסים, Serverless, Event-Driven",
+          "markdown": true
         },
         {
-          "content": "**בחירת טכנולוגיות** - ניתוח קריטריונים, השוואת אלטרנטיבות, הערכת סיכונים"
+          "content": "**בחירת טכנולוגיות** - ניתוח קריטריונים, השוואת אלטרנטיבות, הערכת סיכונים",
+          "markdown": true
         },
         {
-          "content": "**תיעוד ארכיטקטוני** - C4 Model, UML, ארכיטקטורה כקוד"
+          "content": "**תיעוד ארכיטקטוני** - C4 Model, UML, ארכיטקטורה כקוד",
+          "markdown": true
         },
         {
-          "content": "**הערכת סיכונים טכניים** - זיהוי צווארי בקבוק, נקודות כשל, בעיות סקלאביליות"
+          "content": "**הערכת סיכונים טכניים** - זיהוי צווארי בקבוק, נקודות כשל, בעיות סקלאביליות",
+          "markdown": true
         },
         {
-          "content": "**ADRs (Architecture Decision Records)** - תיעוד החלטות בפורמט מובנה"
+          "content": "**ADRs (Architecture Decision Records)** - תיעוד החלטות בפורמט מובנה",
+          "markdown": true
         },
         {
-          "content": "**דפוסי ארכיטקטורה** - Clean Architecture, Hexagonal, DDD, CQRS"
+          "content": "**דפוסי ארכיטקטורה** - Clean Architecture, Hexagonal, DDD, CQRS",
+          "markdown": true
         },
         {
-          "content": "**אבטחה וביצועים** - שיקולי Security by Design, Performance Architecture"
+          "content": "**אבטחה וביצועים** - שיקולי Security by Design, Performance Architecture",
+          "markdown": true
         },
         {
-          "content": "**הערכת Technical Debt** - זיהוי, תיעוד, ותכנון רפקטורינג"
+          "content": "**הערכת Technical Debt** - זיהוי, תיעוד, ותכנון רפקטורינג",
+          "markdown": true
         }
       ]
     },
@@ -811,7 +839,8 @@
       "type": "callout",
       "variant": "success",
       "title": "זמן כולל",
-      "content": "תהליך מלא של `*architecture` לוקח **1.5-2 שעות** לפרויקט בינוני. זה חוסך **ימים** של עבודה ידנית!"
+      "content": "תהליך מלא של `*architecture` לוקח **1.5-2 שעות** לפרויקט בינוני. זה חוסך **ימים** של עבודה ידנית!",
+      "markdown": true
     },
     {
       "type": "heading",
@@ -972,7 +1001,8 @@
       "type": "callout",
       "variant": "warning",
       "title": "אל תדלגו על Gate Check!",
-      "content": "מחקרים מראים ש-60% מבעיות הפיתוח נובעות מתכנון לא שלם. השקעת 30 דקות בבדיקה חוסכת **שבועות** של רפקטורינג מאוחר יותר."
+      "content": "מחקרים מראים ש-60% מבעיות הפיתוח נובעות מתכנון לא שלם. השקעת 30 דקות בבדיקה חוסכת **שבועות** של רפקטורינג מאוחר יותר.",
+      "markdown": true
     },
     {
       "type": "divider"
@@ -999,28 +1029,36 @@
       "variant": "ordered",
       "items": [
         {
-          "content": "**קבלת PRD מה-PM** - הבנת הדרישות העסקיות והפונקציונליות"
+          "content": "**קבלת PRD מה-PM** - הבנת הדרישות העסקיות והפונקציונליות",
+          "markdown": true
         },
         {
-          "content": "**ניתוח דרישות ארכיטקטוניות** - זיהוי דרישות טכניות, ביצועים, סקלאביליות"
+          "content": "**ניתוח דרישות ארכיטקטוניות** - זיהוי דרישות טכניות, ביצועים, סקלאביליות",
+          "markdown": true
         },
         {
-          "content": "**בחירת דפוסי ארכיטקטורה** - Monolith, Microservices, Serverless וכו'"
+          "content": "**בחירת דפוסי ארכיטקטורה** - Monolith, Microservices, Serverless וכו'",
+          "markdown": true
         },
         {
-          "content": "**בחירת טכנולוגיות** - סטאק, frameworks, databases, infrastructure"
+          "content": "**בחירת טכנולוגיות** - סטאק, frameworks, databases, infrastructure",
+          "markdown": true
         },
         {
-          "content": "**תיעוד החלטות (ADRs)** - תיעוד כל החלטה משמעותית"
+          "content": "**תיעוד החלטות (ADRs)** - תיעוד כל החלטה משמעותית",
+          "markdown": true
         },
         {
-          "content": "**יצירת מסמך ארכיטקטורה** - מסמך מקיף עם דיאגרמות"
+          "content": "**יצירת מסמך ארכיטקטורה** - מסמך מקיף עם דיאגרמות",
+          "markdown": true
         },
         {
-          "content": "**Solutioning Gate Check** - בדיקת מוכנות למימוש"
+          "content": "**Solutioning Gate Check** - בדיקת מוכנות למימוש",
+          "markdown": true
         },
         {
-          "content": "**מסירה ל-Developers** - הסבר והדרכה לצוות"
+          "content": "**מסירה ל-Developers** - הסבר והדרכה לצוות",
+          "markdown": true
         }
       ]
     },
@@ -1028,7 +1066,8 @@
       "type": "callout",
       "variant": "info",
       "title": "זמן כולל משוער",
-      "content": "**פרויקט קטן:** 4-6 שעות | **פרויקט בינוני:** 1-2 ימים | **פרויקט גדול:** 3-5 ימים (במקום שבועות ללא BMAD!)"
+      "content": "**פרויקט קטן:** 4-6 שעות | **פרויקט בינוני:** 1-2 ימים | **פרויקט גדול:** 3-5 ימים (במקום שבועות ללא BMAD!)",
+      "markdown": true
     },
     {
       "type": "divider"
@@ -1282,25 +1321,32 @@
       "variant": "unordered",
       "items": [
         {
-          "content": "**בחירת טכנולוגיות מרכזיות** - Database, Framework, Cloud Provider"
+          "content": "**בחירת טכנולוגיות מרכזיות** - Database, Framework, Cloud Provider",
+          "markdown": true
         },
         {
-          "content": "**דפוסי ארכיטקטורה** - Monolith vs Microservices, Event-Driven"
+          "content": "**דפוסי ארכיטקטורה** - Monolith vs Microservices, Event-Driven",
+          "markdown": true
         },
         {
-          "content": "**אסטרטגיות Integration** - REST vs GraphQL vs gRPC"
+          "content": "**אסטרטגיות Integration** - REST vs GraphQL vs gRPC",
+          "markdown": true
         },
         {
-          "content": "**אבטחה ו-Compliance** - Authentication, Encryption, GDPR"
+          "content": "**אבטחה ו-Compliance** - Authentication, Encryption, GDPR",
+          "markdown": true
         },
         {
-          "content": "**Scaling Strategy** - Horizontal vs Vertical, Caching"
+          "content": "**Scaling Strategy** - Horizontal vs Vertical, Caching",
+          "markdown": true
         },
         {
-          "content": "**Data Management** - Schema design, Partitioning, Backup"
+          "content": "**Data Management** - Schema design, Partitioning, Backup",
+          "markdown": true
         },
         {
-          "content": "**DevOps** - CI/CD, Deployment Strategy, Monitoring"
+          "content": "**DevOps** - CI/CD, Deployment Strategy, Monitoring",
+          "markdown": true
         }
       ]
     },
@@ -1308,7 +1354,8 @@
       "type": "callout",
       "variant": "tip",
       "title": "כלל אצבע",
-      "content": "אם הדיון על ההחלטה לקח יותר מ-30 דקות, או אם שינוי ההחלטה בעתיד יקח יותר משבוע - **תעדו ADR!**"
+      "content": "אם הדיון על ההחלטה לקח יותר מ-30 דקות, או אם שינוי ההחלטה בעתיד יקח יותר משבוע - **תעדו ADR!**",
+      "markdown": true
     },
     {
       "type": "divider"
@@ -1339,7 +1386,8 @@
       "type": "callout",
       "variant": "tip",
       "title": "שאלות חשובות לשאול את ה-PM",
-      "content": "**דרישות עסקיות:**\n- מהו ה-Business Value? (למה בונים את זה?)\n- מה הצפי לעומס? (כמה משתמשים, transactions?)\n- מה זמני התגובה המקובלים בתעשייה?\n- האם יש דרישות Compliance? (GDPR, SOC2, HIPAA)\n\n**מגבלות:**\n- מה התקציב לתשתית?\n- מה גודל הצוות?\n- מה ה-Timeline?\n- האם יש טכנולוגיות קיימות שחייבים להשתמש בהן?"
+      "content": "**דרישות עסקיות:**\n- מהו ה-Business Value? (למה בונים את זה?)\n- מה הצפי לעומס? (כמה משתמשים, transactions?)\n- מה זמני התגובה המקובלים בתעשייה?\n- האם יש דרישות Compliance? (GDPR, SOC2, HIPAA)\n\n**מגבלות:**\n- מה התקציב לתשתית?\n- מה גודל הצוות?\n- מה ה-Timeline?\n- האם יש טכנולוגיות קיימות שחייבים להשתמש בהן?",
+      "markdown": true
     },
     {
       "type": "text",
@@ -1412,7 +1460,8 @@
       "type": "callout",
       "variant": "warning",
       "title": "ביקורת ארכיטקטונית קבועה",
-      "content": "מומלץ לבצע Code Review ארכיטקטוני **פעם בשבועיים**. זה מונע סטיות מהתכנון ומזהה בעיות מוקדם!"
+      "content": "מומלץ לבצע Code Review ארכיטקטוני **פעם בשבועיים**. זה מונע סטיות מהתכנון ומזהה בעיות מוקדם!",
+      "markdown": true
     },
     {
       "type": "divider"
@@ -1439,28 +1488,36 @@
       "variant": "unordered",
       "items": [
         {
-          "content": "**Simple is Better** - אל תסבכו. ארכיטקטורה טובה היא פשוטה ככל האפשר."
+          "content": "**Simple is Better** - אל תסבכו. ארכיטקטורה טובה היא פשוטה ככל האפשר.",
+          "markdown": true
         },
         {
-          "content": "**Loose Coupling** - מודולים עצמאיים שתלויים זה בזה במינימום."
+          "content": "**Loose Coupling** - מודולים עצמאיים שתלויים זה בזה במינימום.",
+          "markdown": true
         },
         {
-          "content": "**High Cohesion** - כל מודול עושה דבר אחד ועושה אותו טוב."
+          "content": "**High Cohesion** - כל מודול עושה דבר אחד ועושה אותו טוב.",
+          "markdown": true
         },
         {
-          "content": "**Separation of Concerns** - הפרדה ברורה בין שכבות ותחומי אחריות."
+          "content": "**Separation of Concerns** - הפרדה ברורה בין שכבות ותחומי אחריות.",
+          "markdown": true
         },
         {
-          "content": "**Design for Change** - הכל משתנה. תכננו לגמישות."
+          "content": "**Design for Change** - הכל משתנה. תכננו לגמישות.",
+          "markdown": true
         },
         {
-          "content": "**Document Decisions** - תעדו את ה-WHY, לא רק את ה-WHAT."
+          "content": "**Document Decisions** - תעדו את ה-WHY, לא רק את ה-WHAT.",
+          "markdown": true
         },
         {
-          "content": "**Measure Performance** - אל תנחשו. מדדו."
+          "content": "**Measure Performance** - אל תנחשו. מדדו.",
+          "markdown": true
         },
         {
-          "content": "**Security by Design** - אבטחה מהיום הראשון, לא בדיעבד."
+          "content": "**Security by Design** - אבטחה מהיום הראשון, לא בדיעבד.",
+          "markdown": true
         }
       ]
     },
@@ -1571,34 +1628,44 @@
       "variant": "unordered",
       "items": [
         {
-          "content": "**סקירה כללית** - מה המערכת עושה ולמי"
+          "content": "**סקירה כללית** - מה המערכת עושה ולמי",
+          "markdown": true
         },
         {
-          "content": "**דרישות ארכיטקטוניות** - Performance, Security, Scalability"
+          "content": "**דרישות ארכיטקטוניות** - Performance, Security, Scalability",
+          "markdown": true
         },
         {
-          "content": "**דיאגרמות C4** - Context, Container, Component, Code"
+          "content": "**דיאגרמות C4** - Context, Container, Component, Code",
+          "markdown": true
         },
         {
-          "content": "**טכנולוגיות ונימוקים** - מה בחרנו ולמה"
+          "content": "**טכנולוגיות ונימוקים** - מה בחרנו ולמה",
+          "markdown": true
         },
         {
-          "content": "**ADRs** - כל ההחלטות המשמעותיות"
+          "content": "**ADRs** - כל ההחלטות המשמעותיות",
+          "markdown": true
         },
         {
-          "content": "**זרימת נתונים** - איך הנתונים זורמים במערכת"
+          "content": "**זרימת נתונים** - איך הנתונים זורמים במערכת",
+          "markdown": true
         },
         {
-          "content": "**שיקולי אבטחה** - איך מאובטחת המערכת"
+          "content": "**שיקולי אבטחה** - איך מאובטחת המערכת",
+          "markdown": true
         },
         {
-          "content": "**נקודות הרחבה** - איפה המערכת יכולה לגדול"
+          "content": "**נקודות הרחבה** - איפה המערכת יכולה לגדול",
+          "markdown": true
         },
         {
-          "content": "**סיכונים ידועים** - מה עלול להישבר"
+          "content": "**סיכונים ידועים** - מה עלול להישבר",
+          "markdown": true
         },
         {
-          "content": "**Runbooks** - איך מפעילים ומנטרים"
+          "content": "**Runbooks** - איך מפעילים ומנטרים",
+          "markdown": true
         }
       ]
     },
@@ -1606,7 +1673,8 @@
       "type": "callout",
       "variant": "warning",
       "title": "טעויות נפוצות בתיעוד",
-      "content": "**אל תעשו:**\n- ❌ תיעוד שלא מתעדכן (out of sync עם הקוד)\n- ❌ תיעוד מפורט מדי (אף אחד לא קורא)\n- ❌ תיעוד כללי מדי (לא עוזר למפתחים)\n- ❌ תיעוד בלי דיאגרמות (קשה להבין)\n- ❌ תיעוד ללא ADRs (לא מבינים למה)"
+      "content": "**אל תעשו:**\n- ❌ תיעוד שלא מתעדכן (out of sync עם הקוד)\n- ❌ תיעוד מפורט מדי (אף אחד לא קורא)\n- ❌ תיעוד כללי מדי (לא עוזר למפתחים)\n- ❌ תיעוד בלי דיאגרמות (קשה להבין)\n- ❌ תיעוד ללא ADRs (לא מבינים למה)",
+      "markdown": true
     },
     {
       "type": "divider"
@@ -1713,7 +1781,8 @@
       "type": "callout",
       "variant": "success",
       "title": "נקודות מפתח",
-      "content": "**מה למדנו:**\n- Winston הוא האגנט הארכיטקטוני המומחה שלכם\n- שלושה וורקפלואים מרכזיים: `*architecture`, `*tech-spec`, `*solutioning-gate-check`\n- תהליך מובנה מ-PRD ועד מסירה לצוות\n- ADRs קריטיים לתיעוד החלטות\n- עבודה צוותית עם PM, Dev, UX\n- Best practices לארכיטקטורה טובה"
+      "content": "**מה למדנו:**\n- Winston הוא האגנט הארכיטקטוני המומחה שלכם\n- שלושה וורקפלואים מרכזיים: `*architecture`, `*tech-spec`, `*solutioning-gate-check`\n- תהליך מובנה מ-PRD ועד מסירה לצוות\n- ADRs קריטיים לתיעוד החלטות\n- עבודה צוותית עם PM, Dev, UX\n- Best practices לארכיטקטורה טובה",
+      "markdown": true
     },
     {
       "type": "heading",
@@ -1731,16 +1800,20 @@
       "variant": "unordered",
       "items": [
         {
-          "content": "**מדריך למפתחים** - להבין איך Dev משתמש בארכיטקטורה שלכם"
+          "content": "**מדריך למפתחים** - להבין איך Dev משתמש בארכיטקטורה שלכם",
+          "markdown": true
         },
         {
-          "content": "**מדריך למנהלי מוצר** - לתאם טוב יותר עם PM"
+          "content": "**מדריך למנהלי מוצר** - לתאם טוב יותר עם PM",
+          "markdown": true
         },
         {
-          "content": "**מדריך וורקפלואים** - להעמיק בכל הוורקפלואים"
+          "content": "**מדריך וורקפלואים** - להעמיק בכל הוורקפלואים",
+          "markdown": true
         },
         {
-          "content": "**מדריך ADRs** - מדריך מפורט ליצירת ADRs מצוינים"
+          "content": "**מדריך ADRs** - מדריך מפורט ליצירת ADRs מצוינים",
+          "markdown": true
         }
       ]
     },
@@ -1755,19 +1828,24 @@
       "variant": "ordered",
       "items": [
         {
-          "content": "**תרגלו על פרויקט קטן** - קחו פרויקט קיים או דמיוני ותכננו אותו עם Winston"
+          "content": "**תרגלו על פרויקט קטן** - קחו פרויקט קיים או דמיוני ותכננו אותו עם Winston",
+          "markdown": true
         },
         {
-          "content": "**צרו ADR אחד** - תרגלו תיעוד החלטה טכנית"
+          "content": "**צרו ADR אחד** - תרגלו תיעוד החלטה טכנית",
+          "markdown": true
         },
         {
-          "content": "**הריצו Gate Check** - בדקו פרויקט קיים לראות מה חסר"
+          "content": "**הריצו Gate Check** - בדקו פרויקט קיים לראות מה חסר",
+          "markdown": true
         },
         {
-          "content": "**שלבו בעבודה** - התחילו להשתמש ב-BMAD בפרויקט אמיתי"
+          "content": "**שלבו בעבודה** - התחילו להשתמש ב-BMAD בפרויקט אמיתי",
+          "markdown": true
         },
         {
-          "content": "**שתפו ידע** - לימדו את הצוות להשתמש במסמכי הארכיטקטורה"
+          "content": "**שתפו ידע** - לימדו את הצוות להשתמש במסמכי הארכיטקטורה",
+          "markdown": true
         }
       ]
     },
@@ -1775,7 +1853,8 @@
       "type": "callout",
       "variant": "info",
       "title": "זוכרים",
-      "content": "ארכיטקטורה טובה היא לא המורכבת ביותר או ה\"מגניבה\" ביותר. **ארכיטקטורה טובה היא זו שפותרת את הבעיה בצורה הפשוטה ביותר, ומתועדת היטב.**"
+      "content": "ארכיטקטורה טובה היא לא המורכבת ביותר או ה\"מגניבה\" ביותר. **ארכיטקטורה טובה היא זו שפותרת את הבעיה בצורה הפשוטה ביותר, ומתועדת היטב.**",
+      "markdown": true
     },
     {
       "type": "divider"
@@ -1784,8 +1863,8 @@
       "type": "callout",
       "variant": "success",
       "title": "מזל טוב!",
-      "content": "סיימתם את המדריך לארכיטקטים! אתם מוכנים לתכנן ארכיטקטורות מקצועיות עם BMAD. **בהצלחה!** 🏛️"
+      "content": "סיימתם את המדריך לארכיטקטים! אתם מוכנים לתכנן ארכיטקטורות מקצועיות עם BMAD. **בהצלחה!** 🏛️",
+      "markdown": true
     }
   ]
 }
-

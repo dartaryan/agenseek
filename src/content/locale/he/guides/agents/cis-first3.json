@@ -8,7 +8,13 @@
     "difficulty": "advanced",
     "estimatedMinutes": 40,
     "icon": "Users",
-    "tags": ["אג'נטים", "CIS", "party-mode", "שיתוף פעולה", "אינטליגנציה קולקטיבית"],
+    "tags": [
+      "אג'נטים",
+      "CIS",
+      "party-mode",
+      "שיתוף פעולה",
+      "אינטליגנציה קולקטיבית"
+    ],
     "author": "צוות BMAD",
     "version": "1.0"
   },
@@ -375,37 +381,67 @@
     {
       "type": "table",
       "headers": [
-        { "content": "מספר" },
-        { "content": "טוב ל..." },
-        { "content": "לא טוב ל..." }
+        {
+          "content": "מספר"
+        },
+        {
+          "content": "טוב ל..."
+        },
+        {
+          "content": "לא טוב ל..."
+        }
       ],
       "rows": [
         {
           "cells": [
-            { "content": "2" },
-            { "content": "משימות ממוקדות, תיאום מהיר" },
-            { "content": "החלטות מורכבות" }
+            {
+              "content": "2"
+            },
+            {
+              "content": "משימות ממוקדות, תיאום מהיר"
+            },
+            {
+              "content": "החלטות מורכבות"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "3" },
-            { "content": "רוב המשימות - sweet spot!" },
-            { "content": "-" }
+            {
+              "content": "3"
+            },
+            {
+              "content": "רוב המשימות - sweet spot!"
+            },
+            {
+              "content": "-"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "4" },
-            { "content": "פרויקטים גדולים, החלטות מרכזיות" },
-            { "content": "משימות קטנות" }
+            {
+              "content": "4"
+            },
+            {
+              "content": "פרויקטים גדולים, החלטות מרכזיות"
+            },
+            {
+              "content": "משימות קטנות"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "5+" },
-            { "content": "brainstorming, הצגות" },
-            { "content": "execution - יותר מדי רעש" }
+            {
+              "content": "5+"
+            },
+            {
+              "content": "brainstorming, הצגות"
+            },
+            {
+              "content": "execution - יותר מדי רעש"
+            }
           ]
         }
       ]
@@ -421,19 +457,24 @@
       "ordered": false,
       "items": [
         {
-          "content": "✅ **תנו לכל אג'נט לדבר** - כולם צריכים לתרום"
+          "content": "✅ **תנו לכל אג'נט לדבר** - כולם צריכים לתרום",
+          "markdown": true
         },
         {
-          "content": "✅ **שאלו שאלות** - אג'נטים אוהבים לענות"
+          "content": "✅ **שאלו שאלות** - אג'נטים אוהבים לענות",
+          "markdown": true
         },
         {
-          "content": "✅ **סכמו לפני מעבר** - וודאו שכולם מסכימים"
+          "content": "✅ **סכמו לפני מעבר** - וודאו שכולם מסכימים",
+          "markdown": true
         },
         {
-          "content": "❌ **אל תדברו רק עם אג'נט אחד** - שאר האג'נטים מרגישים מיותרים"
+          "content": "❌ **אל תדברו רק עם אג'נט אחד** - שאר האג'נטים מרגישים מיותרים",
+          "markdown": true
         },
         {
-          "content": "❌ **אל תקפצו בין נושאים** - סיימו נושא אחד לפני המעבר"
+          "content": "❌ **אל תקפצו בין נושאים** - סיימו נושא אחד לפני המעבר",
+          "markdown": true
         }
       ]
     },
@@ -549,7 +590,8 @@
           "content": "זהו אילו אג'נטים צריכים (2-3 בהתחלה)"
         },
         {
-          "content": "הפעילו Party Mode: `@bmad-master *party-mode`"
+          "content": "הפעילו Party Mode: `@bmad-master *party-mode`",
+          "markdown": true
         },
         {
           "content": "הזמינו את האג'נטים ותתחילו לעבוד"
@@ -586,4 +628,3 @@
     "workflows-sprint-planning"
   ]
 }
-

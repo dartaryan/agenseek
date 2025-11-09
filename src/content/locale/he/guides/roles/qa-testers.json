@@ -8,7 +8,15 @@
     "difficulty": "intermediate",
     "estimatedMinutes": 40,
     "icon": "TestPipe",
-    "tags": ["בודקי תוכנה", "QA", "TEA", "בדיקות", "איכות", "test plans", "automation"],
+    "tags": [
+      "בודקי תוכנה",
+      "QA",
+      "TEA",
+      "בדיקות",
+      "איכות",
+      "test plans",
+      "automation"
+    ],
     "author": "צוות BMAD",
     "version": "1.0"
   },
@@ -1044,7 +1052,7 @@
     {
       "type": "text",
       "content": "**איך לעשות:**\n• הריצו test-arch לפיצ'רים גדולים\n• צרו Test Plan לכל Story\n• קבלו אישור מה-Team Lead לפני שמתחילים",
-      "markdown": false
+      "markdown": true
     },
     {
       "type": "heading",
@@ -1055,7 +1063,7 @@
     {
       "type": "text",
       "content": "**מה לתעד:**\n• Test Plans\n• Test Cases (כולל Expected Results)\n• Bug Reports מפורטים\n• Test Results\n• Lessons Learned",
-      "markdown": false
+      "markdown": true
     },
     {
       "type": "callout",
@@ -1072,7 +1080,7 @@
     {
       "type": "text",
       "content": "**לא כל דבר צריך אוטומציה!**\n\n**כן לאוטמט:**\n• Happy Path flows\n• בדיקות רגרסיה\n• בדיקות Smoke\n• API Tests\n• Performance Tests\n\n**לא לאוטמט:**\n• בדיקות חד-פעמיות\n• בדיקות UX מורכבות\n• בדיקות שמשתנות כל הזמן\n• בדיקות שקל יותר לעשות ידנית",
-      "markdown": false
+      "markdown": true
     },
     {
       "type": "heading",
@@ -1083,7 +1091,7 @@
     {
       "type": "text",
       "content": "**אל תחכו לסוף!**\n\n• הצטרפו ל-Story Planning\n• תנו feedback על Acceptance Criteria\n• הריצו story-ready לפני הפיתוח\n• עבדו עם המפתחים תוך כדי\n• בדקו Incrementally, לא רק בסוף",
-      "markdown": false
+      "markdown": true
     },
     {
       "type": "callout",
@@ -1100,12 +1108,12 @@
     {
       "type": "text",
       "content": "**כל באג = שיעור:**\n\n• למה לא מצאתם את הבאג לפני?\n• מה צריך לשפר בתהליך?\n• אילו Test Cases חסרים?\n• איך למנוע בעיות דומות?",
-      "markdown": false
+      "markdown": true
     },
     {
       "type": "text",
       "content": "**עשו Retrospective בדיקות:**\n• פעם בשבועיים\n• עברו על הבאגים שנמצאו\n• זהו דפוסים\n• שפרו את התהליך",
-      "markdown": false
+      "markdown": true
     },
     {
       "type": "divider"
@@ -1208,19 +1216,24 @@
       "variant": "ordered",
       "items": [
         {
-          "content": "**התקינו את BMAD** בפרויקט שלכם (אם עוד לא)"
+          "content": "**התקינו את BMAD** בפרויקט שלכם (אם עוד לא)",
+          "markdown": true
         },
         {
-          "content": "**הריצו test-arch** על פיצ'ר אמיתי"
+          "content": "**הריצו test-arch** על פיצ'ר אמיתי",
+          "markdown": true
         },
         {
-          "content": "**צרו Test Plan** לפחות ל-Story אחד"
+          "content": "**צרו Test Plan** לפחות ל-Story אחד",
+          "markdown": true
         },
         {
-          "content": "**כתבו בדיקה אוטומטית אחת** עם עזרת Murat"
+          "content": "**כתבו בדיקה אוטומטית אחת** עם עזרת Murat",
+          "markdown": true
         },
         {
-          "content": "**שתפו את הצוות** - הראו להם מה למדתם"
+          "content": "**שתפו את הצוות** - הראו להם מה למדתם",
+          "markdown": true
         }
       ]
     },
@@ -1310,4 +1323,3 @@
     }
   ]
 }
-

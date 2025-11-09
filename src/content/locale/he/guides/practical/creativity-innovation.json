@@ -8,7 +8,14 @@
     "difficulty": "intermediate",
     "estimatedMinutes": 30,
     "icon": "IconSparkles",
-    "tags": ["יצירתיות", "חדשנות", "brainstorming", "רעיונות", "CIS", "party-mode"]
+    "tags": [
+      "יצירתיות",
+      "חדשנות",
+      "brainstorming",
+      "רעיונות",
+      "CIS",
+      "party-mode"
+    ]
   },
   "tableOfContents": [
     {
@@ -143,13 +150,37 @@
     },
     {
       "type": "table",
-      "headers": ["שלב", "אגנט רלוונטי", "וורקפלואו"],
+      "headers": [
+        "שלב",
+        "אגנט רלוונטי",
+        "וורקפלואו"
+      ],
       "rows": [
-        ["Empathize", "Sally (UX Designer)", "research, create-ux-design"],
-        ["Define", "John (PM) + Mary (Analyst)", "product-brief, prd"],
-        ["Ideate", "CIS Party Mode", "brainstorming"],
-        ["Prototype", "Sarah (Architect) + Amelia (Dev)", "tech-spec, architecture"],
-        ["Test", "Murat (TEA)", "master-test-plan, story-done"]
+        [
+          "Empathize",
+          "Sally (UX Designer)",
+          "research, create-ux-design"
+        ],
+        [
+          "Define",
+          "John (PM) + Mary (Analyst)",
+          "product-brief, prd"
+        ],
+        [
+          "Ideate",
+          "CIS Party Mode",
+          "brainstorming"
+        ],
+        [
+          "Prototype",
+          "Sarah (Architect) + Amelia (Dev)",
+          "tech-spec, architecture"
+        ],
+        [
+          "Test",
+          "Murat (TEA)",
+          "master-test-plan, story-done"
+        ]
       ]
     },
     {
@@ -174,23 +205,28 @@
       "items": [
         {
           "title": "שלב 1: Empathize - מחקר משתמשים",
-          "content": "התחילו עם Sally (UX Designer):\n\n```bash\n@ux-designer.mdc\n*research\n```\n\nSally תעזור לכם להבין:\n- מי המשתמשים שלכם\n- מה הצרכים שלהם\n- מה נקודות הכאב שלהם\n- איזה פתרונות קיימים לא עובדים"
+          "content": "התחילו עם Sally (UX Designer):\n\n```bash\n@ux-designer.mdc\n*research\n```\n\nSally תעזור לכם להבין:\n- מי המשתמשים שלכם\n- מה הצרכים שלהם\n- מה נקודות הכאב שלהם\n- איזה פתרונות קיימים לא עובדים",
+          "markdown": true
         },
         {
           "title": "שלב 2: Define - הגדרת הבעיה",
-          "content": "עברו ל-John (PM) ו-Mary (Analyst):\n\n```bash\n@pm.mdc\n*product-brief\n```\n\nהם יעזרו לכם להגדיר:\n- מהי הבעיה המדויקת\n- למי אנחנו פותרים אותה\n- מה הערך העסקי\n- איך נמדוד הצלחה"
+          "content": "עברו ל-John (PM) ו-Mary (Analyst):\n\n```bash\n@pm.mdc\n*product-brief\n```\n\nהם יעזרו לכם להגדיר:\n- מהי הבעיה המדויקת\n- למי אנחנו פותרים אותה\n- מה הערך העסקי\n- איך נמדוד הצלחה",
+          "markdown": true
         },
         {
           "title": "שלב 3: Ideate - יצירת רעיונות",
-          "content": "הפעילו Party Mode עם מספר אגנטים:\n\n```bash\n@bmad-master.mdc\n*party-mode\n```\n\nשלבו:\n- John (PM) - זווית עסקית\n- Sarah (Architect) - זווית טכנולוגית\n- Sally (UX) - זווית חווית משתמש\n- Amelia (Dev) - זווית מימוש\n\nכל אחד יציע רעיונות מהתחום שלו!"
+          "content": "הפעילו Party Mode עם מספר אגנטים:\n\n```bash\n@bmad-master.mdc\n*party-mode\n```\n\nשלבו:\n- John (PM) - זווית עסקית\n- Sarah (Architect) - זווית טכנולוגית\n- Sally (UX) - זווית חווית משתמש\n- Amelia (Dev) - זווית מימוש\n\nכל אחד יציע רעיונות מהתחום שלו!",
+          "markdown": true
         },
         {
           "title": "שלב 4: Prototype - בניית אבטיפוס",
-          "content": "עברו לתכנון טכני:\n\n```bash\n@architect.mdc\n*tech-spec\n```\n\nSarah תעזור לתכנן:\n- ארכיטקטורה טכנית\n- בחירת טכנולוגיות\n- תכנון API\n- מבנה נתונים"
+          "content": "עברו לתכנון טכני:\n\n```bash\n@architect.mdc\n*tech-spec\n```\n\nSarah תעזור לתכנן:\n- ארכיטקטורה טכנית\n- בחירת טכנולוגיות\n- תכנון API\n- מבנה נתונים",
+          "markdown": true
         },
         {
           "title": "שלב 5: Test - בדיקה",
-          "content": "תכננו בדיקות עם Murat:\n\n```bash\n@tea.mdc\n*master-test-plan\n```\n\nMurat ייצור:\n- תוכנית בדיקה מקיפה\n- תרחישי בדיקה\n- קריטריונים להצלחה\n- אוטומציית בדיקות"
+          "content": "תכננו בדיקות עם Murat:\n\n```bash\n@tea.mdc\n*master-test-plan\n```\n\nMurat ייצור:\n- תוכנית בדיקה מקיפה\n- תרחישי בדיקה\n- קריטריונים להצלחה\n- אוטומציית בדיקות",
+          "markdown": true
         }
       ]
     },
@@ -333,22 +369,26 @@
         {
           "type": "card",
           "title": "חקר טכנולוגיה חדשה",
-          "content": "**השתתפו:**\n- Sarah (Architect) - זווית ארכיטקטונית\n- Amelia (Dev) - זווית מימוש\n- Murat (TEA) - זווית בדיקות\n\n**המטרה:** להבין האם טכנולוגיה X מתאימה לפרויקט"
+          "content": "**השתתפו:**\n- Sarah (Architect) - זווית ארכיטקטונית\n- Amelia (Dev) - זווית מימוש\n- Murat (TEA) - זווית בדיקות\n\n**המטרה:** להבין האם טכנולוגיה X מתאימה לפרויקט",
+          "markdown": true
         },
         {
           "type": "card",
           "title": "תכנון פיצ'ר מורכב",
-          "content": "**השתתפו:**\n- John (PM) - דרישות עסקיות\n- Sally (UX) - חווית משתמש\n- Sarah (Architect) - אפשרות טכנית\n\n**המטרה:** לתכנן פיצ'ר שמשלב כל הזוויות"
+          "content": "**השתתפו:**\n- John (PM) - דרישות עסקיות\n- Sally (UX) - חווית משתמש\n- Sarah (Architect) - אפשרות טכנית\n\n**המטרה:** לתכנן פיצ'ר שמשלב כל הזוויות",
+          "markdown": true
         },
         {
           "type": "card",
           "title": "פתרון בעיה מורכבת",
-          "content": "**השתתפו:**\n- Sarah (Architect) - חשיבה מערכתית\n- Amelia (Dev) - פתרונות קוד\n- Murat (TEA) - זיהוי edge cases\n\n**המטרה:** למצוא פתרון חזק ובדוק"
+          "content": "**השתתפו:**\n- Sarah (Architect) - חשיבה מערכתית\n- Amelia (Dev) - פתרונות קוד\n- Murat (TEA) - זיהוי edge cases\n\n**המטרה:** למצוא פתרון חזק ובדוק",
+          "markdown": true
         },
         {
           "type": "card",
           "title": "תכנון אסטרטגי",
-          "content": "**השתתפו:**\n- John (PM) - חזון המוצר\n- Mary (Analyst) - ניתוח נתונים\n- Bob (SM) - תכנון ביצוע\n\n**המטרה:** לבנות תוכנית אסטרטגית"
+          "content": "**השתתפו:**\n- John (PM) - חזון המוצר\n- Mary (Analyst) - ניתוח נתונים\n- Bob (SM) - תכנון ביצוע\n\n**המטרה:** לבנות תוכנית אסטרטגית",
+          "markdown": true
         }
       ]
     },
@@ -391,13 +431,37 @@
     },
     {
       "type": "table",
-      "headers": ["וורקפלואו", "מתי להשתמש", "פלט"],
+      "headers": [
+        "וורקפלואו",
+        "מתי להשתמש",
+        "פלט"
+      ],
       "rows": [
-        ["brainstorming", "כשצריכים רעיונות חדשים", "רשימת רעיונות מדורגת"],
-        ["research", "כשצריכים להבין תחום חדש", "מסמך מחקר מקיף"],
-        ["product-brief", "כשיש רעיון למוצר חדש", "בריף מוצר מפורט"],
-        ["tech-spec", "כשרוצים לחקור פתרון טכני", "מפרט טכני"],
-        ["architecture", "כשצריכים לתכנן מערכת חדשה", "ארכיטקטורה מפורטת"]
+        [
+          "brainstorming",
+          "כשצריכים רעיונות חדשים",
+          "רשימת רעיונות מדורגת"
+        ],
+        [
+          "research",
+          "כשצריכים להבין תחום חדש",
+          "מסמך מחקר מקיף"
+        ],
+        [
+          "product-brief",
+          "כשיש רעיון למוצר חדש",
+          "בריף מוצר מפורט"
+        ],
+        [
+          "tech-spec",
+          "כשרוצים לחקור פתרון טכני",
+          "מפרט טכני"
+        ],
+        [
+          "architecture",
+          "כשצריכים לתכנן מערכת חדשה",
+          "ארכיטקטורה מפורטת"
+        ]
       ]
     },
     {
@@ -416,27 +480,33 @@
       "items": [
         {
           "title": "שלב 1: Ideation - יצירת רעיונות (1-2 שעות)",
-          "content": "**וורקפלואו:** brainstorming\n\nמה קורה:\n- בוחרים נושא רחב (למשל: \"AI in Education\")\n- מזמינים 3-4 אגנטים\n- כל אחד מציע 5-10 רעיונות\n- מצלבים רעיונות\n- מדרגים לפי פוטנציאל\n\n**פלט:** 3-5 רעיונות מבטיחים"
+          "content": "**וורקפלואו:** brainstorming\n\nמה קורה:\n- בוחרים נושא רחב (למשל: \"AI in Education\")\n- מזמינים 3-4 אגנטים\n- כל אחד מציע 5-10 רעיונות\n- מצלבים רעיונות\n- מדרגים לפי פוטנציאל\n\n**פלט:** 3-5 רעיונות מבטיחים",
+          "markdown": true
         },
         {
           "title": "שלב 2: Research - מחקר וולידציה (2-3 שעות)",
-          "content": "**וורקפלואו:** research\n\nמה קורה:\n- בוחרים רעיון אחד\n- Mary (Analyst) חוקרת:\n  - האם יש שוק?\n  - מי המתחרים?\n  - מה הפוטנציאל העסקי?\n- Sally (UX) חוקרת:\n  - מי המשתמשים?\n  - מה הצרכים שלהם?\n  - האם יש Pain Points?\n\n**פלט:** מסמך מחקר + המלצה להמשיך או לא"
+          "content": "**וורקפלואו:** research\n\nמה קורה:\n- בוחרים רעיון אחד\n- Mary (Analyst) חוקרת:\n  - האם יש שוק?\n  - מי המתחרים?\n  - מה הפוטנציאל העסקי?\n- Sally (UX) חוקרת:\n  - מי המשתמשים?\n  - מה הצרכים שלהם?\n  - האם יש Pain Points?\n\n**פלט:** מסמך מחקר + המלצה להמשיך או לא",
+          "markdown": true
         },
         {
           "title": "שלב 3: Brief - הגדרת המוצר (1-2 שעות)",
-          "content": "**וורקפלואו:** product-brief\n\nמה קורה:\n- John (PM) מנסח:\n  - חזון המוצר\n  - מטרות עסקיות\n  - קהל יעד\n  - Success metrics\n  - MVP scope\n\n**פלט:** בריף מוצר ברור ומוגדר"
+          "content": "**וורקפלואו:** product-brief\n\nמה קורה:\n- John (PM) מנסח:\n  - חזון המוצר\n  - מטרות עסקיות\n  - קהל יעד\n  - Success metrics\n  - MVP scope\n\n**פלט:** בריף מוצר ברור ומוגדר",
+          "markdown": true
         },
         {
           "title": "שלב 4: Technical Exploration - חקר טכני (2-3 שעות)",
-          "content": "**וורקפלואו:** tech-spec\n\nמה קורה:\n- Sarah (Architect) בוחנת:\n  - אילו טכנולוגיות?\n  - איזו ארכיטקטורה?\n  - מה האתגרים הטכניים?\n  - מה האלטרנטיבות?\n\n**פלט:** מפרט טכני + המלצות"
+          "content": "**וורקפלואו:** tech-spec\n\nמה קורה:\n- Sarah (Architect) בוחנת:\n  - אילו טכנולוגיות?\n  - איזו ארכיטקטורה?\n  - מה האתגרים הטכניים?\n  - מה האלטרנטיבות?\n\n**פלט:** מפרט טכני + המלצות",
+          "markdown": true
         },
         {
           "title": "שלב 5: Prototype Planning - תכנון פרוטוטייפ (1-2 שעות)",
-          "content": "**וורקפלואו:** create-epics-and-stories\n\nמה קורה:\n- יצירת Epic לפרוטוטייפ\n- פירוק ל-Stories קטנות\n- תעדוף Stories\n- הגדרת Definition of Done\n\n**פלט:** Backlog מוכן לפיתוח"
+          "content": "**וורקפלואו:** create-epics-and-stories\n\nמה קורה:\n- יצירת Epic לפרוטוטייפ\n- פירוק ל-Stories קטנות\n- תעדוף Stories\n- הגדרת Definition of Done\n\n**פלט:** Backlog מוכן לפיתוח",
+          "markdown": true
         },
         {
           "title": "שלב 6: Build & Test - בנייה ובדיקה (זמן משתנה)",
-          "content": "**וורקפלואים:** dev-story, code-review, story-done\n\nמה קורה:\n- Amelia (Dev) בונה את הפרוטוטייפ\n- Murat (TEA) בודק\n- הצוות עושה Code Reviews\n- סוגרים Stories\n\n**פלט:** פרוטוטייפ עובד!"
+          "content": "**וורקפלואים:** dev-story, code-review, story-done\n\nמה קורה:\n- Amelia (Dev) בונה את הפרוטוטייפ\n- Murat (TEA) בודק\n- הצוות עושה Code Reviews\n- סוגרים Stories\n\n**פלט:** פרוטוטייפ עובד!",
+          "markdown": true
         }
       ]
     },
@@ -615,4 +685,3 @@
     "case-studies-part2"
   ]
 }
-

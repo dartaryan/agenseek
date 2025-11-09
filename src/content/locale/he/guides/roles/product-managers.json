@@ -8,7 +8,14 @@
     "difficulty": "intermediate",
     "estimatedMinutes": 40,
     "icon": "IconBriefcase",
-    "tags": ["ניהול-מוצר", "אנליזה", "דרישות", "PRD", "PM", "Product-Manager"],
+    "tags": [
+      "ניהול-מוצר",
+      "אנליזה",
+      "דרישות",
+      "PRD",
+      "PM",
+      "Product-Manager"
+    ],
     "author": "צוות BMAD",
     "version": "1.0"
   },
@@ -407,19 +414,24 @@
       "variant": "unordered",
       "items": [
         {
-          "content": "**product-brief** - יצירת בריף מוצר ראשוני"
+          "content": "**product-brief** - יצירת בריף מוצר ראשוני",
+          "markdown": true
         },
         {
-          "content": "**prd** - יצירת מסמך דרישות מוצר מפורט"
+          "content": "**prd** - יצירת מסמך דרישות מוצר מפורט",
+          "markdown": true
         },
         {
-          "content": "**tech-spec** - מפרט טכני לפרויקטים קטנים (אלטרנטיבה קלה ל-PRD)"
+          "content": "**tech-spec** - מפרט טכני לפרויקטים קטנים (אלטרנטיבה קלה ל-PRD)",
+          "markdown": true
         },
         {
-          "content": "**create-epics-and-stories** - פירוק PRD ל-Epics ו-Stories"
+          "content": "**create-epics-and-stories** - פירוק PRD ל-Epics ו-Stories",
+          "markdown": true
         },
         {
-          "content": "**correct-course** - תיקון מסלול כשהפרויקט סטה מהתכנון"
+          "content": "**correct-course** - תיקון מסלול כשהפרויקט סטה מהתכנון",
+          "markdown": true
         }
       ],
       "id": "john-workflows-list"
@@ -499,16 +511,20 @@
       "variant": "unordered",
       "items": [
         {
-          "content": "**brainstorm-project** - סיעור מוחות וחקירה של רעיון"
+          "content": "**brainstorm-project** - סיעור מוחות וחקירה של רעיון",
+          "markdown": true
         },
         {
-          "content": "**research** - מחקר מעמיק של תחום או בעיה"
+          "content": "**research** - מחקר מעמיק של תחום או בעיה",
+          "markdown": true
         },
         {
-          "content": "**document-project** - תיעוד פרויקט קיים (brownfield)"
+          "content": "**document-project** - תיעוד פרויקט קיים (brownfield)",
+          "markdown": true
         },
         {
-          "content": "**product-brief** - יצירת בריף מוצר (כמו John, אבל עם נקודת מבט אנליטית)"
+          "content": "**product-brief** - יצירת בריף מוצר (כמו John, אבל עם נקודת מבט אנליטית)",
+          "markdown": true
         }
       ],
       "id": "mary-workflows-list"
@@ -530,7 +546,8 @@
       "variant": "info",
       "title": "John vs. Mary - מתי להשתמש במי?",
       "content": "**Mary** - מתאימה לשלבים המוקדמים: חקירה, מחקר, ניתוח. השתמשו בה כשאתם עדיין לא בטוחים מה בדיוק אתם רוצים.\n\n**John** - מתאים לשלבים המאוחרים: הגדרה, מפרט, תכנון. השתמשו בו כשאתם יודעים מה אתם רוצים ורוצים לתרגם את זה למסמכי עבודה.\n\n**טיפ:** התחילו עם Mary ואז עברו ל-John!",
-      "id": "john-vs-mary-callout"
+      "id": "john-vs-mary-callout",
+      "markdown": true
     },
     {
       "type": "divider",
@@ -557,7 +574,8 @@
     {
       "type": "text",
       "content": "לפני שמתחילים עם וורקפלואו כלשהו, תמיד הריצו את `workflow-status` כדי להבין איפה הפרויקט נמצא:",
-      "id": "workflow-status-text"
+      "id": "workflow-status-text",
+      "markdown": true
     },
     {
       "type": "code",
@@ -703,7 +721,8 @@
       "variant": "info",
       "title": "טיפ: מתי להשתמש ב-product-brief?",
       "content": "השתמשו ב-product-brief בשלבים מוקדמים, כש**יש לכם רעיון אבל עדיין לא פירטתם הכל**. זה מסמך קצר (2-3 עמודים) שמתאר את התמונה הכללית.",
-      "id": "product-brief-tip"
+      "id": "product-brief-tip",
+      "markdown": true
     },
     {
       "type": "heading",
@@ -1229,16 +1248,20 @@
       "variant": "ordered",
       "items": [
         {
-          "content": "**שלחו את ה-PRD:** הארכיטקט יקרא את הקובץ (הוא ב-markdown, קל לקרוא)"
+          "content": "**שלחו את ה-PRD:** הארכיטקט יקרא את הקובץ (הוא ב-markdown, קל לקרוא)",
+          "markdown": true
         },
         {
-          "content": "**פגישת סנכרון קצרה:** 30 דקות להבהיר שאלות - אבל רוב המידע כבר בPRD!"
+          "content": "**פגישת סנכרון קצרה:** 30 דקות להבהיר שאלות - אבל רוב המידע כבר בPRD!",
+          "markdown": true
         },
         {
-          "content": "**הארכיטקט מריץ workflows משלו:** *architecture או *tech-spec עם Winston/Sarah"
+          "content": "**הארכיטקט מריץ workflows משלו:** *architecture או *tech-spec עם Winston/Sarah",
+          "markdown": true
         },
         {
-          "content": "**תקבלו חזרה:** מסמך ארכיטקטורה שמתייחס ישירות ל-PRD שלכם"
+          "content": "**תקבלו חזרה:** מסמך ארכיטקטורה שמתייחס ישירות ל-PRD שלכם",
+          "markdown": true
         }
       ],
       "id": "handoff-architect-list"
@@ -1266,16 +1289,20 @@
       "variant": "unordered",
       "items": [
         {
-          "content": "**Stories ברורים:** כל Story יש לו Acceptance Criteria מדויק - המפתח יודע בדיוק מה לעשות"
+          "content": "**Stories ברורים:** כל Story יש לו Acceptance Criteria מדויק - המפתח יודע בדיוק מה לעשות",
+          "markdown": true
         },
         {
-          "content": "**קישור ל-PRD:** כל Story מקושר לסקשן הרלוונטי ב-PRD - אפשר להעמיק בקלות"
+          "content": "**קישור ל-PRD:** כל Story מקושר לסקשן הרלוונטי ב-PRD - אפשר להעמיק בקלות",
+          "markdown": true
         },
         {
-          "content": "**Story Context:** המפתח יכול להריץ *story-context עם Amelia להבנה עמוקה יותר"
+          "content": "**Story Context:** המפתח יכול להריץ *story-context עם Amelia להבנה עמוקה יותר",
+          "markdown": true
         },
         {
-          "content": "**Definition of Done:** ברור מראש איך בודקים שהStory מוכן"
+          "content": "**Definition of Done:** ברור מראש איך בודקים שהStory מוכן",
+          "markdown": true
         }
       ],
       "id": "work-with-devs-list"
@@ -1302,16 +1329,19 @@
       "variant": "ordered",
       "items": [
         {
-          "content": "**שתפו את ה-PRD:** Lisa קוראת את ה-PRD ומבינה את הדרישות"
+          "content": "**שתפו את ה-PRD:** Lisa קוראת את ה-PRD ומבינה את הדרישות",
+          "markdown": true
         },
         {
           "content": "**Lisa מריצה *create-ux-design:** היא יוצרת wireframes, user flows, ומפרטי עיצוב"
         },
         {
-          "content": "**אתם מאשרים:** בודקים שהעיצוב תואם לדרישות העסקיות"
+          "content": "**אתם מאשרים:** בודקים שהעיצוב תואם לדרישות העסקיות",
+          "markdown": true
         },
         {
-          "content": "**מסירה למפתחים:** העיצוב והPRD יחד מספקים תמונה מלאה"
+          "content": "**מסירה למפתחים:** העיצוב והPRD יחד מספקים תמונה מלאה",
+          "markdown": true
         }
       ],
       "id": "sync-ux-list"
@@ -1350,19 +1380,24 @@
       "variant": "unordered",
       "items": [
         {
-          "content": "**התחילו עם Brief:** אל תקפצו ישר ל-PRD. Brief קודם → PRD אחר כך. זה חוסך זמן!"
+          "content": "**התחילו עם Brief:** אל תקפצו ישר ל-PRD. Brief קודם → PRD אחר כך. זה חוסך זמן!",
+          "markdown": true
         },
         {
-          "content": "**ענו בפשטות:** כשJohn שואל שאלות, ענו בשפה פשוטה. הוא ידאג לעטוף את זה במבנה מקצועי."
+          "content": "**ענו בפשטות:** כשJohn שואל שאלות, ענו בשפה פשוטה. הוא ידאג לעטוף את זה במבנה מקצועי.",
+          "markdown": true
         },
         {
-          "content": "**חשבו על Edge Cases:** John ישאל \"מה קורה אם...\". אל תדלגו על זה - זה חשוב!"
+          "content": "**חשבו על Edge Cases:** John ישאל \"מה קורה אם...\". אל תדלגו על זה - זה חשוב!",
+          "markdown": true
         },
         {
-          "content": "**הוסיפו דוגמאות:** דוגמאות עוזרות לכולם להבין. John ישאל דוגמאות - תנו אותן."
+          "content": "**הוסיפו דוגמאות:** דוגמאות עוזרות לכולם להבין. John ישאל דוגמאות - תנו אותן.",
+          "markdown": true
         },
         {
-          "content": "**עדכנו תוך כדי:** אם משהו השתנה - עדכנו את ה-PRD מיד, לא בסוף."
+          "content": "**עדכנו תוך כדי:** אם משהו השתנה - עדכנו את ה-PRD מיד, לא בסוף.",
+          "markdown": true
         }
       ],
       "id": "bp-prd-list"
@@ -1378,16 +1413,20 @@
       "variant": "unordered",
       "items": [
         {
-          "content": "**השתמשו בפורמט Given-When-Then:** \"Given שהמשתמש מחובר, When הוא לוחץ על כפתור X, Then הוא רואה Y\""
+          "content": "**השתמשו בפורמט Given-When-Then:** \"Given שהמשתמש מחובר, When הוא לוחץ על כפתור X, Then הוא רואה Y\"",
+          "markdown": true
         },
         {
-          "content": "**היו ספציפיים:** לא \"מהיר\", אלא \"עד 2 שניות\". לא \"נוח\", אלא \"עם 3 קליקים או פחות\"."
+          "content": "**היו ספציפיים:** לא \"מהיר\", אלא \"עד 2 שניות\". לא \"נוח\", אלא \"עם 3 קליקים או פחות\".",
+          "markdown": true
         },
         {
-          "content": "**בדיקות ברורות:** כל Acceptance Criterion צריך להיות משהו שאפשר לבדוק - כן או לא, לא \"בערך\"."
+          "content": "**בדיקות ברורות:** כל Acceptance Criterion צריך להיות משהו שאפשר לבדוק - כן או לא, לא \"בערך\".",
+          "markdown": true
         },
         {
-          "content": "**כללו Negative Cases:** לא רק מה אמור לעבוד, גם מה אמור *לא* לעבוד."
+          "content": "**כללו Negative Cases:** לא רק מה אמור לעבוד, גם מה אמור *לא* לעבוד.",
+          "markdown": true
         }
       ],
       "id": "bp-ac-list"
@@ -1403,16 +1442,20 @@
       "variant": "unordered",
       "items": [
         {
-          "content": "**השתמשו ב-MoSCoW:** Must-Have, Should-Have, Could-Have, Won't-Have. John יעזור לכם לסווג."
+          "content": "**השתמשו ב-MoSCoW:** Must-Have, Should-Have, Could-Have, Won't-Have. John יעזור לכם לסווג.",
+          "markdown": true
         },
         {
-          "content": "**חשבו MVP:** מה המינימום שצריך כדי להשיק? התחילו משם."
+          "content": "**חשבו MVP:** מה המינימום שצריך כדי להשיק? התחילו משם.",
+          "markdown": true
         },
         {
-          "content": "**שקלו Dependencies:** פיצ'ר A תלוי בפיצ'ר B? תעדפו לפי זה."
+          "content": "**שקלו Dependencies:** פיצ'ר A תלוי בפיצ'ר B? תעדפו לפי זה.",
+          "markdown": true
         },
         {
-          "content": "**הקשיבו לצוות:** אם הארכיטקט אומר שמשהו מורכב מדי - שקלו לפצל או לדחות."
+          "content": "**הקשיבו לצוות:** אם הארכיטקט אומר שמשהו מורכב מדי - שקלו לפצל או לדחות.",
+          "markdown": true
         }
       ],
       "id": "bp-prioritization-list"
@@ -1422,7 +1465,8 @@
       "variant": "warning",
       "title": "טעויות נפוצות להימנע מהן",
       "content": "❌ **לדלג על product-brief** - נראה שחוסכים זמן, אבל גורם לבעיות אחר כך\n\n❌ **לא לעדכן את ה-PRD כשמשהו משתנה** - זה הופך למסמך לא רלוונטי\n\n❌ **לכתוב Stories בעצמכם** - תנו ל-John לעשות את זה, הוא עושה זאת טוב יותר\n\n❌ **לא לשתף את המסמכים עם הצוות** - BMAD יעיל רק אם כולם משתמשים באותם מסמכים",
-      "id": "bp-mistakes"
+      "id": "bp-mistakes",
+      "markdown": true
     },
     {
       "type": "divider",
@@ -1558,7 +1602,8 @@
       "variant": "success",
       "title": "נקודות מפתח שכדאי לזכור",
       "content": "✅ **John ו-Mary** - שני האגנטים המרכזיים שלכם. Mary לחקירה, John למימוש.\n\n✅ **5 וורקפלואים עיקריים** - workflow-status, product-brief, prd, tech-spec, create-epics-and-stories\n\n✅ **חיסכון זמן אדיר** - 70-80% חיסכון בכתיבת מסמכים\n\n✅ **תקשורת משופרת** - כולם עובדים מאותם מסמכים מובנים\n\n✅ **תהליך עקבי** - אפשר לחזור על זה שוב ושוב",
-      "id": "summary-key-points"
+      "id": "summary-key-points",
+      "markdown": true
     },
     {
       "type": "text",
@@ -1599,19 +1644,24 @@
       "variant": "unordered",
       "items": [
         {
-          "content": "**מדריך לארכיטקטים** - תבינו איך הארכיטקט עובד עם ה-PRD שלכם"
+          "content": "**מדריך לארכיטקטים** - תבינו איך הארכיטקט עובד עם ה-PRD שלכם",
+          "markdown": true
         },
         {
-          "content": "**מדריך למפתחים** - תבינו איך המפתחים משתמשים ב-Stories שלכם"
+          "content": "**מדריך למפתחים** - תבינו איך המפתחים משתמשים ב-Stories שלכם",
+          "markdown": true
         },
         {
-          "content": "**מדריך למעצבי UX** - איך לשתף פעולה עם UX Designer"
+          "content": "**מדריך למעצבי UX** - איך לשתף פעולה עם UX Designer",
+          "markdown": true
         },
         {
-          "content": "**מדריך וורקפלואים מלא** - הסבר מפורט על כל 50+ הוורקפלואים"
+          "content": "**מדריך וורקפלואים מלא** - הסבר מפורט על כל 50+ הוורקפלואים",
+          "markdown": true
         },
         {
-          "content": "**מדריך אגנטים מלא** - היכרות עם כל 19 האגנטים"
+          "content": "**מדריך אגנטים מלא** - היכרות עם כל 19 האגנטים",
+          "markdown": true
         }
       ],
       "id": "next-guides-list"
@@ -1638,4 +1688,3 @@
     }
   ]
 }
-

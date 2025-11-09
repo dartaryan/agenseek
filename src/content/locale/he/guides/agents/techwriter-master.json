@@ -8,7 +8,14 @@
     "difficulty": "intermediate",
     "estimatedMinutes": 30,
     "icon": "FileText",
-    "tags": ["אגנטים", "תיעוד", "Tech Writer", "BMAD Master", "Paige", "ידע"],
+    "tags": [
+      "אגנטים",
+      "תיעוד",
+      "Tech Writer",
+      "BMAD Master",
+      "Paige",
+      "ידע"
+    ],
     "author": "צוות BMAD",
     "version": "1.0"
   },
@@ -99,7 +106,8 @@
       "type": "callout",
       "variant": "info",
       "title": "אגנטים מטא",
-      "content": "שני האגנטים האלה הם \"מטא-אגנטים\" - הם לא עובדים על התוכן של הפרויקט עצמו, אלא על התהליך והידע **סביב** הפרויקט."
+      "content": "שני האגנטים האלה הם \"מטא-אגנטים\" - הם לא עובדים על התוכן של הפרויקט עצמו, אלא על התהליך והידע **סביב** הפרויקט.",
+      "markdown": true
     },
     {
       "type": "divider"
@@ -327,13 +335,37 @@
     {
       "type": "table",
       "caption": "מקרי שימוש נפוצים",
-      "headers": ["מצב", "פתרון עם Paige", "וורקפלואו"],
+      "headers": [
+        "מצב",
+        "פתרון עם Paige",
+        "וורקפלואו"
+      ],
       "rows": [
-        ["README ריק", "יצירת README מקיף", "*document-project"],
-        ["API לא מתועד", "יצירת OpenAPI spec", "*create-api-docs"],
-        ["אין דיאגרמות", "יצירת Mermaid diagrams", "*generate-diagram"],
-        ["תיעוד ישן/לא עקבי", "ביקורת ושיפור", "*audit-docs"],
-        ["צריך User Guide", "יצירת מדריך משתמש", "*create-user-guide"]
+        [
+          "README ריק",
+          "יצירת README מקיף",
+          "*document-project"
+        ],
+        [
+          "API לא מתועד",
+          "יצירת OpenAPI spec",
+          "*create-api-docs"
+        ],
+        [
+          "אין דיאגרמות",
+          "יצירת Mermaid diagrams",
+          "*generate-diagram"
+        ],
+        [
+          "תיעוד ישן/לא עקבי",
+          "ביקורת ושיפור",
+          "*audit-docs"
+        ],
+        [
+          "צריך User Guide",
+          "יצירת מדריך משתמש",
+          "*create-user-guide"
+        ]
       ]
     },
     {
@@ -366,7 +398,8 @@
       "type": "callout",
       "variant": "info",
       "title": "אנלוגיה",
-      "content": "חשבו על BMAD Master כעל **מנצח תזמורת**. הוא לא מנגן בכלי מסוים, אבל הוא יודע מתי כל נגן צריך להיכנס, באיזה קצב, ואיך כל החלקים מתחברים לסימפוניה אחת."
+      "content": "חשבו על BMAD Master כעל **מנצח תזמורת**. הוא לא מנגן בכלי מסוים, אבל הוא יודע מתי כל נגן צריך להיכנס, באיזה קצב, ואיך כל החלקים מתחברים לסימפוניה אחת.",
+      "markdown": true
     },
     {
       "type": "heading",
@@ -443,13 +476,37 @@
     {
       "type": "table",
       "caption": "פקודות מרכזיות של BMAD Master",
-      "headers": ["פקודה", "מה היא עושה", "דוגמה"],
+      "headers": [
+        "פקודה",
+        "מה היא עושה",
+        "דוגמה"
+      ],
       "rows": [
-        ["*workflow-init", "אתחול פרויקט חדש והגדרת מסלול", "פרויקט חדש מאפס"],
-        ["*workflow-status", "הצגת סטטוס נוכחי + הצעה למה הלאה", "איפה אני? מה הבא?"],
-        ["*list-agents", "רשימת כל האגנטים הזמינים", "איזה אגנטים יש?"],
-        ["*list-workflows", "רשימת כל הוורקפלואים לפי קטגוריה", "מה אפשר להריץ?"],
-        ["*help", "תפריט מלא של כל הפקודות", "עזרה כללית"]
+        [
+          "*workflow-init",
+          "אתחול פרויקט חדש והגדרת מסלול",
+          "פרויקט חדש מאפס"
+        ],
+        [
+          "*workflow-status",
+          "הצגת סטטוס נוכחי + הצעה למה הלאה",
+          "איפה אני? מה הבא?"
+        ],
+        [
+          "*list-agents",
+          "רשימת כל האגנטים הזמינים",
+          "איזה אגנטים יש?"
+        ],
+        [
+          "*list-workflows",
+          "רשימת כל הוורקפלואים לפי קטגוריה",
+          "מה אפשר להריץ?"
+        ],
+        [
+          "*help",
+          "תפריט מלא של כל הפקודות",
+          "עזרה כללית"
+        ]
       ]
     },
     {
@@ -589,17 +646,67 @@
     {
       "type": "table",
       "caption": "כל האגנטים לפי תפקיד",
-      "headers": ["אגנט", "תפקיד", "שלב עיקרי", "תוצר מרכזי"],
+      "headers": [
+        "אגנט",
+        "תפקיד",
+        "שלב עיקרי",
+        "תוצר מרכזי"
+      ],
       "rows": [
-        ["John (PM)", "ניהול מוצר", "Phase 0-2", "PRD, Epics, Stories"],
-        ["Mary (Analyst)", "ניתוח", "Phase 0-1", "מחקרים, תובנות"],
-        ["Winston (Architect)", "ארכיטקטורה", "Phase 2", "Architecture Doc"],
-        ["Bob (SM)", "ניהול תהליכים", "Phase 3+", "Sprint Plans"],
-        ["Amelia (Dev)", "פיתוח", "Phase 3+", "Code"],
-        ["Murat (TEA)", "בדיקות", "Phase 2-4", "Test Plans"],
-        ["Sally (UX)", "עיצוב", "Phase 2", "Designs, Prototypes"],
-        ["Paige (Tech Writer)", "תיעוד", "כל שלב", "Documentation"],
-        ["BMAD Master", "תזמור", "כל שלב", "הכוונה, מסלול"]
+        [
+          "John (PM)",
+          "ניהול מוצר",
+          "Phase 0-2",
+          "PRD, Epics, Stories"
+        ],
+        [
+          "Mary (Analyst)",
+          "ניתוח",
+          "Phase 0-1",
+          "מחקרים, תובנות"
+        ],
+        [
+          "Winston (Architect)",
+          "ארכיטקטורה",
+          "Phase 2",
+          "Architecture Doc"
+        ],
+        [
+          "Bob (SM)",
+          "ניהול תהליכים",
+          "Phase 3+",
+          "Sprint Plans"
+        ],
+        [
+          "Amelia (Dev)",
+          "פיתוח",
+          "Phase 3+",
+          "Code"
+        ],
+        [
+          "Murat (TEA)",
+          "בדיקות",
+          "Phase 2-4",
+          "Test Plans"
+        ],
+        [
+          "Sally (UX)",
+          "עיצוב",
+          "Phase 2",
+          "Designs, Prototypes"
+        ],
+        [
+          "Paige (Tech Writer)",
+          "תיעוד",
+          "כל שלב",
+          "Documentation"
+        ],
+        [
+          "BMAD Master",
+          "תזמור",
+          "כל שלב",
+          "הכוונה, מסלול"
+        ]
       ]
     },
     {
@@ -940,12 +1047,32 @@
     {
       "type": "table",
       "caption": "סיכום כל האגנטים שלמדנו",
-      "headers": ["חלק", "אגנטים", "תחום"],
+      "headers": [
+        "חלק",
+        "אגנטים",
+        "תחום"
+      ],
       "rows": [
-        ["1א", "John (PM) + Mary (Analyst)", "אסטרטגיה ומחקר"],
-        ["1ב", "Winston (Architect) + Bob (SM) + Amelia (Dev)", "טכנולוגיה ומימוש"],
-        ["2א", "Murat (TEA) + Sally (UX)", "בדיקות ועיצוב"],
-        ["2ב", "Paige (Tech Writer) + BMAD Master", "תיעוד ותזמור"]
+        [
+          "1א",
+          "John (PM) + Mary (Analyst)",
+          "אסטרטגיה ומחקר"
+        ],
+        [
+          "1ב",
+          "Winston (Architect) + Bob (SM) + Amelia (Dev)",
+          "טכנולוגיה ומימוש"
+        ],
+        [
+          "2א",
+          "Murat (TEA) + Sally (UX)",
+          "בדיקות ועיצוב"
+        ],
+        [
+          "2ב",
+          "Paige (Tech Writer) + BMAD Master",
+          "תיעוד ותזמור"
+        ]
       ]
     },
     {
@@ -1100,4 +1227,3 @@
     }
   ]
 }
-

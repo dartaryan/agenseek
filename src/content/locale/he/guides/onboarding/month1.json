@@ -8,7 +8,14 @@
     "difficulty": "intermediate",
     "estimatedMinutes": 60,
     "icon": "IconCalendar",
-    "tags": ["הדרכה", "חודש-ראשון", "onboarding", "אגנטים", "וורקפלואים", "מתקדם"],
+    "tags": [
+      "הדרכה",
+      "חודש-ראשון",
+      "onboarding",
+      "אגנטים",
+      "וורקפלואים",
+      "מתקדם"
+    ],
     "author": "צוות BMAD",
     "version": "1.0"
   },
@@ -400,11 +407,26 @@
       "type": "list",
       "variant": "ordered",
       "items": [
-        { "content": "**תרגיל 1:** בחרו רעיון לפרויקט קטן" },
-        { "content": "**תרגיל 2:** עבדו עם Mary (Analyst) על brainstorming" },
-        { "content": "**תרגיל 3:** צרו product-brief עם John (PM)" },
-        { "content": "**תרגיל 4:** תכננו ארכיטקטורה עם Winston" },
-        { "content": "**תרגיל 5:** צרו תוכנית עבודה עם Sarah (SM)" }
+        {
+          "content": "**תרגיל 1:** בחרו רעיון לפרויקט קטן",
+          "markdown": true
+        },
+        {
+          "content": "**תרגיל 2:** עבדו עם Mary (Analyst) על brainstorming",
+          "markdown": true
+        },
+        {
+          "content": "**תרגיל 3:** צרו product-brief עם John (PM)",
+          "markdown": true
+        },
+        {
+          "content": "**תרגיל 4:** תכננו ארכיטקטורה עם Winston",
+          "markdown": true
+        },
+        {
+          "content": "**תרגיל 5:** צרו תוכנית עבודה עם Sarah (SM)",
+          "markdown": true
+        }
       ]
     },
     {
@@ -412,7 +434,8 @@
       "type": "callout",
       "variant": "tip",
       "title": "טיפ לתרגול",
-      "content": "אל תנסו לבנות פרויקט אמיתי עדיין!\n\nהמטרה של ימים 4-5 היא **לתרגל עבודה עם האגנטים**, לא לבנות משהו מוגמר.\n\nזה בסדר אם לא מסיימים - החשוב הוא התהליך!"
+      "content": "אל תנסו לבנות פרויקט אמיתי עדיין!\n\nהמטרה של ימים 4-5 היא **לתרגל עבודה עם האגנטים**, לא לבנות משהו מוגמר.\n\nזה בסדר אם לא מסיימים - החשוב הוא התהליך!",
+      "markdown": true
     },
     {
       "id": "week-2-summary",
@@ -568,7 +591,8 @@
       "type": "callout",
       "variant": "info",
       "title": "דוגמה לפרויקט",
-      "content": "**SaaS Dashboard Platform:**\n\n- Authentication & Authorization\n- User Dashboard עם ויזואליזציות\n- CRUD operations\n- Reports & Analytics\n- Responsive Design\n- API Integration\n\nזה דוגמה - בחרו פרויקט שמעניין אתכם!\n\nהחשוב: שיהיה מספיק מורכב כדי להשתמש בכל מה שלמדתם."
+      "content": "**SaaS Dashboard Platform:**\n\n- Authentication & Authorization\n- User Dashboard עם ויזואליזציות\n- CRUD operations\n- Reports & Analytics\n- Responsive Design\n- API Integration\n\nזה דוגמה - בחרו פרויקט שמעניין אתכם!\n\nהחשוב: שיהיה מספיק מורכב כדי להשתמש בכל מה שלמדתם.",
+      "markdown": true
     },
     {
       "id": "week-4-day12",
@@ -706,11 +730,26 @@
       "type": "list",
       "variant": "ordered",
       "items": [
-        { "content": "**Story Done** - סיכום כל הסטוריז שביצעתם" },
-        { "content": "**Documentation** - תיעוד הפרויקט עם Paige" },
-        { "content": "**Retrospective** - מה למדתם? מה היה טוב? מה לשפר?" },
-        { "content": "**Workflow Status** - מבט על המצב הכללי" },
-        { "content": "**חגיגה!** - סיימתם פרויקט מלא!" }
+        {
+          "content": "**Story Done** - סיכום כל הסטוריז שביצעתם",
+          "markdown": true
+        },
+        {
+          "content": "**Documentation** - תיעוד הפרויקט עם Paige",
+          "markdown": true
+        },
+        {
+          "content": "**Retrospective** - מה למדתם? מה היה טוב? מה לשפר?",
+          "markdown": true
+        },
+        {
+          "content": "**Workflow Status** - מבט על המצב הכללי",
+          "markdown": true
+        },
+        {
+          "content": "**חגיגה!** - סיימתם פרויקט מלא!",
+          "markdown": true
+        }
       ]
     },
     {
@@ -827,12 +866,30 @@
       "type": "list",
       "variant": "ordered",
       "items": [
-        { "content": "**התחילו עם אדם אחד** - למדו לבד קודם" },
-        { "content": "**הראו תוצאות** - הצליחו בפרויקט קטן" },
-        { "content": "**הדגימו ליד נוסף** - למדו אותו 1-על-1" },
-        { "content": "**וורקשופ צוותי** - הדרכה של 2-3 שעות" },
-        { "content": "**פיילוט קטן** - פרויקט אחד עם הצוות" },
-        { "content": "**הרחבה** - כל הצוות משתמש" }
+        {
+          "content": "**התחילו עם אדם אחד** - למדו לבד קודם",
+          "markdown": true
+        },
+        {
+          "content": "**הראו תוצאות** - הצליחו בפרויקט קטן",
+          "markdown": true
+        },
+        {
+          "content": "**הדגימו ליד נוסף** - למדו אותו 1-על-1",
+          "markdown": true
+        },
+        {
+          "content": "**וורקשופ צוותי** - הדרכה של 2-3 שעות",
+          "markdown": true
+        },
+        {
+          "content": "**פיילוט קטן** - פרויקט אחד עם הצוות",
+          "markdown": true
+        },
+        {
+          "content": "**הרחבה** - כל הצוות משתמש",
+          "markdown": true
+        }
       ]
     },
     {
@@ -897,11 +954,26 @@
       "type": "list",
       "variant": "unordered",
       "items": [
-        { "content": "**תעזרו לאחרים** - מי שהיה במקום שלכם" },
-        { "content": "**תלמדו עוד יותר** - ללמד = ללמוד" },
-        { "content": "**תשפרו את BMAD** - לטובת כולם" },
-        { "content": "**תבנו reputation** - בקהילה וב-industry" },
-        { "content": "**זה מרגיש טוב!** - החזרה לקהילה" }
+        {
+          "content": "**תעזרו לאחרים** - מי שהיה במקום שלכם",
+          "markdown": true
+        },
+        {
+          "content": "**תלמדו עוד יותר** - ללמד = ללמוד",
+          "markdown": true
+        },
+        {
+          "content": "**תשפרו את BMAD** - לטובת כולם",
+          "markdown": true
+        },
+        {
+          "content": "**תבנו reputation** - בקהילה וב-industry",
+          "markdown": true
+        },
+        {
+          "content": "**זה מרגיש טוב!** - החזרה לקהילה",
+          "markdown": true
+        }
       ]
     },
     {
@@ -1090,7 +1162,8 @@
       "type": "callout",
       "variant": "success",
       "title": "אתם מומחים!",
-      "content": "אחרי החודש הזה, אתם **מומחי BMAD** אמיתיים!\n\nיש לכם את הידע, הכלים, והניסיון לבנות כל פרויקט עם BMAD.\n\nכל הכבוד על המסע המדהים הזה!"
+      "content": "אחרי החודש הזה, אתם **מומחי BMAD** אמיתיים!\n\nיש לכם את הידע, הכלים, והניסיון לבנות כל פרויקט עם BMAD.\n\nכל הכבוד על המסע המדהים הזה!",
+      "markdown": true
     },
     {
       "id": "divider-10",
@@ -1226,4 +1299,3 @@
     }
   ]
 }
-

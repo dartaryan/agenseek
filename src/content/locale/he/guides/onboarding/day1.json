@@ -8,7 +8,13 @@
     "difficulty": "beginner",
     "estimatedMinutes": 30,
     "icon": "IconCalendar",
-    "tags": ["הדרכה", "יום-ראשון", "onboarding", "התחלה", "מתחילים"],
+    "tags": [
+      "הדרכה",
+      "יום-ראשון",
+      "onboarding",
+      "התחלה",
+      "מתחילים"
+    ],
     "author": "צוות BMAD",
     "version": "1.0"
   },
@@ -104,10 +110,18 @@
       "type": "list",
       "variant": "ordered",
       "items": [
-        { "content": "התקנת BMAD והכנת הסביבה (10 דקות)" },
-        { "content": "הבנת מבנה התיקיות והקבצים (10 דקות)" },
-        { "content": "הרצת הפקודה הראשונה (10 דקות)" },
-        { "content": "יצירת Product Brief קטן - הניצחון הראשון! (10 דקות)" }
+        {
+          "content": "התקנת BMAD והכנת הסביבה (10 דקות)"
+        },
+        {
+          "content": "הבנת מבנה התיקיות והקבצים (10 דקות)"
+        },
+        {
+          "content": "הרצת הפקודה הראשונה (10 דקות)"
+        },
+        {
+          "content": "יצירת Product Brief קטן - הניצחון הראשון! (10 דקות)"
+        }
       ]
     },
     {
@@ -138,11 +152,21 @@
       "type": "list",
       "variant": "unordered",
       "items": [
-        { "content": "Cursor IDE או VS Code מותקן ועובד" },
-        { "content": "Node.js גרסה 18 ומעלה מותקן" },
-        { "content": "חיבור יציב לאינטרנט" },
-        { "content": "40 דקות של זמן רגוע ללא הפרעות" },
-        { "content": "רצון ללמוד ולהצליח!" }
+        {
+          "content": "Cursor IDE או VS Code מותקן ועובד"
+        },
+        {
+          "content": "Node.js גרסה 18 ומעלה מותקן"
+        },
+        {
+          "content": "חיבור יציב לאינטרנט"
+        },
+        {
+          "content": "40 דקות של זמן רגוע ללא הפרעות"
+        },
+        {
+          "content": "רצון ללמוד ולהצליח!"
+        }
       ]
     },
     {
@@ -252,7 +276,8 @@
       "type": "callout",
       "variant": "warning",
       "title": "בעיות נפוצות והפתרונות",
-      "content": "**בעיה:** \"npx: command not found\"\n**פתרון:** Node.js לא מותקן. הורידו מ-https://nodejs.org\n\n**בעיה:** \"Permission denied\"\n**פתרון:** הריצו עם sudo (Linux/Mac) או כ-Administrator (Windows)\n\n**בעיה:** \"Network error\"\n**פתרון:** בדקו חיבור לאינטרנט, או נסו שוב"
+      "content": "**בעיה:** \"npx: command not found\"\n**פתרון:** Node.js לא מותקן. הורידו מ-https://nodejs.org\n\n**בעיה:** \"Permission denied\"\n**פתרון:** הריצו עם sudo (Linux/Mac) או כ-Administrator (Windows)\n\n**בעיה:** \"Network error\"\n**פתרון:** בדקו חיבור לאינטרנט, או נסו שוב",
+      "markdown": true
     },
     {
       "id": "step-1-success",
@@ -318,11 +343,21 @@
       "type": "list",
       "variant": "unordered",
       "items": [
-        { "content": "bmad/ - כל קבצי BMAD (אגנטים, וורקפלואים, משימות)" },
-        { "content": "bmad/_cfg/ - קונפיגורציות ראשיות" },
-        { "content": "bmad/bmm/ - המודול הראשי לעבודה" },
-        { "content": "bmad/core/ - תשתית הליבה" },
-        { "content": ".cursorrules - כללים ל-Cursor IDE (נוצר אוטומטית)" }
+        {
+          "content": "bmad/ - כל קבצי BMAD (אגנטים, וורקפלואים, משימות)"
+        },
+        {
+          "content": "bmad/_cfg/ - קונפיגורציות ראשיות"
+        },
+        {
+          "content": "bmad/bmm/ - המודול הראשי לעבודה"
+        },
+        {
+          "content": "bmad/core/ - תשתית הליבה"
+        },
+        {
+          "content": ".cursorrules - כללים ל-Cursor IDE (נוצר אוטומטית)"
+        }
       ]
     },
     {
@@ -394,10 +429,18 @@
       "type": "list",
       "variant": "ordered",
       "items": [
-        { "content": "ב-Cursor, פתחו את הקובץ: bmad/core/agents/bmad-master.md" },
-        { "content": "קראו את התיאור בראש הקובץ (זה מסביר מי זה BMAD Master)" },
-        { "content": "בצד ימין, לחצו על כפתור 'Chat' (או Cmd/Ctrl + L)" },
-        { "content": "הקובץ יתווסף לצ'אט, וה-AI יזהה את האגנט אוטומטית" }
+        {
+          "content": "ב-Cursor, פתחו את הקובץ: bmad/core/agents/bmad-master.md"
+        },
+        {
+          "content": "קראו את התיאור בראש הקובץ (זה מסביר מי זה BMAD Master)"
+        },
+        {
+          "content": "בצד ימין, לחצו על כפתור 'Chat' (או Cmd/Ctrl + L)"
+        },
+        {
+          "content": "הקובץ יתווסף לצ'אט, וה-AI יזהה את האגנט אוטומטית"
+        }
       ]
     },
     {
@@ -505,10 +548,18 @@
       "type": "list",
       "variant": "ordered",
       "items": [
-        { "content": "ודאו שעדיין בצ'אט עם BMAD Master" },
-        { "content": "כתבו: *workflow-init" },
-        { "content": "עקבו אחרי השאלות שהאגנט שואל" },
-        { "content": "ענו בכנות ובפשטות" }
+        {
+          "content": "ודאו שעדיין בצ'אט עם BMAD Master"
+        },
+        {
+          "content": "כתבו: *workflow-init"
+        },
+        {
+          "content": "עקבו אחרי השאלות שהאגנט שואל"
+        },
+        {
+          "content": "ענו בכנות ובפשטות"
+        }
       ]
     },
     {
@@ -574,12 +625,24 @@
       "type": "list",
       "variant": "unordered",
       "items": [
-        { "content": "✅ התקנתם את BMAD בהצלחה" },
-        { "content": "✅ הכרתם את מבנה התיקיות והקבצים" },
-        { "content": "✅ דיברתם עם האגנט הראשון - BMAD Master" },
-        { "content": "✅ הרצתם את הפקודה הראשונה - *help" },
-        { "content": "✅ הרצתם את הוורקפלואו הראשון - workflow-init" },
-        { "content": "✅ יצרתם תוכנית מסודרת לפרויקט שלכם" }
+        {
+          "content": "✅ התקנתם את BMAD בהצלחה"
+        },
+        {
+          "content": "✅ הכרתם את מבנה התיקיות והקבצים"
+        },
+        {
+          "content": "✅ דיברתם עם האגנט הראשון - BMAD Master"
+        },
+        {
+          "content": "✅ הרצתם את הפקודה הראשונה - *help"
+        },
+        {
+          "content": "✅ הרצתם את הוורקפלואו הראשון - workflow-init"
+        },
+        {
+          "content": "✅ יצרתם תוכנית מסודרת לפרויקט שלכם"
+        }
       ]
     },
     {
@@ -617,10 +680,18 @@
       "type": "list",
       "variant": "ordered",
       "items": [
-        { "content": "קראו את 'הדרכה לשבוע הראשון' - התוכנית המלאה ל-7 ימים" },
-        { "content": "התנסו באגנטים נוספים - PM, Analyst, Architect" },
-        { "content": "הריצו עוד וורקפלואים - product-brief, brainstorming" },
-        { "content": "צרו משהו אמיתי - פרויקט קטן משלכם" }
+        {
+          "content": "קראו את 'הדרכה לשבוע הראשון' - התוכנית המלאה ל-7 ימים"
+        },
+        {
+          "content": "התנסו באגנטים נוספים - PM, Analyst, Architect"
+        },
+        {
+          "content": "הריצו עוד וורקפלואים - product-brief, brainstorming"
+        },
+        {
+          "content": "צרו משהו אמיתי - פרויקט קטן משלכם"
+        }
       ]
     },
     {
@@ -635,10 +706,18 @@
       "type": "list",
       "variant": "unordered",
       "items": [
-        { "content": "מילון מונחים - להבין את כל המושגים" },
-        { "content": "מדריך אגנטים - חלק 1 - להכיר את האגנטים" },
-        { "content": "מדריך לפי התפקיד שלכם - מפתחים, מנהלי מוצר, וכו'" },
-        { "content": "שאלות ותשובות - יסודות - תשובות לשאלות נפוצות" }
+        {
+          "content": "מילון מונחים - להבין את כל המושגים"
+        },
+        {
+          "content": "מדריך אגנטים - חלק 1 - להכיר את האגנטים"
+        },
+        {
+          "content": "מדריך לפי התפקיד שלכם - מפתחים, מנהלי מוצר, וכו'"
+        },
+        {
+          "content": "שאלות ותשובות - יסודות - תשובות לשאלות נפוצות"
+        }
       ]
     },
     {

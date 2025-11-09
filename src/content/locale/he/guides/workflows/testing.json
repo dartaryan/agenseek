@@ -8,7 +8,14 @@
     "difficulty": "intermediate",
     "estimatedMinutes": 40,
     "icon": "IconTestPipe",
-    "tags": ["וורקפלואים", "בדיקות", "איכות", "QA", "testing", "automation"],
+    "tags": [
+      "וורקפלואים",
+      "בדיקות",
+      "איכות",
+      "QA",
+      "testing",
+      "automation"
+    ],
     "author": "צוות BMAD",
     "version": "1.0"
   },
@@ -125,15 +132,47 @@
     },
     {
       "type": "table",
-      "headers": ["שלב", "מה קורה", "מי מעורב"],
+      "headers": [
+        "שלב",
+        "מה קורה",
+        "מי מעורב"
+      ],
       "rows": [
-        ["test-arch", "תכנון ארכיטקטורת הבדיקות", "TEA + Architect"],
-        ["Test Strategy", "הגדרת אסטרטגיית הבדיקות", "TEA + PM"],
-        ["Test Plans", "יצירת תוכניות בדיקה מפורטות", "TEA"],
-        ["Test Cases", "כתיבת תרחישי בדיקה ספציפיים", "TEA + QA"],
-        ["Integration", "שילוב בדיקות בפיתוח", "Dev + TEA"],
-        ["Execution", "ביצוע וריצת בדיקות", "QA + Automation"],
-        ["Reporting", "דיווח ומעקב אחר באגים", "QA + SM"]
+        [
+          "test-arch",
+          "תכנון ארכיטקטורת הבדיקות",
+          "TEA + Architect"
+        ],
+        [
+          "Test Strategy",
+          "הגדרת אסטרטגיית הבדיקות",
+          "TEA + PM"
+        ],
+        [
+          "Test Plans",
+          "יצירת תוכניות בדיקה מפורטות",
+          "TEA"
+        ],
+        [
+          "Test Cases",
+          "כתיבת תרחישי בדיקה ספציפיים",
+          "TEA + QA"
+        ],
+        [
+          "Integration",
+          "שילוב בדיקות בפיתוח",
+          "Dev + TEA"
+        ],
+        [
+          "Execution",
+          "ביצוע וריצת בדיקות",
+          "QA + Automation"
+        ],
+        [
+          "Reporting",
+          "דיווח ומעקב אחר באגים",
+          "QA + SM"
+        ]
       ]
     },
     {
@@ -155,17 +194,20 @@
         {
           "id": "level-unit",
           "title": "Unit Tests - בדיקות יחידה",
-          "content": "**מה:** בדיקות של פונקציות/מחלקות בודדות\n\n**מתי:** במהלך הפיתוח\n**מי:** המפתח\n**כמה:** הכי הרבה (70-80% מהבדיקות)\n\n**דוגמה:** בדיקה שפונקציה `calculateTotal()` מחזירה את הסכום הנכון"
+          "content": "**מה:** בדיקות של פונקציות/מחלקות בודדות\n\n**מתי:** במהלך הפיתוח\n**מי:** המפתח\n**כמה:** הכי הרבה (70-80% מהבדיקות)\n\n**דוגמה:** בדיקה שפונקציה `calculateTotal()` מחזירה את הסכום הנכון",
+          "markdown": true
         },
         {
           "id": "level-integration",
           "title": "Integration Tests - בדיקות אינטגרציה",
-          "content": "**מה:** בדיקות של אינטראקציה בין מודולים\n\n**מתי:** אחרי פיתוח של מספר מודולים\n**מי:** QA + Dev\n**כמה:** בינוני (15-20%)\n\n**דוגמה:** בדיקה שהאפליקציה מתחברת למסד הנתונים ושומרת נתונים נכון"
+          "content": "**מה:** בדיקות של אינטראקציה בין מודולים\n\n**מתי:** אחרי פיתוח של מספר מודולים\n**מי:** QA + Dev\n**כמה:** בינוני (15-20%)\n\n**דוגמה:** בדיקה שהאפליקציה מתחברת למסד הנתונים ושומרת נתונים נכון",
+          "markdown": true
         },
         {
           "id": "level-e2e",
           "title": "E2E Tests - בדיקות מקצה לקצה",
-          "content": "**מה:** בדיקות של תרחישי משתמש מלאים\n\n**מתי:** לפני שחרור גרסה\n**מי:** QA\n**כמה:** מעט (5-10%)\n\n**דוגמה:** בדיקה שמשתמש יכול להירשם, להתחבר, ולבצע רכישה מקצה לקצה"
+          "content": "**מה:** בדיקות של תרחישי משתמש מלאים\n\n**מתי:** לפני שחרור גרסה\n**מי:** QA\n**כמה:** מעט (5-10%)\n\n**דוגמה:** בדיקה שמשתמש יכול להירשם, להתחבר, ולבצע רכישה מקצה לקצה",
+          "markdown": true
         }
       ]
     },
@@ -305,27 +347,32 @@
         {
           "id": "strategy-scope",
           "title": "Scope - היקף הבדיקות",
-          "content": "**מה נכנס:**\n- כל ה-Stories בספרינט/Epic\n- Features חדשים\n- Bug fixes\n- Regression (תכונות קיימות)\n\n**מה לא נכנס:**\n- תכונות deprecated\n- Third-party libraries\n- תשתיות (AWS, DB engine)"
+          "content": "**מה נכנס:**\n- כל ה-Stories בספרינט/Epic\n- Features חדשים\n- Bug fixes\n- Regression (תכונות קיימות)\n\n**מה לא נכנס:**\n- תכונות deprecated\n- Third-party libraries\n- תשתיות (AWS, DB engine)",
+          "markdown": true
         },
         {
           "id": "strategy-approach",
           "title": "Approach - גישת הבדיקות",
-          "content": "**אסטרטגיות:**\n- **Risk-based** - בודקים קודם דברים קריטיים\n- **Exploratory** - בדיקות אד-הוק חופשיות\n- **Scripted** - בדיקות לפי תוכנית\n- **Automated** - בדיקות אוטומטיות\n\n**מומלץ:** שילוב של הכל!"
+          "content": "**אסטרטגיות:**\n- **Risk-based** - בודקים קודם דברים קריטיים\n- **Exploratory** - בדיקות אד-הוק חופשיות\n- **Scripted** - בדיקות לפי תוכנית\n- **Automated** - בדיקות אוטומטיות\n\n**מומלץ:** שילוב של הכל!",
+          "markdown": true
         },
         {
           "id": "strategy-criteria",
           "title": "Entry/Exit Criteria - קריטריוני כניסה/יציאה",
-          "content": "**Entry Criteria (מתי מתחילים לבדוק):**\n- Dev הכריז \"Done\"\n- Code Review עבר\n- Unit Tests עברו\n- Build הצליח\n\n**Exit Criteria (מתי מסיימים):**\n- כל הבדיקות עברו\n- אין באגים קריטיים\n- Coverage > 80%\n- Performance requirements התקיימו"
+          "content": "**Entry Criteria (מתי מתחילים לבדוק):**\n- Dev הכריז \"Done\"\n- Code Review עבר\n- Unit Tests עברו\n- Build הצליח\n\n**Exit Criteria (מתי מסיימים):**\n- כל הבדיקות עברו\n- אין באגים קריטיים\n- Coverage > 80%\n- Performance requirements התקיימו",
+          "markdown": true
         },
         {
           "id": "strategy-resources",
           "title": "Resources - משאבים",
-          "content": "**אנשים:**\n- 2 QA Engineers\n- 1 Test Automation Engineer\n- 3 Developers (unit tests)\n\n**כלים:**\n- Vitest, Playwright\n- GitHub Actions (CI)\n- Test DB\n\n**זמן:**\n- 30% מזמן הפיתוח לבדיקות"
+          "content": "**אנשים:**\n- 2 QA Engineers\n- 1 Test Automation Engineer\n- 3 Developers (unit tests)\n\n**כלים:**\n- Vitest, Playwright\n- GitHub Actions (CI)\n- Test DB\n\n**זמן:**\n- 30% מזמן הפיתוח לבדיקות",
+          "markdown": true
         },
         {
           "id": "strategy-risks",
           "title": "Risks - סיכונים",
-          "content": "**סיכונים מזוהים:**\n1. **Flaky tests** - בדיקות שלא יציבות\n   - מיטיגציה: Retry mechanism, בדיקת stability\n\n2. **Slow E2E** - בדיקות E2E לוקחות זמן\n   - מיטיגציה: Parallelization, Test sharding\n\n3. **Test Data** - נתוני בדיקה לא עקביים\n   - מיטיגציה: Seed scripts, Cleanup hooks"
+          "content": "**סיכונים מזוהים:**\n1. **Flaky tests** - בדיקות שלא יציבות\n   - מיטיגציה: Retry mechanism, בדיקת stability\n\n2. **Slow E2E** - בדיקות E2E לוקחות זמן\n   - מיטיגציה: Parallelization, Test sharding\n\n3. **Test Data** - נתוני בדיקה לא עקביים\n   - מיטיגציה: Seed scripts, Cleanup hooks",
+          "markdown": true
         }
       ]
     },
@@ -489,14 +536,42 @@
     },
     {
       "type": "table",
-      "headers": ["שלב", "מה נבדק", "מי בודק"],
+      "headers": [
+        "שלב",
+        "מה נבדק",
+        "מי בודק"
+      ],
       "rows": [
-        ["story-ready", "האם ה-Story ברורה וניתנת לבדיקה?", "TEA + PM"],
-        ["dev-story (TDD)", "כתיבת Unit Tests לפני הקוד", "Developer"],
-        ["code-review", "בדיקת Test Coverage", "Reviewer"],
-        ["PR", "ריצת כל הבדיקות אוטומטית", "CI/CD"],
-        ["story-done", "בדיקת QA ידנית + אוטומטית", "QA + TEA"],
-        ["Merge", "Regression Tests", "CI/CD"]
+        [
+          "story-ready",
+          "האם ה-Story ברורה וניתנת לבדיקה?",
+          "TEA + PM"
+        ],
+        [
+          "dev-story (TDD)",
+          "כתיבת Unit Tests לפני הקוד",
+          "Developer"
+        ],
+        [
+          "code-review",
+          "בדיקת Test Coverage",
+          "Reviewer"
+        ],
+        [
+          "PR",
+          "ריצת כל הבדיקות אוטומטית",
+          "CI/CD"
+        ],
+        [
+          "story-done",
+          "בדיקת QA ידנית + אוטומטית",
+          "QA + TEA"
+        ],
+        [
+          "Merge",
+          "Regression Tests",
+          "CI/CD"
+        ]
       ]
     },
     {
@@ -736,42 +811,50 @@
         {
           "id": "faq-1",
           "title": "מי אחראי על הבדיקות?",
-          "content": "**כולם!**\n\n**Developer:**\n- Unit Tests (70%)\n- Integration Tests (חלק)\n- TDD\n\n**QA:**\n- Integration Tests (חלק)\n- E2E Tests\n- Manual Testing\n- Bug Reports\n\n**TEA:**\n- Test Architecture\n- Test Strategy\n- Test Plans\n- Test Automation\n\n**כולם ביחד** - אחראים על איכות הקוד!"
+          "content": "**כולם!**\n\n**Developer:**\n- Unit Tests (70%)\n- Integration Tests (חלק)\n- TDD\n\n**QA:**\n- Integration Tests (חלק)\n- E2E Tests\n- Manual Testing\n- Bug Reports\n\n**TEA:**\n- Test Architecture\n- Test Strategy\n- Test Plans\n- Test Automation\n\n**כולם ביחד** - אחראים על איכות הקוד!",
+          "markdown": true
         },
         {
           "id": "faq-2",
           "title": "כמה זמן לוקחות בדיקות?",
-          "content": "**תלוי בפרויקט, אבל כלל אצבע:**\n\n**Unit Tests:**\n- כתיבה: 10-20% מזמן הפיתוח\n- ריצה: 1-5 דקות (כל הסט)\n\n**Integration Tests:**\n- כתיבה: 5-10% מזמן הפיתוח\n- ריצה: 5-15 דקות\n\n**E2E Tests:**\n- כתיבה: 5-10% מזמן הפיתוח\n- ריצה: 10-30 דקות\n\n**סה\"כ:** 20-40% מזמן הפיתוח\n\n**אבל:**\nהבדיקות חוסכות הרבה יותר זמן בטווח הארוך - פחות באגים, פחות debugging, פחות regressions!"
+          "content": "**תלוי בפרויקט, אבל כלל אצבע:**\n\n**Unit Tests:**\n- כתיבה: 10-20% מזמן הפיתוח\n- ריצה: 1-5 דקות (כל הסט)\n\n**Integration Tests:**\n- כתיבה: 5-10% מזמן הפיתוח\n- ריצה: 5-15 דקות\n\n**E2E Tests:**\n- כתיבה: 5-10% מזמן הפיתוח\n- ריצה: 10-30 דקות\n\n**סה\"כ:** 20-40% מזמן הפיתוח\n\n**אבל:**\nהבדיקות חוסכות הרבה יותר זמן בטווח הארוך - פחות באגים, פחות debugging, פחות regressions!",
+          "markdown": true
         },
         {
           "id": "faq-3",
           "title": "מה עושים עם Flaky Tests?",
-          "content": "**Flaky Test** = בדיקה שלפעמים עוברת ולפעמים נכשלת (בלי שינוי בקוד)\n\n**סיבות נפוצות:**\n1. **Timing issues** - async operations לא ממתינים מספיק\n2. **Test order dependency** - test תלוי בסדר הריצה\n3. **External dependencies** - API, DB, network\n4. **Test data** - נתונים לא עקביים\n\n**פתרונות:**\n1. **הוסיפו Retries** (1-2 ניסיונות)\n2. **תקנו Timing** - waitFor, expect.poll()\n3. **בידוד** - כל test עצמאי\n4. **Mock External** - אל תסמכו על API חיצוני\n5. **קבועו Test Data** - fixtures, seeding\n\n**אם לא מוצאים פתרון:**\nסמנו כ-`test.skip()` עד לתיקון - אל תשאירו flaky test שמפריע!"
+          "content": "**Flaky Test** = בדיקה שלפעמים עוברת ולפעמים נכשלת (בלי שינוי בקוד)\n\n**סיבות נפוצות:**\n1. **Timing issues** - async operations לא ממתינים מספיק\n2. **Test order dependency** - test תלוי בסדר הריצה\n3. **External dependencies** - API, DB, network\n4. **Test data** - נתונים לא עקביים\n\n**פתרונות:**\n1. **הוסיפו Retries** (1-2 ניסיונות)\n2. **תקנו Timing** - waitFor, expect.poll()\n3. **בידוד** - כל test עצמאי\n4. **Mock External** - אל תסמכו על API חיצוני\n5. **קבועו Test Data** - fixtures, seeding\n\n**אם לא מוצאים פתרון:**\nסמנו כ-`test.skip()` עד לתיקון - אל תשאירו flaky test שמפריע!",
+          "markdown": true
         },
         {
           "id": "faq-4",
           "title": "האם צריך 100% Coverage?",
-          "content": "**לא!** 100% Coverage זה **לא המטרה**.\n\n**למה?**\n- יש קוד שלא צריך בדיקות (getters/setters פשוטים)\n- לפעמים זה waste of time\n- Coverage גבוה לא מבטיח איכות\n\n**מה כן צריך?**\n- **80-90% Coverage** - יעד טוב\n- **100% של Critical paths** - הקוד החשוב\n- **0% של Trivial code** - זה בסדר\n\n**החשוב:**\n**איכות** של הבדיקות, לא **כמות**!\n\nמוטב 50 בדיקות טובות מ-200 בדיקות חלשות."
+          "content": "**לא!** 100% Coverage זה **לא המטרה**.\n\n**למה?**\n- יש קוד שלא צריך בדיקות (getters/setters פשוטים)\n- לפעמים זה waste of time\n- Coverage גבוה לא מבטיח איכות\n\n**מה כן צריך?**\n- **80-90% Coverage** - יעד טוב\n- **100% של Critical paths** - הקוד החשוב\n- **0% של Trivial code** - זה בסדר\n\n**החשוב:**\n**איכות** של הבדיקות, לא **כמות**!\n\nמוטב 50 בדיקות טובות מ-200 בדיקות חלשות.",
+          "markdown": true
         },
         {
           "id": "faq-5",
           "title": "מתי כותבים E2E Tests?",
-          "content": "**E2E Tests זה יקר (זמן + תחזוקה)** - השתמשו בהם בחוכמה!\n\n**כן כתוב E2E:**\n- **Critical User Journeys** - רכישה, הרשמה, login\n- **High Risk Features** - תשלומים, נתונים רגישים\n- **Regression-prone** - תכונות שמתקלקלות הרבה\n\n**לא כתוב E2E:**\n- **יכול להיבדק ב-Unit** - לוגיקה פשוטה\n- **Low Risk** - תכונות לא קריטיות\n- **תכונות חדשות בלתי יציבות** - חכו שיתייצבו\n\n**כלל אצבע:**\n5-10 E2E Tests שמכסים את ה-critical paths זה מספיק לרוב הפרויקטים!"
+          "content": "**E2E Tests זה יקר (זמן + תחזוקה)** - השתמשו בהם בחוכמה!\n\n**כן כתוב E2E:**\n- **Critical User Journeys** - רכישה, הרשמה, login\n- **High Risk Features** - תשלומים, נתונים רגישים\n- **Regression-prone** - תכונות שמתקלקלות הרבה\n\n**לא כתוב E2E:**\n- **יכול להיבדק ב-Unit** - לוגיקה פשוטה\n- **Low Risk** - תכונות לא קריטיות\n- **תכונות חדשות בלתי יציבות** - חכו שיתייצבו\n\n**כלל אצבע:**\n5-10 E2E Tests שמכסים את ה-critical paths זה מספיק לרוב הפרויקטים!",
+          "markdown": true
         },
         {
           "id": "faq-6",
           "title": "איך מטפלים ב-Test Data?",
-          "content": "**אסטרטגיות לנתוני בדיקה:**\n\n### 1. Mocks & Stubs (Unit Tests)\n```typescript\nconst mockUser = {\n  id: '1',\n  email: 'test@example.com'\n};\n```\n**יתרונות:** מהיר, יציב, לא צריך DB\n\n### 2. Fixtures (Integration Tests)\n```typescript\nconst fixtures = {\n  users: [user1, user2],\n  guides: [guide1, guide2]\n};\n```\n**יתרונות:** נתונים קבועים, ניתן לשליטה\n\n### 3. Factories (Dynamic)\n```typescript\nconst user = userFactory.create({\n  email: 'unique@example.com'\n});\n```\n**יתרונות:** נתונים ייחודיים, פחות conflicts\n\n### 4. Test DB (E2E Tests)\n- DB נפרד לבדיקות\n- Seed script לטעינת נתונים\n- Cleanup אחרי כל suite\n\n**Best Practice:**\nשלבו את כולם - Mocks ל-unit, Fixtures ל-integration, Test DB ל-E2E!"
+          "content": "**אסטרטגיות לנתוני בדיקה:**\n\n### 1. Mocks & Stubs (Unit Tests)\n```typescript\nconst mockUser = {\n  id: '1',\n  email: 'test@example.com'\n};\n```\n**יתרונות:** מהיר, יציב, לא צריך DB\n\n### 2. Fixtures (Integration Tests)\n```typescript\nconst fixtures = {\n  users: [user1, user2],\n  guides: [guide1, guide2]\n};\n```\n**יתרונות:** נתונים קבועים, ניתן לשליטה\n\n### 3. Factories (Dynamic)\n```typescript\nconst user = userFactory.create({\n  email: 'unique@example.com'\n});\n```\n**יתרונות:** נתונים ייחודיים, פחות conflicts\n\n### 4. Test DB (E2E Tests)\n- DB נפרד לבדיקות\n- Seed script לטעינת נתונים\n- Cleanup אחרי כל suite\n\n**Best Practice:**\nשלבו את כולם - Mocks ל-unit, Fixtures ל-integration, Test DB ל-E2E!",
+          "markdown": true
         },
         {
           "id": "faq-7",
           "title": "מה לעשות כשבדיקות איטיות?",
-          "content": "**בדיקות איטיות = בעיה!**\n\nאם הן לוקחות יותר מ-10 דקות, אף אחד לא ירצה להריץ אותן.\n\n**פתרונות:**\n\n### 1. Parallelization\n```bash\n# הרץ בדיקות במקביל\nnpm run test -- --maxWorkers=4\n```\n\n### 2. Test Sharding\n```bash\n# חלק לקבוצות\nnpm run test:shard-1\nnpm run test:shard-2\n```\n\n### 3. Smart Test Selection\n- רק בדיקות של קבצים ששונו\n- דלג על E2E ב-dev\n\n### 4. Optimize Tests\n- הפחת setup/teardown\n- השתמש ב-mocks במקום real dependencies\n- קבץ integration tests\n\n### 5. CI Caching\n- cache dependencies\n- cache build outputs\n\n**יעד:** Unit+Integration < 5 דקות, E2E < 15 דקות"
+          "content": "**בדיקות איטיות = בעיה!**\n\nאם הן לוקחות יותר מ-10 דקות, אף אחד לא ירצה להריץ אותן.\n\n**פתרונות:**\n\n### 1. Parallelization\n```bash\n# הרץ בדיקות במקביל\nnpm run test -- --maxWorkers=4\n```\n\n### 2. Test Sharding\n```bash\n# חלק לקבוצות\nnpm run test:shard-1\nnpm run test:shard-2\n```\n\n### 3. Smart Test Selection\n- רק בדיקות של קבצים ששונו\n- דלג על E2E ב-dev\n\n### 4. Optimize Tests\n- הפחת setup/teardown\n- השתמש ב-mocks במקום real dependencies\n- קבץ integration tests\n\n### 5. CI Caching\n- cache dependencies\n- cache build outputs\n\n**יעד:** Unit+Integration < 5 דקות, E2E < 15 דקות",
+          "markdown": true
         },
         {
           "id": "faq-8",
           "title": "איך משכנעים את הצוות לכתוב בדיקות?",
-          "content": "**אתגר נפוץ!** מפתחים לפעמים רואים בדיקות כ-\"waste of time\".\n\n**איך לשכנע:**\n\n### 1. הראו ROI\n- \"הבאג הזה היה נתפס בבדיקה\"\n- \"חסכנו 3 שעות debugging\"\n- \"אין לנו regressions מאז שהתחלנו\"\n\n### 2. הפכו את זה לקל\n- Templates לבדיקות\n- Helpers ו-Utilities\n- Documentation טוב\n\n### 3. הכניסו לתרבות\n- Code Review דורש tests\n- Coverage gate ב-CI\n- חוגגו coverage milestones\n\n### 4. TDD Workshops\n- הדרכות מעשיות\n- Pair Programming\n- Show & Tell\n\n### 5. תנו דוגמה\n- המנהלים כותבים tests\n- הסניורים מנחים\n- אוירה של איכות\n\n**בסופו של דבר:**\nאחרי שיראו כמה באגים נתפסו ב-CI במקום ב-production - הם יבינו את הערך!"
+          "content": "**אתגר נפוץ!** מפתחים לפעמים רואים בדיקות כ-\"waste of time\".\n\n**איך לשכנע:**\n\n### 1. הראו ROI\n- \"הבאג הזה היה נתפס בבדיקה\"\n- \"חסכנו 3 שעות debugging\"\n- \"אין לנו regressions מאז שהתחלנו\"\n\n### 2. הפכו את זה לקל\n- Templates לבדיקות\n- Helpers ו-Utilities\n- Documentation טוב\n\n### 3. הכניסו לתרבות\n- Code Review דורש tests\n- Coverage gate ב-CI\n- חוגגו coverage milestones\n\n### 4. TDD Workshops\n- הדרכות מעשיות\n- Pair Programming\n- Show & Tell\n\n### 5. תנו דוגמה\n- המנהלים כותבים tests\n- הסניורים מנחים\n- אוירה של איכות\n\n**בסופו של דבר:**\nאחרי שיראו כמה באגים נתפסו ב-CI במקום ב-production - הם יבינו את הערך!",
+          "markdown": true
         }
       ]
     },
@@ -917,4 +1000,3 @@
     }
   ]
 }
-

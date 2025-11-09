@@ -8,7 +8,13 @@
     "difficulty": "intermediate",
     "estimatedMinutes": 40,
     "icon": "IconCode",
-    "tags": ["וורקפלואים", "פיתוח", "development", "code-review", "story"],
+    "tags": [
+      "וורקפלואים",
+      "פיתוח",
+      "development",
+      "code-review",
+      "story"
+    ],
     "author": "צוות BMAD",
     "version": "1.0"
   },
@@ -353,22 +359,26 @@
         {
           "id": "dev-step-1",
           "title": "שלב 1: הכנה",
-          "content": "**האגנט:**\n- קורא את context\n- מזהה Tasks\n- בונה תוכנית עבודה\n- שואל הבהרות אם צריך"
+          "content": "**האגנט:**\n- קורא את context\n- מזהה Tasks\n- בונה תוכנית עבודה\n- שואל הבהרות אם צריך",
+          "markdown": true
         },
         {
           "id": "dev-step-2",
           "title": "שלב 2: פיתוח",
-          "content": "**האגנט:**\n- כותב קוד לכל Task\n- מריץ בדיקות\n- מתקן שגיאות\n- שואל feedback אם צריך"
+          "content": "**האגנט:**\n- כותב קוד לכל Task\n- מריץ בדיקות\n- מתקן שגיאות\n- שואל feedback אם צריך",
+          "markdown": true
         },
         {
           "id": "dev-step-3",
           "title": "שלב 3: בדיקות",
-          "content": "**האגנט:**\n- מריץ כל הבדיקות\n- בודק linter\n- בודק DoD\n- מדווח על תוצאות"
+          "content": "**האגנט:**\n- מריץ כל הבדיקות\n- בודק linter\n- בודק DoD\n- מדווח על תוצאות",
+          "markdown": true
         },
         {
           "id": "dev-step-4",
           "title": "שלב 4: סיום",
-          "content": "**האגנט:**\n- מסמן Tasks כהושלמו\n- משנה סטטוס ל-Ready for Review\n- מעדכן את קובץ הסטורי\n- מדווח על סיום"
+          "content": "**האגנט:**\n- מסמן Tasks כהושלמו\n- משנה סטטוס ל-Ready for Review\n- מעדכן את קובץ הסטורי\n- מדווח על סיום",
+          "markdown": true
         }
       ]
     },
@@ -380,13 +390,31 @@
     },
     {
       "type": "table",
-      "headers": ["עשה", "אל תעשה"],
+      "headers": [
+        "עשה",
+        "אל תעשה"
+      ],
       "rows": [
-        ["התחל עם story-context", "תפתח בלי context"],
-        ["עבוד Task אחד בכל פעם", "תנסה לעשות הכל ביחד"],
-        ["הרץ בדיקות אחרי כל שינוי", "תחכה לסוף"],
-        ["שאל הבהרות אם צריך", "תנחש מה לעשות"],
-        ["עדכן את הסטורי בזמן אמת", "תשכח לתעד"]
+        [
+          "התחל עם story-context",
+          "תפתח בלי context"
+        ],
+        [
+          "עבוד Task אחד בכל פעם",
+          "תנסה לעשות הכל ביחד"
+        ],
+        [
+          "הרץ בדיקות אחרי כל שינוי",
+          "תחכה לסוף"
+        ],
+        [
+          "שאל הבהרות אם צריך",
+          "תנחש מה לעשות"
+        ],
+        [
+          "עדכן את הסטורי בזמן אמת",
+          "תשכח לתעד"
+        ]
       ]
     },
     {
@@ -493,12 +521,14 @@
         {
           "id": "review-approved",
           "title": "אם ה-Review אושר (Approved)",
-          "content": "**המצב:**\n- הסטורי נשאר ב-\"Ready for Review\"\n- יש דוח review חיובי\n- אפשר להמשיך ל-story-done\n\n**הצעד הבא:**\nפשוט מריצים `@story-done` וסוגרים את הסטורי!"
+          "content": "**המצב:**\n- הסטורי נשאר ב-\"Ready for Review\"\n- יש דוח review חיובי\n- אפשר להמשיך ל-story-done\n\n**הצעד הבא:**\nפשוט מריצים `@story-done` וסוגרים את הסטורי!",
+          "markdown": true
         },
         {
           "id": "review-changes",
           "title": "אם צריך תיקונים (Changes Requested)",
-          "content": "**המצב:**\n- הסטורי חוזר ל-\"In Progress\"\n- יש רשימת Action Items\n- צריך לתקן ולהריץ review שוב\n\n**התהליך:**\n1. תקנו את הבעיות\n2. הריצו `@dev-story` אם צריך קוד נוסף\n3. הריצו `@code-review` שוב\n4. אם עבר - עברו ל-`@story-done`"
+          "content": "**המצב:**\n- הסטורי חוזר ל-\"In Progress\"\n- יש רשימת Action Items\n- צריך לתקן ולהריץ review שוב\n\n**התהליך:**\n1. תקנו את הבעיות\n2. הריצו `@dev-story` אם צריך קוד נוסף\n3. הריצו `@code-review` שוב\n4. אם עבר - עברו ל-`@story-done`",
+          "markdown": true
         }
       ]
     },
@@ -755,42 +785,50 @@
         {
           "id": "faq-1",
           "title": "האם חובה להריץ story-context לפני dev-story?",
-          "content": "**לא חובה, אבל מומלץ מאוד!**\n\ndev-story יכול לעבוד גם בלי context, אבל:\n- האגנט יצטרך למצוא את המידע בעצמו\n- זה יקח יותר זמן\n- יכול לפספס מידע חשוב\n\n**המלצה:** תמיד הריצו story-context קודם!"
+          "content": "**לא חובה, אבל מומלץ מאוד!**\n\ndev-story יכול לעבוד גם בלי context, אבל:\n- האגנט יצטרך למצוא את המידע בעצמו\n- זה יקח יותר זמן\n- יכול לפספס מידע חשוב\n\n**המלצה:** תמיד הריצו story-context קודם!",
+          "markdown": true
         },
         {
           "id": "faq-2",
           "title": "מה אם dev-story נתקע באמצע?",
-          "content": "**אין בעיה!**\n\nפשוט:\n1. עצרו את הוורקפלוא\n2. בדקו מה הבעיה\n3. תקנו אם צריך\n4. הריצו `@dev-story` שוב\n\nהוא יראה שכבר יש Tasks שהושלמו וימשיך מהמקום שעצר!"
+          "content": "**אין בעיה!**\n\nפשוט:\n1. עצרו את הוורקפלוא\n2. בדקו מה הבעיה\n3. תקנו אם צריך\n4. הריצו `@dev-story` שוב\n\nהוא יראה שכבר יש Tasks שהושלמו וימשיך מהמקום שעצר!",
+          "markdown": true
         },
         {
           "id": "faq-3",
           "title": "האם אפשר לדלג על Code Review?",
-          "content": "**טכנית כן, אבל ממש לא מומלץ!**\n\nCode Review:\n- מוצא באגים מוקדם\n- שומר על איכות\n- מונע בעיות אבטחה\n\n**אפשר לדלג רק אם:**\n- זה תיקון דחוף (hotfix)\n- השינוי מינימלי מאוד\n- יש review ידני אחר\n\n**אחרת:** תמיד הריצו code-review!"
+          "content": "**טכנית כן, אבל ממש לא מומלץ!**\n\nCode Review:\n- מוצא באגים מוקדם\n- שומר על איכות\n- מונע בעיות אבטחה\n\n**אפשר לדלג רק אם:**\n- זה תיקון דחוף (hotfix)\n- השינוי מינימלי מאוד\n- יש review ידני אחר\n\n**אחרת:** תמיד הריצו code-review!",
+          "markdown": true
         },
         {
           "id": "faq-4",
           "title": "איך מתקנים סטורי שנכשל ב-Code Review?",
-          "content": "**התהליך:**\n\n1. קראו את ה-review notes\n2. הבינו מה צריך לתקן\n3. הריצו `@dev-story` עם ההבהרה:\n   ```\n   @dev-story\n   תקן את password validation לפי ה-review notes\n   ```\n4. אחרי התיקון - הריצו `@code-review` שוב\n5. אם עבר - הריצו `@story-done`"
+          "content": "**התהליך:**\n\n1. קראו את ה-review notes\n2. הבינו מה צריך לתקן\n3. הריצו `@dev-story` עם ההבהרה:\n   ```\n   @dev-story\n   תקן את password validation לפי ה-review notes\n   ```\n4. אחרי התיקון - הריצו `@code-review` שוב\n5. אם עבר - הריצו `@story-done`",
+          "markdown": true
         },
         {
           "id": "faq-5",
           "title": "מה ההבדל בין dev-story ל-story-done?",
-          "content": "**dev-story:**\n- כותב קוד\n- מריץ בדיקות\n- מממש Tasks\n- משנה ל-\"Ready for Review\"\n\n**story-done:**\n- רק משנה סטטוס\n- מעדכן sprint-status\n- מזהה הסטורי הבא\n- לא כותב קוד!\n\n**במילים פשוטות:**\ndev-story = עושה את העבודה\nstory-done = סוגר את הסטורי"
+          "content": "**dev-story:**\n- כותב קוד\n- מריץ בדיקות\n- מממש Tasks\n- משנה ל-\"Ready for Review\"\n\n**story-done:**\n- רק משנה סטטוס\n- מעדכן sprint-status\n- מזהה הסטורי הבא\n- לא כותב קוד!\n\n**במילים פשוטות:**\ndev-story = עושה את העבודה\nstory-done = סוגר את הסטורי",
+          "markdown": true
         },
         {
           "id": "faq-6",
           "title": "איך מפתחים כמה Stories במקביל?",
-          "content": "**אפשר, אבל צריך לציין מפורש:**\n\n```bash\n# Story 5.3\n@dev-story\nבואו נפתח את סטורי 5.3\n\n# Story 5.4 במקביל\n@dev-story\nבואו נפתח את סטורי 5.4\n```\n\n**חשוב:**\n- תמיד ציינו איזה Story\n- אל תבלבלו בין Stories\n- עדיפים תמיד לעבוד אחד אחרי השני"
+          "content": "**אפשר, אבל צריך לציין מפורש:**\n\n```bash\n# Story 5.3\n@dev-story\nבואו נפתח את סטורי 5.3\n\n# Story 5.4 במקביל\n@dev-story\nבואו נפתח את סטורי 5.4\n```\n\n**חשוב:**\n- תמיד ציינו איזה Story\n- אל תבלבלו בין Stories\n- עדיפים תמיד לעבוד אחד אחרי השני",
+          "markdown": true
         },
         {
           "id": "faq-7",
           "title": "מה אם אין לי Tech Spec או Architecture?",
-          "content": "**לא נורא!**\n\nstory-context יעבוד עם מה שיש:\n- אם יש PRD בלבד - יעבוד עם זה\n- אם חסר UX - יתעלם\n- אם חסר הרבה - יזהיר אבל ימשיך\n\n**אבל:**\nככל שיש יותר תיעוד, האיכות תהיה יותר טובה!\n\n**המלצה:**\nלפחות PRD + Epic צריך להיות."
+          "content": "**לא נורא!**\n\nstory-context יעבוד עם מה שיש:\n- אם יש PRD בלבד - יעבוד עם זה\n- אם חסר UX - יתעלם\n- אם חסר הרבה - יזהיר אבל ימשיך\n\n**אבל:**\nככל שיש יותר תיעוד, האיכות תהיה יותר טובה!\n\n**המלצה:**\nלפחות PRD + Epic צריך להיות.",
+          "markdown": true
         },
         {
           "id": "faq-8",
           "title": "איך אני יודע שהסטורי באמת Done?",
-          "content": "**הסטורי Done רק אם:**\n\n✅ כל ה-Tasks הושלמו\n✅ כל ה-DoD התקיים\n✅ Code Review עבר (Approved)\n✅ הוורקפלוא story-done הסתיים\n✅ הסטטוס ב-sprint-status הוא \"Done\"\n\n**אם משהו חסר:**\nהסטורי לא Done! תקנו מה שחסר."
+          "content": "**הסטורי Done רק אם:**\n\n✅ כל ה-Tasks הושלמו\n✅ כל ה-DoD התקיים\n✅ Code Review עבר (Approved)\n✅ הוורקפלוא story-done הסתיים\n✅ הסטטוס ב-sprint-status הוא \"Done\"\n\n**אם משהו חסר:**\nהסטורי לא Done! תקנו מה שחסר.",
+          "markdown": true
         }
       ]
     },
@@ -888,4 +926,3 @@
     }
   ]
 }
-

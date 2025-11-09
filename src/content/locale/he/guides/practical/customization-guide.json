@@ -8,7 +8,14 @@
     "difficulty": "advanced",
     "estimatedMinutes": 45,
     "icon": "IconWand",
-    "tags": ["התאמה-אישית", "קונפיגורציה", "אגנטים", "וורקפלואים", "תבניות", "ארגון"],
+    "tags": [
+      "התאמה-אישית",
+      "קונפיגורציה",
+      "אגנטים",
+      "וורקפלואים",
+      "תבניות",
+      "ארגון"
+    ],
     "author": "צוות BMAD",
     "version": "1.0"
   },
@@ -150,32 +157,54 @@
         {
           "content": "Metadata - מידע בסיסי על האגנט",
           "children": [
-            { "content": "name - שם האגנט" },
-            { "content": "description - תיאור קצר" }
+            {
+              "content": "name - שם האגנט"
+            },
+            {
+              "content": "description - תיאור קצר"
+            }
           ]
         },
         {
           "content": "Activation - תהליך הפעלה",
           "children": [
-            { "content": "צעדים שהאגנט מבצע בהפעלה" },
-            { "content": "טעינת config וקבצים" }
+            {
+              "content": "צעדים שהאגנט מבצע בהפעלה"
+            },
+            {
+              "content": "טעינת config וקבצים"
+            }
           ]
         },
         {
           "content": "Persona - אישיות האגנט",
           "children": [
-            { "content": "role - התפקיד" },
-            { "content": "identity - הזהות והמומחיות" },
-            { "content": "communication_style - סגנון תקשורת" },
-            { "content": "principles - עקרונות עבודה" }
+            {
+              "content": "role - התפקיד"
+            },
+            {
+              "content": "identity - הזהות והמומחיות"
+            },
+            {
+              "content": "communication_style - סגנון תקשורת"
+            },
+            {
+              "content": "principles - עקרונות עבודה"
+            }
           ]
         },
         {
           "content": "Menu - תפריט פעולות",
           "children": [
-            { "content": "פקודות זמינות" },
-            { "content": "workflows קשורים" },
-            { "content": "actions מותאמות" }
+            {
+              "content": "פקודות זמינות"
+            },
+            {
+              "content": "workflows קשורים"
+            },
+            {
+              "content": "actions מותאמות"
+            }
           ]
         },
         {
@@ -274,33 +303,57 @@
         {
           "content": "Persona מפורט = אגנט טוב יותר",
           "children": [
-            { "content": "תארו את תחום המומחיות בדיוק" },
-            { "content": "ציינו ניסיון וכישורים ספציפיים" },
-            { "content": "הוסיפו עקרונות עבודה ברורים" }
+            {
+              "content": "תארו את תחום המומחיות בדיוק"
+            },
+            {
+              "content": "ציינו ניסיון וכישורים ספציפיים"
+            },
+            {
+              "content": "הוסיפו עקרונות עבודה ברורים"
+            }
           ]
         },
         {
           "content": "תפריט ברור ומאורגן",
           "children": [
-            { "content": "קבצו פקודות לפי נושא" },
-            { "content": "השתמשו בשמות תיאוריים" },
-            { "content": "הוסיפו תיאור קצר לכל פקודה" }
+            {
+              "content": "קבצו פקודות לפי נושא"
+            },
+            {
+              "content": "השתמשו בשמות תיאוריים"
+            },
+            {
+              "content": "הוסיפו תיאור קצר לכל פקודה"
+            }
           ]
         },
         {
           "content": "בדקו את האגנט",
           "children": [
-            { "content": "הפעילו והריצו כל פקודה" },
-            { "content": "בדקו שהתגובות רלוונטיות" },
-            { "content": "תקנו בעיות ושפרו" }
+            {
+              "content": "הפעילו והריצו כל פקודה"
+            },
+            {
+              "content": "בדקו שהתגובות רלוונטיות"
+            },
+            {
+              "content": "תקנו בעיות ושפרו"
+            }
           ]
         },
         {
           "content": "תעדו את האגנט",
           "children": [
-            { "content": "כתבו קובץ README" },
-            { "content": "הוסיפו דוגמאות שימוש" },
-            { "content": "תעדו שינויים" }
+            {
+              "content": "כתבו קובץ README"
+            },
+            {
+              "content": "הוסיפו דוגמאות שימוש"
+            },
+            {
+              "content": "תעדו שינויים"
+            }
           ]
         }
       ]
@@ -340,10 +393,18 @@
       "type": "list",
       "variant": "ordered",
       "items": [
-        { "content": "Metadata - מידע בסיסי (id, name, description, version)" },
-        { "content": "Agents - רשימת האגנטים המשתתפים" },
-        { "content": "Phases - שלבים של הוורקפלו" },
-        { "content": "Outputs - תוצרים שהוורקפלו מייצר" }
+        {
+          "content": "Metadata - מידע בסיסי (id, name, description, version)"
+        },
+        {
+          "content": "Agents - רשימת האגנטים המשתתפים"
+        },
+        {
+          "content": "Phases - שלבים של הוורקפלו"
+        },
+        {
+          "content": "Outputs - תוצרים שהוורקפלו מייצר"
+        }
       ]
     },
     {
@@ -368,17 +429,53 @@
     {
       "type": "table",
       "caption": "תכונות מתקדמות בוורקפלואים",
-      "headers": ["תכונה", "מתי להשתמש", "דוגמה"],
-      "rows": [
-        ["approval_required", "צעדים קריטיים", "deployment, data deletion"],
-        ["validation", "וידוא שצעד הצליח", "tests_pass, no_errors"],
-        ["rollback_on_failure", "צעדים מסוכנים", "deployment, migration"],
-        ["conditional_steps", "לוגיקה מותנית", "if error_count > 0"],
-        ["parallel_execution", "צעדים בלתי-תלויים", "multiple scans"],
-        ["timeout", "הגבלת זמן", "long_running_tests"],
-        ["retry_on_failure", "צעדים שיכולים להיכשל", "network calls"]
+      "headers": [
+        "תכונה",
+        "מתי להשתמש",
+        "דוגמה"
       ],
-      "alignment": ["left", "left", "left"]
+      "rows": [
+        [
+          "approval_required",
+          "צעדים קריטיים",
+          "deployment, data deletion"
+        ],
+        [
+          "validation",
+          "וידוא שצעד הצליח",
+          "tests_pass, no_errors"
+        ],
+        [
+          "rollback_on_failure",
+          "צעדים מסוכנים",
+          "deployment, migration"
+        ],
+        [
+          "conditional_steps",
+          "לוגיקה מותנית",
+          "if error_count > 0"
+        ],
+        [
+          "parallel_execution",
+          "צעדים בלתי-תלויים",
+          "multiple scans"
+        ],
+        [
+          "timeout",
+          "הגבלת זמן",
+          "long_running_tests"
+        ],
+        [
+          "retry_on_failure",
+          "צעדים שיכולים להיכשל",
+          "network calls"
+        ]
+      ],
+      "alignment": [
+        "left",
+        "left",
+        "left"
+      ]
     },
     {
       "type": "divider"
@@ -527,7 +624,6 @@
       "type": "code",
       "language": "xml",
       "code": "<activation>\n  <step n=\"1\">Load config from {project-root}/bmad/bmm/config.yaml</step>\n  <step n=\"2\">Load organizational rules from {project-root}/.bmad/organizational-rules.yaml</step>\n  <step n=\"3\">CRITICAL: Follow ALL organizational rules throughout the session</step>\n  <step n=\"4\">When in doubt, refer to organizational rules</step>\n</activation>",
-      "language": "xml",
       "showLineNumbers": false
     },
     {
@@ -685,24 +781,40 @@
         {
           "content": "שמרו הכל ב-Git repository מרכזי",
           "children": [
-            { "content": "`.bmad/` directory בשורש" },
-            { "content": "כל הצוותים משתמשים באותו repo" }
+            {
+              "content": "`.bmad/` directory בשורש"
+            },
+            {
+              "content": "כל הצוותים משתמשים באותו repo"
+            }
           ]
         },
         {
           "content": "יצרו documentation מקיף",
           "children": [
-            { "content": "README.md מפורט" },
-            { "content": "דוגמאות שימוש" },
-            { "content": "Troubleshooting guide" }
+            {
+              "content": "README.md מפורט"
+            },
+            {
+              "content": "דוגמאות שימוש"
+            },
+            {
+              "content": "Troubleshooting guide"
+            }
           ]
         },
         {
           "content": "הדרכה לצוותים",
           "children": [
-            { "content": "סדנאות onboarding" },
-            { "content": "Office hours לשאלות" },
-            { "content": "Slack channel לתמיכה" }
+            {
+              "content": "סדנאות onboarding"
+            },
+            {
+              "content": "Office hours לשאלות"
+            },
+            {
+              "content": "Slack channel לתמיכה"
+            }
           ]
         }
       ]
@@ -720,24 +832,40 @@
         {
           "content": "פרסמו ב-GitHub",
           "children": [
-            { "content": "Repository ציבורי" },
-            { "content": "רישיון ברור (MIT, Apache, וכו')" }
+            {
+              "content": "Repository ציבורי"
+            },
+            {
+              "content": "רישיון ברור (MIT, Apache, וכו')"
+            }
           ]
         },
         {
           "content": "רשמו ב-BMAD Registry (אם קיים)",
           "children": [
-            { "content": "אגנטים ווורקפלואים שימושיים" },
-            { "content": "מידע מפורט" },
-            { "content": "דירוג וביקורות" }
+            {
+              "content": "אגנטים ווורקפלואים שימושיים"
+            },
+            {
+              "content": "מידע מפורט"
+            },
+            {
+              "content": "דירוג וביקורות"
+            }
           ]
         },
         {
           "content": "שתפו בקהילה",
           "children": [
-            { "content": "Discord/Slack של BMAD" },
-            { "content": "Blog posts" },
-            { "content": "Presentations בכנסים" }
+            {
+              "content": "Discord/Slack של BMAD"
+            },
+            {
+              "content": "Blog posts"
+            },
+            {
+              "content": "Presentations בכנסים"
+            }
           ]
         }
       ]
@@ -766,7 +894,6 @@
       "type": "code",
       "language": "yaml",
       "code": "# כל אגנט/וורקפלו צריך גרסה\nworkflow:\n  id: security-review\n  name: Security Review\n  version: 2.1.0  # major.minor.patch\n  changelog:\n    - version: 2.1.0\n      date: 2024-01-15\n      changes:\n        - Added pentest automation\n        - Improved reporting\n    - version: 2.0.0\n      date: 2023-12-01\n      changes:\n        - Breaking: Changed approval flow\n        - Added compliance checks\n    - version: 1.0.0\n      date: 2023-10-15\n      changes:\n        - Initial release",
-      "language": "yaml",
       "showLineNumbers": false
     },
     {
@@ -784,9 +911,18 @@
       "type": "list",
       "variant": "unordered",
       "items": [
-        { "content": "**MAJOR** (1.0.0 → 2.0.0): שינויים breaking - לא תואם אחורה" },
-        { "content": "**MINOR** (1.0.0 → 1.1.0): תכונות חדשות - תואם אחורה" },
-        { "content": "**PATCH** (1.0.0 → 1.0.1): תיקוני באגים - תואם אחורה" }
+        {
+          "content": "**MAJOR** (1.0.0 → 2.0.0): שינויים breaking - לא תואם אחורה",
+          "markdown": true
+        },
+        {
+          "content": "**MINOR** (1.0.0 → 1.1.0): תכונות חדשות - תואם אחורה",
+          "markdown": true
+        },
+        {
+          "content": "**PATCH** (1.0.0 → 1.0.1): תיקוני באגים - תואם אחורה",
+          "markdown": true
+        }
       ]
     },
     {
@@ -811,82 +947,152 @@
         {
           "content": "**התחילו קטן** - אל תיצרו 20 אגנטים בבת אחת",
           "children": [
-            { "content": "התחילו עם 1-2 אגנטים קריטיים" },
-            { "content": "בדקו שהם עובדים טוב" },
-            { "content": "רק אז הוסיפו עוד" }
-          ]
+            {
+              "content": "התחילו עם 1-2 אגנטים קריטיים"
+            },
+            {
+              "content": "בדקו שהם עובדים טוב"
+            },
+            {
+              "content": "רק אז הוסיפו עוד"
+            }
+          ],
+          "markdown": true
         },
         {
           "content": "**תעדו הכל** - אם זה לא מתועד, זה לא קיים",
           "children": [
-            { "content": "README לכל אגנט/וורקפלו" },
-            { "content": "דוגמאות שימוש" },
-            { "content": "Troubleshooting" }
-          ]
+            {
+              "content": "README לכל אגנט/וורקפלו"
+            },
+            {
+              "content": "דוגמאות שימוש"
+            },
+            {
+              "content": "Troubleshooting"
+            }
+          ],
+          "markdown": true
         },
         {
           "content": "**בדקו לפני production** - אל תבדקו על משתמשים אמיתיים",
           "children": [
-            { "content": "סביבת test נפרדת" },
-            { "content": "בדיקות מקיפות" },
-            { "content": "User acceptance testing" }
-          ]
+            {
+              "content": "סביבת test נפרדת"
+            },
+            {
+              "content": "בדיקות מקיפות"
+            },
+            {
+              "content": "User acceptance testing"
+            }
+          ],
+          "markdown": true
         },
         {
           "content": "**שמרו עקביות** - סטנדרטים אחידים",
           "children": [
-            { "content": "מבנה קבצים אחיד" },
-            { "content": "conventions אחידות" },
-            { "content": "קוד איכותי" }
-          ]
+            {
+              "content": "מבנה קבצים אחיד"
+            },
+            {
+              "content": "conventions אחידות"
+            },
+            {
+              "content": "קוד איכותי"
+            }
+          ],
+          "markdown": true
         },
         {
           "content": "**גרסאות וגיבויים** - תמיד אפשר לחזור אחורה",
           "children": [
-            { "content": "Git לכל שינוי" },
-            { "content": "גרסאות ברורות" },
-            { "content": "Rollback plan" }
-          ]
+            {
+              "content": "Git לכל שינוי"
+            },
+            {
+              "content": "גרסאות ברורות"
+            },
+            {
+              "content": "Rollback plan"
+            }
+          ],
+          "markdown": true
         },
         {
           "content": "**שיתוף פעולה** - לא לעבוד בבידוד",
           "children": [
-            { "content": "Code reviews" },
-            { "content": "שיתוף ידע" },
-            { "content": "למידה מהקהילה" }
-          ]
+            {
+              "content": "Code reviews"
+            },
+            {
+              "content": "שיתוף ידע"
+            },
+            {
+              "content": "למידה מהקהילה"
+            }
+          ],
+          "markdown": true
         },
         {
           "content": "**אבטחה ראשון** - תמיד",
           "children": [
-            { "content": "אל תשמרו secrets בקוד" },
-            { "content": "הרשאות מינימליות" },
-            { "content": "סקירת אבטחה" }
-          ]
+            {
+              "content": "אל תשמרו secrets בקוד"
+            },
+            {
+              "content": "הרשאות מינימליות"
+            },
+            {
+              "content": "סקירת אבטחה"
+            }
+          ],
+          "markdown": true
         },
         {
           "content": "**מדדו הצלחה** - איך אתם יודעים שזה עובד?",
           "children": [
-            { "content": "הגדירו KPIs" },
-            { "content": "עקבו אחרי שימוש" },
-            { "content": "שפרו לפי נתונים" }
-          ]
+            {
+              "content": "הגדירו KPIs"
+            },
+            {
+              "content": "עקבו אחרי שימוש"
+            },
+            {
+              "content": "שפרו לפי נתונים"
+            }
+          ],
+          "markdown": true
         },
         {
           "content": "**תחזוקה שוטפת** - לא פרויקט חד-פעמי",
           "children": [
-            { "content": "עדכנו באופן קבוע" },
-            { "content": "תקנו באגים" },
-            { "content": "הוסיפו תכונות" }
-          ]
+            {
+              "content": "עדכנו באופן קבוע"
+            },
+            {
+              "content": "תקנו באגים"
+            },
+            {
+              "content": "הוסיפו תכונות"
+            }
+          ],
+          "markdown": true
         },
         {
           "content": "**למדו מטעויות** - retrospectives",
           "children": [
-            { "content": "מה עבד?" },
-            { "content": "מה לא עבד?" },
-            { "content": "מה לשפר?" }
-          ]
+            {
+              "content": "מה עבד?"
+            },
+            {
+              "content": "מה לא עבד?"
+            },
+            {
+              "content": "מה לשפר?"
+            }
+          ],
+          "markdown": true
         }
       ]
     },
@@ -907,20 +1113,68 @@
     {
       "type": "table",
       "caption": "תרחישי התאמה ופתרונות מומלצים",
-      "headers": ["תרחיש", "פתרון מומלץ", "מורכבות"],
-      "rows": [
-        ["תחום מומחיות ייחודי", "אגנט מותאם + וורקפלואים", "בינונית"],
-        ["תהליך אישור פנימי", "וורקפלו עם approval gates", "נמוכה"],
-        ["סטנדרטים ארגוניים", "organizational-rules.yaml", "נמוכה"],
-        ["אינטגרציה עם כלי פנימי", "אגנט מותאם + API calls", "גבוהה"],
-        ["תבניות קוד ספציפיות", "code templates + אגנט Dev", "נמוכה"],
-        ["compliance (GDPR/SOC2)", "אגנט Compliance + workflows", "גבוהה"],
-        ["CI/CD מותאם", "custom workflows + GitHub Actions", "בינונית"],
-        ["דוחות מנהלים", "אגנט Reports + תבניות", "בינונית"],
-        ["multi-tenant setup", "config per tenant + rules", "גבוהה"],
-        ["localization (i18n)", "תבניות רב-לשוניות", "בינונית"]
+      "headers": [
+        "תרחיש",
+        "פתרון מומלץ",
+        "מורכבות"
       ],
-      "alignment": ["left", "left", "center"]
+      "rows": [
+        [
+          "תחום מומחיות ייחודי",
+          "אגנט מותאם + וורקפלואים",
+          "בינונית"
+        ],
+        [
+          "תהליך אישור פנימי",
+          "וורקפלו עם approval gates",
+          "נמוכה"
+        ],
+        [
+          "סטנדרטים ארגוניים",
+          "organizational-rules.yaml",
+          "נמוכה"
+        ],
+        [
+          "אינטגרציה עם כלי פנימי",
+          "אגנט מותאם + API calls",
+          "גבוהה"
+        ],
+        [
+          "תבניות קוד ספציפיות",
+          "code templates + אגנט Dev",
+          "נמוכה"
+        ],
+        [
+          "compliance (GDPR/SOC2)",
+          "אגנט Compliance + workflows",
+          "גבוהה"
+        ],
+        [
+          "CI/CD מותאם",
+          "custom workflows + GitHub Actions",
+          "בינונית"
+        ],
+        [
+          "דוחות מנהלים",
+          "אגנט Reports + תבניות",
+          "בינונית"
+        ],
+        [
+          "multi-tenant setup",
+          "config per tenant + rules",
+          "גבוהה"
+        ],
+        [
+          "localization (i18n)",
+          "תבניות רב-לשוניות",
+          "בינונית"
+        ]
+      ],
+      "alignment": [
+        "left",
+        "left",
+        "center"
+      ]
     },
     {
       "type": "callout",
@@ -946,4 +1200,3 @@
     "case-studies-part1"
   ]
 }
-

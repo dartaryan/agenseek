@@ -8,7 +8,15 @@
     "difficulty": "advanced",
     "estimatedMinutes": 35,
     "icon": "Users",
-    "tags": ["אג'נטים", "CIS", "party-mode", "שיתוף-פעולה", "TEA", "UX", "Tech-Writer"],
+    "tags": [
+      "אג'נטים",
+      "CIS",
+      "party-mode",
+      "שיתוף-פעולה",
+      "TEA",
+      "UX",
+      "Tech-Writer"
+    ],
     "author": "צוות BMAD",
     "version": "1.0"
   },
@@ -372,58 +380,106 @@
     {
       "type": "table",
       "headers": [
-        { "content": "אג'נט" },
-        { "content": "מתי להזמין" },
-        { "content": "למה" }
+        {
+          "content": "אג'נט"
+        },
+        {
+          "content": "מתי להזמין"
+        },
+        {
+          "content": "למה"
+        }
       ],
       "rows": [
         {
           "cells": [
-            { "content": "PM" },
-            { "content": "תחילת הפרויקט" },
-            { "content": "מגדיר דרישות - כולם צריכים אותן" }
+            {
+              "content": "PM"
+            },
+            {
+              "content": "תחילת הפרויקט"
+            },
+            {
+              "content": "מגדיר דרישות - כולם צריכים אותן"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "Analyst" },
-            { "content": "עם PM" },
-            { "content": "מחקר מיד אחרי החלטה על רעיון" }
+            {
+              "content": "Analyst"
+            },
+            {
+              "content": "עם PM"
+            },
+            {
+              "content": "מחקר מיד אחרי החלטה על רעיון"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "Architect" },
-            { "content": "אחרי PRD" },
-            { "content": "צריך דרישות ברורות לתכנון" }
+            {
+              "content": "Architect"
+            },
+            {
+              "content": "אחרי PRD"
+            },
+            {
+              "content": "צריך דרישות ברורות לתכנון"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "UX Designer" },
-            { "content": "מקביל לארכיטקטורה" },
-            { "content": "יכול לעבוד בצד על עיצוב" }
+            {
+              "content": "UX Designer"
+            },
+            {
+              "content": "מקביל לארכיטקטורה"
+            },
+            {
+              "content": "יכול לעבוד בצד על עיצוב"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "Dev" },
-            { "content": "אחרי ארכיטקטורה" },
-            { "content": "צריך תכנון לפני קוד" }
+            {
+              "content": "Dev"
+            },
+            {
+              "content": "אחרי ארכיטקטורה"
+            },
+            {
+              "content": "צריך תכנון לפני קוד"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "TEA" },
-            { "content": "לפני הפיתוח!" },
-            { "content": "כתיבת tests לפני קוד (TDD)" }
+            {
+              "content": "TEA"
+            },
+            {
+              "content": "לפני הפיתוח!"
+            },
+            {
+              "content": "כתיבת tests לפני קוד (TDD)"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "Tech Writer" },
-            { "content": "כשהקוד עובד" },
-            { "content": "צריך משהו עובד לתעד" }
+            {
+              "content": "Tech Writer"
+            },
+            {
+              "content": "כשהקוד עובד"
+            },
+            {
+              "content": "צריך משהו עובד לתעד"
+            }
           ]
         }
       ]
@@ -444,13 +500,16 @@
       "ordered": false,
       "items": [
         {
-          "content": "**Architect + UX Designer** - בזמן שהארכיטקט מתכנן את ה-backend, ה-UX יכול לעצב את ה-frontend"
+          "content": "**Architect + UX Designer** - בזמן שהארכיטקט מתכנן את ה-backend, ה-UX יכול לעצב את ה-frontend",
+          "markdown": true
         },
         {
-          "content": "**Dev + TEA** - בזמן שה-Dev כותב פיצ'ר אחד, TEA יכול לכתוב tests לפיצ'ר הבא"
+          "content": "**Dev + TEA** - בזמן שה-Dev כותב פיצ'ר אחד, TEA יכול לכתוב tests לפיצ'ר הבא",
+          "markdown": true
         },
         {
-          "content": "**PM + Tech Writer** - בזמן שה-PM מתכנן פיצ'ר חדש, Tech Writer יכול לתעד פיצ'ר שסיימו"
+          "content": "**PM + Tech Writer** - בזמן שה-PM מתכנן פיצ'ר חדש, Tech Writer יכול לתעד פיצ'ר שסיימו",
+          "markdown": true
         }
       ]
     },
@@ -490,44 +549,80 @@
     {
       "type": "table",
       "headers": [
-        { "content": "סיטואציה" },
-        { "content": "Party Mode?" },
-        { "content": "מספר אג'נטים" }
+        {
+          "content": "סיטואציה"
+        },
+        {
+          "content": "Party Mode?"
+        },
+        {
+          "content": "מספר אג'נטים"
+        }
       ],
       "rows": [
         {
           "cells": [
-            { "content": "משימה פשוטה" },
-            { "content": "לא" },
-            { "content": "1" }
+            {
+              "content": "משימה פשוטה"
+            },
+            {
+              "content": "לא"
+            },
+            {
+              "content": "1"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "פיצ'ר בודד" },
-            { "content": "כן" },
-            { "content": "2-3" }
+            {
+              "content": "פיצ'ר בודד"
+            },
+            {
+              "content": "כן"
+            },
+            {
+              "content": "2-3"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "החלטה ארכיטקטונית" },
-            { "content": "כן" },
-            { "content": "3-4" }
+            {
+              "content": "החלטה ארכיטקטונית"
+            },
+            {
+              "content": "כן"
+            },
+            {
+              "content": "3-4"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "brainstorming" },
-            { "content": "כן" },
-            { "content": "4-6" }
+            {
+              "content": "brainstorming"
+            },
+            {
+              "content": "כן"
+            },
+            {
+              "content": "4-6"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "code review" },
-            { "content": "אולי" },
-            { "content": "2" }
+            {
+              "content": "code review"
+            },
+            {
+              "content": "אולי"
+            },
+            {
+              "content": "2"
+            }
           ]
         }
       ]
@@ -786,4 +881,3 @@
     "best-practices"
   ]
 }
-

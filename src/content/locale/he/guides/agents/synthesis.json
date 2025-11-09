@@ -8,7 +8,13 @@
     "difficulty": "advanced",
     "estimatedMinutes": 45,
     "icon": "Stars",
-    "tags": ["אג'נטים", "סינתזה", "תמונה-כוללת", "מחזור-חיים", "מומחים"],
+    "tags": [
+      "אג'נטים",
+      "סינתזה",
+      "תמונה-כוללת",
+      "מחזור-חיים",
+      "מומחים"
+    ],
     "author": "צוות BMAD",
     "version": "1.0"
   },
@@ -470,65 +476,119 @@
     {
       "type": "table",
       "headers": [
-        { "content": "אג'נט" },
-        { "content": "מתי להשתמש" },
-        { "content": "מתי לא" }
+        {
+          "content": "אג'נט"
+        },
+        {
+          "content": "מתי להשתמש"
+        },
+        {
+          "content": "מתי לא"
+        }
       ],
       "rows": [
         {
           "cells": [
-            { "content": "PM" },
-            { "content": "רעיון חדש, PRD, עדיפויות, roadmap" },
-            { "content": "כתיבת קוד, תכנון טכני מפורט" }
+            {
+              "content": "PM"
+            },
+            {
+              "content": "רעיון חדש, PRD, עדיפויות, roadmap"
+            },
+            {
+              "content": "כתיבת קוד, תכנון טכני מפורט"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "Analyst" },
-            { "content": "מחקר שוק, ניתוח תחרות, החלטות מבוססות נתונים" },
-            { "content": "תכנון מימוש, עיצוב" }
+            {
+              "content": "Analyst"
+            },
+            {
+              "content": "מחקר שוק, ניתוח תחרות, החלטות מבוססות נתונים"
+            },
+            {
+              "content": "תכנון מימוש, עיצוב"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "Architect" },
-            { "content": "תכנון מערכת, בחירת טכנולוגיות, החלטות ארכיטקטוניות" },
-            { "content": "דרישות עסקיות, עיצוב UI" }
+            {
+              "content": "Architect"
+            },
+            {
+              "content": "תכנון מערכת, בחירת טכנולוגיות, החלטות ארכיטקטוניות"
+            },
+            {
+              "content": "דרישות עסקיות, עיצוב UI"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "UX Designer" },
-            { "content": "מחקר משתמשים, עיצוב ממשקים, usability" },
-            { "content": "תכנון backend, בחירת database" }
+            {
+              "content": "UX Designer"
+            },
+            {
+              "content": "מחקר משתמשים, עיצוב ממשקים, usability"
+            },
+            {
+              "content": "תכנון backend, בחירת database"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "Scrum Master" },
-            { "content": "ניהול ספרינטים, הסרת חסמים, תהליכים" },
-            { "content": "החלטות טכניות, כתיבת קוד" }
+            {
+              "content": "Scrum Master"
+            },
+            {
+              "content": "ניהול ספרינטים, הסרת חסמים, תהליכים"
+            },
+            {
+              "content": "החלטות טכניות, כתיבת קוד"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "Dev" },
-            { "content": "כתיבת קוד, code review, debugging, refactoring" },
-            { "content": "החלטות מוצר, תכנון UX" }
+            {
+              "content": "Dev"
+            },
+            {
+              "content": "כתיבת קוד, code review, debugging, refactoring"
+            },
+            {
+              "content": "החלטות מוצר, תכנון UX"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "TEA" },
-            { "content": "אסטרטגיית testing, test plans, automation" },
-            { "content": "תכנון פיצ'רים, כתיבת קוד ייצור" }
+            {
+              "content": "TEA"
+            },
+            {
+              "content": "אסטרטגיית testing, test plans, automation"
+            },
+            {
+              "content": "תכנון פיצ'רים, כתיבת קוד ייצור"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "Tech Writer" },
-            { "content": "תיעוד, מדריכים, API docs, help center" },
-            { "content": "כתיבת קוד, תכנון ארכיטקטורה" }
+            {
+              "content": "Tech Writer"
+            },
+            {
+              "content": "תיעוד, מדריכים, API docs, help center"
+            },
+            {
+              "content": "כתיבת קוד, תכנון ארכיטקטורה"
+            }
           ]
         }
       ]
@@ -542,58 +602,106 @@
     {
       "type": "table",
       "headers": [
-        { "content": "משימה" },
-        { "content": "שילוב מומלץ" },
-        { "content": "זמן" }
+        {
+          "content": "משימה"
+        },
+        {
+          "content": "שילוב מומלץ"
+        },
+        {
+          "content": "זמן"
+        }
       ],
       "rows": [
         {
           "cells": [
-            { "content": "רעיון חדש → PRD" },
-            { "content": "PM + Analyst" },
-            { "content": "1-2 שבועות" }
+            {
+              "content": "רעיון חדש → PRD"
+            },
+            {
+              "content": "PM + Analyst"
+            },
+            {
+              "content": "1-2 שבועות"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "PRD → ארכיטקטורה" },
-            { "content": "Architect + PM" },
-            { "content": "1 שבוע" }
+            {
+              "content": "PRD → ארכיטקטורה"
+            },
+            {
+              "content": "Architect + PM"
+            },
+            {
+              "content": "1 שבוע"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "PRD → עיצוב" },
-            { "content": "UX Designer + PM" },
-            { "content": "1-2 שבועות" }
+            {
+              "content": "PRD → עיצוב"
+            },
+            {
+              "content": "UX Designer + PM"
+            },
+            {
+              "content": "1-2 שבועות"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "עיצוב → מימוש" },
-            { "content": "Dev + UX Designer + Architect" },
-            { "content": "2-4 שבועות" }
+            {
+              "content": "עיצוב → מימוש"
+            },
+            {
+              "content": "Dev + UX Designer + Architect"
+            },
+            {
+              "content": "2-4 שבועות"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "קוד → בדיקות" },
-            { "content": "Dev + TEA" },
-            { "content": "כל ספרינט" }
+            {
+              "content": "קוד → בדיקות"
+            },
+            {
+              "content": "Dev + TEA"
+            },
+            {
+              "content": "כל ספרינט"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "פיצ'ר מלא" },
-            { "content": "SM + Dev + TEA" },
-            { "content": "1-3 ספרינטים" }
+            {
+              "content": "פיצ'ר מלא"
+            },
+            {
+              "content": "SM + Dev + TEA"
+            },
+            {
+              "content": "1-3 ספרינטים"
+            }
           ]
         },
         {
           "cells": [
-            { "content": "לפני launch" },
-            { "content": "Tech Writer + PM + Dev" },
-            { "content": "1 שבוע" }
+            {
+              "content": "לפני launch"
+            },
+            {
+              "content": "Tech Writer + PM + Dev"
+            },
+            {
+              "content": "1 שבוע"
+            }
           ]
         }
       ]
@@ -629,22 +737,28 @@
       "ordered": true,
       "items": [
         {
-          "content": "**PM + Analyst:** מגדירים את ה-pivot המדויק, מחקר מהיר על הכיוון החדש"
+          "content": "**PM + Analyst:** מגדירים את ה-pivot המדויק, מחקר מהיר על הכיוון החדש",
+          "markdown": true
         },
         {
-          "content": "**Architect:** מעריכה impact על הארכיטקטורה - מה אפשר לשמור? מה צריך לשנות?"
+          "content": "**Architect:** מעריכה impact על הארכיטקטורה - מה אפשר לשמור? מה צריך לשנות?",
+          "markdown": true
         },
         {
-          "content": "**SM:** מעריך impact על הbacklog - איזה stories להשהות, מה מתיישן"
+          "content": "**SM:** מעריך impact על הbacklog - איזה stories להשהות, מה מתיישן",
+          "markdown": true
         },
         {
-          "content": "**Dev + TEA:** בודקים מה מהקוד הקיים reusable, מה צריך refactoring"
+          "content": "**Dev + TEA:** בודקים מה מהקוד הקיים reusable, מה צריך refactoring",
+          "markdown": true
         },
         {
-          "content": "**UX Designer:** מתכננת מחדש את החלקים שהשתנו"
+          "content": "**UX Designer:** מתכננת מחדש את החלקים שהשתנו",
+          "markdown": true
         },
         {
-          "content": "**כולם ביחד (Party Mode):** פגישת alignment - מסכמים את התוכנית החדשה"
+          "content": "**כולם ביחד (Party Mode):** פגישת alignment - מסכמים את התוכנית החדשה",
+          "markdown": true
         }
       ]
     },
@@ -665,22 +779,28 @@
       "ordered": true,
       "items": [
         {
-          "content": "**Dev + Architect:** Audit מקיף - מזהים את הבעיות הקריטיות ביותר"
+          "content": "**Dev + Architect:** Audit מקיף - מזהים את הבעיות הקריטיות ביותר",
+          "markdown": true
         },
         {
-          "content": "**Architect:** מתכננת refactoring strategy - באיזה סדר לטפל"
+          "content": "**Architect:** מתכננת refactoring strategy - באיזה סדר לטפל",
+          "markdown": true
         },
         {
-          "content": "**PM + SM:** מחליטים על allocation - כמה זמן להקדיש לrefactoring מול features חדשים (המלצה: 20-30%)"
+          "content": "**PM + SM:** מחליטים על allocation - כמה זמן להקדיש לrefactoring מול features חדשים (המלצה: 20-30%)",
+          "markdown": true
         },
         {
-          "content": "**TEA:** מוודא שיש test coverage טוב לפני refactoring"
+          "content": "**TEA:** מוודא שיש test coverage טוב לפני refactoring",
+          "markdown": true
         },
         {
-          "content": "**Dev:** מבצעת refactoring בצורה מבוקרת, עם code reviews"
+          "content": "**Dev:** מבצעת refactoring בצורה מבוקרת, עם code reviews",
+          "markdown": true
         },
         {
-          "content": "**SM:** עוקב אחרי ההתקדמות, מודד improvement"
+          "content": "**SM:** עוקב אחרי ההתקדמות, מודד improvement",
+          "markdown": true
         }
       ]
     },
@@ -701,25 +821,32 @@
       "ordered": true,
       "items": [
         {
-          "content": "**Architect:** Performance audit - מזהה bottlenecks (database, API, frontend)"
+          "content": "**Architect:** Performance audit - מזהה bottlenecks (database, API, frontend)",
+          "markdown": true
         },
         {
-          "content": "**TEA:** Performance tests - מודד בדיוק איפה הבעיות"
+          "content": "**TEA:** Performance tests - מודד בדיוק איפה הבעיות",
+          "markdown": true
         },
         {
-          "content": "**Architect + Dev:** מתכננים optimizations: caching, DB indexes, code optimization"
+          "content": "**Architect + Dev:** מתכננים optimizations: caching, DB indexes, code optimization",
+          "markdown": true
         },
         {
-          "content": "**UX Designer:** מוודאת שהשינויים לא פוגעים ב-UX (loading states, progressive loading)"
+          "content": "**UX Designer:** מוודאת שהשינויים לא פוגעים ב-UX (loading states, progressive loading)",
+          "markdown": true
         },
         {
-          "content": "**Dev:** מממשת את האופטימיזציות"
+          "content": "**Dev:** מממשת את האופטימיזציות",
+          "markdown": true
         },
         {
-          "content": "**TEA:** בודק שהperformance השתפר ושלא נוספו באגים"
+          "content": "**TEA:** בודק שהperformance השתפר ושלא נוספו באגים",
+          "markdown": true
         },
         {
-          "content": "**PM:** מחליט אם צריך להגביל features מסוימים או לשדרג infrastructure"
+          "content": "**PM:** מחליט אם צריך להגביל features מסוימים או לשדרג infrastructure",
+          "markdown": true
         }
       ]
     },
@@ -786,19 +913,24 @@
       "ordered": false,
       "items": [
         {
-          "content": "**Discovery Pattern:** PM + Analyst → PRD"
+          "content": "**Discovery Pattern:** PM + Analyst → PRD",
+          "markdown": true
         },
         {
-          "content": "**Technical Planning Pattern:** Architect + PM → Tech Spec"
+          "content": "**Technical Planning Pattern:** Architect + PM → Tech Spec",
+          "markdown": true
         },
         {
-          "content": "**Feature Development Pattern:** Dev + TEA → Working code + Tests"
+          "content": "**Feature Development Pattern:** Dev + TEA → Working code + Tests",
+          "markdown": true
         },
         {
-          "content": "**Polish Pattern:** UX Designer + Dev + TEA → Production-ready"
+          "content": "**Polish Pattern:** UX Designer + Dev + TEA → Production-ready",
+          "markdown": true
         },
         {
-          "content": "**Launch Pattern:** Tech Writer + PM + Dev → Documentation + Marketing"
+          "content": "**Launch Pattern:** Tech Writer + PM + Dev → Documentation + Marketing",
+          "markdown": true
         }
       ]
     },
@@ -1027,4 +1159,3 @@
     "best-practices"
   ]
 }
-

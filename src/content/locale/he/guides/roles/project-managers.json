@@ -8,7 +8,15 @@
     "difficulty": "intermediate",
     "estimatedMinutes": 35,
     "icon": "ClipboardList",
-    "tags": ["ניהול פרויקטים", "סקראם מאסטר", "Bob", "אג'ייל", "ספרינטים", "backlog", "retrospective"],
+    "tags": [
+      "ניהול פרויקטים",
+      "סקראם מאסטר",
+      "Bob",
+      "אג'ייל",
+      "ספרינטים",
+      "backlog",
+      "retrospective"
+    ],
     "author": "צוות BMAD",
     "version": "1.0"
   },
@@ -1058,7 +1066,7 @@
     {
       "type": "text",
       "content": "**איך לשמור על backlog בריא:**\n• Grooming שבועי עם הצוות\n• וידוא שה-Stories ה-3 הבאים מוכנים לפיתוח\n• תעדוף ברור לפי ערך עסקי\n• הסרת Stories ישנים/לא רלוונטיים\n• שמירה על איזון בין features חדשים ל-technical debt",
-      "markdown": false
+      "markdown": true
     },
     {
       "type": "heading",
@@ -1069,7 +1077,7 @@
     {
       "type": "text",
       "content": "**עם מי ומתי:**\n\n**Stakeholders:** שבועי - עדכון התקדמות, סיכונים, שינויים\n**הצוות:** יומי - standup, הסרת חסמים, תמיכה\n**PM/PO:** כל יומיים - תעדוף, דרישות, clarifications\n**Management:** חודשי - סטטוס פרויקט, תקציב, timeline",
-      "markdown": false
+      "markdown": true
     },
     {
       "type": "callout",
@@ -1086,7 +1094,7 @@
     {
       "type": "text",
       "content": "**רשימת סיכונים נפוצים:**\n\n• **Velocity יורד** → בדקו: מה מאט את הצוות?\n• **Stories לא מושלמים** → בדקו: האם ה-DoD ברור?\n• **חסמים חוזרים** → בדקו: האם יש בעיה מערכתית?\n• **Technical debt צובר** → בדקו: האם מספיק זמן לתחזוקה?\n• **Scope creep** → בדקו: האם ה-PM יודע להגיד 'לא'?",
-      "markdown": false
+      "markdown": true
     },
     {
       "type": "heading",
@@ -1097,7 +1105,7 @@
     {
       "type": "text",
       "content": "**רטרו טובה:**\n\n• מתקיימת בזמן (לא מתבטלת!)\n• כל הצוות משתתף ומדבר\n• יש Action Items ברורים\n• יש מעקב על Action Items מספרינטים קודמים\n• אווירה של למידה, לא האשמה\n• יש שיפור מדיד מספרינט לספרינט",
-      "markdown": false
+      "markdown": true
     },
     {
       "type": "callout",
@@ -1114,7 +1122,7 @@
     {
       "type": "text",
       "content": "**אל תלחצו על הצוות:**\n\n• עדיף קצב יציב ארוך טווח מאשר ספרינטים של crunch\n• שמרו על work-life balance\n• תנו לצוות זמן ללמוד ולהשתפר\n• זכרו: צוות שרוף לא יוצר קוד איכותי\n• Velocity יורד כששורפים את הצוות!",
-      "markdown": false
+      "markdown": true
     },
     {
       "type": "divider"
@@ -1217,19 +1225,24 @@
       "variant": "ordered",
       "items": [
         {
-          "content": "**התקינו את BMAD** בפרויקט שלכם (אם עוד לא)"
+          "content": "**התקינו את BMAD** בפרויקט שלכם (אם עוד לא)",
+          "markdown": true
         },
         {
-          "content": "**הריצו sprint-planning** על הספרינט הבא"
+          "content": "**הריצו sprint-planning** על הספרינט הבא",
+          "markdown": true
         },
         {
-          "content": "**נהלו ספרינט אחד מלא** עם Bob"
+          "content": "**נהלו ספרינט אחד מלא** עם Bob",
+          "markdown": true
         },
         {
-          "content": "**הריצו retrospective** ותראו מה Bob ממליץ"
+          "content": "**הריצו retrospective** ותראו מה Bob ממליץ",
+          "markdown": true
         },
         {
-          "content": "**שתפו את הצוות** - הראו להם איך BMAD עוזר"
+          "content": "**שתפו את הצוות** - הראו להם איך BMAD עוזר",
+          "markdown": true
         }
       ]
     },
@@ -1319,4 +1332,3 @@
     }
   ]
 }
-

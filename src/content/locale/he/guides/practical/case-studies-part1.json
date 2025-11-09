@@ -8,7 +8,13 @@
     "difficulty": "intermediate",
     "estimatedMinutes": 60,
     "icon": "IconChecklist",
-    "tags": ["תרגילים", "מקרי-מבחן", "דוגמאות", "hands-on", "פרויקטים"],
+    "tags": [
+      "תרגילים",
+      "מקרי-מבחן",
+      "דוגמאות",
+      "hands-on",
+      "פרויקטים"
+    ],
     "author": "צוות BMAD",
     "version": "1.0"
   },
@@ -224,14 +230,42 @@
     },
     {
       "type": "table",
-      "headers": ["החלטה", "טכנולוגיה שנבחרה", "למה"],
+      "headers": [
+        "החלטה",
+        "טכנולוגיה שנבחרה",
+        "למה"
+      ],
       "rows": [
-        ["Frontend", "Next.js 14 + TypeScript", "SSR, SEO, Type Safety"],
-        ["Backend", "Next.js API Routes", "פשטות - אותו קודבייס"],
-        ["Database", "PostgreSQL + Prisma", "יחסי, Schema-first, Type-safe"],
-        ["Auth", "NextAuth.js", "מוכן, מאובטח, OAuth built-in"],
-        ["UI", "TailwindCSS + shadcn/ui", "מהיר, גמיש, נראה טוב"],
-        ["Hosting", "Vercel", "אופטימלי ל-Next.js, deploy פשוט"]
+        [
+          "Frontend",
+          "Next.js 14 + TypeScript",
+          "SSR, SEO, Type Safety"
+        ],
+        [
+          "Backend",
+          "Next.js API Routes",
+          "פשטות - אותו קודבייס"
+        ],
+        [
+          "Database",
+          "PostgreSQL + Prisma",
+          "יחסי, Schema-first, Type-safe"
+        ],
+        [
+          "Auth",
+          "NextAuth.js",
+          "מוכן, מאובטח, OAuth built-in"
+        ],
+        [
+          "UI",
+          "TailwindCSS + shadcn/ui",
+          "מהיר, גמיש, נראה טוב"
+        ],
+        [
+          "Hosting",
+          "Vercel",
+          "אופטימלי ל-Next.js, deploy פשוט"
+        ]
       ]
     },
     {
@@ -591,14 +625,42 @@
     },
     {
       "type": "table",
-      "headers": ["רכיב", "טכנולוגיה", "סיבה"],
+      "headers": [
+        "רכיב",
+        "טכנולוגיה",
+        "סיבה"
+      ],
       "rows": [
-        ["Frontend", "React + TypeScript", "גמישות, SPA מהיר, Type Safety"],
-        ["Backend", "Node.js + Express", "קל, מהיר, ecosystem עשיר"],
-        ["Database", "MongoDB", "גמישות לשינויים, scale טוב"],
-        ["Payments", "Stripe", "אמין, תומך ב-IL, webhooks"],
-        ["Storage", "AWS S3", "תמונות מוצרים, storage זול"],
-        ["Hosting", "AWS EC2 + CloudFront", "performance, CDN"]
+        [
+          "Frontend",
+          "React + TypeScript",
+          "גמישות, SPA מהיר, Type Safety"
+        ],
+        [
+          "Backend",
+          "Node.js + Express",
+          "קל, מהיר, ecosystem עשיר"
+        ],
+        [
+          "Database",
+          "MongoDB",
+          "גמישות לשינויים, scale טוב"
+        ],
+        [
+          "Payments",
+          "Stripe",
+          "אמין, תומך ב-IL, webhooks"
+        ],
+        [
+          "Storage",
+          "AWS S3",
+          "תמונות מוצרים, storage זול"
+        ],
+        [
+          "Hosting",
+          "AWS EC2 + CloudFront",
+          "performance, CDN"
+        ]
       ]
     },
     {
@@ -782,14 +844,42 @@
     },
     {
       "type": "table",
-      "headers": ["רכיב", "טכנולוגיה", "למה"],
+      "headers": [
+        "רכיב",
+        "טכנולוגיה",
+        "למה"
+      ],
       "rows": [
-        ["Mobile", "React Native + TypeScript", "iOS + Android מקוד אחד"],
-        ["State", "Zustand + React Query", "פשוט, מהיר, caching חכם"],
-        ["Backend", "Firebase", "Real-time, Auth, Storage - all-in-one"],
-        ["AI Model", "Python + TensorFlow Lite", "רץ on-device, פרטיות"],
-        ["Video", "Vimeo API", "streaming איכותי, adaptive bitrate"],
-        ["Analytics", "Mixpanel", "event tracking מפורט"]
+        [
+          "Mobile",
+          "React Native + TypeScript",
+          "iOS + Android מקוד אחד"
+        ],
+        [
+          "State",
+          "Zustand + React Query",
+          "פשוט, מהיר, caching חכם"
+        ],
+        [
+          "Backend",
+          "Firebase",
+          "Real-time, Auth, Storage - all-in-one"
+        ],
+        [
+          "AI Model",
+          "Python + TensorFlow Lite",
+          "רץ on-device, פרטיות"
+        ],
+        [
+          "Video",
+          "Vimeo API",
+          "streaming איכותי, adaptive bitrate"
+        ],
+        [
+          "Analytics",
+          "Mixpanel",
+          "event tracking מפורט"
+        ]
       ]
     },
     {
@@ -1053,14 +1143,42 @@
     },
     {
       "type": "table",
-      "headers": ["רכיב", "טכנולוגיה", "נימוק"],
+      "headers": [
+        "רכיב",
+        "טכנולוגיה",
+        "נימוק"
+      ],
       "rows": [
-        ["Frontend", "Angular + TypeScript", "Enterprise-grade, TypeScript חזק"],
-        ["Backend", ".NET Core 8", "ביצועים, אבטחה, scalability"],
-        ["Database", "SQL Server", "דרישת הארגון, ACID compliance"],
-        ["Auth", "Azure AD", "SSO, MFA, Role-based access"],
-        ["Storage", "Azure Blob + encryption", "אבטחה, compliance"],
-        ["Search", "Elasticsearch", "חיפוש מתקדם במסמכים"]
+        [
+          "Frontend",
+          "Angular + TypeScript",
+          "Enterprise-grade, TypeScript חזק"
+        ],
+        [
+          "Backend",
+          ".NET Core 8",
+          "ביצועים, אבטחה, scalability"
+        ],
+        [
+          "Database",
+          "SQL Server",
+          "דרישת הארגון, ACID compliance"
+        ],
+        [
+          "Auth",
+          "Azure AD",
+          "SSO, MFA, Role-based access"
+        ],
+        [
+          "Storage",
+          "Azure Blob + encryption",
+          "אבטחה, compliance"
+        ],
+        [
+          "Search",
+          "Elasticsearch",
+          "חיפוש מתקדם במסמכים"
+        ]
       ]
     },
     {
@@ -1185,7 +1303,8 @@
       "type": "callout",
       "variant": "success",
       "title": "לקח מרכזי",
-      "content": "האגנט PM עזר להתמקד ב-**core value proposition** בלבד - יצירת נסיעה, חיפוש, והזמנה. הכל האחר נדחה לגרסאות עתידיות."
+      "content": "האגנט PM עזר להתמקד ב-**core value proposition** בלבד - יצירת נסיעה, חיפוש, והזמנה. הכל האחר נדחה לגרסאות עתידיות.",
+      "markdown": true
     },
     {
       "type": "text",
@@ -1260,14 +1379,42 @@
     },
     {
       "type": "table",
-      "headers": ["רכיב", "טכנולוגיה", "למה"],
+      "headers": [
+        "רכיב",
+        "טכנולוגיה",
+        "למה"
+      ],
       "rows": [
-        ["Fullstack", "Next.js 14", "Frontend + Backend בקודבייס אחד"],
-        ["Database", "Supabase", "Postgres + Auth + Storage + Realtime"],
-        ["UI", "Tailwind + shadcn/ui", "מהיר, לא צריך לעצב מאפס"],
-        ["Maps", "MapBox", "API פשוט, free tier נדיב"],
-        ["Hosting", "Vercel", "deploy ב-click, CI/CD מובנה"],
-        ["Notifications", "Resend", "Email API פשוט"]
+        [
+          "Fullstack",
+          "Next.js 14",
+          "Frontend + Backend בקודבייס אחד"
+        ],
+        [
+          "Database",
+          "Supabase",
+          "Postgres + Auth + Storage + Realtime"
+        ],
+        [
+          "UI",
+          "Tailwind + shadcn/ui",
+          "מהיר, לא צריך לעצב מאפס"
+        ],
+        [
+          "Maps",
+          "MapBox",
+          "API פשוט, free tier נדיב"
+        ],
+        [
+          "Hosting",
+          "Vercel",
+          "deploy ב-click, CI/CD מובנה"
+        ],
+        [
+          "Notifications",
+          "Resend",
+          "Email API פשוט"
+        ]
       ]
     },
     {
@@ -1291,22 +1438,28 @@
       "variant": "ordered",
       "items": [
         {
-          "content": "**שבוע 3:** Auth + DB Schema + Landing"
+          "content": "**שבוע 3:** Auth + DB Schema + Landing",
+          "markdown": true
         },
         {
-          "content": "**שבוע 4:** יצירת נסיעה + חיפוש בסיסי"
+          "content": "**שבוע 4:** יצירת נסיעה + חיפוש בסיסי",
+          "markdown": true
         },
         {
-          "content": "**שבוע 5:** הזמנה + אישור נהג"
+          "content": "**שבוע 5:** הזמנה + אישור נהג",
+          "markdown": true
         },
         {
-          "content": "**שבוע 6:** פרופיל משתמש + התראות"
+          "content": "**שבוע 6:** פרופיל משתמש + התראות",
+          "markdown": true
         },
         {
-          "content": "**שבוע 7:** Polish + bug fixes"
+          "content": "**שבוע 7:** Polish + bug fixes",
+          "markdown": true
         },
         {
-          "content": "**שבוע 8:** Beta testing עם 20 משתמשים"
+          "content": "**שבוע 8:** Beta testing עם 20 משתמשים",
+          "markdown": true
         }
       ]
     },
@@ -1349,7 +1502,8 @@
       "variant": "unordered",
       "items": [
         {
-          "content": "MVP אמיתי = Minimum **Viable** Product, לא Minimum **Perfect** Product"
+          "content": "MVP אמיתי = Minimum **Viable** Product, לא Minimum **Perfect** Product",
+          "markdown": true
         },
         {
           "content": "SaaS tools חסכו 4-5 שבועות פיתוח (Supabase, Vercel, Resend)"
@@ -1395,13 +1549,37 @@
     },
     {
       "type": "table",
-      "headers": ["פרויקט", "זמן תכנון", "תוצאה"],
+      "headers": [
+        "פרויקט",
+        "זמן תכנון",
+        "תוצאה"
+      ],
       "rows": [
-        ["SaaS Platform", "2 שבועות מ-12", "0 refactoring גדול"],
-        ["E-commerce", "4 שבועות מ-16", "כל הפיצ'רים עבדו"],
-        ["Mobile App", "4 שבועות מ-20", "95% קוד נשאר"],
-        ["Enterprise CRM", "6 שבועות מ-24", "Architecture יציבה"],
-        ["Startup MVP", "2 שבועות מ-8", "השיקו בזמן"]
+        [
+          "SaaS Platform",
+          "2 שבועות מ-12",
+          "0 refactoring גדול"
+        ],
+        [
+          "E-commerce",
+          "4 שבועות מ-16",
+          "כל הפיצ'רים עבדו"
+        ],
+        [
+          "Mobile App",
+          "4 שבועות מ-20",
+          "95% קוד נשאר"
+        ],
+        [
+          "Enterprise CRM",
+          "6 שבועות מ-24",
+          "Architecture יציבה"
+        ],
+        [
+          "Startup MVP",
+          "2 שבועות מ-8",
+          "השיקו בזמן"
+        ]
       ]
     },
     {
@@ -1480,19 +1658,24 @@
       "variant": "unordered",
       "items": [
         {
-          "content": "**SaaS:** 4.6/5 rating מהמשתמשים → retention גבוה"
+          "content": "**SaaS:** 4.6/5 rating מהמשתמשים → retention גבוה",
+          "markdown": true
         },
         {
-          "content": "**E-commerce:** Conversion 3.2% (ממוצע 2.1%) → הכנסות ב-50%"
+          "content": "**E-commerce:** Conversion 3.2% (ממוצע 2.1%) → הכנסות ב-50%",
+          "markdown": true
         },
         {
-          "content": "**Mobile:** Retention 41% (ממוצע 20%) → DAU פי 2"
+          "content": "**Mobile:** Retention 41% (ממוצע 20%) → DAU פי 2",
+          "markdown": true
         },
         {
-          "content": "**Enterprise:** Adoption 100% → משתמשים מרוצים"
+          "content": "**Enterprise:** Adoption 100% → משתמשים מרוצים",
+          "markdown": true
         },
         {
-          "content": "**Startup:** 68% conversion → קיבלו funding"
+          "content": "**Startup:** 68% conversion → קיבלו funding",
+          "markdown": true
         }
       ]
     },
@@ -1537,13 +1720,43 @@
     },
     {
       "type": "table",
-      "headers": ["פרויקט", "Beta Testers", "באגים שנמצאו", "זמן תיקון"],
+      "headers": [
+        "פרויקט",
+        "Beta Testers",
+        "באגים שנמצאו",
+        "זמן תיקון"
+      ],
       "rows": [
-        ["SaaS Platform", "10 users", "8 באגים", "שבוע אחד"],
-        ["E-commerce", "50 לקוחות", "15 UX issues", "שבועיים"],
-        ["Mobile App", "100 users", "23 באגים", "שבוע אחד"],
-        ["Enterprise CRM", "10 עו\"ד", "47 usability issues", "3 שבועות"],
-        ["Startup MVP", "20 users", "12 UX issues", "שבוע אחד"]
+        [
+          "SaaS Platform",
+          "10 users",
+          "8 באגים",
+          "שבוע אחד"
+        ],
+        [
+          "E-commerce",
+          "50 לקוחות",
+          "15 UX issues",
+          "שבועיים"
+        ],
+        [
+          "Mobile App",
+          "100 users",
+          "23 באגים",
+          "שבוע אחד"
+        ],
+        [
+          "Enterprise CRM",
+          "10 עו\"ד",
+          "47 usability issues",
+          "3 שבועות"
+        ],
+        [
+          "Startup MVP",
+          "20 users",
+          "12 UX issues",
+          "שבוע אחד"
+        ]
       ]
     },
     {
@@ -1625,4 +1838,3 @@
     }
   ]
 }
-
