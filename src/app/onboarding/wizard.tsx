@@ -48,7 +48,7 @@ export function OnboardingWizardPage() {
   const [selectedExperience, setSelectedExperience] = useState<string | null>(null);
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { user, profile, refreshProfile } = useAuth();
+  const { user, refreshProfile } = useAuth();
 
   const handleNext = () => {
     if (currentStep < TOTAL_STEPS) {
