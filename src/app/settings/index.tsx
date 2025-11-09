@@ -1,102 +1,31 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { hebrewLocale } from '../../lib/locale/he';
 import { DeleteAccountDialog } from '../../components/settings/DeleteAccountDialog';
+import { NotificationSettings } from '../../components/settings/NotificationSettings';
 import { IconAlertTriangle, IconTrash } from '@tabler/icons-react';
-import { UserAvatar } from '../../components/ui/user-avatar';
-import { useAuth } from '../../hooks/useAuth';
-import { supabase } from '../../lib/supabase';
-import type { AvatarConfig } from '../../lib/avatar';
-import { Link } from 'react-router-dom';
 
 /**
  * Settings Page (Protected)
  * Story 2.12: Account deletion feature
- * Story 0.3: User avatar display
+ * Story 0.9: Notification settings (simplified)
  */
 export function SettingsPage() {
-  const { user, profile } = useAuth();
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
-  const [avatarConfig, setAvatarConfig] = useState<AvatarConfig | null>(null);
   const he = hebrewLocale.accountDeletion;
-
-  // Load avatar configuration - Story 0.3
-  useEffect(() => {
-    async function loadAvatar() {
-      if (!user?.id) return;
-
-      const { data } = await supabase
-        .from('profiles')
-        .select('avatar_style, avatar_seed, avatar_options')
-        .eq('id', user.id)
-        .single();
-
-    if (data?.avatar_style) {
-      setAvatarConfig({
-        style: data.avatar_style as any,
-        seed: data.avatar_seed || user.id,
-        options: (data.avatar_options as Record<string, any>) || {},
-      });
-    }
-    }
-    loadAvatar();
-  }, [user?.id]);
 
   return (
     <div className="px-4 md:px-6 lg:px-8 py-6 md:py-8">
-      <div className="max-w-[1600px] mx-auto space-y-8">
+      <div className="max-w-[1200px] mx-auto space-y-8">
         <div className="space-y-2">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">{hebrewLocale.pages.settings.title}</h1>
           <p className="text-sm md:text-base text-muted-foreground">{hebrewLocale.pages.settings.description}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Profile Avatar - Story 0.3 */}
-          <Card className="p-6 space-y-4">
-            <h3 className="text-lg font-semibold text-foreground">פרופיל</h3>
-            <div className="flex items-center gap-4">
-              <UserAvatar
-                config={avatarConfig}
-                userId={user?.id}
-                size="lg"
-              />
-              <div className="flex-1">
-                <p className="text-sm font-medium text-foreground">
-                  {profile?.display_name || 'משתמש'}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {user?.email}
-                </p>
-                <Link
-                  to="/profile"
-                  className="text-sm text-primary hover:underline"
-                >
-                  ערוך פרופיל ואווטר
-                </Link>
-              </div>
-            </div>
-          </Card>
-
-          <Card className="p-6 space-y-4">
-            <h3 className="text-lg font-semibold text-foreground">התראות</h3>
-            <p className="text-muted-foreground">הגדרות התראות יגיעו בקרוב</p>
-          </Card>
-
-          <Card className="p-6 space-y-4">
-            <h3 className="text-lg font-semibold text-foreground">מראה</h3>
-            <p className="text-muted-foreground">הגדרות ערכת נושא ותצוגה יגיעו בקרוב</p>
-          </Card>
-
-          <Card className="p-6 space-y-4">
-            <h3 className="text-lg font-semibold text-foreground">פרטיות</h3>
-            <p className="text-muted-foreground">בקרות פרטיות יגיעו בקרוב</p>
-          </Card>
-
-          <Card className="p-6 space-y-4">
-            <h3 className="text-lg font-semibold text-foreground">שפה</h3>
-            <p className="text-muted-foreground">תמיכה ב-RTL לעברית ויכולות דו-לשוניות</p>
-          </Card>
+        <div className="grid grid-cols-1 gap-6">
+          {/* Story 0.9: Notification Settings (in-app only) */}
+          <NotificationSettings />
 
           {/* Danger Zone - Account Deletion */}
           <Card className="p-6 space-y-3 border-red-200 dark:border-red-900">

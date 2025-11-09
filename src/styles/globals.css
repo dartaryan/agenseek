@@ -301,4 +301,114 @@
     clip: auto;
     white-space: normal;
   }
+
+  /* Story 0.9: Density variations for appearance settings */
+  body.density-comfortable {
+    /* Default spacing - no changes needed */
+  }
+
+  body.density-compact {
+    /* Reduce spacing globally */
+    --spacing-scale: 0.75;
+  }
+
+  body.density-compact .space-y-6 > * + * {
+    margin-top: 1rem;
+  }
+
+  body.density-compact .space-y-4 > * + * {
+    margin-top: 0.75rem;
+  }
+
+  body.density-compact .space-y-3 > * + * {
+    margin-top: 0.5rem;
+  }
+
+  body.density-compact .p-6 {
+    padding: 1rem;
+  }
+
+  body.density-compact .p-4 {
+    padding: 0.75rem;
+  }
+
+  body.density-compact .py-8 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  body.density-compact .gap-6 {
+    gap: 1rem;
+  }
+
+  body.density-spacious {
+    /* Increase spacing globally */
+    --spacing-scale: 1.25;
+  }
+
+  body.density-spacious .space-y-6 > * + * {
+    margin-top: 2rem;
+  }
+
+  body.density-spacious .space-y-4 > * + * {
+    margin-top: 1.5rem;
+  }
+
+  body.density-spacious .space-y-3 > * + * {
+    margin-top: 1.25rem;
+  }
+
+  body.density-spacious .p-6 {
+    padding: 2rem;
+  }
+
+  body.density-spacious .p-4 {
+    padding: 1.5rem;
+  }
+
+  body.density-spacious .py-8 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  body.density-spacious .gap-6 {
+    gap: 2rem;
+  }
+
+  /* Story 0.9: Font size variations for appearance settings */
+  body.font-size-small {
+    font-size: 14px;
+  }
+
+  body.font-size-small h1 {
+    font-size: 1.75rem;
+  }
+
+  body.font-size-small h2 {
+    font-size: 1.5rem;
+  }
+
+  body.font-size-small h3 {
+    font-size: 1.125rem;
+  }
+
+  body.font-size-medium {
+    font-size: 16px; /* default */
+  }
+
+  body.font-size-large {
+    font-size: 18px;
+  }
+
+  body.font-size-large h1 {
+    font-size: 2.5rem;
+  }
+
+  body.font-size-large h2 {
+    font-size: 2rem;
+  }
+
+  body.font-size-large h3 {
+    font-size: 1.5rem;
+  }
 }
