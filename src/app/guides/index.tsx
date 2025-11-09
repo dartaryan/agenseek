@@ -42,7 +42,7 @@ import { categorizeGuidesByLearningPath } from '@/lib/learning-path';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/lib/supabase';
 import { cn } from '@/lib/utils';
-import { cachedSupabaseQuery, createCacheKey, CACHE_DURATION, clearCache } from '@/lib/api-cache';
+import { cachedSupabaseQuery, createCacheKey, CACHE_DURATION } from '@/lib/api-cache';
 
 /**
  * Story 0.1: Guide progress data from database
