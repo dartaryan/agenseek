@@ -813,6 +813,39 @@ export interface LocaleStrings {
     profileAvatar: string;
     editProfile: string;
   };
+
+  // Footer (Story 11.2)
+  footer: {
+    createdBy: string;
+    reportBug: string;
+    copyright: string;
+    bmadGithub: string;
+  };
+
+  // Bug Report Modal (Story 11.2)
+  bugReport: {
+    title: string;
+    description: string;
+    emailLabel: string;
+    titleLabel: string;
+    titlePlaceholder: string;
+    descriptionLabel: string;
+    descriptionPlaceholder: string;
+    locationLabel: string;
+    locationPlaceholder: string;
+    submit: string;
+    submitting: string;
+    cancel: string;
+    successToast: string;
+    errorToast: string;
+    charCount: string;
+    validationEmailRequired: string;
+    validationEmailInvalid: string;
+    validationTitleRequired: string;
+    validationTitleTooShort: string;
+    validationDescRequired: string;
+    validationDescTooShort: string;
+  };
 }
 
 export const hebrewLocale: LocaleStrings = {
@@ -1608,5 +1641,38 @@ export const hebrewLocale: LocaleStrings = {
     style: 'סגנון אווטר',
     profileAvatar: 'אווטר פרופיל',
     editProfile: 'ערוך פרופיל ואווטר',
+  },
+
+  // Footer (Story 11.2)
+  footer: {
+    createdBy: 'נוצר על ידי',
+    reportBug: 'דיווח על באג או בקשה לפיצ\'ר',
+    copyright: 'כל הזכויות שמורות',
+    bmadGithub: 'BMAD on GitHub',
+  },
+
+  // Bug Report Modal (Story 11.2)
+  bugReport: {
+    title: 'דיווח על באג',
+    description: 'נשמח לשמוע על בעיות שנתקלת בהן כדי שנוכל לשפר את המערכת',
+    emailLabel: 'כתובת אימייל',
+    titleLabel: 'כותרת הבאג',
+    titlePlaceholder: 'תיאור קצר של הבעיה',
+    descriptionLabel: 'תיאור מפורט',
+    descriptionPlaceholder: 'אנא תאר/י את הבעיה בפירוט - מה קרה, מתי, ובאיזה עמוד',
+    locationLabel: 'עמוד/מיקום (אופציונלי)',
+    locationPlaceholder: 'לדוגמה: דף הבית, עמוד המדריכים',
+    submit: 'שלח דיווח',
+    submitting: 'שולח...',
+    cancel: 'ביטול',
+    successToast: 'הדיווח נשלח בהצלחה. תודה!',
+    errorToast: 'שגיאה בשליחה. אנא נסה שוב.',
+    charCount: 'תווים',
+    validationEmailRequired: 'נא להזין כתובת אימייל',
+    validationEmailInvalid: 'כתובת אימייל לא תקינה',
+    validationTitleRequired: 'נא להזין כותרת',
+    validationTitleTooShort: 'הכותרת חייבת להכיל לפחות 10 תווים',
+    validationDescRequired: 'נא להזין תיאור',
+    validationDescTooShort: 'התיאור חייב להכיל לפחות 20 תווים',
   },
 };

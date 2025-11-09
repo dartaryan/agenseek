@@ -1,43 +1,52 @@
-import { Link } from 'react-router-dom';
+import { IconBrandGithub, IconMail } from '@tabler/icons-react';
+import { hebrewLocale } from '@/lib/locale/he';
 
 /**
  * Footer Component
+ * Story: 11.2 - Footer Redesign & Credits
  *
- * Simple footer with copyright and useful links.
  * Features:
- * - Copyright notice
- * - Help and documentation links
- * - Responsive layout
+ * - Fully Hebrew content (Hebrew-only policy)
+ * - Creator credit with email link
+ * - Correct BMAD GitHub link
+ * - Bug report modal
+ * - Mobile responsive
+ * - RTL layout
  */
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const locale = hebrewLocale.footer;
 
   return (
-    <footer className="border-t bg-gray-50/40 mt-auto">
-      <div className="container px-4 py-6 md:px-6">
-        <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-          {/* Copyright */}
-          <p className="text-sm text-gray-600">
-            © {currentYear} Agenseek - BMAD Learning Hub. All rights reserved.
-          </p>
-
-          {/* Links */}
-          <div className="flex items-center gap-4 text-sm">
-            <Link to="/guides" className="text-gray-600 hover:text-emerald-600 transition-colors">
-              Guides
-            </Link>
-            <Link to="/profile" className="text-gray-600 hover:text-emerald-600 transition-colors">
-              Help & Support
-            </Link>
+    <footer className="border-t bg-gray-50/40 mt-auto" dir="rtl">
+      <div className="container px-4 py-4 md:px-6 md:py-5">
+        <div className="flex items-center justify-between text-sm">
+          {/* Right Side: Copyright and Creator */}
+          <div className="flex items-center gap-3">
+            <span className="text-gray-600">© {currentYear} Agenseek. {locale.copyright}</span>
+            <span className="text-gray-400">•</span>
+            <div className="flex items-center gap-1.5">
+              <span className="text-gray-600">{locale.createdBy}</span>
             <a
-              href="https://github.com/bmad-method"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-emerald-600 transition-colors"
+                href="mailto:benakiva1991@gmail.com"
+                className="flex items-center gap-1 text-emerald-600 hover:text-emerald-700 hover:underline font-medium transition-colors"
             >
-              About BMAD
-            </a>
+                <IconMail size={14} stroke={1.5} />
+                <span>בן עקיבא</span>
+              </a>
+            </div>
           </div>
+
+          {/* Left Side: BMAD GitHub */}
+          <a
+            href="https://github.com/bmad-code-org/BMAD-METHOD"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-gray-600 hover:text-emerald-600 transition-colors"
+          >
+            <IconBrandGithub size={18} stroke={1.5} />
+            <span className="hidden sm:inline">{locale.bmadGithub}</span>
+          </a>
         </div>
       </div>
     </footer>

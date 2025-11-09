@@ -139,10 +139,9 @@ export function GuideReaderPage() {
           .select('progress_percent, last_position, time_spent_seconds, completed, last_read_at')
           .eq('user_id', user.id)
           .eq('guide_slug', slug)
-          .single();
+          .maybeSingle();
 
-        if (progressError && progressError.code !== 'PGRST116') {
-          // PGRST116 = no rows returned, which is fine (first time reading)
+        if (progressError) {
           console.error('Failed to load progress:', progressError);
         }
 

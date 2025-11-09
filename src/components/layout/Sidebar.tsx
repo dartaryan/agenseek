@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   IconLayoutDashboard,
@@ -13,7 +14,9 @@ import {
   IconClipboardList,
   IconLayoutSidebarLeftCollapse,
   IconLayoutSidebarLeftExpand,
+  IconBug,
 } from '@tabler/icons-react';
+import { BugReportModal } from '../modals/BugReportModal';
 import { cn } from '../../lib/utils';
 import { hebrewLocale } from '../../lib/locale/he';
 import { useSidebar } from '../../contexts/SidebarContext';
@@ -66,6 +69,7 @@ const adminItems: NavItem[] = [
  * - Story 6.12: Collapsible with smooth animations and localStorage persistence
  */
 export function Sidebar() {
+  const [showBugReportModal, setShowBugReportModal] = useState(false);
   const location = useLocation();
   const { isCollapsed, toggle } = useSidebar();
   const { user, profile } = useAuth();
@@ -214,22 +218,18 @@ export function Sidebar() {
               </div>
             </Link>
 
-            {/* Help Section */}
+            {/* Bug Report Button - Story 11.2 - Replaces old Help Section */}
             <div className="p-4">
-              <div className="rounded-lg bg-primary/10 p-3">
-                <p className="text-xs font-semibold text-primary">
-                  {hebrewLocale.help.title}
-                </p>
-                <p className="mt-1 text-xs text-primary/80">
-                  {hebrewLocale.help.description}
-                </p>
-                <Link
-                  to="/guides"
-                  className="mt-2 inline-block text-xs font-medium text-primary hover:text-primary/80"
-                >
-                  {hebrewLocale.help.browseLink}
-                </Link>
-              </div>
+              <Button
+                variant="default"
+                size="sm"
+                className="w-full justify-start gap-2 bg-emerald-600 hover:bg-emerald-700 text-white"
+                onClick={() => setShowBugReportModal(true)}
+                aria-label="דיווח על באג או בקשה לפיצ'ר"
+              >
+                <IconBug className="h-4 w-4" />
+                <span className="text-xs">דיווח על באג או בקשה לפיצ'ר</span>
+              </Button>
             </div>
           </div>
         )}
@@ -258,6 +258,12 @@ export function Sidebar() {
           </TooltipProvider>
         </div>
       )}
+
+      {/* Bug Report Modal - Story 11.2 */}
+      <BugReportModal
+        open={showBugReportModal}
+        onOpenChange={setShowBugReportModal}
+      />
     </>
   );
 }

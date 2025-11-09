@@ -7,6 +7,7 @@ import {
   IconChecklist,
   IconChartBar,
   IconLogout,
+  IconBug,
   // Story 0.15: IconMoon, IconSun temporarily removed (theme toggle hidden)
   IconShieldCog,
   IconUsers,
@@ -14,6 +15,7 @@ import {
   IconClipboardList,
   IconUser,
 } from '@tabler/icons-react';
+import { BugReportModal } from '../modals/BugReportModal';
 import {
   Sheet,
   SheetContent,
@@ -73,6 +75,7 @@ const ADMIN_ITEMS: NavItem[] = [
  */
 export function MobileNav() {
   const [open, setOpen] = useState(false);
+  const [showBugReportModal, setShowBugReportModal] = useState(false);
   const [avatarConfig, setAvatarConfig] = useState<AvatarConfig | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
@@ -229,6 +232,20 @@ export function MobileNav() {
 
         {/* Footer Section */}
         <div className="border-t border-border p-4 space-y-2">
+          {/* Bug Report Button - Story 11.2 */}
+          <Button
+            variant="default"
+            className="w-full justify-start gap-3 min-h-[44px] bg-emerald-600 hover:bg-emerald-700 text-white"
+            onClick={() => {
+              setShowBugReportModal(true);
+              setOpen(false);
+            }}
+            aria-label="דיווח על באג או בקשה לפיצ'ר"
+          >
+            <IconBug className="h-5 w-5" aria-hidden="true" />
+            <span>דיווח על באג או בקשה לפיצ'ר</span>
+          </Button>
+
           {/* Theme Toggle - Story 0.6 / Story 0.15 - Temporarily hidden until dark mode is polished
           <Button
             variant="outline"
@@ -262,6 +279,12 @@ export function MobileNav() {
           </Button>
         </div>
       </SheetContent>
+
+      {/* Bug Report Modal - Story 11.2 */}
+      <BugReportModal
+        open={showBugReportModal}
+        onOpenChange={setShowBugReportModal}
+      />
     </Sheet>
   );
 }

@@ -38,6 +38,7 @@ const ContentAnalyticsPage = lazy(() => import('./admin/analytics.tsx'));
 const EngagementReportPage = lazy(() => import('./admin/engagement.tsx'));
 const AdminNotificationPreferencesPage = lazy(() => import('./admin/notifications/preferences').then(m => ({ default: m.AdminNotificationPreferencesPage })));
 const AdminActionLogPage = lazy(() => import('./admin/logs.tsx'));
+const BugReportsPage = lazy(() => import('./admin/bug-reports').then(m => ({ default: m.BugReportsPage })));
 
 /**
  * Suspense wrapper for lazy loaded routes
@@ -315,6 +316,14 @@ export const router = createBrowserRouter([
         element: (
           <RouteSuspense>
             <AdminActionLogPage />
+          </RouteSuspense>
+        ),
+      },
+      {
+        path: 'bug-reports',
+        element: (
+          <RouteSuspense>
+            <BugReportsPage />
           </RouteSuspense>
         ),
       },
