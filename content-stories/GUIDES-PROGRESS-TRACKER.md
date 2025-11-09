@@ -1,7 +1,7 @@
 # 📊 מעקב התקדמות מדריכים - Guides Progress Tracker
 
 **תאריך עדכון:** 9 נובמבר 2025
-**סטטוס:** 19/47 הושלמו (40%)
+**סטטוס:** 20/47 הושלמו (43%)
 
 ---
 
@@ -25,9 +25,9 @@
 | Onboarding | 3 | 2 | 1 | 67% |
 | Roles | 9 | 6 | 3 | 67% |
 | Agents | 8 | 4 | 4 | 50% |
-| Workflows | 10 | 3 | 7 | 30% |
+| Workflows | 10 | 4 | 6 | 40% |
 | Practical | 9 | 0 | 9 | 0% |
-| **סה"כ** | **47** | **18** | **29** | **38%** |
+| **סה"כ** | **47** | **19** | **28** | **40%** |
 
 ---
 
@@ -64,7 +64,7 @@
 | 16 | `workflows-intro-critical` | מדריך וורקפלואים - חלק 1א: מבוא + וורקפלואים קריטיים | workflows | ✅ |
 | 17 | `workflows-phase0-1` | מדריך וורקפלואים - חלק 1ב: Phase 0-1 (Idea to Brief) | workflows | ✅ |
 | 18 | `workflows-phase2-core` | מדריך וורקפלואים - חלק 2א: Phase 2 Core (Spec + Arch) | workflows | ✅ |
-| 19 | `workflows-phase2-design` | מדריך וורקפלואים - חלק 2ב: Phase 2 Design (UX + GDD) | workflows | ⏳ |
+| 19 | `workflows-phase2-design` | מדריך וורקפלואים - חלק 2ב: Phase 2 Design (UX + GDD) | workflows | ✅ |
 | 20 | `best-practices` | שיטות עבודה מומלצות | practical | ⏳ |
 | 21 | `learning-paths` | מסלולי למידה מומלצים | practical | ⏳ |
 | 22 | `faq-installation` | שאלות ותשובות - חלק 1ב: התקנה | faq | ⏳ |
@@ -72,7 +72,7 @@
 | 24 | `faq-workflows` | שאלות ותשובות - חלק 2ב: וורקפלואים | faq | ⏳ |
 | 25 | `onboarding-month1` | הדרכה לחודש הראשון | onboarding | ⏳ |
 
-**סטטוס P1:** ✅ 14/15 הושלמו (93%)
+**סטטוס P1:** ✅ 15/15 הושלמו (100%) 🎉
 
 ---
 
@@ -110,28 +110,30 @@
 
 ## 🎯 המדריך הבא ליצירה
 
-**לפי עדיפות P1, המדריך הבא הוא:**
+**🎉 כל מדריכי P1 הושלמו!**
 
-### 📌 `workflows-phase2-design`
+**המדריך הבא הוא מ-P2:**
+
+### 📌 `role-game-developers`
 
 **פרטים:**
-- **כותרת:** מדריך וורקפלואים - חלק 2ב: Phase 2 Design (UX + GDD)
-- **קטגוריה:** workflows
-- **רמת קושי:** intermediate
-- **זמן קריאה:** 40 דקות
-- **עדיפות:** 🟡 P1
+- **כותרת:** מדריך למפתחי משחקים
+- **קטגוריה:** roles
+- **רמת קושי:** advanced
+- **זמן קריאה:** 50 דקות
+- **עדיפות:** 🟢 P2
 
 **קבצים לקרוא:**
 1. `content-stories/FOR-AI-AGENTS.md` - הפרומפט המלא (חשוב! כולל הנחיות ליצירה בחלקים)
-2. `content-stories/stories/workflows/phase2-design.md` - הסטורי המפורט
-3. `src/content/locale/he/guides/workflows/phase2-core.json` - המדריך הקודם בסדרה
-4. `src/content/locale/he/guides/agents/tea-ux.json` - מדריך UX Designer
+2. `content-stories/stories/roles/game-developers.md` - הסטורי המפורט
+3. `src/content/locale/he/guides/roles/developers.json` - מדריך למפתחים רגילים (דומה)
+4. `src/content/locale/he/guides/agents/game-agents.json` - מדריך אגנטי משחקים (אם קיים)
 
 **היכן לשמור:**
-- `src/content/locale/he/guides/workflows/phase2-design.json`
+- `src/content/locale/he/guides/roles/game-developers.json`
 
 **לא לשכוח:**
-- **זה מדריך intermediate (40 דקות) - עשוי לדרוש יצירה בחלקים של 700 שורות**
+- **זה מדריך advanced (50 דקות) - ידרוש יצירה בחלקים של 700 שורות**
 - לעדכן את `src/content/locale/he/guides/index.json` (אם צריך)
 - לעדכן את הקובץ הזה (GUIDES-PROGRESS-TRACKER.md)
 
@@ -173,7 +175,9 @@ src/content/locale/he/guides/
 ├── workflows/
 │   ├── intro-critical.json ✅
 │   ├── phase0-1.json ✅
-│   └── [8 מדריכים נוספים - כולם ⏳]
+│   ├── phase2-core.json ✅
+│   ├── phase2-design.json ✅
+│   └── [6 מדריכים נוספים - כולם ⏳]
 └── practical/
     └── [9 מדריכים - כולם ⏳]
 ```
@@ -261,6 +265,12 @@ src/content/locale/he/guides/
 2. architect-sm-dev - מדריך אגנטים - חלק 1ב: Architect + SM + Dev
 3. tea-ux - מדריך אגנטים - חלק 2א: TEA + UX Designer
 4. techwriter-master - מדריך אגנטים - חלק 2ב: Tech Writer + BMAD Master
+
+### ✅ Workflows (4/10 - 40%)
+1. intro-critical - מדריך וורקפלואים - חלק 1א: מבוא + וורקפלואים קריטיים
+2. phase0-1 - מדריך וורקפלואים - חלק 1ב: Phase 0-1 (Idea to Brief)
+3. phase2-core - מדריך וורקפלואים - חלק 2א: Phase 2 Core (Spec + Arch)
+4. phase2-design - מדריך וורקפלואים - חלק 2ב: Phase 2 Design (UX + GDD)
 
 ---
 
