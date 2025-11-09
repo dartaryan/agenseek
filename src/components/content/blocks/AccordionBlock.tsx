@@ -45,18 +45,19 @@ function AccordionBlock({ block }: AccordionBlockProps) {
             const uniqueKey = item.id || `accordion-item-${index}`;
             const uniqueValue = item.id || `item-${index}`;
 
-            // Handle content: if it's a string (markdown), wrap it in a text block
-            // If it's already an array, use it as-is
-            let contentBlocks = item.content;
-            if (typeof item.content === 'string') {
-              contentBlocks = [
-                {
-                  type: 'text',
-                  content: item.content,
-                  markdown: true,
-                },
-              ];
-            }
+          // Handle content: if it's a string (markdown), wrap it in a text block
+          // If it's already an array, use it as-is
+          let contentBlocks = item.content;
+          if (typeof item.content === 'string') {
+            contentBlocks = [
+              {
+                id: `${uniqueKey}-text`,
+                type: 'text',
+                content: item.content,
+                markdown: true,
+              },
+            ];
+          }
 
             return (
               <AccordionItem

@@ -60,6 +60,7 @@ function TabsBlock({ block }: TabsBlockProps) {
           if (typeof tab.content === 'string') {
             contentBlocks = [
               {
+                id: `${uniqueKey}-text`,
                 type: 'text',
                 content: tab.content,
                 markdown: true,

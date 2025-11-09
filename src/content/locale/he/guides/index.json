@@ -1,5 +1,17 @@
 [
   {
+    "id": "bmad-installation",
+    "title": "מדריך התקנה BMAD 6",
+    "description": "מדריך קצר וברור להתקנת BMAD METHOD - סביבת פיתוח מונחית AI. תהליך פשוט שלב אחר שלב שלוקח כ-15 דקות.",
+    "category": "core",
+    "difficulty": "beginner",
+    "estimatedMinutes": 15,
+    "icon": "IconDownload",
+    "tags": ["התקנה", "bmad", "setup", "getting-started", "cursor"],
+    "path": "core/bmad-installation.json",
+    "featured": true
+  },
+  {
     "id": "quick-start",
     "title": "התחלה מהירה ל-BMAD-METHOD",
     "description": "מדריך 15 דקות שיעזור לכם להבין מה זה BMAD ולהתחיל להשתמש בו - ללא ידע טכני מוקדם. הסבר פשוט על מה זה BMAD, למה זה שימושי, והתקנה ב-3 צעדים.",

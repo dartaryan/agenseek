@@ -1,0 +1,473 @@
+{
+  "metadata": {
+    "id": "bmad-installation",
+    "slug": "bmad-installation",
+    "title": "מדריך התקנה BMAD 6",
+    "description": "מדריך קצר וברור להתקנת BMAD METHOD - סביבת פיתוח מונחית AI. תהליך פשוט שלב אחר שלב שלוקח כ-15 דקות.",
+    "category": "core",
+    "difficulty": "beginner",
+    "estimatedMinutes": 15,
+    "icon": "Download",
+    "tags": ["התקנה", "bmad", "setup", "getting-started", "cursor", "installation"],
+    "author": "צוות Agenseek",
+    "version": "6.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "מבוא",
+      "level": 2,
+      "anchor": "intro"
+    },
+    {
+      "id": "toc-2",
+      "title": "אישור התחלת התקנה",
+      "level": 2,
+      "anchor": "confirm-start"
+    },
+    {
+      "id": "toc-3",
+      "title": "בחירת תיקיית התקנה",
+      "level": 2,
+      "anchor": "choose-directory"
+    },
+    {
+      "id": "toc-4",
+      "title": "פרטים אישיים",
+      "level": 2,
+      "anchor": "personal-details"
+    },
+    {
+      "id": "toc-5",
+      "title": "בחירת מודולים",
+      "level": 2,
+      "anchor": "select-modules"
+    },
+    {
+      "id": "toc-6",
+      "title": "בחירת כלי עבודה",
+      "level": 2,
+      "anchor": "select-tools"
+    },
+    {
+      "id": "toc-7",
+      "title": "הגדרת פרויקט",
+      "level": 2,
+      "anchor": "project-setup"
+    },
+    {
+      "id": "toc-8",
+      "title": "הגדרות נוספות",
+      "level": 2,
+      "anchor": "additional-settings"
+    },
+    {
+      "id": "toc-9",
+      "title": "סיום ההתקנה",
+      "level": 2,
+      "anchor": "completion"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מדריך התקנה BMAD 6",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "זמן משוער",
+      "content": "התקנה לוקחת כ-15 דקות. ודא שיש לך גישה לטרמינל והרשאות מתאימות."
+    },
+    {
+      "type": "text",
+      "content": "מדריך קצר וברור להתקנת BMAD METHOD - סביבת פיתוח מונחית AI."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תהליך ההתקנה",
+      "id": "process"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "1. אישור התחלת התקנה",
+      "id": "confirm-start"
+    },
+    {
+      "type": "text",
+      "content": "תראו את ההודעה הבאה:"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "content": "Ok to proceed? (y)"
+    },
+    {
+      "type": "text",
+      "content": "**הקלד:** `Y`"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "2. בחירת תיקיית התקנה",
+      "id": "choose-directory"
+    },
+    {
+      "type": "text",
+      "content": "המערכת תציע תיקייה ברירת מחדל:"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "content": "Installation directory: (C:\\Users\\darta\\Desktop\\learn-bmad\\try)?"
+    },
+    {
+      "type": "text",
+      "content": "**לחץ:** `Enter` (כדי לקבל את התיקייה המוצעת)"
+    },
+    {
+      "type": "text",
+      "content": "המערכת תבקש אישור נוסף - **הקלד:** `Y`"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "3. פרטים אישיים",
+      "id": "personal-details"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שם משתמש",
+      "id": "username"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "content": "What is your name? (BMad)"
+    },
+    {
+      "type": "text",
+      "content": "**לחץ:** `Enter` פעם אחת"
+    },
+    {
+      "type": "text",
+      "content": "**הקלד:** את שמך באנגלית"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שפת צ'אט",
+      "id": "chat-language"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "content": "Preferred Chat Language?"
+    },
+    {
+      "type": "text",
+      "content": "**לחץ:** `Enter` (ברירת מחדל: אנגלית)"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שפת מסמכים",
+      "id": "document-language"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "content": "Preferred Document Output Language? (English)"
+    },
+    {
+      "type": "text",
+      "content": "**לחץ:** `Enter` (ברירת מחדל: אנגלית)"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מיקום שמירת מסמכים",
+      "id": "document-location"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "content": "Where should the generated output default save location be? (docs)"
+    },
+    {
+      "type": "text",
+      "content": "**לחץ:** `Enter` (ברירת מחדל: תיקיית docs)"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "4. בחירת מודולים",
+      "id": "select-modules"
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "חשוב!",
+      "content": "שים לב - יש לבחור BMM (BMad Method) בשלב בחירת המודולים. זהו המודול המרכזי לפיתוח מונחה AI."
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "content": "Select modules to install:\n>( ) BMB: BMad Builder\n ( ) BMGD: BMad Game Development\n (*) BMM: BMad Method Agile-AI Driven-Development\n ( ) CIS: Creative Innovation Suite"
+    },
+    {
+      "type": "text",
+      "content": "**פעולות:**"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        {
+          "content": "השתמש במקש **רווח** כדי לסמן את `BMM: BMad Method`"
+        },
+        {
+          "content": "לחץ **Enter** לאישור"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "5. בחירת כלי עבודה",
+      "id": "select-tools"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "content": "Select tools to configure:"
+    },
+    {
+      "type": "text",
+      "content": "**פעולות:**"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        {
+          "content": "השתמש במקש **רווח** כדי לסמן את `CURSOR`"
+        },
+        {
+          "content": "לחץ **Enter** לאישור"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "6. הגדרת פרויקט",
+      "id": "project-setup"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שם הפרויקט",
+      "id": "project-name"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "content": "What is the title of your project? (try)"
+    },
+    {
+      "type": "text",
+      "content": "**אפשרויות:**"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        {
+          "content": "הקלד שם פרויקט משלך"
+        },
+        {
+          "content": "לחץ `Enter` לשימוש בשם התיקייה"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "סוכני תכנון משחקים",
+      "id": "game-agents"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "content": "Include Game Planning Agents and Workflows? (y/N)"
+    },
+    {
+      "type": "text",
+      "content": "**הקלד:** `N`"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "7. הגדרות נוספות",
+      "id": "additional-settings"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "רמה טכנית",
+      "id": "skill-level"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "content": "What is your technical experience level?"
+    },
+    {
+      "type": "text",
+      "content": "**בחר:** את הרמה המתאימה לך (1-3)"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "הערה חשובה",
+      "content": "זו רמת ההסברים שתקבל, לא רמת הסוכנים. כל הסוכנים יעבדו באותה רמה מקצועית."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מיקום תיעוד טכני",
+      "id": "tech-docs"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "content": "Where is Technical Documentation located? (docs)"
+    },
+    {
+      "type": "text",
+      "content": "**לחץ:** `Enter`"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מיקום סיפורי פיתוח",
+      "id": "story-location"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "content": "Where should development stories be stored? (docs/stories)"
+    },
+    {
+      "type": "text",
+      "content": "**לחץ:** `Enter`"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "התקנת תיעוד משתמש",
+      "id": "user-docs"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "content": "Install user documentation to project directory? (Y/n)"
+    },
+    {
+      "type": "text",
+      "content": "**הקלד:** `Y`"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "יכולות Playwright",
+      "id": "playwright"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "content": "Enable Playwright MCP capabilities? (y/N)"
+    },
+    {
+      "type": "text",
+      "content": "**הקלד:** `N`"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "סיום ההתקנה",
+      "id": "completion"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "התקנה הושלמה!",
+      "content": "BMAD METHOD הותקן בהצלחה בפרויקט שלך. כעת תוכל להתחיל להשתמש בסוכנים והוורקפלואים."
+    },
+    {
+      "type": "text",
+      "content": "**מה הלאה?**"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        {
+          "content": "קרא את מדריך ההתחלה המהירה כדי להבין את היסודות"
+        },
+        {
+          "content": "הכר את הסוכנים השונים והתפקידים שלהם"
+        },
+        {
+          "content": "הרץ את הוורקפלואו הראשון שלך"
+        },
+        {
+          "content": "התחל לבנות את הפרויקט שלך עם BMAD"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "זקוק לעזרה?",
+      "content": "אם נתקלת בבעיות התקנה, בדוק את מדריך שאלות ותשובות - התקנה, או פנה לתמיכה הטכנית."
+    }
+  ]
+}
+

@@ -1,5 +1,8 @@
 # מדריך התקנה BMAD 6
 
+> **📌 הערה:** מדריך זה זמין כעת גם בתוך האפליקציה ב-`/guides/bmad-installation`
+> **Note:** This guide is now integrated into the app at `/guides/bmad-installation`
+
 מדריך קצר וברור להתקנת BMAD METHOD - סביבת פיתוח מונחית AI.
 
 ## תהליך ההתקנה
