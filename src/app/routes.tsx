@@ -37,7 +37,7 @@ const UserManagementPage = lazy(() => import('./admin/users').then(m => ({ defau
 const ContentAnalyticsPage = lazy(() => import('./admin/analytics'));
 const EngagementReportPage = lazy(() => import('./admin/engagement'));
 const AdminNotificationPreferencesPage = lazy(() => import('./admin/notifications/preferences').then(m => ({ default: m.AdminNotificationPreferencesPage })));
-const AdminActionLogPage = lazy(() => import('./admin/logs').then(m => ({ default: m.default })));
+const AdminActionLogPage = lazy(() => import('./admin/logs/index'));
 
 /**
  * Suspense wrapper for lazy loaded routes
