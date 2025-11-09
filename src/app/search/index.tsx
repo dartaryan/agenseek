@@ -185,149 +185,150 @@ export function SearchResultsPage() {
           </p>
         </div>
 
-      {/* Search Form */}
-      <form onSubmit={handleSearch} className="mb-6">
-        <div className="flex gap-2">
-          <div className="relative flex-1">
-            <IconSearch className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="הקלד לחיפוש..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              className="pr-10"
-            />
+        {/* Search Form */}
+        <form onSubmit={handleSearch} className="mb-6">
+          <div className="flex gap-2">
+            <div className="relative flex-1">
+              <IconSearch className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="הקלד לחיפוש..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                className="pr-10"
+              />
+            </div>
+            <Button type="submit" disabled={isSearching}>
+              {isSearching ? 'מחפש...' : 'חפש'}
+            </Button>
           </div>
-          <Button type="submit" disabled={isSearching}>
-            {isSearching ? 'מחפש...' : 'חפש'}
-          </Button>
-        </div>
-      </form>
+        </form>
 
-      {/* Results Count */}
-      {urlQuery && (
-        <div className="mb-6">
-          <p className="text-sm text-muted-foreground">
+        {/* Results Count */}
+        {urlQuery && (
+          <div className="mb-6">
+            <p className="text-sm text-muted-foreground">
+              {isSearching ? (
+                'מחפש...'
+              ) : sortedResults.length > 0 ? (
+                <>
+                  נמצאו <span className="font-semibold">{sortedResults.length}</span> תוצאות
+                  עבור "{urlQuery}"
+                </>
+              ) : (
+                <>לא נמצאו תוצאות עבור "{urlQuery}"</>
+              )}
+            </p>
+          </div>
+        )}
+
+        {/* Filters and Sort */}
+        <div className="flex flex-col sm:flex-row gap-4 mb-6">
+          {/* Filter Tabs */}
+          <Tabs value={filter} onValueChange={handleFilterChange} className="flex-1">
+            <TabsList className="grid grid-cols-4 w-full">
+              <TabsTrigger value="all" className="gap-1">
+                <IconFilter className="h-4 w-4" />
+                <span>הכל ({resultCounts.all})</span>
+              </TabsTrigger>
+              <TabsTrigger value="guides" className="gap-1">
+                <IconBook className="h-4 w-4" />
+                <span>מדריכים ({resultCounts.guides})</span>
+              </TabsTrigger>
+              <TabsTrigger value="notes" className="gap-1">
+                <IconNote className="h-4 w-4" />
+                <span>הערות ({resultCounts.notes})</span>
+              </TabsTrigger>
+              <TabsTrigger value="tasks" className="gap-1">
+                <IconChecklist className="h-4 w-4" />
+                <span>משימות ({resultCounts.tasks})</span>
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+
+          {/* Sort Dropdown */}
+          <Select value={sort} onValueChange={handleSortChange}>
+            <SelectTrigger className="w-full sm:w-[200px]">
+              <IconSortAscending className="h-4 w-4 ml-2" />
+              <SelectValue placeholder="מיין לפי" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="relevance">
+                <div className="flex items-center gap-2">
+                  <IconStar className="h-4 w-4" />
+                  <span>רלוונטיות</span>
+                </div>
+              </SelectItem>
+              <SelectItem value="recent">
+                <div className="flex items-center gap-2">
+                  <IconClock className="h-4 w-4" />
+                  <span>עדכני</span>
+                </div>
+              </SelectItem>
+              <SelectItem value="alphabetical">
+                <div className="flex items-center gap-2">
+                  <IconAlphabetLatin className="h-4 w-4" />
+                  <span>אלפביתי</span>
+                </div>
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        {/* Results */}
+        {urlQuery ? (
+          <>
             {isSearching ? (
-              'מחפש...'
-            ) : sortedResults.length > 0 ? (
+              <div className="text-center py-12">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto mb-4"></div>
+                <p className="text-muted-foreground">מחפש...</p>
+              </div>
+            ) : paginatedResults.length > 0 ? (
               <>
-                נמצאו <span className="font-semibold">{sortedResults.length}</span> תוצאות
-                עבור "{urlQuery}"
+                {/* Results List */}
+                <div className="space-y-8 mb-8">
+                  {paginatedResults.map((result, index) => (
+                    <div key={`${result.type}-${index}`} className="mb-4">
+                      <SearchResultCard
+                        result={result}
+                      />
+                    </div>
+                  ))}
+                </div>
+
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <div className="flex justify-center items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                      disabled={currentPage === 1}
+                    >
+                      הקודם
+                    </Button>
+                    <span className="text-sm text-muted-foreground">
+                      עמוד {currentPage} מתוך {totalPages}
+                    </span>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                      disabled={currentPage === totalPages}
+                    >
+                      הבא
+                    </Button>
+                  </div>
+                )}
               </>
             ) : (
-              <>לא נמצאו תוצאות עבור "{urlQuery}"</>
+              <EmptyState query={urlQuery} />
             )}
-          </p>
-        </div>
-      )}
-
-      {/* Filters and Sort */}
-      <div className="flex flex-col sm:flex-row gap-4 mb-6">
-        {/* Filter Tabs */}
-        <Tabs value={filter} onValueChange={handleFilterChange} className="flex-1">
-          <TabsList className="grid grid-cols-4 w-full">
-            <TabsTrigger value="all" className="gap-1">
-              <IconFilter className="h-4 w-4" />
-              <span>הכל ({resultCounts.all})</span>
-            </TabsTrigger>
-            <TabsTrigger value="guides" className="gap-1">
-              <IconBook className="h-4 w-4" />
-              <span>מדריכים ({resultCounts.guides})</span>
-            </TabsTrigger>
-            <TabsTrigger value="notes" className="gap-1">
-              <IconNote className="h-4 w-4" />
-              <span>הערות ({resultCounts.notes})</span>
-            </TabsTrigger>
-            <TabsTrigger value="tasks" className="gap-1">
-              <IconChecklist className="h-4 w-4" />
-              <span>משימות ({resultCounts.tasks})</span>
-            </TabsTrigger>
-          </TabsList>
-        </Tabs>
-
-        {/* Sort Dropdown */}
-        <Select value={sort} onValueChange={handleSortChange}>
-          <SelectTrigger className="w-full sm:w-[200px]">
-            <IconSortAscending className="h-4 w-4 ml-2" />
-            <SelectValue placeholder="מיין לפי" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="relevance">
-              <div className="flex items-center gap-2">
-                <IconStar className="h-4 w-4" />
-                <span>רלוונטיות</span>
-              </div>
-            </SelectItem>
-            <SelectItem value="recent">
-              <div className="flex items-center gap-2">
-                <IconClock className="h-4 w-4" />
-                <span>עדכני</span>
-              </div>
-            </SelectItem>
-            <SelectItem value="alphabetical">
-              <div className="flex items-center gap-2">
-                <IconAlphabetLatin className="h-4 w-4" />
-                <span>אלפביתי</span>
-              </div>
-            </SelectItem>
-          </SelectContent>
-        </Select>
+          </>
+        ) : (
+          <EmptyState />
+        )}
       </div>
-
-      {/* Results */}
-      {urlQuery ? (
-        <>
-          {isSearching ? (
-            <div className="text-center py-12">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto mb-4"></div>
-              <p className="text-muted-foreground">מחפש...</p>
-            </div>
-          ) : paginatedResults.length > 0 ? (
-            <>
-              {/* Results List */}
-              <div className="space-y-8 mb-8">
-                {paginatedResults.map((result, index) => (
-                  <div key={`${result.type}-${index}`} className="mb-4">
-                    <SearchResultCard
-                      result={result}
-                    />
-                  </div>
-                ))}
-              </div>
-
-              {/* Pagination */}
-              {totalPages > 1 && (
-                <div className="flex justify-center items-center gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                    disabled={currentPage === 1}
-                  >
-                    הקודם
-                  </Button>
-                  <span className="text-sm text-muted-foreground">
-                    עמוד {currentPage} מתוך {totalPages}
-                  </span>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-                    disabled={currentPage === totalPages}
-                  >
-                    הבא
-                  </Button>
-                </div>
-              )}
-            </>
-          ) : (
-            <EmptyState query={urlQuery} />
-          )}
-        </>
-      ) : (
-        <EmptyState />
-      )}
     </div>
   );
 }
