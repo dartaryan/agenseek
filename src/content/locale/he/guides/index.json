@@ -451,17 +451,6 @@
     "path": "practical/configuration-management.json"
   },
   {
-    "id": "updates-upgrades",
-    "title": "עדכונים ושדרוגים",
-    "description": "איך לעדכן את BMAD לגרסאות חדשות, מה מתחדש בכל גרסה, migration guides, ושמירה על תאימות עם הפרויקטים הקיימים.",
-    "category": "practical",
-    "difficulty": "intermediate",
-    "estimatedMinutes": 25,
-    "icon": "IconRefresh",
-    "tags": ["עדכונים", "שדרוגים", "גרסאות", "migration"],
-    "path": "practical/updates-upgrades.json"
-  },
-  {
     "id": "faq-installation",
     "title": "שאלות ותשובות - התקנה",
     "description": "כל השאלות והבעיות הנפוצות על התקנת BMAD - פתרונות לבעיות עם Node.js, Cursor, Claude, והגדרות. מדריך פתרון בעיות מקיף למתחילים.",

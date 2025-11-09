@@ -1,10 +1,10 @@
 # Story 11.4: Hebrew Terminology Standardization - Agent → Sochen
 
-**Status:** 📋 Ready for Implementation  
-**Type:** Content Quality / Localization  
-**Priority:** P1 - High  
-**Sprint:** TBD | **Points:** 5 (Large)  
-**Created:** November 9, 2025  
+**Status:** 📋 Ready for Implementation
+**Type:** Content Quality / Localization
+**Priority:** P1 - High
+**Sprint:** TBD | **Points:** 5 (Large)
+**Created:** November 9, 2025
 
 ---
 
@@ -38,8 +38,8 @@ Throughout the Hebrew content, the English word "agent" is transliterated in var
 
 ## 📖 User Story
 
-**As a Hebrew-speaking user,**  
-**I want proper Hebrew terminology throughout the app,**  
+**As a Hebrew-speaking user,**
+**I want proper Hebrew terminology throughout the app,**
 **So that the content feels professional, natural, and properly localized.**
 
 ---
@@ -48,8 +48,8 @@ Throughout the Hebrew content, the English word "agent" is transliterated in var
 
 ### 1. Comprehensive Content Audit
 
-**Given** "agent" appears in various forms  
-**When** auditing all Hebrew content  
+**Given** "agent" appears in various forms
+**When** auditing all Hebrew content
 **Then:**
 
 - [ ] Search for ALL variations of "agent" in Hebrew:
@@ -80,8 +80,8 @@ Throughout the Hebrew content, the English word "agent" is transliterated in var
 
 ### 2. Define Hebrew Terminology Standards
 
-**Given** need for consistent terminology  
-**When** replacing "agent"  
+**Given** need for consistent terminology
+**When** replacing "agent"
 **Then:**
 
 #### Singular Forms:
@@ -114,8 +114,8 @@ Throughout the Hebrew content, the English word "agent" is transliterated in var
 
 ### 3. Context-Aware Replacements
 
-**Given** different contexts require different grammar  
-**When** replacing terms  
+**Given** different contexts require different grammar
+**When** replacing terms
 **Then:**
 
 Ensure replacements maintain proper Hebrew grammar:
@@ -141,8 +141,8 @@ Ensure replacements maintain proper Hebrew grammar:
 
 ### 4. Update Locale File
 
-**Given** `src/lib/locale/he.ts` is the main locale source  
-**When** updating terminology  
+**Given** `src/lib/locale/he.ts` is the main locale source
+**When** updating terminology
 **Then:**
 
 - [ ] Find all "agent" references
@@ -185,8 +185,8 @@ export const hebrewLocale: LocaleStrings = {
 
 ### 5. Update Guide Content
 
-**Given** guide content may reference agents  
-**When** updating guide JSON files  
+**Given** guide content may reference agents
+**When** updating guide JSON files
 **Then:**
 
 - [ ] Search all guide JSON files in `src/content/locale/he/`
@@ -219,8 +219,8 @@ export const hebrewLocale: LocaleStrings = {
 
 ### 6. Update Public Content
 
-**Given** public content folder exists  
-**When** updating terminology  
+**Given** public content folder exists
+**When** updating terminology
 **Then:**
 
 - [ ] Check `public/content/**/*.json`
@@ -231,8 +231,8 @@ export const hebrewLocale: LocaleStrings = {
 
 ### 7. Search All Hebrew Files
 
-**Given** terminology could appear anywhere  
-**When** performing thorough search  
+**Given** terminology could appear anywhere
+**When** performing thorough search
 **Then:**
 
 Use grep/search to find ALL occurrences:
@@ -258,8 +258,8 @@ Get-ChildItem -Recurse -Include *.ts,*.tsx,*.json,*.md | Select-String "אייג
 
 ### 8. Database Content Check
 
-**Given** database may contain Hebrew content  
-**When** checking database  
+**Given** database may contain Hebrew content
+**When** checking database
 **Then:**
 
 - [ ] Check if any database tables have Hebrew text with "agent"
@@ -277,8 +277,8 @@ Get-ChildItem -Recurse -Include *.ts,*.tsx,*.json,*.md | Select-String "אייג
 
 ### 9. Update Documentation
 
-**Given** documentation may reference terminology  
-**When** updating docs  
+**Given** documentation may reference terminology
+**When** updating docs
 **Then:**
 
 - [ ] Check `docs/**/*.md` for Hebrew content
@@ -290,8 +290,8 @@ Get-ChildItem -Recurse -Include *.ts,*.tsx,*.json,*.md | Select-String "אייג
 
 ### 10. Verify Replacements
 
-**Given** replacements have been made  
-**When** verifying correctness  
+**Given** replacements have been made
+**When** verifying correctness
 **Then:**
 
 - [ ] Re-run searches to ensure all variations removed
@@ -304,8 +304,8 @@ Get-ChildItem -Recurse -Include *.ts,*.tsx,*.json,*.md | Select-String "אייג
 
 ### 11. Test Content Display
 
-**Given** content has been updated  
-**When** viewing in app  
+**Given** content has been updated
+**When** viewing in app
 **Then:**
 
 - [ ] All UI elements display "סוכן/סוכנים"
@@ -318,8 +318,8 @@ Get-ChildItem -Recurse -Include *.ts,*.tsx,*.json,*.md | Select-String "אייג
 
 ### 12. Create Terminology Guide
 
-**Given** future content will be added  
-**When** documenting standards  
+**Given** future content will be added
+**When** documenting standards
 **Then:**
 
 - [ ] Create or update `docs/hebrew-terminology.md`
@@ -336,7 +336,7 @@ Get-ChildItem -Recurse -Include *.ts,*.tsx,*.json,*.md | Select-String "אייג
 
 ### ❌ DO NOT USE:
 - אייגנט
-- אגנט  
+- אגנט
 - אייג'נט
 - אגנטים
 
@@ -609,10 +609,10 @@ Transliterations like "אייגנט" are:
 
 ---
 
-**Created by:** Ben Akiva  
-**Date:** November 9, 2025  
-**Story Type:** Content Quality / Localization (Epic 11)  
-**Estimated Effort:** 5 story points (~5-6 hours)  
+**Created by:** Ben Akiva
+**Date:** November 9, 2025
+**Story Type:** Content Quality / Localization (Epic 11)
+**Estimated Effort:** 5 story points (~5-6 hours)
 
 ---
 

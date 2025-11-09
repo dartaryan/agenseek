@@ -87,7 +87,17 @@ interface ContentRendererProps {
  * Maps over blocks and dispatches each to the appropriate block component
  */
 export function ContentRenderer({ blocks }: ContentRendererProps) {
-  if (!blocks || blocks.length === 0) {
+  // Validate that blocks is an array
+  if (!blocks || !Array.isArray(blocks)) {
+    console.error('ContentRenderer received non-array blocks:', blocks);
+    return (
+      <div className="text-center py-12 text-amber-600 dark:text-amber-400">
+        <p>שגיאה: תוכן לא תקין</p>
+      </div>
+    );
+  }
+
+  if (blocks.length === 0) {
     return (
       <div className="text-center py-12 text-slate-500">
         <p>אין תוכן להצגה</p>

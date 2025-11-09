@@ -100,7 +100,7 @@ function CardBlock({ block }: CardBlockProps) {
 
       {/* Content - renders nested blocks */}
       <CardContent className={cn(block.title ? '' : 'pt-6')}>
-        {block.content.length > 0 ? (
+        {block.content && Array.isArray(block.content) && block.content.length > 0 ? (
           <NestedContentRenderer blocks={block.content} />
         ) : (
           <p className="text-slate-400 text-sm italic">אין תוכן</p>

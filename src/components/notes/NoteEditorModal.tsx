@@ -132,7 +132,10 @@ export function NoteEditorModal({
         });
         // Focus will be set after a brief delay to allow editor to render
         setTimeout(() => {
-          editor.commands.focus('end');
+          // Check if editor view is available before focusing
+          if (editor?.view && editor.commands) {
+            editor.commands.focus('end');
+          }
         }, 100);
       } else {
         editor?.commands.setContent({ type: 'doc', content: [{ type: 'paragraph' }] });

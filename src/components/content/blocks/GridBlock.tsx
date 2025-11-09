@@ -112,7 +112,7 @@ function GridBlock({ block }: GridBlockProps) {
           key={`grid-cell-${index}`}
           className="min-w-0" // Prevent overflow
         >
-          {cellContent.length > 0 ? (
+          {cellContent && Array.isArray(cellContent) && cellContent.length > 0 ? (
             <NestedContentRenderer blocks={cellContent} />
           ) : (
             <div className="text-slate-400 text-sm italic">תא ריק</div>

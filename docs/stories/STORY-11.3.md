@@ -1,10 +1,10 @@
 # Story 11.3: RTL Layout Corrections
 
-**Status:** 📋 Ready for Implementation  
-**Type:** Bug Fix (RTL/Layout)  
-**Priority:** P1 - High  
-**Sprint:** TBD | **Points:** 3 (Medium)  
-**Created:** November 9, 2025  
+**Status:** 📋 Ready for Implementation
+**Type:** Bug Fix (RTL/Layout)
+**Priority:** P1 - High
+**Sprint:** TBD | **Points:** 3 (Medium)
+**Created:** November 9, 2025
 
 ---
 
@@ -28,8 +28,8 @@ Multiple RTL (Right-to-Left) layout issues exist throughout the application:
 
 ## 📖 User Story
 
-**As a Hebrew-speaking user,**  
-**I want all UI elements properly aligned for RTL layout,**  
+**As a Hebrew-speaking user,**
+**I want all UI elements properly aligned for RTL layout,**
 **So that the interface feels natural and everything is clickable.**
 
 ---
@@ -38,8 +38,8 @@ Multiple RTL (Right-to-Left) layout issues exist throughout the application:
 
 ### 1. Fix Remember Me Checkbox Alignment
 
-**Given** the login page with "Remember me" checkbox  
-**When** viewing the page  
+**Given** the login page with "Remember me" checkbox
+**When** viewing the page
 **Then:**
 
 - [ ] Checkbox and label aligned to **right side** (not left)
@@ -74,8 +74,8 @@ Multiple RTL (Right-to-Left) layout issues exist throughout the application:
   <label htmlFor="remember" className="ml-2"> {/* Label first */}
     זכור אותי
   </label>
-  <input 
-    type="checkbox" 
+  <input
+    type="checkbox"
     id="remember"
     className="ml-0" /* Remove any left margin */
   />
@@ -92,8 +92,8 @@ Multiple RTL (Right-to-Left) layout issues exist throughout the application:
 
 ### 2. Fix Tasks Page Card Alignment
 
-**Given** the tasks page displays task cards  
-**When** viewing the page  
+**Given** the tasks page displays task cards
+**When** viewing the page
 **Then:**
 
 - [ ] All task cards aligned to **right side** (not left)
@@ -154,7 +154,7 @@ Multiple RTL (Right-to-Left) layout issues exist throughout the application:
   {/* text-right ensures all text aligns right */}
   <h3 className="text-lg font-semibold mb-2">{task.title}</h3>
   <p className="text-slate-600 dark:text-slate-400 mb-4">{task.description}</p>
-  
+
   <div className="flex items-center justify-between flex-row-reverse">
     {/* flex-row-reverse for RTL button placement */}
     <Button>{hebrewLocale.tasks.startTask}</Button>
@@ -167,8 +167,8 @@ Multiple RTL (Right-to-Left) layout issues exist throughout the application:
 
 ### 3. Move "Next Recommendation" Tag
 
-**Given** guide cards with "Next Recommendation" tag  
-**When** viewing the dashboard or guides  
+**Given** guide cards with "Next Recommendation" tag
+**When** viewing the dashboard or guides
 **Then:**
 
 - [ ] "Next Recommendation" tag moved to **bottom-left** corner
@@ -212,12 +212,12 @@ Multiple RTL (Right-to-Left) layout issues exist throughout the application:
   {/* Guide content */}
   <h3 className="text-xl font-bold mb-2">{guide.title}</h3>
   <p className="text-slate-600 dark:text-slate-400 mb-4">{guide.description}</p>
-  
+
   {/* Action button - positioned normally */}
   <div className="flex justify-end mt-4">
     <Button>{hebrewLocale.actions.start}</Button>
   </div>
-  
+
   {/* Recommendation badge - positioned bottom-left */}
   {isRecommended && (
     <div className="absolute bottom-2 left-2"> {/* Changed from bottom-2 right-2 */}
@@ -246,8 +246,8 @@ Multiple RTL (Right-to-Left) layout issues exist throughout the application:
 
 ### 4. Comprehensive RTL Audit
 
-**Given** various pages may have RTL issues  
-**When** conducting full audit  
+**Given** various pages may have RTL issues
+**When** conducting full audit
 **Then:**
 
 - [ ] Audit these pages for RTL correctness:
@@ -279,8 +279,8 @@ Multiple RTL (Right-to-Left) layout issues exist throughout the application:
 
 ### 5. Test RTL Helper Utilities
 
-**Given** RTL styling might be inconsistent  
-**When** implementing fixes  
+**Given** RTL styling might be inconsistent
+**When** implementing fixes
 **Then:**
 
 - [ ] Verify `dir="rtl"` set on `<html>` tag (should already exist)
@@ -315,13 +315,13 @@ className="me-2"  // Margin end (left in RTL, right in LTR)
 
 ### 6. Mobile RTL Testing
 
-**Given** mobile layouts can differ  
-**When** testing on mobile  
+**Given** mobile layouts can differ
+**When** testing on mobile
 **Then:**
 
 - [ ] Test all fixes on mobile devices (or responsive mode)
 - [ ] Remember me checkbox: correct on mobile
-- [ ] Tasks cards: correct on mobile  
+- [ ] Tasks cards: correct on mobile
 - [ ] Recommendation tag: doesn't hide button on mobile
 - [ ] All responsive breakpoints maintain RTL correctness
 
@@ -329,8 +329,8 @@ className="me-2"  // Margin end (left in RTL, right in LTR)
 
 ### 7. Dark Mode RTL Testing
 
-**Given** dark mode exists  
-**When** testing RTL fixes  
+**Given** dark mode exists
+**When** testing RTL fixes
 **Then:**
 
 - [ ] All RTL fixes work in dark mode
@@ -559,10 +559,10 @@ Before marking story complete, verify:
 
 ---
 
-**Created by:** Ben Akiva  
-**Date:** November 9, 2025  
-**Story Type:** Bug Fix - RTL Layout (Epic 11)  
-**Estimated Effort:** 3 story points (~3-3.5 hours)  
+**Created by:** Ben Akiva
+**Date:** November 9, 2025
+**Story Type:** Bug Fix - RTL Layout (Epic 11)
+**Estimated Effort:** 3 story points (~3-3.5 hours)
 
 ---
 

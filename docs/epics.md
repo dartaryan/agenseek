@@ -1662,10 +1662,178 @@ So that I can easily navigate between guides and understand my location.
 
 **Technical Notes:**
 - Breadcrumbs component: src/components/layout/Breadcrumbs.tsx
-- Use
-eact-router-dom Link components
+- Use react-router-dom Link components
 - Previous/Next logic: Sort guides by category, find current index, get adjacent
 - Related guides: Use guide tags to find similar content (cosine similarity or simple tag matching)
 - Keyboard shortcuts: useEffect with keydown event listener
+
+---
+
+## Epic 11: UX Improvements & Bug Fixes
+
+**Goal:** Address critical bugs and user experience issues discovered during usage, focusing on authentication, RTL layout corrections, Hebrew terminology standardization, and UI improvements.
+
+**Business Value:** Improves overall user experience, fixes critical authentication bug, ensures professional Hebrew terminology, and polishes the interface for production readiness.
+
+**Duration:** 2-3 Sprints (25 story points)
+
+---
+
+### Story 11.1: Critical - User Deletion Authentication Bug (P0)
+
+**Priority:** P0 - Critical | **Points:** 2
+
+As a user who wants to delete my account,
+I want my account to be completely removed from the system,
+So that I cannot log in again and my data is fully deleted.
+
+**Problem:** When a user deletes their account (registered via regular email), they can still successfully log in. This indicates the user account is not being properly deleted from the authentication system.
+
+**See:** `docs/stories/STORY-11.1.md`
+
+---
+
+### Story 11.2: Footer Redesign & Credits (P1)
+
+**Priority:** P1 - High | **Points:** 2
+
+As a user of Agenseek,
+I want a fully Hebrew footer with correct links and bug reporting,
+So that I can properly credit the creator and easily report issues.
+
+**Key Features:**
+- Remove all English text from footer
+- Update BMAD GitHub link to: https://github.com/bmad-code-org/BMAD-METHOD
+- Add "נוצר על ידי בן עקיבא" with email link (benakiva1991@gmail.com)
+- Replace "Need Help" with "Report a Bug" modal system
+- Implement bug report form that sends to admin
+
+**See:** `docs/stories/STORY-11.2.md`
+
+---
+
+### Story 11.3: RTL Layout Corrections (P1)
+
+**Priority:** P1 - High | **Points:** 3
+
+As a Hebrew-speaking user,
+I want all UI elements properly aligned for RTL layout,
+So that the interface feels natural and everything is clickable.
+
+**Key Fixes:**
+- Fix remember me checkbox alignment (should be right-aligned)
+- Fix tasks page cards alignment (should be right-aligned)
+- Move "Next Recommendation" tag to bottom-left (not hiding Start button)
+- Verify all RTL layouts across app
+
+**See:** `docs/stories/STORY-11.3.md`
+
+---
+
+### Story 11.4: Hebrew Terminology Standardization - Agent → Sochen (P1)
+
+**Priority:** P1 - High | **Points:** 5
+
+As a Hebrew-speaking user,
+I want proper Hebrew terminology throughout the app,
+So that the content feels professional, natural, and properly localized.
+
+**Key Task:** Replace all English transliterations of "agent" (אייגנט, אגנט, אייג'נט) with proper Hebrew term "סוכן" (sochen) or "סוכנים" (sochanim) across all Hebrew content.
+
+**See:** `docs/stories/STORY-11.4.md`
+
+---
+
+### Story 11.5: Keyboard Shortcuts Improvements (P2)
+
+**Priority:** P2 - Medium | **Points:** 2
+
+As a keyboard-focused user,
+I want easy access to keyboard shortcuts with proper RTL display and a beautiful Ctrl+K modal,
+So that I can efficiently navigate the app using keyboard commands.
+
+**Key Features:**
+- Make keyboard shortcuts viewable/accessible again
+- Fix backwards keyboard shortcuts text (RTL)
+- Redesign Ctrl+K modal for better aesthetics
+- Add access point to view shortcuts (Help menu or settings)
+
+**See:** `docs/stories/STORY-11.5.md`
+
+---
+
+### Story 11.6: Dashboard Enhancements (P2)
+
+**Priority:** P2 - Medium | **Points:** 3
+
+As a user navigating the dashboard,
+I want all links to work correctly and access to all my content,
+So that I can efficiently navigate and continue my learning.
+
+**Key Tasks:**
+- Audit all dashboard links and verify destinations
+- Check if tag system exists or remove broken references
+- Add "Show All" button to Continue Reading when more than 2 rows
+- Fix any broken navigation
+
+**See:** `docs/stories/STORY-11.6.md`
+
+---
+
+### Story 11.7: Mobile Onboarding Fixes (P2)
+
+**Priority:** P2 - Medium | **Points:** 2
+
+As a new user completing onboarding on mobile,
+I want all content to be visible and no unnecessary time pressure,
+So that I can complete onboarding smoothly and focus on learning.
+
+**Key Fixes:**
+- Fix z-index of decorative shapes on mobile onboarding
+- Remove learning time estimates from onboarding
+- Test mobile onboarding flow
+- Ensure all content visible and accessible
+
+**See:** `docs/stories/STORY-11.7.md`
+
+---
+
+### Story 11.8: Learning Journey Visual Improvements (P2)
+
+**Priority:** P2 - Medium | **Points:** 3
+
+As a user viewing my learning journey,
+I want a visually polished experience with proper alignment and optimal layout,
+So that I can easily understand my progress and upcoming phases.
+
+**Key Improvements:**
+- Fix lock icon alignment on journey line
+- Redesign journey cards for large screens (row-based layout instead of square cards)
+- Ensure responsive on all screen sizes
+- Maintain visual hierarchy
+
+**See:** `docs/stories/STORY-11.8.md`
+
+---
+
+### Story 11.9: Implement Bookmark and Helpful Feedback Functionality (P2)
+
+**Priority:** P2 - Medium | **Points:** 3
+
+As a user reading guides,
+I want to bookmark guides and provide helpful feedback,
+So that I can save guides for later and help improve content quality.
+
+**Problem:** Two buttons in guide reader exist but don't work - "שמור למועדפים" (Bookmark) and "האם עזר לך?" (Helpful Feedback) only show toast messages but don't save to database.
+
+**Key Features:**
+- Implement real bookmark functionality (save/remove from guide_bookmarks table)
+- Create bookmarks page to view saved guides
+- Implement helpful feedback voting (save to guide_stats table)
+- Create guide_votes table to track user votes
+- Update UI to show bookmarked/voted states
+- Add keyboard shortcuts (B for bookmark, +/- for feedback)
+
+**See:** `docs/stories/STORY-11.9.md`
 
 ---

@@ -37,8 +37,10 @@ Address critical bugs and user experience issues discovered during usage, focusi
 - **Story 11.6**: Dashboard Enhancements - 3 points
 - **Story 11.7**: Mobile Onboarding Fixes - 2 points
 - **Story 11.8**: Learning Journey Visual Improvements - 3 points
+- **Story 11.9**: Implement Bookmark and Helpful Feedback Functionality - 3 points
+- **Story 11.10**: Playwright E2E Testing with Console Error Detection - 5 points
 
-**Total Story Points:** 22
+**Total Story Points:** 30
 
 ---
 
@@ -209,6 +211,46 @@ Learning journey lock icon misaligned, and cards could have better layout on lar
 
 ---
 
+### Story 11.9: Implement Bookmark and Helpful Feedback Functionality
+**Points:** 3 | **Priority:** P2 (Medium)
+
+**Problem:**
+Two buttons in guide reader exist but don't work - "שמור למועדפים" (Bookmark) and "האם עזר לך?" (Helpful Feedback) only show toast messages but don't save to database.
+
+**Key Tasks:**
+- Implement real bookmark functionality (save/remove from guide_bookmarks table)
+- Create bookmarks page to view saved guides
+- Implement helpful feedback voting (save to guide_stats table)
+- Create guide_votes table to track user votes
+- Update UI to show bookmarked/voted states
+- Add keyboard shortcuts (B for bookmark, +/- for feedback)
+- Add bookmark count to dashboard
+- Show feedback stats in admin panel
+
+**See:** `docs/stories/STORY-11.9.md`
+
+---
+
+### Story 11.10: Playwright E2E Testing with Console Error Detection
+**Points:** 5 | **Priority:** P2 (Medium)
+
+**Problem:**
+No automated end-to-end testing exists to systematically detect console errors, validate user flows, and prevent regression bugs across all routes.
+
+**Key Tasks:**
+- Install and configure Playwright with TypeScript
+- Create console monitoring system to capture errors/warnings
+- Write E2E tests for all major routes (dashboard, guides, tasks, etc.)
+- Test critical user flows (onboarding, guide reading, task management)
+- Generate detailed error reports (HTML + JSON)
+- Set up CI/CD integration with GitHub Actions
+- Add visual regression testing
+- Document testing approach and usage
+
+**See:** `docs/stories/STORY-11.10.md`
+
+---
+
 ## 🎯 Implementation Order
 
 ### Phase 1: Critical & High Priority (P0-P1)
@@ -221,7 +263,11 @@ Learning journey lock icon misaligned, and cards could have better layout on lar
 5. **Story 11.7** - Mobile Onboarding (P2) - Mobile experience
 6. **Story 11.5** - Keyboard Shortcuts (P2) - Accessibility
 7. **Story 11.6** - Dashboard Enhancements (P2) - Navigation fixes
-8. **Story 11.8** - Journey Visual (P2) - Visual polish
+8. **Story 11.9** - Bookmark & Feedback (P2) - Make buttons functional
+9. **Story 11.8** - Journey Visual (P2) - Visual polish
+
+### Phase 3: Quality Assurance (P2)
+10. **Story 11.10** - Playwright E2E Testing (P2) - Test infrastructure (can be done in parallel)
 
 ---
 
@@ -249,6 +295,13 @@ Learning journey lock icon misaligned, and cards could have better layout on lar
 - Lock icon alignment fixed
 - Improved large screen layouts
 
+### Quality Assurance
+- Playwright E2E test suite implemented
+- Console error detection system active
+- Automated testing for all routes
+- CI/CD integration with GitHub Actions
+- Visual regression testing enabled
+
 ---
 
 ## 🔗 Related Documentation
@@ -263,11 +316,12 @@ Learning journey lock icon misaligned, and cards could have better layout on lar
 
 **Created:** November 9, 2025
 **Target Completion:** TBD
-**Estimated Duration:** 2-3 sprints (22 points)
+**Estimated Duration:** 3 sprints (30 points)
 
 ### Velocity Estimate
 - Average velocity: ~10 points per sprint
-- Estimated sprints: 2-3 sprints
+- Estimated sprints: 3 sprints
+- Testing (Story 11.10) can run in parallel with other stories
 - Can be parallelized if multiple developers
 
 ---
@@ -275,6 +329,7 @@ Learning journey lock icon misaligned, and cards could have better layout on lar
 **Created by:** Ben Akiva
 **Epic Owner:** Ben
 **Date:** November 9, 2025
+**Last Updated:** November 9, 2025 (Added Story 11.10 - Playwright E2E Testing)
 
 ---
 
