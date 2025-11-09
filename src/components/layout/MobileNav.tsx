@@ -26,6 +26,7 @@ import { Button } from '../ui/button';
 import { UserAvatar } from '../ui/user-avatar';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import { useTheme } from '../../contexts/ThemeContext';
 import { signOut } from '../../lib/auth';
 import { supabase } from '../../lib/supabase';
 import { cn } from '../../lib/utils';
@@ -74,11 +75,11 @@ const ADMIN_ITEMS: NavItem[] = [
  */
 export function MobileNav() {
   const [open, setOpen] = useState(false);
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [avatarConfig, setAvatarConfig] = useState<AvatarConfig | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
   const { user, profile } = useAuth();
+  const { setTheme, resolvedTheme } = useTheme();
 
   // Story 0.3: Load avatar configuration
   useEffect(() => {
@@ -126,10 +127,7 @@ export function MobileNav() {
   };
 
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    // TODO: Implement actual theme switching when theme context is available
-    document.documentElement.classList.toggle('dark');
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
   };
 
   const displayName = profile?.display_name || user?.email?.split('@')[0] || 'משתמש';
@@ -149,11 +147,11 @@ export function MobileNav() {
 
       <SheetContent
         side="right"
-        className="w-[280px] p-0 flex flex-col bg-white dark:bg-gray-900"
+        className="w-[280px] p-0 flex flex-col bg-background"
         aria-label="תפריט ניווט"
       >
         {/* Header Section - Story 0.3: User Avatar */}
-        <SheetHeader className="border-b p-4">
+        <SheetHeader className="border-b border-border p-4">
           <div className="flex items-center gap-3">
             <UserAvatar
               config={avatarConfig}
@@ -188,7 +186,7 @@ export function MobileNav() {
                 aria-current={isActive ? 'page' : undefined}
                 className={cn(
                   'flex items-center gap-3 px-4 py-3 rounded-lg text-base transition-colors',
-                  'hover:bg-accent min-h-[44px]',
+                  'hover:bg-muted min-h-[44px]',
                   isActive && 'bg-primary/10 text-primary font-semibold'
                 )}
               >
@@ -200,8 +198,8 @@ export function MobileNav() {
 
           {/* Admin Section - Story 10.1: Only visible for admin users */}
           {profile?.is_admin && (
-            <div className="mt-4 pt-4 border-t">
-              <p className="px-4 mb-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+            <div className="mt-4 pt-4 border-t border-border">
+              <p className="px-4 mb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                 {hebrewLocale.sections.administration}
               </p>
               {ADMIN_ITEMS.map((item) => {
@@ -230,23 +228,23 @@ export function MobileNav() {
         </nav>
 
         {/* Footer Section */}
-        <div className="border-t p-4 space-y-2">
+        <div className="border-t border-border p-4 space-y-2">
           {/* Theme Toggle */}
           <Button
             variant="outline"
             className="w-full justify-start gap-3 min-h-[44px]"
             onClick={toggleTheme}
-            aria-label={theme === 'light' ? 'עבור למצב כהה' : 'עבור למצב בהיר'}
+            aria-label={resolvedTheme === 'dark' ? 'עבור למצב בהיר' : 'עבור למצב כהה'}
           >
-            {theme === 'light' ? (
-              <>
-                <IconMoon className="h-5 w-5" aria-hidden="true" />
-                <span>מצב כהה</span>
-              </>
-            ) : (
+            {resolvedTheme === 'dark' ? (
               <>
                 <IconSun className="h-5 w-5" aria-hidden="true" />
                 <span>מצב בהיר</span>
+              </>
+            ) : (
+              <>
+                <IconMoon className="h-5 w-5" aria-hidden="true" />
+                <span>מצב כהה</span>
               </>
             )}
           </Button>

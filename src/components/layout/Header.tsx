@@ -1,12 +1,13 @@
 import { forwardRef, useImperativeHandle, useRef, useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { IconList } from '@tabler/icons-react';
+import { IconList, IconMoon, IconSun } from '@tabler/icons-react';
 import { Button } from '../ui/button';
 import { useAuth } from '../../hooks/useAuth';
 import { signOut } from '../../lib/auth';
 import { hebrewLocale } from '../../lib/locale/he';
 import { useMobileToc } from '../../contexts/MobileTocContext';
 import { useSidebar } from '../../contexts/SidebarContext';
+import { useTheme } from '../../contexts/ThemeContext';
 import AgenseekLogo from '../../assets/agenseek-logo.svg';
 import { MobileNav } from './MobileNav';
 import { HeaderNav } from './HeaderNav';
@@ -43,6 +44,7 @@ export const Header = forwardRef<HeaderRef>(function Header(_props, ref) {
   const location = useLocation();
   const { onToggle, isEnabled } = useMobileToc();
   const { isCollapsed } = useSidebar();
+  const { setTheme, resolvedTheme } = useTheme();
   const searchBarRef = useRef<SearchBarRef>(null);
   const [avatarConfig, setAvatarConfig] = useState<AvatarConfig | null>(null);
 
@@ -103,7 +105,7 @@ export const Header = forwardRef<HeaderRef>(function Header(_props, ref) {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60" role="banner">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60" role="banner">
       <div className="container flex h-16 items-center justify-between px-4 md:px-6 gap-4">
         {/* Logo */}
         <div className="flex items-center gap-2 shrink-0">
@@ -157,16 +159,18 @@ export const Header = forwardRef<HeaderRef>(function Header(_props, ref) {
             {/* Admin Notifications - Story 9.5 */}
             {profile?.is_admin && <AdminNotificationBell />}
 
-            {/* Theme Toggle - Placeholder for future */}
-            <Button variant="ghost" size="sm" disabled aria-label="החלף ערכת נושא (בקרוב)">
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                />
-              </svg>
+            {            /* Theme Toggle - Story 0.6 */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+              aria-label={resolvedTheme === 'dark' ? 'עבור למצב בהיר' : 'עבור למצב כהה'}
+            >
+              {resolvedTheme === 'dark' ? (
+                <IconSun className="h-5 w-5" />
+              ) : (
+                <IconMoon className="h-5 w-5" />
+              )}
             </Button>
 
             {/* User Profile - Story 0.3: Avatar */}

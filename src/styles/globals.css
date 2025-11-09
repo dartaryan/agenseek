@@ -195,24 +195,25 @@
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 142 76% 36%;
+    /* Story 0.6: Dark green theme instead of gray/slate */
+    --background: 160 50% 8%;      /* Deep emerald green background */
+    --foreground: 150 30% 95%;     /* Soft off-white with green tint */
+    --card: 160 40% 12%;            /* Slightly lighter green for cards */
+    --card-foreground: 150 25% 95%;
+    --popover: 160 45% 10%;         /* Dark green for popovers */
+    --popover-foreground: 150 25% 95%;
+    --primary: 142 76% 36%;         /* Keep emerald primary */
     --primary-foreground: 0 0% 100%;
     --secondary: 145 74% 69%;
-    --secondary-foreground: 240 10% 3.9%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 173 80% 40%;
+    --secondary-foreground: 160 50% 8%;
+    --muted: 160 35% 20%;           /* Muted dark green */
+    --muted-foreground: 150 20% 70%;
+    --accent: 173 80% 40%;          /* Keep teal accent */
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
+    --border: 160 30% 18%;          /* Dark green borders */
+    --input: 160 35% 15%;           /* Dark green inputs */
     --ring: 142 76% 36%;
   }
 

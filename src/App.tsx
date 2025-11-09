@@ -4,6 +4,7 @@ import { Toaster } from './components/ui/toaster';
 import { Toaster as SonnerToaster } from 'sonner';
 import { TooltipProvider } from './components/ui/tooltip';
 import { AuthProvider } from './contexts/AuthContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 /**
  * Main App component
@@ -13,15 +14,18 @@ import { AuthProvider } from './contexts/AuthContext';
  * This prevents multiple independent auth checks and loading states across components.
  *
  * Story 6.13: Added TooltipProvider for header navigation tooltips
+ * Story 0.6: Added ThemeProvider for dark mode support
  */
 function App() {
   return (
     <AuthProvider>
-      <TooltipProvider>
-        <RouterProvider router={router} />
-        <Toaster />
-        <SonnerToaster position="top-center" />
-      </TooltipProvider>
+      <ThemeProvider defaultTheme="system">
+        <TooltipProvider>
+          <RouterProvider router={router} />
+          <Toaster />
+          <SonnerToaster position="top-center" />
+        </TooltipProvider>
+      </ThemeProvider>
     </AuthProvider>
   );
 }

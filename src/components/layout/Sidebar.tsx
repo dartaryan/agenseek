@@ -115,15 +115,15 @@ export function Sidebar() {
       {/* Sidebar */}
       <aside
         className={cn(
-          'shrink-0 border-r bg-gray-50/40 transition-all duration-200 ease-in-out',
+          'shrink-0 border-r border-border bg-muted/30 transition-all duration-200 ease-in-out',
           'hidden md:flex md:flex-col',
           isCollapsed ? 'w-0 overflow-hidden' : 'w-60'
         )}
       >
         {/* Collapse button and header - only visible when expanded */}
         {!isCollapsed && (
-          <div className="flex items-center justify-between border-b px-4 py-3">
-            <h2 className="text-sm font-semibold text-gray-900">
+          <div className="flex items-center justify-between border-b border-border px-4 py-3">
+            <h2 className="text-sm font-semibold text-foreground">
               {hebrewLocale.sidebar.navigation}
             </h2>
             <TooltipProvider>
@@ -161,8 +161,8 @@ export function Sidebar() {
                     className={cn(
                       'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
                       isActive(item.href)
-                        ? 'bg-emerald-100 text-emerald-900'
-                        : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                        ? 'bg-primary/10 text-primary'
+                        : 'text-foreground/80 hover:bg-muted hover:text-foreground'
                     )}
                     aria-current={isActive(item.href) ? 'page' : undefined}
                   >
@@ -179,8 +179,8 @@ export function Sidebar() {
 
             {/* Admin Section - Only visible for admins */}
             {isAdmin && (
-              <div className="pt-4 mt-4 border-t">
-                <p className="px-3 mb-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              <div className="pt-4 mt-4 border-t border-border">
+                <p className="px-3 mb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                   {hebrewLocale.sections.administration}
                 </p>
                 {adminItems.map((item) => {
@@ -192,8 +192,8 @@ export function Sidebar() {
                       className={cn(
                         'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
                         isActive(item.href)
-                          ? 'bg-emerald-100 text-emerald-900'
-                          : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                          ? 'bg-primary/10 text-primary'
+                          : 'text-foreground/80 hover:bg-muted hover:text-foreground'
                       )}
                       aria-current={isActive(item.href) ? 'page' : undefined}
                     >
@@ -209,11 +209,11 @@ export function Sidebar() {
 
         {/* Bottom Section - User & Help - only visible when expanded */}
         {!isCollapsed && (
-          <div className="border-t">
+          <div className="border-t border-border">
             {/* User Section - Story 0.3 */}
             <Link
               to="/profile"
-              className="flex items-center gap-3 p-4 hover:bg-gray-100 transition-colors border-b"
+              className="flex items-center gap-3 p-4 hover:bg-muted transition-colors border-b border-border"
             >
               <UserAvatar
                 config={avatarConfig}
@@ -221,10 +221,10 @@ export function Sidebar() {
                 size="md"
               />
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900 truncate">
+                <p className="text-sm font-medium text-foreground truncate">
                   {profile?.display_name || 'משתמש'}
                 </p>
-                <p className="text-xs text-gray-500 truncate">
+                <p className="text-xs text-muted-foreground truncate">
                   {user?.email}
                 </p>
               </div>
@@ -232,16 +232,16 @@ export function Sidebar() {
 
             {/* Help Section */}
             <div className="p-4">
-              <div className="rounded-lg bg-emerald-50 p-3">
-                <p className="text-xs font-semibold text-emerald-900">
+              <div className="rounded-lg bg-primary/10 p-3">
+                <p className="text-xs font-semibold text-primary">
                   {hebrewLocale.help.title}
                 </p>
-                <p className="mt-1 text-xs text-emerald-700">
+                <p className="mt-1 text-xs text-primary/80">
                   {hebrewLocale.help.description}
                 </p>
                 <Link
                   to="/guides"
-                  className="mt-2 inline-block text-xs font-medium text-emerald-600 hover:text-emerald-700"
+                  className="mt-2 inline-block text-xs font-medium text-primary hover:text-primary/80"
                 >
                   {hebrewLocale.help.browseLink}
                 </Link>

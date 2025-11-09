@@ -18,6 +18,25 @@
     <meta name="theme-color" content="#10b981" />
     <meta name="description" content="BMAD Learning Hub - מרכז הלמידה של BMAD" />
 
+    <!-- Story 0.6: Prevent flash of wrong theme on page load -->
+    <script>
+      try {
+        const theme = localStorage.getItem('agenseek-theme') || 'system';
+        let resolved = 'light';
+        
+        if (theme === 'system') {
+          resolved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        } else {
+          resolved = theme;
+        }
+        
+        document.documentElement.classList.add(resolved);
+        document.documentElement.setAttribute('data-theme', resolved);
+      } catch (e) {
+        // Silently fail if localStorage is not available
+      }
+    </script>
+
     <title>Agenseek - BMAD Learning Hub</title>
   </head>
   <body>

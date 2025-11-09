@@ -1,0 +1,1291 @@
+{
+  "metadata": {
+    "id": "game-agents",
+    "slug": "game-agents",
+    "title": "מדריך אג'נטים - חלק 3: אג'נטי משחקים",
+    "description": "הכירו את שלושת אגנטי המשחקים המיוחדים ב-BMAD: Game Designer לעיצוב גיימפליי, Game Architect לארכיטקטורת משחק, ו-Game Dev לפיתוח משחקים. ללמוד איך לבנות משחק מקצה לקצה.",
+    "category": "agents",
+    "difficulty": "advanced",
+    "estimatedMinutes": 45,
+    "icon": "DeviceGamepad2",
+    "tags": ["אג'נטים", "משחקים", "game-design", "גיימדב", "GDD"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "מבוא: אג'נטי המשחקים",
+      "level": 2,
+      "anchor": "intro"
+    },
+    {
+      "id": "toc-2",
+      "title": "Game Designer - מעצב המשחק",
+      "level": 2,
+      "anchor": "game-designer"
+    },
+    {
+      "id": "toc-3",
+      "title": "Game Architect - ארכיטקט המשחק",
+      "level": 2,
+      "anchor": "game-architect"
+    },
+    {
+      "id": "toc-4",
+      "title": "Game Dev - מפתח המשחק",
+      "level": 2,
+      "anchor": "game-dev"
+    },
+    {
+      "id": "toc-5",
+      "title": "תהליך מלא: מרעיון למשחק עובד",
+      "level": 2,
+      "anchor": "full-process"
+    },
+    {
+      "id": "toc-6",
+      "title": "שאלות נפוצות",
+      "level": 2,
+      "anchor": "faq"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מדריך אג'נטים - חלק 3: אג'נטי משחקים",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "מדריך מתקדם לפיתוח משחקים",
+      "content": "הכירו את שלושת האג'נטים המיוחדים לפיתוח משחקים ב-BMAD - מעיצוב גיימפליי ועד קוד עובד"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "מבוא: אג'נטי המשחקים",
+      "id": "intro"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "למה משחקים צריכים אג'נטים מיוחדים?",
+      "id": "why-special"
+    },
+    {
+      "type": "text",
+      "content": "פיתוח משחקים הוא תחום ייחודי שדורש שילוב של עיצוב יצירתי, חשיבה מערכתית ופיתוח טכני מורכב. משחקים אינם רק תוכנה - הם חוויות אינטראקטיביות שצריכות להיות מהנות, מאתגרות ומספקות."
+    },
+    {
+      "type": "text",
+      "content": "BMAD מספקת שלושה אג'נטים מיוחדים שמתמחים בכל היבט של פיתוח משחקים:"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Game Designer - מתמקד בחוויית השחקן, גיימפליי, מכניקות וכיף",
+        "Game Architect - מתכנן את הארכיטקטורה הטכנית של המשחק",
+        "Game Dev - מממש את החזון בקוד עובד ואופטימלי"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "צוות משחקים מלא בכיס שלכם",
+      "content": "שלושת האג'נטים האלה עובדים יחד כמו צוות פיתוח משחקים מקצועי - כל אחד מביא את המומחיות שלו"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מתי להשתמש באג'נטי המשחקים?",
+      "id": "when-to-use"
+    },
+    {
+      "type": "text",
+      "content": "אג'נטי המשחקים מתאימים לכל סוג של פרויקט משחק:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "משחקי מובייל - פאזלים, קז'ואל, היפר-קז'ואל",
+        "משחקי אינדי - פלטפורמרים, רוגלייקים, הרפתקאות",
+        "משחקי ווב - משחקי דפדפן, .io games, multiplayer",
+        "משחקי PC/Console - RPG, אקשן, סטרטגיה",
+        "משחקי VR/AR - חוויות אימרסיביות",
+        "Gamification - הוספת אלמנטים משחקיים לאפליקציות"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "גם לפרויקטים קטנים",
+      "content": "אין צורך במשחק AAA ענק - האג'נטים מתאימים גם למשחק קטן שאתם בונים בסופ\"ש!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Game Designer - מעצב המשחק",
+      "id": "game-designer"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מי זה Game Designer?",
+      "id": "designer-who"
+    },
+    {
+      "type": "text",
+      "content": "Game Designer הוא האג'נט שאחראי על החוויה של השחקן. הוא חושב על מה יהיה כיף, איך המשחק יעבוד, מה המכניקות, ואיך לשמור על האיזון והאתגר הנכונים."
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "חשיבה של מעצב משחקים",
+      "content": "Game Designer שואל את עצמו: \"האם זה מהנה? האם השחקן ירגיש הישג? האם המכניקות ברורות?\""
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה Game Designer עושה?",
+      "id": "designer-what"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "מעצב את הגיימפליי - מכניקות ליבה, לולאת המשחק, חוקים",
+        "מתכנן רמות והתקדמות - איך השחקן מתקדם, איזון קושי",
+        "יוצר מערכות משחק - כלכלה, combat, progression",
+        "כותב GDD - Game Design Document מפורט",
+        "מתכנן UI/UX למשחק - איך השחקן מקיים אינטראקציה",
+        "יוצר נרטיב וסיפור - אם רלוונטי למשחק"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "וורקפלואים עיקריים",
+      "id": "designer-workflows"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "workflow-game-brief",
+          "title": "*game-brief - יצירת בריף משחק",
+          "content": [
+            {
+              "type": "text",
+              "content": "הוורקפלואו הראשון לכל משחק. Game Designer עוזר לכם להגדיר:"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "מה הז'אנר והסגנון של המשחק",
+                "מי קהל היעד",
+                "מה המכניקות המרכזיות",
+                "מה ה-core loop",
+                "מה ההבדל התחרותי (USP)"
+              ]
+            },
+            {
+              "type": "callout",
+              "variant": "tip",
+              "title": "התחילו כאן תמיד",
+              "content": "לפני שכותבים GDD או קוד - צריך בריף ברור!"
+            }
+          ]
+        },
+        {
+          "id": "workflow-gdd",
+          "title": "*gdd - כתיבת Game Design Document",
+          "content": [
+            {
+              "type": "text",
+              "content": "המסמך המרכזי של כל משחק. כולל:"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "תיאור המשחק והחזון",
+                "מכניקות מפורטות",
+                "תיאור רמות ואתגרים",
+                "מערכות משחק (כלכלה, progression)",
+                "UI/UX למשחק",
+                "Art direction ו-Audio design",
+                "Technical requirements"
+              ]
+            },
+            {
+              "type": "callout",
+              "variant": "success",
+              "title": "ה-GDD הוא התנ\"ך של המשחק",
+              "content": "כל החלטת פיתוח צריכה להתבסס על ה-GDD"
+            }
+          ]
+        },
+        {
+          "id": "workflow-narrative",
+          "title": "*narrative - בניית סיפור ונרטיב",
+          "content": [
+            {
+              "type": "text",
+              "content": "למשחקים story-driven, Game Designer עוזר לבנות:"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "קו עלילה ראשי ומשני",
+                "דמויות ואופי שלהן",
+                "עולם המשחק (world-building)",
+                "דיאלוגים וקאטסינים",
+                "שילוב הסיפור בגיימפליי"
+              ]
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "title": "Ludonarrative Harmony",
+              "content": "המטרה היא שהסיפור והגיימפליי יעבדו ביחד, לא אחד נגד השני"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה: עבודה עם Game Designer",
+      "id": "designer-example"
+    },
+    {
+      "type": "text",
+      "content": "בואו נראה איך עובדים עם Game Designer לבניית משחק פאזל:"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "אתם: \"אני רוצה לבנות משחק פאזל מובייל בסגנון match-3 עם twist\"\n\nGame Designer: \"נהדר! בואו נתחיל עם *game-brief.\n\nמה ה-twist שלך? מה יהיה שונה מ-Candy Crush?\"\n\nאתם: \"השחקן לא רק מחבר, אלא צריך לבנות מסלול למים שזורמים\"\n\nGame Designer: \"מעניין! זה משלב physics puzzle עם match-3.\nבואו נגדיר:\n- Core Loop: מצא → הצב → זרם → נקה\n- Win Condition: המים מגיעים ליעד\n- Challenge: מספר מהלכים מוגבל\n\nכעת אני יוצר לך GDD מפורט עם:\n- מכניקות זרימה\n- סוגי מכשולים\n- progression curve\n- power-ups\""
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאה",
+      "content": "תקבלו GDD מלא של 15-20 עמודים עם כל המכניקות מוגדרות!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "טיפים לעבודה עם Game Designer",
+      "id": "designer-tips"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "התחילו עם הרעיון המרכזי - מה הדבר הכי כיף במשחק?",
+        "חשבו על ה-core loop - מה השחקן עושה שוב ושוב?",
+        "אל תדלגו על ה-GDD - זה חוסך זמן בהמשך!",
+        "בקשו feedback על מכניקות - Game Designer יעזור לאזן",
+        "חזרו ל-GDD כשמשהו לא ברור בפיתוח"
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Game Architect - ארכיטקט המשחק",
+      "id": "game-architect"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מי זה Game Architect?",
+      "id": "architect-who"
+    },
+    {
+      "type": "text",
+      "content": "Game Architect הוא האג'נט שמתכנן את הארכיטקטורה הטכנית של המשחק. הוא לוקח את ה-GDD ומתרגם אותו לתכנון טכני - איך הקוד יהיה מאורגן, אילו מערכות צריך לבנות, ואיך הכל יעבוד ביחד."
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "הגשר בין עיצוב לקוד",
+      "content": "Game Architect מבין גם game design וגם תכנות - הוא מתרגם חזון לתכנון מעשי"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה Game Architect עושה?",
+      "id": "architect-what"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "מתכנן ארכיטקטורה טכנית - מערכות, components, data flow",
+        "בוחר מנוע משחק - Unity, Unreal, Godot, או custom engine",
+        "מתכנן מבני נתונים - איך מאוחסנים levels, saves, configurations",
+        "מגדיר patterns - ECS, State Machine, Object Pooling",
+        "מתכנן performance - איך להבטיח FPS גבוה",
+        "כותב Tech Spec למשחק - המפרט הטכני המלא"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "וורקפלואים עיקריים",
+      "id": "architect-workflows"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "workflow-arch-analysis",
+          "title": "ניתוח דרישות ארכיטקטוניות",
+          "content": [
+            {
+              "type": "text",
+              "content": "Game Architect קורא את ה-GDD ומנתח:"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "אילו מערכות טכניות נדרשות",
+                "מה הדרישות לביצועים (FPS, memory)",
+                "אילו אתגרים טכניים צפויים",
+                "מה הפלטפורמות היעד (mobile, desktop, web)"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "workflow-arch-design",
+          "title": "תכנון ארכיטקטורה",
+          "content": [
+            {
+              "type": "text",
+              "content": "יוצר תכנון טכני מפורט:"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Component Architecture - איך המשחק מחולק למודולים",
+                "Game Loop - איך הלולאה הראשית עובדת",
+                "State Management - ניהול מצבי משחק",
+                "Asset Pipeline - איך טוענים graphics, audio, levels",
+                "Save System - איך שומרים ומטענים נתונים",
+                "Multiplayer Architecture - אם רלוונטי"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "workflow-tech-spec",
+          "title": "*tech-spec - כתיבת מפרט טכני",
+          "content": [
+            {
+              "type": "text",
+              "content": "המסמך הטכני המרכזי שכולל:"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "תיאור ארכיטקטורה high-level",
+                "טכנולוגיות נבחרות (engine, libraries)",
+                "מבני נתונים ואלגוריתמים",
+                "Patterns לשימוש",
+                "הנחיות ביצועים",
+                "תכנון testing ו-debugging"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה: עבודה עם Game Architect",
+      "id": "architect-example"
+    },
+    {
+      "type": "text",
+      "content": "נמשיך עם משחק הפאזל שלנו:"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "אתם: \"יש לי GDD למשחק הפאזל. איך בונים את זה?\"\n\nGame Architect: \"נהדר! קראתי את ה-GDD. בואו נתכנן.\n\nמנוע: אני ממליץ על Unity - מתאים למובייל ויש physics מובנה\n\nArכיטקטורה:\n1. Grid System - מטריצה של tiles\n2. Water Flow Simulator - physics-based\n3. Match Detector - מוצא קומבינציות\n4. Level Manager - טוען רמות\n5. Progress System - שומר התקדמות\n\nPatterns:\n- ECS (Entity Component System) לתכונות\n- State Machine למצבי משחק\n- Object Pool לאפקטים\n- Observer Pattern לאירועים\n\nעכשיו אני כותב Tech Spec מלא עם דיאגרמות.\""
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מוכנים לפיתוח",
+      "content": "עכשיו יש לכם blueprint מדויק איך לבנות את המשחק!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "החלטות ארכיטקטוניות נפוצות במשחקים",
+      "id": "architect-decisions"
+    },
+    {
+      "type": "tabs",
+      "items": [
+        {
+          "id": "tab-engine",
+          "label": "בחירת מנוע",
+          "content": [
+            {
+              "type": "text",
+              "content": "Game Architect עוזר לבחור מנוע לפי הצרכים:"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Unity - משחקי מובייל, 2D/3D, cross-platform",
+                "Unreal Engine - גרפיקה מתקדמת, משחקי AAA",
+                "Godot - קוד פתוח, משחקי אינדי",
+                "Phaser - משחקי HTML5 ודפדפן",
+                "Custom Engine - פרויקטים ייחודיים"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tab-patterns",
+          "label": "Design Patterns",
+          "content": [
+            {
+              "type": "text",
+              "content": "Patterns חשובים בפיתוח משחקים:"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "ECS - Entity Component System לגמישות",
+                "State Machine - לניהול מצבים",
+                "Command Pattern - ל-undo/redo",
+                "Observer Pattern - לאירועים",
+                "Object Pool - לביצועים",
+                "Singleton - לmanagers (בזהירות!)"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tab-performance",
+          "label": "ביצועים",
+          "content": [
+            {
+              "type": "text",
+              "content": "שיקולי ביצועים במשחקים:"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "60 FPS - המטרה למשחקי אקשן",
+                "30 FPS - מקובל למובייל/אסטרטגיה",
+                "Memory Budget - מוגבל במובייל",
+                "Battery Life - חשוב למובייל",
+                "Load Times - צריך להיות מהיר",
+                "Asset Streaming - לעולמות גדולים"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "טיפים לעבודה עם Game Architect",
+      "id": "architect-tips"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "תנו לו את ה-GDD מראש - הוא צריך להבין את המשחק",
+        "שאלו על tradeoffs - כל החלטה יש לה מחיר",
+        "דברו על הפלטפורמות מוקדם - זה משפיע על הארכיטקטורה",
+        "בקשו דיאגרמות - visualizations עוזרות להבין",
+        "חזרו אליו כשמוסיפים פיצ'רים גדולים - לא לשבור ארכיטקטורה"
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Game Dev - מפתח המשחק",
+      "id": "game-dev"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מי זה Game Dev?",
+      "id": "dev-who"
+    },
+    {
+      "type": "text",
+      "content": "Game Dev הוא האג'נט שכותב את הקוד בפועל. הוא לוקח את התכנון מ-Game Architect ואת החזון מ-Game Designer, ומממש את המשחק. הוא מומחה בפיתוח משחקים - לא רק תכנות כללי."
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "מפתח משחקים ספציפית",
+      "content": "Game Dev מבין game loops, physics, rendering, input handling - הדברים הייחודיים למשחקים"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה Game Dev עושה?",
+      "id": "dev-what"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "כותב קוד gameplay - מכניקות, פיזיקה, AI",
+        "מממש מערכות - UI, sound, particles, animations",
+        "בונה tools - level editors, debug tools",
+        "אופטימיזציה - שיפור ביצועים ו-FPS",
+        "אינטגרציה - חיבור assets, plugins, services",
+        "Bug fixing - תיקון באגים ובדיקות"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "וורקפלואים עיקריים",
+      "id": "dev-workflows"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "workflow-implement-feature",
+          "title": "מימוש פיצ'ר משחק",
+          "content": [
+            {
+              "type": "text",
+              "content": "Game Dev לוקח story או פיצ'ר ומממש אותו:"
+            },
+            {
+              "type": "list",
+              "ordered": true,
+              "items": [
+                "קורא את הדרישות מה-GDD",
+                "בודק את התכנון הטכני",
+                "כותב את הקוד בצורה נקייה",
+                "מוסיף comments והסברים",
+                "בודק שזה עובד (manual testing)",
+                "אופטימיזציה אם נדרש"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "workflow-debug",
+          "title": "איתור ותיקון באגים",
+          "content": [
+            {
+              "type": "text",
+              "content": "כשיש באג במשחק, Game Dev:"
+            },
+            {
+              "type": "list",
+              "ordered": true,
+              "items": [
+                "משחזר את הבאג",
+                "מנתח את הקוד הרלוונטי",
+                "מזהה את הגורם",
+                "מתקן בצורה נכונה (לא band-aid)",
+                "בודק שלא שבר משהו אחר",
+                "מתעד את התיקון"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "workflow-optimize",
+          "title": "אופטימיזציה וביצועים",
+          "content": [
+            {
+              "type": "text",
+              "content": "כשהמשחק איטי או lag, Game Dev:"
+            },
+            {
+              "type": "list",
+              "ordered": true,
+              "items": [
+                "Profiling - מזהה bottlenecks",
+                "אופטימיזציה - שיפור הקוד האיטי",
+                "Object Pooling - למניעת garbage collection",
+                "LOD - Level of Detail לגרפיקה",
+                "Asset Optimization - דחיסה והקטנה",
+                "מדידה - לוודא שהשיפור עבד"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה: עבודה עם Game Dev",
+      "id": "dev-example"
+    },
+    {
+      "type": "text",
+      "content": "נמשיך עם משחק הפאזל - זמן לכתוב קוד!"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "אתם: \"יש לי GDD ו-Tech Spec. בואו נבנה את Grid System\"\n\nGame Dev: \"מצוין! קראתי את המסמכים.\n\nאני מתחיל עם הבסיס:\n1. Grid class - מטריצה של cells\n2. Cell class - כל משבצת\n3. TileTypes - סוגי אריחים\n4. GridRenderer - הצגה ויזואלית\n\nעכשיו אני כותב את הקוד:\"\n\n[Game Dev כותב את הקוד המלא עם comments]\n\n\"הנה הקוד. הוספתי:\n- Object pooling לביצועים\n- Events למערכות אחרות\n- Debug mode להצגת מידע\n\nתרצה שאוסיף unit tests?\""
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "קוד מוכן ועובד",
+      "content": "Game Dev נותן לכם קוד איכותי שאפשר להריץ מיד!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה Game Dev טוב בו במיוחד?",
+      "id": "dev-specialties"
+    },
+    {
+      "type": "tabs",
+      "items": [
+        {
+          "id": "tab-gameplay",
+          "label": "Gameplay Code",
+          "content": [
+            {
+              "type": "text",
+              "content": "מימוש מכניקות משחק:"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "תנועה ופיזיקה של שחקן",
+                "Combat systems וקרבות",
+                "AI של אויבים ו-NPCs",
+                "Collision detection",
+                "Input handling - מקלדת, עכבר, טאץ'",
+                "Game state management"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tab-systems",
+          "label": "Game Systems",
+          "content": [
+            {
+              "type": "text",
+              "content": "בניית מערכות משחק:"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Inventory system - תיקי פריטים",
+                "Quest system - משימות ויעדים",
+                "Progression - level up, unlocks",
+                "Save/Load system - שמירה וטעינה",
+                "Audio system - מוזיקה ואפקטים",
+                "Particles ו-Visual effects"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tab-tools",
+          "label": "Tools & Debug",
+          "content": [
+            {
+              "type": "text",
+              "content": "כלים לפיתוח ובדיקה:"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Level Editor - כלי לבניית רמות",
+                "Debug Console - פקודות לבדיקה",
+                "Cheats - לצורך testing",
+                "Analytics - מדידת התנהגות שחקנים",
+                "Replay System - שחזור משחקים",
+                "Performance Monitor - מדידת FPS"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמת קוד: Water Flow System",
+      "id": "dev-code-example"
+    },
+    {
+      "type": "text",
+      "content": "הנה דוגמה לקוד שGame Dev כותב למשחק הפאזל שלנו:"
+    },
+    {
+      "type": "code",
+      "language": "csharp",
+      "code": "// WaterFlowSystem.cs\npublic class WaterFlowSystem : MonoBehaviour\n{\n    [Header(\"Flow Settings\")]\n    public float flowSpeed = 2f;\n    public int maxFlowParticles = 100;\n    \n    private Grid grid;\n    private List<WaterParticle> activeParticles;\n    private ObjectPool<WaterParticle> particlePool;\n    \n    void Start()\n    {\n        grid = GetComponent<Grid>();\n        activeParticles = new List<WaterParticle>();\n        particlePool = new ObjectPool<WaterParticle>(maxFlowParticles);\n    }\n    \n    public void StartFlow(Vector2Int startCell)\n    {\n        // Start water flow from source\n        var particle = particlePool.Get();\n        particle.Initialize(startCell, flowSpeed);\n        activeParticles.Add(particle);\n    }\n    \n    void Update()\n    {\n        // Update all active particles\n        for (int i = activeParticles.Count - 1; i >= 0; i--)\n        {\n            var particle = activeParticles[i];\n            particle.Move(Time.deltaTime);\n            \n            // Check if reached goal or blocked\n            if (particle.ReachedGoal())\n            {\n                OnFlowComplete();\n                ReturnParticle(particle, i);\n            }\n            else if (particle.IsBlocked(grid))\n            {\n                OnFlowBlocked();\n                ReturnParticle(particle, i);\n            }\n        }\n    }\n    \n    private void ReturnParticle(WaterParticle particle, int index)\n    {\n        activeParticles.RemoveAt(index);\n        particlePool.Return(particle);\n    }\n    \n    private void OnFlowComplete()\n    {\n        // Player wins!\n        GameEvents.TriggerLevelComplete();\n    }\n}"
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "קוד נקי ומתועד",
+      "content": "Game Dev כותב קוד שקל לקרוא ולתחזק - עם comments, naming טוב, וארגון ברור"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "טיפים לעבודה עם Game Dev",
+      "id": "dev-tips"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "תנו לו הקשר - שתפו GDD ו-Tech Spec",
+        "בקשו הסברים - Game Dev מסביר מה הוא עשה ולמה",
+        "שאלו על testing - איך לבדוק שהקוד עובד",
+        "דונו על edge cases - מה קורה כשהשחקן עושה משהו מוזר?",
+        "בקשו debug tools - זה חוסך זמן בהמשך"
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תהליך מלא: מרעיון למשחק עובד",
+      "id": "full-process"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הזרימה בין שלושת האג'נטים",
+      "id": "agent-flow"
+    },
+    {
+      "type": "text",
+      "content": "הנה איך שלושת האג'נטים עובדים יחד בתהליך מלא:"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "תהליך משחק מקצה לקצה",
+      "content": "מרעיון ראשוני עד משחק שניתן להוריד ולשחק"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 1: Concept (Game Designer)",
+      "id": "phase-concept"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "הרצת *game-brief עם Game Designer",
+        "הגדרת הרעיון, ז'אנר, קהל יעד",
+        "תיאור ה-core loop והמכניקות",
+        "קבלת game brief מפורט"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 2: Design (Game Designer)",
+      "id": "phase-design"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "הרצת *gdd עם Game Designer",
+        "פיתוח כל המכניקות בפירוט",
+        "תיאור רמות, אתגרים, progression",
+        "עיצוב UI/UX למשחק",
+        "קבלת GDD מלא (15-30 עמודים)"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 3: Architecture (Game Architect)",
+      "id": "phase-architecture"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Game Architect קורא את ה-GDD",
+        "מנתח דרישות טכניות",
+        "בוחר מנוע וטכנולוגיות",
+        "מתכנן ארכיטקטורה ומערכות",
+        "כותב Tech Spec מפורט"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 4: Development (Game Dev)",
+      "id": "phase-development"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Game Dev קורא GDD ו-Tech Spec",
+        "מחלק לstories ומשימות",
+        "מממש את המערכות אחת אחת",
+        "בודק ומתקן באגים",
+        "אופטימיזציה וביצועים"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 5: Polish & Testing",
+      "id": "phase-polish"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "Game Designer עוזר לאזן את המשחק",
+        "Game Dev מוסיף polish - particles, sounds, juice",
+        "TEA Agent (מאג'נטים אחרים) עושה QA",
+        "כולם עוברים על הפידבק ומשפרים"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה: Timeline מלא למשחק קטן",
+      "id": "full-timeline"
+    },
+    {
+      "type": "table",
+      "headers": [
+        { "content": "שלב" },
+        { "content": "אג'נט" },
+        { "content": "זמן" },
+        { "content": "תוצר" }
+      ],
+      "rows": [
+        {
+          "cells": [
+            { "content": "Concept" },
+            { "content": "Game Designer" },
+            { "content": "1-2 שעות" },
+            { "content": "Game Brief" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "Design" },
+            { "content": "Game Designer" },
+            { "content": "4-8 שעות" },
+            { "content": "GDD מלא" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "Architecture" },
+            { "content": "Game Architect" },
+            { "content": "2-4 שעות" },
+            { "content": "Tech Spec" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "Core Systems" },
+            { "content": "Game Dev" },
+            { "content": "1-2 שבועות" },
+            { "content": "מערכות בסיס" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "Gameplay" },
+            { "content": "Game Dev" },
+            { "content": "2-4 שבועות" },
+            { "content": "מכניקות עובדות" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "Content" },
+            { "content": "Game Dev + Designer" },
+            { "content": "1-2 שבועות" },
+            { "content": "רמות ותוכן" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "Polish" },
+            { "content": "כולם" },
+            { "content": "1 שבוע" },
+            { "content": "משחק מלוטש" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "סה\"כ: 6-10 שבועות למשחק קטן",
+      "content": "זה למשחק מובייל פשוט או אינדי קטן. משחקים גדולים יותר לוקחים חודשים-שנים!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תקשורת בין האג'נטים",
+      "id": "agent-communication"
+    },
+    {
+      "type": "text",
+      "content": "חשוב שהאג'נטים \"מדברים\" אחד עם השני דרככם:"
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "העבירו מסמכים קדימה",
+      "content": "Game Brief → GDD → Tech Spec → Code. כל שלב משתמש במסמכים מהשלב הקודם"
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "חזרו אחורה כשצריך",
+      "content": "אם Game Dev מוצא בעיה, חזרו ל-Game Architect או Designer לעדכון"
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "שמרו הכל במקום אחד",
+      "content": "צרו תיקיית /docs במשחק עם כל המסמכים - GDD, Tech Spec, ועוד"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שאלות נפוצות",
+      "id": "faq"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "faq-1",
+          "title": "האם אני חייב להשתמש בשלושת האג'נטים?",
+          "content": [
+            {
+              "type": "text",
+              "content": "לא בהכרח! תלוי בגודל הפרויקט:"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "משחק קטן (game jam) - רק Game Dev מספיק",
+                "משחק בינוני - Game Designer + Game Dev",
+                "משחק גדול - כל שלושתם"
+              ]
+            },
+            {
+              "type": "text",
+              "content": "אבל ככל שהמשחק יותר גדול, כדאי להשקיע בתכנון (Designer + Architect) כי זה חוסך זמן פיתוח!"
+            }
+          ]
+        },
+        {
+          "id": "faq-2",
+          "title": "האם אני צריך לדעת לתכנת כדי להשתמש ב-Game Dev?",
+          "content": [
+            {
+              "type": "text",
+              "content": "תלוי מה אתם רוצים לעשות:"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "אם אתם מתכננים משחק - לא, Game Designer מספיק",
+                "אם אתם רוצים להבין את הקוד - כדאי ידע בסיסי",
+                "אם אתם רוצים לשנות את הקוד - כן, צריך להבין תכנות"
+              ]
+            },
+            {
+              "type": "callout",
+              "variant": "tip",
+              "title": "Game Dev מסביר",
+              "content": "Game Dev כותב קוד עם הרבה comments והסברים, אז זו גם הזדמנות ללמוד!"
+            }
+          ]
+        },
+        {
+          "id": "faq-3",
+          "title": "איזה מנוע משחקים הכי טוב?",
+          "content": [
+            {
+              "type": "text",
+              "content": "אין תשובה אחת - Game Architect יעזור לבחור לפי הצרכים:"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Unity - הכי פופולרי, מתאים למובייל ו-2D/3D",
+                "Unreal - גרפיקה מתקדמת, יותר מורכב",
+                "Godot - חינמי לגמרי, טוב לאינדי",
+                "HTML5 (Phaser/PixiJS) - משחקי דפדפן",
+                "Custom - רק לפרויקטים ייחודיים"
+              ]
+            },
+            {
+              "type": "text",
+              "content": "למתחילים, Unity זו בחירה מצוינת!"
+            }
+          ]
+        },
+        {
+          "id": "faq-4",
+          "title": "כמה זמן לוקח לבנות משחק?",
+          "content": [
+            {
+              "type": "text",
+              "content": "תלוי מאוד בגודל ומורכבות:"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Game Jam (48 שעות) - רעיון פשוט, ללא GDD מלא",
+                "משחק מובייל קטן - 4-8 שבועות",
+                "משחק אינדי - 3-12 חודשים",
+                "משחק AAA - 2-5 שנים עם צוות גדול"
+              ]
+            },
+            {
+              "type": "callout",
+              "variant": "warning",
+              "title": "התחילו קטן!",
+              "content": "הרבה מתחילים חולמים על משחק ענק ונתקעים. עדיף משחק קטן גמור ממשחק גדול שלא נגמר!"
+            }
+          ]
+        },
+        {
+          "id": "faq-5",
+          "title": "האם Game Designer יכול לכתוב את הסיפור?",
+          "content": [
+            {
+              "type": "text",
+              "content": "כן! Game Designer כולל גם narrative design. השתמשו בוורקפלואו *narrative:"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "עלילה ראשית ומשנית",
+                "דמויות ורקע שלהן",
+                "דיאלוגים",
+                "World-building",
+                "שילוב הסיפור במכניקות"
+              ]
+            },
+            {
+              "type": "text",
+              "content": "למשחקים story-driven (RPG, adventure), זה חלק מרכזי!"
+            }
+          ]
+        },
+        {
+          "id": "faq-6",
+          "title": "מה עם גרפיקה ואודיו?",
+          "content": [
+            {
+              "type": "text",
+              "content": "אג'נטי המשחקים לא יוצרים assets (תמונות, מוזיקה), אבל:"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Game Designer מגדיר art direction - איזה סגנון וחזון",
+                "Game Architect מתכנן asset pipeline - איך טוענים ומנהלים assets",
+                "Game Dev משלב assets בקוד",
+                "UX Designer Agent יכול לעזור ב-UI design"
+              ]
+            },
+            {
+              "type": "callout",
+              "variant": "tip",
+              "title": "השתמשו ב-placeholder assets",
+              "content": "בשלבים הראשונים, השתמשו בגרפיקה פשוטה (ריבועים, עיגולים). תחליפו עם assets אמיתיים מאוחר יותר"
+            }
+          ]
+        },
+        {
+          "id": "faq-7",
+          "title": "האם יש תמיכה ב-multiplayer?",
+          "content": [
+            {
+              "type": "text",
+              "content": "כן! Game Architect מתמחה גם ב-multiplayer architecture:"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "Client-Server vs Peer-to-Peer",
+                "Networking protocols",
+                "State synchronization",
+                "Lag compensation",
+                "Matchmaking",
+                "Anti-cheat"
+              ]
+            },
+            {
+              "type": "callout",
+              "variant": "warning",
+              "title": "Multiplayer מורכב!",
+              "content": "זה מוסיף הרבה מורכבות. אם אתם מתחילים, בנו single-player קודם"
+            }
+          ]
+        },
+        {
+          "id": "faq-8",
+          "title": "איך עובדים עם הוורקפלואים האחרים של BMAD?",
+          "content": [
+            {
+              "type": "text",
+              "content": "אג'נטי המשחקים משתלבים עם כל המערכת:"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "PM Agent - יכול לעזור עם product strategy למשחק",
+                "TEA Agent - יוצר תוכנית בדיקות למשחק",
+                "UX Designer - עוזר עם UI/UX למשחק",
+                "Tech Writer - כותב תיעוד למשחק"
+              ]
+            },
+            {
+              "type": "text",
+              "content": "המשחק הוא פרויקט כמו כל פרויקט תוכנה - אפשר להשתמש בכל הכלים!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "סיכום: הצעד הבא שלכם",
+      "id": "summary"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "למדתם על אג'נטי המשחקים!",
+      "content": "אתם מכירים את Game Designer, Game Architect ו-Game Dev - ויודעים איך לבנות משחק מקצה לקצה"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "התחילו עכשיו",
+      "id": "start-now"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "חשבו על רעיון למשחק (קטן!)",
+        "פתחו את Game Designer Agent",
+        "הריצו *game-brief",
+        "אם אהבתם - המשיכו ל-*gdd",
+        "צרו את המשחק הראשון שלכם!"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "התחילו קטן",
+      "content": "משחק פשוט שגמור עדיף ממשחק מורכב שלא נגמר. בנו משהו קטן, תראו שזה עובד, ואז תרחיבו!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מדריכים קשורים",
+      "id": "related"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "מדריך וורקפלואים - Phase 2 Design (GDD + Narrative)",
+        "מדריך למפתחי משחקים (Roles)",
+        "מדריך אגנטים - סינתזה (איך כל האגנטים עובדים יחד)",
+        "שאלות ותשובות - פיתוח"
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "בהצלחה!",
+      "content": "מקווים שתבנו משחקים מדהימים עם BMAD. זכרו - כל המשחקים הגדולים התחילו מרעיון פשוט. המשחק שלכם יכול להיות הבא! 🎮"
+    }
+  ]
+}
+

@@ -1,0 +1,589 @@
+{
+  "metadata": {
+    "id": "cis-first3",
+    "slug": "cis-first3",
+    "title": "מדריך אג'נטים - חלק 4א: שילוב בין אג'נטים (3 ראשונים)",
+    "description": "למדו להשתמש ב-CIS (Collective Intelligence System) ו-Party Mode לעבודה עם מספר אג'נטים בו-זמנית. הכירו 3 תרחישי שילוב מתקדמים ללמידה מעשית.",
+    "category": "agents",
+    "difficulty": "advanced",
+    "estimatedMinutes": 40,
+    "icon": "Users",
+    "tags": ["אג'נטים", "CIS", "party-mode", "שיתוף פעולה", "אינטליגנציה קולקטיבית"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "מבוא: CIS ואינטליגנציה קולקטיבית",
+      "level": 2,
+      "anchor": "intro"
+    },
+    {
+      "id": "toc-2",
+      "title": "מה זה CIS?",
+      "level": 2,
+      "anchor": "what-is-cis"
+    },
+    {
+      "id": "toc-3",
+      "title": "Party Mode - עבודה עם כמה אג'נטים",
+      "level": 2,
+      "anchor": "party-mode"
+    },
+    {
+      "id": "toc-4",
+      "title": "תרחיש 1: PM + Analyst + Architect",
+      "level": 2,
+      "anchor": "scenario-1"
+    },
+    {
+      "id": "toc-5",
+      "title": "תרחיש 2: Designer + Architect + Dev",
+      "level": 2,
+      "anchor": "scenario-2"
+    },
+    {
+      "id": "toc-6",
+      "title": "תרחיש 3: Dev + TEA + Tech Writer",
+      "level": 2,
+      "anchor": "scenario-3"
+    },
+    {
+      "id": "toc-7",
+      "title": "Best Practices לשילוב אג'נטים",
+      "level": 2,
+      "anchor": "best-practices"
+    },
+    {
+      "id": "toc-8",
+      "title": "שאלות נפוצות",
+      "level": 2,
+      "anchor": "faq"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מדריך אג'נטים - חלק 4א: שילוב בין אג'נטים",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "מדריך מתקדם לעבודה צוותית עם אג'נטים",
+      "content": "למדו להפעיל מספר אג'נטים יחד ולנצל את האינטליגנציה הקולקטיבית של BMAD"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "מבוא: CIS ואינטליגנציה קולקטיבית",
+      "id": "intro"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "עד עכשיו למדנו לעבוד עם אג'נטים בודדים - PM יוצר PRD, Architect מתכנן ארכיטקטורה, Dev כותב קוד. אבל פרויקטים אמיתיים מורכבים יותר.\n\nבעולם האמיתי, צוותים עובדים **ביחד** - מנהל המוצר מדבר עם הארכיטקט, המעצב מתייעץ עם המפתח, והבודק עובד לצד הכותב הטכני. BMAD מחקה את התהליך הזה דרך **CIS** - מערכת האינטליגנציה הקולקטיבית."
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "הכוח של שיתוף פעולה",
+      "content": "כשאג'נטים עובדים ביחד, הם יוצרים תוצאות טובות יותר - כל אחד מביא את המומחיות שלו והם משלימים אחד את השני"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "מה זה CIS (Collective Intelligence System)?",
+      "id": "what-is-cis"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**CIS (Collective Intelligence System)** הוא המנגנון ב-BMAD שמאפשר לאג'נטים לעבוד יחד בצורה מתואמת. במקום שכל אג'נט עובד בבועה שלו, CIS מאפשר להם לתקשר, לחלק אחריות, ולסנכרן תוצרים."
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "gap": "md",
+      "items": [
+        {
+          "type": "card",
+          "icon": "Clock",
+          "title": "מהיר יותר",
+          "content": "אג'נטים יכולים לעבוד במקביל במקום ברצף"
+        },
+        {
+          "type": "card",
+          "icon": "BulbFilled",
+          "title": "איכות גבוהה",
+          "content": "כל אג'נט תורם את המומחיות שלו"
+        },
+        {
+          "type": "card",
+          "icon": "CircleCheck",
+          "title": "פחות שגיאות",
+          "content": "אג'נטים בודקים אחד את השני"
+        },
+        {
+          "type": "card",
+          "icon": "Refresh",
+          "title": "עקביות מלאה",
+          "content": "כולם עובדים על אותו מידע"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Party Mode - עבודה עם כמה אג'נטים",
+      "id": "party-mode"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**Party Mode** הוא הממשק ב-BMAD להפעלת מספר אג'נטים בו-זמנית. זה כמו להזמין מספר מומחים לפגישה אחת - כולם שם, כולם יכולים לתרום, וכולם שומעים את כולם."
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "אל תגזימו",
+      "content": "Party Mode מעולה, אבל אל תזמינו 8 אג'נטים לכל משימה קטנה. 2-4 אג'נטים זה בדרך כלל מספיק!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך להפעיל Party Mode?",
+      "id": "how-to-activate"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "@bmad-master\n\nהפעל *party-mode עם האג'נטים:\n- PM\n- Architect\n- Dev\n\nאני רוצה לבנות מערכת authentication חדשה"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תרחיש 1: PM + Analyst + Architect (Product to Spec)",
+      "id": "scenario-1"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "המטרה",
+      "content": "מרעיון מוצר לתכנון טכני מלא - כולל מחקר, PRD וארכיטקטורה"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "אתם מקבלים רעיון למוצר חדש - **פלטפורמת marketplace ל-freelancers**. אתם צריכים להבין את השוק, להגדיר את המוצר, ולתכנן איך לבנות אותו."
+    },
+    {
+      "type": "grid",
+      "columns": 3,
+      "gap": "md",
+      "items": [
+        {
+          "type": "card",
+          "icon": "Briefcase",
+          "title": "PM Agent",
+          "content": "מוביל - מגדיר חזון, דרישות, עדיפויות"
+        },
+        {
+          "type": "card",
+          "icon": "ChartBar",
+          "title": "Analyst Agent",
+          "content": "חוקר - מנתח שוק, מתחרים, נתונים"
+        },
+        {
+          "type": "card",
+          "icon": "BuildingArch",
+          "title": "Architect Agent",
+          "content": "מתכנן - מעריך feasibility, מתכנן tech"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "התהליך",
+      "id": "scenario-1-process"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 1:** Analyst עושה מחקר שוק - מזהה 300K עצמאיים בישראל, 45% בטכנולוגיה.\n\n**שלב 2:** PM מגדיר MVP - פלטפורמה לדevelopers עם 5 פיצ'רים מרכזיים.\n\n**שלב 3:** Architect מתכנן - Microservices, Stripe payments, 5 חודשי פיתוח."
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאה",
+      "content": "בסשן של 2 שעות: מחקר מלא, PRD מפורט, ותכנון ארכיטקטוני. ללא CIS זה היה לוקח שבוע!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תרחיש 2: Designer + Architect + Dev (Feature Implementation)",
+      "id": "scenario-2"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "המטרה",
+      "content": "מימוש פיצ'ר UI מורכב - מעיצוב ועד קוד עובד"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "אתם צריכים לממש **Dashboard אינטראקטיבי** עם גרפים ונתונים. הפיצ'ר מורכב מבחינת עיצוב וגם מבחינה טכנית."
+    },
+    {
+      "type": "grid",
+      "columns": 3,
+      "gap": "md",
+      "items": [
+        {
+          "type": "card",
+          "icon": "Palette",
+          "title": "UX Designer",
+          "content": "מעצב - UI/UX, אינטראקציות, נגישות"
+        },
+        {
+          "type": "card",
+          "icon": "BuildingArch",
+          "title": "Architect",
+          "content": "מתכנן - מבנה קומפוננטות, state, data flow"
+        },
+        {
+          "type": "card",
+          "icon": "Code",
+          "title": "Dev",
+          "content": "מממש - כותב קוד, אופטימיזציה"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "התהליך",
+      "id": "scenario-2-process"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 1:** Designer מציג עיצוב - Grid layout, 4 KPI cards, 2 גרפים.\n\n**שלב 2:** Architect מתכנן - Component structure, Zustand state, React Query.\n\n**שלב 3:** Dev מממש - כותב קוד, מוסיף optimizations.\n\n**שלב 4:** Review משותף - Designer בודק pixels, Architect בודק performance."
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאה",
+      "content": "4 שעות מעיצוב לקוד עובד. בלי CIS זה היה לוקח 2-3 ימים!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תרחיש 3: Dev + TEA + Tech Writer (Quality & Docs)",
+      "id": "scenario-3"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "המטרה",
+      "content": "קוד + בדיקות + תיעוד - הטריפקטה המושלמת לאיכות"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "אתם בונים **API חדש** למערכת. זה API ציבורי שמפתחים חיצוניים ישתמשו בו. צריך קוד איכותי, בדיקות מקיפות, ותיעוד מפורט."
+    },
+    {
+      "type": "grid",
+      "columns": 3,
+      "gap": "md",
+      "items": [
+        {
+          "type": "card",
+          "icon": "Code",
+          "title": "Dev",
+          "content": "כותב - את הקוד של ה-API"
+        },
+        {
+          "type": "card",
+          "icon": "TestPipe",
+          "title": "TEA",
+          "content": "בודק - אסטרטגיית testing, test cases"
+        },
+        {
+          "type": "card",
+          "icon": "Book",
+          "title": "Tech Writer",
+          "content": "מתעד - מדריך API, examples, reference"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "התהליך",
+      "id": "scenario-3-process"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שלב 1:** TEA כותב test cases - 6 tests ל-POST /webhooks.\n\n**שלב 2:** Dev כותב קוד - עובר על כל ה-tests.\n\n**שלב 3:** Tech Writer מתעד - API reference, code examples, error handling.\n\n**שלב 4:** Review צולב - TEA מוצא race condition, Tech Writer מציין חסר בdocs."
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאה",
+      "content": "6 שעות: קוד איכותי + 85 tests + תיעוד מצוין. זה ה-power של CIS!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Best Practices לשילוב אג'נטים",
+      "id": "best-practices"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "כמה אג'נטים?",
+      "id": "bp-how-many"
+    },
+    {
+      "type": "table",
+      "headers": [
+        { "content": "מספר" },
+        { "content": "טוב ל..." },
+        { "content": "לא טוב ל..." }
+      ],
+      "rows": [
+        {
+          "cells": [
+            { "content": "2" },
+            { "content": "משימות ממוקדות, תיאום מהיר" },
+            { "content": "החלטות מורכבות" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "3" },
+            { "content": "רוב המשימות - sweet spot!" },
+            { "content": "-" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "4" },
+            { "content": "פרויקטים גדולים, החלטות מרכזיות" },
+            { "content": "משימות קטנות" }
+          ]
+        },
+        {
+          "cells": [
+            { "content": "5+" },
+            { "content": "brainstorming, הצגות" },
+            { "content": "execution - יותר מדי רעש" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תקשורת יעילה",
+      "id": "bp-communication"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        {
+          "content": "✅ **תנו לכל אג'נט לדבר** - כולם צריכים לתרום"
+        },
+        {
+          "content": "✅ **שאלו שאלות** - אג'נטים אוהבים לענות"
+        },
+        {
+          "content": "✅ **סכמו לפני מעבר** - וודאו שכולם מסכימים"
+        },
+        {
+          "content": "❌ **אל תדברו רק עם אג'נט אחד** - שאר האג'נטים מרגישים מיותרים"
+        },
+        {
+          "content": "❌ **אל תקפצו בין נושאים** - סיימו נושא אחד לפני המעבר"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "Tip מקצועי",
+      "content": "בסוף כל סשן, בקשו מ-BMAD Master לעשות סיכום - הוא ייצור רשימה של כל התוצרים והצעדים הבאים"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שאלות נפוצות",
+      "id": "faq"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "faq-1",
+          "title": "כמה אג'נטים אפשר להפעיל בו-זמנית?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**טכנית:** אין הגבלה.\n\n**מעשית:** 2-4 אג'נטים זה אידיאלי למרבית המשימות."
+            }
+          ]
+        },
+        {
+          "id": "faq-2",
+          "title": "מה אם צריך להוסיף אג'נט באמצע?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**אפשר בהחלט!** פשוט הזמינו אותו והוא יראה את כל ההיסטוריה אוטומטית."
+            },
+            {
+              "type": "code",
+              "language": "markdown",
+              "code": "אתם: \"הזמן את @ux-designer-agent להצטרף\"\n\nUX Designer: \"שלום! קראתי את כל ה-conversation.\""
+            }
+          ]
+        },
+        {
+          "id": "faq-3",
+          "title": "מה אם שני אג'נטים חלוקים?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**זה תכונה, לא באג!** אג'נטים מייצגים נקודות מבט שונות. התפקיד שלכם להקשיב לשני הצדדים ולהחליט או למצוא פשרה."
+            }
+          ]
+        },
+        {
+          "id": "faq-4",
+          "title": "האם CIS עובד גם לפרויקטים קטנים?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**כן!** אבל צריך פחות אג'נטים. לפיצ'ר קטן: 1-2. לפיצ'ר בינוני: 2-3. למוצר שלם: 4-5."
+            }
+          ]
+        },
+        {
+          "id": "faq-5",
+          "title": "האם אג'נטים זוכרים conversations קודמים?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**כן!** CIS שומר את כל ההיסטוריה. בתוך סשן - אוטומטי. בין סשנים - אג'נטים יכולים לגשת למסמכים שנוצרו בעבר."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "סיכום: הצעד הבא שלכם",
+      "id": "summary"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "למדתם CIS ו-Party Mode!",
+      "content": "אתם מכירים את מערכת האינטליגנציה הקולקטיבית ויודעים איך להפעיל מספר אג'נטים יחד"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "נסו עכשיו",
+      "id": "try-now"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        {
+          "content": "בחרו משימה מורכבת מהפרויקט שלכם"
+        },
+        {
+          "content": "זהו אילו אג'נטים צריכים (2-3 בהתחלה)"
+        },
+        {
+          "content": "הפעילו Party Mode: `@bmad-master *party-mode`"
+        },
+        {
+          "content": "הזמינו את האג'נטים ותתחילו לעבוד"
+        },
+        {
+          "content": "תראו את הקסם קורה!"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "המלצה",
+      "content": "התחילו עם תרחיש פשוט - למשל Dev + TEA לפיצ'ר קטן. אחרי שתרגישו בנוח, נסו שילובים מורכבים יותר"
+    }
+  ],
+  "relatedGuides": [
+    "architects",
+    "developers",
+    "qa-testers",
+    "agents-intro-pm-analyst",
+    "agents-architect-sm-dev",
+    "agents-cis-last2",
+    "agents-synthesis"
+  ],
+  "prerequisites": [
+    "agents-intro-pm-analyst",
+    "agents-architect-sm-dev",
+    "agents-tea-ux"
+  ],
+  "nextSteps": [
+    "agents-cis-last2",
+    "agents-synthesis",
+    "workflows-sprint-planning"
+  ]
+}
+
