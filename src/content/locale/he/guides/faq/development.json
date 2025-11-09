@@ -1,0 +1,98 @@
+{
+  "metadata": {
+    "id": "faq-development",
+    "slug": "faq-development",
+    "title": "שאלות ותשובות - פיתוח",
+    "description": "שאלות נפוצות על תהליך הפיתוח עם BMAD - Story Context, dev-story, code review, debugging, testing, ועבודה צוותית. כל התשובות על הפיתוח במקום אחד!",
+    "category": "faq",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 30,
+    "icon": "QuestionMark",
+    "tags": ["שאלות", "פיתוח", "קוד", "בדיקות", "debugging", "development"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "שאלות על Story Context",
+      "level": 2,
+      "anchor": "story-context"
+    },
+    {
+      "id": "toc-2",
+      "title": "שאלות על Dev Story",
+      "level": 2,
+      "anchor": "dev-story"
+    },
+    {
+      "id": "toc-3",
+      "title": "שאלות על Code Review",
+      "level": 2,
+      "anchor": "code-review"
+    },
+    {
+      "id": "toc-4",
+      "title": "שאלות על Debugging",
+      "level": 2,
+      "anchor": "debugging"
+    },
+    {
+      "id": "toc-5",
+      "title": "שאלות על Testing",
+      "level": 2,
+      "anchor": "testing"
+    },
+    {
+      "id": "toc-6",
+      "title": "עוד שאלות?",
+      "level": 2,
+      "anchor": "more-questions"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "שאלות ותשובות - פיתוח",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "מדריך FAQ מקיף לפיתוח",
+      "content": "כל השאלות הנפוצות על תהליך הפיתוח עם BMAD במקום אחד - איך לעבוד עם Stories, לכתוב קוד איכותי, לעשות code review, ולפתור בעיות"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שאלות על Story Context",
+      "id": "story-context"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "title": "מה זה Story Context?",
+          "content": "**תשובה:** Story Context = כל המידע שצריך כדי להבין ולפתח Story.\n\n**מה כולל:**\n- **PRD** - מה אנחנו בונים ולמה (מטרת הפיצ'ר)\n- **Epic Context** - איזה Epic זה שייך אליו\n- **Architecture** - איך המערכת בנויה\n- **Tech Spec** - פרטים טכניים מפורטים\n- **UX Design** - איך זה אמור להיראות\n- **Dependencies** - תלויות בקוד אחר או Stories אחרים\n\n**למה זה חשוב:**\n- מבין את המטרה העסקית\n- יודע איך המערכת עובדת\n- לא עושה טעויות בגלל חוסר מידע\n- הקוד עקבי עם השאר\n\n**איפה מוצאים:**\n- קבצי PRD בפרויקט (docs/prd/)\n- מסמכי ארכיטקטורה (docs/architecture/)\n- תיעוד UX (docs/ux/)\n- תיאור ה-Story עצמו\n\n**לפרטים:** [Development Flow](/guides/workflows-development)"
+        },
+        {
+          "title": "איך אוספים Story Context?",
+          "content": "**תשובה:** יש שתי דרכים:\n\n**דרך 1: ידנית (קריאת מסמכים)**\n1. קראו את תיאור ה-Story\n2. מצאו את ה-Epic הרלוונטי\n3. קראו את ה-PRD של הפיצ'ר\n4. קראו את מסמך הארכיטקטורה\n5. בדקו UX Design אם יש\n6. זהו dependencies\n\n**דרך 2: באמצעות workflow (מומלץ)**\n```\n@dev\n\nהרצי story-context\n\nStory: הוספת כפתור login\nEpic: מערכת אימות\nPRD: docs/prd/authentication.md\nArchitecture: docs/architecture/auth-system.md\n```\n\n**מה קורה:**\n- Amelia קוראת את כל המסמכים\n- מבינה את ההקשר המלא\n- שואלת שאלות הבהרה\n- מתכננת את המימוש\n- מוכנה לכתוב קוד\n\n**טיפ:** אל תתחילו לכתוב קוד בלי context מלא!"
+        },
+        {
+          "title": "מה לעשות כשחסר Story Context?",
+          "content": "**תשובה:** אל תתחילו לפתח עד שיש context!\n\n**צעדים:**\n\n**1. זהו מה חסר**\n- אין PRD? חסר הבנה של למה\n- אין ארכיטקטורה? לא יודעים איך לבנות\n- אין UX? לא יודעים איך זה נראה\n\n**2. פנו למי שאחראי**\n- חסר PRD → @pm (John)\n- חסר ארכיטקטורה → @architect (Sarah)\n- חסר UX → @ux (Sally)\n\n**3. הריצו את הוורקפלו החסר**\n```\n@pm\n\nאין PRD לפיצ'ר הזה.\nבוא נכתוב אחד.\n```\n\n**4. עדכנו את ה-Story**\nכשיש context - הוסיפו קישורים ל-Story\n\n**כלל אצבע:**\n- Story בלי context = לא מוכנה לפיתוח\n- אל תנסו לנחש - שאלו!\n\n**זכרו:** זמן שמושקע בהבנה חוסך זמן בפיתוח"
+        },
+        {
+          "title": "איך מוודאים ש-Story מוכנה לפיתוח?",
+          "content": "**תשובה:** השתמשו ב-**Definition of Ready**!\n\n**רשימת בדיקה (Checklist):**\n\n**✅ יש תיאור ברור**\n- מה צריך לעשות\n- למה זה חשוב\n- קריטריוני הצלחה\n\n**✅ יש קישורים למסמכים**\n- PRD\n- ארכיטקטורה\n- UX Design\n\n**✅ יש acceptance criteria**\n- רשימה של \"סיימתי כש...\"\n- בדיקות שצריך לעבור\n\n**✅ Dependencies ברורים**\n- תלויות בקוד אחר\n- תלויות ב-Stories אחרים\n- APIs / שירותים חיצוניים\n\n**✅ הערכת מאמץ**\n- זמן משוער\n- מורכבות\n\n**✅ אין חסמים**\n- הכל מוכן להתחיל\n- אין משהו שחוסם\n\n**איך לבדוק:**\n```\n@dev\n\nהרצי story-ready\n\nבדקי אם Story 123 מוכנה לפיתוח.\n```\n\n**לפרטים:** [Solutioning](/guides/workflows-solutioning)"
+        }
+      ]
+    }
+  ]
+}
+
