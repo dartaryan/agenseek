@@ -1,0 +1,905 @@
+{
+  "metadata": {
+    "id": "configuration-management",
+    "slug": "configuration-management",
+    "title": "ניהול תצורה ו-Version Control",
+    "description": "מדריך מקיף לניהול קבצי תצורה, גרסאות של אגנטים ווורקפלואים, עבודה צוותית עם Git, ושמירה על עקביות בין סביבות עבודה. למדו איך לנהל config.yaml נכון, לגבות מסמכים, לעבוד בצוות, ולשמור היסטוריה מלאה.",
+    "category": "practical",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 35,
+    "icon": "IconGitBranch",
+    "tags": ["ניהול-תצורה", "version-control", "git", "צוות", "קונפיגורציה"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "למה צריך ניהול תצורה?",
+      "level": 2,
+      "anchor": "why-configuration-management"
+    },
+    {
+      "id": "toc-2",
+      "title": "ניהול config.yaml",
+      "level": 2,
+      "anchor": "managing-config-yaml"
+    },
+    {
+      "id": "toc-3",
+      "title": "Version Control למסמכי BMAD",
+      "level": 2,
+      "anchor": "version-control-docs"
+    },
+    {
+      "id": "toc-4",
+      "title": "Git למסמכים ווורקפלואים",
+      "level": 2,
+      "anchor": "git-for-docs"
+    },
+    {
+      "id": "toc-5",
+      "title": "גיבויים והיסטוריה",
+      "level": 2,
+      "anchor": "backups-history"
+    },
+    {
+      "id": "toc-6",
+      "title": "עבודה צוותית עם BMAD",
+      "level": 2,
+      "anchor": "team-collaboration"
+    },
+    {
+      "id": "toc-7",
+      "title": "סביבות עבודה שונות",
+      "level": 2,
+      "anchor": "different-environments"
+    },
+    {
+      "id": "toc-8",
+      "title": "Best Practices לניהול תצורה",
+      "level": 2,
+      "anchor": "configuration-best-practices"
+    },
+    {
+      "id": "toc-9",
+      "title": "פתרון בעיות נפוצות",
+      "level": 2,
+      "anchor": "troubleshooting"
+    },
+    {
+      "id": "toc-10",
+      "title": "Checklist לניהול תצורה נכון",
+      "level": 2,
+      "anchor": "configuration-checklist"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "ניהול תצורה ו-Version Control",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "למי מיועד המדריך הזה?",
+      "content": "כל מי שעובד עם BMAD-METHOD ורוצה לנהל את הקונפיגורציות, המסמכים, והגרסאות בצורה מקצועית. במיוחד חשוב לצוותים שעובדים ביחד על אותו פרויקט."
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מה תלמדו כאן?",
+      "content": "איך לנהל config.yaml נכון, להשתמש ב-Git למסמכים, לגבות הכל בצורה חכמה, לעבוד בצוות בלי קונפליקטים, ולשמור היסטוריה מלאה של כל שינוי. ניהול תצורה נכון = פחות בעיות + עבודה חלקה."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "למה צריך ניהול תצורה?",
+      "id": "why-configuration-management"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הבעיות ללא ניהול תצורה",
+      "id": "problems-without-cm"
+    },
+    {
+      "type": "text",
+      "content": "**בלי ניהול תצורה נכון, נתקלים בבעיות כאלה:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**\"איפה ה-config שעבד אתמול?\"** - שינויים נעלמים, לא יודעים מה השתנה",
+        "**\"למה זה עובד אצלי ולא אצל השני?\"** - הגדרות שונות בין מכונות",
+        "**\"איבדתי את כל המסמכים!\"** - מחיקה בטעות, crash, ואין גיבוי",
+        "**\"שניים עבדו על אותו קובץ\"** - קונפליקטים, דריסת שינויים",
+        "**\"לא זוכר למה שיניתי את זה\"** - אין היסטוריה, אין הסברים"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "היתרונות של ניהול תצורה נכון",
+      "id": "benefits-of-cm"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "items": [
+        {
+          "title": "היסטוריה מלאה",
+          "content": "כל שינוי מתועד - מתי, מי, למה. אפשר לחזור לכל גרסה קודמת."
+        },
+        {
+          "title": "עבודה צוותית חלקה",
+          "content": "כולם עובדים על אותה גרסה, שינויים מתמזגים אוטומטית."
+        },
+        {
+          "title": "גיבויים אוטומטיים",
+          "content": "הכל ב-Git = הכל מגובה. אי אפשר לאבד מסמכים."
+        },
+        {
+          "title": "עקביות בין סביבות",
+          "content": "אותן הגדרות בכל מכונה - dev, staging, production."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "סטטיסטיקה מעניינת",
+      "content": "צוותים עם ניהול תצורה נכון חוסכים **20-30% מזמן העבודה** הרק על תיקון בעיות הגדרות וגיבויים. השקעה של שעה בהתחלה חוסכת שעות בהמשך."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "ניהול config.yaml",
+      "id": "managing-config-yaml"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה config.yaml?",
+      "id": "what-is-config"
+    },
+    {
+      "type": "text",
+      "content": "**config.yaml הוא קובץ ההגדרות המרכזי של BMAD.**\n\nהוא נמצא ב: `{project-root}/bmad/bmm/config.yaml`",
+      "markdown": true
+    },
+    {
+      "type": "text",
+      "content": "**מה יש בקובץ?**",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# BMM Module Configuration\nproject_name: my-awesome-project\ninclude_game_planning: false\nuser_skill_level: intermediate\ntech_docs: '{project-root}/docs'\ndev_story_location: '{project-root}/docs/stories'\ninstall_user_docs: true\ntea_use_mcp_enhancements: false\n\n# Core Configuration Values\nuser_name: John Doe\ncommunication_language: English\ndocument_output_language: Hebrew\noutput_folder: '{project-root}/docs'"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שדות חשובים ב-config.yaml",
+      "id": "important-config-fields"
+    },
+    {
+      "type": "table",
+      "headers": ["שדה", "מה זה", "דוגמה"],
+      "rows": [
+        ["project_name", "שם הפרויקט", "my-awesome-project"],
+        ["user_name", "השם שלכם (לאגנטים)", "John Doe"],
+        ["communication_language", "שפת תקשורת עם אגנטים", "English / Hebrew"],
+        ["document_output_language", "שפת המסמכים", "Hebrew / English"],
+        ["output_folder", "איפה לשמור מסמכים", "{project-root}/docs"],
+        ["user_skill_level", "רמת הניסיון שלכם", "beginner / intermediate / advanced"]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך משנים את config.yaml?",
+      "id": "how-to-change-config"
+    },
+    {
+      "type": "text",
+      "content": "**⚠️ חשוב: תמיד שמרו גיבוי לפני שינוי!**",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# 1. גיבוי (מומלץ!)\ncp bmad/bmm/config.yaml bmad/bmm/config.yaml.backup\n\n# 2. ערכו את הקובץ\n# - Cursor: פתחו את bmad/bmm/config.yaml\n# - VS Code: Edit → bmad/bmm/config.yaml\n\n# 3. שמרו\n# Ctrl+S / Cmd+S\n\n# 4. בדקו שהכל עובד\n@bmad-master\n*workflow-status\n# אם יש בעיה - החזירו גיבוי:\ncp bmad/bmm/config.yaml.backup bmad/bmm/config.yaml"
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "זהירות! אל תשנו את המבנה",
+      "content": "אל תוסיפו/תמחקו שדות שלא קיימים. רק **שנו ערכים** של שדות קיימים. שינוי מבנה = BMAD לא יעבוד!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמאות לשינויים נפוצים",
+      "id": "common-config-changes"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "title": "שינוי שפת תקשורת לעברית",
+          "content": "```yaml\n# לפני:\ncommunication_language: English\n\n# אחרי:\ncommunication_language: Hebrew\n```\n\nעכשיו האגנטים ידברו איתכם בעברית!"
+        },
+        {
+          "title": "שינוי תיקיית המסמכים",
+          "content": "```yaml\n# לפני:\noutput_folder: '{project-root}/docs'\n\n# אחרי:\noutput_folder: '{project-root}/documentation'\n```\n\n**זכרו:** צריך גם ליצור את התיקייה החדשה!"
+        },
+        {
+          "title": "שינוי רמת מיומנות",
+          "content": "```yaml\n# לפני:\nuser_skill_level: beginner\n\n# אחרי:\nuser_skill_level: intermediate\n```\n\nהאגנטים יתאימו את רמת ההסברים."
+        },
+        {
+          "title": "הוספת תכנון משחקים",
+          "content": "```yaml\n# לפני:\ninclude_game_planning: false\n\n# אחרי:\ninclude_game_planning: true\n```\n\nעכשיו תהיה גישה לאגנטי משחקים (Game Designer, Game Architect, Game Dev)."
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Version Control למסמכי BMAD",
+      "id": "version-control-docs"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "למה צריך Git למסמכים?",
+      "id": "why-git-for-docs"
+    },
+    {
+      "type": "text",
+      "content": "**רוב האנשים חושבים: Git = רק לקוד**\n\n**אבל!** Git מושלם גם למסמכים:",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**היסטוריה** - מתי שינינו כל מילה",
+        "**Blame** - מי כתב כל שורה",
+        "**Diff** - מה השתנה בדיוק",
+        "**Revert** - חזרה לגרסה קודמת בקלי קלות",
+        "**Branches** - גרסאות שונות של מסמכים",
+        "**Pull Requests** - Review למסמכים בדיוק כמו קוד"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "מסמכים = קוד",
+      "content": "במתודולוגיית **Docs as Code**, מתייחסים למסמכים בדיוק כמו לקוד: Git, Reviews, CI/CD, Testing. זה המגמה המודרנית בתעוד טכני."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה לשים ב-Git?",
+      "id": "what-to-put-in-git"
+    },
+    {
+      "type": "tabs",
+      "tabs": [
+        {
+          "label": "✅ כן - חובה",
+          "content": "**קבצים שחייבים להיות ב-Git:**\n\n- ✅ `config.yaml` - קובץ ההגדרות\n- ✅ כל ה-`docs/` - PRDs, Tech Specs, Architectures\n- ✅ `stories/` - כל ה-Stories\n- ✅ תבניות מותאמות אישית\n- ✅ סקריפטים אוטומטיים\n- ✅ `README.md`, `PROJECT-CONTEXT.md`\n- ✅ ADRs (Architecture Decision Records)"
+        },
+        {
+          "label": "⚠️ זהירות",
+          "content": "**קבצים שצריך להיזהר איתם:**\n\n- ⚠️ קבצים גדולים (>50MB) - שקלו Git LFS\n- ⚠️ קבצים בינאריים - Word/Excel (PDF עדיף)\n- ⚠️ קבצים זמניים - שימו ב-.gitignore\n- ⚠️ Logs - לא צריך בGit"
+        },
+        {
+          "label": "❌ לא - אסור",
+          "content": "**קבצים שאסור לשים ב-Git:**\n\n- ❌ סיסמאות, API Keys, Tokens\n- ❌ קבצי .env עם secrets\n- ❌ מידע רגיש (אישי, עסקי)\n- ❌ node_modules, dependencies\n- ❌ build outputs, dist/\n- ❌ קבצי IDE אישיים (.vscode, .idea)\n\n**חוקי זהב:** אם זה סודי - לא ב-Git!"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": ".gitignore לפרויקטי BMAD",
+      "id": "gitignore-for-bmad"
+    },
+    {
+      "type": "text",
+      "content": "**קובץ `.gitignore` מומלץ:**",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# .gitignore לפרויקטי BMAD\n\n# Node.js\nnode_modules/\nnpm-debug.log\nyarn-error.log\npackage-lock.json\n\n# Build outputs\ndist/\nbuild/\n.next/\n.nuxt/\n\n# IDE\n.vscode/\n.idea/\n*.swp\n*.swo\n\n# OS\n.DS_Store\nThumbs.db\n\n# Environment\n.env\n.env.local\n.env.*.local\n\n# Temporary files\n*.tmp\n*.temp\n*.log\n*.cache\n\n# Backups\n*.backup\n*.bak\n*~\n\n# BMAD specific\n# (אל תתעלמו מ-config.yaml! זה חייב להיות ב-Git)\n# אבל אפשר להתעלם מגיבויים:\nconfig.yaml.backup*\n\n# Large files\n*.mp4\n*.mov\n*.zip\n*.tar.gz"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Git למסמכים ווורקפלואים",
+      "id": "git-for-docs"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Git Workflow למסמכים",
+      "id": "git-workflow-docs"
+    },
+    {
+      "type": "text",
+      "content": "**Git Flow פשוט למסמכי BMAD:**",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# 1. התחלה - יצירת branch חדש\ngit checkout -b docs/add-user-authentication-prd\n\n# 2. עבודה - יצירת PRD\n@pm\n*prd\n# → נוצר docs/planning/user-authentication-prd.md\n\n# 3. Commit אחרי כל שלב משמעותי\ngit add docs/planning/user-authentication-prd.md\ngit commit -m \"docs: add initial PRD for user authentication\"\n\n# 4. המשך עבודה - Tech Spec\n@architect\n*tech-spec\n# → נוצר docs/planning/user-authentication-tech-spec.md\n\ngit add docs/planning/user-authentication-tech-spec.md\ngit commit -m \"docs: add tech spec for user authentication\"\n\n# 5. Push ל-remote\ngit push origin docs/add-user-authentication-prd\n\n# 6. יצירת Pull Request\n# GitHub/GitLab: New Pull Request\n# → קבלו Review\n# → Merge ל-main"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "Commit Messages טובים",
+      "content": "**פורמט מומלץ:**\n\n- `docs: add PRD for feature X`\n- `docs: update architecture diagram`\n- `docs: fix typo in tech spec`\n- `config: change output folder to /documentation`\n- `docs: add epic 5 stories`\n\n**התחלה עם `docs:`** עוזרת לזהות commits של מסמכים."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Branching Strategy למסמכים",
+      "id": "branching-strategy"
+    },
+    {
+      "type": "text",
+      "content": "**אסטרטגיית Branches:**",
+      "markdown": true
+    },
+    {
+      "type": "table",
+      "headers": ["Branch", "מטרה", "דוגמה"],
+      "rows": [
+        ["main", "גרסת ייצור - מסמכים מאושרים", "main"],
+        ["docs/*", "מסמכים חדשים", "docs/add-authentication-prd"],
+        ["update-docs/*", "עדכון מסמכים קיימים", "update-docs/fix-architecture-diagram"],
+        ["config/*", "שינויי קונפיגורציה", "config/change-output-folder"],
+        ["epic/*", "כל Epic עם מסמכיו", "epic/user-management"]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Code Review למסמכים",
+      "id": "code-review-docs"
+    },
+    {
+      "type": "text",
+      "content": "**למסמכים צריך Review בדיוק כמו לקוד!**\n\n**מה בודקים ב-Review:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**תוכן** - האם המידע נכון ומדויק?",
+        "**בהירות** - האם המסמך ברור ומובן?",
+        "**שלמות** - יש את כל הסעיפים הנדרשים?",
+        "**עקביות** - תואם למסמכים אחרים?",
+        "**דקדוק** - אין שגיאות כתיב?",
+        "**פורמט** - Markdown תקין, מבנה נכון?"
+      ]
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# תהליך Review למסמכים\n\n# 1. מישהו יוצר PR\nPull Request: \"docs: add authentication PRD\"\n\n# 2. Reviewer מקבל הודעה\n# → קורא את המסמך\n# → משאיר comments\n# → מציע שינויים\n\n# 3. המחבר מתקן\ngit add docs/planning/authentication-prd.md\ngit commit -m \"docs: address review comments\"\ngit push\n\n# 4. Approval\nReviewer: \"LGTM\" (Looks Good To Me)\n\n# 5. Merge\ngit merge docs/add-authentication-prd"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "גיבויים והיסטוריה",
+      "id": "backups-history"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "אסטרטגיית גיבוי 3-2-1",
+      "id": "backup-strategy-321"
+    },
+    {
+      "type": "text",
+      "content": "**כלל 3-2-1 לגיבויים:**",
+      "markdown": true
+    },
+    {
+      "type": "grid",
+      "columns": 3,
+      "items": [
+        {
+          "title": "3 עותקים",
+          "content": "שלושה עותקים של הנתונים - מקור + 2 גיבויים."
+        },
+        {
+          "title": "2 מדיות שונות",
+          "content": "שני סוגי אחסון שונים - דיסק מקומי + ענן."
+        },
+        {
+          "title": "1 off-site",
+          "content": "גיבוי אחד לפחות במיקום שונה (cloud)."
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "content": "**מימוש עם BMAD:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "**עותק 1:** המקור - הפרויקט שלכם במחשב",
+        "**עותק 2:** Git Local - `.git` directory בפרויקט",
+        "**עותק 3:** Git Remote - GitHub/GitLab/Bitbucket"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שימוש ב-Git כגיבוי",
+      "id": "git-as-backup"
+    },
+    {
+      "type": "text",
+      "content": "**Git = מערכת גיבוי מעולה!**",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# Backup אוטומטי לענן\n\n# כל יום בסוף העבודה:\ngit add .\ngit commit -m \"docs: end of day backup - $(date)\"\ngit push origin main\n\n# או סקריפט אוטומטי:\n#!/bin/bash\n# backup-bmad.sh\n\ncd /path/to/your/project\ngit add docs/\ngit add bmad/bmm/config.yaml\ngit commit -m \"backup: automated daily backup $(date +%Y-%m-%d)\"\ngit push origin main\n\necho \"✅ Backup completed successfully!\"\n\n# הריצו אוטומטית:\n# Linux/Mac: crontab\n# Windows: Task Scheduler"
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "גיבוי זה לא רק Git!",
+      "content": "Git מעולה, אבל לא מספיק לבד. **שכבו גם:**\n\n- **Cloud backup** - Google Drive, Dropbox, OneDrive לכל התיקייה\n- **External HD** - גיבוי שבועי לדיסק חיצוני\n- **Time Machine / Windows Backup** - גיבוי כל המחשב\n\n**אין דבר כזה יותר מדי גיבויים!**"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שחזור מגיבוי",
+      "id": "restore-from-backup"
+    },
+    {
+      "type": "text",
+      "content": "**איך לשחזר קבצים:**",
+      "markdown": true
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "title": "שחזור קובץ בודד",
+          "content": "```bash\n# אופס, מחקתי docs/prd.md בטעות!\n\n# 1. ראו מתי זה היה קיים\ngit log -- docs/prd.md\n\n# 2. שחזרו מגרסה קודמת\ngit checkout HEAD~1 -- docs/prd.md\n\n# או מcommit ספציפי:\ngit checkout abc123 -- docs/prd.md\n\n# 3. החזירו\ngit add docs/prd.md\ngit commit -m \"docs: restore accidentally deleted prd.md\"\n```"
+        },
+        {
+          "title": "שחזור תיקייה שלמה",
+          "content": "```bash\n# מחקתי את כל docs/ בטעות!\n\n# 1. בדקו מתי זה היה תקין\ngit log --oneline\n\n# 2. שחזרו\ngit checkout HEAD~3 -- docs/\n\n# 3. Commit\ngit add docs/\ngit commit -m \"docs: restore entire docs directory\"\n```"
+        },
+        {
+          "title": "שחזור config.yaml",
+          "content": "```bash\n# שיניתי config.yaml והכל התקלקל!\n\n# 1. ראו מה השתנה\ngit diff bmad/bmm/config.yaml\n\n# 2. שחזרו לגרסה האחרונה העובדת\ngit checkout HEAD~1 -- bmad/bmm/config.yaml\n\n# או: בטלו שינויים לא-committed\ngit checkout -- bmad/bmm/config.yaml\n```"
+        },
+        {
+          "title": "שחזור כל הפרויקט",
+          "content": "```bash\n# מצב קיצון: הכל מקולקל!\n\n# 1. שכפו את הrepo מחדש\ncd ~\ngit clone https://github.com/yourname/project.git project-recovered\n\n# 2. או: אפסו לcommit קודם\ngit reset --hard abc123\n\n# ⚠️ זהירות! reset --hard מוחק שינויים לא-committed!\n```"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "עבודה צוותית עם BMAD",
+      "id": "team-collaboration"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הגדרת Git Remote משותף",
+      "id": "setup-shared-remote"
+    },
+    {
+      "type": "text",
+      "content": "**צעדים לעבודה צוותית:**",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# 1. אדם א' (Team Lead) יוצר repo\n# GitHub: New Repository → \"my-bmad-project\"\n\ngit init\ngit add .\ngit commit -m \"initial commit with BMAD setup\"\ngit remote add origin https://github.com/team/my-bmad-project.git\ngit push -u origin main\n\n# 2. אדם ב', ג', ד' (חברי צוות) משכפלים\ngit clone https://github.com/team/my-bmad-project.git\ncd my-bmad-project\n\n# 3. כולם מגדירים את config.yaml שלהם\ncp bmad/bmm/config.yaml bmad/bmm/config.yaml.template\n# ערכו config.yaml עם השם שלכם:\n# user_name: Your Name\n\n# 4. הוסיפו config.yaml ל-.gitignore (אם יש הגדרות אישיות)\necho \"bmad/bmm/config.yaml\" >> .gitignore\n\n# או: שתפו config משותף (בלי מידע אישי)"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Workflow לצוות",
+      "id": "team-workflow"
+    },
+    {
+      "type": "text",
+      "content": "**תהליך עבודה צוותי:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "**בוקר - Pull עדכונים:** `git pull origin main` - לקבל שינויים של אחרים",
+        "**עבודה - Branch חדש:** `git checkout -b docs/my-feature` - עבדו על branch משלכם",
+        "**תוך כדי - Commits:** `git commit` אחרי כל שלב - שמרו progress",
+        "**סוף יום - Push:** `git push origin docs/my-feature` - שתפו עם הצוות",
+        "**מוכן - Pull Request:** יצרו PR - קבלו Review ו-Merge"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "כלל הזהב לצוות",
+      "content": "**Pull לפני Push!**\n\nלפני כל push, תמיד עשו `git pull` כדי לקבל עדכונים אחרונים. זה מונע קונפליקטים."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "פתרון Conflicts",
+      "id": "resolving-conflicts"
+    },
+    {
+      "type": "text",
+      "content": "**מה קורה כשיש conflict?**",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# אדם א' ואדם ב' ערכו את אותו קובץ\n\n# אדם א' push ראשון:\ngit push origin main\n# ✅ Success\n\n# אדם ב' מנסה לpush:\ngit push origin main\n# ❌ Error: conflict!\n\n# פתרון:\n# 1. Pull השינויים\ngit pull origin main\n# → Git מראה conflicts\n\n# 2. פתחו את הקובץ\n# תראו:\n# <<<<<<< HEAD\n# הגרסה שלכם\n# =======\n# הגרסה של אדם א'\n# >>>>>>> abc123\n\n# 3. ערכו ידנית - בחרו מה לשמור\n# מחקו את <<<, ===, >>>\n# שמרו את הגרסה הנכונה\n\n# 4. סמנו כ-resolved\ngit add docs/file-with-conflict.md\ngit commit -m \"docs: resolve merge conflict\"\n\n# 5. Push\ngit push origin main\n# ✅ Success!"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "טיפ: הימנעות מ-Conflicts",
+      "content": "**איך להימנע מconflicts:**\n\n- עבדו על קבצים שונים (לא אותו הקובץ בו-זמנית)\n- Branches קצרים - Merge מהר\n- Pull תכוף - מספר פעמים ביום\n- תקשורת - \"אני עובד על PRD\" → אחרים לא יגעו בזה"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "ניהול Config בצוות",
+      "id": "team-config-management"
+    },
+    {
+      "type": "text",
+      "content": "**אופציה 1: Config אישי (מומלץ)**",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# כל אחד עם config.yaml משלו (לא ב-Git)\n\n# .gitignore:\nbmad/bmm/config.yaml\n\n# במקום - template:\n# bmad/bmm/config.yaml.template (ב-Git)\n\n# כל אחד:\ncp bmad/bmm/config.yaml.template bmad/bmm/config.yaml\n# ערוך עם הפרטים שלך"
+    },
+    {
+      "type": "text",
+      "content": "**אופציה 2: Config משותף**",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# config.yaml משותף (ב-Git)\n# רק ערכים כלליים, בלי פרטים אישיים\n\nproject_name: team-project\ncommunication_language: English\ndocument_output_language: Hebrew\noutput_folder: '{project-root}/docs'\nuser_skill_level: intermediate\n\n# ללא:\n# user_name - כל אחד מגדיר מקומית"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "סביבות עבודה שונות",
+      "id": "different-environments"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Dev, Staging, Production",
+      "id": "dev-staging-prod"
+    },
+    {
+      "type": "text",
+      "content": "**אפילו למסמכים יש סביבות!**",
+      "markdown": true
+    },
+    {
+      "type": "table",
+      "headers": ["סביבה", "מטרה", "Git Branch"],
+      "rows": [
+        ["Development", "עבודה שוטפת - טיוטות", "feature branches"],
+        ["Staging", "Review ואישור", "develop branch"],
+        ["Production", "מסמכים סופיים מאושרים", "main branch"]
+      ]
+    },
+    {
+      "type": "text",
+      "content": "**תהליך:**",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# 1. Development - עבודה על feature\ngit checkout -b docs/authentication-prd\n# → עבודה, commits\n\n# 2. Staging - PR ל-develop\ngit push origin docs/authentication-prd\n# → Pull Request → develop\n# → Review → Merge\n\n# 3. Production - Merge ל-main\ngit checkout develop\ngit pull\n# → בדיקה סופית\ngit checkout main\ngit merge develop\ngit push origin main\n# → המסמכים בproduction!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Config לפי סביבה",
+      "id": "config-per-environment"
+    },
+    {
+      "type": "text",
+      "content": "**שימוש ב-config שונה לכל סביבה:**",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# מבנה:\nbmad/\n  bmm/\n    config.yaml           # default\n    config.dev.yaml       # development\n    config.staging.yaml   # staging\n    config.prod.yaml      # production\n\n# שימוש:\n# Development:\ncp bmad/bmm/config.dev.yaml bmad/bmm/config.yaml\n\n# Staging:\ncp bmad/bmm/config.staging.yaml bmad/bmm/config.yaml\n\n# Production:\ncp bmad/bmm/config.prod.yaml bmad/bmm/config.yaml\n\n# או סקריפט:\n./scripts/switch-env.sh dev\n./scripts/switch-env.sh staging\n./scripts/switch-env.sh prod"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Best Practices לניהול תצורה",
+      "id": "configuration-best-practices"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "כללי זהב",
+      "id": "golden-rules"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "items": [
+        {
+          "title": "1. גבו לפני שינוי",
+          "content": "תמיד גבו לפני ששמים יד על config.yaml או מסמכים קריטיים."
+        },
+        {
+          "title": "2. Commit תכוף",
+          "content": "אחרי כל שלב משמעותי - commit. קטן ותכוף עדיף על גדול ונדיר."
+        },
+        {
+          "title": "3. Messages ברורים",
+          "content": "Commit message צריך לומר בדיוק מה שונה ולמה. לא \"fix\", אלא \"docs: fix typo in architecture diagram\"."
+        },
+        {
+          "title": "4. Pull לפני Push",
+          "content": "תמיד עשו git pull לפני git push. זה מונע conflicts ובעיות."
+        },
+        {
+          "title": "5. Review הכל",
+          "content": "גם למסמכים צריך review. שני זוגות עיניים תמיד טוב מאחד."
+        },
+        {
+          "title": "6. .gitignore נכון",
+          "content": "אל תשימו בGit מה שלא צריך - סודות, קבצים זמניים, dependencies."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Checklist יומי",
+      "id": "daily-checklist"
+    },
+    {
+      "type": "text",
+      "content": "**כל בוקר:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "✅ `git pull origin main` - עדכני הכל",
+        "✅ בדקו שconfig.yaml תקין",
+        "✅ בדקו שאין uncommitted changes חשובים"
+      ]
+    },
+    {
+      "type": "text",
+      "content": "**כל ערב:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "✅ Commit כל השינויים של היום",
+        "✅ Push לremote (גיבוי!)",
+        "✅ בדקו שאין conflicts"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "אוטומציה",
+      "id": "automation"
+    },
+    {
+      "type": "text",
+      "content": "**סקריפטים שימושיים:**",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# scripts/backup-config.sh\n#!/bin/bash\ncp bmad/bmm/config.yaml \"bmad/bmm/config.backup.$(date +%Y%m%d_%H%M%S).yaml\"\necho \"✅ Config backed up\"\n\n# scripts/daily-backup.sh\n#!/bin/bash\ngit add docs/ bmad/bmm/config.yaml\ngit commit -m \"backup: daily backup $(date +%Y-%m-%d)\"\ngit push origin main\necho \"✅ Daily backup completed\"\n\n# scripts/sync.sh\n#!/bin/bash\necho \"🔄 Syncing...\"\ngit pull origin main\necho \"✅ Synced successfully\""
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "פתרון בעיות נפוצות",
+      "id": "troubleshooting"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "title": "בעיה: \"Git conflict ואני לא יודע מה לעשות\"",
+          "content": "**פתרון:**\n\n1. `git status` - ראו איפה הconflict\n2. פתחו את הקובץ - ראו את <<<, ===, >>>\n3. ערכו ידנית - בחרו הגרסה הנכונה\n4. `git add file.md`\n5. `git commit -m \"resolve conflict\"`\n6. `git push`\n\n**אם תקועים:** `git merge --abort` ונסו שוב."
+        },
+        {
+          "title": "בעיה: \"שיניתי config.yaml והכל מקולקל\"",
+          "content": "**פתרון:**\n\n```bash\n# אופציה 1: יש גיבוי\ncp bmad/bmm/config.yaml.backup bmad/bmm/config.yaml\n\n# אופציה 2: החזרה מGit\ngit checkout HEAD -- bmad/bmm/config.yaml\n\n# אופציה 3: גרסה ספציפית\ngit log bmad/bmm/config.yaml\ngit checkout abc123 -- bmad/bmm/config.yaml\n```"
+        },
+        {
+          "title": "בעיה: \"מחקתי מסמך בטעות\"",
+          "content": "**פתרון:**\n\n```bash\n# 1. בדקו שהוא בGit\ngit log -- docs/deleted-file.md\n\n# 2. שחזרו\ngit checkout HEAD~1 -- docs/deleted-file.md\n\n# 3. Commit\ngit add docs/deleted-file.md\ngit commit -m \"docs: restore deleted file\"\n```\n\n**למדו:** תמיד commit + push = אי אפשר לאבד!"
+        },
+        {
+          "title": "בעיה: \"Git push דוחה אותי\"",
+          "content": "**שגיאה:**\n```\nerror: failed to push some refs\n```\n\n**פתרון:**\n```bash\n# 1. Pull קודם\ngit pull origin main\n\n# 2. אם יש conflicts - פתרו אותם\n\n# 3. Push שוב\ngit push origin main\n```\n\n**למדו:** תמיד pull לפני push!"
+        },
+        {
+          "title": "בעיה: \"config.yaml לא עובד אחרי עדכון\"",
+          "content": "**בדיקות:**\n\n1. **Syntax:** וודאו שהYAML תקין\n2. **Fields:** כל השדות הנדרשים קיימים?\n3. **Values:** הערכים בפורמט הנכון?\n4. **Paths:** נתיבים עם `{project-root}` נכונים?\n\n**טסט:**\n```bash\n@bmad-master\n*workflow-status\n```\n\nאם יש שגיאה - הconfig לא תקין."
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Checklist לניהול תצורה נכון",
+      "id": "configuration-checklist"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Setup ראשוני",
+      "id": "initial-setup-checklist"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "✅ Git מותקן ומוגדר",
+        "✅ Repository נוצר (GitHub/GitLab)",
+        "✅ .gitignore מוגדר נכון",
+        "✅ config.yaml מותאם לפרויקט",
+        "✅ גיבוי ראשוני נוצר",
+        "✅ צוות יש גישה לrepo",
+        "✅ Branching strategy מוגדרת"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תחזוקה שוטפת",
+      "id": "ongoing-maintenance-checklist"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "✅ Commit אחרי כל שינוי משמעותי",
+        "✅ Push בסוף כל יום עבודה",
+        "✅ Pull בתחילת כל יום עבודה",
+        "✅ Review למסמכים חשובים",
+        "✅ גיבוי שבועי לcloud/external",
+        "✅ ניקוי branches ישנים",
+        "✅ עדכון .gitignore בעת הצורך"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "בדיקות תקופתיות",
+      "id": "periodic-checks-checklist"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "✅ config.yaml תקין ועדכני",
+        "✅ מסמכים תואמים לקוד",
+        "✅ אין uncommitted changes שנשכחו",
+        "✅ גיבויים עובדים (test restore)",
+        "✅ צוות מסונכרן על אותה גרסה",
+        "✅ אין קבצים מיותרים בrepo",
+        "✅ Git history נקי וברור"
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "🎉 מזל טוב! אתם מומחי ניהול תצורה!",
+      "content": "סיימתם את המדריך המקיף לניהול תצורה ו-Version Control עם BMAD. עכשיו אתם יודעים איך לנהל config.yaml, להשתמש ב-Git למסמכים, לגבות הכל נכון, ולעבוד בצוות בצורה חלקה.\n\n**הצעד הבא:** התחילו ליישם! צרו repo, הגדירו .gitignore, וגבו הכל. ניהול תצורה נכון = שקט נפשי."
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "המשיכו ללמוד",
+      "content": "**מומלץ לקרוא גם:**\n\n📚 **Best Practices** - שיטות עבודה מומלצות עם BMAD\n📚 **Advanced Setup** - הגדרות מתקדמות וקונפיגורציה\n📚 **Team Collaboration (FAQ)** - שאלות על עבודה צוותית\n📚 **Integration Systems** - שילוב עם מערכות קיימות"
+    }
+  ],
+  "relatedGuides": [
+    "best-practices",
+    "advanced-setup",
+    "faq-team",
+    "integration-systems"
+  ],
+  "prerequisites": [
+    "quick-start",
+    "onboarding-week1"
+  ],
+  "nextSteps": [
+    "best-practices",
+    "advanced-setup",
+    "faq-development"
+  ]
+}
+

@@ -1,0 +1,618 @@
+{
+  "metadata": {
+    "id": "creativity-innovation",
+    "slug": "creativity-innovation",
+    "title": "יצירתיות וחדשנות עם BMAD",
+    "description": "מדריך מעשי לשימוש ב-BMAD לחשיבה יצירתית וחדשנות. למדו איך להשתמש ב-CIS, Brainstorming Workflows, ו-Party Mode ליצירת רעיונות חדשים ופתרון בעיות מורכבות בצורה יצירתית.",
+    "category": "practical",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 30,
+    "icon": "IconSparkles",
+    "tags": ["יצירתיות", "חדשנות", "brainstorming", "רעיונות", "CIS", "party-mode"]
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "BMAD כמנוע לחדשנות",
+      "level": 2,
+      "anchor": "bmad-innovation-engine"
+    },
+    {
+      "id": "toc-2",
+      "title": "Design Thinking עם BMAD",
+      "level": 2,
+      "anchor": "design-thinking"
+    },
+    {
+      "id": "toc-3",
+      "title": "Brainstorming מתקדם",
+      "level": 2,
+      "anchor": "advanced-brainstorming"
+    },
+    {
+      "id": "toc-4",
+      "title": "CIS - שיתוף פעולה יצירתי",
+      "level": 2,
+      "anchor": "cis-collaboration"
+    },
+    {
+      "id": "toc-5",
+      "title": "Innovation Workflows",
+      "level": 2,
+      "anchor": "innovation-workflows"
+    },
+    {
+      "id": "toc-6",
+      "title": "תרחישים מעשיים",
+      "level": 2,
+      "anchor": "practical-scenarios"
+    },
+    {
+      "id": "toc-7",
+      "title": "טיפים לחדשנות",
+      "level": 2,
+      "anchor": "innovation-tips"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "יצירתיות וחדשנות עם BMAD",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "מדריך ליצירתיות",
+      "content": "למדו איך להשתמש ב-BMAD לא רק לפיתוח, אלא גם לחשיבה יצירתית, brainstorming רעיונות חדשים, וחדשנות טכנולוגית."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "BMAD כמנוע לחדשנות",
+      "id": "bmad-innovation-engine"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "למה BMAD מושלם לחשיבה יצירתית?",
+      "id": "why-perfect"
+    },
+    {
+      "type": "text",
+      "content": "BMAD אינו רק כלי לפיתוח תוכנה - זהו מנוע לחדשנות. הסיבה פשוטה: יש לכם גישה ל-11 מומחים בתחומים שונים שיכולים לעזור לכם לחשוב בצורה מגוונת ויצירתית.",
+      "markdown": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך זה עובד?",
+      "id": "how-it-works"
+    },
+    {
+      "type": "text",
+      "content": "חשיבה יצירתית דורשת **פרספקטיבות מגוונות**. כשאתם מעלים רעיון עם:\n\n- **John (PM)** - הוא שואל: \"מה הערך העסקי?\"\n- **Sarah (Architect)** - היא שואלת: \"איך נבנה את זה טכנולוגית?\"\n- **Sally (UX)** - היא שואלת: \"מה המשתמשים באמת צריכים?\"\n- **Murat (TEA)** - הוא שואל: \"איך נבדוק שזה עובד?\"\n\nהשילוב של כל הפרספקטיבות האלה מייצר **חשיבה רב-ממדית** שמובילה לרעיונות טובים יותר.",
+      "markdown": true
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "המפתח: פרספקטיבות מגוונות",
+      "content": "כל אגנט מביא זווית ראייה שונה. זה בדיוק מה שצריך לחדשנות אמיתית!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Design Thinking עם BMAD",
+      "id": "design-thinking"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מהו Design Thinking?",
+      "id": "what-is-design-thinking"
+    },
+    {
+      "type": "text",
+      "content": "Design Thinking הוא תהליך יצירתי לפתרון בעיות המתמקד באנשים. הוא כולל 5 שלבים:",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "Empathize - הבנת המשתמשים",
+        "Define - הגדרת הבעיה",
+        "Ideate - יצירת רעיונות",
+        "Prototype - בניית אבטיפוס",
+        "Test - בדיקה ולמידה"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך BMAD תומך ב-Design Thinking?",
+      "id": "bmad-design-thinking-support"
+    },
+    {
+      "type": "table",
+      "headers": ["שלב", "אגנט רלוונטי", "וורקפלואו"],
+      "rows": [
+        ["Empathize", "Sally (UX Designer)", "research, create-ux-design"],
+        ["Define", "John (PM) + Mary (Analyst)", "product-brief, prd"],
+        ["Ideate", "CIS Party Mode", "brainstorming"],
+        ["Prototype", "Sarah (Architect) + Amelia (Dev)", "tech-spec, architecture"],
+        ["Test", "Murat (TEA)", "master-test-plan, story-done"]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "BMAD מכסה את כל התהליך",
+      "content": "כל שלב ב-Design Thinking יש לו אגנט ווורקפלואו מתאימים!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה מעשית: עיצוב פיצ'ר חדש",
+      "id": "design-thinking-example"
+    },
+    {
+      "type": "text",
+      "content": "נניח שאתם רוצים להוסיף פיצ'ר חדש למוצר. הנה איך תעבדו עם BMAD:",
+      "markdown": true
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "title": "שלב 1: Empathize - מחקר משתמשים",
+          "content": "התחילו עם Sally (UX Designer):\n\n```bash\n@ux-designer.mdc\n*research\n```\n\nSally תעזור לכם להבין:\n- מי המשתמשים שלכם\n- מה הצרכים שלהם\n- מה נקודות הכאב שלהם\n- איזה פתרונות קיימים לא עובדים"
+        },
+        {
+          "title": "שלב 2: Define - הגדרת הבעיה",
+          "content": "עברו ל-John (PM) ו-Mary (Analyst):\n\n```bash\n@pm.mdc\n*product-brief\n```\n\nהם יעזרו לכם להגדיר:\n- מהי הבעיה המדויקת\n- למי אנחנו פותרים אותה\n- מה הערך העסקי\n- איך נמדוד הצלחה"
+        },
+        {
+          "title": "שלב 3: Ideate - יצירת רעיונות",
+          "content": "הפעילו Party Mode עם מספר אגנטים:\n\n```bash\n@bmad-master.mdc\n*party-mode\n```\n\nשלבו:\n- John (PM) - זווית עסקית\n- Sarah (Architect) - זווית טכנולוגית\n- Sally (UX) - זווית חווית משתמש\n- Amelia (Dev) - זווית מימוש\n\nכל אחד יציע רעיונות מהתחום שלו!"
+        },
+        {
+          "title": "שלב 4: Prototype - בניית אבטיפוס",
+          "content": "עברו לתכנון טכני:\n\n```bash\n@architect.mdc\n*tech-spec\n```\n\nSarah תעזור לתכנן:\n- ארכיטקטורה טכנית\n- בחירת טכנולוגיות\n- תכנון API\n- מבנה נתונים"
+        },
+        {
+          "title": "שלב 5: Test - בדיקה",
+          "content": "תכננו בדיקות עם Murat:\n\n```bash\n@tea.mdc\n*master-test-plan\n```\n\nMurat ייצור:\n- תוכנית בדיקה מקיפה\n- תרחישי בדיקה\n- קריטריונים להצלחה\n- אוטומציית בדיקות"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Brainstorming מתקדם",
+      "id": "advanced-brainstorming"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הוורקפלואו: brainstorming",
+      "id": "brainstorming-workflow"
+    },
+    {
+      "type": "text",
+      "content": "BMAD כולל וורקפלואו ייעודי ל-brainstorming. זהו כלי חזק ליצירת רעיונות בצורה מובנית.",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "@bmad-master.mdc\n*brainstorming"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה קורה בווורקפלואו?",
+      "id": "brainstorming-flow"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "הגדרת נושא - מה התחום שרוצים לחקור",
+        "בחירת אגנטים - אילו פרספקטיבות צריכים",
+        "סבב רעיונות - כל אגנט מציע רעיונות",
+        "הצלבה - שילוב רעיונות משני אגנטים או יותר",
+        "הערכה - בחירת הרעיונות הטובים ביותר",
+        "תיעוד - שמירת התוצאות"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "טכניקות Brainstorming עם BMAD",
+      "id": "brainstorming-techniques"
+    },
+    {
+      "type": "tabs",
+      "items": [
+        {
+          "label": "Divergent Thinking",
+          "content": "**יצירת כמות גדולה של רעיונות**\n\nטכניקה:\n1. הפעילו 3-4 אגנטים יחד\n2. תנו להם אותה בעיה\n3. בקשו מכל אחד 10 רעיונות\n4. **אל** תשפטו - רק תאספו\n\nמתאים ל:\n- תחילת פרויקט\n- חקר אפשרויות\n- חשיבה out-of-the-box"
+        },
+        {
+          "label": "Convergent Thinking",
+          "content": "**בחירה והעמקה ברעיונות הטובים**\n\nטכניקה:\n1. קחו את הרעיונות מהשלב הקודם\n2. העבירו אותם לאגנטים שונים להערכה\n3. בקשו ניתוח לעומק של כל רעיון\n4. דרגו לפי קריטריונים\n\nמתאים ל:\n- בחירת פתרון\n- תעדוף רעיונות\n- החלטות אסטרטגיות"
+        },
+        {
+          "label": "SCAMPER",
+          "content": "**שיטת SCAMPER לחדשנות**\n\nS - Substitute (החלף)\nC - Combine (שלב)\nA - Adapt (התאם)\nM - Modify (שנה)\nP - Put to other use (שימוש אחר)\nE - Eliminate (הסר)\nR - Reverse (הפוך)\n\nאיך להשתמש:\n- שאלו כל אגנט שאלת SCAMPER אחרת\n- John - \"מה אפשר להחליף?\"\n- Sarah - \"איך אפשר לשלב?\"\n- Sally - \"לאיזה שימוש אחר?\""
+        },
+        {
+          "label": "Six Thinking Hats",
+          "content": "**6 כובעי חשיבה של דה בונו**\n\nכל אגנט מקבל \"כובע\" (זווית ראייה):\n\n- **כובע לבן** (עובדות) - Mary (Analyst)\n- **כובע אדום** (רגשות) - Sally (UX)\n- **כובע שחור** (ביקורת) - Murat (TEA)\n- **כובע צהוב** (אופטימיות) - John (PM)\n- **כובע ירוק** (יצירתיות) - CIS\n- **כובע כחול** (ניהול) - Bob (SM)"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "טיפ למתקדמים",
+      "content": "שלבו מספר טכניקות! התחילו עם Divergent Thinking, המשיכו ל-SCAMPER, וסיימו עם Convergent Thinking."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "CIS - שיתוף פעולה יצירתי",
+      "id": "cis-collaboration"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מהו CIS?",
+      "id": "what-is-cis"
+    },
+    {
+      "type": "text",
+      "content": "**CIS = Collaboration and Innovation System**\n\nזו מערכת ב-BMAD שמאפשרת לכמה אגנטים לעבוד יחד במקביל על אותה בעיה. זה כמו brainstorming session עם צוות מומחים.",
+      "markdown": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Party Mode - CIS בפעולה",
+      "id": "party-mode"
+    },
+    {
+      "type": "text",
+      "content": "Party Mode הוא הדרך הקלה ביותר להפעיל CIS:",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "@bmad-master.mdc\n*party-mode"
+    },
+    {
+      "type": "text",
+      "content": "המערכת תשאל אתכם:",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "מהי המשימה או הבעיה?",
+        "אילו אגנטים תרצו להזמין?",
+        "מה סגנון העבודה (structured/free-flow)?"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחישי שימוש ב-CIS",
+      "id": "cis-use-cases"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "items": [
+        {
+          "type": "card",
+          "title": "חקר טכנולוגיה חדשה",
+          "content": "**השתתפו:**\n- Sarah (Architect) - זווית ארכיטקטונית\n- Amelia (Dev) - זווית מימוש\n- Murat (TEA) - זווית בדיקות\n\n**המטרה:** להבין האם טכנולוגיה X מתאימה לפרויקט"
+        },
+        {
+          "type": "card",
+          "title": "תכנון פיצ'ר מורכב",
+          "content": "**השתתפו:**\n- John (PM) - דרישות עסקיות\n- Sally (UX) - חווית משתמש\n- Sarah (Architect) - אפשרות טכנית\n\n**המטרה:** לתכנן פיצ'ר שמשלב כל הזוויות"
+        },
+        {
+          "type": "card",
+          "title": "פתרון בעיה מורכבת",
+          "content": "**השתתפו:**\n- Sarah (Architect) - חשיבה מערכתית\n- Amelia (Dev) - פתרונות קוד\n- Murat (TEA) - זיהוי edge cases\n\n**המטרה:** למצוא פתרון חזק ובדוק"
+        },
+        {
+          "type": "card",
+          "title": "תכנון אסטרטגי",
+          "content": "**השתתפו:**\n- John (PM) - חזון המוצר\n- Mary (Analyst) - ניתוח נתונים\n- Bob (SM) - תכנון ביצוע\n\n**המטרה:** לבנות תוכנית אסטרטגית"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה: CIS לפתרון Bug מורכב",
+      "id": "cis-bug-example"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# הפעלת Party Mode\n@bmad-master.mdc\n*party-mode\n\n# הזמנת אגנטים\nAgents: Sarah, Amelia, Murat\n\n# הגדרת הבעיה\nProblem: \"יש לנו Bug שקורה רק בפרודקשן ורק ב-10% מהמקרים\"\n\n# תהליך:\n1. Sarah מנתחת את הארכיטקטורה - איפה זה יכול לקרות?\n2. Amelia בודקת את הקוד - איפה עלולה להיות הבעיה?\n3. Murat מתכנן איך לשחזר - איך נוכל לבדוק?\n\n# תוצאה:\nפתרון משולב שמתחשב בכל הזוויות!"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "כוח ה-CIS",
+      "content": "כשכמה אגנטים עובדים יחד, אתם מקבלים פתרונות שאף אגנט בודד לא היה מגיע אליהם לבד!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Innovation Workflows",
+      "id": "innovation-workflows"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "וורקפלואים לחדשנות",
+      "id": "innovation-workflow-list"
+    },
+    {
+      "type": "text",
+      "content": "BMAD כולל מספר וורקפלואים שנועדו במיוחד לחדשנות:",
+      "markdown": true
+    },
+    {
+      "type": "table",
+      "headers": ["וורקפלואו", "מתי להשתמש", "פלט"],
+      "rows": [
+        ["brainstorming", "כשצריכים רעיונות חדשים", "רשימת רעיונות מדורגת"],
+        ["research", "כשצריכים להבין תחום חדש", "מסמך מחקר מקיף"],
+        ["product-brief", "כשיש רעיון למוצר חדש", "בריף מוצר מפורט"],
+        ["tech-spec", "כשרוצים לחקור פתרון טכני", "מפרט טכני"],
+        ["architecture", "כשצריכים לתכנן מערכת חדשה", "ארכיטקטורה מפורטת"]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מסלול חדשנות מלא",
+      "id": "full-innovation-track"
+    },
+    {
+      "type": "text",
+      "content": "הנה תהליך מלא מרעיון לפרוטוטייפ:",
+      "markdown": true
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "title": "שלב 1: Ideation - יצירת רעיונות (1-2 שעות)",
+          "content": "**וורקפלואו:** brainstorming\n\nמה קורה:\n- בוחרים נושא רחב (למשל: \"AI in Education\")\n- מזמינים 3-4 אגנטים\n- כל אחד מציע 5-10 רעיונות\n- מצלבים רעיונות\n- מדרגים לפי פוטנציאל\n\n**פלט:** 3-5 רעיונות מבטיחים"
+        },
+        {
+          "title": "שלב 2: Research - מחקר וולידציה (2-3 שעות)",
+          "content": "**וורקפלואו:** research\n\nמה קורה:\n- בוחרים רעיון אחד\n- Mary (Analyst) חוקרת:\n  - האם יש שוק?\n  - מי המתחרים?\n  - מה הפוטנציאל העסקי?\n- Sally (UX) חוקרת:\n  - מי המשתמשים?\n  - מה הצרכים שלהם?\n  - האם יש Pain Points?\n\n**פלט:** מסמך מחקר + המלצה להמשיך או לא"
+        },
+        {
+          "title": "שלב 3: Brief - הגדרת המוצר (1-2 שעות)",
+          "content": "**וורקפלואו:** product-brief\n\nמה קורה:\n- John (PM) מנסח:\n  - חזון המוצר\n  - מטרות עסקיות\n  - קהל יעד\n  - Success metrics\n  - MVP scope\n\n**פלט:** בריף מוצר ברור ומוגדר"
+        },
+        {
+          "title": "שלב 4: Technical Exploration - חקר טכני (2-3 שעות)",
+          "content": "**וורקפלואו:** tech-spec\n\nמה קורה:\n- Sarah (Architect) בוחנת:\n  - אילו טכנולוגיות?\n  - איזו ארכיטקטורה?\n  - מה האתגרים הטכניים?\n  - מה האלטרנטיבות?\n\n**פלט:** מפרט טכני + המלצות"
+        },
+        {
+          "title": "שלב 5: Prototype Planning - תכנון פרוטוטייפ (1-2 שעות)",
+          "content": "**וורקפלואו:** create-epics-and-stories\n\nמה קורה:\n- יצירת Epic לפרוטוטייפ\n- פירוק ל-Stories קטנות\n- תעדוף Stories\n- הגדרת Definition of Done\n\n**פלט:** Backlog מוכן לפיתוח"
+        },
+        {
+          "title": "שלב 6: Build & Test - בנייה ובדיקה (זמן משתנה)",
+          "content": "**וורקפלואים:** dev-story, code-review, story-done\n\nמה קורה:\n- Amelia (Dev) בונה את הפרוטוטייפ\n- Murat (TEA) בודק\n- הצוות עושה Code Reviews\n- סוגרים Stories\n\n**פלט:** פרוטוטייפ עובד!"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "סה\"כ זמן: 7-14 שעות",
+      "content": "מרעיון לפרוטוטייפ עובד! זה מהר יותר פי 10 מאשר בלי BMAD."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תרחישים מעשיים",
+      "id": "practical-scenarios"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 1: המצאת פיצ'ר חדש",
+      "id": "scenario-new-feature"
+    },
+    {
+      "type": "text",
+      "content": "**המצב:** אתם רוצים להוסיף פיצ'ר חדש למוצר קיים, אבל לא בטוחים מה.",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# שלב 1: Brainstorming עם Party Mode\n@bmad-master.mdc\n*party-mode\n\nAgents: John (PM), Sally (UX), Sarah (Architect)\nQuestion: \"איזה פיצ'רים יכולים להוסיף ערך למשתמשים שלנו?\"\n\n# שלב 2: מחקר משתמשים\n@ux-designer.mdc\n*research\n\nFocus: \"מהן נקודות הכאב הכי גדולות של המשתמשים?\"\n\n# שלב 3: בחירת פיצ'ר\n# קחו את הרעיונות + המחקר ובחרו פיצ'ר אחד\n\n# שלב 4: תכנון מפורט\n@pm.mdc\n*create-story\n\nStory: \"בתור משתמש, אני רוצה [פיצ'ר] כדי ש[ערך]\"\n\n# שלב 5: פיתוח\n@dev.mdc\n*dev-story"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 2: חקר טכנולוגיה חדשה",
+      "id": "scenario-new-tech"
+    },
+    {
+      "type": "text",
+      "content": "**המצב:** שמעתם על טכנולוגיה חדשה (למשל: WebAssembly, Edge Functions) ורוצים להבין אם זה רלוונטי לכם.",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# שלב 1: מחקר ראשוני\n@analyst.mdc\n\n\"עשי מחקר על WebAssembly - מה זה, מתי להשתמש, יתרונות וחסרונות\"\n\n# שלב 2: הערכה ארכיטקטונית\n@architect.mdc\n\n\"האם WebAssembly מתאים לארכיטקטורה שלנו? איפה נוכל להשתמש בזה?\"\n\n# שלב 3: POC - Proof of Concept\n@dev.mdc\n\n\"תבני POC קטן של WebAssembly - בדיקת ביצועים ואינטגרציה\"\n\n# שלב 4: החלטה\n# CIS Session עם John, Sarah, Amelia\n@bmad-master.mdc\n*party-mode\n\n\"על בסיס המחקר וה-POC, האם כדאי להשתמש ב-WebAssembly?\""
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 3: פתרון בעיה יצירתי",
+      "id": "scenario-creative-problem"
+    },
+    {
+      "type": "text",
+      "content": "**המצב:** יש לכם בעיית ביצועים והפתרונות הסטנדרטיים לא עובדים.",
+      "markdown": true
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# שלב 1: הגדרת הבעיה\n@analyst.mdc\n\n\"נתחי את בעיית הביצועים - איפה הצוואר, מה הסיבות, מה כבר נוסה\"\n\n# שלב 2: Brainstorming פתרונות\n@bmad-master.mdc\n*brainstorming\n\nTopic: \"פתרונות יצירתיים לבעיית ביצועים\"\nAgents: Sarah (ארכיטקטורה), Amelia (קוד), Murat (בדיקות)\n\n# שלב 3: הערכת פתרונות\n# CIS עם כל האגנטים\n@bmad-master.mdc\n*party-mode\n\n\"נעריך כל פתרון לפי: מורכבות, זמן, סיכון, תועלת\"\n\n# שלב 4: בחירה ומימוש\n@architect.mdc\n*tech-spec\n\n\"תכנני את הפתרון שבחרנו בפירוט\""
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "טיפים לחדשנות",
+      "id": "innovation-tips"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "עשה ואל תעשה",
+      "id": "dos-donts"
+    },
+    {
+      "type": "tabs",
+      "items": [
+        {
+          "label": "עשה",
+          "content": "**עשו את זה:**\n\n- **תנו חופש יצירה** - אל תדחו רעיונות מהר מדי\n- **שלבו אגנטים** - פרספקטיבות מגוונות = רעיונות טובים יותר\n- **תעדו הכל** - גם רעיונות \"רעים\" יכולים להיות שימושיים מאוחר יותר\n- **תנסו כל טכניקה** - SCAMPER, Six Hats, Design Thinking\n- **תתנו זמן** - חדשנות דורשת זמן לחשיבה\n- **תשאלו \"מה אם?\"** - שאלות פתוחות מובילות לרעיונות חדשים"
+        },
+        {
+          "label": "אל תעשה",
+          "content": "**אל תעשו את זה:**\n\n- **לא לשפוט מוקדם** - \"זה לא יעבוד\" הורג יצירתיות\n- **לא להישאר עם אגנט אחד** - אתם מפסידים פרספקטיבות\n- **לא לדלג על מחקר** - רעיונות צריכים להיות מבוססי מציאות\n- **לא להיות מושלמים** - פרוטוטייפ לא צריך להיות מושלם\n- **לא לוותר מהר** - הרעיון הראשון לא תמיד הטוב ביותר\n- **לא לעבוד לבד** - השתמשו ב-CIS!"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "5 כללי הזהב לחדשנות עם BMAD",
+      "id": "golden-rules"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "**פרספקטיבות מגוונות** - תמיד שלבו לפחות 3 אגנטים מתחומים שונים",
+        "**תהליך מובנה** - השתמשו בוורקפלואים, אל תאלתרו",
+        "**תיעוד מתמיד** - כל רעיון, כל שיחה - תעדו",
+        "**איטרציות מהירות** - בנו מהר, בדקו מהר, למדו מהר",
+        "**למידה מתמשכת** - כל פרויקט מלמד משהו חדש"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "זכרו",
+      "content": "חדשנות היא תהליך, לא אירוע חד-פעמי. BMAD עוזר לכם להפוך את זה לחלק מהעבודה השגרתית."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "משאבים נוספים",
+      "id": "additional-resources"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**מדריך אגנטים - CIS** - למדו עוד על שיתוף פעולה בין אגנטים",
+        "**מדריך וורקפלואים - Brainstorming** - פירוט מלא על הוורקפלואו",
+        "**מדריך למנהלי מוצר** - איך להשתמש ב-BMAD לחדשנות עסקית",
+        "**מקרי מבחן** - תרגילים מעשיים בחדשנות"
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מזל טוב!",
+      "content": "עכשיו אתם יודעים איך להשתמש ב-BMAD לחשיבה יצירתית וחדשנות. זמן לצאת ולהמציא משהו מדהים!"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "הצעד הבא",
+      "id": "next-step"
+    },
+    {
+      "type": "text",
+      "content": "מומלץ להמשיך ל:",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "מדריך אגנטים - CIS - שיתוף פעולה מתקדם",
+        "מדריך וורקפלואים - Brainstorming",
+        "מקרי מבחן ותרגילים - תרגול מעשי"
+      ]
+    }
+  ],
+  "relatedGuides": [
+    "agents-cis-first3",
+    "agents-cis-last2",
+    "workflows-intro-critical",
+    "best-practices"
+  ],
+  "prerequisites": [
+    "quick-start",
+    "agents-intro-pm-analyst"
+  ],
+  "nextSteps": [
+    "case-studies-part1",
+    "case-studies-part2"
+  ]
+}
+

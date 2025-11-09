@@ -1,0 +1,635 @@
+{
+  "metadata": {
+    "id": "integration-systems",
+    "slug": "integration-systems",
+    "title": "שילוב BMAD במערכות קיימות",
+    "description": "מדריך מקיף לשילוב BMAD עם הכלים שאתם כבר משתמשים בהם - Jira, GitHub, GitLab, Azure DevOps, Slack, Teams ועוד. למדו איך לאוטמט תהליכים, לסנכרן נתונים, וליצור אינטגרציה חלקה בין BMAD לבין המערכות הקיימות שלכם.",
+    "category": "practical",
+    "difficulty": "advanced",
+    "estimatedMinutes": 40,
+    "icon": "IconPlugConnected",
+    "tags": ["אינטגרציה", "שילוב", "כלים", "מערכות", "Jira", "GitHub", "Slack", "CI/CD"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "למה צריך אינטגרציות?",
+      "level": 2,
+      "anchor": "why-integrations"
+    },
+    {
+      "id": "toc-2",
+      "title": "שילוב עם Jira",
+      "level": 2,
+      "anchor": "jira-integration"
+    },
+    {
+      "id": "toc-3",
+      "title": "שילוב עם GitHub",
+      "level": 2,
+      "anchor": "github-integration"
+    },
+    {
+      "id": "toc-4",
+      "title": "שילוב עם GitLab",
+      "level": 2,
+      "anchor": "gitlab-integration"
+    },
+    {
+      "id": "toc-5",
+      "title": "שילוב עם Azure DevOps",
+      "level": 2,
+      "anchor": "azure-devops-integration"
+    },
+    {
+      "id": "toc-6",
+      "title": "שילוב עם Slack",
+      "level": 2,
+      "anchor": "slack-integration"
+    },
+    {
+      "id": "toc-7",
+      "title": "שילוב עם Microsoft Teams",
+      "level": 2,
+      "anchor": "teams-integration"
+    },
+    {
+      "id": "toc-8",
+      "title": "שילוב עם CI/CD Platforms",
+      "level": 2,
+      "anchor": "cicd-integration"
+    },
+    {
+      "id": "toc-9",
+      "title": "שילוב עם כלי ניהול נוספים",
+      "level": 2,
+      "anchor": "other-tools-integration"
+    },
+    {
+      "id": "toc-10",
+      "title": "אבטחה ב-Integrations",
+      "level": 2,
+      "anchor": "integration-security"
+    },
+    {
+      "id": "toc-11",
+      "title": "Best Practices לאינטגרציות",
+      "level": 2,
+      "anchor": "integration-best-practices"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "שילוב BMAD במערכות קיימות",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "למי מיועד מדריך זה?",
+      "content": "צוותים שכבר עובדים עם Jira, GitHub, Slack וכלים אחרים ורוצים לשלב את BMAD בצורה חלקה לתוך תהליכי העבודה הקיימים."
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מה תלמדו כאן?",
+      "content": "איך לשלב BMAD עם הכלים הפופולריים ביותר, לאוטמט סנכרון נתונים, ליצור אינטגרציות דו-כיווניות, ולשמור על אבטחה מלאה."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "למה צריך אינטגרציות?",
+      "id": "why-integrations"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "BMAD הוא כלי מעולה, אבל רוב הצוותים כבר עובדים עם מערכות אחרות:\n\n**יתרונות של אינטגרציות:**\n- **ייעול תהליכים** - אין צורך במעבר ידני בין מערכות\n- **סנכרון אוטומטי** - שינויים מתעדכנים בכל המערכות\n- **מקור אמת אחד** - כל המידע במקום אחד\n- **אוטומציה מלאה** - מינימום עבודה ידנית\n- **שקיפות** - כל הצוות רואה את אותו המידע"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**תרחישים נפוצים:**\n- סנכרון Stories בין BMAD ל-Jira\n- יצירת PRs אוטומטית ב-GitHub מתוך BMAD\n- התראות ב-Slack כשוורקפלו מסתיים\n- עדכון סטטוס tasks בכל המערכות\n- דוחות ממרוכזים מכל הכלים"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שילוב עם Jira",
+      "id": "jira-integration"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "Jira הוא כלי ניהול הפרויקטים הפופולרי ביותר. השילוב עם BMAD מאפשר סנכרון מלא של Stories, Tasks, ו-Epics."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הגדרת החיבור ל-Jira",
+      "id": "jira-setup"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "יצירת API Token ב-Jira",
+          "children": [
+            { "content": "Jira → Settings → Personal Access Tokens" },
+            { "content": "Create Token עם הרשאות read/write" },
+            { "content": "שמרו את ה-token במקום בטוח" }
+          ]
+        },
+        {
+          "content": "הגדרת הקונפיגורציה ב-BMAD",
+          "children": [
+            { "content": "הוסיפו את ה-token למשתני סביבה" },
+            { "content": "עדכנו את config.yaml" }
+          ]
+        },
+        {
+          "content": "בדיקת החיבור"
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# bmad/bmm/config.yaml\njira:\n  enabled: true\n  url: https://your-company.atlassian.net\n  email: your-email@company.com\n  api_token: ${JIRA_API_TOKEN}  # from environment variable\n  \n  # Project Configuration\n  default_project: PROJ\n  default_issue_type: Story\n  \n  # Field Mapping\n  field_mapping:\n    story_points: customfield_10016\n    epic_link: customfield_10014\n    sprint: customfield_10015\n  \n  # Sync Settings\n  sync:\n    enabled: true\n    direction: bidirectional  # bmad_to_jira | jira_to_bmad | bidirectional\n    sync_interval: 5  # minutes\n    conflict_resolution: manual  # manual | bmad_wins | jira_wins\n  \n  # Status Mapping\n  status_mapping:\n    todo: To Do\n    in_progress: In Progress\n    in_review: In Review\n    done: Done\n  \n  # Auto-create Options\n  auto_create:\n    stories: true\n    tasks: true\n    subtasks: false",
+      "filename": "bmad/bmm/config.yaml",
+      "showLineNumbers": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "סנכרון Stories בין BMAD ל-Jira",
+      "id": "jira-story-sync"
+    },
+    {
+      "type": "code",
+      "language": "typescript",
+      "code": "// .bmad/integrations/jira-sync.ts\nimport { JiraClient } from '@bmad/jira-integration';\nimport { StoryManager } from '@bmad/core';\n\nexport class JiraSync {\n  private jiraClient: JiraClient;\n  private storyManager: StoryManager;\n\n  constructor() {\n    this.jiraClient = new JiraClient({\n      url: process.env.JIRA_URL!,\n      email: process.env.JIRA_EMAIL!,\n      token: process.env.JIRA_API_TOKEN!,\n    });\n    this.storyManager = new StoryManager();\n  }\n\n  /**\n   * Sync a BMAD story to Jira\n   */\n  async syncStoryToJira(storyId: string) {\n    // Get BMAD story\n    const story = await this.storyManager.getStory(storyId);\n    \n    // Check if Jira issue already exists\n    const jiraIssue = await this.jiraClient.findIssueByBmadId(storyId);\n    \n    if (jiraIssue) {\n      // Update existing issue\n      await this.jiraClient.updateIssue(jiraIssue.key, {\n        summary: story.title,\n        description: story.description,\n        status: this.mapBmadStatusToJira(story.status),\n        customFields: {\n          storyPoints: story.points,\n          epicLink: story.epicId,\n        },\n      });\n    } else {\n      // Create new issue\n      const newIssue = await this.jiraClient.createIssue({\n        project: process.env.JIRA_PROJECT!,\n        issueType: 'Story',\n        summary: story.title,\n        description: story.description,\n        customFields: {\n          bmadId: storyId,\n          storyPoints: story.points,\n          epicLink: story.epicId,\n        },\n      });\n      \n      // Update BMAD story with Jira key\n      await this.storyManager.updateStory(storyId, {\n        jiraKey: newIssue.key,\n      });\n    }\n  }\n\n  /**\n   * Sync all BMAD stories to Jira\n   */\n  async syncAllStories() {\n    const stories = await this.storyManager.getAllStories();\n    \n    for (const story of stories) {\n      await this.syncStoryToJira(story.id);\n    }\n  }\n\n  /**\n   * Listen for Jira webhooks and update BMAD\n   */\n  async handleJiraWebhook(webhook: any) {\n    const issue = webhook.issue;\n    const bmadId = issue.fields.customfield_bmad_id;\n    \n    if (bmadId) {\n      await this.storyManager.updateStory(bmadId, {\n        status: this.mapJiraStatusToBmad(issue.fields.status.name),\n        assignee: issue.fields.assignee?.displayName,\n        updatedAt: new Date(issue.fields.updated),\n      });\n    }\n  }\n\n  private mapBmadStatusToJira(status: string): string {\n    const mapping: Record<string, string> = {\n      todo: 'To Do',\n      in_progress: 'In Progress',\n      in_review: 'In Review',\n      done: 'Done',\n    };\n    return mapping[status] || 'To Do';\n  }\n\n  private mapJiraStatusToBmad(status: string): string {\n    const mapping: Record<string, string> = {\n      'To Do': 'todo',\n      'In Progress': 'in_progress',\n      'In Review': 'in_review',\n      'Done': 'done',\n    };\n    return mapping[status] || 'todo';\n  }\n}",
+      "filename": ".bmad/integrations/jira-sync.ts",
+      "showLineNumbers": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שימוש באינטגרציית Jira",
+      "id": "using-jira-integration"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# סנכרון ידני\nbmad jira sync\n\n# סנכרון story ספציפי\nbmad jira sync --story=5.3\n\n# סנכרון epic שלם\nbmad jira sync --epic=5\n\n# סנכרון אוטומטי (runs every 5 minutes)\nbmad jira sync --watch\n\n# יצירת Jira issue מתוך story\nbmad jira create-issue --story=5.3\n\n# ייבוא stories מ-Jira\nbmad jira import --jql=\"project=PROJ AND sprint='Sprint 10'\"",
+      "language": "bash",
+      "showLineNumbers": false
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "שימו לב!",
+      "content": "בסנכרון דו-כיווני, וודאו שהגדרתם conflict_resolution נכון. manual הוא הבטוח ביותר אבל דורש התערבות ידנית בעת קונפליקט."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שילוב עם GitHub",
+      "id": "github-integration"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "שילוב עם GitHub מאפשר יצירת PRs אוטומטית, code reviews, ועדכון סטטוסים."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הגדרת החיבור ל-GitHub",
+      "id": "github-setup"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# bmad/bmm/config.yaml\ngithub:\n  enabled: true\n  token: ${GITHUB_TOKEN}  # Personal Access Token with repo permissions\n  \n  # Repository Configuration\n  owner: your-org\n  repo: your-repo\n  default_branch: main\n  \n  # PR Settings\n  pull_requests:\n    auto_create: true\n    template: .bmad/templates/pr-template.md\n    reviewers:\n      - tech-lead\n      - senior-dev\n    labels:\n      - bmad-generated\n    draft: false\n  \n  # Branch Naming\n  branch_naming:\n    pattern: \"feature/{{story-id}}-{{story-title}}\"\n    sanitize: true  # remove special characters\n  \n  # Commit Settings\n  commits:\n    sign: true\n    format: conventional  # feat:, fix:, docs:, etc.\n    include_story_id: true\n  \n  # Code Review\n  code_review:\n    enabled: true\n    auto_approve_minor: false\n    require_tests: true\n    require_linting: true",
+      "filename": "bmad/bmm/config.yaml",
+      "showLineNumbers": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "יצירת PR אוטומטית מ-BMAD",
+      "id": "github-auto-pr"
+    },
+    {
+      "type": "code",
+      "language": "typescript",
+      "code": "// .bmad/integrations/github-integration.ts\nimport { Octokit } from '@octokit/rest';\nimport { StoryManager } from '@bmad/core';\n\nexport class GitHubIntegration {\n  private octokit: Octokit;\n  private storyManager: StoryManager;\n\n  constructor() {\n    this.octokit = new Octokit({\n      auth: process.env.GITHUB_TOKEN,\n    });\n    this.storyManager = new StoryManager();\n  }\n\n  /**\n   * Create PR for a story\n   */\n  async createPRForStory(storyId: string) {\n    const story = await this.storyManager.getStory(storyId);\n    \n    // Create branch\n    const branchName = `feature/${storyId}-${this.sanitize(story.title)}`;\n    await this.createBranch(branchName);\n    \n    // Get PR template\n    const prBody = await this.generatePRBody(story);\n    \n    // Create PR\n    const pr = await this.octokit.pulls.create({\n      owner: process.env.GITHUB_OWNER!,\n      repo: process.env.GITHUB_REPO!,\n      title: `[${storyId}] ${story.title}`,\n      head: branchName,\n      base: 'main',\n      body: prBody,\n      draft: false,\n    });\n    \n    // Add labels\n    await this.octokit.issues.addLabels({\n      owner: process.env.GITHUB_OWNER!,\n      repo: process.env.GITHUB_REPO!,\n      issue_number: pr.data.number,\n      labels: ['bmad-generated', `story-${storyId}`],\n    });\n    \n    // Request reviews\n    await this.octokit.pulls.requestReviewers({\n      owner: process.env.GITHUB_OWNER!,\n      repo: process.env.GITHUB_REPO!,\n      pull_number: pr.data.number,\n      reviewers: ['tech-lead', 'senior-dev'],\n    });\n    \n    // Update story with PR link\n    await this.storyManager.updateStory(storyId, {\n      prUrl: pr.data.html_url,\n      prNumber: pr.data.number,\n    });\n    \n    return pr.data;\n  }\n\n  /**\n   * Generate PR body from story\n   */\n  private async generatePRBody(story: any): Promise<string> {\n    return `\n## Story: ${story.id} - ${story.title}\n\n### Description\n${story.description}\n\n### Acceptance Criteria\n${story.acceptanceCriteria.map((ac: string, i: number) => `${i + 1}. ${ac}`).join('\\n')}\n\n### Testing\n- [ ] Unit tests added/updated\n- [ ] Integration tests added/updated\n- [ ] Manual testing completed\n\n### Checklist\n- [ ] Code follows style guidelines\n- [ ] Self-review completed\n- [ ] Comments added for complex logic\n- [ ] Documentation updated\n- [ ] No new warnings generated\n\n### Related\n- Story: ${story.id}\n- Epic: ${story.epicId}\n${story.jiraKey ? `- Jira: ${story.jiraKey}` : ''}\n    `.trim();\n  }\n\n  /**\n   * Listen for GitHub webhooks\n   */\n  async handleGitHubWebhook(webhook: any) {\n    if (webhook.action === 'closed' && webhook.pull_request.merged) {\n      // PR merged - update story status\n      const storyId = this.extractStoryId(webhook.pull_request.title);\n      if (storyId) {\n        await this.storyManager.updateStory(storyId, {\n          status: 'done',\n          completedAt: new Date(),\n        });\n      }\n    }\n  }\n\n  private sanitize(text: string): string {\n    return text\n      .toLowerCase()\n      .replace(/[^a-z0-9]+/g, '-')\n      .replace(/^-|-$/g, '');\n  }\n\n  private extractStoryId(title: string): string | null {\n    const match = title.match(/\\[(\\d+\\.\\d+)\\]/);\n    return match ? match[1] : null;\n  }\n\n  private async createBranch(branchName: string) {\n    const { data: ref } = await this.octokit.git.getRef({\n      owner: process.env.GITHUB_OWNER!,\n      repo: process.env.GITHUB_REPO!,\n      ref: 'heads/main',\n    });\n\n    await this.octokit.git.createRef({\n      owner: process.env.GITHUB_OWNER!,\n      repo: process.env.GITHUB_REPO!,\n      ref: `refs/heads/${branchName}`,\n      sha: ref.object.sha,\n    });\n  }\n}",
+      "filename": ".bmad/integrations/github-integration.ts",
+      "showLineNumbers": true
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שילוב עם GitLab",
+      "id": "gitlab-integration"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "GitLab integration דומה ל-GitHub אבל עם APIs שונים."
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# bmad/bmm/config.yaml\ngitlab:\n  enabled: true\n  url: https://gitlab.com  # or self-hosted URL\n  token: ${GITLAB_TOKEN}  # Personal Access Token\n  \n  # Project Configuration\n  project_id: 12345\n  default_branch: main\n  \n  # Merge Request Settings\n  merge_requests:\n    auto_create: true\n    template: .bmad/templates/mr-template.md\n    approvers:\n      - @tech-lead\n      - @senior-dev\n    labels:\n      - bmad-generated\n    remove_source_branch: true\n    squash: false\n  \n  # Pipeline Integration\n  pipelines:\n    trigger_on_mr: true\n    wait_for_pipeline: true\n    required_jobs:\n      - test\n      - lint\n      - build",
+      "filename": "bmad/bmm/config.yaml",
+      "showLineNumbers": false
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שילוב עם Azure DevOps",
+      "id": "azure-devops-integration"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "Azure DevOps משלב גם Boards (כמו Jira) וגם Repos (כמו GitHub)."
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# bmad/bmm/config.yaml\nazure_devops:\n  enabled: true\n  organization: your-org\n  project: your-project\n  token: ${AZURE_DEVOPS_TOKEN}\n  \n  # Boards Integration\n  boards:\n    enabled: true\n    area_path: \"MyProject\\\\Team1\"\n    iteration_path: \"MyProject\\\\Sprint 10\"\n    work_item_type: User Story\n    sync: bidirectional\n  \n  # Repos Integration\n  repos:\n    enabled: true\n    repository_name: my-repo\n    default_branch: main\n    \n  # Pipelines Integration\n  pipelines:\n    enabled: true\n    trigger_on_pr: true\n    definition_id: 42",
+      "filename": "bmad/bmm/config.yaml",
+      "showLineNumbers": false
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שילוב עם Slack",
+      "id": "slack-integration"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "Slack integration מאפשר התראות בזמן אמת והפעלת פקודות BMAD מתוך Slack."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הגדרת Slack Bot",
+      "id": "slack-setup"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        { "content": "צרו Slack App ב-api.slack.com" },
+        { "content": "הוסיפו Bot Token Scopes: chat:write, commands, incoming-webhook" },
+        { "content": "התקינו את האפליקציה ב-workspace שלכם" },
+        { "content": "שמרו את ה-Bot Token" }
+      ]
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# bmad/bmm/config.yaml\nslack:\n  enabled: true\n  bot_token: ${SLACK_BOT_TOKEN}\n  signing_secret: ${SLACK_SIGNING_SECRET}\n  \n  # Channels\n  channels:\n    general: \"#general\"\n    dev_team: \"#dev-team\"\n    alerts: \"#bmad-alerts\"\n    code_reviews: \"#code-reviews\"\n  \n  # Notifications\n  notifications:\n    workflow_started:\n      enabled: true\n      channel: \"#bmad-alerts\"\n      message: \"🚀 Workflow {{workflow_name}} started for story {{story_id}}\"\n    \n    workflow_completed:\n      enabled: true\n      channel: \"#bmad-alerts\"\n      message: \"✅ Workflow {{workflow_name}} completed successfully!\"\n    \n    workflow_failed:\n      enabled: true\n      channel: \"#bmad-alerts\"\n      message: \"❌ Workflow {{workflow_name}} failed. Check logs for details.\"\n    \n    pr_created:\n      enabled: true\n      channel: \"#code-reviews\"\n      message: \"📝 New PR created: {{pr_title}} - {{pr_url}}\"\n    \n    story_completed:\n      enabled: true\n      channel: \"#dev-team\"\n      message: \"🎉 Story {{story_id}} completed by {{assignee}}!\"\n  \n  # Slash Commands\n  commands:\n    enabled: true\n    prefix: \"/bmad\"",
+      "filename": "bmad/bmm/config.yaml",
+      "showLineNumbers": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה לשימוש ב-Slack",
+      "id": "slack-usage-example"
+    },
+    {
+      "type": "code",
+      "language": "typescript",
+      "code": "// .bmad/integrations/slack-notifier.ts\nimport { WebClient } from '@slack/web-api';\n\nexport class SlackNotifier {\n  private client: WebClient;\n\n  constructor() {\n    this.client = new WebClient(process.env.SLACK_BOT_TOKEN);\n  }\n\n  /**\n   * Send notification to Slack\n   */\n  async notify(channel: string, message: string, blocks?: any[]) {\n    await this.client.chat.postMessage({\n      channel,\n      text: message,\n      blocks: blocks || [\n        {\n          type: 'section',\n          text: {\n            type: 'mrkdwn',\n            text: message,\n          },\n        },\n      ],\n    });\n  }\n\n  /**\n   * Notify workflow completion\n   */\n  async notifyWorkflowComplete(workflowName: string, storyId: string) {\n    await this.notify(\n      '#bmad-alerts',\n      `✅ Workflow *${workflowName}* completed for story *${storyId}*`,\n      [\n        {\n          type: 'section',\n          text: {\n            type: 'mrkdwn',\n            text: `*Workflow Completed* ✅\\n\\nWorkflow: *${workflowName}*\\nStory: *${storyId}*\\nCompleted at: ${new Date().toLocaleString()}`,\n          },\n        },\n        {\n          type: 'actions',\n          elements: [\n            {\n              type: 'button',\n              text: {\n                type: 'plain_text',\n                text: 'View Story',\n              },\n              url: `https://your-bmad-url/stories/${storyId}`,\n            },\n          ],\n        },\n      ]\n    );\n  }\n\n  /**\n   * Notify PR created\n   */\n  async notifyPRCreated(prTitle: string, prUrl: string, author: string) {\n    await this.notify(\n      '#code-reviews',\n      `📝 New PR: *${prTitle}*`,\n      [\n        {\n          type: 'section',\n          text: {\n            type: 'mrkdwn',\n            text: `*New Pull Request* 📝\\n\\nTitle: *${prTitle}*\\nAuthor: ${author}\\nCreated: ${new Date().toLocaleString()}`,\n          },\n        },\n        {\n          type: 'actions',\n          elements: [\n            {\n              type: 'button',\n              text: {\n                type: 'plain_text',\n                text: 'Review PR',\n              },\n              url: prUrl,\n              style: 'primary',\n            },\n          ],\n        },\n      ]\n    );\n  }\n}",
+      "filename": ".bmad/integrations/slack-notifier.ts",
+      "showLineNumbers": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Slash Commands ב-Slack",
+      "id": "slack-slash-commands"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "אפשר להפעיל פקודות BMAD ישירות מ-Slack:"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# בתוך Slack:\n/bmad status 5.3\n/bmad run code-review --story=5.3\n/bmad create-pr 5.3\n/bmad sync-jira",
+      "language": "bash",
+      "showLineNumbers": false
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שילוב עם Microsoft Teams",
+      "id": "teams-integration"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "דומה ל-Slack, אבל משתמש ב-Microsoft Graph API."
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# bmad/bmm/config.yaml\nmicrosoft_teams:\n  enabled: true\n  tenant_id: ${TEAMS_TENANT_ID}\n  client_id: ${TEAMS_CLIENT_ID}\n  client_secret: ${TEAMS_CLIENT_SECRET}\n  \n  # Team & Channel\n  team_id: your-team-id\n  channels:\n    general: channel-id-1\n    dev_team: channel-id-2\n    alerts: channel-id-3\n  \n  # Notifications (same structure as Slack)\n  notifications:\n    workflow_completed:\n      enabled: true\n      channel: alerts\n      message: \"✅ Workflow {{workflow_name}} completed!\"",
+      "filename": "bmad/bmm/config.yaml",
+      "showLineNumbers": false
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שילוב עם CI/CD Platforms",
+      "id": "cicd-integration"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "BMAD יכול להשתלב עם כל פלטפורמות ה-CI/CD הפופולריות."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Jenkins Integration",
+      "id": "jenkins-integration"
+    },
+    {
+      "type": "code",
+      "language": "groovy",
+      "code": "// Jenkinsfile\npipeline {\n  agent any\n  \n  environment {\n    BMAD_TOKEN = credentials('bmad-token')\n  }\n  \n  stages {\n    stage('Checkout') {\n      steps {\n        checkout scm\n      }\n    }\n    \n    stage('BMAD Story Context') {\n      steps {\n        script {\n          // Extract story ID from branch name\n          def storyId = env.BRANCH_NAME.replaceAll(/feature\\/(\\d+\\.\\d+).*/, '$1')\n          \n          // Load story context\n          sh \"bmad run story-context --story=${storyId}\"\n        }\n      }\n    }\n    \n    stage('Build') {\n      steps {\n        sh 'npm install'\n        sh 'npm run build'\n      }\n    }\n    \n    stage('Test') {\n      steps {\n        sh 'npm run test'\n      }\n    }\n    \n    stage('BMAD Code Review') {\n      steps {\n        sh 'bmad run code-review --auto'\n      }\n    }\n    \n    stage('Deploy') {\n      when {\n        branch 'main'\n      }\n      steps {\n        sh 'npm run deploy'\n      }\n    }\n  }\n  \n  post {\n    success {\n      script {\n        // Notify BMAD of successful build\n        sh 'bmad notify success --build=${BUILD_NUMBER}'\n      }\n    }\n    failure {\n      script {\n        // Notify BMAD of failed build\n        sh 'bmad notify failure --build=${BUILD_NUMBER}'\n      }\n    }\n  }\n}",
+      "filename": "Jenkinsfile",
+      "showLineNumbers": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "CircleCI Integration",
+      "id": "circleci-integration"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# .circleci/config.yml\nversion: 2.1\n\njobs:\n  bmad-workflow:\n    docker:\n      - image: node:18\n    steps:\n      - checkout\n      \n      - run:\n          name: Install BMAD\n          command: npm install -g bmad-method\n      \n      - run:\n          name: Load Story Context\n          command: |\n            STORY_ID=$(echo $CIRCLE_BRANCH | grep -oP 'feature/\\K\\d+\\.\\d+')\n            bmad run story-context --story=$STORY_ID\n      \n      - run:\n          name: Run Tests\n          command: npm test\n      \n      - run:\n          name: BMAD Code Review\n          command: bmad run code-review --auto\n      \n      - run:\n          name: Notify BMAD\n          when: on_success\n          command: bmad notify success\n\nworkflows:\n  version: 2\n  build_and_test:\n    jobs:\n      - bmad-workflow",
+      "filename": ".circleci/config.yml",
+      "showLineNumbers": true
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שילוב עם כלי ניהול נוספים",
+      "id": "other-tools-integration"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "כלים נוספים שנתמכים",
+      "id": "supported-tools"
+    },
+    {
+      "type": "table",
+      "caption": "כלי ניהול נוספים ואינטגרציות",
+      "headers": ["כלי", "סוג", "תמיכה", "תיעוד"],
+      "rows": [
+        ["Trello", "Project Management", "✅ מלא", "bmad.io/docs/trello"],
+        ["Asana", "Project Management", "✅ מלא", "bmad.io/docs/asana"],
+        ["Linear", "Issue Tracking", "✅ מלא", "bmad.io/docs/linear"],
+        ["Monday.com", "Work OS", "🟡 חלקי", "bmad.io/docs/monday"],
+        ["ClickUp", "Project Management", "✅ מלא", "bmad.io/docs/clickup"],
+        ["Notion", "Docs & Wiki", "🟡 חלקי", "bmad.io/docs/notion"],
+        ["Confluence", "Documentation", "✅ מלא", "bmad.io/docs/confluence"],
+        ["PagerDuty", "Incident Management", "✅ מלא", "bmad.io/docs/pagerduty"],
+        ["Datadog", "Monitoring", "✅ מלא", "bmad.io/docs/datadog"],
+        ["Sentry", "Error Tracking", "✅ מלא", "bmad.io/docs/sentry"]
+      ],
+      "alignment": ["left", "left", "center", "left"]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "אבטחה ב-Integrations",
+      "id": "integration-security"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "אינטגרציות כוללות גישה למידע רגיש - אבטחה היא קריטית."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Best Practices לאבטחת אינטגרציות",
+      "id": "integration-security-best-practices"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "אחסון Tokens בצורה מאובטחת",
+          "children": [
+            { "content": "השתמשו במשתני סביבה, לא בקוד" },
+            { "content": "Secrets manager (AWS Secrets Manager, Azure Key Vault)" },
+            { "content": "Rotate tokens באופן קבוע" }
+          ]
+        },
+        {
+          "content": "הרשאות מינימליות (Least Privilege)",
+          "children": [
+            { "content": "תנו רק את ההרשאות הדרושות" },
+            { "content": "אל תשתמשו בהרשאות admin אלא אם חובה" }
+          ]
+        },
+        {
+          "content": "Webhook Security",
+          "children": [
+            { "content": "אמתו חתימות (HMAC)" },
+            { "content": "השתמשו ב-HTTPS בלבד" },
+            { "content": "הגבילו IP addresses אם אפשר" }
+          ]
+        },
+        {
+          "content": "Audit Logging",
+          "children": [
+            { "content": "רשמו כל פעולה" },
+            { "content": "עקבו אחר גישות לא רגילות" },
+            { "content": "התראות על פעילות חשודה" }
+          ]
+        },
+        {
+          "content": "Rate Limiting",
+          "children": [
+            { "content": "הגבילו מספר בקשות לשעה" },
+            { "content": "מנעו DDoS על ה-APIs שלכם" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "error",
+      "title": "אזהרת אבטחה!",
+      "content": "אל תשמרו API tokens ב-Git! תמיד השתמשו במשתני סביבה או secrets manager. וודאו ש-.env נמצא ב-.gitignore."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Best Practices לאינטגרציות",
+      "id": "integration-best-practices"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "10 כללי הזהב לאינטגרציות מוצלחות",
+      "id": "integration-golden-rules"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "התחילו פשוט - אינטגרציה אחת בכל פעם",
+          "children": [
+            { "content": "אל תנסו לשלב הכל בבת אחת" },
+            { "content": "התחילו עם הכלי הכי קריטי" }
+          ]
+        },
+        {
+          "content": "בדקו בסביבת test קודם",
+          "children": [
+            { "content": "אל תבדקו ישירות על production" },
+            { "content": "יצרו סביבת staging" }
+          ]
+        },
+        {
+          "content": "תעדו הכל",
+          "children": [
+            { "content": "איך הגדרתם" },
+            { "content": "מה עובד ומה לא" },
+            { "content": "troubleshooting guide" }
+          ]
+        },
+        {
+          "content": "Monitoring ו-Alerting",
+          "children": [
+            { "content": "עקבו אחרי בריאות האינטגרציות" },
+            { "content": "התראות כששווה דבר נכשל" }
+          ]
+        },
+        {
+          "content": "Error Handling מקיף",
+          "children": [
+            { "content": "טיפול בכל שגיאה אפשרית" },
+            { "content": "Retry logic לשגיאות זמניות" },
+            { "content": "Graceful degradation" }
+          ]
+        },
+        {
+          "content": "Rate Limiting ו-Throttling",
+          "children": [
+            { "content": "אל תמיטו APIs חיצוניים" },
+            { "content": "שמרו על גבולות ה-API" }
+          ]
+        },
+        {
+          "content": "Caching חכם",
+          "children": [
+            { "content": "Cache data שלא משתנה הרבה" },
+            { "content": "הפחיתו API calls מיותרים" }
+          ]
+        },
+        {
+          "content": "Versioning",
+          "children": [
+            { "content": "עקבו אחרי גרסאות APIs" },
+            { "content": "תמכו בגרסאות מרובות במקביל" }
+          ]
+        },
+        {
+          "content": "Rollback Plan",
+          "children": [
+            { "content": "תמיד אפשרות לחזור אחורה" },
+            { "content": "Fallback mechanism" }
+          ]
+        },
+        {
+          "content": "Regular Maintenance",
+          "children": [
+            { "content": "עדכנו dependencies" },
+            { "content": "בדקו API changes" },
+            { "content": "תקנו deprecation warnings" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "סיכום",
+      "content": "אינטגרציות טובות מחסכות המון זמן ומפחיתות שגיאות. השקיעו מאמץ בהקמה נכונה מההתחלה, ותהנו מתהליכים אוטומטיים חלקים לאורך זמן."
+    }
+  ],
+  "relatedGuides": [
+    "advanced-setup",
+    "customization-guide",
+    "best-practices",
+    "configuration-management"
+  ],
+  "prerequisites": [
+    "quick-start",
+    "advanced-setup"
+  ],
+  "nextSteps": [
+    "configuration-management",
+    "best-practices",
+    "case-studies-part1"
+  ]
+}
+

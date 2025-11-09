@@ -18,6 +18,7 @@ import { DashboardStats } from '../../components/dashboard/DashboardStats';
 import { PopularGuidesCard } from '../../components/dashboard/PopularGuidesCard';
 import { NotesStatisticsCard } from '../../components/dashboard/NotesStatisticsCard';
 import { TasksStatisticsCard } from '../../components/dashboard/TasksStatisticsCard';
+import { JourneyPreviewCard } from '../../components/dashboard/JourneyPreviewCard';
 import { BrandedLoader } from '../../components/ui/branded-loader';
 import type { GuideCatalogEntry } from '../../types/guide-catalog';
 import type { CategorizedGuides } from '../../lib/learning-path';
@@ -569,8 +570,9 @@ export function DashboardPage() {
             />
           </div>
 
-          {/* Center Column - Continue Reading & Quick Actions */}
+          {/* Center Column - Journey, Continue Reading & Quick Actions */}
           <div className="space-y-6">
+            <JourneyPreviewCard />
             <ContinueReadingCard inProgressGuides={dashboardData.inProgressGuides} />
             <QuickActionsCard />
           </div>

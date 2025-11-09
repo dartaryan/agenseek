@@ -20,6 +20,7 @@ const OnboardingWizardPage = lazy(() => import('./onboarding/wizard').then(m => 
 // Protected pages - lazy loaded
 const DashboardPage = lazy(() => import('./dashboard').then(m => ({ default: m.DashboardPage })));
 const ProgressDetailsPage = lazy(() => import('./progress').then(m => ({ default: m.ProgressDetailsPage })));
+const JourneyPage = lazy(() => import('./journey').then(m => ({ default: m.JourneyPage })));
 const GuidesPage = lazy(() => import('./guides').then(m => ({ default: m.GuidesPage })));
 const GuideDetailPage = lazy(() => import('./guides/guide-detail').then(m => ({ default: m.GuideDetailPage })));
 const ContentDemo = lazy(() => import('./guides/content-demo'));
@@ -171,6 +172,14 @@ export const router = createBrowserRouter([
         element: (
           <RouteSuspense>
             <ProgressDetailsPage />
+          </RouteSuspense>
+        ),
+      },
+      {
+        path: '/journey',
+        element: (
+          <RouteSuspense>
+            <JourneyPage />
           </RouteSuspense>
         ),
       },
