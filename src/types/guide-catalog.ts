@@ -15,7 +15,7 @@ export type GuideCategory =
   | 'workflows' // וורקפלואים - Workflow guides
   | 'practical' // מעשי - Practical guides and how-tos
   | 'faq' // שאלות ותשובות - Frequently asked questions
-  | 'onboarding'; // הדרכה - Onboarding guides
+  | 'onboarding'; // און בורדינג - Onboarding guides
 
 /**
  * Difficulty levels
@@ -114,9 +114,9 @@ export const CATEGORY_CONFIG: Record<GuideCategory, CategoryConfig> = {
     icon: 'IconQuestionMark',
   },
   onboarding: {
-    label: 'הדרכה',
+    label: 'און בורדינג',
     color: 'green',
-    description: 'מדריכי הדרכה ראשונית',
+    description: 'מדריכי און בורדינג ראשוניים',
     icon: 'IconCalendar',
   },
 };

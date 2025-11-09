@@ -284,7 +284,7 @@ export function DashboardPage() {
           .from('user_achievements')
           .select('achievement_id, earned_at')
           .eq('user_id', user.id)
-          .not('earned_at', 'is', 'null');
+          .not('earned_at', 'is', null); // Use JavaScript null, not string 'null'
 
         const earnedBadges = achievements?.length || 0;
         const totalBadges = 10; // Total possible badges (can be updated when more achievements are added)
@@ -369,7 +369,7 @@ export function DashboardPage() {
           .from('user_progress')
           .select('*')
           .eq('user_id', user.id)
-          .lt('updated_at', sevenDaysAgo.toISOString());
+          .lt('last_read_at', sevenDaysAgo.toISOString()); // Fixed: use last_read_at, not updated_at
 
         const { count: lastWeekNotesCount } = await supabase
           .from('user_notes')
@@ -382,7 +382,7 @@ export function DashboardPage() {
           .select('*', { count: 'exact', head: true })
           .eq('user_id', user.id)
           .eq('status', 'done')
-          .lt('updated_at', sevenDaysAgo.toISOString());
+          .lt('completed_at', sevenDaysAgo.toISOString()); // Fixed: use completed_at for completed tasks
 
         // Calculate last week's stats
         const lastWeekGuidesCompleted = lastWeekProgress?.filter((p) => p.completed).length || 0;
