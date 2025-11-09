@@ -70,7 +70,7 @@ export function OnboardingWizardPage() {
 
     try {
       console.log('[Onboarding Skip] Starting skip process...');
-      
+
       // Mark onboarding as completed even when skipped
       const { error } = await supabase
         .from('profiles')
@@ -94,13 +94,13 @@ export function OnboardingWizardPage() {
 
       while (attempts < maxAttempts && !profileUpdated) {
         await new Promise((resolve) => setTimeout(resolve, 100));
-        
+
         const { data: verifyProfile } = await supabase
           .from('profiles')
           .select('completed_onboarding')
           .eq('id', user.id)
           .single();
-        
+
         if (verifyProfile?.completed_onboarding === true) {
           profileUpdated = true;
           console.log(`[Onboarding Skip] ✓ Profile verified (attempt ${attempts + 1}/${maxAttempts})`);
@@ -123,10 +123,10 @@ export function OnboardingWizardPage() {
       console.log('[Onboarding Skip] State propagation complete');
 
       toast({
-        title: 'און בורדינג דולג',
+        title: 'דילגת על האון בורדינג',
         description: 'ניתן להשלים את הפרופיל שלך בכל עת מההגדרות.',
       });
-      
+
       // Navigate to dashboard
       console.log('[Onboarding Skip] Navigating to dashboard...');
       navigate('/dashboard');
