@@ -106,10 +106,12 @@ After Story 0.6, continue with these in order:
 - **Time:** 6-9 days
 - **Description:** Visual roadmap with 4 phases, phase-based progression, gamification, `/journey` page.
 
-### Story 0.11: Documentation Organization & Archive
+### ✅ Story 0.11: Documentation Organization & Archive (COMPLETE)
 - **Points:** 2
 - **Time:** ~1.5h
-- **Description:** Create `docs/archive/` structure, move completed stories, organize by epic/sprint.
+- **Completed:** November 9, 2025
+- **Result:** 176 files archived, root reduced by 57% (from 28 to 12 files)
+- **Note:** Created HOLD folder for stories awaiting prioritization
 
 ### Story 0.12: Remove Console Logs from Codebase
 - **Points:** 1
@@ -142,7 +144,8 @@ After Story 0.6, continue with these in order:
 - ✅ Story 0.16 - Navigation Merge + UX Fixes (Complete)
 
 **Total:** 11 of 14 complete (79%)
-**Remaining:** 3 stories, ~7 points
+**Remaining:** 2 active (0.12, 0.13), 1 on hold (0.15), ~4 points active
+**Note:** 0.X series transitioning to regular story numbering for new features/bugs
 **Note:** Story 0.6 (Dark Mode) postponed; Story 0.10 divided into 3 sub-stories; Story 0.16 was a quick UX improvement
 
 ---

@@ -16,6 +16,10 @@ Story completion documents are organized by epic and sprint:
   - Contains all `STORY-0.X-COMPLETE.md` files
   - Stories discovered during development that weren't part of original epic planning
 
+- **`hold/`** - Stories on Hold
+  - Stories temporarily waiting for dependencies or prioritization
+  - May return to active development
+
 - **`sprint-1/`** - Sprint Completion Summaries
   - Sprint retrospectives and completion documents
 

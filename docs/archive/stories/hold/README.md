@@ -5,8 +5,8 @@ This folder contains stories that are temporarily on hold or waiting for depende
 ## Current Status
 
 ### Story 0.15
-**Status:** On Hold  
-**Reason:** Waiting for prioritization/dependencies  
+**Status:** On Hold
+**Reason:** Waiting for prioritization/dependencies
 
 ---
 
