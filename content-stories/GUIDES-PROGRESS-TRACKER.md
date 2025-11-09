@@ -1,7 +1,7 @@
 # 📊 מעקב התקדמות מדריכים - Guides Progress Tracker
 
 **תאריך עדכון:** 9 נובמבר 2025
-**סטטוס:** 20/47 הושלמו (43%)
+**סטטוס:** 21/47 הושלמו (45%)
 
 ---
 
@@ -23,7 +23,7 @@
 | Core | 2 | 2 | 0 | 100% |
 | FAQ | 6 | 1 | 5 | 17% |
 | Onboarding | 3 | 2 | 1 | 67% |
-| Roles | 9 | 7 | 2 | 78% |
+| Roles | 9 | 8 | 1 | 89% |
 | Agents | 8 | 4 | 4 | 50% |
 | Workflows | 10 | 4 | 6 | 40% |
 | Practical | 9 | 0 | 9 | 0% |
@@ -104,7 +104,7 @@
 | 47 | `faq-development` | שאלות ותשובות - חלק 3א: פיתוח | faq | ⏳ |
 | 48 | `faq-team` | שאלות ותשובות - חלק 3ב: עבודה צוותית | faq | ⏳ |
 
-**סטטוס P2:** ✅ 1/27 הושלמו (4%)
+**סטטוס P2:** ✅ 2/27 הושלמו (7%)
 
 ---
 
@@ -112,28 +112,28 @@
 
 **🎉 כל מדריכי P1 הושלמו!**
 **✅ role-game-developers הושלם!**
+**✅ role-senior-managers הושלם!**
 
 **המדריך הבא הוא מ-P2:**
 
-### 📌 `role-senior-managers`
+### 📌 `role-non-technical`
 
 **פרטים:**
-- **כותרת:** מדריך למנהלים בכירים
+- **כותרת:** מדריך לתפקידים לא טכניים
 - **קטגוריה:** roles
-- **רמת קושי:** intermediate
-- **זמן קריאה:** 40 דקות
+- **רמת קושי:** beginner
+- **זמן קריאה:** 25 דקות
 - **עדיפות:** 🟢 P2
 
 **קבצים לקרוא:**
 1. `content-stories/FOR-AI-AGENTS.md` - הפרומפט המלא
-2. `content-stories/stories/roles/senior-managers.md` - הסטורי המפורט
-3. `src/content/locale/he/guides/roles/product-managers.json` - מדריך למנהלי מוצר (דומה)
+2. `content-stories/stories/roles/non-technical.md` - הסטורי המפורט
+3. `src/content/locale/he/guides/roles/developers.json` - מדריך למפתחים (דוגמה)
 
 **היכן לשמור:**
-- `src/content/locale/he/guides/roles/senior-managers.json`
+- `src/content/locale/he/guides/roles/non-technical.json`
 
 **לא לשכוח:**
-- לעדכן את `src/content/locale/he/guides/index.json` (אם צריך)
 - לעדכן את הקובץ הזה (GUIDES-PROGRESS-TRACKER.md)
 
 ---
@@ -159,8 +159,8 @@ src/content/locale/he/guides/
 │   ├── qa-testers.json ✅
 │   ├── ux-designers.json ✅
 │   ├── project-managers.json ✅
-│   ├── game-developers.json ⏳
-│   ├── senior-managers.json ⏳
+│   ├── game-developers.json ✅
+│   ├── senior-managers.json ✅
 │   └── non-technical.json ⏳
 ├── agents/
 │   ├── intro-pm-analyst.json ✅
@@ -251,7 +251,7 @@ src/content/locale/he/guides/
 1. day1 - הדרכה ליום הראשון
 2. week1 - הדרכה לשבוע הראשון
 
-### ✅ Roles (7/9 - 78%)
+### ✅ Roles (8/9 - 89%)
 1. developers - מדריך למפתחים ומפתחות
 2. product-managers - מדריך למנהלי מוצר ואנליסטים
 3. architects - מדריך לארכיטקטים טכנולוגיים
@@ -259,6 +259,7 @@ src/content/locale/he/guides/
 5. ux-designers - מדריך למעצבי UX/UI
 6. project-managers - מדריך למנהלי פרויקטים וסקראם מאסטרים
 7. game-developers - מדריך למפתחי משחקים
+8. senior-managers - מדריך למנהלים בכירים
 
 ### ✅ Agents (4/8 - 50%)
 1. intro-pm-analyst - מדריך אגנטים - חלק 1א: מבוא + PM + Analyst

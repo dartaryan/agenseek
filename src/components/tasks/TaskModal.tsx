@@ -87,7 +87,7 @@ export function TaskModal({
   useEffect(() => {
     const loadGuides = async () => {
       try {
-        const response = await fetch('/src/content/locale/he/guides/index.json');
+        const response = await fetch('/content/guides-catalog.json');
         const guidesData = await response.json();
         setGuides(guidesData);
       } catch (error) {

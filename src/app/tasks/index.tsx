@@ -71,11 +71,15 @@ export function TasksPage() {
   useEffect(() => {
     const loadGuideTitles = async () => {
       try {
-        const response = await fetch('/src/content/locale/he/guides/index.json');
-        const guides = await response.json();
+        const response = await fetch('/content/guides-catalog.json');
+        const guidesResponse = await response.json();
+        const guides = guidesResponse.guides || guidesResponse;
         const titlesMap: Record<string, string> = {};
-        guides.forEach((guide: { id: string; title: string }) => {
-          titlesMap[guide.id] = guide.title;
+        guides.forEach((guide: { id?: string; slug?: string; title: string }) => {
+          const key = guide.id || guide.slug;
+          if (key) {
+            titlesMap[key] = guide.title;
+          }
         });
         setGuidesData(titlesMap);
       } catch (error) {

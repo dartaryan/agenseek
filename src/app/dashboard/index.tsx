@@ -284,7 +284,7 @@ export function DashboardPage() {
           .from('user_achievements')
           .select('achievement_id, earned_at')
           .eq('user_id', user.id)
-          .not('earned_at', 'is', null);
+          .not('earned_at', 'is', 'null');
 
         const earnedBadges = achievements?.length || 0;
         const totalBadges = 10; // Total possible badges (can be updated when more achievements are added)
