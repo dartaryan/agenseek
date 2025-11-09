@@ -13,7 +13,7 @@
  * - Esc: Close modals (built into Dialog components)
  */
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface KeyboardShortcutsConfig {
@@ -25,6 +25,13 @@ interface KeyboardShortcutsConfig {
 
 export function useKeyboardShortcuts(config: KeyboardShortcutsConfig = {}) {
   const navigate = useNavigate();
+  // Use ref to store config to avoid re-registering event listener on every render
+  const configRef = useRef(config);
+
+  // Update ref when config changes
+  useEffect(() => {
+    configRef.current = config;
+  }, [config]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -37,28 +44,28 @@ export function useKeyboardShortcuts(config: KeyboardShortcutsConfig = {}) {
       // Ctrl/Cmd + F: Focus header search
       if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
         e.preventDefault();
-        config.onFocusSearch?.();
+        configRef.current.onFocusSearch?.();
         return;
       }
 
       // Ctrl/Cmd + K: Command palette (handled in Layout, but we can trigger it here too)
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
         e.preventDefault();
-        config.onOpenCommandPalette?.();
+        configRef.current.onOpenCommandPalette?.();
         return;
       }
 
       // Alt + T: Create new task (changed from Ctrl+T to avoid browser conflict)
       if (e.altKey && e.key === 't' && !e.ctrlKey && !e.metaKey) {
         e.preventDefault();
-        config.onOpenTaskModal?.();
+        configRef.current.onOpenTaskModal?.();
         return;
       }
 
       // Alt + N: Create new note (changed from Ctrl+N to avoid browser conflict)
       if (e.altKey && e.key === 'n' && !e.ctrlKey && !e.metaKey) {
         e.preventDefault();
-        config.onOpenNoteModal?.();
+        configRef.current.onOpenNoteModal?.();
         return;
       }
 
@@ -95,14 +102,15 @@ export function useKeyboardShortcuts(config: KeyboardShortcutsConfig = {}) {
       // /: Focus search (like GitHub)
       if (e.key === '/' && !isTyping) {
         e.preventDefault();
-        config.onFocusSearch?.();
+        configRef.current.onFocusSearch?.();
         return;
       }
     };
 
+    // Register event listener once - only re-register if navigate changes
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [navigate, config]);
+  }, [navigate]); // Removed config from dependencies - use configRef instead
 }
 
 /**
