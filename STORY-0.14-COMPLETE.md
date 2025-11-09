@@ -106,12 +106,14 @@ The `phase2-design.json` guide file had **incorrectly structured grid items**.
 - Removed unused `clearCache` import from api-cache
 - Fixes TypeScript unused variable error (TS6133)
 
-#### 4. `src/app/routes.tsx`
+#### 4. `src/app/routes.tsx` + `src/app/admin/logs/`
 
-**Fix #5: Admin Logs Lazy Import (Line 40)**
-- Fixed lazy import for AdminActionLogPage with explicit index path
-- Changed from `import('./admin/logs')` to `import('./admin/logs/index')`
-- Fixes module resolution error (TS2307) that only occurred on Vercel build environment
+**Fix #5: Admin Logs Module Resolution (Line 40)**
+- **Root Cause:** Vercel's TypeScript doesn't auto-resolve directory indexes (`./admin/logs/index.tsx`)
+- **Initial Attempts:** Tried explicit index path, simple directory import - both failed on Vercel
+- **Final Solution:** Flattened structure from `logs/index.tsx` to `logs.tsx`
+- Import `'./admin/logs'` now resolves correctly on both local and Vercel builds
+- Fixes persistent module resolution error (TS2307)
 
 ---
 
@@ -240,15 +242,34 @@ Fix TypeScript build errors
 ```
 **Commit Hash:** a38e4f7
 
-**Commit #5: Final Module Resolution Fix**
+**Commit #5: Final Module Resolution Fix (Attempt 1)**
 ```
 Fix admin logs import with explicit index path
 
 - Changed from './admin/logs' to './admin/logs/index'
-- Resolves TypeScript module resolution error on Vercel
-- Build now passes successfully
+- Did not resolve Vercel issue (local-only fix)
 ```
 **Commit Hash:** 5dd2424
+
+**Commit #6: Revert to Simple Import**
+```
+Revert admin logs import to simple directory path
+
+- Changed back from './admin/logs/index' to './admin/logs'
+- Did not resolve Vercel issue (still failing)
+```
+**Commit Hash:** bf1a0af
+
+**Commit #7: Flatten Structure (FINAL FIX)**
+```
+Flatten admin logs structure for Vercel compatibility
+
+- Renamed src/app/admin/logs/index.tsx to src/app/admin/logs.tsx
+- Removed empty logs directory
+- Fixes module resolution on Vercel which doesn't auto-resolve directory indexes
+- Import './admin/logs' now works on both local and Vercel builds
+```
+**Commit Hash:** 99ac247
 
 ---
 
