@@ -28,8 +28,6 @@ import {
   IconNotes,
   IconChecklist,
   IconUser,
-  IconMoon,
-  IconSun,
   IconPlus,
   IconSearch,
 } from '@tabler/icons-react';
@@ -64,27 +62,6 @@ const MAX_RECENT_SEARCHES = 5;
 //   return navigator.platform.toUpperCase().includes('MAC');
 // };
 
-// Helper to get/set theme
-const getTheme = () => {
-  if (typeof document === 'undefined') return 'light';
-  return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-};
-
-const setTheme = (theme: 'light' | 'dark') => {
-  if (typeof document === 'undefined') return;
-  if (theme === 'dark') {
-    document.documentElement.classList.add('dark');
-  } else {
-    document.documentElement.classList.remove('dark');
-  }
-  localStorage.setItem('theme', theme);
-};
-
-const toggleTheme = () => {
-  const current = getTheme();
-  setTheme(current === 'dark' ? 'light' : 'dark');
-};
-
 // Helper to get/set recent searches
 const getRecentSearches = (): string[] => {
   if (typeof localStorage === 'undefined') return [];
@@ -115,7 +92,6 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [query, setQuery] = useState('');
-  const [theme, setThemeState] = useState(getTheme());
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
 
   // Search hook with user ID for personalized results

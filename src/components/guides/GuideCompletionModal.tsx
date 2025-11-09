@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { IconTrophy, IconArrowRight, IconArrowLeft, IconBook, IconX } from '@tabler/icons-react';
+import { IconTrophy, IconArrowLeft, IconBook, IconX } from '@tabler/icons-react';
 import type { GuideMetadata } from '@/types/content-blocks';
 
 interface GuideCompletionModalProps {
