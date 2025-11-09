@@ -100,6 +100,19 @@ The `phase2-design.json` guide file had **incorrectly structured grid items**.
 - Ensured proper nesting hierarchy for TypeScript/JSX compilation
 - This was blocking the Vercel build after the grid fix
 
+#### 3. `src/app/guides/index.tsx`
+
+**Fix #4: Remove Unused Import (Line 45)**
+- Removed unused `clearCache` import from api-cache
+- Fixes TypeScript unused variable error (TS6133)
+
+#### 4. `src/app/routes.tsx`
+
+**Fix #5: Admin Logs Lazy Import (Line 40)**
+- Fixed lazy import for AdminActionLogPage with proper default export handling
+- Changed from `import('./admin/logs')` to `import('./admin/logs').then(m => ({ default: m.default }))`
+- Fixes module resolution error (TS2307)
+
 ---
 
 ## Acceptance Criteria - All Met ✅
@@ -205,6 +218,27 @@ Fix search page JSX structure: correct indentation and missing closing divs
 - Ensures proper JSX structure for TypeScript compilation
 ```
 **Commit Hash:** 851909e
+
+**Commit #3: Preventive Grid Fixes**
+```
+Prevent future grid errors: Fix all remaining malformed grid structures
+
+- Fixed phase0-1.json grid (2 cards)
+- Fixed phase2-core.json grid (4 cards)  
+- All grids now use proper array structure with content blocks
+- Prevents same production error from reoccurring
+```
+**Commit Hash:** 2c2befb
+
+**Commit #4: TypeScript Build Errors**
+```
+Fix TypeScript build errors
+
+- Remove unused clearCache import from guides index
+- Fix admin logs lazy import with proper default export handling
+- Build now passes successfully
+```
+**Commit Hash:** a38e4f7
 
 ---
 
