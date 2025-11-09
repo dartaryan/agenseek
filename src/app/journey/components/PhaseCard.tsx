@@ -297,12 +297,12 @@ function GuideItem({ guide, onClick, isLocked, isNextRecommended = false }: Guid
       )}
       onClick={!isLocked ? onClick : undefined}
     >
-      {/* Story 0.10.3: Next Recommended Badge */}
+      {/* Story 0.10.3 / Story 11.3: Next Recommended Badge - moved to bottom-left to not hide action button */}
       {isNextRecommended && !isLocked && !guide.completed && (
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          className="absolute top-2 left-2 z-10"
+          className="absolute bottom-2 left-2 z-10"
         >
           <span className="inline-flex items-center gap-1 px-3 py-1 bg-emerald-500 text-white text-xs font-semibold rounded-full shadow-md animate-pulse">
             <IconArrowLeft size={14} />

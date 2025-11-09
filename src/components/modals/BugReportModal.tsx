@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react';
+import { useState, type FormEvent } from 'react';
 import { IconBug } from '@tabler/icons-react';
 import {
   Dialog,

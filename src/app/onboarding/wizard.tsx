@@ -510,7 +510,7 @@ function RoleStep({ selectedRole, onSelectRole, onNext, onBack }: RoleStepProps)
               onClick={() => onSelectRole(role.id)}
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className={`p-5 rounded-xl text-left transition-all duration-300 ${
+              className={`p-5 rounded-xl text-right transition-all duration-300 ${
                 isSelected
                   ? 'bg-primary/10 border-2 border-primary shadow-lg shadow-primary/20'
                   : 'bg-white dark:bg-gray-800 border-2 border-border dark:border-gray-700 hover:border-primary/50 hover:shadow-md'

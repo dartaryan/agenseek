@@ -218,22 +218,22 @@ export function LoginPage() {
               {errors.password && <p id="password-error" className="text-sm text-red-600" role="alert">{errors.password.message}</p>}
             </div>
 
-            {/* Remember Me & Forgot Password */}
+            {/* Remember Me & Forgot Password - Story 11.3: Swapped positions for RTL */}
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 rtl:flex-row-reverse">
+              <Link to="/auth/forgot-password" className="text-sm text-primary hover:underline">
+                {he.forgotPassword}
+              </Link>
+              <div className="flex items-center gap-2 flex-row-reverse">
+                <Label htmlFor="rememberMe" className="text-sm font-normal cursor-pointer">
+                  {he.rememberMe}
+                </Label>
                 <Checkbox
                   id="rememberMe"
                   checked={rememberMe}
                   onCheckedChange={(checked: boolean) => setValue('rememberMe', checked === true)}
                   disabled={isLoading}
                 />
-                <Label htmlFor="rememberMe" className="text-sm font-normal cursor-pointer">
-                  {he.rememberMe}
-                </Label>
               </div>
-              <Link to="/auth/forgot-password" className="text-sm text-primary hover:underline">
-                {he.forgotPassword}
-              </Link>
             </div>
 
             {/* Submit Button */}

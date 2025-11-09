@@ -370,7 +370,7 @@ export default function EngagementReportPage() {
                             style={{ width: `${cohort.retentionRate}%` }}
                           />
                         </div>
-                        <span className="text-xs sm:text-sm text-muted-foreground w-8 sm:w-12 text-left">{cohort.retentionRate}%</span>
+                        <span className="text-xs sm:text-sm text-muted-foreground w-8 sm:w-12 text-right">{cohort.retentionRate}%</span>
                       </div>
                     </TableCell>
                     <TableCell className="hidden md:table-cell">
@@ -381,7 +381,7 @@ export default function EngagementReportPage() {
                             style={{ width: `${cohort.completionRate}%` }}
                           />
                         </div>
-                        <span className="text-sm text-muted-foreground w-12 text-left">{cohort.completionRate}%</span>
+                        <span className="text-sm text-muted-foreground w-12 text-right">{cohort.completionRate}%</span>
                       </div>
                     </TableCell>
                   </TableRow>

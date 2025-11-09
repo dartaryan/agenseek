@@ -263,7 +263,8 @@ export function TasksPage() {
                 </div>
               </Card>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6 justify-items-end">
+                {/* Story 11.3: Added justify-items-end for RTL card alignment */}
                 {tasks.map((task) => {
                   const subTaskStats = getSubTaskStats(task.id);
                   return (
@@ -295,7 +296,8 @@ export function TasksPage() {
                 return (
                   <div key={guideSlug} className="space-y-3">
                     <h2 className="text-xl font-semibold text-foreground">{guideTitle}</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
+                    {/* Story 11.3: Added justify-items-end for RTL card alignment */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6 justify-items-end">
                       {guideTasks.map((task) => {
                         const subTaskStats = getSubTaskStats(task.id);
                         return (
@@ -377,7 +379,8 @@ export function TasksPage() {
                     <div className="w-3 h-3 rounded-full bg-red-500" />
                     <span>עדיפות גבוהה ({tasksByPriority.high.length})</span>
                   </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
+                  {/* Story 11.3: Added justify-items-end for RTL card alignment */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6 justify-items-end">
                     {tasksByPriority.high.map((task) => {
                       const subTaskStats = getSubTaskStats(task.id);
                       return (
@@ -405,7 +408,8 @@ export function TasksPage() {
                     <div className="w-3 h-3 rounded-full bg-yellow-500" />
                     <span>עדיפות בינונית ({tasksByPriority.medium.length})</span>
                   </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
+                  {/* Story 11.3: Added justify-items-end for RTL card alignment */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6 justify-items-end">
                     {tasksByPriority.medium.map((task) => {
                       const subTaskStats = getSubTaskStats(task.id);
                       return (
@@ -433,7 +437,8 @@ export function TasksPage() {
                     <div className="w-3 h-3 rounded-full bg-green-500" />
                     <span>עדיפות נמוכה ({tasksByPriority.low.length})</span>
                   </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
+                  {/* Story 11.3: Added justify-items-end for RTL card alignment */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6 justify-items-end">
                     {tasksByPriority.low.map((task) => {
                       const subTaskStats = getSubTaskStats(task.id);
                       return (

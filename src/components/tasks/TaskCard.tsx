@@ -97,8 +97,9 @@ export function TaskCard({
 
   const isDone = task.status === 'done';
 
+  // Story 11.3: Added w-full for proper RTL grid alignment
   return (
-    <Card className="p-4 hover:shadow-md transition-shadow" dir="rtl">
+    <Card className="w-full p-4 hover:shadow-md transition-shadow" dir="rtl">
       <div className="space-y-3">
         {/* Task Header */}
         <div className="flex items-start gap-3">

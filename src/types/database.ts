@@ -678,6 +678,52 @@ export interface Database {
           },
         ];
       };
+      bug_reports: {
+        Row: {
+          id: string;
+          user_id: string | null;
+          email: string;
+          title: string;
+          description: string;
+          location: string | null;
+          status: 'new' | 'in_progress' | 'resolved' | 'closed';
+          created_at: string;
+          resolved_at: string | null;
+          admin_notes: string | null;
+        };
+        Insert: {
+          id?: string;
+          user_id?: string | null;
+          email: string;
+          title: string;
+          description: string;
+          location?: string | null;
+          status?: 'new' | 'in_progress' | 'resolved' | 'closed';
+          created_at?: string;
+          resolved_at?: string | null;
+          admin_notes?: string | null;
+        };
+        Update: {
+          id?: string;
+          user_id?: string | null;
+          email?: string;
+          title?: string;
+          description?: string;
+          location?: string | null;
+          status?: 'new' | 'in_progress' | 'resolved' | 'closed';
+          created_at?: string;
+          resolved_at?: string | null;
+          admin_notes?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'bug_reports_user_id_fkey';
+            columns: ['user_id'];
+            referencedRelation: 'profiles';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
     };
     Views: {
       [_ in never]: never;
