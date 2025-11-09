@@ -1,7 +1,7 @@
 # 📊 מעקב התקדמות מדריכים - Guides Progress Tracker
 
-**תאריך עדכון:** 8 נובמבר 2025
-**סטטוס:** 12/47 הושלמו (26%)
+**תאריך עדכון:** 9 נובמבר 2025
+**סטטוס:** 14/47 הושלמו (30%)
 
 ---
 
@@ -24,10 +24,10 @@
 | FAQ | 6 | 1 | 5 | 17% |
 | Onboarding | 3 | 2 | 1 | 67% |
 | Roles | 9 | 6 | 3 | 67% |
-| Agents | 8 | 1 | 7 | 12.5% |
+| Agents | 8 | 3 | 5 | 38% |
 | Workflows | 10 | 0 | 10 | 0% |
 | Practical | 9 | 0 | 9 | 0% |
-| **סה"כ** | **47** | **12** | **35** | **26%** |
+| **סה"כ** | **47** | **14** | **33** | **30%** |
 
 ---
 
@@ -58,8 +58,8 @@
 | 10 | `role-ux-designers` | מדריך למעצבי UX/UI | roles | ✅ |
 | 11 | `role-project-managers` | מדריך למנהלי פרויקטים וסקראם מאסטרים | roles | ✅ |
 | 12 | `agents-intro-pm-analyst` | מדריך אגנטים - חלק 1א: מבוא + PM + Analyst | agents | ✅ |
-| 13 | `agents-architect-sm-dev` | מדריך אגנטים - חלק 1ב: Architect + SM + Dev | agents | ⏳ |
-| 14 | `agents-tea-ux` | מדריך אגנטים - חלק 2א: TEA + UX Designer | agents | ⏳ |
+| 13 | `agents-architect-sm-dev` | מדריך אגנטים - חלק 1ב: Architect + SM + Dev | agents | ✅ |
+| 14 | `agents-tea-ux` | מדריך אגנטים - חלק 2א: TEA + UX Designer | agents | ✅ |
 | 15 | `agents-techwriter-master` | מדריך אגנטים - חלק 2ב: Tech Writer + BMAD Master | agents | ⏳ |
 | 16 | `workflows-intro-critical` | מדריך וורקפלואים - חלק 1א: מבוא + וורקפלואים קריטיים | workflows | ⏳ |
 | 17 | `workflows-phase0-1` | מדריך וורקפלואים - חלק 1ב: Phase 0-1 (Idea to Brief) | workflows | ⏳ |
@@ -72,7 +72,7 @@
 | 24 | `faq-workflows` | שאלות ותשובות - חלק 2ב: וורקפלואים | faq | ⏳ |
 | 25 | `onboarding-month1` | הדרכה לחודש הראשון | onboarding | ⏳ |
 
-**סטטוס P1:** ✅ 8/15 הושלמו (53%)
+**סטטוס P1:** ✅ 10/15 הושלמו (67%)
 
 ---
 
@@ -112,27 +112,27 @@
 
 **לפי עדיפות P1, המדריך הבא הוא:**
 
-### 📌 `agents-architect-sm-dev`
+### 📌 `agents-techwriter-master`
 
 **פרטים:**
-- **כותרת:** מדריך אגנטים - חלק 1ב: Architect + SM + Dev
+- **כותרת:** מדריך אגנטים - חלק 2ב: Tech Writer + BMAD Master
 - **קטגוריה:** agents
 - **רמת קושי:** intermediate
-- **זמן קריאה:** 40 דקות
+- **זמן קריאה:** 30 דקות
 - **עדיפות:** 🟡 P1
 
 **קבצים לקרוא:**
 1. `content-stories/FOR-AI-AGENTS.md` - הפרומפט המלא (חשוב! כולל הנחיות ליצירה בחלקים)
-2. `content-stories/stories/agents/architect-sm-dev.md` - הסטורי המפורט
-3. `src/content/locale/he/guides/core/quick-start.json` - דוגמה מוכנה
-4. `src/content/locale/he/guides/agents/intro-pm-analyst.json` - המדריך הראשון בסדרת האגנטים
-5. `src/content/locale/he/guides/roles/project-managers.json` - המדריך שזה עתה הושלם
+2. `content-stories/stories/agents/techwriter-master.md` - הסטורי המפורט
+3. `src/content/locale/he/guides/agents/intro-pm-analyst.json` - המדריך הראשון בסדרת האגנטים
+4. `src/content/locale/he/guides/agents/tea-ux.json` - המדריך שזה עתה הושלם
+5. `src/content/locale/he/guides/core/quick-start.json` - דוגמה מוכנה
 
 **היכן לשמור:**
-- `src/content/locale/he/guides/agents/architect-sm-dev.json`
+- `src/content/locale/he/guides/agents/techwriter-master.json`
 
 **לא לשכוח:**
-- **⚠️ זה מדריך בינוני (40 דקות) - יכול להידרש יצירה בחלקים!**
+- **זה מדריך בינוני (30 דקות) - סביר להניח שאפשר בחלק אחד**
 - לעדכן את `src/content/locale/he/guides/index.json` (אם צריך)
 - לעדכן את הקובץ הזה (GUIDES-PROGRESS-TRACKER.md)
 
@@ -164,8 +164,8 @@ src/content/locale/he/guides/
 │   └── non-technical.json ⏳
 ├── agents/
 │   ├── intro-pm-analyst.json ✅
-│   ├── architect-sm-dev.json ⏳
-│   ├── tea-ux.json ⏳
+│   ├── architect-sm-dev.json ✅
+│   ├── tea-ux.json ✅
 │   ├── techwriter-master.json ⏳
 │   ├── game-agents.json ⏳
 │   ├── cis-first3.json ⏳
@@ -255,12 +255,14 @@ src/content/locale/he/guides/
 5. ux-designers - מדריך למעצבי UX/UI
 6. project-managers - מדריך למנהלי פרויקטים וסקראם מאסטרים
 
-### ✅ Agents (1/8 - 12.5%)
+### ✅ Agents (3/8 - 38%)
 1. intro-pm-analyst - מדריך אגנטים - חלק 1א: מבוא + PM + Analyst
+2. architect-sm-dev - מדריך אגנטים - חלק 1ב: Architect + SM + Dev
+3. tea-ux - מדריך אגנטים - חלק 2א: TEA + UX Designer
 
 ---
 
 **תאריך יצירה:** 8 נובמבר 2025
-**תאריך עדכון אחרון:** 8 נובמבר 2025
+**תאריך עדכון אחרון:** 9 נובמבר 2025
 **גרסה:** 1.0
 **סטטוס:** Active ✅

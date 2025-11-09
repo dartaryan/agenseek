@@ -626,6 +626,58 @@ export interface Database {
           },
         ];
       };
+      admin_action_log: {
+        Row: {
+          id: string;
+          admin_id: string;
+          action_type: string;
+          action_category: string;
+          target_type: string | null;
+          target_id: string | null;
+          target_label: string | null;
+          description: string;
+          metadata: Json;
+          ip_address: string | null;
+          user_agent: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          admin_id: string;
+          action_type: string;
+          action_category?: string;
+          target_type?: string | null;
+          target_id?: string | null;
+          target_label?: string | null;
+          description: string;
+          metadata?: Json;
+          ip_address?: string | null;
+          user_agent?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          admin_id?: string;
+          action_type?: string;
+          action_category?: string;
+          target_type?: string | null;
+          target_id?: string | null;
+          target_label?: string | null;
+          description?: string;
+          metadata?: Json;
+          ip_address?: string | null;
+          user_agent?: string | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'admin_action_log_admin_id_fkey';
+            columns: ['admin_id'];
+            referencedRelation: 'profiles';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
     };
     Views: {
       [_ in never]: never;

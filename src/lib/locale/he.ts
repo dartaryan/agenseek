@@ -447,6 +447,73 @@ export interface LocaleStrings {
         milestonesLabel: string;
         milestonesDescription: string;
       };
+      actionLog: {
+        title: string;
+        description: string;
+        pageTitle: string;
+        // Table headers
+        admin: string;
+        actionType: string;
+        actionCategory: string;
+        target: string;
+        descriptionHeader: string;
+        timestamp: string;
+        details: string;
+        // Filters
+        filterByAdmin: string;
+        filterByActionType: string;
+        filterByCategory: string;
+        filterByDateRange: string;
+        allAdmins: string;
+        allActionTypes: string;
+        allCategories: string;
+        startDate: string;
+        endDate: string;
+        searchPlaceholder: string;
+        applyFilters: string;
+        clearFilters: string;
+        // Actions
+        exportCSV: string;
+        exportAll: string;
+        exportFiltered: string;
+        refresh: string;
+        // Categories
+        userManagement: string;
+        contentManagement: string;
+        system: string;
+        security: string;
+        dataExport: string;
+        general: string;
+        // Action types
+        userDeleted: string;
+        userEdited: string;
+        contentModified: string;
+        contentFlagged: string;
+        settingsChanged: string;
+        dataExported: string;
+        roleChanged: string;
+        profileViewed: string;
+        notificationSent: string;
+        userBanned: string;
+        userUnbanned: string;
+        commentDeleted: string;
+        guideUnpublished: string;
+        // States
+        loading: string;
+        noData: string;
+        noResults: string;
+        error: string;
+        // Pagination
+        showing: string;
+        of: string;
+        results: string;
+        previousPage: string;
+        nextPage: string;
+        // Export messages
+        exportSuccess: string;
+        exportError: string;
+        exportingData: string;
+      };
     };
   };
 
@@ -597,6 +664,8 @@ export interface LocaleStrings {
     letsPersonalize: string;
     skipLater: string;
     skipDescription: string;
+    avatarStepTitle: string;
+    avatarStepDescription: string;
     step2Title: string;
     step2Description: string;
     step3Title: string;
@@ -1176,6 +1245,74 @@ export const hebrewLocale: LocaleStrings = {
         milestonesLabel: 'אבני דרך',
         milestonesDescription: 'התראות על השגת אבני דרך בפלטפורמה',
       },
+      // Story 9.6 - Admin Action Log
+      actionLog: {
+        title: 'יומן פעולות',
+        description: 'מעקב אחר פעולות ניהול במערכת',
+        pageTitle: 'יומן פעולות מנהל',
+        // Table headers
+        admin: 'מנהל',
+        actionType: 'סוג פעולה',
+        actionCategory: 'קטגוריה',
+        target: 'יעד',
+        descriptionHeader: 'תיאור',
+        timestamp: 'תאריך ושעה',
+        details: 'פרטים',
+        // Filters
+        filterByAdmin: 'סינון לפי מנהל',
+        filterByActionType: 'סינון לפי סוג פעולה',
+        filterByCategory: 'סינון לפי קטגוריה',
+        filterByDateRange: 'סינון לפי טווח תאריכים',
+        allAdmins: 'כל המנהלים',
+        allActionTypes: 'כל סוגי הפעולות',
+        allCategories: 'כל הקטגוריות',
+        startDate: 'תאריך התחלה',
+        endDate: 'תאריך סיום',
+        searchPlaceholder: 'חיפוש בתיאור, יעד, או סוג פעולה...',
+        applyFilters: 'החל מסננים',
+        clearFilters: 'נקה מסננים',
+        // Actions
+        exportCSV: 'ייצא CSV',
+        exportAll: 'ייצא הכל',
+        exportFiltered: 'ייצא מסוננים',
+        refresh: 'רענן',
+        // Categories
+        userManagement: 'ניהול משתמשים',
+        contentManagement: 'ניהול תוכן',
+        system: 'מערכת',
+        security: 'אבטחה',
+        dataExport: 'ייצוא נתונים',
+        general: 'כללי',
+        // Action types
+        userDeleted: 'משתמש נמחק',
+        userEdited: 'משתמש נערך',
+        contentModified: 'תוכן שונה',
+        contentFlagged: 'תוכן דווח',
+        settingsChanged: 'הגדרות שונו',
+        dataExported: 'נתונים יוצאו',
+        roleChanged: 'תפקיד שונה',
+        profileViewed: 'פרופיל נצפה',
+        notificationSent: 'התראה נשלחה',
+        userBanned: 'משתמש נחסם',
+        userUnbanned: 'חסימת משתמש בוטלה',
+        commentDeleted: 'תגובה נמחקה',
+        guideUnpublished: 'מדריך הוסר מפרסום',
+        // States
+        loading: 'טוען יומן פעולות...',
+        noData: 'אין רשומות ביומן',
+        noResults: 'לא נמצאו תוצאות התואמות את החיפוש',
+        error: 'שגיאה בטעינת יומן פעולות',
+        // Pagination
+        showing: 'מציג',
+        of: 'מתוך',
+        results: 'תוצאות',
+        previousPage: 'עמוד קודם',
+        nextPage: 'עמוד הבא',
+        // Export messages
+        exportSuccess: 'הקובץ יוצא בהצלחה',
+        exportError: 'שגיאה בייצוא הקובץ',
+        exportingData: 'מייצא נתונים...',
+      },
     },
   },
 
@@ -1323,6 +1460,8 @@ export const hebrewLocale: LocaleStrings = {
     letsPersonalize: 'בואו נתאים אישית את המסע שלכם',
     skipLater: 'אעשה זאת מאוחר יותר',
     skipDescription: 'תוכל להשלים את הפרופיל שלך בכל עת מההגדרות',
+    avatarStepTitle: 'בחר את האווטר שלך',
+    avatarStepDescription: 'בחר תמונה שמייצגת אותך בצורה הטובה ביותר',
     step2Title: 'מה התפקיד שלך?',
     step2Description: 'זה עוזר לנו להמליץ על תוכן רלוונטי עבורך',
     step3Title: 'מה מעניין אותך?',
@@ -1332,8 +1471,8 @@ export const hebrewLocale: LocaleStrings = {
     step5Title: 'מסלול הלמידה שלך',
     step5Description: 'בנינו מסלול מותאם אישית עבורך',
     complete: 'השלמת את תהליך ההכנה!',
-    stepsInfo: '5 שלבים מהירים',
-    timeInfo: '2 דקות',
+    stepsInfo: '6 שלבים מהירים',
+    timeInfo: '3 דקות',
     personalizedInfo: 'מותאם אישית עבורך',
   },
 

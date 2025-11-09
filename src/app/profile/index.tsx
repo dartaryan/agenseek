@@ -485,7 +485,7 @@ export function ProfilePage() {
                 <div className="flex gap-2">
                   <Button onClick={handleRerunOnboarding} variant="outline" size="sm">
                     <IconSparkles className="w-4 h-4 ml-2" />
-                    חזור להונחיה
+                    חזור לאון בורדינג
                   </Button>
                   <Button onClick={() => setIsEditing(true)} variant="outline" size="sm">
                     ערוך העדפות

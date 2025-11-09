@@ -1,291 +1,351 @@
-# 🚀 NEXT STORY: Story 0.5 - Expand Avatar Collection & Add Onboarding Avatar Selection
+# 🚀 NEXT STORY: Story 10.1 - Implement Mobile-Responsive Navigation
 
-**Updated:** November 8, 2025
+**Updated:** November 9, 2025
 
 ---
 
 ## ✅ Previous Work
 
-### Story 9.4 Complete!
+### Story 9.6 Complete!
 
-Admins now have comprehensive user engagement insights! Features include:
+Admins now have a comprehensive audit log of all administrative actions! Features include:
 
-- **User Segmentation** with four categories:
-  - Highly engaged (70%+ progress) - Green
-  - Moderately engaged (30-70% progress) - Blue
-  - Low engagement (<30% progress) - Amber
-  - At risk (never onboarded) - Red
-- **Engagement Funnel** with five stages:
-  - Registered → Onboarded → First Guide → 5 Guides → All Core Complete
-  - Drop-off rates calculated for each transition
-  - Visual progress bars showing funnel progression
-- **Activity Heatmap** showing:
-  - 7x24 grid (day of week vs hour of day)
-  - Last 30 days of activity data
-  - Color-coded heat intensity
-  - Interactive tooltips with activity counts
-- **Cohort Analysis** by registration month:
-  - User count per cohort
-  - Retention rate (% active in last 30 days)
-  - Completion rate (average progress)
-  - Visual progress bars for metrics
-- **Export Functionality:**
-  - Export individual segment user lists to CSV
-  - Export overall engagement report to CSV
-  - Files include user details and progress metrics
+- **Action Log Table** with complete details:
+  - Admin user with avatar
+  - Action type and category
+  - Target entity (user, guide, comment, etc.)
+  - Human-readable descriptions in Hebrew
+  - Timestamps in Hebrew locale format
+  - IP address and user agent tracking
+  - Metadata storage (JSONB)
+- **Advanced Filtering:**
+  - Search by description, target, or action type
+  - Filter by admin user
+  - Filter by action category
+  - Filter by date range (start/end dates)
+  - Apply/clear filters
+- **CSV Export:**
+  - Export all matching records
+  - UTF-8 BOM for Hebrew text support
+  - Timestamped filenames
+- **Pagination:**
+  - 50 records per page
+  - Previous/Next navigation
+  - Page count display
+- **Security:**
+  - RLS policies (admins only)
+  - Immutable logs (no UPDATE/DELETE)
+  - Route protection
+- **Helper Functions:**
+  - `logUserDeleted()`, `logUserEdited()`
+  - `logContentModified()`, `logDataExported()`
+  - `logSettingsChanged()`, `logRoleChanged()`
+  - And more...
+- **Automatic Logging:**
+  - User deletion trigger
+  - Ready for integration with other admin actions
 - **Hebrew localization** throughout
 - **Responsive design** for all devices
-- **Color-coded visualizations** for quick insights
 
-**Completion File:** See `STORY-9.4-COMPLETE.md` for full details.
+**Completion File:** See `STORY-9.6-COMPLETE.md` for full details.
 
-**Epic 9 Status:** 4/6 stories complete (67%)
+**Epic 9 Status:** 6/6 stories complete (100%) ✅
+
+---
+
+## 📍 Epic 9 Complete! 🎉
+
+All stories in Epic 9 (Admin Analytics & Management) are now complete:
+
+- ✅ Story 9.1: Build Admin Dashboard Overview
+- ✅ Story 9.2: Build User Management Page
+- ✅ Story 9.3: Build Content Analytics Page
+- ✅ Story 9.4: Build User Engagement Report
+- ✅ Story 9.5: Implement Admin Notifications and Alerts
+- ✅ Story 9.6: Build Admin Action Log
+
+**Admins now have:**
+- Complete dashboard with statistics and activity graphs
+- User management with search, filters, and bulk actions
+- Content analytics with guide performance metrics
+- User engagement reports with segmentation and funnels
+- Notification system with preferences
+- Comprehensive audit log
 
 ---
 
 ## 📍 Next Story to Implement
 
-### **Story 0.5: Expand Avatar Collection & Add Onboarding Avatar Selection**
+### **Story 10.1: Implement Mobile-Responsive Navigation**
 
-**Epic:** Side Stories (0.x - On-the-Go Enhancements)
-**Priority:** P2
-**Sprint:** Current (Ad-hoc)
+**Epic:** 10 - Responsive Design & Accessibility
+**Priority:** P0
+**Sprint:** 13 (Week 13)
 **Story Points:** 3
-**Dependencies:** Story 0.3 Complete ✅
+**Dependencies:** Epic 9 Complete ✅
 
 ---
 
-## 🎯 Story 0.5 Overview
+## 🎯 Story 10.1 Overview
 
-Expand the avatar collection from 4 to 8 styles (192 total options) and integrate avatar selection as Step 2 in the onboarding flow. Also update Hebrew term from "הדרכה" to "און בורדינג" throughout the application.
+Make the navigation fully responsive for mobile devices (< 640px), implementing a hamburger menu, mobile drawer navigation, and touch-optimized interactions.
 
 ### User Story
 
-**As a new user,**
-**I want to choose from a wider variety of avatars during onboarding,**
-**So that I can express my personality and feel more connected to the platform from the start.**
+**As a mobile user,**
+**I want intuitive navigation on my phone,**
+**So that I can access all features easily without desktop-sized menus.**
 
 ---
 
 ## 📋 Acceptance Criteria
 
-### 1. Expanded Avatar Collection
+### 1. Hamburger Menu Button (Mobile Only)
 
-**Given I am selecting an avatar**
-**Then I should see:**
-
-- [ ] **8 avatar styles** (expanded from 4):
-  1. Avataaars (פרצופים מצוירים)
-  2. Bottts (רובוטים)
-  3. Lorelei (פרצופים מאוירים)
-  4. Personas (פרצופים מגוונים)
-  5. Micah (דמויות מינימליסטיות) - NEW
-  6. Adventurer (הרפתקנים) - NEW
-  7. Big Smile (חיוך גדול) - NEW
-  8. Fun Emoji (אימוג'ים כיפיים) - NEW
-- [ ] 24 variations per style
-- [ ] Total 192 avatar options (doubled from 96)
-- [ ] Hebrew labels for all styles
-
-### 2. Onboarding Avatar Selection Step
-
-**Given I am going through onboarding**
-**When I reach Step 2**
+**Given I am on a mobile device (<640px)**
+**When I view the header**
 **Then:**
 
-- [ ] Avatar selection step displays after welcome
-- [ ] Shows "בחר את האווטר שלך" title
-- [ ] Displays 8 style tabs
-- [ ] Shows 12 avatar options per style
-- [ ] Large preview of selected avatar
-- [ ] Can select any avatar
-- [ ] "Next" button proceeds to role selection
-- [ ] "Back" returns to welcome
-- [ ] "Skip" uses default avatar
-- [ ] Selected avatar saves to profile
+- [ ] Hamburger icon (☰) visible in top-right
+- [ ] Logo/brand in top-left
+- [ ] Desktop nav menu hidden
+- [ ] Hamburger button accessible and tappable (44x44px minimum)
+- [ ] Smooth animation on open/close
 
-### 3. Updated Onboarding Flow (6 Steps)
+### 2. Mobile Drawer Navigation
 
-**New flow:**
-1. Welcome (ברוכים הבאים)
-2. Avatar Selection (בחירת אווטר) ⭐ NEW
-3. Role Selection (תפקיד)
-4. Interests (תחומי עניין)
-5. Experience (ניסיון)
-6. Learning Path (נתיב למידה)
-
-**Requirements:**
-- [ ] `TOTAL_STEPS = 6` (changed from 5)
-- [ ] Progress shows "X / 6"
-- [ ] All steps navigate correctly
-- [ ] Avatar saves on completion
-
-### 4. Hebrew Localization Update
-
-**Given** Hebrew localization
+**Given I tap the hamburger menu**
+**When the drawer opens**
 **Then:**
 
-- [ ] Update "הדרכה" → "און בורדינג" throughout
-- [ ] Profile page button updated
-- [ ] Guide categories updated
-- [ ] Navigation labels updated
-- [ ] All Hebrew text maintains RTL
+- [ ] Drawer slides in from right (RTL support)
+- [ ] Full-height overlay
+- [ ] Main navigation items visible:
+  - לוח בקרה (Dashboard)
+  - מדריכים (Guides)
+  - הערות (Notes)
+  - משימות (Tasks)
+  - פרופיל (Profile)
+  - הגדרות (Settings)
+- [ ] Admin section visible if admin user
+- [ ] Active item highlighted
+- [ ] Icons + labels for each item
+- [ ] Smooth slide-in animation (300ms)
+- [ ] Close button (X) at top
+- [ ] Backdrop overlay (semi-transparent)
+
+### 3. Backdrop and Close Behavior
+
+**Given the mobile drawer is open**
+**When I interact**
+**Then:**
+
+- [ ] Tapping backdrop closes drawer
+- [ ] Tapping close button (X) closes drawer
+- [ ] Tapping a navigation link closes drawer and navigates
+- [ ] Smooth slide-out animation
+- [ ] Body scroll locked while drawer open
+- [ ] ESC key closes drawer
+
+### 4. Touch Interactions
+
+**Given I am using touch input**
+**Then:**
+
+- [ ] All buttons have minimum 44x44px touch target
+- [ ] No hover states interfering with touch
+- [ ] Immediate visual feedback on tap
+- [ ] Swipe right-to-left closes drawer (optional enhancement)
+- [ ] Smooth scrolling in drawer
+
+### 5. Desktop Behavior Unchanged
+
+**Given I am on desktop (≥640px)**
+**Then:**
+
+- [ ] Hamburger menu hidden
+- [ ] Standard horizontal navigation visible
+- [ ] Sidebar visible (if not collapsed)
+- [ ] No mobile drawer behavior
+
+### 6. Accessibility
+
+**Given I am using assistive technology**
+**Then:**
+
+- [ ] Hamburger button has proper aria-label
+- [ ] Drawer has proper aria-modal
+- [ ] Focus trap inside drawer when open
+- [ ] Focus returns to hamburger on close
+- [ ] Keyboard navigation works (Tab, Shift+Tab, ESC)
 
 ---
 
 ## 🔨 Implementation Plan
 
-### 1. Install New DiceBear Collections
+### 1. Create Mobile Navigation Components
 
-```bash
-npm install @dicebear/micah @dicebear/adventurer @dicebear/big-smile @dicebear/fun-emoji
-```
-
-### 2. Update Avatar Library
-
-**File:** `src/lib/avatar.ts`
-
-- Add imports for 4 new styles
-- Update `AvatarStyle` type to include 8 styles
-- Update `styleCollections` object
-- Update `avatarStyles` array with Hebrew labels
-
-### 3. Create Onboarding Avatar Step
-
-**File:** `src/components/onboarding/AvatarSelectionStep.tsx` (NEW)
+**File:** `src/components/layout/MobileNav.tsx` (exists, may need updates)
 
 **Features:**
-- Large avatar preview
-- 8 style tabs
-- Grid of 12 avatars per style
-- Selected avatar highlighted
-- Back/Next/Skip navigation
+- Hamburger button component
+- Mobile drawer component
+- Navigation items list
+- Backdrop overlay
+- Close button
 
-### 4. Update Onboarding Wizard
+### 2. Update Header Component
 
-**File:** `src/app/onboarding/wizard.tsx`
+**File:** `src/components/layout/Header.tsx`
 
-- Change `TOTAL_STEPS` from 5 to 6
-- Add avatar state management
-- Insert `AvatarSelectionStep` as Step 2
-- Renumber all subsequent steps
-- Save avatar config on completion
+**Changes:**
+- Show hamburger on mobile (<640px)
+- Hide desktop nav on mobile
+- Manage drawer open/close state
 
-### 5. Update Progress Component
+### 3. Update Layout Component
 
-**File:** `src/components/onboarding/ProgressDots.tsx`
+**File:** `src/app/layout.tsx`
 
-- Add "בחירת אווטר" label
-- Support 6 steps total
+**Changes:**
+- Integrate mobile navigation
+- Handle body scroll lock
+- Manage drawer state globally
 
-### 6. Update Hebrew Localization
+### 4. Add Responsive Utilities
 
-**File:** `src/lib/locale/he.ts`
+**File:** `src/hooks/useMobileNav.ts` (new)
 
-- Add avatar step strings
-- Update "הדרכה" → "און בורדינג" throughout
-- Update step count from 5 to 6
-- Update time from 2 to 3 minutes
+**Features:**
+- `useMobileNav()` hook for drawer state
+- Body scroll lock logic
+- Focus trap management
 
-### 7. Update Profile Page
+### 5. Update Tailwind Breakpoints
 
-**File:** `src/app/profile/index.tsx`
+**File:** `tailwind.config.js`
 
-- Update "Return to Onboarding" button text
+**Verify:**
+- Mobile: < 640px (sm)
+- Tablet: 640px - 1024px (md, lg)
+- Desktop: ≥1024px (xl)
 
-### 8. Update Guide Categories
+### 6. Test on Real Devices
 
-**Files:** Guide metadata and category labels
-
-- Update "הדרכה" → "און בורדינג" in category labels
+**Devices:**
+- iPhone (Safari)
+- Android (Chrome)
+- iPad (Safari)
+- Small Android tablet
 
 ---
 
 ## 🎨 UI/UX Considerations
 
-### Avatar Selection Step Design
-- **Header:** Sparkle icon with title
-- **Large Preview:** 128px circular avatar with checkmark badge
-- **Style Tabs:** 8 pills, active highlighted with primary color
-- **Avatar Grid:** 4x3 grid (12 avatars), responsive
-- **Selected State:** Ring border + checkmark overlay
-- **Navigation:** Back/Skip/Next buttons at bottom
+### Mobile Drawer Design
+- **Width:** 280px (80% of screen max)
+- **Background:** White with subtle shadow
+- **Animation:** Slide from right (RTL), 300ms ease-out
+- **Backdrop:** rgba(0, 0, 0, 0.5)
 
-### Simplified vs. Full Selector
-- **Onboarding:** 12 options per style (simpler, faster)
-- **Profile/Settings:** 24 options per style (full variety)
+### Navigation Items
+- **Height:** 56px per item
+- **Padding:** 16px horizontal
+- **Active state:** Emerald background with checkmark
+- **Hover state:** Light gray background
+- **Icons:** 24x24px, left-aligned (RTL)
 
-### New Avatar Styles
-1. **Micah:** Clean, minimalist illustrated characters
-2. **Adventurer:** Adventure-themed with accessories
-3. **Big Smile:** Happy, friendly, welcoming faces
-4. **Fun Emoji:** Emoji-style with personality
+### Hamburger Icon
+- **Size:** 44x44px (touch target)
+- **Icon size:** 24x24px
+- **Color:** Slate-700
+- **Position:** Top-right corner
+- **Animation:** Transform to X on open
 
-### Animations
-- Style tab switch: Smooth fade transition
-- Avatar grid: Stagger entrance
-- Preview update: Scale bounce effect
-- Navigation: Slide transitions between steps
+### Close Button
+- **Size:** 44x44px
+- **Icon:** X (close icon)
+- **Position:** Top-left of drawer
+- **Color:** Slate-500
 
 ---
 
 ## 🧪 Testing Scenarios
 
-### Happy Path - New User with Avatar Selection
-1. New user registers
-2. Onboarding Step 1 (Welcome)
-3. Clicks "Next" → Step 2 (Avatar)
-4. Sees 8 style tabs
-5. Selects "הרפתקנים" (Adventurer)
-6. Sees 12 adventurer avatars
-7. Selects favorite avatar
-8. Clicks "Next"
-9. **Expected:** Avatar saved, proceeds to Step 3 (Role)
+### Happy Path - Mobile Navigation
 
-### Happy Path - Skip Avatar Selection
-1. User at Step 2 (Avatar)
-2. Clicks "דלג" (Skip)
-3. **Expected:**
-   - Default avatar assigned
-   - Proceeds to Step 3
-   - Can change later in Profile
+1. User visits site on iPhone
+2. Sees hamburger menu in header
+3. Taps hamburger
+4. **Expected:**
+   - Drawer slides in from right
+   - Backdrop appears
+   - Navigation items visible
+   - Body scroll locked
+5. Taps "מדריכים" (Guides)
+6. **Expected:**
+   - Drawer closes
+   - Navigates to /guides
+   - Body scroll restored
 
-### Happy Path - All 8 Styles Work
-1. User on Avatar step
-2. Clicks each of 8 style tabs
-3. **Expected:**
-   - Each loads 12 unique avatars
-   - No errors
-   - Previews update correctly
+### Happy Path - Close Drawer
 
-### Edge Case - Back Navigation
-1. User at Step 3 (Role)
-2. Clicks "Back"
+1. User opens drawer
+2. Taps backdrop
 3. **Expected:**
-   - Returns to Step 2 (Avatar)
-   - Previous selection preserved
+   - Drawer slides out
+   - Backdrop fades out
+   - Body scroll restored
 
-### Edge Case - Existing User Re-onboarding
-1. User with avatar clicks "חזור לאון בורדינג"
-2. Reaches Step 2
+### Happy Path - Admin Navigation
+
+1. Admin user opens drawer
+2. **Expected:**
+   - Sees "ניהול" section
+   - Can access admin pages
+   - Admin items styled differently
+
+### Edge Case - Keyboard Navigation
+
+1. User opens drawer
+2. Presses Tab
 3. **Expected:**
-   - Current avatar pre-selected
-   - Can change or keep existing
+   - Focus moves through nav items
+   - Focus trapped inside drawer
+4. Presses ESC
+5. **Expected:**
+   - Drawer closes
+   - Focus returns to hamburger
+
+### Edge Case - Screen Rotation
+
+1. User opens drawer in portrait
+2. Rotates to landscape
+3. **Expected:**
+   - Drawer adapts to new dimensions
+   - No layout issues
+   - Still functions correctly
 
 ---
 
-## 🔐 Security & Validation
+## 🔐 Accessibility Requirements
 
-### Client-Side
-- Validate avatar style in allowed list
-- Validate seed string format
-- Sanitize avatar options JSON
-- Prevent XSS in SVG rendering
+### ARIA Attributes
+- `aria-label="תפריט ניווט"` on hamburger
+- `aria-expanded="true/false"` on hamburger
+- `role="dialog"` on drawer
+- `aria-modal="true"` on drawer
+- `aria-label="סגור תפריט"` on close button
 
-### Server-Side
-- Avatar style enum validation
-- Avatar seed max length check
-- Profile update requires auth
+### Focus Management
+- Focus trap inside drawer
+- Focus returns to hamburger on close
+- All interactive elements keyboard-accessible
+
+### Screen Reader Support
+- Announce drawer state changes
+- Describe navigation structure
+- Announce current page
 
 ---
 
@@ -293,51 +353,57 @@ npm install @dicebear/micah @dicebear/adventurer @dicebear/big-smile @dicebear/f
 
 Before marking story complete:
 
-- [ ] New DiceBear packages installed
-- [ ] `avatar.ts` updated with 8 styles
-- [ ] All 8 styles generate correctly
-- [ ] Avatar selector shows 8 styles
-- [ ] `AvatarSelectionStep` component created
-- [ ] Onboarding wizard updated to 6 steps
-- [ ] Progress shows 6 steps correctly
-- [ ] Avatar step is Step 2
-- [ ] All subsequent steps renumbered
-- [ ] Avatar saves to database
-- [ ] "און בורדינג" updated throughout
-- [ ] Profile button text updated
-- [ ] Guide categories updated
-- [ ] Avatar step skippable
+- [ ] Mobile nav components created
+- [ ] Header updated for mobile
+- [ ] Hamburger menu functional
+- [ ] Drawer slides in/out smoothly
+- [ ] Backdrop overlay works
+- [ ] Navigation items clickable
+- [ ] Active item highlighted
+- [ ] Admin section shows for admins
+- [ ] Close on backdrop tap
+- [ ] Close on X button tap
+- [ ] Close on nav item tap
+- [ ] ESC key closes drawer
+- [ ] Body scroll locked when open
+- [ ] Focus trap implemented
+- [ ] ARIA attributes added
+- [ ] Keyboard navigation works
+- [ ] Touch targets ≥44x44px
+- [ ] Desktop behavior unchanged
 - [ ] No TypeScript errors
 - [ ] No linter errors
-- [ ] Responsive on all devices
-- [ ] Build completes successfully
-- [ ] Manual testing passed
+- [ ] Build succeeds
+- [ ] Tested on iPhone
+- [ ] Tested on Android
+- [ ] Responsive at all breakpoints
 
 ---
 
 ## 🚀 Ready to Implement!
 
-Story 0.3 complete with avatar selection. Story 0.5 will double the avatar variety and make avatar personalization a core part of the first-time user experience.
+Epic 9 complete! Story 10.1 will begin the final sprint focused on responsive design and accessibility to prepare Agenseek for launch.
 
 **Key Changes:**
-- 4 → 8 avatar styles (96 → 192 options)
-- 5 → 6 onboarding steps
-- Avatar selection as Step 2
-- "הדרכה" → "און בורדינג" throughout
+- Mobile-first navigation pattern
+- Drawer-based mobile menu
+- Touch-optimized interactions
+- Full keyboard accessibility
 
-**Full details in:** `STORY-0.5.md`
+**Full details in:** Story documentation (to be created in docs/stories/)
 
-**Let's expand the avatars! 🎨**
+**Let's make Agenseek mobile-friendly! 📱**
 
 ---
 
-## 📚 Other Available Stories
+## 📚 Alternative Stories
 
-If you'd prefer to work on Epic 9 instead:
+If you'd prefer to work on other enhancements:
 
-### **Story 9.5: Implement Admin Notifications and Alerts**
-- **Epic:** 9 - Admin Analytics & Management
-- **Priority:** P1
-- **Story Points:** 2
-- **Status:** Ready to implement
-- Notification bell, dropdown, alerts for admins
+### **Story 0.5: Expand Avatar Collection & Add Onboarding Avatar Selection**
+- **Epic:** Side Stories (0.x - On-the-Go Enhancements)
+- **Priority:** P2
+- **Story Points:** 3
+- Expand from 4 to 8 avatar styles (192 total options)
+- Add avatar selection as Step 2 in onboarding
+- Update Hebrew term "הדרכה" → "און בורדינג"

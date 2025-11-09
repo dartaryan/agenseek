@@ -11,6 +11,7 @@ import {
   IconUsers,
   IconChartBar,
   IconTrendingUp,
+  IconClipboardList,
   IconLayoutSidebarLeftCollapse,
   IconLayoutSidebarLeftExpand,
 } from '@tabler/icons-react';
@@ -51,6 +52,7 @@ const adminItems: NavItem[] = [
   { name: hebrewLocale.pages.admin.userManagement, href: '/admin/users', icon: IconUsers },
   { name: hebrewLocale.pages.admin.analytics.title, href: '/admin/analytics', icon: IconChartBar },
   { name: hebrewLocale.pages.admin.engagementReport.title, href: '/admin/engagement', icon: IconTrendingUp },
+  { name: hebrewLocale.pages.admin.actionLog.title, href: '/admin/logs', icon: IconClipboardList },
 ];
 
 /**

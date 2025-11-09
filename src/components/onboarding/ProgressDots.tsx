@@ -8,10 +8,11 @@ interface ProgressDotsProps {
 export function ProgressDots({ currentStep, totalSteps }: ProgressDotsProps) {
   const steps = [
     { number: 1, label: 'ברוכים הבאים' },
-    { number: 2, label: 'תפקיד' },
-    { number: 3, label: 'תחומי עניין' },
-    { number: 4, label: 'ניסיון' },
-    { number: 5, label: 'נתיב למידה' },
+    { number: 2, label: 'בחירת אווטר' },
+    { number: 3, label: 'תפקיד' },
+    { number: 4, label: 'תחומי עניין' },
+    { number: 5, label: 'ניסיון' },
+    { number: 6, label: 'נתיב למידה' },
   ];
 
   return (

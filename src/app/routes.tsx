@@ -35,6 +35,7 @@ import { UserManagementPage } from './admin/users';
 import ContentAnalyticsPage from './admin/analytics';
 import EngagementReportPage from './admin/engagement';
 import { AdminNotificationPreferencesPage } from './admin/notifications/preferences';
+import AdminActionLogPage from './admin/logs';
 
 /**
  * Root route component
@@ -194,6 +195,10 @@ export const router = createBrowserRouter([
       {
         path: 'notifications/preferences',
         element: <AdminNotificationPreferencesPage />,
+      },
+      {
+        path: 'logs',
+        element: <AdminActionLogPage />,
       },
     ],
   },

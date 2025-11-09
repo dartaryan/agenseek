@@ -29,17 +29,20 @@ import {
 import { Button } from '@/components/ui/button';
 import { AnimatedBackground } from '@/components/ui/AnimatedBackground';
 import { ProgressDots } from '@/components/onboarding/ProgressDots';
+import { AvatarSelectionStep } from '@/components/onboarding/AvatarSelectionStep';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/hooks/useAuth';
 import { getGuideCatalog } from '@/lib/guide-catalog';
 import { categorizeGuidesByLearningPath } from '@/lib/learning-path';
 import confetti from 'canvas-confetti';
+import type { AvatarConfig } from '@/lib/avatar';
 
-const TOTAL_STEPS = 5;
+const TOTAL_STEPS = 6;
 
 export function OnboardingWizardPage() {
   const [currentStep, setCurrentStep] = useState(1);
+  const [selectedAvatar, setSelectedAvatar] = useState<AvatarConfig | null>(null);
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
   const [selectedExperience, setSelectedExperience] = useState<string | null>(null);
@@ -59,12 +62,40 @@ export function OnboardingWizardPage() {
     }
   };
 
-  const handleSkip = () => {
-    toast({
-      title: 'הונחיה דולגה',
-      description: 'ניתן להשלים את הפרופיל שלך בכל עת מההגדרות.',
-    });
-    navigate('/dashboard');
+  const handleSkip = async () => {
+    if (!user?.id) {
+      console.error('No user ID found');
+      return;
+    }
+
+    try {
+      // Mark onboarding as completed even when skipped
+      const { error } = await supabase
+        .from('profiles')
+        .update({
+          completed_onboarding: true,
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', user.id);
+
+      if (error) throw error;
+
+      // Refresh the profile in auth context
+      await refreshProfile();
+
+      toast({
+        title: 'און בורדינג דולג',
+        description: 'ניתן להשלים את הפרופיל שלך בכל עת מההגדרות.',
+      });
+      navigate('/dashboard');
+    } catch (error) {
+      console.error('Error skipping onboarding:', error);
+      toast({
+        title: 'שגיאה',
+        description: 'נכשל בדילוג על און בורדינג. אנא נסה שוב.',
+        variant: 'destructive',
+      });
+    }
   };
 
   const handleToggleInterest = (interestId: string) => {
@@ -91,6 +122,19 @@ export function OnboardingWizardPage() {
               <WelcomeStep key="welcome" onNext={handleNext} onSkip={handleSkip} />
             )}
             {currentStep === 2 && (
+              <AvatarSelectionStep
+                key="avatar"
+                userId={user?.id || ''}
+                initialConfig={selectedAvatar}
+                onNext={(config) => {
+                  setSelectedAvatar(config);
+                  handleNext();
+                }}
+                onBack={handleBack}
+                onSkip={handleSkip}
+              />
+            )}
+            {currentStep === 3 && (
               <RoleStep
                 key="role"
                 selectedRole={selectedRole}
@@ -99,7 +143,7 @@ export function OnboardingWizardPage() {
                 onBack={handleBack}
               />
             )}
-            {currentStep === 3 && (
+            {currentStep === 4 && (
               <InterestsStep
                 key="interests"
                 selectedInterests={selectedInterests}
@@ -108,7 +152,7 @@ export function OnboardingWizardPage() {
                 onBack={handleBack}
               />
             )}
-            {currentStep === 4 && (
+            {currentStep === 5 && (
               <ExperienceStep
                 key="experience"
                 selectedExperience={selectedExperience}
@@ -117,13 +161,14 @@ export function OnboardingWizardPage() {
                 onBack={handleBack}
               />
             )}
-            {currentStep === 5 && (
+            {currentStep === 6 && (
               <LearningPathStep
                 key="path"
                 userId={user?.id || ''}
                 selectedRole={selectedRole || ''}
                 selectedInterests={selectedInterests}
                 selectedExperience={selectedExperience || ''}
+                selectedAvatar={selectedAvatar}
                 onComplete={() => navigate('/dashboard')}
                 onBack={handleBack}
                 refreshProfile={refreshProfile}
@@ -224,11 +269,11 @@ function WelcomeStep({ onNext, onSkip }: WelcomeStepProps) {
       >
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-primary rounded-full" />
-          <span>5 שלבים מהירים</span>
+          <span>6 שלבים מהירים</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-primary rounded-full" />
-          <span>2 דקות</span>
+          <span>3 דקות</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-primary rounded-full" />
@@ -727,6 +772,7 @@ interface LearningPathStepProps {
   selectedRole: string;
   selectedInterests: string[];
   selectedExperience: string;
+  selectedAvatar: AvatarConfig | null;
   onComplete: () => void;
   onBack: () => void;
   refreshProfile: () => Promise<void>;
@@ -750,6 +796,7 @@ function LearningPathStep({
   selectedRole,
   selectedInterests,
   selectedExperience,
+  selectedAvatar,
   onComplete,
   onBack,
   refreshProfile,
@@ -864,6 +911,9 @@ function LearningPathStep({
           role: selectedRole,
           interests: selectedInterests,
           experience_level: selectedExperience as 'beginner' | 'intermediate' | 'advanced',
+          avatar_style: selectedAvatar?.style,
+          avatar_seed: selectedAvatar?.seed,
+          avatar_options: selectedAvatar?.options || {},
           completed_onboarding: true,
           updated_at: new Date().toISOString(),
         })

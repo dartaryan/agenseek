@@ -1,0 +1,984 @@
+{
+  "metadata": {
+    "id": "tea-ux",
+    "slug": "tea-ux",
+    "title": "מדריך אג'נטים - חלק 2א: TEA + UX Designer",
+    "description": "הכירו את אג'נטי האיכות והעיצוב של BMAD: Murat (Test Architect Expert) לאסטרטגיית בדיקות ואיכות, ו-Sally (UX Designer) לעיצוב חוויית משתמש. תפקידם, וורקפלואים, ודוגמאות מעשיות.",
+    "category": "agents",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 35,
+    "icon": "TestPipe",
+    "tags": ["אג'נטים", "בדיקות", "QA", "UX", "עיצוב", "Murat", "Sally", "TEA"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "מבוא - איכות ועיצוב",
+      "level": 2,
+      "anchor": "intro"
+    },
+    {
+      "id": "toc-2",
+      "title": "Murat - מומחה ארכיטקטורת בדיקות (TEA)",
+      "level": 2,
+      "anchor": "murat-tea"
+    },
+    {
+      "id": "toc-3",
+      "title": "Sally - מעצבת UX/UI",
+      "level": 2,
+      "anchor": "sally-ux"
+    },
+    {
+      "id": "toc-4",
+      "title": "עבודה משותפת של שני האג'נטים",
+      "level": 2,
+      "anchor": "collaboration"
+    },
+    {
+      "id": "toc-5",
+      "title": "תרחישים מעשיים",
+      "level": 2,
+      "anchor": "scenarios"
+    },
+    {
+      "id": "toc-6",
+      "title": "שאלות נפוצות",
+      "level": 2,
+      "anchor": "faq"
+    },
+    {
+      "id": "toc-7",
+      "title": "סיכום ומה הלאה",
+      "level": 2,
+      "anchor": "summary"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מדריך אג'נטים - חלק 2א: TEA + UX Designer",
+      "id": "main-title"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "מבוא - איכות ועיצוב",
+      "id": "intro"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "בחלקים הקודמים (1א ו-1ב) הכרנו את האג'נטים האסטרטגיים והטכניים - אלה שעוזרים לנו להגדיר **מה** אנחנו בונים, לתכנן **איך** לבנות, ולבצע את **המימוש** בפועל.\n\nעכשיו נעבור לשני אג'נטים קריטיים שמבטיחים שהמוצר שלנו לא רק **עובד** אלא גם **איכותי** ו**נעים לשימוש**: Murat (Test Architect Expert) ו-Sally (UX Designer)."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מי האג'נטים בחלק זה?",
+      "id": "agents-overview"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "Murat (TEA) - מתכנן אסטרטגיית בדיקות ומבטיח איכות המוצר"
+        },
+        {
+          "content": "Sally (UX Designer) - מעצבת חוויית משתמש ומבטיחה שהמוצר נעים ופשוט לשימוש"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "איכות וחוויה - שני צדדים של אותו מטבע",
+      "content": "Murat מבטיח שהמוצר עובד נכון מבחינה טכנית, Sally מבטיחה שהמוצר נעים ואינטואיטיבי למשתמש. ביחד הם יוצרים מוצר משובח."
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "למה חשוב להכיר אותם?",
+      "content": "הרבה פרויקטים נכשלים לא בגלל שהקוד לא עובד, אלא בגלל שהבדיקות לא מספיקות או שחוויית המשתמש גרועה. Murat ו-Sally עוזרים למנוע את זה."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Murat - מומחה ארכיטקטורת בדיקות (TEA)",
+      "id": "murat-tea"
+    },
+    {
+      "type": "card",
+      "title": "Murat - Test Architect Expert",
+      "description": "תפקיד: מומחה ארכיטקטורת בדיקות + מוביל איכות + אסטרטג QA",
+      "icon": "Flask"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מומחיות:",
+      "id": "murat-expertise"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "תכנון אסטרטגיית בדיקות מקיפה (Unit, Integration, E2E, Performance)"
+        },
+        {
+          "content": "בחירת כלי בדיקה מתאימים (Jest, Vitest, Playwright, Cypress)"
+        },
+        {
+          "content": "יצירת תוכניות בדיקה ותרחישי בדיקה (Test Plans & Test Cases)"
+        },
+        {
+          "content": "הגדרת מדדי איכות ו-KPIs לבדיקות"
+        },
+        {
+          "content": "ביקורת קוד בדיקות ושיפור כיסוי בדיקות (Coverage)"
+        },
+        {
+          "content": "אוטומציה של בדיקות ו-CI/CD integration"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מתי להשתמש ב-Murat",
+      "id": "when-murat"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "כאשר מתחילים פרויקט חדש וצריכים לתכנן את אסטרטגיית הבדיקות"
+        },
+        {
+          "content": "כאשר צריכים לבחור כלי בדיקה מתאימים לפרויקט"
+        },
+        {
+          "content": "כאשר צריכים לכתוב תוכנית בדיקה לאפיק או פיצ'ר חדש"
+        },
+        {
+          "content": "כאשר כיסוי הבדיקות נמוך וצריך לשפר אותו"
+        },
+        {
+          "content": "כאשר יש באגים חוזרים וצריך לשפר את תהליך הבדיקות"
+        },
+        {
+          "content": "כאשר צריכים לבדוק ביצועים, אבטחה, או נגישות"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "וורקפלואים עיקריים",
+      "id": "murat-workflows"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "test-strategy - תכנון אסטרטגיית בדיקות מקיפה לפרויקט (הכי חשוב!)"
+        },
+        {
+          "content": "test-plan - יצירת תוכנית בדיקה לאפיק או פיצ'ר ספציפי"
+        },
+        {
+          "content": "test-cases - כתיבת תרחישי בדיקה מפורטים"
+        },
+        {
+          "content": "test-review - ביקורת בדיקות קיימות ושיפור כיסוי"
+        },
+        {
+          "content": "test-automation - תכנון אוטומציה של בדיקות"
+        },
+        {
+          "content": "validate-test-coverage - בדיקת איכות ושלמות של כיסוי הבדיקות"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "הוורקפלואו החשוב ביותר",
+      "content": "test-strategy הוא הוורקפלואו המרכזי של Murat. הוא מנחה אתכם דרך כל השלבים - מהבנת הפרויקט, דרך בחירת כלים, ועד לתכנון מלא של אסטרטגיית הבדיקות."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "סגנון תקשורת",
+      "id": "murat-style"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "Murat מתקשר בצורה **מדויקת ושיטתית**. הוא חושב על **כל התרחישים האפשריים** - לא רק המסלול המאושר (Happy Path) אלא גם כל מה שיכול להשתבש.\n\nהוא שואל שאלות כמו: \"מה קורה כשהמשתמש...?\" \"איך נוודא ש...?\" \"מה אם הרשת נופלת?\" הוא מקפיד על איכות ולא מתפשר על בדיקות חלקיות."
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "עקרונות עבודה",
+      "content": "Murat מאמין ב-Test Pyramid (הרבה Unit Tests, פחות Integration, עוד פחות E2E), באוטומציה מקסימלית, ובשילוב הבדיקות ב-CI/CD כך שכל commit יבדק אוטומטית."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה מעשית מלאה",
+      "id": "murat-example"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**תרחיש:** אתם בונים מערכת הזמנות אונליין ורוצים לוודא שהכל עובד מעולה."
+    },
+    {
+      "type": "accordion",
+      "allowMultiple": false,
+      "items": [
+        {
+          "id": "murat-steps",
+          "title": "שלבי העבודה עם Murat:",
+          "content": [
+            {
+              "type": "list",
+              "variant": "ordered",
+              "items": [
+                {
+                  "content": "טען את Murat: @tea hi"
+                },
+                {
+                  "content": "הרץ את הוורקפלואו המרכזי: *test-strategy"
+                },
+                {
+                  "content": "Murat ישאל אותך: מה סוגי הפיצ'רים? מה ה-critical paths? כמה משתמשים צפויים? מה הסיכונים העיקריים?"
+                },
+                {
+                  "content": "Murat יציע אסטרטגיית בדיקות - Unit Tests לכל לוגיקה עסקית, Integration Tests למערכת התשלומים, E2E Tests למסלול הזמנה מלא"
+                },
+                {
+                  "content": "Murat ימליץ על כלים מתאימים - Vitest ל-Unit, Playwright ל-E2E, k6 לבדיקות עומס"
+                },
+                {
+                  "content": "Murat ייצור מסמך Test Strategy מפורט עם תוכנית ביצוע, מדדים, ולוחות זמנים"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאה",
+      "content": "מסמך אסטרטגיית בדיקות מקיף שמגדיר בדיוק איך ומה לבדוק, עם איזה כלים, ומתי. הצוות יכול להתחיל לכתוב בדיקות בביטחון."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "סוגי הבדיקות שMurat מכיר",
+      "id": "murat-test-types"
+    },
+    {
+      "type": "tabs",
+      "items": [
+        {
+          "id": "unit-tests",
+          "label": "Unit Tests",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**בדיקות יחידה** - בודקות פונקציות בודדות או קלאסים בודדים בבידוד.\n\n**מתי להשתמש:** לכל לוגיקה עסקית, פונקציות עזר, ומחשבים.\n\n**כלים מומלצים:** Vitest, Jest, Mocha"
+            }
+          ]
+        },
+        {
+          "id": "integration-tests",
+          "label": "Integration Tests",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**בדיקות אינטגרציה** - בודקות איך מספר קומפוננטות עובדות ביחד.\n\n**מתי להשתמש:** לבדיקת API endpoints, מסדי נתונים, ושילובי מערכות.\n\n**כלים מומלצים:** Supertest, Testing Library, Playwright"
+            }
+          ]
+        },
+        {
+          "id": "e2e-tests",
+          "label": "E2E Tests",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**בדיקות מקצה לקצה** - בודקות את המערכת כולה מנקודת מבט של המשתמש.\n\n**מתי להשתמש:** למסלולים קריטיים (רכישה, התחברות, תהליכים חשובים).\n\n**כלים מומלצים:** Playwright, Cypress, Selenium"
+            }
+          ]
+        },
+        {
+          "id": "other-tests",
+          "label": "בדיקות נוספות",
+          "content": [
+            {
+              "type": "list",
+              "variant": "unordered",
+              "items": [
+                {
+                  "content": "Performance Tests - בדיקות עומס וביצועים (k6, Artillery)"
+                },
+                {
+                  "content": "Security Tests - בדיקות אבטחה (OWASP ZAP, Burp Suite)"
+                },
+                {
+                  "content": "Accessibility Tests - בדיקות נגישות (axe, Pa11y)"
+                },
+                {
+                  "content": "Visual Regression Tests - בדיקות UI (Percy, Chromatic)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "עובד טוב עם",
+      "id": "murat-works-with"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "Architect (Winston) - Winston מתכנן ארכיטקטורה, Murat מתכנן איך לבדוק אותה"
+        },
+        {
+          "content": "Developer (Amelia) - Amelia כותבת את הקוד, Murat עוזר לה לכתוב בדיקות איכותיות"
+        },
+        {
+          "content": "SM (Bob) - Bob מכין סטוריז עם קריטריוני קבלה, Murat הופך אותם לתרחישי בדיקה"
+        },
+        {
+          "content": "UX Designer (Sally) - Sally מעצבת את הזרימה, Murat בודק שהיא עובדת בכל התרחישים"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "טעות נפוצה",
+      "content": "אל תחכו לסוף הפרויקט כדי לדבר עם Murat! תכנון אסטרטגיית בדיקות בהתחלה חוסך שבועות של תיקוני באגים מאוחר יותר."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Sally - מעצבת UX/UI",
+      "id": "sally-ux"
+    },
+    {
+      "type": "card",
+      "title": "Sally - UX/UI Designer",
+      "description": "תפקיד: מעצבת חוויית משתמש + מומחית נגישות + חוקרת משתמשים",
+      "icon": "Palette"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מומחיות:",
+      "id": "sally-expertise"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "מחקר משתמשים (User Research) והבנת צרכים אמיתיים"
+        },
+        {
+          "content": "עיצוב זרימות משתמש (User Flows) ו-Wireframes"
+        },
+        {
+          "content": "יצירת Design System ו-Component Library"
+        },
+        {
+          "content": "עיצוב נגיש (Accessibility - WCAG)"
+        },
+        {
+          "content": "בדיקות שימושיות (Usability Testing) ו-A/B Testing"
+        },
+        {
+          "content": "תכנון אינטראקציות ו-Microinteractions"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מתי להשתמש ב-Sally",
+      "id": "when-sally"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "כאשר מתחילים פרויקט חדש וצריכים להבין מי המשתמשים ומה הם צריכים"
+        },
+        {
+          "content": "כאשר צריכים לעצב זרימות משתמש לפיצ'רים חדשים"
+        },
+        {
+          "content": "כאשר צריכים לבנות Design System או Component Library"
+        },
+        {
+          "content": "כאשר המוצר לא אינטואיטיבי והמשתמשים מתקשים להשתמש בו"
+        },
+        {
+          "content": "כאשר צריכים לשפר נגישות (Accessibility)"
+        },
+        {
+          "content": "כאשר צריכים לבצע מחקר משתמשים או בדיקות שימושיות"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "וורקפלואים עיקריים",
+      "id": "sally-workflows"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "ux-research - מחקר משתמשים מעמיק להבנת הצרכים (הכי חשוב!)"
+        },
+        {
+          "content": "user-flows - תכנון זרימות משתמש לפיצ'רים"
+        },
+        {
+          "content": "design-system - יצירת Design System מקיף"
+        },
+        {
+          "content": "wireframes - יצירת Wireframes ו-Mockups"
+        },
+        {
+          "content": "accessibility-audit - ביקורת נגישות ושיפורים"
+        },
+        {
+          "content": "usability-testing - תכנון וביצוע בדיקות שימושיות"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "הוורקפלואו החשוב ביותר",
+      "content": "ux-research הוא הוורקפלואו המרכזי של Sally. הוא מנחה אתכם דרך תהליך מחקר מעמיק - מזיהוי משתמשי יעד, דרך איסוף נתונים, ועד לתובנות מעשיות."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "סגנון תקשורת",
+      "id": "sally-style"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "Sally מתקשרת בצורה **אמפתית ומכוונת משתמש**. היא תמיד שואלת **למה המשתמש צריך את זה?** ו**איך זה עוזר לו?**\n\nהיא מביאה נקודת מבט של המשתמש הסופי לכל דיון, ומאתגרת החלטות שלא מתחשבות בחוויה. היא מסבירה עקרונות UX בפשטות ומדגימה עם דוגמאות מהעולם האמיתי."
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "עקרונות עבודה",
+      "content": "Sally מאמינה ב-User-Centered Design (תכנון ממוקד משתמש), באיטרציה מהירה עם פידבק משתמשים, ובפשטות מעל הכל - אם זה מסובך, צריך לפשט אותו."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה מעשית מלאה",
+      "id": "sally-example"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**תרחיש:** אתם בונים אפליקציה לניהול משימות ורוצים שהיא תהיה פשוטה ונעימה לשימוש."
+    },
+    {
+      "type": "accordion",
+      "allowMultiple": false,
+      "items": [
+        {
+          "id": "sally-steps",
+          "title": "שלבי העבודה עם Sally:",
+          "content": [
+            {
+              "type": "list",
+              "variant": "ordered",
+              "items": [
+                {
+                  "content": "טען את Sally: @ux hi"
+                },
+                {
+                  "content": "הרץ: *ux-research"
+                },
+                {
+                  "content": "Sally תשאל אותך: מי משתמשי היעד? מה הצרכים שלהם? מה הכאבים שלהם? מה כבר קיים בשוק?"
+                },
+                {
+                  "content": "Sally תעזור לך לבצע מחקר - ראיונות עם משתמשים פוטנציאליים, ניתוח מתחרים, זיהוי דפוסים"
+                },
+                {
+                  "content": "Sally תיצור User Personas - דמויות שמייצגות את משתמשי היעד"
+                },
+                {
+                  "content": "Sally תתכנן User Flows - איך המשתמש יעבור דרך האפליקציה"
+                },
+                {
+                  "content": "Sally תיצור Wireframes - רישומים ראשוניים של המסכים"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאה",
+      "content": "מסמך UX מקיף עם הבנה עמוקה של המשתמשים, זרימות מתוכננות היטב, ו-Wireframes מוכנים למימוש. הצוות יכול להתחיל לבנות עם ביטחון שהמוצר יהיה אינטואיטיבי."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "עקרונות UX חשובים שSally מלמדת",
+      "id": "sally-ux-principles"
+    },
+    {
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "principle-1",
+          "title": "פשטות (Simplicity)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**\"פחות זה יותר\"** - הסר כל מה שלא חיוני. כל אלמנט בממשק צריך מטרה ברורה. אם משהו לא עוזר למשתמש להשיג את המטרה שלו - תזרוק אותו."
+            }
+          ]
+        },
+        {
+          "id": "principle-2",
+          "title": "עקביות (Consistency)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**דפוסים חוזרים** - השתמש באותם צבעים, כפתורים, ולייאאוטים בכל האפליקציה. משתמשים לומדים דפוסים ומצפים שהם יחזרו על עצמם."
+            }
+          ]
+        },
+        {
+          "id": "principle-3",
+          "title": "פידבק (Feedback)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**תגובה מיידית** - כל פעולה של המשתמש צריכה תגובה ויזואלית. לחצת על כפתור? הוא משנה צבע. שולח טופס? יש הודעה שמאשרת."
+            }
+          ]
+        },
+        {
+          "id": "principle-4",
+          "title": "נגישות (Accessibility)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**עיצוב לכולם** - המוצר צריך להיות נגיש לאנשים עם מוגבלויות - ניגודיות גבוהה, תמיכה במקלדת, תמיכה בקוראי מסך (WCAG 2.1)."
+            }
+          ]
+        },
+        {
+          "id": "principle-5",
+          "title": "מניעת שגיאות (Error Prevention)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מנע לפני שמתקן** - עדיף למנוע שגיאות מלכתחילה מאשר לתקן אותן. השתמש בvalidation, אישורים, ואזהרות לפני פעולות הרסניות."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "עובד טוב עם",
+      "id": "sally-works-with"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "PM (John) - John מגדיר דרישות מוצר, Sally מתרגמת אותן לחוויית משתמש"
+        },
+        {
+          "content": "Analyst (Mary) - Mary עושה מחקר שוק, Sally עושה מחקר משתמשים"
+        },
+        {
+          "content": "Developer (Amelia) - Sally מעצבת, Amelia ממימשת את העיצוב"
+        },
+        {
+          "content": "TEA (Murat) - Sally מעצבת זרימות, Murat בודק שהן עובדות בכל התרחישים"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "טעות נפוצה",
+      "content": "אל תדלגו על Sally ותתחילו לקודד ישירות! עיצוב UX מראש חוסך שבועות של שינויים ב-UI וחוסך תסכול למשתמשים."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "עבודה משותפת של שני האג'נטים",
+      "id": "collaboration"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "Murat ו-Sally עובדים ביחד כצוות איכות-חוויה משולב. הנה איך הם משלימים אחד את השני:"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "נקודות מפגש חשובות",
+      "id": "key-touchpoints"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "Sally → Murat",
+      "content": "Sally מעצבת את זרימות המשתמש והממשק. Murat לוקח את הזרימות האלה ויוצר תרחישי בדיקה לכל מסלול - הן למסלול המאושר והן למסלולי קצה (Edge Cases)."
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "Murat → Sally",
+      "content": "כש-Murat מגלה באגים או בעיות בחוויה במהלך הבדיקות, הוא מעדכן את Sally. Sally יכולה לשפר את העיצוב כדי למנוע את הבעיות האלה בעתיד."
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "עבודה משותפת על נגישות",
+      "content": "Sally מעצבת ממשק נגיש (צבעים, ניגודיות, גודלי פונט). Murat בודק עם כלי Accessibility Testing שהכל עומד בתקני WCAG."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "המסע הטיפוסי",
+      "id": "typical-journey"
+    },
+    {
+      "type": "table",
+      "caption": "תהליך עבודה משולב",
+      "headers": ["שלב", "אג'נט", "מה קורה", "תוצר"],
+      "rows": [
+        ["1. מחקר", "Sally", "מחקר משתמשים", "User Personas"],
+        ["2. עיצוב", "Sally", "זרימות + Wireframes", "UX Designs"],
+        ["3. תכנון בדיקות", "Murat", "תוכנית בדיקה", "Test Plan"],
+        ["4. מימוש", "Dev", "בניית הפיצ'ר", "Working Feature"],
+        ["5. בדיקות", "Murat", "ביצוע בדיקות", "Quality Report"],
+        ["6. שיפור", "Sally", "שיפור UX לפי ממצאים", "Improved UX"]
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תרחישים מעשיים",
+      "id": "scenarios"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 1: אפליקציה חדשה מאפס",
+      "id": "scenario-1"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "Sally: *ux-research - מחקר משתמשים והגדרת Personas"
+        },
+        {
+          "content": "Sally: *user-flows - תכנון הזרימות העיקריות"
+        },
+        {
+          "content": "Sally: *design-system - יצירת Design System בסיסי"
+        },
+        {
+          "content": "Murat: *test-strategy - תכנון אסטרטגיית בדיקות כוללת"
+        },
+        {
+          "content": "Murat: *test-plan - תוכנית בדיקה לפיצ'רים הראשונים"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 2: הוספת פיצ'ר חדש לאפליקציה קיימת",
+      "id": "scenario-2"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "Sally: *user-flows - תכנון הזרימה של הפיצ'ר החדש"
+        },
+        {
+          "content": "Sally: *wireframes - יצירת Wireframes למסכים החדשים"
+        },
+        {
+          "content": "Murat: *test-plan - תוכנית בדיקה לפיצ'ר החדש"
+        },
+        {
+          "content": "Dev: מימוש הפיצ'ר"
+        },
+        {
+          "content": "Murat: ביצוע בדיקות (Unit, Integration, E2E)"
+        },
+        {
+          "content": "Sally: *usability-testing - בדיקת שימושיות עם משתמשים אמיתיים"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 3: שיפור מוצר קיים",
+      "id": "scenario-3"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "Murat: *test-review - ביקורת בדיקות קיימות וזיהוי חסרים"
+        },
+        {
+          "content": "Sally: *accessibility-audit - ביקורת נגישות"
+        },
+        {
+          "content": "Sally: *usability-testing - בדיקות שימושיות למציאת בעיות UX"
+        },
+        {
+          "content": "Sally: שיפורי UX לפי ממצאים"
+        },
+        {
+          "content": "Murat: הוספת בדיקות למקומות שחסרו כיסוי"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שאלות נפוצות",
+      "id": "faq"
+    },
+    {
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "faq-1",
+          "title": "האם אני באמת צריך UX Designer? אני בונה אפליקציה פשוטה.",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**כן, בהחלט!** גם אפליקציה \"פשוטה\" יכולה להיות מסובכת לשימוש אם לא חשבתם על חוויית המשתמש.\n\nSally עוזרת לכם לחשוב מנקודת מבט של המשתמש - לא רק \"מה הפיצ'רים\" אלא \"איך המשתמש ישתמש בהם\". זה הבדל בין אפליקציה שעובדת לאפליקציה שאוהבים להשתמש בה."
+            }
+          ]
+        },
+        {
+          "id": "faq-2",
+          "title": "איך אני יודע כמה בדיקות מספיק?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**אין מספר קסם, אבל יש כללים:**\n\n- **Unit Tests:** כיסוי של 70-80% לקוד עסקי (לא 100%!)\n- **Integration Tests:** כיסוי של כל ה-API endpoints וה-critical paths\n- **E2E Tests:** כיסוי של 5-10 המסלולים הכי חשובים\n\nMurat עוזר לכם להגדיר מדדים מתאימים לפרויקט שלכם."
+            }
+          ]
+        },
+        {
+          "id": "faq-3",
+          "title": "אני לא מעצב/ת. איך אני יכול לעבוד עם Sally?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**זו בדיוק הנקודה!** Sally כאן כדי לעזור לכם.\n\nאתם לא צריכים להיות מעצבים - Sally תשאל אתכם שאלות על המשתמשים שלכם, תבין מה אתם מנסים להשיג, ותציע פתרונות UX מתאימים.\n\nהיא תסביר את העקרונות ותדגים עם דוגמאות."
+            }
+          ]
+        },
+        {
+          "id": "faq-4",
+          "title": "מתי להזמין את Murat? בהתחלה או בסוף?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**בהתחלה!** ככל שמעורבים את Murat מוקדם יותר, כך האסטרטגיה שלו יותר אפקטיבית.\n\nאם מחכים לסוף, הבדיקות יהיו \"תיקון נזקים\" במקום \"בניית איכות מההתחלה\".\n\n**הזמן האידיאלי:** מיד אחרי שWinston סיים את הארכיטקטורה ולפני שAmelia מתחילה לקודד."
+            }
+          ]
+        },
+        {
+          "id": "faq-5",
+          "title": "אם אני עובד סולו, איך אני מתמודד עם הכל - בדיקות, UX, קוד?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**Murat ו-Sally הם בדיוק בשבילך!**\n\nכשאתה עובד לבד, אתה צריך ללבוש הרבה כובעים, ו-Murat ו-Sally עוזרים לך לחשוב בצורה מובנית:\n\n- **Sally** עוזרת לך לחשוב כמו מעצב UX\n- **Murat** עוזר לך לחשוב כמו QA מקצועי\n\nזה מבטיח שגם אם אתה לבד, המוצר שלך יהיה איכותי ואינטואיטיבי."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "סיכום ומה הלאה",
+      "id": "summary"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**בחלק זה למדנו על:**"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "Murat (TEA) - תכנון אסטרטגיית בדיקות, יצירת תוכניות בדיקה, ושיפור איכות המוצר"
+        },
+        {
+          "content": "Sally (UX Designer) - מחקר משתמשים, עיצוב זרימות, ויצירת חווית משתמש מעולה"
+        },
+        {
+          "content": "איך השניים עובדים ביחד למען איכות וחוויה"
+        },
+        {
+          "content": "עקרונות בסיסיים של בדיקות ו-UX"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "יחד עם חלקים 1א ו-1ב",
+      "content": "עכשיו אתם מכירים 7 אג'נטים: Mary (Analyst), John (PM), Winston (Architect), Bob (SM), Amelia (Dev), Murat (TEA), Sally (UX). זה מכסה את כל הצרכים הבסיסיים של כל פרויקט!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה הלאה?",
+      "id": "what-next"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "בחלק הבא (2ב)",
+      "content": "נכיר את: Paige (Tech Writer) לתיעוד טכני, ו-BMAD Master לניהול מרכזי של כל האג'נטים והוורקפלואים"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרגול מומלץ",
+      "id": "practice"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "קחו פרויקט קיים או רעיון לפרויקט"
+        },
+        {
+          "content": "הריצו *ux-research עם Sally - הכירו את המשתמשים שלכם"
+        },
+        {
+          "content": "הריצו *user-flows עם Sally - תכננו זרימה אחת מרכזית"
+        },
+        {
+          "content": "הריצו *test-strategy עם Murat - תכננו איך תבדקו את הזרימה"
+        },
+        {
+          "content": "הריצו *test-plan עם Murat - כתבו תוכנית בדיקה לפיצ'ר אחד"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "טיפ חשוב",
+      "content": "אל תדלגו על Murat ו-Sally! הם חוסכים שבועות של תיקוני באגים ושיפורי UX מאוחר יותר. השקעה קטנה בהתחלה = חיסכון ענק בהמשך."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "חלק 2א הושלם!",
+      "content": "אתם עכשיו מכירים את אג'נטי האיכות והעיצוב של BMAD. המשיכו לחלק 2ב להכיר את Paige ו-BMAD Master!"
+    }
+  ]
+}
+

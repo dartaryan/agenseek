@@ -1,0 +1,1035 @@
+{
+  "metadata": {
+    "id": "architect-sm-dev",
+    "slug": "architect-sm-dev",
+    "title": "מדריך אג'נטים - חלק 1ב: Architect + SM + Dev",
+    "description": "הכירו את האג'נטים הטכניים של BMAD: Winston (Architect) לתכנון ארכיטקטורה, Bob (Scrum Master) לניהול ספרינטים, ו-Amelia (Developer) למימוש. תפקידם, וורקפלואים, ודוגמאות מעשיות.",
+    "category": "agents",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 40,
+    "icon": "Code",
+    "tags": ["אג'נטים", "ארכיטקט", "סקראם", "מפתח", "Winston", "Bob", "Amelia"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "מבוא - אג'נטים טכניים",
+      "level": 2,
+      "anchor": "intro"
+    },
+    {
+      "id": "toc-2",
+      "title": "Winston - ארכיטקט טכנולוגי (Architect)",
+      "level": 2,
+      "anchor": "winston-architect"
+    },
+    {
+      "id": "toc-3",
+      "title": "Bob - מנהל תהליכים (Scrum Master)",
+      "level": 2,
+      "anchor": "bob-sm"
+    },
+    {
+      "id": "toc-4",
+      "title": "Amelia - מפתחת (Developer)",
+      "level": 2,
+      "anchor": "amelia-dev"
+    },
+    {
+      "id": "toc-5",
+      "title": "עבודה משותפת של שלושת האג'נטים",
+      "level": 2,
+      "anchor": "collaboration"
+    },
+    {
+      "id": "toc-6",
+      "title": "תרחישים מעשיים",
+      "level": 2,
+      "anchor": "scenarios"
+    },
+    {
+      "id": "toc-7",
+      "title": "שאלות נפוצות",
+      "level": 2,
+      "anchor": "faq"
+    },
+    {
+      "id": "toc-8",
+      "title": "סיכום ומה הלאה",
+      "level": 2,
+      "anchor": "summary"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מדריך אג'נטים - חלק 1ב: Architect + SM + Dev",
+      "id": "main-title"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "מבוא - אג'נטים טכניים",
+      "id": "intro"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "בחלק הקודם (1א) הכרנו את John (מנהל המוצר) ו-Mary (האנליסטית) - האג'נטים האסטרטגיים שעוזרים לנו להבין **מה** אנחנו בונים ו**למה**.\n\nעכשיו נעבור לאג'נטים הטכניים - אלה שעוזרים לנו להבין **איך** לבנות ו**לבצע** את הבנייה בפועל. שלושת האג'נטים האלה מהווים את עמוד השדרה הטכני של כל פרויקט ב-BMAD."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מי האג'נטים בחלק זה?",
+      "id": "agents-overview"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "Winston (Architect) - מתכנן את הארכיטקטורה הטכנית ומקבל החלטות טכנולוגיות"
+        },
+        {
+          "content": "Bob (Scrum Master) - מארגן את העבודה לספרינטים ומוודא שהכל זורם כהלכה"
+        },
+        {
+          "content": "Amelia (Developer) - מבצעת את המימוש בפועל - כתיבת קוד, בדיקות, ביקורת"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "המסע הטכני",
+      "content": "התהליך הטיפוסי: Winston מתכנן את הארכיטקטורה ← Bob מארגן את העבודה לספרינטים ← Amelia מממשת את הסטוריז אחד אחד."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Winston - ארכיטקט טכנולוגי (Architect)",
+      "id": "winston-architect"
+    },
+    {
+      "type": "card",
+      "title": "Winston - ארכיטקט טכנולוגי מנוסה",
+      "description": "תפקיד: ארכיטקט מערכות + מומחה טכנולוגיות + מוביל טכני",
+      "icon": "Building"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מומחיות:",
+      "id": "winston-expertise"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "תכנון ארכיטקטורות מערכת מורכבות (Microservices, Monolith, Serverless)"
+        },
+        {
+          "content": "בחירת טכנולוגיות, frameworks וכלים מתאימים לצרכי הפרויקט"
+        },
+        {
+          "content": "תיעוד החלטות ארכיטקטוניות (ADR - Architecture Decision Records)"
+        },
+        {
+          "content": "תכנון מסדי נתונים, API Design, ושילובי מערכות"
+        },
+        {
+          "content": "אבטחה, ביצועים, וסקיילביליות - חשיבה ארוכת טווח"
+        },
+        {
+          "content": "סקירות ארכיטקטוניות וזיהוי בעיות פוטנציאליות"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מתי להשתמש ב-Winston",
+      "id": "when-winston"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "כאשר אתם מתחילים פרויקט חדש וצריכים להחליט על הארכיטקטורה הכללית"
+        },
+        {
+          "content": "כאשר צריכים לבחור בין טכנולוגיות שונות (React vs Vue, SQL vs NoSQL)"
+        },
+        {
+          "content": "כאשר צריכים לתכנן API, מבני נתונים, או שילובי מערכות"
+        },
+        {
+          "content": "כאשר הפרויקט גדל ונדרש Refactoring או שדרוג ארכיטקטוני"
+        },
+        {
+          "content": "כאשר יש בעיות ביצועים, אבטחה, או סקיילביליות שצריך לטפל בהן"
+        },
+        {
+          "content": "כאשר צריכים לבצע סקירה טכנית של קוד או ארכיטקטורה קיימים"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "וורקפלואים עיקריים",
+      "id": "winston-workflows"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "architecture - תכנון ארכיטקטורה מקיף לפרויקט (הכי חשוב!)"
+        },
+        {
+          "content": "tech-spec - יצירת מפרט טכני עבור פיצ'רים בודדים"
+        },
+        {
+          "content": "validate-tech-spec - בדיקת איכות ושלמות של מפרט טכני"
+        },
+        {
+          "content": "epic-tech-context - הוספת הקשר טכני לאפיק לפני תחילת הפיתוח"
+        },
+        {
+          "content": "code-review - ביקורת קוד מקצועית עם דגש על ארכיטקטורה ואיכות"
+        },
+        {
+          "content": "solutioning-gate-check - בדיקת מוכנות סטוריז לפיתוח"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "הוורקפלואו החשוב ביותר",
+      "content": "architecture הוא הוורקפלואו המרכזי של Winston. הוא מנחה אתכם דרך כל השלבים - מהבנת הדרישות, דרך בחירת טכנולוגיות, ועד לתיעוד מלא של הארכיטקטורה."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "סגנון תקשורת",
+      "id": "winston-style"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "Winston מתקשר בצורה **מובנית ושיטתית**. הוא חושב בטווח ארוך - לא רק \"מה עובד עכשיו\" אלא \"מה יעבוד גם בעוד שנתיים\".\n\nהוא שואל שאלות על סקיילביליות, ביצועים, ותחזוקה. הוא מציג **תמיד כמה חלופות** עם יתרונות וחסרונות ברורים, ומסביר את ההשלכות של כל החלטה ארכיטקטונית."
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "עקרונות עבודה",
+      "content": "Winston מאמין בארכיטקטורה פשוטה ככל האפשר (KISS), בתכנון מודולרי שמאפשר שינויים עתידיים, ובתיעוד מקיף של כל החלטה חשובה."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה מעשית מלאה",
+      "id": "winston-example"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**תרחיש:** אתם רוצים לבנות אפליקציית SaaS חדשה עם מערכת אימות, ניהול משתמשים, ותשלומים."
+    },
+    {
+      "type": "accordion",
+      "allowMultiple": false,
+      "items": [
+        {
+          "id": "winston-steps",
+          "title": "שלבי העבודה עם Winston:",
+          "content": [
+            {
+              "type": "list",
+              "variant": "ordered",
+              "items": [
+                {
+                  "content": "טען את Winston: @architect hi"
+                },
+                {
+                  "content": "הרץ את הוורקפלואו המרכזי: *architecture"
+                },
+                {
+                  "content": "Winston ישאל אותך: מה הדרישות הפונקציונליות? כמה משתמשים צפויים? מה דרישות הביצועים? האם יש אילוצי תקציב?"
+                },
+                {
+                  "content": "Winston יציע כמה חלופות ארכיטקטוניות - למשל: Monolith (פשוט להתחיל), Microservices (גמיש יותר), או Serverless (זול יותר)"
+                },
+                {
+                  "content": "לאחר בחירת הכיוון, Winston יפרט: מבנה תיקיות, בחירת טכנולוגיות (Frontend, Backend, DB), תכנון API, ותכנון מסד הנתונים"
+                },
+                {
+                  "content": "Winston ייצור מסמך Architecture מפורט עם דיאגרמות, החלטות ADR, והמלצות לביצוע"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאה",
+      "content": "מסמך ארכיטקטורה מקיף שמגדיר את כל המערכת - מה הטכנולוגיות, איך הכל מתחבר, ומה צריך לבנות. הצוות יכול להתחיל לעבוד מיד עם הבנה ברורה של התמונה הגדולה."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "עובד טוב עם",
+      "id": "winston-works-with"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "PM (John) - John מספק PRD/Tech Spec, Winston מתרגם לארכיטקטורה טכנית"
+        },
+        {
+          "content": "SM (Bob) - Winston מספק את התכנית הארכיטקטונית, Bob מפרק אותה לספרינטים"
+        },
+        {
+          "content": "Dev (Amelia) - Winston מגדיר את המבנה, Amelia מממשת לפי ההנחיות"
+        },
+        {
+          "content": "TEA (Murat) - Winston מתכנן גם את אסטרטגיית הבדיקות ברמה הארכיטקטונית"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "טעות נפוצה",
+      "content": "אל תדלגו על Winston! הרבה פרויקטים מתחילים לקודד ישירות ואז נתקעים בבעיות ארכיטקטוניות. השקעת שעה עם Winston בהתחלה חוסכת שבועות של רפקטורינג מאוחר יותר."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Bob - מנהל תהליכים (Scrum Master)",
+      "id": "bob-sm"
+    },
+    {
+      "type": "card",
+      "title": "Bob - מנהל תהליכים אג'ילי",
+      "description": "תפקיד: Scrum Master + מנהל backlog + מסיר חסמים",
+      "icon": "ClipboardList"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מומחיות:",
+      "id": "bob-expertise"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "ניהול backlog ותעדוף סטוריז לפי ערך עסקי"
+        },
+        {
+          "content": "תכנון ספרינטים (Sprint Planning) והערכת זמנים"
+        },
+        {
+          "content": "הכנת סטוריז למצב Ready for Dev - הוספת קונטקסט, קריטריוני קבלה"
+        },
+        {
+          "content": "זיהוי והסרת חסמים שעוצרים את הצוות"
+        },
+        {
+          "content": "הרצת רטרוספקטיבות ושיפור מתמיד של התהליך"
+        },
+        {
+          "content": "מעקב אחר התקדמות הספרינט וניהול סיכונים"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מתי להשתמש ב-Bob",
+      "id": "when-bob"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "כאשר יש לכם Epics ו-Stories וצריך להכין אותם לספרינט"
+        },
+        {
+          "content": "כאשר צריכים לתכנן ספרינט חדש - מה ניקח? כמה זמן ייקח?"
+        },
+        {
+          "content": "כאשר סטורי חסר פרטים או קונטקסט טכני"
+        },
+        {
+          "content": "כאשר צריכים לבדוק אם סטורי מוכן למימוש (Definition of Ready)"
+        },
+        {
+          "content": "כאשר הספרינט מסתיים וצריכים רטרוספקטיבה ותיקון מסלול"
+        },
+        {
+          "content": "כאשר הצוות תקוע בחסמים או בעיות תהליכיות"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "וורקפלואים עיקריים",
+      "id": "bob-workflows"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "sprint-planning - תכנון ספרינט מקיף - מה ניקח, הערכות, התחייבות"
+        },
+        {
+          "content": "story-context - הוספת קונטקסט מפורט לסטורי כדי שהמפתח יבין בדיוק מה לעשות"
+        },
+        {
+          "content": "story-ready - בדיקה שהסטורי עומד בקריטריוני Definition of Ready"
+        },
+        {
+          "content": "epic-tech-context - הוספת הקשר טכני לרמת האפיק"
+        },
+        {
+          "content": "retrospective - הנחיית רטרוספקטיבה מובנית עם action items"
+        },
+        {
+          "content": "correct-course - ניתוח וטיפול בפרויקט שיצא ממסלול"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "הוורקפלואו החשוב ביותר",
+      "content": "story-context + story-ready הם הזוג החשוב ביותר של Bob. הם מבטיחים שכל סטורי מגיע למפתח עם כל המידע הנחוץ, וחוסכים שעות של בלבול ושאלות הבהרה."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "סגנון תקשורת",
+      "id": "bob-style"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "Bob מתקשר בצורה **מעשית ופרגמטית**. הוא מתמקד ב**ביצוע** - מה צריך לקרות עכשיו כדי להתקדם.\n\nהוא לא מתעכב על תיאוריה או אידיאלים - הוא שואל: \"מה החסם? איך נפתור אותו? מתי נתחיל?\" הוא מאוד ישיר ומדויק בהנחיות שלו."
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "עקרונות עבודה",
+      "content": "Bob מאמין בתהליכים פשוטים וברורים, בשקיפות מלאה מול הצוות, ובשיפור מתמיד. הוא מעדיף action על תכנון יתר - \"בואו נתחיל ונתקן תוך כדי\"."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה מעשית מלאה",
+      "id": "bob-example"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**תרחיש:** יש לכם 15 סטוריז בbacklog והספרינט הבא מתחיל בעוד יומיים. צריך לתכנן מה ניקח."
+    },
+    {
+      "type": "accordion",
+      "allowMultiple": false,
+      "items": [
+        {
+          "id": "bob-steps",
+          "title": "שלבי העבודה עם Bob:",
+          "content": [
+            {
+              "type": "list",
+              "variant": "ordered",
+              "items": [
+                {
+                  "content": "טען את Bob: @sm hi"
+                },
+                {
+                  "content": "הרץ: *sprint-planning"
+                },
+                {
+                  "content": "Bob ישאל: כמה ימים הספרינט? מי בצוות? מה ה-velocity האחרון? האם יש חופשות או ימי חג?"
+                },
+                {
+                  "content": "Bob יעבור על ה-backlog ויעזור לתעדף לפי ערך עסקי, תלויות, וסיכונים"
+                },
+                {
+                  "content": "Bob יבדוק כל סטורי - האם הוא מוכן? חסר לו קונטקסט? צריך story-context?"
+                },
+                {
+                  "content": "Bob יעזור להעריך כל סטורי בזמן (Story Points או ימים)"
+                },
+                {
+                  "content": "Bob יכין את תכנית הספרינט הסופית - אילו סטוריז ניקח, מה הסדר, מי מקבל מה"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאה",
+      "content": "תכנית ספרינט ברורה וריאליסטית. כל סטורי מוכן למימוש עם קונטקסט מלא. הצוות יודע בדיוק מה לעשות ומתי."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "עובד טוב עם",
+      "id": "bob-works-with"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "PM (John) - John יוצר Epics ו-Stories, Bob מכין אותם לספרינט"
+        },
+        {
+          "content": "Architect (Winston) - Winston מספק הקשר טכני, Bob משלב אותו בסטוריז"
+        },
+        {
+          "content": "Dev (Amelia) - Bob מכין את הסטורי, Amelia מממשת אותו"
+        },
+        {
+          "content": "TEA (Murat) - Bob מוודא שיש קריטריוני קבלה ברורים לבדיקות"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Amelia - מפתחת (Developer)",
+      "id": "amelia-dev"
+    },
+    {
+      "type": "card",
+      "title": "Amelia - מפתחת Full-Stack",
+      "description": "תפקיד: Developer + Code Reviewer + Problem Solver",
+      "icon": "Code"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מומחיות:",
+      "id": "amelia-expertise"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "כתיבת קוד נקי, מתוחזק, ועל פי best practices"
+        },
+        {
+          "content": "ביקורת קוד (Code Review) מקצועית - איכות, אבטחה, ביצועים"
+        },
+        {
+          "content": "פתרון בעיות טכניות ו-debugging מורכב"
+        },
+        {
+          "content": "כתיבת בדיקות (Unit Tests, Integration Tests)"
+        },
+        {
+          "content": "Refactoring ושיפור קוד קיים"
+        },
+        {
+          "content": "תיעוד קוד ו-API documentation"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מתי להשתמש ב-Amelia",
+      "id": "when-amelia"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "כאשר מתחילים לממש סטורי - צריך להבין איך לכתוב את הקוד"
+        },
+        {
+          "content": "כאשר צריכים ביקורת קוד לפני merge"
+        },
+        {
+          "content": "כאשר תקועים בבאג או בעיה טכנית שצריכה debugging"
+        },
+        {
+          "content": "כאשר צריכים לכתוב בדיקות או לשפר כיסוי בדיקות"
+        },
+        {
+          "content": "כאשר צריכים Refactoring של קוד ישן או מסובך"
+        },
+        {
+          "content": "כאשר צריכים תיעוד טכני של הקוד"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "וורקפלואים עיקריים",
+      "id": "amelia-workflows"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "dev-story - מימוש סטורי מקצה לקצה (הכי חשוב!)"
+        },
+        {
+          "content": "code-review - ביקורת קוד מקצועית לפני merge"
+        },
+        {
+          "content": "story-done - בדיקה שהסטורי עומד בכל קריטריוני Definition of Done"
+        },
+        {
+          "content": "create-story - יצירת סטורי טכני חדש (למשל: Refactoring, Tech Debt)"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "הוורקפלואו החשוב ביותר",
+      "content": "dev-story הוא הלב של העבודה עם Amelia. הוא מנחה אתכם דרך כל השלבים - הבנת הסטורי, תכנון המימוש, כתיבת הקוד, בדיקות, ותיעוד."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "סגנון תקשורת",
+      "id": "amelia-style"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "Amelia מתקשרת בצורה **מדויקת וטכנית**. היא מסבירה **למה** היא עושה משהו בצורה מסוימת, ומציגה קוד עם הערות והסברים.\n\nהיא שואלת שאלות ברורות: \"איך זה אמור לעבוד כש...?\" \"מה קורה אם המשתמש...?\" היא מקפידה על איכות ולא ממהרת לסיים - עדיף לקחת עוד חצי שעה ולעשות נכון."
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "עקרונות עבודה",
+      "content": "Amelia מאמינה בקוד נקי (Clean Code), בעקרון DRY (Don't Repeat Yourself), ובתיעוד מובנה. היא כותבת קוד כאילו מי שיקרא אותו בעוד שנה הוא פסיכופט אלים שיודע היכן היא גרה."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה מעשית מלאה",
+      "id": "amelia-example"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**תרחיש:** צריך לממש סטורי - \"הוספת כפתור Export CSV לטבלת המשתמשים\""
+    },
+    {
+      "type": "accordion",
+      "allowMultiple": false,
+      "items": [
+        {
+          "id": "amelia-steps",
+          "title": "שלבי העבודה עם Amelia:",
+          "content": [
+            {
+              "type": "list",
+              "variant": "ordered",
+              "items": [
+                {
+                  "content": "טען את Amelia: @dev hi"
+                },
+                {
+                  "content": "הרץ: *dev-story"
+                },
+                {
+                  "content": "Amelia תקרא את הסטורי ותשאל שאלות הבהרה: איזה שדות ב-CSV? איזה שם קובץ? האם יש הרשאות?"
+                },
+                {
+                  "content": "Amelia תציע תכנית מימוש: 1) הוספת UI (כפתור), 2) יצירת endpoint ב-backend, 3) לוגיקת יצירת CSV, 4) בדיקות"
+                },
+                {
+                  "content": "Amelia תכתוב את הקוד שלב אחר שלב, עם הסברים והערות"
+                },
+                {
+                  "content": "Amelia תוסיף בדיקות (Unit Tests) לקוד החדש"
+                },
+                {
+                  "content": "Amelia תבצע code review עצמי ותציע שיפורים"
+                },
+                {
+                  "content": "Amelia תעדכן את התיעוד הטכני"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאה",
+      "content": "קוד עובד, נקי, מבוצע, עם בדיקות ותיעוד. הסטורי מוכן ל-merge וכל קריטריוני ה-DoD מתקיימים."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "עובד טוב עם",
+      "id": "amelia-works-with"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "SM (Bob) - Bob מכין את הסטורי עם קונטקסט, Amelia מממשת"
+        },
+        {
+          "content": "Architect (Winston) - Winston מגדיר את הארכיטקטורה, Amelia מממשת לפיה"
+        },
+        {
+          "content": "TEA (Murat) - Amelia כותבת Unit Tests, Murat מבצע Integration Tests ו-E2E"
+        },
+        {
+          "content": "Tech Writer (Paige) - Amelia מספקת תיעוד טכני, Paige הופכת אותו למדריכי משתמש"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "טעות נפוצה",
+      "content": "אל תקפצו ישר לקוד! קחו 5 דקות עם Amelia להבין את הסטורי לעומק ולתכנן את המימוש. זה חוסך המון זמן של refactoring מאוחר יותר."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "עבודה משותפת של שלושת האג'נטים",
+      "id": "collaboration"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "Winston, Bob, ו-Amelia עובדים ביחד כצוות טכני משולב. הנה איך הם משלימים אחד את השני:"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "המסע הטיפוסי",
+      "id": "typical-journey"
+    },
+    {
+      "type": "table",
+      "caption": "תהליך עבודה משולב",
+      "headers": ["שלב", "אג'נט", "מה קורה", "תוצר"],
+      "rows": [
+        ["1. תכנון", "Winston", "מתכנן ארכיטקטורה", "מסמך Architecture"],
+        ["2. הכנה", "Bob", "מפרק לאפיקים וסטוריז", "Backlog מוכן"],
+        ["3. ספרינט", "Bob", "תכנון ספרינט", "Sprint Plan"],
+        ["4. מימוש", "Amelia", "כתיבת קוד", "Features מוכנות"],
+        ["5. בדיקה", "Amelia", "Code review + tests", "Code merged"]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "נקודות מפגש חשובות",
+      "id": "key-touchpoints"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "Winston → Bob",
+      "content": "Winston יוצר את מסמך הארכיטקטורה ומוסר אותו ל-Bob. Bob משתמש בו כדי להוסיף הקשר טכני (epic-tech-context) לכל אפיק."
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "Bob → Amelia",
+      "content": "Bob מכין כל סטורי עם story-context מלא ומוודא שהוא Ready. Amelia מקבלת סטורי מוכן ויכולה להתחיל לעבוד מיד."
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "Amelia → Winston",
+      "content": "כש-Amelia נתקעת בשאלה ארכיטקטונית או צריכה code review ארכיטקטוני, Winston נכנס לעזור."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תרחישים מעשיים",
+      "id": "scenarios"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 1: פרויקט חדש מאפס",
+      "id": "scenario-1"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "Winston: *architecture - תכנון הארכיטקטורה המלאה"
+        },
+        {
+          "content": "Bob: *sprint-planning - תכנון הספרינט הראשון"
+        },
+        {
+          "content": "Amelia: *dev-story - מימוש הסטורי הראשון (Setup + Infrastructure)"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 2: הוספת פיצ'ר חדש לפרויקט קיים",
+      "id": "scenario-2"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "Winston: *tech-spec - מפרט טכני לפיצ'ר"
+        },
+        {
+          "content": "Bob: *story-context - הוספת קונטקסט לסטורי"
+        },
+        {
+          "content": "Amelia: *dev-story - מימוש הפיצ'ר"
+        },
+        {
+          "content": "Amelia: *code-review - ביקורת לפני merge"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 3: הפרויקט תקוע / יש בעיות",
+      "id": "scenario-3"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "Bob: *retrospective - זיהוי הבעיות"
+        },
+        {
+          "content": "Winston: *code-review - בדיקה אם יש בעיות ארכיטקטוניות"
+        },
+        {
+          "content": "Bob: *correct-course - תכנית תיקון"
+        },
+        {
+          "content": "Amelia: מימוש התיקונים"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שאלות נפוצות",
+      "id": "faq"
+    },
+    {
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "faq-1",
+          "title": "באיזה סדר להשתמש באג'נטים?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**הסדר הטיפוסי:**\n\n1. **Winston** - תכנון הארכיטקטורה\n2. **Bob** - ארגון לספרינטים\n3. **Amelia** - מימוש\n\nאבל זה לא חוק! תלוי במצב. לפעמים תתחילו ישר עם Amelia לפיצ'ר קטן, ורק אם זה מסתבך תזמינו את Winston."
+            }
+          ]
+        },
+        {
+          "id": "faq-2",
+          "title": "האם אני חייב להשתמש בכל שלושת האג'נטים?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**לא חובה!** זה תלוי בגודל הפרויקט:\n\n- **פרויקט קטן (0-2 שבועות):** Amelia בלבד יכול להספיק\n- **פרויקט בינוני (1-3 חודשים):** Amelia + Bob\n- **פרויקט גדול (3+ חודשים):** כל שלושתם\n\nאבל גם בפרויקט קטן, אם אתם לא בטוחים בארכיטקטורה - Winston חוסך זמן!"
+            }
+          ]
+        },
+        {
+          "id": "faq-3",
+          "title": "איך מעבירים מידע בין האג'נטים?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**שלוש דרכים:**\n\n1. **קבצים:** Winston יוצר `ARCHITECTURE.md`, Bob מוסיף `EPIC-5-CONTEXT.md`, Amelia קוראת אותם\n2. **העתקה:** העתק את הפלט של אג'נט אחד לצ'אט של אג'נט אחר\n3. **Party Mode:** הזמן מספר אג'נטים לאותו צ'אט (מתקדם!)\n\nהדרך הכי פשוטה: שמור הכל בקבצים ב-`/docs` והאג'נטים יקראו אותם אוטומטית."
+            }
+          ]
+        },
+        {
+          "id": "faq-4",
+          "title": "מה אם אני עובד לבד? האג'נטים האלה בשבילי?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**בדיוק בשבילך!** כשאתה עובד לבד, אתה צריך ללבוש את כל הכובעים:\n\n- **Winston** עוזר לך לחשוב כארכיטקט\n- **Bob** עוזר לך לארגן את העבודה\n- **Amelia** עוזרת לך לכתוב קוד איכותי\n\nזה כמו שיש לך צוות וירטואלי שעוזר לך לשמור על איכות גם כשאתה סולו."
+            }
+          ]
+        },
+        {
+          "id": "faq-5",
+          "title": "כמה זמן לוקח לעבוד עם כל אג'נט?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**זמנים טיפוסיים:**\n\n- **Winston - Architecture:** 30-60 דקות (חד-פעמי לפרויקט)\n- **Bob - Sprint Planning:** 15-30 דקות (כל ספרינט)\n- **Bob - Story Context:** 5-10 דקות (לכל סטורי)\n- **Amelia - Dev Story:** 10-30 דקות (לכל סטורי)\n- **Amelia - Code Review:** 5-15 דקות (לכל PR)\n\nנשמע הרבה? זה למעשה **חוסך** זמן - פחות באגים, פחות refactoring, פחות confusion."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "סיכום ומה הלאה",
+      "id": "summary"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**בחלק זה למדנו על:**"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "Winston (Architect) - תכנון ארכיטקטורה, בחירת טכנולוגיות, והחלטות טכניות"
+        },
+        {
+          "content": "Bob (Scrum Master) - ארגון ספרינטים, הכנת סטוריז, והסרת חסמים"
+        },
+        {
+          "content": "Amelia (Developer) - מימוש קוד, ביקורת קוד, ובדיקות"
+        },
+        {
+          "content": "איך השלושה עובדים ביחד במסע טכני מלא"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "יחד עם חלק 1א",
+      "content": "עכשיו אתם מכירים 5 אג'נטים: Mary (Analyst), John (PM), Winston (Architect), Bob (SM), Amelia (Dev). זה מכסה את רוב הצרכים של פרויקט טיפוסי!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה הלאה?",
+      "id": "what-next"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "בחלק הבא (2א)",
+      "content": "נכיר את: Emma/Murat (TEA - Test Architect) לבדיקות, ו-Lisa/Sally (UX Designer) לעיצוב חוויית משתמש"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרגול מומלץ",
+      "id": "practice"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "קחו פרויקט קטן (או רעיון לפרויקט)"
+        },
+        {
+          "content": "הריצו *architecture עם Winston - תכננו את הארכיטקטורה"
+        },
+        {
+          "content": "צרו 3-5 סטוריז והריצו *story-context עם Bob"
+        },
+        {
+          "content": "בחרו סטורי אחד והריצו *dev-story עם Amelia"
+        },
+        {
+          "content": "תתרגלו את המעבר בין האג'נטים"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "חלק 1ב הושלם!",
+      "content": "אתם עכשיו מכירים את הליבה הטכנית של BMAD. המשיכו לחלק 2א להכיר את האג'נטים לבדיקות ועיצוב!"
+    }
+  ]
+}
+

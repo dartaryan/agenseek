@@ -8,8 +8,20 @@ import { avataaars } from '@dicebear/collection';
 import { bottts } from '@dicebear/collection';
 import { lorelei } from '@dicebear/collection';
 import { personas } from '@dicebear/collection';
+import { micah } from '@dicebear/collection';
+import { adventurer } from '@dicebear/collection';
+import { bigSmile } from '@dicebear/collection';
+import { funEmoji } from '@dicebear/collection';
 
-export type AvatarStyle = 'avataaars' | 'bottts' | 'lorelei' | 'personas';
+export type AvatarStyle =
+  | 'avataaars'
+  | 'bottts'
+  | 'lorelei'
+  | 'personas'
+  | 'micah'
+  | 'adventurer'
+  | 'bigSmile'
+  | 'funEmoji';
 
 export interface AvatarConfig {
   style: AvatarStyle;
@@ -22,6 +34,10 @@ const styleCollections = {
   bottts,
   lorelei,
   personas,
+  micah,
+  adventurer,
+  bigSmile,
+  funEmoji,
 };
 
 /**
@@ -62,11 +78,60 @@ export function getDefaultAvatarConfig(userId: string): AvatarConfig {
 /**
  * Available avatar styles with labels in English and Hebrew
  */
-export const avatarStyles: Array<{ value: AvatarStyle; label: string; labelHe: string }> = [
-  { value: 'avataaars', label: 'Cartoon Faces', labelHe: 'פרצופים מצוירים' },
-  { value: 'bottts', label: 'Robots', labelHe: 'רובוטים' },
-  { value: 'lorelei', label: 'Illustrated Faces', labelHe: 'פרצופים מאוירים' },
-  { value: 'personas', label: 'Diverse Faces', labelHe: 'פרצופים מגוונים' },
+export const avatarStyles: Array<{
+  value: AvatarStyle;
+  label: string;
+  labelHe: string;
+  description?: string;
+}> = [
+  {
+    value: 'avataaars',
+    label: 'Cartoon Faces',
+    labelHe: 'פרצופים מצוירים',
+    description: 'Classic cartoon-style avatars',
+  },
+  {
+    value: 'bottts',
+    label: 'Robots',
+    labelHe: 'רובוטים',
+    description: 'Fun robot characters',
+  },
+  {
+    value: 'lorelei',
+    label: 'Illustrated Faces',
+    labelHe: 'פרצופים מאוירים',
+    description: 'Hand-drawn illustrated style',
+  },
+  {
+    value: 'personas',
+    label: 'Diverse Faces',
+    labelHe: 'פרצופים מגוונים',
+    description: 'Diverse human characters',
+  },
+  {
+    value: 'micah',
+    label: 'Minimalist',
+    labelHe: 'דמויות מינימליסטיות',
+    description: 'Clean, simple designs',
+  },
+  {
+    value: 'adventurer',
+    label: 'Adventurers',
+    labelHe: 'הרפתקנים',
+    description: 'Adventure-themed characters',
+  },
+  {
+    value: 'bigSmile',
+    label: 'Big Smile',
+    labelHe: 'חיוך גדול',
+    description: 'Happy, friendly faces',
+  },
+  {
+    value: 'funEmoji',
+    label: 'Fun Emoji',
+    labelHe: 'אימוג׳ים כיפיים',
+    description: 'Emoji-style avatars',
+  },
 ];
 
 /**
@@ -92,5 +157,16 @@ export function generateAvatarPreviews(
   }
 
   return previews;
+}
+
+/**
+ * Alias for generateAvatarPreviews
+ * Used in onboarding for simplified preview generation
+ */
+export function generatePreviews(
+  style: AvatarStyle,
+  count: number = 12
+): Array<AvatarConfig> {
+  return generateAvatarPreviews(style, count).map((p) => p.config);
 }
 

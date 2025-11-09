@@ -178,12 +178,12 @@
   {
     "id": "agents-tea-ux",
     "title": "מדריך אגנטים - חלק 2א: TEA + UX Designer",
-    "description": "הכירו את Emma (מאסטר טסט) ואת Lisa (מעצבת UX). מומחיות בדיקות ועיצוב חווית משתמש - איך להשתמש באגנטים האלה ביעילות מקסימלית.",
+    "description": "הכירו את Murat (Test Architect Expert) ו-Sally (UX Designer). תכנון אסטרטגיית בדיקות, יצירת תוכניות בדיקה, מחקר משתמשים, ועיצוב חוויית משתמש מקצועית.",
     "category": "agents",
     "difficulty": "intermediate",
     "estimatedMinutes": 35,
     "icon": "IconRobot",
-    "tags": ["אגנטים", "בדיקות", "UX", "עיצוב"],
+    "tags": ["אגנטים", "בדיקות", "UX", "עיצוב", "Murat", "Sally"],
     "path": "agents/tea-ux.json"
   },
   {
