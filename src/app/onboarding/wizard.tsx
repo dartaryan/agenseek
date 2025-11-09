@@ -86,7 +86,7 @@ export function OnboardingWizardPage() {
           .insert({
             id: user.id,
             display_name: user.email?.split('@')[0] || 'משתמש',
-            email: user.email,
+            email: user.email || '', // Fallback to empty string if undefined
             completed_onboarding: true,
             created_at: new Date().toISOString(),
             updated_at: new Date().toISOString(),
@@ -109,7 +109,7 @@ export function OnboardingWizardPage() {
 
         if (error) throw error;
       }
-      
+
       console.log('[Onboarding Skip] Profile updated in database');
 
       // CRITICAL FIX: Verify profile update completed before navigating
@@ -876,6 +876,7 @@ function LearningPathStep({
   const [guideSections, setGuideSections] = useState<GuideSection[]>([]);
   const [isSaving, setIsSaving] = useState(false);
   const { toast } = useToast();
+  const { user } = useAuth(); // Add user from useAuth
 
   useEffect(() => {
     // Story 0.1: Generate personalized learning path using real catalog
@@ -976,7 +977,7 @@ function LearningPathStep({
 
     try {
       console.log('[Onboarding] Starting completion process...');
-      
+
       // Check if profile exists first
       const { data: existingProfile } = await supabase
         .from('profiles')
@@ -992,7 +993,7 @@ function LearningPathStep({
           .insert({
             id: userId,
             display_name: user?.email?.split('@')[0] || 'משתמש',
-            email: user?.email,
+            email: user?.email || '', // Fallback to empty string if undefined
             role: selectedRole,
             interests: selectedInterests,
             experience_level: selectedExperience as 'beginner' | 'intermediate' | 'advanced',
@@ -1027,7 +1028,7 @@ function LearningPathStep({
 
         if (error) throw error;
       }
-      
+
       console.log('[Onboarding] Profile updated in database');
 
       // CRITICAL FIX: Verify profile update completed before navigating
