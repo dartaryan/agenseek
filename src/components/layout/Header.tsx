@@ -1,6 +1,6 @@
 import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { IconList } from '@tabler/icons-react';
+import { IconList, IconCheck, IconRotateClockwise, IconNotes, IconChecklist, IconShare } from '@tabler/icons-react';
 // Story 0.15: IconMoon, IconSun temporarily removed (theme toggle hidden)
 import { Button } from '../ui/button';
 import { useAuth } from '../../hooks/useAuth';
@@ -8,6 +8,7 @@ import { signOut } from '../../lib/auth';
 import { hebrewLocale } from '../../lib/locale/he';
 import { useMobileToc } from '../../contexts/MobileTocContext';
 import { useSidebar } from '../../contexts/SidebarContext';
+import { useGuideReader } from '../../contexts/GuideReaderContext';
 // Story 0.15: useTheme temporarily disabled (theme toggle hidden)
 // import { useTheme } from '../../contexts/ThemeContext';
 import AgenseekLogo from '../../assets/agenseek-logo.svg';
@@ -44,6 +45,7 @@ export const Header = forwardRef<HeaderRef>(function Header(_props, ref) {
   const location = useLocation();
   const { onToggle, isEnabled } = useMobileToc();
   const { isCollapsed } = useSidebar();
+  const { isCompleted, onMarkComplete, onUnmarkComplete, onAddNote, onCreateTask, onShare } = useGuideReader();
   // Story 0.15: Theme toggle temporarily disabled
   // const { setTheme, resolvedTheme } = useTheme();
   const searchBarRef = useRef<SearchBarRef>(null);
@@ -113,6 +115,76 @@ export const Header = forwardRef<HeaderRef>(function Header(_props, ref) {
             </Button>
           )}
         </div>
+
+        {/* Guide action buttons - visible only on guide reader pages */}
+        {isGuideReaderPage && (onMarkComplete || onUnmarkComplete || onAddNote || onCreateTask || onShare) && (
+          <div className="flex items-center gap-2 flex-shrink-0">
+            {/* Add Note button */}
+            {onAddNote && (
+              <Button
+                onClick={onAddNote}
+                variant="ghost"
+                size="sm"
+                className="flex-shrink-0"
+                aria-label="הוסף הערה"
+              >
+                <IconNotes className="w-4 h-4 ml-1" />
+                <span className="hidden md:inline">הערה</span>
+              </Button>
+            )}
+
+            {/* Create Task button */}
+            {onCreateTask && (
+              <Button
+                onClick={onCreateTask}
+                variant="ghost"
+                size="sm"
+                className="flex-shrink-0"
+                aria-label="צור משימה"
+              >
+                <IconChecklist className="w-4 h-4 ml-1" />
+                <span className="hidden md:inline">משימה</span>
+              </Button>
+            )}
+
+            {/* Share button */}
+            {onShare && (
+              <Button
+                onClick={onShare}
+                variant="ghost"
+                size="sm"
+                className="flex-shrink-0"
+                aria-label="שיתוף"
+              >
+                <IconShare className="w-4 h-4 ml-1" />
+                <span className="hidden md:inline">שיתוף</span>
+              </Button>
+            )}
+
+            {/* Mark Complete button */}
+            {(onMarkComplete || onUnmarkComplete) && (
+              <Button
+                onClick={isCompleted ? onUnmarkComplete! : onMarkComplete!}
+                variant={isCompleted ? 'outline' : 'default'}
+                size="sm"
+                className="flex-shrink-0"
+                aria-label={isCompleted ? 'ביטול סימון כהושלם' : 'סמן כהושלם'}
+              >
+                {isCompleted ? (
+                  <>
+                    <IconRotateClockwise className="w-4 h-4 ml-1" />
+                    <span className="hidden sm:inline">ביטול</span>
+                  </>
+                ) : (
+                  <>
+                    <IconCheck className="w-4 h-4 ml-1" />
+                    <span className="hidden sm:inline">הושלם</span>
+                  </>
+                )}
+              </Button>
+            )}
+          </div>
+        )}
 
         {/* Story 6.13: Header Navigation - shown when sidebar collapsed or guide mode */}
         {showHeaderNav && (

@@ -6,6 +6,7 @@ import { Footer } from '../components/layout/Footer';
 import { AnimatedBackground } from '../components/ui/AnimatedBackground';
 import { SidebarProvider } from '../contexts/SidebarContext';
 import { PreferencesProvider } from '../contexts/PreferencesContext';
+import { GuideReaderProvider } from '../contexts/GuideReaderContext';
 import { CommandPalette } from '../components/common/CommandPalette';
 import { TaskModal } from '../components/tasks/TaskModal';
 import { NoteEditorModal } from '../components/notes/NoteEditorModal';
@@ -61,6 +62,7 @@ export function Layout() {
   return (
     <PreferencesProvider>
       <SidebarProvider>
+        <GuideReaderProvider>
         <div className="relative flex min-h-screen flex-col">
         {/* Story 10.3: Skip to Main Content link for accessibility */}
         <a
@@ -122,6 +124,7 @@ export function Layout() {
           </main>
         </div>
       </div>
+        </GuideReaderProvider>
       </SidebarProvider>
     </PreferencesProvider>
   );

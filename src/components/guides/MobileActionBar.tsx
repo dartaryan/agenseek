@@ -3,30 +3,26 @@
  *
  * Sticky bottom action bar for mobile guide readers
  * Features:
- * - 4 action buttons: Add Note, Create Task, Mark Complete, Share
+ * - 3 action buttons: Add Note, Create Task, Share
  * - Fixed at bottom with safe area support
  * - 48x48px touch targets
- * - Active/completed states
+ * Note: Mark Complete button moved to header
  */
 
-import { IconNotes, IconChecklist, IconCheck, IconShare } from '@tabler/icons-react';
+import { IconNotes, IconChecklist, IconShare } from '@tabler/icons-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 interface MobileActionBarProps {
-  isCompleted: boolean;
   onAddNote: () => void;
   onCreateTask: () => void;
-  onMarkComplete: () => void;
   onShare: () => void;
   className?: string;
 }
 
 export function MobileActionBar({
-  isCompleted,
   onAddNote,
   onCreateTask,
-  onMarkComplete,
   onShare,
   className,
 }: MobileActionBarProps) {
@@ -61,29 +57,6 @@ export function MobileActionBar({
           aria-label="יצירת משימה"
         >
           <IconChecklist className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
-        </Button>
-
-        {/* Mark Complete */}
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={onMarkComplete}
-          className={cn(
-            'h-12 w-12 rounded-full',
-            isCompleted
-              ? 'bg-emerald-100 dark:bg-emerald-900/30 hover:bg-emerald-200 dark:hover:bg-emerald-900/40'
-              : 'hover:bg-emerald-50 dark:hover:bg-emerald-900/20'
-          )}
-          aria-label={isCompleted ? 'ביטול סימון כהושלם' : 'סימון כהושלם'}
-        >
-          <IconCheck
-            className={cn(
-              'w-6 h-6',
-              isCompleted
-                ? 'text-emerald-700 dark:text-emerald-300'
-                : 'text-emerald-600 dark:text-emerald-400'
-            )}
-          />
         </Button>
 
         {/* Share */}

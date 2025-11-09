@@ -40,11 +40,12 @@ import { RelatedGuides } from '@/components/guides/RelatedGuides';
 import { BadgeUnlockAnimation } from '@/components/dashboard/BadgeUnlockAnimation';
 import { FloatingNoteTooltip } from '@/components/guides/FloatingNoteTooltip'; // Story 6.3
 import { CommentThread } from '@/components/comments'; // Story 8.1
-// import { MobileActionBar } from '@/components/guides/MobileActionBar'; // Story 10.2 - Currently unused
+// import { MobileActionBar } from '@/components/guides/MobileActionBar'; // Story 10.2 - All buttons moved to header
 import { loadGuide, getAdjacentGuides } from '@/lib/guide-loader';
 import { useAuth } from '@/hooks/useAuth';
 import { useAchievements } from '@/hooks/useAchievements';
 import { useSwipeGesture } from '@/hooks/useSwipeGesture'; // Story 10.2
+import { useGuideReader } from '@/contexts/GuideReaderContext';
 import { supabase } from '@/lib/supabase';
 import { toast } from '@/hooks/use-toast';
 import { toast as sonnerToast } from 'sonner'; // Story 0.10.3
@@ -75,6 +76,7 @@ export function GuideReaderPage() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { checkAndUpdateAchievements, newlyEarnedBadge } = useAchievements(); // Story 5.3
+  const { setGuideState, clearGuideState } = useGuideReader();
 
   // State
   const [guide, setGuide] = useState<Guide | null>(null);
@@ -642,6 +644,29 @@ export function GuideReaderPage() {
     }
   }, [user, slug, guide, toast]);
 
+  // Update guide reader context for header buttons
+  useEffect(() => {
+    // Set state when guide is loaded
+    if (guide && slug) {
+      setGuideState({
+        isCompleted,
+        onMarkComplete: handleMarkCompleteClick,
+        onUnmarkComplete: handleUnmarkCompleteClick,
+        onAddNote: () => handleAddNote(),
+        onCreateTask: handleCreateTask,
+        onShare: handleCopyLink,
+      });
+    } else {
+      clearGuideState();
+    }
+
+    // Clear state on unmount
+    return () => {
+      clearGuideState();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [guide, slug, isCompleted]);
+
   // Adjacent guides for pagination
   const adjacentGuides =
     slug && guide ? getAdjacentGuides(slug, guide.metadata.category) : { prev: null, next: null };
@@ -931,14 +956,7 @@ export function GuideReaderPage() {
       {/* Story 6.3: Floating Note Tooltip */}
       <FloatingNoteTooltip onAddNote={handleAddNote} />
 
-      {/* Story 10.2: Mobile Action Bar - Hidden per user preference */}
-      {/* <MobileActionBar
-        isCompleted={isCompleted}
-        onAddNote={() => handleAddNote()}
-        onCreateTask={handleCreateTask}
-        onMarkComplete={isCompleted ? handleUnmarkCompleteClick : handleMarkCompleteClick}
-        onShare={handleCopyLink}
-      /> */}
+      {/* Story 10.2: Mobile Action Bar - All buttons moved to header */}
       </div>
     </MobileTocContext.Provider>
   );
