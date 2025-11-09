@@ -394,6 +394,59 @@ export interface LocaleStrings {
         loading: string;
         noData: string;
       };
+      // Story 9.5 - Admin Notifications
+      notifications: {
+        title: string;
+        bellIcon: string;
+        unreadCount: string;
+        noNotifications: string;
+        markAsRead: string;
+        markAllAsRead: string;
+        clearRead: string;
+        viewAll: string;
+        settings: string;
+        // Notification types
+        newUserDigest: string;
+        contentFlagged: string;
+        lowEngagement: string;
+        performanceIssue: string;
+        milestone: string;
+        // Priority levels
+        highPriority: string;
+        normalPriority: string;
+        lowPriority: string;
+        // Actions
+        viewDetails: string;
+        dismiss: string;
+        // Time
+        justNow: string;
+        minutesAgo: string;
+        hoursAgo: string;
+        daysAgo: string;
+        // Preferences
+        preferencesTitle: string;
+        preferencesDescription: string;
+        notificationType: string;
+        enabled: string;
+        disabled: string;
+        frequency: string;
+        immediate: string;
+        daily: string;
+        weekly: string;
+        savePreferences: string;
+        preferencesSaved: string;
+        // Notification categories
+        newUserDigestLabel: string;
+        newUserDigestDescription: string;
+        contentFlaggedLabel: string;
+        contentFlaggedDescription: string;
+        lowEngagementLabel: string;
+        lowEngagementDescription: string;
+        performanceIssuesLabel: string;
+        performanceIssuesDescription: string;
+        milestonesLabel: string;
+        milestonesDescription: string;
+      };
     };
   };
 
@@ -1069,6 +1122,59 @@ export const hebrewLocale: LocaleStrings = {
         exportCSV: 'ייצוא CSV',
         loading: 'טוען...',
         noData: 'אין נתונים',
+      },
+      // Story 9.5 - Admin Notifications
+      notifications: {
+        title: 'התראות מנהל',
+        bellIcon: 'פעמון התראות',
+        unreadCount: 'התראות שלא נקראו',
+        noNotifications: 'אין התראות חדשות',
+        markAsRead: 'סמן כנקרא',
+        markAllAsRead: 'סמן הכל כנקרא',
+        clearRead: 'נקה התראות שנקראו',
+        viewAll: 'צפה בכל ההתראות',
+        settings: 'הגדרות התראות',
+        // Notification types
+        newUserDigest: 'משתמש חדש',
+        contentFlagged: 'תוכן דווח',
+        lowEngagement: 'מעורבות נמוכה',
+        performanceIssue: 'בעיית ביצועים',
+        milestone: 'אבן דרך',
+        // Priority levels
+        highPriority: 'עדיפות גבוהה',
+        normalPriority: 'עדיפות רגילה',
+        lowPriority: 'עדיפות נמוכה',
+        // Actions
+        viewDetails: 'צפה בפרטים',
+        dismiss: 'התעלם',
+        // Time
+        justNow: 'עכשיו',
+        minutesAgo: 'לפני דקות',
+        hoursAgo: 'לפני שעות',
+        daysAgo: 'לפני ימים',
+        // Preferences
+        preferencesTitle: 'הגדרות התראות מנהל',
+        preferencesDescription: 'התאם אישית את סוגי ההתראות ותדירות ההתראות',
+        notificationType: 'סוג התראה',
+        enabled: 'מופעל',
+        disabled: 'מושבת',
+        frequency: 'תדירות',
+        immediate: 'מיידי',
+        daily: 'יומי',
+        weekly: 'שבועי',
+        savePreferences: 'שמור הגדרות',
+        preferencesSaved: 'ההגדרות נשמרו בהצלחה',
+        // Notification categories
+        newUserDigestLabel: 'משתמשים חדשים',
+        newUserDigestDescription: 'התראות על הרשמות משתמשים חדשים',
+        contentFlaggedLabel: 'תוכן שדווח',
+        contentFlaggedDescription: 'התראות על תוכן שדווח על ידי משתמשים',
+        lowEngagementLabel: 'מעורבות נמוכה',
+        lowEngagementDescription: 'התראות על משתמשים עם מעורבות נמוכה',
+        performanceIssuesLabel: 'בעיות ביצועים',
+        performanceIssuesDescription: 'התראות על בעיות ביצועים בפלטפורמה',
+        milestonesLabel: 'אבני דרך',
+        milestonesDescription: 'התראות על השגת אבני דרך בפלטפורמה',
       },
     },
   },

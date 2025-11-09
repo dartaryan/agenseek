@@ -12,6 +12,7 @@ import { MobileNav } from './MobileNav';
 import { HeaderNav } from './HeaderNav';
 import { SearchBar, type SearchBarRef } from './SearchBar';
 import { NotificationDropdown } from './NotificationDropdown';
+import { AdminNotificationBell } from '../admin/AdminNotificationBell';
 import { UserAvatar } from '../ui/user-avatar';
 import { supabase } from '../../lib/supabase';
 import type { AvatarConfig } from '../../lib/avatar';
@@ -139,6 +140,9 @@ export const Header = forwardRef<HeaderRef>(function Header(_props, ref) {
           <div className="hidden md:flex items-center gap-4">
             {/* Notifications - Story 8.6 */}
             <NotificationDropdown />
+
+            {/* Admin Notifications - Story 9.5 */}
+            {profile?.is_admin && <AdminNotificationBell />}
 
             {/* Theme Toggle - Placeholder for future */}
             <Button variant="ghost" size="sm" disabled>

@@ -1,0 +1,1322 @@
+{
+  "metadata": {
+    "id": "project-managers",
+    "slug": "project-managers",
+    "title": "מדריך מנהלי פרויקטים וסקראם מאסטרים: ניהול מצוין עם BMAD-METHOD",
+    "description": "מדריך מקיף למנהלי פרויקטים וסקראם מאסטרים - Project Managers, Scrum Masters, Agile Coaches. לומדים איך להשתמש ב-BMAD לניהול ספרינטים, ארגון backlog, הרמת חסמים, ורטרוספקטיבות יעילות.",
+    "category": "roles",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 35,
+    "icon": "ClipboardList",
+    "tags": ["ניהול פרויקטים", "סקראם מאסטר", "Bob", "אג'ייל", "ספרינטים", "backlog", "retrospective"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "למי מדריך זה מיועד",
+      "level": 2,
+      "anchor": "for-who"
+    },
+    {
+      "id": "toc-2",
+      "title": "מסלול למידה מומלץ - צעד אחר צעד",
+      "level": 2,
+      "anchor": "learning-path",
+      "children": [
+        {
+          "id": "toc-2-1",
+          "title": "שלב 1: הבנת היסודות",
+          "level": 3,
+          "anchor": "stage-1"
+        },
+        {
+          "id": "toc-2-2",
+          "title": "שלב 2: התקנה והגדרה",
+          "level": 3,
+          "anchor": "stage-2"
+        },
+        {
+          "id": "toc-2-3",
+          "title": "שלב 3: שליטה באג'נט SM והוורקפלואים",
+          "level": 3,
+          "anchor": "stage-3"
+        }
+      ]
+    },
+    {
+      "id": "toc-3",
+      "title": "האג'נט שלך: Bob (SM - Scrum Master)",
+      "level": 2,
+      "anchor": "your-agent"
+    },
+    {
+      "id": "toc-4",
+      "title": "הוורקפלואים שלך - מדריך שימוש מעשי",
+      "level": 2,
+      "anchor": "your-workflows"
+    },
+    {
+      "id": "toc-5",
+      "title": "ניהול ספרינט מקצועי עם BMAD",
+      "level": 2,
+      "anchor": "sprint-management"
+    },
+    {
+      "id": "toc-6",
+      "title": "תרחישים מעשיים מהעבודה שלך",
+      "level": 2,
+      "anchor": "practical-scenarios"
+    },
+    {
+      "id": "toc-7",
+      "title": "עבודה עם הצוות",
+      "level": 2,
+      "anchor": "team-work"
+    },
+    {
+      "id": "toc-8",
+      "title": "Best Practices למנהלי פרויקטים",
+      "level": 2,
+      "anchor": "best-practices"
+    },
+    {
+      "id": "toc-9",
+      "title": "שאלות נפוצות",
+      "level": 2,
+      "anchor": "faq"
+    },
+    {
+      "id": "toc-10",
+      "title": "סיכום ומה הלאה",
+      "level": 2,
+      "anchor": "summary"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מדריך מנהלי פרויקטים וסקראם מאסטרים: ניהול מצוין עם BMAD-METHOD",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "למי מדריך זה?",
+      "content": "מנהלי פרויקטים, סקראם מאסטרים, אג'ייל קואוצ'ים, וכל מי שמוביל צוותי פיתוח. תלמדו איך BMAD משפר את ניהול הפרויקט, תכנון הספרינטים, ועוזר לצוות להצליח."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "למי מדריך זה מיועד",
+      "id": "for-who"
+    },
+    {
+      "type": "text",
+      "content": "מדריך זה נכתב במיוחד עבור מובילי צוותים ומנהלי פרויקטים - בין אם אתם:",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Scrum Masters",
+      "id": "scrum-masters"
+    },
+    {
+      "type": "text",
+      "content": "אתם מובילים צוות אג'ייל? BMAD-METHOD יעזור לכם לתכנן ספרינטים בצורה מובנית יותר, לנהל את ה-backlog ביעילות, להריץ רטרוספקטיבות משמעותיות, ולהסיר חסמים מהר יותר. אג'נט Bob ילווה אתכם בכל תהליכי הסקראם ויוודא שהצוות עובד בצורה חלקה.",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Project Managers",
+      "id": "project-managers"
+    },
+    {
+      "type": "text",
+      "content": "אתם מנהלים פרויקטים גדולים? BMAD יעזור לכם לשבור פרויקטים מורכבים ל-Epics ו-Stories, לעקוב אחר התקדמות, לזהות סיכונים מוקדם, ולתקשר עם בעלי עניין. תקבלו כלים לניהול טיימליינים, תקציבים, ומשאבים בצורה מקצועית.",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Agile Coaches / Team Leads",
+      "id": "agile-coaches"
+    },
+    {
+      "type": "text",
+      "content": "אתם מדריכים צוותים בתהליכי אג'ייל? BMAD יעזור לכם לשפר את תהליכי העבודה, ללמד את הצוות best practices, לזהות בעיות בתהליך, וליישם שיפורים מתמידים. תוכלו להשתמש ב-BMAD כדי להדגים תהליכים נכונים ולהטמיע אותם בצוות.",
+      "markdown": false
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "עדיף להתחיל מהיסודות",
+      "content": "אם אתם חדשים ב-BMAD, קראו קודם את המדריך 'התחלה מהירה' ואת 'הדרכה ליום הראשון'. המדריך הזה מניח ידע בסיסי במושגים של BMAD."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "מסלול למידה מומלץ - צעד אחר צעד",
+      "id": "learning-path"
+    },
+    {
+      "type": "text",
+      "content": "הנה המסלול המומלץ ללימוד BMAD עבור מנהלי פרויקטים וסקראם מאסטרים:",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 1: הבנת היסודות (זמן: 1-2 שעות)",
+      "id": "stage-1"
+    },
+    {
+      "type": "text",
+      "content": "**מה ללמוד:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "קראו את 'התחלה מהירה ל-BMAD' - הבינו מה זה BMAD ואיך זה עובד"
+        },
+        {
+          "content": "קראו את 'מילון מונחים' - למדו מושגים כמו אג'נטים, וורקפלואים, Epic, Story"
+        },
+        {
+          "content": "עברו על 'הדרכה ליום הראשון' - תקבלו ניצחון ראשון!"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "יעד השלב",
+      "content": "להבין את הבסיס - מה זה אג'נטים, מה זה וורקפלואים, ואיך BMAD מתאים לתהליכי העבודה האג'יילים שלכם."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 2: התקנה והגדרה (זמן: 30-60 דקות)",
+      "id": "stage-2"
+    },
+    {
+      "type": "text",
+      "content": "**מה לעשות:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "התקינו את BMAD בפרויקט שלכם (או צרו פרויקט חדש לתרגול)"
+        },
+        {
+          "content": "הריצו את workflow-init - המערכת תזהה את הפרויקט שלכם"
+        },
+        {
+          "content": "פתחו את אג'נט SM (Bob) והתנסו בשיחה ראשונה"
+        },
+        {
+          "content": "הריצו את sprint-planning workflow על ספרינט קטן"
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# התקנה\ncd your-project\nnpx bmad-method@alpha install\n\n# הפעלת workflow-init\n# פתחו את bmad/core/agents/bmad-master.md\n# כתבו בצ'אט: *workflow-init",
+      "filename": "התקנה בסיסית"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "יעד השלב",
+      "content": "סביבת עבודה מוכנה - BMAD מותקן, אתם מכירים את אג'נט Bob, והרצתם וורקפלואו ראשון."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 3: שליטה באג'נט SM והוורקפלואים (זמן: 2-4 שעות)",
+      "id": "stage-3"
+    },
+    {
+      "type": "text",
+      "content": "**מה ללמוד:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "למדו לעומק את אג'נט Bob (SM) - מה הוא יכול לעשות ואיך להשתמש בו"
+        },
+        {
+          "content": "הריצו sprint-planning workflow על ספרינט אמיתי בפרויקט"
+        },
+        {
+          "content": "צרו backlog מסודר עם Stories מובנים"
+        },
+        {
+          "content": "הריצו retrospective workflow בסוף ספרינט"
+        },
+        {
+          "content": "תרגלו שילוב עם אג'נטים אחרים (PM, Dev, TEA)"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "יעד השלב",
+      "content": "שליטה מלאה בכלי הניהול של BMAD - אתם יודעים איך לתכנן ספרינטים, לנהל backlog, ולהוביל את הצוות ביעילות."
+    },
+    {
+      "type": "table",
+      "headers": [
+        {
+          "content": "שלב",
+          "alignment": "right"
+        },
+        {
+          "content": "זמן",
+          "alignment": "center"
+        },
+        {
+          "content": "מה תלמדו",
+          "alignment": "right"
+        },
+        {
+          "content": "תוצאה",
+          "alignment": "right"
+        }
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "content": "1",
+              "alignment": "right"
+            },
+            {
+              "content": "1-2 שעות",
+              "alignment": "center"
+            },
+            {
+              "content": "יסודות BMAD",
+              "alignment": "right"
+            },
+            {
+              "content": "הבנה כללית",
+              "alignment": "right"
+            }
+          ]
+        },
+        {
+          "cells": [
+            {
+              "content": "2",
+              "alignment": "right"
+            },
+            {
+              "content": "30-60 דקות",
+              "alignment": "center"
+            },
+            {
+              "content": "התקנה והגדרה",
+              "alignment": "right"
+            },
+            {
+              "content": "סביבה מוכנה",
+              "alignment": "right"
+            }
+          ]
+        },
+        {
+          "cells": [
+            {
+              "content": "3",
+              "alignment": "right"
+            },
+            {
+              "content": "2-4 שעות",
+              "alignment": "center"
+            },
+            {
+              "content": "שליטה באג'נטים",
+              "alignment": "right"
+            },
+            {
+              "content": "יכולת הובלה מקצועית",
+              "alignment": "right"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "האג'נט שלך: Bob (SM - Scrum Master)",
+      "id": "your-agent"
+    },
+    {
+      "type": "text",
+      "content": "**Bob** הוא אג'נט הניהול המרכזי שלכם. הוא מומחה לכל היבטי ניהול הפרויקט האג'ייל - תכנון ספרינטים, ניהול backlog, הרמת חסמים, ורטרוספקטיבות.",
+      "markdown": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה Bob יכול לעשות עבורכם?",
+      "id": "bob-capabilities"
+    },
+    {
+      "type": "tabs",
+      "items": [
+        {
+          "id": "tab-sprint-planning",
+          "label": "תכנון ספרינטים",
+          "content": [
+            {
+              "type": "text",
+              "content": "**תכנון ספרינט מקצועי**",
+              "markdown": true
+            },
+            {
+              "type": "list",
+              "variant": "unordered",
+              "items": [
+                {
+                  "content": "בחירת Stories מתאימים לספרינט הבא"
+                },
+                {
+                  "content": "הערכת Velocity והיקף הספרינט"
+                },
+                {
+                  "content": "זיהוי תלויות וסיכונים"
+                },
+                {
+                  "content": "קביעת Sprint Goal ברור"
+                },
+                {
+                  "content": "חלוקת Stories לטאסקים"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tab-backlog",
+          "label": "ניהול Backlog",
+          "content": [
+            {
+              "type": "text",
+              "content": "**ארגון ותעדוף Backlog**",
+              "markdown": true
+            },
+            {
+              "type": "list",
+              "variant": "unordered",
+              "items": [
+                {
+                  "content": "תעדוף Stories לפי ערך עסקי"
+                },
+                {
+                  "content": "Grooming של Stories - הבהרת דרישות"
+                },
+                {
+                  "content": "פירוק Epics ל-Stories"
+                },
+                {
+                  "content": "וידוא שכל Story מוכן לפיתוח"
+                },
+                {
+                  "content": "ניהול Technical Debt"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tab-blockers",
+          "label": "הרמת חסמים",
+          "content": [
+            {
+              "type": "text",
+              "content": "**זיהוי ופתרון חסמים**",
+              "markdown": true
+            },
+            {
+              "type": "list",
+              "variant": "unordered",
+              "items": [
+                {
+                  "content": "זיהוי מוקדם של בעיות וחסמים"
+                },
+                {
+                  "content": "הצעת פתרונות ואסטרטגיות"
+                },
+                {
+                  "content": "תיאום בין אגנטים וחברי צוות"
+                },
+                {
+                  "content": "אסקלציה לניהול בעת הצורך"
+                },
+                {
+                  "content": "מעקב עד לסגירת החסם"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tab-retro",
+          "label": "רטרוספקטיבות",
+          "content": [
+            {
+              "type": "text",
+              "content": "**הרצת רטרו משמעותיות**",
+              "markdown": true
+            },
+            {
+              "type": "list",
+              "variant": "unordered",
+              "items": [
+                {
+                  "content": "ניתוח מה עבד טוב במהלך הספרינט"
+                },
+                {
+                  "content": "זיהוי מה צריך לשפר"
+                },
+                {
+                  "content": "הגדרת Action Items ברורים"
+                },
+                {
+                  "content": "מעקב אחר יישום השיפורים"
+                },
+                {
+                  "content": "בניית תרבות של למידה מתמדת"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך לפתוח את Bob?",
+      "id": "open-bob"
+    },
+    {
+      "type": "code",
+      "language": "text",
+      "code": "# 1. נווטו לקובץ האג'נט\nbmad/bmm/agents/sm.md\n\n# 2. ב-Cursor / Claude Code:\n# - לחצו על 'Add to Context' או 'Start Chat with Agent'\n# - האג'נט יקרא את הקונפיגורציה שלכם ויתחיל\n\n# 3. תראו הודעת ברכה:\n\"Hello [שמכם]! I'm Bob, your Scrum Master.\nHow can I help you lead your team today?\"",
+      "filename": "פתיחת אג'נט SM"
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "טיפ חשוב",
+      "content": "כשאתם פותחים את Bob, תיתנו לו קונטקסט - באיזה שלב הפרויקט אתם, מה המצב של הצוות, ומה האתגרים העיקריים. ככל שתיתנו יותר מידע, כך הוא יעזור יותר!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "הוורקפלואים שלך - מדריך שימוש מעשי",
+      "id": "your-workflows"
+    },
+    {
+      "type": "text",
+      "content": "בתור מנהל פרויקט או סקראם מאסטר, יש לכם וורקפלואים מיוחדים שמסייעים בניהול הצוות והפרויקט:",
+      "markdown": false
+    },
+    {
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "workflow-sprint-planning",
+          "title": "sprint-planning - תכנון ספרינט",
+          "content": [
+            {
+              "type": "text",
+              "content": "**מתי להשתמש:** בתחילת כל ספרינט",
+              "markdown": true
+            },
+            {
+              "type": "text",
+              "content": "**מה הוורקפלואו עושה:**\n\nBob עוזר לכם לתכנן את הספרינט הבא:\n• בוחן את ה-backlog ומציע Stories מתאימים\n• מעריך Velocity לפי ספרינטים קודמים\n• זוהה תלויות וסיכונים\n• מציע Sprint Goal\n• מחלק Stories לטאסקים ל-Dev\n• יוצר Sprint Plan מפורט",
+              "markdown": false
+            },
+            {
+              "type": "code",
+              "language": "bash",
+              "code": "# איך להריץ:\n# 1. פתחו את bmad/core/agents/bmad-master.md\n# 2. כתבו:\n*sprint-planning\n\n# או:\nrun sprint-planning for Sprint 5",
+              "filename": "הרצת sprint-planning"
+            },
+            {
+              "type": "callout",
+              "variant": "success",
+              "title": "פלט הוורקפלואו",
+              "content": "קובץ Sprint-Plan-[number].md עם יעדים, Stories נבחרים, הערכת זמנים, וזיהוי סיכונים."
+            }
+          ]
+        },
+        {
+          "id": "workflow-story-ready",
+          "title": "story-ready - בדיקת מוכנות Story",
+          "content": [
+            {
+              "type": "text",
+              "content": "**מתי להשתמש:** לפני הכנסת Story לספרינט",
+              "markdown": true
+            },
+            {
+              "type": "text",
+              "content": "**מה הוורקפלואו עושה:**\n\nמוודא שה-Story מוכן לפיתוח:\n• בודק שיש תיאור ברור של הדרישות\n• מוודא שיש Acceptance Criteria\n• בודק שהצוות מבין את הדרישות\n• מזהה תלויות\n• מוודא שיש הערכת זמן\n• בודק שיש תכנון בדיקות",
+              "markdown": false
+            },
+            {
+              "type": "callout",
+              "variant": "tip",
+              "title": "טיפ לעבודה צוותית",
+              "content": "הריצו את story-ready יחד עם כל הצוות - PM, Dev, TEA, UX. כך תוודאו שכולם מבינים מה צריך לעשות."
+            }
+          ]
+        },
+        {
+          "id": "workflow-retrospective",
+          "title": "retrospective - רטרוספקטיבה",
+          "content": [
+            {
+              "type": "text",
+              "content": "**מתי להשתמש:** בסוף כל ספרינט",
+              "markdown": true
+            },
+            {
+              "type": "text",
+              "content": "**מה הוורקפלואו עושה:**\n\nמנתח את הספרינט ומציע שיפורים:\n• מה עבד טוב?\n• מה לא עבד?\n• מה נלמד?\n• מה נשפר בספרינט הבא?\n• Action Items ברורים\n• מעקב אחר Action Items מספרינטים קודמים",
+              "markdown": false
+            },
+            {
+              "type": "callout",
+              "variant": "success",
+              "title": "יתרון גדול",
+              "content": "Bob זוכר את כל הרטרו הקודמות ויכול לזהות דפוסים - מה חוזר על עצמו ומה באמת השתפר."
+            }
+          ]
+        },
+        {
+          "id": "workflow-correct-course",
+          "title": "correct-course - תיקון מסלול",
+          "content": [
+            {
+              "type": "text",
+              "content": "**מתי להשתמש:** כשהפרויקט מסטה מהמסלול",
+              "markdown": true
+            },
+            {
+              "type": "text",
+              "content": "**מה הוורקפלואו עושה:**\n\nעוזר לחזור למסלול:\n• מזהה היכן יש סטייה\n• מנתח את הגורמים לסטייה\n• מציע תוכנית התאוששות\n• מגדיר מחדש עדיפויות\n• מציע שינויים בתהליך\n• יוצר תוכנית פעולה",
+              "markdown": false
+            },
+            {
+              "type": "callout",
+              "variant": "warning",
+              "title": "מתי להריץ",
+              "content": "אל תחכו שהמצב יהפוך לקריטי! הריצו correct-course ברגע שאתם מרגישים שמשהו לא הולך כמו שצריך."
+            }
+          ]
+        },
+        {
+          "id": "workflow-workflow-status",
+          "title": "workflow-status - מעקב התקדמות",
+          "content": [
+            {
+              "type": "text",
+              "content": "**מתי להשתמש:** בכל עת - עדכון שוטף",
+              "markdown": true
+            },
+            {
+              "type": "text",
+              "content": "**מה הוורקפלואו עושה:**\n\nמציג את מצב הפרויקט:\n• באיזה שלב כל Epic/Story\n• מה הושלם\n• מה בתהליך\n• מה הבא בתור\n• זיהוי איחורים\n• חיזוי תאריכי סיום",
+              "markdown": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "ניהול ספרינט מקצועי עם BMAD",
+      "id": "sprint-management"
+    },
+    {
+      "type": "text",
+      "content": "הנה תהליך מלא לניהול ספרינט עם BMAD:",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מחזור הספרינט - 5 שלבים",
+      "id": "sprint-cycle"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "gap": "md",
+      "items": [
+        [
+          {
+            "type": "card",
+            "variant": "outlined",
+            "title": "שלב 1: הכנה לספרינט",
+            "content": [
+              {
+                "type": "text",
+                "content": "**לפני Sprint Planning**\n\n• הריצו workflow-status\n• בדקו את ה-backlog\n• הריצו story-ready על Stories\n• וודאו שהצוות זמין\n\n**זמן:** 1-2 ימים לפני",
+                "markdown": true
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "variant": "outlined",
+            "title": "שלב 2: Sprint Planning",
+            "content": [
+              {
+                "type": "text",
+                "content": "**פגישת תכנון**\n\n• הריצו sprint-planning\n• בחרו Stories עם הצוות\n• הגדירו Sprint Goal\n• חלקו טאסקים\n\n**זמן:** 2-4 שעות",
+                "markdown": true
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "variant": "outlined",
+            "title": "שלב 3: ביצוע הספרינט",
+            "content": [
+              {
+                "type": "text",
+                "content": "**במהלך הספרינט**\n\n• Daily Standups\n• הסרת חסמים (Bob עוזר)\n• מעקב התקדמות\n• עזרה לצוות\n\n**זמן:** 1-2 שבועות",
+                "markdown": true
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "variant": "outlined",
+            "title": "שלב 4: Sprint Review",
+            "content": [
+              {
+                "type": "text",
+                "content": "**הצגת התוצרים**\n\n• הצגה לבעלי עניין\n• קבלת פידבק\n• עדכון backlog\n• תכנון המשך\n\n**זמן:** 1-2 שעות",
+                "markdown": true
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "variant": "outlined",
+            "title": "שלב 5: Retrospective",
+            "content": [
+              {
+                "type": "text",
+                "content": "**למידה ושיפור**\n\n• הריצו retrospective\n• דונו בתוצאות\n• הגדירו Action Items\n• תכננו שיפורים\n\n**זמן:** 1-2 שעות",
+                "markdown": true
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה מלאה: ניהול ספרינט טיפוסי",
+      "id": "example-sprint"
+    },
+    {
+      "type": "text",
+      "content": "בואו נראה דוגמה קונקרטית - ניהול ספרינט של שבועיים:",
+      "markdown": false
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "# שיחה עם Bob (SM)\n\nאתם: \"Hi Bob, אנחנו מתכוננים לספרינט 8.\nהצוות:\n- 3 מפתחים (Amelia, Dev2, Dev3)\n- 1 QA (Murat)\n- 1 UX (Lisa)\n\nVelocity אחרון: 25 Story Points\nיעד הספרינט: להשלים את פיצ'ר User Profile\"\n\nBob: \"Great! Let's plan Sprint 8 together.\n\nFirst, let me check the backlog:\n- Story 5.1: User Profile View (5 SP) ✓ Ready\n- Story 5.2: Edit Profile (8 SP) ✓ Ready  \n- Story 5.3: Profile Picture Upload (5 SP) ⚠ Missing acceptance criteria\n- Story 5.4: Profile Privacy Settings (8 SP) ✓ Ready\n\nTotal: 26 SP (slightly above velocity)\n\nRecommendation:\n→ Include Stories 5.1, 5.2, 5.4 (21 SP)\n→ Fix Story 5.3 and add to backlog for next sprint\n→ Sprint Goal: 'Users can view, edit, and control privacy of their profiles'\n\nShall we proceed?\"",
+      "filename": "תרחיש דוגמה"
+    },
+    {
+      "type": "text",
+      "content": "**Bob יצור עבורכם:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "Sprint Plan מפורט עם כל ה-Stories"
+        },
+        {
+          "content": "Task Breakdown לכל Story"
+        },
+        {
+          "content": "Risk Assessment - זיהוי סיכונים"
+        },
+        {
+          "content": "Daily Standup Template"
+        },
+        {
+          "content": "Sprint Goal Statement ברור"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאה",
+      "content": "תוך שעה תקבלו ספרינט מתוכנן היטב, עם יעדים ברורים, Stories מוכנים, והצוות מבין בדיוק מה צריך לעשות."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תרחישים מעשיים מהעבודה שלך",
+      "id": "practical-scenarios"
+    },
+    {
+      "type": "text",
+      "content": "הנה תרחישים נפוצים מהעבודה היומיומית שלכם, ואיך BMAD עוזר:",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 1: הצוות תקוע בחסם טכני",
+      "id": "scenario-1"
+    },
+    {
+      "type": "text",
+      "content": "**המצב:**\nאמצע הספרינט. המפתח תקוע בבעיה טכנית ולא מתקדם כבר יומיים.",
+      "markdown": true
+    },
+    {
+      "type": "text",
+      "content": "**מה אתם עושים:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "פותחים את Bob (SM)"
+        },
+        {
+          "content": "מסבירים: 'Dev is stuck on API integration for 2 days'"
+        },
+        {
+          "content": "Bob מציע אסטרטגיות: שיתוף פעולה עם Architect, פתרון זמני, או שינוי גישה"
+        },
+        {
+          "content": "Bob יוצר action plan עם צעדים ברורים"
+        },
+        {
+          "content": "אתם מיישמים ועוקבים"
+        },
+        {
+          "content": "הבעיה נפתרת תוך יום!"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "טיפ",
+      "content": "אל תחכו יותר מיום אחד! ברגע שמשהו תקוע, הבאו את Bob לעזרה."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 2: הספרינט לא הולך לעמוד ביעד",
+      "id": "scenario-2"
+    },
+    {
+      "type": "text",
+      "content": "**המצב:**\nאמצע הספרינט. רואים שלא נספיק להשלים את כל ה-Stories שהתחייבנו.",
+      "markdown": true
+    },
+    {
+      "type": "text",
+      "content": "**מה אתם עושים:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "הריצו workflow-status לקבלת תמונה ברורה"
+        },
+        {
+          "content": "פתחו את Bob ושאלו: 'We're behind schedule, what should we do?'"
+        },
+        {
+          "content": "Bob מנתח את המצב ומציע אופציות: הקטנת scope, הוספת משאבים, או דחיית Stories"
+        },
+        {
+          "content": "אתם קוראים לפגישת צוות ומציגים את האופציות"
+        },
+        {
+          "content": "הצוות מחליט יחד על המסלול"
+        },
+        {
+          "content": "Bob עוזר לתקשר עם stakeholders"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 3: רטרוספקטיבה יצרנית",
+      "id": "scenario-3"
+    },
+    {
+      "type": "text",
+      "content": "**המצב:**\nסוף הספרינט. רוצים להריץ רטרו שבאמת משיג תוצאות, לא רק 'שיחת סרק'.",
+      "markdown": true
+    },
+    {
+      "type": "text",
+      "content": "**מה אתם עושים:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "הריצו retrospective workflow"
+        },
+        {
+          "content": "Bob מכין שאלות מנחות מבוססות על הספרינט"
+        },
+        {
+          "content": "בפגישה, Bob מסכם ומזהה דפוסים"
+        },
+        {
+          "content": "Bob מציע Action Items ברורים ומדידים"
+        },
+        {
+          "content": "אתם מבקשים מהצוות להתחייב על Action Items"
+        },
+        {
+          "content": "Bob עוקב ומזכיר בספרינט הבא"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "היתרון הגדול",
+      "content": "Bob זוכר את כל הרטרו הקודמות! הוא יכול לומר: 'זו הפעם ה-3 שהבעיה הזו עולה - בואו נפתור אותה ברצינות הפעם.'"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "עבודה עם הצוות",
+      "id": "team-work"
+    },
+    {
+      "type": "text",
+      "content": "בתור מנהל פרויקט או סקראם מאסטר, אתם מתאמים את כל הצוות. הנה איך BMAD עוזר:",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "עבודה עם PM (John)",
+      "id": "work-with-pm"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "John יוצר את ה-PRD והאפיקים - אתם עוזרים לפרק ל-Stories מתאימים"
+        },
+        {
+          "content": "אתם מריצים story-ready ומוודאים שכל Story מוכן"
+        },
+        {
+          "content": "John מתעדף את ה-backlog - אתם עוזרים לתרגם לספרינטים"
+        },
+        {
+          "content": "שיתוף פעולה חלק בין חזון עסקי למימוש טכני!"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "עבודה עם הצוות הטכני",
+      "id": "work-with-tech-team"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "Architect (Winston) - מתאם תלויות טכניות וזיהוי סיכונים"
+        },
+        {
+          "content": "Developers (Amelia & team) - מעקב התקדמות, הסרת חסמים, סיוע בפתרון בעיות"
+        },
+        {
+          "content": "TEA (Murat) - תיאום זמנים לבדיקות, וידוא איכות, ניהול באגים"
+        },
+        {
+          "content": "UX (Lisa) - תיאום מסירות עיצוביות, feedback loops"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "שפה משותפת",
+      "content": "כשכולם משתמשים ב-BMAD, יש שפה משותפת. Bob יכול לדבר עם כל האגנטים ולתאם בניהם - זה מקל מאוד על העבודה!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Best Practices למנהלי פרויקטים",
+      "id": "best-practices"
+    },
+    {
+      "type": "text",
+      "content": "הנה שיטות עבודה מומלצות מניסיון השטח:",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "1. שמרו על ה-backlog מסודר",
+      "id": "bp-backlog"
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "כלל הזהב",
+      "content": "ה-backlog הוא מקור האמת של הפרויקט. אם הוא לא מסודר, הכל אחרי זה לא יעבוד."
+    },
+    {
+      "type": "text",
+      "content": "**איך לשמור על backlog בריא:**\n• Grooming שבועי עם הצוות\n• וידוא שה-Stories ה-3 הבאים מוכנים לפיתוח\n• תעדוף ברור לפי ערך עסקי\n• הסרת Stories ישנים/לא רלוונטיים\n• שמירה על איזון בין features חדשים ל-technical debt",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "2. תקשרו, תקשרו, תקשרו",
+      "id": "bp-communicate"
+    },
+    {
+      "type": "text",
+      "content": "**עם מי ומתי:**\n\n**Stakeholders:** שבועי - עדכון התקדמות, סיכונים, שינויים\n**הצוות:** יומי - standup, הסרת חסמים, תמיכה\n**PM/PO:** כל יומיים - תעדוף, דרישות, clarifications\n**Management:** חודשי - סטטוס פרויקט, תקציב, timeline",
+      "markdown": false
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "Bob עוזר בתקשורת",
+      "content": "Bob יכול לעזור לכם להכין דוחות, סטטוסים, ועדכונים לכל הצדדים - בשפה ובפורמט המתאים לכל אחד."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "3. זהו סיכונים מוקדם",
+      "id": "bp-risks"
+    },
+    {
+      "type": "text",
+      "content": "**רשימת סיכונים נפוצים:**\n\n• **Velocity יורד** → בדקו: מה מאט את הצוות?\n• **Stories לא מושלמים** → בדקו: האם ה-DoD ברור?\n• **חסמים חוזרים** → בדקו: האם יש בעיה מערכתית?\n• **Technical debt צובר** → בדקו: האם מספיק זמן לתחזוקה?\n• **Scope creep** → בדקו: האם ה-PM יודע להגיד 'לא'?",
+      "markdown": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "4. השקיעו ברטרו",
+      "id": "bp-retro"
+    },
+    {
+      "type": "text",
+      "content": "**רטרו טובה:**\n\n• מתקיימת בזמן (לא מתבטלת!)\n• כל הצוות משתתף ומדבר\n• יש Action Items ברורים\n• יש מעקב על Action Items מספרינטים קודמים\n• אווירה של למידה, לא האשמה\n• יש שיפור מדיד מספרינט לספרינט",
+      "markdown": false
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "הרטרו היא הכלי החזק ביותר לשיפור",
+      "content": "צוותים שמקיימים רטרו טוב משתפרים פי 2-3 מהר יותר מצוותים שלא!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "5. שמרו על קצב יציב",
+      "id": "bp-pace"
+    },
+    {
+      "type": "text",
+      "content": "**אל תלחצו על הצוות:**\n\n• עדיף קצב יציב ארוך טווח מאשר ספרינטים של crunch\n• שמרו על work-life balance\n• תנו לצוות זמן ללמוד ולהשתפר\n• זכרו: צוות שרוף לא יוצר קוד איכותי\n• Velocity יורד כששורפים את הצוות!",
+      "markdown": false
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שאלות נפוצות",
+      "id": "faq"
+    },
+    {
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "faq-1",
+          "title": "האם BMAD מחליף את כלי הניהול שלי (Jira, Azure DevOps)?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**לא!** BMAD לא מחליף את כלי הניהול הקיימים - הוא משלים אותם.\n\n**איך זה עובד:**\n• אתם מנהלים Stories ב-Jira/Azure\n• משתמשים ב-BMAD לתכנון ותיאום\n• Bob עוזר בהחלטות ואסטרטגיה\n• מייצאים את התוצאות לכלי הניהול\n\n**BMAD עוזר ב:**\n• תכנון ספרינטים\n• זיהוי סיכונים\n• הרצת רטרו\n• הסרת חסמים\n• תיאום בין אגנטים",
+              "markdown": true
+            }
+          ]
+        },
+        {
+          "id": "faq-2",
+          "title": "איך Bob עוזר בהסרת חסמים?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**Bob עוזר במספר דרכים:**\n\n**1. זיהוי מוקדם:**\n• מנתח את ה-velocity והתקדמות\n• מזהה Stories שתקועים\n• שואל שאלות הבהרה\n\n**2. הצעת פתרונות:**\n• מציע אסטרטגיות פתרון\n• מתאם בין אגנטים\n• מציע שינויים בתהליך\n\n**3. תיעוד ומעקב:**\n• מתעד את החסם\n• עוקב אחר הפתרון\n• לומד לעתיד\n\n**דוגמה:**\n'Dev is blocked - needs API documentation from Backend team'\n→ Bob מציע: שיחה עם Architect, temporary mock data, או escalation למנהל",
+              "markdown": true
+            }
+          ]
+        },
+        {
+          "id": "faq-3",
+          "title": "איך לנהל מספר צוותים בו-זמנית?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**אסטרטגיות לניהול מרובה:**\n\n**1. צור instance נפרד לכל צוות:**\n• תיקייה נפרדת לכל פרויקט\n• Bob נפרד לכל צוות\n• מעקב נפרד\n\n**2. השתמש ב-workflow-status:**\n• עדכון מהיר של מצב כל צוות\n• זיהוי בעיות בין-צוותיות\n• תעדוף זמן\n\n**3. הסמך את הצוותים:**\n• Bob עוזר לכל צוות להיות עצמאי\n• פחות תלות בך\n• התערבות רק כשצריך\n\n**4. פגישות סנכרון:**\n• Scrum of Scrums שבועי\n• Bob עוזר להכין ולהציג",
+              "markdown": true
+            }
+          ]
+        },
+        {
+          "id": "faq-4",
+          "title": "מה לעשות כשהצוות מתנגד לתהליכים חדשים?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**התנגדות לשינוי היא טבעית!**\n\n**אסטרטגיות להטמעה:**\n\n**1. התחילו קטן:**\n• רק וורקפלואו אחד בהתחלה\n• הראו ערך מהיר\n• הרחיבו בהדרגה\n\n**2. שתפו את הצוות:**\n• הסבירו את הערך\n• קבלו feedback\n• התאימו את התהליך\n\n**3. הראו תוצאות:**\n• לפני: כך עבדנו\n• אחרי: כך זה השתפר\n• מספרים לא משקרים!\n\n**4. תנו לצוות לנסות:**\n• ניסוי של ספרינט אחד\n• רטרו על התהליך החדש\n• החלטה מושכלת",
+              "markdown": true
+            }
+          ]
+        },
+        {
+          "id": "faq-5",
+          "title": "איך למדוד הצלחה של השימוש ב-BMAD?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**מטריקות להצלחה:**\n\n**Velocity:**\n• האם ה-velocity יציב/עולה?\n• האם יש פחות תנודות?\n\n**Predictability:**\n• האם אתם עומדים בהתחייבויות?\n• האם ההערכות מדויקות יותר?\n\n**Team Happiness:**\n• שאלון רטרו - איך הצוות מרגיש?\n• פחות stress?\n• יותר סיפוק?\n\n**Quality:**\n• פחות באגים בייצור?\n• Technical debt יורד?\n• Code reviews יותר טובים?\n\n**Delivery:**\n• זמנים קצרים יותר מרעיון ליישום?\n• פחות delays?\n• יותר features delivered?\n\n**Bob עוזר לעקוב אחר כל המטריקות האלה!**",
+              "markdown": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "סיכום ומה הלאה",
+      "id": "summary"
+    },
+    {
+      "type": "text",
+      "content": "סיימתם את המדריך! הנה מה למדתם:",
+      "markdown": false
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מה למדתם",
+      "content": "✓ להכיר את Bob (SM) ולעבוד איתו ביעילות\n✓ להשתמש בוורקפלואים: sprint-planning, retrospective, story-ready\n✓ לנהל ספרינטים מקצועיים - תכנון, ביצוע, רטרו\n✓ לעבוד עם הצוות בצורה חלקה\n✓ להפעיל Best Practices לניהול פרויקטים"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הצעדים הבאים שלכם",
+      "id": "next-steps"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "**התקינו את BMAD** בפרויקט שלכם (אם עוד לא)"
+        },
+        {
+          "content": "**הריצו sprint-planning** על הספרינט הבא"
+        },
+        {
+          "content": "**נהלו ספרינט אחד מלא** עם Bob"
+        },
+        {
+          "content": "**הריצו retrospective** ותראו מה Bob ממליץ"
+        },
+        {
+          "content": "**שתפו את הצוות** - הראו להם איך BMAD עוזר"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מדריכים מומלצים להמשך",
+      "id": "recommended-guides"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "gap": "md",
+      "items": [
+        [
+          {
+            "type": "card",
+            "variant": "elevated",
+            "title": "מדריך אגנטים - Architect + SM + Dev",
+            "content": [
+              {
+                "type": "text",
+                "content": "הכירו לעומק את Bob ואת שאר האגנטים שתעבדו איתם.",
+                "markdown": false
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "variant": "elevated",
+            "title": "מדריך וורקפלואים - Management",
+            "content": [
+              {
+                "type": "text",
+                "content": "למדו את כל הוורקפלואים לניהול פרויקטים בפירוט.",
+                "markdown": false
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "variant": "elevated",
+            "title": "Best Practices",
+            "content": [
+              {
+                "type": "text",
+                "content": "שיטות עבודה מתקדמות לעבודה עם BMAD בצוותים גדולים.",
+                "markdown": false
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "variant": "elevated",
+            "title": "מקרי מבחן ותרגילים",
+            "content": [
+              {
+                "type": "text",
+                "content": "תרגלו על פרויקטים אמיתיים - תרחישי ניהול מהחיים.",
+                "markdown": false
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "זכרו",
+      "content": "תפקידכם הוא לאפשר לצוות להצליח. BMAD עוזר לכם להיות מנהלים טובים יותר - לתכנן נכון, לתקשר ביעילות, ולהסיר חסמים מהר. הצלחת הצוות היא ההצלחה שלכם!"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מזל טוב!",
+      "content": "סיימתם את המדריך למנהלי פרויקטים וסקראם מאסטרים! אתם מוכנים להוביל את הצוות שלכם להצלחה עם BMAD. בהצלחה!"
+    }
+  ]
+}
+

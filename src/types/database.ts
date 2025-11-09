@@ -504,6 +504,128 @@ export interface Database {
           },
         ];
       };
+      admin_notifications: {
+        Row: {
+          id: string;
+          type: 'new_user_digest' | 'content_flagged' | 'low_engagement' | 'performance_issue' | 'milestone';
+          priority: 'high' | 'normal' | 'low';
+          title: string;
+          message: string;
+          related_user_id: string | null;
+          related_guide_slug: string | null;
+          related_comment_id: string | null;
+          metadata: Json;
+          action_url: string | null;
+          action_label: string | null;
+          is_read: boolean;
+          read_at: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          type: 'new_user_digest' | 'content_flagged' | 'low_engagement' | 'performance_issue' | 'milestone';
+          priority?: 'high' | 'normal' | 'low';
+          title: string;
+          message: string;
+          related_user_id?: string | null;
+          related_guide_slug?: string | null;
+          related_comment_id?: string | null;
+          metadata?: Json;
+          action_url?: string | null;
+          action_label?: string | null;
+          is_read?: boolean;
+          read_at?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          type?: 'new_user_digest' | 'content_flagged' | 'low_engagement' | 'performance_issue' | 'milestone';
+          priority?: 'high' | 'normal' | 'low';
+          title?: string;
+          message?: string;
+          related_user_id?: string | null;
+          related_guide_slug?: string | null;
+          related_comment_id?: string | null;
+          metadata?: Json;
+          action_url?: string | null;
+          action_label?: string | null;
+          is_read?: boolean;
+          read_at?: string | null;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'admin_notifications_related_user_id_fkey';
+            columns: ['related_user_id'];
+            referencedRelation: 'profiles';
+            referencedColumns: ['id'];
+          },
+          {
+            foreignKeyName: 'admin_notifications_related_comment_id_fkey';
+            columns: ['related_comment_id'];
+            referencedRelation: 'guide_comments';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
+      admin_notification_preferences: {
+        Row: {
+          id: string;
+          admin_id: string;
+          new_user_digest_enabled: boolean;
+          new_user_digest_frequency: string;
+          content_flagged_enabled: boolean;
+          content_flagged_frequency: string;
+          low_engagement_enabled: boolean;
+          low_engagement_frequency: string;
+          performance_issues_enabled: boolean;
+          performance_issues_frequency: string;
+          milestones_enabled: boolean;
+          milestones_frequency: string;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          admin_id: string;
+          new_user_digest_enabled?: boolean;
+          new_user_digest_frequency?: string;
+          content_flagged_enabled?: boolean;
+          content_flagged_frequency?: string;
+          low_engagement_enabled?: boolean;
+          low_engagement_frequency?: string;
+          performance_issues_enabled?: boolean;
+          performance_issues_frequency?: string;
+          milestones_enabled?: boolean;
+          milestones_frequency?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          admin_id?: string;
+          new_user_digest_enabled?: boolean;
+          new_user_digest_frequency?: string;
+          content_flagged_enabled?: boolean;
+          content_flagged_frequency?: string;
+          low_engagement_enabled?: boolean;
+          low_engagement_frequency?: string;
+          performance_issues_enabled?: boolean;
+          performance_issues_frequency?: string;
+          milestones_enabled?: boolean;
+          milestones_frequency?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'admin_notification_preferences_admin_id_fkey';
+            columns: ['admin_id'];
+            referencedRelation: 'profiles';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
     };
     Views: {
       [_ in never]: never;

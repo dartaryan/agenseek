@@ -1,6 +1,7 @@
 import { RouterProvider } from 'react-router-dom';
 import { router } from './app/routes';
 import { Toaster } from './components/ui/toaster';
+import { Toaster as SonnerToaster } from 'sonner';
 import { TooltipProvider } from './components/ui/tooltip';
 import { AuthProvider } from './contexts/AuthContext';
 
@@ -19,6 +20,7 @@ function App() {
       <TooltipProvider>
         <RouterProvider router={router} />
         <Toaster />
+        <SonnerToaster position="top-center" />
       </TooltipProvider>
     </AuthProvider>
   );

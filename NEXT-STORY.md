@@ -1,10 +1,12 @@
-# 🚀 NEXT STORY: Story 9.5 - Implement Admin Notifications and Alerts
+# 🚀 NEXT STORY: Story 0.5 - Expand Avatar Collection & Add Onboarding Avatar Selection
 
 **Updated:** November 8, 2025
 
 ---
 
-## ✅ Story 9.4 Complete!
+## ✅ Previous Work
+
+### Story 9.4 Complete!
 
 Admins now have comprehensive user engagement insights! Features include:
 
@@ -43,324 +45,247 @@ Admins now have comprehensive user engagement insights! Features include:
 
 ## 📍 Next Story to Implement
 
-### **Story 9.5: Implement Admin Notifications and Alerts**
+### **Story 0.5: Expand Avatar Collection & Add Onboarding Avatar Selection**
 
-**Epic:** 9 - Admin Analytics & Management
-**Priority:** P1
-**Sprint:** 12
-**Story Points:** 2
-**Dependencies:** Story 9.4 Complete ✅
+**Epic:** Side Stories (0.x - On-the-Go Enhancements)
+**Priority:** P2
+**Sprint:** Current (Ad-hoc)
+**Story Points:** 3
+**Dependencies:** Story 0.3 Complete ✅
 
 ---
 
-## 🎯 Story 9.5 Overview
+## 🎯 Story 0.5 Overview
 
-Implement an admin notification system that alerts administrators about important events, at-risk users, and platform issues. Helps admins stay informed and take timely action.
+Expand the avatar collection from 4 to 8 styles (192 total options) and integrate avatar selection as Step 2 in the onboarding flow. Also update Hebrew term from "הדרכה" to "און בורדינג" throughout the application.
 
 ### User Story
 
-**As an admin,**
-**I want to receive notifications about important platform events and user issues,**
-**So that I can take timely action and maintain platform health.**
+**As a new user,**
+**I want to choose from a wider variety of avatars during onboarding,**
+**So that I can express my personality and feel more connected to the platform from the start.**
 
 ---
 
 ## 📋 Acceptance Criteria
 
-### Notification Bell Icon
+### 1. Expanded Avatar Collection
 
-**Given** I'm logged in as admin
-**When** viewing any admin page
+**Given I am selecting an avatar**
+**Then I should see:**
+
+- [ ] **8 avatar styles** (expanded from 4):
+  1. Avataaars (פרצופים מצוירים)
+  2. Bottts (רובוטים)
+  3. Lorelei (פרצופים מאוירים)
+  4. Personas (פרצופים מגוונים)
+  5. Micah (דמויות מינימליסטיות) - NEW
+  6. Adventurer (הרפתקנים) - NEW
+  7. Big Smile (חיוך גדול) - NEW
+  8. Fun Emoji (אימוג'ים כיפיים) - NEW
+- [ ] 24 variations per style
+- [ ] Total 192 avatar options (doubled from 96)
+- [ ] Hebrew labels for all styles
+
+### 2. Onboarding Avatar Selection Step
+
+**Given I am going through onboarding**
+**When I reach Step 2**
 **Then:**
 
-- [ ] Bell icon displays in header with badge count
-- [ ] Badge shows number of unread notifications
-- [ ] Badge is hidden when count is 0
-- [ ] Icon is accessible and properly labeled
+- [ ] Avatar selection step displays after welcome
+- [ ] Shows "בחר את האווטר שלך" title
+- [ ] Displays 8 style tabs
+- [ ] Shows 12 avatar options per style
+- [ ] Large preview of selected avatar
+- [ ] Can select any avatar
+- [ ] "Next" button proceeds to role selection
+- [ ] "Back" returns to welcome
+- [ ] "Skip" uses default avatar
+- [ ] Selected avatar saves to profile
 
-### Notification Dropdown
+### 3. Updated Onboarding Flow (6 Steps)
 
-**Given** I click the notification bell
-**When** dropdown opens
+**New flow:**
+1. Welcome (ברוכים הבאים)
+2. Avatar Selection (בחירת אווטר) ⭐ NEW
+3. Role Selection (תפקיד)
+4. Interests (תחומי עניין)
+5. Experience (ניסיון)
+6. Learning Path (נתיב למידה)
+
+**Requirements:**
+- [ ] `TOTAL_STEPS = 6` (changed from 5)
+- [ ] Progress shows "X / 6"
+- [ ] All steps navigate correctly
+- [ ] Avatar saves on completion
+
+### 4. Hebrew Localization Update
+
+**Given** Hebrew localization
 **Then:**
 
-- [ ] Shows recent notifications (last 20)
-- [ ] Each notification shows:
-  - Icon based on notification type
-  - Title and description
-  - Timestamp (relative time)
-  - Read/unread indicator
-- [ ] Unread notifications are highlighted
-- [ ] Can mark individual as read
-- [ ] Can mark all as read
-- [ ] Can clear all notifications
-- [ ] Scrollable if many notifications
-
-### Notification Types
-
-**System generates notifications for:**
-
-1. **New User Registration** (Daily Digest)
-   - Title: "משתמשים חדשים היום"
-   - Description: "X משתמשים נרשמו היום"
-   - Icon: IconUserPlus
-   - Priority: Low
-   - Frequency: Daily at 9 AM (if new users)
-
-2. **Inappropriate Content Flagged** (Immediate)
-   - Title: "תוכן דווח כבלתי הולם"
-   - Description: "תגובה במדריך [guide_title] דווחה"
-   - Icon: IconFlag
-   - Priority: High
-   - Frequency: Immediate on flag
-
-3. **Low Engagement Alert** (Weekly)
-   - Title: "משתמשים בסיכון"
-   - Description: "X משתמשים לא סיימו הטמעה"
-   - Icon: IconAlertTriangle
-   - Priority: Medium
-   - Frequency: Weekly on Monday
-
-4. **Performance Issues** (Immediate)
-   - Title: "בעיית ביצועים"
-   - Description: "[issue_description]"
-   - Icon: IconAlertCircle
-   - Priority: High
-   - Frequency: Immediate on detection
-
-5. **Milestone Reached** (Immediate)
-   - Title: "אבן דרך הושגה!"
-   - Description: "100 משתמשים סיימו את המדריך [guide_title]"
-   - Icon: IconTrophy
-   - Priority: Low
-   - Frequency: On milestone
-
-### Notification Preferences
-
-**Given** I open notification preferences
-**When** preferences modal displays
-**Then:**
-
-- [ ] Can toggle each notification type on/off
-- [ ] Settings persist in database
-- [ ] Defaults to all enabled
-- [ ] Changes save automatically
-
-### Notification Actions
-
-**Given** I click a notification
-**When** notification has an action
-**Then:**
-
-- [ ] Marks notification as read
-- [ ] Navigates to relevant page:
-  - New users → /admin/users
-  - Flagged content → specific comment
-  - Low engagement → /admin/engagement
-  - Performance → /admin
-  - Milestone → /admin/analytics
+- [ ] Update "הדרכה" → "און בורדינג" throughout
+- [ ] Profile page button updated
+- [ ] Guide categories updated
+- [ ] Navigation labels updated
+- [ ] All Hebrew text maintains RTL
 
 ---
 
 ## 🔨 Implementation Plan
 
-### 1. Update Database Schema
+### 1. Install New DiceBear Collections
 
-**File:** `supabase/migrations/20241108_admin_notifications.sql` (already exists)
-
-Verify table structure:
-```sql
-CREATE TABLE admin_notifications (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  admin_id UUID REFERENCES profiles(id) ON DELETE CASCADE,
-  notification_type TEXT NOT NULL,
-  title TEXT NOT NULL,
-  description TEXT NOT NULL,
-  metadata JSONB,
-  is_read BOOLEAN DEFAULT false,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
+```bash
+npm install @dicebear/micah @dicebear/adventurer @dicebear/big-smile @dicebear/fun-emoji
 ```
 
-### 2. Create Notification Actions
+### 2. Update Avatar Library
 
-**File:** `src/lib/actions/admin-notifications.ts` (new file)
+**File:** `src/lib/avatar.ts`
 
-**Functions:**
-```typescript
-fetchAdminNotifications(adminId: string, limit?: number): Promise<AdminNotification[]>
-markNotificationRead(notificationId: string): Promise<void>
-markAllNotificationsRead(adminId: string): Promise<void>
-clearAllNotifications(adminId: string): Promise<void>
-getUnreadCount(adminId: string): Promise<number>
-createNotification(notification: CreateNotificationInput): Promise<void>
-```
+- Add imports for 4 new styles
+- Update `AvatarStyle` type to include 8 styles
+- Update `styleCollections` object
+- Update `avatarStyles` array with Hebrew labels
 
-### 3. Create Notification Component
+### 3. Create Onboarding Avatar Step
 
-**File:** `src/components/admin/NotificationBell.tsx` (new file)
+**File:** `src/components/onboarding/AvatarSelectionStep.tsx` (NEW)
 
 **Features:**
-- Bell icon with badge
-- Dropdown with notifications list
-- Mark as read functionality
-- Clear all functionality
-- Real-time updates (polling or Supabase realtime)
+- Large avatar preview
+- 8 style tabs
+- Grid of 12 avatars per style
+- Selected avatar highlighted
+- Back/Next/Skip navigation
 
-### 4. Add to Header
+### 4. Update Onboarding Wizard
 
-**File:** `src/components/layout/Header.tsx`
+**File:** `src/app/onboarding/wizard.tsx`
 
-Add `<NotificationBell />` component for admin users.
+- Change `TOTAL_STEPS` from 5 to 6
+- Add avatar state management
+- Insert `AvatarSelectionStep` as Step 2
+- Renumber all subsequent steps
+- Save avatar config on completion
 
-### 5. Create Notification Preferences
+### 5. Update Progress Component
 
-**File:** `src/components/admin/NotificationPreferences.tsx` (new file)
+**File:** `src/components/onboarding/ProgressDots.tsx`
 
-Modal with toggle switches for each notification type.
+- Add "בחירת אווטר" label
+- Support 6 steps total
 
-### 6. Add Hebrew Locale Strings
+### 6. Update Hebrew Localization
 
 **File:** `src/lib/locale/he.ts`
 
-Add to admin section:
-```typescript
-notifications: {
-  title: string;
-  unread: string;
-  markRead: string;
-  markAllRead: string;
-  clearAll: string;
-  empty: string;
-  preferences: string;
-  types: {
-    newUsers: string;
-    flaggedContent: string;
-    lowEngagement: string;
-    performance: string;
-    milestone: string;
-  };
-}
-```
+- Add avatar step strings
+- Update "הדרכה" → "און בורדינג" throughout
+- Update step count from 5 to 6
+- Update time from 2 to 3 minutes
 
-### 7. Create Notification Generators (Server-Side)
+### 7. Update Profile Page
 
-**File:** `supabase/functions/generate-notifications/` (Edge Function)
+**File:** `src/app/profile/index.tsx`
 
-Scheduled functions to generate:
-- Daily new user digest
-- Weekly low engagement alert
+- Update "Return to Onboarding" button text
 
-Immediate triggers for:
-- Flagged content (database trigger)
-- Performance issues (monitoring)
-- Milestones (database trigger)
+### 8. Update Guide Categories
+
+**Files:** Guide metadata and category labels
+
+- Update "הדרכה" → "און בורדינג" in category labels
 
 ---
 
 ## 🎨 UI/UX Considerations
 
-### Bell Icon
-- Position: Header, right side (before user menu in RTL)
-- Icon: IconBell from Tabler
-- Badge: Small circle with count, emerald background
-- Hover: Slight scale effect
-- Active: Dropdown opens below
+### Avatar Selection Step Design
+- **Header:** Sparkle icon with title
+- **Large Preview:** 128px circular avatar with checkmark badge
+- **Style Tabs:** 8 pills, active highlighted with primary color
+- **Avatar Grid:** 4x3 grid (12 avatars), responsive
+- **Selected State:** Ring border + checkmark overlay
+- **Navigation:** Back/Skip/Next buttons at bottom
 
-### Notification Dropdown
-- Width: 320px on desktop, full width on mobile
-- Max height: 400px, scrollable
-- Background: White with subtle shadow
-- Each notification:
-  - Icon on right (RTL)
-  - Title bold, description normal
-  - Timestamp below in smaller text
-  - Unread: Light emerald background
-  - Read: White background
-  - Hover: Light gray background
+### Simplified vs. Full Selector
+- **Onboarding:** 12 options per style (simpler, faster)
+- **Profile/Settings:** 24 options per style (full variety)
 
-### Actions
-- "סמן הכול כנקרא" button at top
-- "נקה הכול" button at bottom
-- Click notification marks as read
-- Smooth animations on actions
+### New Avatar Styles
+1. **Micah:** Clean, minimalist illustrated characters
+2. **Adventurer:** Adventure-themed with accessories
+3. **Big Smile:** Happy, friendly, welcoming faces
+4. **Fun Emoji:** Emoji-style with personality
 
-### Empty State
-- Icon: IconBellOff
-- Text: "אין התראות חדשות"
-- Smaller, centered
-
-### Notification Types Colors
-- New Users: Blue (IconUserPlus)
-- Flagged Content: Red (IconFlag)
-- Low Engagement: Orange (IconAlertTriangle)
-- Performance: Red (IconAlertCircle)
-- Milestone: Green (IconTrophy)
+### Animations
+- Style tab switch: Smooth fade transition
+- Avatar grid: Stagger entrance
+- Preview update: Scale bounce effect
+- Navigation: Slide transitions between steps
 
 ---
 
 ## 🧪 Testing Scenarios
 
-### Happy Path - View Notifications
-1. Admin has 5 unread notifications
-2. Bell shows badge with "5"
-3. Admin clicks bell
-4. Dropdown shows 5 notifications
-5. **Expected:** All notifications display correctly
+### Happy Path - New User with Avatar Selection
+1. New user registers
+2. Onboarding Step 1 (Welcome)
+3. Clicks "Next" → Step 2 (Avatar)
+4. Sees 8 style tabs
+5. Selects "הרפתקנים" (Adventurer)
+6. Sees 12 adventurer avatars
+7. Selects favorite avatar
+8. Clicks "Next"
+9. **Expected:** Avatar saved, proceeds to Step 3 (Role)
 
-### Happy Path - Mark as Read
-1. Admin clicks unread notification
-2. **Expected:**
-   - Notification marked as read
-   - Badge count decreases by 1
-   - Notification background changes
-   - Navigates to relevant page
-
-### Happy Path - Mark All as Read
-1. Admin has 10 unread notifications
-2. Admin clicks "סמן הכול כנקרא"
+### Happy Path - Skip Avatar Selection
+1. User at Step 2 (Avatar)
+2. Clicks "דלג" (Skip)
 3. **Expected:**
-   - All notifications marked as read
-   - Badge disappears
-   - UI updates immediately
+   - Default avatar assigned
+   - Proceeds to Step 3
+   - Can change later in Profile
 
-### Happy Path - Clear All
-1. Admin clicks "נקה הכול"
-2. **Expected:**
-   - All notifications deleted
-   - Dropdown shows empty state
-   - Badge hidden
-
-### Edge Case - No Notifications
-1. New admin user
-2. **Expected:**
-   - Badge hidden
-   - Dropdown shows empty state
+### Happy Path - All 8 Styles Work
+1. User on Avatar step
+2. Clicks each of 8 style tabs
+3. **Expected:**
+   - Each loads 12 unique avatars
    - No errors
+   - Previews update correctly
 
-### Edge Case - Real-time Updates
-1. Admin has dropdown open
-2. New notification arrives
+### Edge Case - Back Navigation
+1. User at Step 3 (Role)
+2. Clicks "Back"
 3. **Expected:**
-   - Badge updates
-   - New notification appears in list
-   - No page refresh needed
+   - Returns to Step 2 (Avatar)
+   - Previous selection preserved
+
+### Edge Case - Existing User Re-onboarding
+1. User with avatar clicks "חזור לאון בורדינג"
+2. Reaches Step 2
+3. **Expected:**
+   - Current avatar pre-selected
+   - Can change or keep existing
 
 ---
 
 ## 🔐 Security & Validation
 
-### Server-Side
-- Admin-only access to notifications
-- RLS policies ensure admins see only their notifications
-- Notification creation requires admin role
-- Validate notification types
-
 ### Client-Side
-- Admin check before showing bell icon
-- Debounce mark as read actions
-- Rate limit clear all actions
-- Sanitize notification content
+- Validate avatar style in allowed list
+- Validate seed string format
+- Sanitize avatar options JSON
+- Prevent XSS in SVG rendering
+
+### Server-Side
+- Avatar style enum validation
+- Avatar seed max length check
+- Profile update requires auth
 
 ---
 
@@ -368,29 +293,51 @@ Immediate triggers for:
 
 Before marking story complete:
 
-- [ ] Database table exists with RLS policies
-- [ ] Notification bell displays in header for admins
-- [ ] Badge shows unread count correctly
-- [ ] Dropdown shows recent notifications
-- [ ] Mark as read functionality works
-- [ ] Mark all as read works
-- [ ] Clear all works
-- [ ] Navigation from notifications works
-- [ ] Empty state displays correctly
-- [ ] Hebrew localization complete
+- [ ] New DiceBear packages installed
+- [ ] `avatar.ts` updated with 8 styles
+- [ ] All 8 styles generate correctly
+- [ ] Avatar selector shows 8 styles
+- [ ] `AvatarSelectionStep` component created
+- [ ] Onboarding wizard updated to 6 steps
+- [ ] Progress shows 6 steps correctly
+- [ ] Avatar step is Step 2
+- [ ] All subsequent steps renumbered
+- [ ] Avatar saves to database
+- [ ] "און בורדינג" updated throughout
+- [ ] Profile button text updated
+- [ ] Guide categories updated
+- [ ] Avatar step skippable
 - [ ] No TypeScript errors
 - [ ] No linter errors
-- [ ] Responsive on mobile, tablet, desktop
-- [ ] RTL layout correct
+- [ ] Responsive on all devices
+- [ ] Build completes successfully
 - [ ] Manual testing passed
-- [ ] Real-time updates working (optional enhancement)
 
 ---
 
 ## 🚀 Ready to Implement!
 
-Story 9.4 complete with user engagement insights. Story 9.5 will keep admins informed about important platform events.
+Story 0.3 complete with avatar selection. Story 0.5 will double the avatar variety and make avatar personalization a core part of the first-time user experience.
 
-**Note:** Notification generation (server-side triggers and scheduled functions) can be implemented in phases. Start with manual notification creation for testing, then add automated generation.
+**Key Changes:**
+- 4 → 8 avatar styles (96 → 192 options)
+- 5 → 6 onboarding steps
+- Avatar selection as Step 2
+- "הדרכה" → "און בורדינג" throughout
 
-**Let's build admin notifications! 🔔**
+**Full details in:** `STORY-0.5.md`
+
+**Let's expand the avatars! 🎨**
+
+---
+
+## 📚 Other Available Stories
+
+If you'd prefer to work on Epic 9 instead:
+
+### **Story 9.5: Implement Admin Notifications and Alerts**
+- **Epic:** 9 - Admin Analytics & Management
+- **Priority:** P1
+- **Story Points:** 2
+- **Status:** Ready to implement
+- Notification bell, dropdown, alerts for admins
