@@ -60,10 +60,22 @@ export async function signInWithProvider(provider: Provider) {
 
 /**
  * Sign out the current user
+ * Ensures all session data is cleared before redirecting
  */
 export async function signOut() {
-  const { error } = await supabase.auth.signOut();
-  if (error) throw error;
+  try {
+    // Sign out from Supabase (clears tokens from storage)
+    const { error } = await supabase.auth.signOut();
+    if (error) throw error;
+
+    // Additional cleanup: Clear any cached data
+    // (Supabase client handles storage cleanup automatically)
+
+    return { success: true };
+  } catch (error) {
+    console.error('[auth] Sign out error:', error);
+    throw error;
+  }
 }
 
 /**

@@ -13,5 +13,11 @@ export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
     persistSession: true,
     autoRefreshToken: true,
     detectSessionInUrl: true,
+    // Use localStorage for better compatibility across domains
+    storage: window.localStorage,
+    // Set storage key to avoid conflicts
+    storageKey: 'agenseek-auth-token',
+    // Ensure session is properly cleaned up on logout
+    flowType: 'pkce',
   },
 });

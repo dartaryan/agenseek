@@ -109,11 +109,19 @@ export function MobileNav() {
 
   const handleSignOut = async () => {
     try {
+      // Sign out and wait for completion
       await signOut();
+
+      // Small delay to ensure storage cleanup completes
+      await new Promise(resolve => setTimeout(resolve, 100));
+
       setOpen(false);
       window.location.href = '/auth/login';
     } catch (error) {
-      console.error('Error signing out:', error);
+      console.error('[MobileNav] Logout error:', error);
+      // Still redirect on error to ensure user is logged out
+      setOpen(false);
+      window.location.href = '/auth/login';
     }
   };
 

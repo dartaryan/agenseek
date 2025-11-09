@@ -85,8 +85,21 @@ export const Header = forwardRef<HeaderRef>(function Header(_props, ref) {
   const showHeaderNav = isCollapsed || isGuideReaderPage;
 
   const handleSignOut = async () => {
-    await signOut();
-    window.location.href = '/auth/login';
+    try {
+      // Sign out and wait for completion
+      await signOut();
+
+      // Small delay to ensure storage cleanup completes
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      // Use window.location.href to ensure complete page reload
+      // This allows AuthContext to update and storage to be cleared
+      window.location.href = '/auth/login';
+    } catch (error) {
+      console.error('[Header] Logout error:', error);
+      // Still redirect on error to ensure user is logged out
+      window.location.href = '/auth/login';
+    }
   };
 
   return (

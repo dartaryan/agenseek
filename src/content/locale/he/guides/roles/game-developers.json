@@ -1,0 +1,1165 @@
+{
+  "metadata": {
+    "id": "game-developers",
+    "slug": "game-developers",
+    "title": "מדריך למפתחי משחקים: יצירת משחקים עם BMAD-METHOD",
+    "description": "מדריך מקיף למפתחי משחקים המשתמשים ב-BMAD לפיתוח משחקים מקצועיים. לומדים איך להשתמש באגנטי Game Designer, Game Architect, ו-Game Dev, לעבוד עם GDD ו-Narrative, ולשלב עם Unity/Unreal.",
+    "category": "roles",
+    "difficulty": "advanced",
+    "estimatedMinutes": 50,
+    "icon": "Gamepad2",
+    "tags": ["מפתחי משחקים", "game dev", "game designer", "game architect", "GDD", "narrative", "unity", "unreal"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "למי מדריך זה מיועד",
+      "level": 2,
+      "anchor": "for-who"
+    },
+    {
+      "id": "toc-2",
+      "title": "מסלול למידה למפתחי משחקים",
+      "level": 2,
+      "anchor": "learning-path",
+      "children": [
+        {
+          "id": "toc-2-1",
+          "title": "שלב 1: הבנת BMAD למשחקים",
+          "level": 3,
+          "anchor": "stage-1"
+        },
+        {
+          "id": "toc-2-2",
+          "title": "שלב 2: התקנה והגדרה למשחקים",
+          "level": 3,
+          "anchor": "stage-2"
+        },
+        {
+          "id": "toc-2-3",
+          "title": "שלב 3: שליטה באגנטי משחקים",
+          "level": 3,
+          "anchor": "stage-3"
+        }
+      ]
+    },
+    {
+      "id": "toc-3",
+      "title": "האגנטים שלך - מדריך מפורט",
+      "level": 2,
+      "anchor": "your-agents"
+    },
+    {
+      "id": "toc-4",
+      "title": "הוורקפלואים שלך - GDD ו-Narrative",
+      "level": 2,
+      "anchor": "your-workflows"
+    },
+    {
+      "id": "toc-5",
+      "title": "שילוב עם Unity ו-Unreal",
+      "level": 2,
+      "anchor": "engine-integration"
+    },
+    {
+      "id": "toc-6",
+      "title": "תרחישים מעשיים מפיתוח משחקים",
+      "level": 2,
+      "anchor": "practical-scenarios"
+    },
+    {
+      "id": "toc-7",
+      "title": "אתגרים ייחודיים בפיתוח משחקים",
+      "level": 2,
+      "anchor": "game-challenges"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מדריך למפתחי משחקים: יצירת משחקים עם BMAD-METHOD",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "מה תלמדו במדריך זה",
+      "content": "איך להשתמש ב-BMAD לפיתוח משחקים מקצועיים, עם אגנטי Game Designer, Game Architect, ו-Game Dev. תלמדו לעבוד עם GDD (מסמך עיצוב משחק), Narrative Workflows, ושילוב עם Unity ו-Unreal Engine."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "למי מדריך זה מיועד",
+      "id": "for-who"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "מדריך זה נכתב במיוחד עבור **מפתחי משחקים** - בין אם אתם:\n\n**Gameplay Programmers** - מפתחים את מכניקות המשחק והאינטראקציות\n**Engine Programmers** - עובדים על ה-core systems של המנוע\n**Tools Programmers** - בונים כלים לצוות הפיתוח\n**Technical Artists** - משלבים אמנות וטכנולוגיה\n**Technical Designers** - מעצבים ברמה טכנית"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "האתגרים הייחודיים של פיתוח משחקים",
+      "id": "unique-challenges"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "פיתוח משחקים שונה מפיתוח תוכנה רגיל:\n\n**מורכבות רב-תחומית:** משחק משלב קוד, אמנות, עיצוב, סאונד, narrative, ועוד\n**איזון Gameplay:** חוקי המשחק משתנים לאורך הפיתוח בהתאם ל-playtesting\n**ביצועים קריטיים:** 60 FPS הוא minimum, לא nice-to-have\n**תלות במנוע:** Unity/Unreal/Godot - כל אחד עם המוסכמות שלו\n**צוותים גדולים:** 50-200 איש לא נדיר - תיאום מורכב"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך BMAD פותר את האתגרים?",
+      "id": "bmad-solution"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "אגנטים מיוחדים למשחקים: Game Designer, Game Architect, Game Dev - מבינים את השפה והמושגים של משחקים"
+        },
+        {
+          "content": "GDD (Game Design Document): מסמך מרכזי שמגדיר את כל היבטי המשחק - מכניקות, רמות, progression, balance"
+        },
+        {
+          "content": "Narrative Workflow: לניהול סיפור, דיאלוגים, קווסטים, ו-world building"
+        },
+        {
+          "content": "תמיכה במנועים: תבניות ומוסכמות ל-Unity ו-Unreal מובנות בוורקפלואים"
+        },
+        {
+          "content": "איזון ואיטרציה: תהליך מובנה לעדכון GDD בהתאם ל-feedback מ-playtesting"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מה תשיגו עם BMAD למשחקים",
+      "content": "פחות chaos בפיתוח - כל המידע במקום אחד, תיעוד אוטומטי של מכניקות ומערכות, איזון וטיונינג מתועדים, שיתוף פעולה יעיל בין programmers לdesigners לartists, ו-playtesting מובנה עם feedback loops"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": "2",
+      "text": "מסלול למידה למפתחי משחקים",
+      "id": "learning-path"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 1: הבנת BMAD למשחקים (שבוע 1)",
+      "id": "stage-1"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**מטרה:** להבין איך BMAD עובד בהקשר של פיתוח משחקים.\n\nBMAD למשחקים עובד בצורה דומה ל-BMAD רגיל, אבל עם התאמות למשחקים:"
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "התהליך המלא - מרעיון למשחק עובד",
+      "id": "full-process"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "Game Designer (Luna) יוצר Game Brief - מהות המשחק ב-3-5 עמודים"
+        },
+        {
+          "content": "Game Designer יוצר GDD מפורט - מכניקות, רמות, progression, UI/UX"
+        },
+        {
+          "content": "Game Designer יוצר Narrative Document - סיפור, דמויות, דיאלוגים, קווסטים"
+        },
+        {
+          "content": "Game Architect (Kai) מתכנן Architecture - איך המערכות בנויות טכנית"
+        },
+        {
+          "content": "Game Architect יוצר Tech Spec - פירוק לEpics ו-Stories"
+        },
+        {
+          "content": "Game Dev (River) מקבל Story מאושר - עם Story Context מלא"
+        },
+        {
+          "content": "Game Dev מממש את ה-Story - קוד, טסטים, integration"
+        },
+        {
+          "content": "Code Review + Playtesting - בדיקה טכנית ו-gameplay testing"
+        },
+        {
+          "content": "איטרציה - עדכון GDD בהתאם לממצאים"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "ההבדל המרכזי: GDD vs PRD",
+      "content": "במשחקים, GDD (Game Design Document) מחליף את ה-PRD. הוא מתאר את חוויית המשחק, המכניקות, הלולים, ה-progression system, ואיזון הגיימפליי - לא רק features עסקיים."
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "המסמכים המרכזיים למשחקים",
+      "id": "core-docs"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "game-brief",
+          "title": "Game Brief - הרעיון הראשוני",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה זה:** מסמך קצר (3-5 עמודים) שמתאר את הרעיון הבסיסי של המשחק\n\n**מה כולל:**\n- **High Concept:** משפט אחד שמתאר את המשחק\n- **Core Gameplay Loop:** מה השחקן עושה רוב הזמן\n- **USP (Unique Selling Point):** מה מייחד את המשחק\n- **Target Audience:** למי המשחק מיועד\n- **Platforms & Tech:** איפה ירוץ המשחק (PC/Console/Mobile) ועל איזה מנוע\n\n**מי כותב:** Game Designer (Luna)\n**דוגמה:** \"משחק פלטפורמר 2D עם מכניקת time-manipulation שבה השחקן יכול להחזיר זמן 5 שניות אחורה כדי לפתור חידות\""
+            }
+          ]
+        },
+        {
+          "id": "gdd",
+          "title": "GDD (Game Design Document) - המסמך המרכזי",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה זה:** המסמך המקיף ביותר - \"המפה\" של כל המשחק\n\n**מה כולל:**\n- **Core Mechanics:** כל המכניקות (Movement, Combat, Abilities, וכו')\n- **Game Systems:** Inventory, Progression, Economy, Crafting\n- **Level Design:** מבנה הרמות, flow, pacing\n- **UI/UX:** כל המסכים והאינטראקציות\n- **Balance & Tuning:** ערכים מספריים (damage, health, costs)\n- **Technical Constraints:** FPS target, memory limits, platform requirements\n\n**מי כותב:** Game Designer (Luna)\n**חשיבות:** זה המסמך שכולם עובדים לפיו - Programmers, Artists, Sound Designers"
+            }
+          ]
+        },
+        {
+          "id": "narrative-doc",
+          "title": "Narrative Document - הסיפור והעולם",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה זה:** מסמך שמתאר את הסיפור, הדמויות, והעולם של המשחק\n\n**מה כולל:**\n- **World Building:** העולם, ההיסטוריה, הלור\n- **Characters:** דמויות ראשיות ומשניות, backstories\n- **Story Arc:** הסיפור הראשי, acts, plot points\n- **Quests & Missions:** קווסטים פרטניים וה-branching שלהם\n- **Dialogues:** דיאלוגים מרכזיים ומערכות דיאלוג\n- **Cinematics:** cutscenes וסקריפטים שלהם\n\n**מי כותב:** Game Designer (Luna) + Narrative Designer (אם יש)\n**למי זה חשוב:** Programmers (לסקריפטינג), Voice Actors, Localization Team"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "טיפ למידה",
+      "content": "קראו GDD אמיתי - חפשו ברשת GDD של משחקים ידועים (Bioshock, Diablo, Portal). זה יעזור להבין מה המסמך צריך לכלול."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 2: התקנה והגדרה למשחקים (שבוע 1-2)",
+      "id": "stage-2"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**מטרה:** להתקין את BMAD ולהגדיר אותו לעבודה עם משחקים."
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "התקנה בסיסית (30 דקות)",
+      "id": "basic-install"
+    },
+    {
+      "type": "text",
+      "content": "BMAD עובד עם כל IDE מודרני - Cursor, Windsurf, Cline, ועוד."
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# התקן את הפקודה הגלובלית\nnpx bmad-cli install\n\n# התקן את מודול BMM (כולל אגנטי משחקים)\nnpx bmad-cli install bmm"
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "הגדרה למשחקים - config.yaml",
+      "id": "game-config"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "הקובץ `bmad/bmm/config.yaml` מכיל הגדרות שמותאמות לפיתוח משחקים:"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# הגדרות בסיסיות\nuser_name: \"השם שלך\"\ncommunication_language: \"Hebrew\"\ndocument_output_language: \"Hebrew\"\n\n# הגדרות משחקים\ninclude_game_planning: true          # הפעל אגנטי משחקים\ngame_engine: \"unity\"                 # unity, unreal, godot, custom\nproject_type: \"game\"                 # חשוב! מסמן שזה פרויקט משחק\n\n# תיקיות\noutput_folder: \"{project-root}/docs\"\ndev_story_location: \"{project-root}/stories\"\ngdd_location: \"{project-root}/docs/design/gdd.md\"\nnarrative_location: \"{project-root}/docs/design/narrative.md\"\n\n# הגדרות פיתוח\nrun_until_complete: true\nrun_tests_command: \"npm test\"\nrun_playtest_command: \"npm run playtest\"  # אופציונלי"
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "חשוב: include_game_planning: true",
+      "content": "חובה להגדיר include_game_planning: true כדי שהאגנטים של משחקים (Game Designer, Game Architect, Game Dev) יהיו זמינים!"
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "מבנה תיקיות מומלץ למשחקים",
+      "id": "folder-structure"
+    },
+    {
+      "type": "code",
+      "language": "text",
+      "code": "game-project/\n├── bmad/\n│   └── bmm/\n│       ├── agents/\n│       │   ├── game-designer.md    # Luna\n│       │   ├── game-architect.md   # Kai\n│       │   └── game-dev.md         # River\n│       └── workflows/\n│           ├── 0-planning/\n│           │   ├── game-brief/\n│           │   ├── gdd/\n│           │   └── narrative/\n│           └── 4-implementation/\n│               └── dev-story/\n├── docs/\n│   ├── design/\n│   │   ├── game-brief.md           # הרעיון הראשוני\n│   │   ├── gdd.md                  # Game Design Document\n│   │   └── narrative.md            # Narrative Document\n│   ├── architecture.md             # ארכיטקטורה טכנית\n│   └── tech-spec.md                # Epics ו-Stories\n├── stories/                        # Stories לפיתוח\n└── [Unity/Unreal Project Files]    # קבצי המשחק"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלב 3: שליטה באגנטי משחקים (שבוע 2-4)",
+      "id": "stage-3"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**מטרה:** ללמוד להשתמש בשלושת האגנטים המרכזיים למשחקים.\n\nשלושת האגנטים שתעבדו איתם הכי הרבה:"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "Luna (Game Designer) - מעצבת את המשחק ויוצרת GDD ו-Narrative"
+        },
+        {
+          "content": "Kai (Game Architect) - מתכנן את הארכיטקטורה הטכנית"
+        },
+        {
+          "content": "River (Game Dev) - מממש את המשחק בפועל"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "למידה מעשית - התנסות ראשונה (4-8 שעות)",
+      "id": "first-experience"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**משימת למידה:** צרו game brief פשוט למשחק קטן (Snake, Pong, Flappy Bird clone) והריצו את התהליך המלא."
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "טענו את Luna והריצו game-brief workflow"
+        },
+        {
+          "content": "הריצו gdd workflow - צרו GDD פשוט (5-10 עמודים)"
+        },
+        {
+          "content": "טענו את Kai והריצו tech-spec - פרקו ל-3-5 Stories"
+        },
+        {
+          "content": "טענו את River והריצו dev-story על Story אחד"
+        },
+        {
+          "content": "שימו לב איך כל אגנט קורא את המסמכים הקודמים"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "סימנים שאתם מוכנים להמשיך",
+      "content": "אתם מבינים את ההבדל בין Game Brief, GDD, ו-Tech Spec. אתם יודעים איך לטעון כל אגנט ולהריץ את הוורקפלואים שלו. אתם מבינים שה-GDD הוא ה-source of truth למשחק."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "האגנטים שלך - מדריך מפורט",
+      "id": "your-agents"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Luna (Game Designer) - המעצבת",
+      "id": "luna-designer"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**Luna היא Senior Game Designer** - היא חושבת על gameplay, balance, progression, ו-player experience.\n\n**הפילוסופיה שלה:**"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "Player First - כל החלטת עיצוב מתחילה מ-'מה השחקן ירגיש?'"
+        },
+        {
+          "content": "Core Loop הוא הכל - המשחק חייב להיות כיף גם בלי סיפור או גרפיקה"
+        },
+        {
+          "content": "Balance Through Math - איזון הוא מדע, לא אומנות"
+        },
+        {
+          "content": "Document Everything - אם זה לא ב-GDD, זה לא קיים"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "הוורקפלואים של Luna",
+      "id": "luna-workflows"
+    },
+    {
+      "type": "table",
+      "caption": "וורקפלואים של Game Designer",
+      "headers": [
+        {
+          "content": "וורקפלואו",
+          "alignment": "left"
+        },
+        {
+          "content": "מתי להשתמש",
+          "alignment": "left"
+        },
+        {
+          "content": "פלט",
+          "alignment": "left"
+        }
+      ],
+      "rows": [
+        {
+          "cells": [
+            {
+              "content": "game-brief",
+              "alignment": "left"
+            },
+            {
+              "content": "בהתחלה - הרעיון הראשוני",
+              "alignment": "left"
+            },
+            {
+              "content": "docs/design/game-brief.md",
+              "alignment": "left"
+            }
+          ]
+        },
+        {
+          "cells": [
+            {
+              "content": "gdd",
+              "alignment": "left"
+            },
+            {
+              "content": "אחרי game-brief - העיצוב המפורט",
+              "alignment": "left"
+            },
+            {
+              "content": "docs/design/gdd.md",
+              "alignment": "left"
+            }
+          ]
+        },
+        {
+          "cells": [
+            {
+              "content": "narrative",
+              "alignment": "left"
+            },
+            {
+              "content": "אם יש סיפור במשחק",
+              "alignment": "left"
+            },
+            {
+              "content": "docs/design/narrative.md",
+              "alignment": "left"
+            }
+          ]
+        },
+        {
+          "cells": [
+            {
+              "content": "balance-tuning",
+              "alignment": "left"
+            },
+            {
+              "content": "אחרי playtesting",
+              "alignment": "left"
+            },
+            {
+              "content": "עדכון ל-GDD",
+              "alignment": "left"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "איך לטעון את Luna",
+      "id": "load-luna"
+    },
+    {
+      "type": "code",
+      "language": "text",
+      "code": "@game-designer hi"
+    },
+    {
+      "type": "text",
+      "content": "היא תקרא את הקונפיגורציה ותציג תפריט:"
+    },
+    {
+      "type": "code",
+      "language": "text",
+      "code": "היי! אני Luna, Game Designer 🎮\n\n1. *help - הצג תפריט\n2. *game-brief - צור Game Brief\n3. *gdd - צור Game Design Document\n4. *narrative - צור Narrative Document\n5. *balance - עדכן Balance & Tuning\n6. *exit - יציאה"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Kai (Game Architect) - האדריכל הטכני",
+      "id": "kai-architect"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**Kai הוא Senior Technical Architect** - הוא מתרגם את ה-GDD לארכיטקטורה טכנית.\n\n**הפילוסופיה שלו:**"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "Performance is King - 60 FPS חייב להישמר בכל מצב"
+        },
+        {
+          "content": "Modularity - כל מערכת צריכה להיות עצמאית"
+        },
+        {
+          "content": "Data-Driven Design - הכל נשלט מ-config files, לא hardcoded"
+        },
+        {
+          "content": "Engine Best Practices - עבוד עם המנוע, לא נגדו"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "מה Kai מייצר",
+      "id": "kai-output"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "Architecture Document - איך המערכות בנויות (ECS, MVC, Event System, etc.)"
+        },
+        {
+          "content": "Tech Spec - פירוק של ה-GDD ל-Epics ו-Stories טכניים"
+        },
+        {
+          "content": "Performance Budget - כמה memory/CPU יש לכל מערכת"
+        },
+        {
+          "content": "Data Schemas - מבנה ה-config files וה-save data"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "Kai קורא את GDD",
+      "content": "Kai מנתח את ה-GDD ושואל שאלות טכניות: 'כמה enemies בו-זמנית?', 'מה גודל העולם?', 'איזה data צריך persistence?'. התשובות הופכות ל-Architecture decisions."
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "איך לטעון את Kai",
+      "id": "load-kai"
+    },
+    {
+      "type": "code",
+      "language": "text",
+      "code": "@game-architect hi"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "River (Game Dev) - המפתח",
+      "id": "river-dev"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**River הוא Senior Game Programmer** - הוא לא רק כותב קוד, הוא מממש gameplay.\n\n**הפילוסופיה שלו:**"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "GDD is Law - אם זה לא ב-GDD, לא עושים את זה"
+        },
+        {
+          "content": "Feel Before Function - הרגשה של gameplay חשובה יותר מ-'נכון' מתמטית"
+        },
+        {
+          "content": "Playtestable Builds - כל Story מייצר build שאפשר לשחק"
+        },
+        {
+          "content": "Debug Tools - כלי debug טובים = פיתוח מהיר פי 3"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "מה River עושה שונה ממפתח רגיל",
+      "id": "river-difference"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "קורא GDD - מבין את מכניקת הגיימפליי לפני שכותב שורה"
+        },
+        {
+          "content": "טסטים + Playtesting - לא רק unit tests, גם 'האם זה כיף?'"
+        },
+        {
+          "content": "משתמש ב-Engine Conventions - יודע מה Unity/Unreal מצפים"
+        },
+        {
+          "content": "יוצר Debug UI - בכל feature, בונה debug panel"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "איך לטעון את River",
+      "id": "load-river"
+    },
+    {
+      "type": "code",
+      "language": "text",
+      "code": "@game-dev hi"
+    },
+    {
+      "type": "text",
+      "content": "התפריט שלו:"
+    },
+    {
+      "type": "code",
+      "language": "text",
+      "code": "היי! אני River, Game Developer 🎮💻\n\n1. *help - הצג תפריט\n2. *workflow-status - בדוק סטטוס ותקבל המלצות\n3. *develop-story - הרץ Dev Story workflow\n4. *story-done - סמן Story כמושלם\n5. *playtest - יצור build לplaytesting\n6. *exit - יציאה"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "הוורקפלואים שלך - GDD ו-Narrative",
+      "id": "your-workflows"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "game-brief - הרעיון הראשוני",
+      "id": "workflow-game-brief"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**מטרה:** לבדוק אם הרעיון של המשחק viable לפני שמשקיעים חודשים.\n\n**מתי להשתמש:**"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "יש לכם רעיון למשחק"
+        },
+        {
+          "content": "רוצים לראות אותו מנוסח במסמך"
+        },
+        {
+          "content": "צריכים להציג לצוות/למשקיעים"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "content": "הוורקפלואו יציג שאלות:"
+    },
+    {
+      "type": "code",
+      "language": "text",
+      "code": "• מהו ה-High Concept? (משפט אחד)\n• מה השחקן עושה? (Core Loop)\n• מה מייחד את המשחק? (USP)\n• למי המשחק מיועד? (Target Audience)\n• על איזה פלטפורמות? (PC/Console/Mobile)\n• באיזה מנוע? (Unity/Unreal/Godot/Custom)"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "gdd - Game Design Document",
+      "id": "workflow-gdd"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**זה הוורקפלואו הכי חשוב למשחקים.** הוא יוצר את ה-GDD המלא.\n\n**מבנה ה-GDD שנוצר:**"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "gdd-section-1",
+          "title": "1. Overview & Core Concept",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n- High Concept Statement\n- Genre & Style\n- Target Audience\n- Platforms\n- Unique Selling Points\n\n**למה זה חשוב:** זה ה-north star - כל החלטה חוזרת לשאלה 'האם זה משרת את ה-core concept?'"
+            }
+          ]
+        },
+        {
+          "id": "gdd-section-2",
+          "title": "2. Core Gameplay & Mechanics",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n- Core Gameplay Loop (מה השחקן עושה 80% מהזמן)\n- Movement Mechanics (walking, jumping, climbing)\n- Combat System (אם יש)\n- Abilities & Powers\n- Physics & Interactions\n\n**דוגמה (Platformer):**\n```\nMovement:\n- Walk Speed: 5 m/s\n- Run Speed: 8 m/s\n- Jump Height: 3 meters\n- Double Jump: Yes\n- Air Control: 70%\n```"
+            }
+          ]
+        },
+        {
+          "id": "gdd-section-3",
+          "title": "3. Game Systems",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n- Progression System (leveling, skill trees)\n- Inventory & Equipment\n- Economy (currency, shop, crafting)\n- Save System\n- Achievement System\n\n**למה זה חשוב:** מערכות אלו קובעות איך השחקן מתקדם במשחק ומרגיש הישג."
+            }
+          ]
+        },
+        {
+          "id": "gdd-section-4",
+          "title": "4. Level Design & Pacing",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n- World Structure (linear, open world, hub-based)\n- Level Flow & Pacing\n- Difficulty Curve\n- Tutorial & Onboarding\n\n**דוגמה:**\n```\nLevel 1 (Tutorial): 5 minutes\n- Teach: Movement + Jump\n- Difficulty: Easy\n- No enemies\n\nLevel 2: 10 minutes\n- Teach: Combat\n- Difficulty: Medium\n- 5-7 enemies\n```"
+            }
+          ]
+        },
+        {
+          "id": "gdd-section-5",
+          "title": "5. UI/UX Design",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n- HUD Layout\n- Menus (Main, Pause, Settings, Inventory)\n- Screen Flow\n- Feedback Systems (hit markers, damage numbers)\n\n**למה זה חשוב:** UI רע הורס משחק טוב. UI טוב הוא invisible."
+            }
+          ]
+        },
+        {
+          "id": "gdd-section-6",
+          "title": "6. Balance & Tuning",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n- Damage Values\n- Health & Resources\n- Costs & Rewards\n- Difficulty Settings\n\n**הערה:** ערכים אלו משתנים המון בפלייטסטינג. זה ה-living document."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "טיפ: GDD הוא Living Document",
+      "content": "GDD לעולם לא 'מוכן'. הוא מתעדכן לאורך כל הפיתוח בהתאם לplaytesting ול-feedback. השתמשו ב-balance-tuning workflow לעדכון."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שילוב עם Unity ו-Unreal",
+      "id": "engine-integration"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "BMAD תומך ישירות ב-Unity ו-Unreal Engine עם תבניות ומוסכמות מובנות."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Unity Integration",
+      "id": "unity-integration"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**הגדרה:**"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# במ-config.yaml\ngame_engine: \"unity\"\nproject_type: \"game\""
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**מה זה נותן:**"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "תבניות קוד Unity (MonoBehaviours, ScriptableObjects, Editor Scripts)"
+        },
+        {
+          "content": "מוסכמות שמות (PascalCase, namespace UnityEngine)"
+        },
+        {
+          "content": "ארכיטקטורה מומלצת (ECS, MVC for Unity)"
+        },
+        {
+          "content": "מבנה תיקיות (Scripts/, Prefabs/, ScriptableObjects/)"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "דוגמה: Unity MonoBehaviour",
+      "id": "unity-example"
+    },
+    {
+      "type": "code",
+      "language": "csharp",
+      "filename": "PlayerController.cs",
+      "code": "using UnityEngine;\n\nnamespace MyGame.Player\n{\n    /// <summary>\n    /// Player Controller - implements movement from GDD Section 2.1\n    /// GDD Reference: Core Gameplay > Movement Mechanics\n    /// </summary>\n    public class PlayerController : MonoBehaviour\n    {\n        [Header(\"Movement Settings - From GDD\")]\n        [SerializeField] private float walkSpeed = 5f;      // GDD: 5 m/s\n        [SerializeField] private float runSpeed = 8f;       // GDD: 8 m/s\n        [SerializeField] private float jumpHeight = 3f;     // GDD: 3 meters\n        [SerializeField] private bool allowDoubleJump = true; // GDD: Yes\n        \n        private Rigidbody2D rb;\n        private bool isGrounded;\n        private bool hasDoubleJump;\n        \n        private void Awake()\n        {\n            rb = GetComponent<Rigidbody2D>();\n        }\n        \n        private void Update()\n        {\n            HandleMovement();\n            HandleJump();\n        }\n        \n        private void HandleMovement()\n        {\n            float horizontal = Input.GetAxis(\"Horizontal\");\n            float speed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;\n            \n            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);\n        }\n        \n        private void HandleJump()\n        {\n            if (Input.GetKeyDown(KeyCode.Space))\n            {\n                if (isGrounded)\n                {\n                    Jump();\n                    hasDoubleJump = allowDoubleJump;\n                }\n                else if (hasDoubleJump)\n                {\n                    Jump();\n                    hasDoubleJump = false;\n                }\n            }\n        }\n        \n        private void Jump()\n        {\n            // Physics formula: v = sqrt(2 * g * h)\n            float jumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(Physics2D.gravity.y) * jumpHeight);\n            rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);\n        }\n    }\n}"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "שימו לב",
+      "content": "הקוד מכיל הפניות ל-GDD בcomments. River עושה זאת אוטומטית - הוא קורא את ה-GDD ומוסיף references לכל implementation."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Unreal Engine Integration",
+      "id": "unreal-integration"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**הגדרה:**"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# במ-config.yaml\ngame_engine: \"unreal\"\nproject_type: \"game\"\nunreal_version: \"5.3\"  # אופציונלי"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**מה זה נותן:**"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "תבניות C++ (UObject, AActor, UActorComponent)"
+        },
+        {
+          "content": "Blueprint Support - קוד שמתואם עם BP"
+        },
+        {
+          "content": "Unreal Coding Standard (U prefix, UCLASS macros)"
+        },
+        {
+          "content": "GAS (Gameplay Ability System) patterns"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 4,
+      "text": "דוגמה: Unreal C++ Character",
+      "id": "unreal-example"
+    },
+    {
+      "type": "code",
+      "language": "cpp",
+      "filename": "MyCharacter.h",
+      "code": "// MyCharacter.h\n#pragma once\n\n#include \"CoreMinimal.h\"\n#include \"GameFramework/Character.h\"\n#include \"MyCharacter.generated.h\"\n\n/**\n * Player Character - implements movement from GDD Section 2.1\n * GDD Reference: Core Gameplay > Movement Mechanics\n */\nUCLASS()\nclass MYGAME_API AMyCharacter : public ACharacter\n{\n    GENERATED_BODY()\n\npublic:\n    AMyCharacter();\n\n    // Movement speeds from GDD\n    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = \"Movement\")\n    float WalkSpeed = 500.f;  // GDD: 5 m/s = 500 cm/s in Unreal\n    \n    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = \"Movement\")\n    float RunSpeed = 800.f;   // GDD: 8 m/s = 800 cm/s\n    \n    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = \"Movement\")\n    float JumpHeight = 300.f; // GDD: 3 meters = 300 cm\n    \n    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = \"Movement\")\n    bool bAllowDoubleJump = true; // GDD: Yes\n\nprotected:\n    virtual void BeginPlay() override;\n    virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;\n    \n    void MoveForward(float Value);\n    void MoveRight(float Value);\n    void StartRunning();\n    void StopRunning();\n    void Jump() override;\n\nprivate:\n    bool bIsRunning = false;\n    bool bHasDoubleJump = false;\n};"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תרחישים מעשיים מפיתוח משחקים",
+      "id": "practical-scenarios"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 1: פיתוח מכניקת Combat חדשה",
+      "id": "scenario-combat"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**המצב:** אתם מפתחים משחק אקשן והצוות החליט להוסיף מכניקת 'Parry' (חסימת מכות באיתות מדויק).\n\n**התהליך עם BMAD:**"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        {
+          "content": "Luna מעדכנת את ה-GDD - מוסיפה סקשן 'Parry Mechanic' עם timing window (0.3 seconds), rewards (stun enemy for 2s), ו-balance (high risk, high reward)"
+        },
+        {
+          "content": "Kai קורא את העדכון ומוסיף ל-Tech Spec - 'Story 3.5: Implement Parry System'"
+        },
+        {
+          "content": "אתם (Game Dev) מריצים story-context על Story 3.5"
+        },
+        {
+          "content": "River קורא את ה-GDD section, רואה את הערכים (0.3s window), ומממש"
+        },
+        {
+          "content": "אחרי Implementation - יוצרים build לplaytesting"
+        },
+        {
+          "content": "Playtesting מגלה: 0.3s קשה מדי! רק 10% הצלחה"
+        },
+        {
+          "content": "Luna מריצה balance-tuning - מעדכנת ל-0.5s window"
+        },
+        {
+          "content": "אתם מעדכנים את הקוד (רק משתנה אחד!) - playtesting שוב"
+        },
+        {
+          "content": "0.5s עובד מצוין! 40% הצלחה - balanced ✅"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "המפתח",
+      "content": "כל השינוי מתועד ב-GDD. בעוד 3 חודשים כשתרצו לבדוק 'למה בחרנו 0.5s?', התשובה תהיה שם עם כל ה-reasoning."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 2: בניית Level חדש",
+      "id": "scenario-level"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**המצב:** Level 4 של המשחק צריך להיבנות. ה-GDD מתאר אותו כ-'Forest Level - stealth focused, 15 minutes, introduces new enemy type'."
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "level-step-by-step",
+          "title": "התהליך המלא - צעד אחר צעד",
+          "content": [
+            {
+              "type": "list",
+              "variant": "ordered",
+              "items": [
+                {
+                  "content": "Luna (Game Designer) מפרטת ב-GDD: Layout של Level 4, Pacing (intro 2 min, stealth section 8 min, boss 5 min), Enemy placement, Collectibles"
+                },
+                {
+                  "content": "Kai (Game Architect) פורק ל-Stories: 4.1 - Forest Environment, 4.2 - Stealth Mechanics, 4.3 - New Enemy AI, 4.4 - Boss Fight, 4.5 - Integration & Polish"
+                },
+                {
+                  "content": "אתם מתחילים עם Story 4.1 (Environment)"
+                },
+                {
+                  "content": "River קורא GDD → רואה: 'Dense forest, limited visibility, lots of cover'"
+                },
+                {
+                  "content": "אתם (או Level Designer) בונים את ה-layout ב-Unity/Unreal"
+                },
+                {
+                  "content": "Playtest 1: השחקן מתבלבל, לא ברור לאן ללכת"
+                },
+                {
+                  "content": "Luna מעדכנת GDD: 'Add subtle lighting to guide player'"
+                },
+                {
+                  "content": "אתם מוסיפים lights → Playtest 2: עובד! ✅"
+                },
+                {
+                  "content": "ממשיכים ל-Story 4.2 (Stealth)..."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "אתגרים ייחודיים בפיתוח משחקים",
+      "id": "game-challenges"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "אתגר 1: 'Feel' vs Specification",
+      "id": "challenge-feel"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**הבעיה:** משחקים צריכים להרגיש טוב, לא רק 'לעבוד'. Jump Height של 3 מטרים עשוי להרגיש שגוי גם אם זה נכון מתמטית.\n\n**הפתרון עם BMAD:**"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "ה-GDD כולל סקשן 'Feel & Polish' עם הערות כמו 'Jump should feel floaty'"
+        },
+        {
+          "content": "River יודע לקרוא בין השורות ולהוסיף air control, coyote time, jump buffering"
+        },
+        {
+          "content": "Playtesting builds מאפשרים feedback מהיר"
+        },
+        {
+          "content": "balance-tuning workflow מעדכן את הערכים עד שזה מרגיש נכון"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "אתגר 2: הסנכרון בין Design ל-Implementation",
+      "id": "challenge-sync"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**הבעיה:** ה-Designer מעדכן את ה-GDD, אבל הקוד לא מתעדכן. הפער גדל.\n\n**הפתרון עם BMAD:**"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "Story Context תמיד עדכני",
+      "content": "כשאתם מריצים story-context, הוא קורא את ה-GDD האחרון. River רואה את כל השינויים ומעדכן את הקוד בהתאם. אין 'drift' בין design ל-code."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "אתגר 3: Performance vs Features",
+      "id": "challenge-performance"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**הבעיה:** כל feature חדש גוזל FPS. איך יודעים מתי 'מספיק'?\n\n**הפתרון עם BMAD:**"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "Kai מגדיר Performance Budget בארכיטקטורה: '60 FPS minimum, budget: 16.6ms per frame'"
+        },
+        {
+          "content": "כל Story יש לו Performance Acceptance Criteria: 'Must run at 60 FPS on target platform'"
+        },
+        {
+          "content": "River בודק ביצועים בכל Build"
+        },
+        {
+          "content": "אם יורדים מתחת ל-60 FPS → Story לא done → מייעלים"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "סיכום למפתחי משחקים",
+      "content": "BMAD למשחקים משלב את כוח העיצוב (Luna), הארכיטקטורה (Kai), והפיתוח (River) לתהליך אחד זורם. ה-GDD הוא ה-source of truth, Playtesting מובנה בתהליך, ואיטרציה מהירה היא ברירת המחדל. תוצאה: פחות chaos, יותר כיף לפתח, ומשחקים טובים יותר."
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "הצעד הבא שלך",
+      "content": "1. התקינו BMAD עם include_game_planning: true 2. צרו Game Brief פשוט למשחק קטן 3. הריצו את התהליך המלא עם Luna → Kai → River 4. ראו את הקסם קורה!"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**בהצלחה ביצירת משחקים מדהימים!** 🎮✨"
+    }
+  ]
+}
+
