@@ -310,7 +310,7 @@ export function ProfilePage() {
       console.error('Error resetting onboarding:', error);
       toast({
         title: 'שגיאה',
-        description: 'לא ניתן לאפס את ההונחיה. אנא נסה שוב.',
+        description: 'לא ניתן לאפס את האון בורדינג. אנא נסה שוב.',
         variant: 'destructive',
       });
     }

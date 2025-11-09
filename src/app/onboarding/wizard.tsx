@@ -977,7 +977,7 @@ function LearningPathStep({
 
       // Show success toast
       toast({
-        title: 'ההונחיה הושלמה בהצלחה!',
+        title: 'האון בורדינג הושלם בהצלחה!',
         description: 'נתיב הלמידה האישי שלך מוכן. בואו נתחיל ללמוד!',
       });
 
