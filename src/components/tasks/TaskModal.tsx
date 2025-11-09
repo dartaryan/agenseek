@@ -88,10 +88,13 @@ export function TaskModal({
     const loadGuides = async () => {
       try {
         const response = await fetch('/content/guides-catalog.json');
-        const guidesData = await response.json();
-        setGuides(guidesData);
+        const data = await response.json();
+        // Handle both { guides: [...] } and [...] formats
+        const guidesArray = Array.isArray(data) ? data : (data.guides || []);
+        setGuides(guidesArray);
       } catch (error) {
         console.error('[TaskModal] Error loading guides:', error);
+        setGuides([]); // Set empty array on error
       }
     };
     loadGuides();

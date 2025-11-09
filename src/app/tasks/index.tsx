@@ -72,10 +72,11 @@ export function TasksPage() {
     const loadGuideTitles = async () => {
       try {
         const response = await fetch('/content/guides-catalog.json');
-        const guidesResponse = await response.json();
-        const guides = guidesResponse.guides || guidesResponse;
+        const data = await response.json();
+        // Handle both { guides: [...] } and [...] formats
+        const guidesArray = Array.isArray(data) ? data : (data.guides || []);
         const titlesMap: Record<string, string> = {};
-        guides.forEach((guide: { id?: string; slug?: string; title: string }) => {
+        guidesArray.forEach((guide: { id?: string; slug?: string; title: string }) => {
           const key = guide.id || guide.slug;
           if (key) {
             titlesMap[key] = guide.title;
@@ -84,6 +85,7 @@ export function TasksPage() {
         setGuidesData(titlesMap);
       } catch (error) {
         console.error('[TasksPage] Error loading guide titles:', error);
+        setGuidesData({}); // Set empty object on error
       }
     };
 
