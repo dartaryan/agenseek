@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { IconTrophy, IconArrowRight } from '@tabler/icons-react';
+import { IconTrophy, IconArrowLeft } from '@tabler/icons-react';
 import { Card } from '../ui/card';
 import { Button } from '../ui/button';
 import { hebrewLocale } from '../../lib/locale/he';
@@ -115,7 +115,7 @@ export function AchievementsPreviewCard() {
           <Button variant="outline" className="w-full" asChild>
             <Link to="/progress" className="flex items-center justify-center gap-2">
               {hebrewLocale.dashboard.viewAllBadges}
-              <IconArrowRight className="w-4 h-4" stroke={1.5} />
+              <IconArrowLeft className="w-4 h-4" stroke={1.5} />
             </Link>
           </Button>
         </div>

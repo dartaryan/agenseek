@@ -12,7 +12,7 @@ import {
   IconBook,
   IconNote,
   IconChecklist,
-  IconArrowRight
+  IconArrowLeft
 } from '@tabler/icons-react';
 import { useSearch } from '@/hooks/useSearch';
 import { useAuth } from '@/hooks/useAuth';
@@ -309,7 +309,7 @@ export const SearchBar = forwardRef<SearchBarRef>(function SearchBar(_props, ref
                     className="w-full flex items-center justify-between text-sm text-emerald-600 hover:text-emerald-700 font-medium transition-colors"
                   >
                     <span>צפה בכל {totalResults} התוצאות</span>
-                    <IconArrowRight className="h-4 w-4" />
+                    <IconArrowLeft className="h-4 w-4" />
                   </button>
                 </div>
               )}

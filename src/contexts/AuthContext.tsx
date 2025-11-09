@@ -177,14 +177,21 @@ export function AuthProvider({ children }: AuthProviderProps) {
         event,
         session?.user ? 'User present' : 'No user'
       );
+
+      // Skip processing INITIAL_SESSION event - initAuth() handles it properly
+      // This prevents race condition where isLoading is set false before profile loads
+      if (event === 'INITIAL_SESSION') {
+        console.log('[AuthProvider] Skipping INITIAL_SESSION - handled by initAuth()');
+        return;
+      }
+
       setUser(session?.user ?? null);
 
-      // CRITICAL: Set loading to false immediately when auth state changes
-      // Don't wait for profile fetch to complete - it might hang due to RLS policies
-      console.log('[AuthProvider] Setting isLoading = false immediately');
-      setIsLoading(false);
+      // Don't set isLoading = false here to prevent race condition
+      // isLoading is managed by initAuth() which properly waits for profile load
+      // This prevents redirects to onboarding when profile is still loading
 
-      // Fetch profile in background (don't block on this)
+      // Fetch profile in background
       if (session?.user) {
         console.log('[AuthProvider] Fetching profile for user:', session.user.id);
 

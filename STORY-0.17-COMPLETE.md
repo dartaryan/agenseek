@@ -22,9 +22,9 @@ Successfully added "מסלול הלמידה שלי" (My Learning Journey) naviga
 **File:** `src/components/layout/Sidebar.tsx`
 - Added `IconRoute` import from Tabler Icons
 - Added journey navigation item to `navigationItems` array
-- Position: After Dashboard, before Guides
+- Position: **First in the list** (before Dashboard)
 - Icon: `IconRoute`
-- Keyboard shortcut: `Alt+6`
+- Keyboard shortcut: `Alt+0`
 - Active route highlighting works correctly
 
 ### 3. Header Navigation (Collapsed Mode)
@@ -68,15 +68,15 @@ Successfully added "מסלול הלמידה שלי" (My Learning Journey) naviga
 ## Visual Result
 
 **Sidebar Navigation Order:**
-1. לוח בקרה (Dashboard) - Alt+1
-2. **מסלול הלמידה שלי (Journey) - Alt+6** ⭐ NEW
+1. **מסלול הלמידה שלי (Journey) - Alt+0** ⭐ NEW (FIRST!)
+2. לוח בקרה (Dashboard) - Alt+1
 3. מדריכים (Guides) - Alt+2
 4. הערות (Notes) - Alt+3
 5. משימות (Tasks) - Alt+4
 6. פרופיל והגדרות (Profile) - Alt+5
 
 **Header Navigation (Collapsed):**
-- Home | **Journey** ⭐ NEW | Guides | Notes | Tasks | Progress
+- **Journey** ⭐ NEW (FIRST!) | Home | Guides | Notes | Tasks | Progress
 
 ---
 

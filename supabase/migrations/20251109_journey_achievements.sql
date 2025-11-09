@@ -1,14 +1,17 @@
--- Journey Achievements Migration - Story 0.10.3
--- Add achievements for completing learning journey phases
+-- Journey Achievements - Story 0.10.3
+-- NOTE: No migration needed!
+--
+-- Achievement definitions are stored in CODE (src/lib/achievements.ts), not in the database.
+-- The database only has 'user_achievements' table which tracks which users earned which badges.
+--
+-- Journey Achievement IDs (defined in code):
+-- - 'journey_core_complete' - מסע מתחיל (Complete all Core guides) - 10 points
+-- - 'journey_recommended_complete' - מסע מומחה (Complete all Recommended guides) - 25 points
+-- - 'journey_interests_complete' - מסע מלומד (Complete all Interests guides) - 25 points
+-- - 'journey_master' - אמן המסע (Complete all 4 phases) - 100 points
+--
+-- These will be automatically inserted into 'user_achievements' when users complete phases.
+-- See: src/lib/achievements.ts -> awardPhaseAchievement()
 
--- Insert journey phase completion achievements
-INSERT INTO achievements (id, title, description, icon, category, points, requirement_type, requirement_value) VALUES
-('journey_core_complete', 'מסע מתחיל', 'השלמת את כל מדריכי הליבה', 'IconBook', 'learning', 10, 'guides_completed', '{"phase":"core","percentage":100}'),
-('journey_recommended_complete', 'מסע מומחה', 'השלמת את כל המדריכים המומלצים', 'IconStar', 'learning', 25, 'guides_completed', '{"phase":"recommended","percentage":100}'),
-('journey_interests_complete', 'מסע מלומד', 'השלמת את כל מדריכי תחומי העניין', 'IconHeart', 'learning', 25, 'guides_completed', '{"phase":"interests","percentage":100}'),
-('journey_master', 'אמן המסע', 'השלמת את כל 4 השלבים במסלול הלמידה', 'IconTrophy', 'learning', 100, 'guides_completed', '{"phase":"all","percentage":100}')
-ON CONFLICT (id) DO NOTHING;
-
--- Verify achievements were inserted
--- SELECT * FROM achievements WHERE id LIKE 'journey%';
+-- No SQL to run - this file is for documentation only.
 

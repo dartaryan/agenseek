@@ -19,7 +19,7 @@ import {
   IconDots,
   IconCheck,
   IconLock,
-  IconArrowRight,
+  IconArrowLeft,
   IconLoader2,
 } from '@tabler/icons-react';
 import { cn } from '@/lib/utils';
@@ -189,7 +189,7 @@ export function JourneyPreviewCard() {
         className="w-full px-4 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg transition-colors flex items-center justify-center gap-2 group"
       >
         <span>המשך במסלול</span>
-        <IconArrowRight className="w-5 h-5 group-hover:translate-x-[-4px] transition-transform" />
+        <IconArrowLeft className="w-5 h-5 group-hover:translate-x-[-4px] transition-transform" />
       </button>
     </div>
   );

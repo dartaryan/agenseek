@@ -18,7 +18,6 @@ import { DashboardStats } from '../../components/dashboard/DashboardStats';
 import { PopularGuidesCard } from '../../components/dashboard/PopularGuidesCard';
 import { NotesStatisticsCard } from '../../components/dashboard/NotesStatisticsCard';
 import { TasksStatisticsCard } from '../../components/dashboard/TasksStatisticsCard';
-import { JourneyPreviewCard } from '../../components/dashboard/JourneyPreviewCard';
 import { JourneyCard } from '../../components/dashboard/JourneyCard';
 import { BrandedLoader } from '../../components/ui/branded-loader';
 import { getJourneyData, getNextRecommendedGuide, type JourneyData } from '../../lib/journey';
@@ -571,21 +570,21 @@ export function DashboardPage() {
         {/* Story 0.18: Journey Card - Full Width */}
         {dashboardData.journeyData && (() => {
           const completedGuideIds = new Set(
-            dashboardData.journeyData.phases.flatMap((p) =>
+            dashboardData.journeyData!.phases.flatMap((p) =>
               p.guides.filter((g) => g.completed).map((g) => g.id)
             )
           );
           const nextGuide = getNextRecommendedGuide(
-            dashboardData.journeyData.phases,
+            dashboardData.journeyData!.phases,
             completedGuideIds
           );
-          const currentPhase = dashboardData.journeyData.phases.find(
-            (p) => p.id === dashboardData.journeyData.stats.currentPhase
+          const currentPhase = dashboardData.journeyData!.phases.find(
+            (p) => p.id === dashboardData.journeyData!.stats.currentPhase
           );
 
           return (
             <JourneyCard
-              overallProgress={dashboardData.journeyData.stats.overallProgress}
+              overallProgress={dashboardData.journeyData!.stats.overallPercentage}
               currentPhase={{
                 id: currentPhase?.id || '',
                 name: currentPhase?.title || '',
@@ -627,9 +626,8 @@ export function DashboardPage() {
             />
           </div>
 
-          {/* Center Column - Journey, Continue Reading & Quick Actions */}
+          {/* Center Column - Continue Reading & Quick Actions */}
           <div className="space-y-6">
-            <JourneyPreviewCard />
             <ContinueReadingCard inProgressGuides={dashboardData.inProgressGuides} />
             <QuickActionsCard />
           </div>

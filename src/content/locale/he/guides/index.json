@@ -537,5 +537,16 @@
     "icon": "IconChecklist",
     "tags": ["תרגילים", "מקרי-מבחן", "דוגמאות", "hands-on", "פרויקטים"],
     "path": "practical/case-studies-part1.json"
+  },
+  {
+    "id": "case-studies-part2",
+    "title": "מקרי מבחן ותרגילים - חלק 2",
+    "description": "5 מקרי מבחן מתקדמים נוספים - Gaming Platform, Microservices Migration, Legacy Modernization, Multi-Team Project, ו-Global Distributed Team. תרחישים מורכבים ופתרונות ארכיטקטוניים מתקדמים.",
+    "category": "practical",
+    "difficulty": "advanced",
+    "estimatedMinutes": 60,
+    "icon": "IconChecklist",
+    "tags": ["תרגילים", "מקרי-מבחן", "מתקדם", "ארכיטקטורה", "hands-on"],
+    "path": "practical/case-studies-part2.json"
   }
 ]

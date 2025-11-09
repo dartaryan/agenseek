@@ -36,8 +36,8 @@ interface NavItem {
 }
 
 const navigationItems: NavItem[] = [
-  { name: hebrewLocale.nav.dashboard, href: '/dashboard', icon: IconLayoutDashboard, shortcut: 'Alt+1' },
-  { name: hebrewLocale.nav.journey, href: '/journey', icon: IconRoute, shortcut: 'Alt+6' },
+  { name: hebrewLocale.nav.dashboard, href: '/dashboard', icon: IconLayoutDashboard, shortcut: 'Alt+0' },
+  { name: hebrewLocale.nav.journey, href: '/journey', icon: IconRoute, shortcut: 'Alt+1' },
   { name: hebrewLocale.nav.guides, href: '/guides', icon: IconBooks, shortcut: 'Alt+2' },
   { name: hebrewLocale.nav.notes, href: '/notes', icon: IconNote, shortcut: 'Alt+3' },
   { name: hebrewLocale.nav.tasks, href: '/tasks', icon: IconChecklist, shortcut: 'Alt+4' },

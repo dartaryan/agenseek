@@ -8,8 +8,8 @@ import { motion } from 'framer-motion';
 import {
   IconCheck,
   IconSparkles,
-  IconArrowRight,
   IconArrowLeft,
+  IconArrowRight,
 } from '@tabler/icons-react';
 import { Button } from '@/components/ui/button';
 import { UserAvatar } from '@/components/ui/user-avatar';
@@ -151,7 +151,7 @@ export function AvatarSelectionStep({
       {/* Navigation Buttons */}
       <div className="flex items-center justify-between">
         <Button variant="outline" onClick={onBack} className="gap-2">
-          <IconArrowLeft className="w-5 h-5" />
+          <IconArrowRight className="w-5 h-5" />
           חזור
         </Button>
 
@@ -164,7 +164,7 @@ export function AvatarSelectionStep({
 
         <Button onClick={handleNext} className="gap-2">
           הבא
-          <IconArrowRight className="w-5 h-5" />
+          <IconArrowLeft className="w-5 h-5" />
         </Button>
       </div>
     </motion.div>

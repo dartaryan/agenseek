@@ -148,7 +148,7 @@ export function GuideCompletionModal({
           </Button>
           {nextGuide && (
             <Button onClick={handleContinueToNext} className="flex-1">
-              <IconArrowRight className="w-4 h-4 ml-2" />
+              <IconArrowLeft className="w-4 h-4 ml-2" />
               המדריך הבא
             </Button>
           )}

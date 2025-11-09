@@ -127,7 +127,7 @@ const InProgressGuideItem = React.memo(function InProgressGuideItem({ guide }: {
         </div>
 
         {/* Arrow Icon */}
-        <TablerIcons.IconArrowRight
+        <TablerIcons.IconArrowLeft
           className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0"
           stroke={1.5}
         />
@@ -180,7 +180,7 @@ export const ContinueReadingCard = React.memo(function ContinueReadingCard({ inP
           <Button variant="outline" className="w-full" asChild>
             <Link to="/guides" className="flex items-center justify-center gap-2">
               {hebrewLocale.dashboard.browseGuides}
-              <TablerIcons.IconArrowRight className="w-4 h-4" stroke={1.5} />
+              <TablerIcons.IconArrowLeft className="w-4 h-4" stroke={1.5} />
             </Link>
           </Button>
         )}

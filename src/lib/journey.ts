@@ -317,7 +317,9 @@ export async function getJourneyData(
   // 6. Calculate overall statistics
   const totalGuides = catalog.length;
   const completedGuides = completedGuideIds.size;
-  const overallPercentage = Math.round((completedGuides / totalGuides) * 100);
+  const overallPercentage = totalGuides > 0
+    ? Math.round((completedGuides / totalGuides) * 100)
+    : 0;
 
   // Calculate remaining time (only for incomplete guides in unlocked phases)
   const estimatedMinutesRemaining = phases.reduce((sum, phase) => {

@@ -14,7 +14,7 @@ import {
   IconFilter,
   IconSortAscending,
   IconMoodEmpty,
-  IconArrowRight,
+  IconArrowLeft,
   IconClock,
   IconAlphabetLatin,
   IconStar,
@@ -439,7 +439,7 @@ function SearchResultCard({ result }: SearchResultCardProps) {
 
             {/* Arrow */}
             <div className="flex-shrink-0">
-              <IconArrowRight className="h-5 w-5 text-muted-foreground" />
+              <IconArrowLeft className="h-5 w-5 text-muted-foreground" />
             </div>
           </div>
         </CardContent>

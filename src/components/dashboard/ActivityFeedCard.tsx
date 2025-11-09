@@ -6,7 +6,7 @@ import {
   IconNote,
   IconChecklist,
   IconTrophy,
-  IconArrowRight,
+  IconArrowLeft,
   IconChevronDown,
   IconChevronUp,
   IconMessage,
@@ -263,7 +263,7 @@ export function ActivityFeedCard({ activities }: ActivityFeedCardProps) {
           <Button variant="outline" className="w-full" asChild>
             <Link to="/profile" className="flex items-center justify-center gap-2">
               {hebrewLocale.dashboard.viewAllActivity}
-              <IconArrowRight className="w-4 h-4" stroke={1.5} />
+              <IconArrowLeft className="w-4 h-4" stroke={1.5} />
             </Link>
           </Button>
         )}

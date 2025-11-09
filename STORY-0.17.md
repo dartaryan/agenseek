@@ -20,11 +20,11 @@ So that I can easily navigate to my personalized learning path.
 **When** I view the sidebar navigation
 **Then**:
 - I see a new navigation item "מסלול הלמידה שלי" (My Learning Journey)
-- It appears after "Dashboard" and before "All Guides"
+- It appears **FIRST in the navigation** (before Dashboard)
 - It uses an appropriate Tabler icon (IconRoute or IconMap2)
 - It shows as active when I'm on the `/journey` page
 - It follows the same styling as other navigation items
-- It includes a keyboard shortcut hint (Alt+6)
+- It includes a keyboard shortcut hint (Alt+0)
 
 **And When** I'm in collapsed sidebar mode
 **Then** the journey button also appears in the header navigation
@@ -36,9 +36,9 @@ So that I can easily navigate to my personalized learning path.
 **Files to Modify:**
 1. `src/components/layout/Sidebar.tsx`
    - Add journey navigation item to `navigationItems` array
-   - Position: After dashboard, before guides
+   - Position: **First in the list** (before dashboard)
    - Icon: `IconRoute` or `IconMap2`
-   - Shortcut: `Alt+6`
+   - Shortcut: `Alt+0`
 
 2. `src/components/layout/HeaderNav.tsx` (if exists)
    - Ensure journey button appears in collapsed mode

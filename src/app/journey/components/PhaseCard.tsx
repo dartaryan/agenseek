@@ -22,7 +22,7 @@ import {
   IconLock,
   IconChevronDown,
   IconClock,
-  IconArrowRight,
+  IconArrowLeft,
 } from '@tabler/icons-react';
 import { cn } from '@/lib/utils';
 import { formatEstimatedTime } from '@/lib/journey';
@@ -305,7 +305,7 @@ function GuideItem({ guide, onClick, isLocked, isNextRecommended = false }: Guid
           className="absolute top-2 left-2 z-10"
         >
           <span className="inline-flex items-center gap-1 px-3 py-1 bg-emerald-500 text-white text-xs font-semibold rounded-full shadow-md animate-pulse">
-            <IconArrowRight size={14} />
+            <IconArrowLeft size={14} />
             המלצה הבאה
           </span>
         </motion.div>
@@ -380,7 +380,7 @@ function GuideItem({ guide, onClick, isLocked, isNextRecommended = false }: Guid
           <span className="text-sm">
             {isLocked ? 'ננעל' : guide.completed ? 'קרא שוב' : guide.progress > 0 ? 'המשך' : 'התחל'}
           </span>
-          {!isLocked && <IconArrowRight className="w-4 h-4" />}
+          {!isLocked && <IconArrowLeft className="w-4 h-4" />}
           {isLocked && <IconLock className="w-4 h-4" />}
         </motion.button>
       </div>

@@ -250,6 +250,78 @@ export const BADGE_DEFINITIONS: Record<string, BadgeDefinition> = {
       progress: stats.completedGuidesCount,
     }),
   },
+
+  // Journey Achievements (Story 0.10.3)
+  // Note: These are tracked via awardPhaseAchievement() in journey.ts
+  journey_core_complete: {
+    id: 'journey_core_complete',
+    name: 'Journey Beginner',
+    nameHe: 'מסע מתחיל',
+    description: 'Complete all Core guides in the learning journey',
+    descriptionHe: 'השלמת את כל מדריכי הליבה במסלול הלמידה',
+    type: 'milestone',
+    icon: IconNotebook,
+    color: 'emerald',
+    target: 1,
+    checkCondition: (stats) => {
+      const coreTotal = stats.totalGuidesByCategory['core'] || 2;
+      return {
+        earned: stats.completedCoreGuidesCount >= coreTotal,
+        progress: stats.completedCoreGuidesCount,
+      };
+    },
+  },
+
+  journey_recommended_complete: {
+    id: 'journey_recommended_complete',
+    name: 'Journey Expert',
+    nameHe: 'מסע מומחה',
+    description: 'Complete all Recommended guides in the learning journey',
+    descriptionHe: 'השלמת את כל המדריכים המומלצים במסלול הלמידה',
+    type: 'milestone',
+    icon: IconStar,
+    color: 'purple',
+    target: 1,
+    checkCondition: (stats) => {
+      const recommendedTotal = stats.totalGuidesByCategory['roles'] || 10;
+      return {
+        earned: stats.completedRecommendedGuidesCount >= recommendedTotal,
+        progress: stats.completedRecommendedGuidesCount,
+      };
+    },
+  },
+
+  journey_interests_complete: {
+    id: 'journey_interests_complete',
+    name: 'Journey Scholar',
+    nameHe: 'מסע מלומד',
+    description: 'Complete all Interest guides in the learning journey',
+    descriptionHe: 'השלמת את כל מדריכי תחומי העניין במסלול הלמידה',
+    type: 'milestone',
+    icon: IconAward,
+    color: 'blue',
+    target: 1,
+    checkCondition: () => ({
+      earned: false, // Calculated dynamically in journey.ts based on user interests
+      progress: 0,
+    }),
+  },
+
+  journey_master: {
+    id: 'journey_master',
+    name: 'Journey Master',
+    nameHe: 'אמן המסע',
+    description: 'Complete all 4 phases in the learning journey',
+    descriptionHe: 'השלמת את כל 4 השלבים במסלול הלמידה',
+    type: 'milestone',
+    icon: IconTrophy,
+    color: 'yellow',
+    target: 1,
+    checkCondition: (stats) => ({
+      earned: stats.completedGuidesCount >= 42, // All guides
+      progress: stats.completedGuidesCount,
+    }),
+  },
 };
 
 // Get all badges as array

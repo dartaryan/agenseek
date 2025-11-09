@@ -224,16 +224,8 @@ const nextGuide = getNextRecommendedGuide(phases, completedGuideIds)
 - **Progress Page Integration:** Skipped as optional enhancement
 - **User Testing:** Manual testing required to verify celebrations and achievements
 
-### SQL Migration
-Run migration before testing:
-```sql
--- Journey achievements
-INSERT INTO achievements (...) VALUES
-('journey_core_complete', ...),
-('journey_recommended_complete', ...),
-('journey_interests_complete', ...),
-('journey_master', ...);
-```
+### No SQL Migration Required! ✅
+Achievement definitions are stored **in code** (`src/lib/achievements.ts`), not in the database. The database only has a `user_achievements` table which tracks which users have earned which badges. Journey achievements will be automatically awarded when users complete phases.
 
 ---
 
@@ -243,7 +235,7 @@ INSERT INTO achievements (...) VALUES
 1. **Test Phase Completion Flow:**
    - Complete last guide in a phase
    - Verify confetti fires
-   - Check achievement in database
+   - Check achievement in `user_achievements` table
    - Confirm toast notifications
 
 2. **Test Next Guide Highlight:**
@@ -251,11 +243,7 @@ INSERT INTO achievements (...) VALUES
    - Verify emerald highlight on next guide
    - Check badge animation
 
-3. **Run SQL Migration:**
-   - Apply `20251109_journey_achievements.sql`
-   - Verify achievements table populated
-
-4. **Integrate Journey Badges in Guides Library:**
+3. **Integrate Journey Badges in Guides Library:**
    - Fetch user journey data in guides page
    - Determine phase for each guide
    - Pass journeyPhase prop to GuideCard
