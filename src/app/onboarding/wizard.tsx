@@ -71,16 +71,45 @@ export function OnboardingWizardPage() {
     try {
       console.log('[Onboarding Skip] Starting skip process...');
 
-      // Mark onboarding as completed even when skipped
-      const { error } = await supabase
+      // Check if profile exists first
+      const { data: existingProfile } = await supabase
         .from('profiles')
-        .update({
-          completed_onboarding: true,
-          updated_at: new Date().toISOString(),
-        })
-        .eq('id', user.id);
+        .select('id')
+        .eq('id', user.id)
+        .maybeSingle();
 
-      if (error) throw error;
+      if (!existingProfile) {
+        // Profile doesn't exist - create it (happens after account deletion)
+        console.log('[Onboarding Skip] No profile found - creating new profile');
+        const { error: createError } = await supabase
+          .from('profiles')
+          .insert({
+            id: user.id,
+            display_name: user.email?.split('@')[0] || 'משתמש',
+            email: user.email,
+            completed_onboarding: true,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          });
+
+        if (createError) {
+          console.error('[Onboarding Skip] Error creating profile:', createError);
+          throw createError;
+        }
+      } else {
+        // Profile exists - update it
+        console.log('[Onboarding Skip] Updating existing profile');
+        const { error } = await supabase
+          .from('profiles')
+          .update({
+            completed_onboarding: true,
+            updated_at: new Date().toISOString(),
+          })
+          .eq('id', user.id);
+
+        if (error) throw error;
+      }
+      
       console.log('[Onboarding Skip] Profile updated in database');
 
       // CRITICAL FIX: Verify profile update completed before navigating
@@ -99,7 +128,7 @@ export function OnboardingWizardPage() {
           .from('profiles')
           .select('completed_onboarding')
           .eq('id', user.id)
-          .single();
+          .maybeSingle();
 
         if (verifyProfile?.completed_onboarding === true) {
           profileUpdated = true;
@@ -947,23 +976,58 @@ function LearningPathStep({
 
     try {
       console.log('[Onboarding] Starting completion process...');
-
-      // Save preferences to profile
-      const { error } = await supabase
+      
+      // Check if profile exists first
+      const { data: existingProfile } = await supabase
         .from('profiles')
-        .update({
-          role: selectedRole,
-          interests: selectedInterests,
-          experience_level: selectedExperience as 'beginner' | 'intermediate' | 'advanced',
-          avatar_style: selectedAvatar?.style,
-          avatar_seed: selectedAvatar?.seed,
-          avatar_options: selectedAvatar?.options || {},
-          completed_onboarding: true,
-          updated_at: new Date().toISOString(),
-        })
-        .eq('id', userId);
+        .select('id')
+        .eq('id', userId)
+        .maybeSingle();
 
-      if (error) throw error;
+      if (!existingProfile) {
+        // Profile doesn't exist - create it with all preferences
+        console.log('[Onboarding] No profile found - creating new profile with preferences');
+        const { error: createError } = await supabase
+          .from('profiles')
+          .insert({
+            id: userId,
+            display_name: user?.email?.split('@')[0] || 'משתמש',
+            email: user?.email,
+            role: selectedRole,
+            interests: selectedInterests,
+            experience_level: selectedExperience as 'beginner' | 'intermediate' | 'advanced',
+            avatar_style: selectedAvatar?.style,
+            avatar_seed: selectedAvatar?.seed,
+            avatar_options: selectedAvatar?.options || {},
+            completed_onboarding: true,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          });
+
+        if (createError) {
+          console.error('[Onboarding] Error creating profile:', createError);
+          throw createError;
+        }
+      } else {
+        // Profile exists - update it
+        console.log('[Onboarding] Updating existing profile with preferences');
+        const { error } = await supabase
+          .from('profiles')
+          .update({
+            role: selectedRole,
+            interests: selectedInterests,
+            experience_level: selectedExperience as 'beginner' | 'intermediate' | 'advanced',
+            avatar_style: selectedAvatar?.style,
+            avatar_seed: selectedAvatar?.seed,
+            avatar_options: selectedAvatar?.options || {},
+            completed_onboarding: true,
+            updated_at: new Date().toISOString(),
+          })
+          .eq('id', userId);
+
+        if (error) throw error;
+      }
+      
       console.log('[Onboarding] Profile updated in database');
 
       // CRITICAL FIX: Verify profile update completed before navigating
@@ -983,7 +1047,7 @@ function LearningPathStep({
           .from('profiles')
           .select('completed_onboarding')
           .eq('id', userId)
-          .single();
+          .maybeSingle();
 
         if (verifyProfile?.completed_onboarding === true) {
           profileUpdated = true;
