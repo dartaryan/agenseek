@@ -260,22 +260,23 @@ export default function ContentAnalyticsPage() {
           <h2 className="text-lg md:text-xl font-bold text-foreground dark:text-gray-100 mb-4">
             {t.categoryPerformance}
           </h2>
-          <div className="w-full overflow-hidden">
+          <div className="w-full">
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={categoryData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis
                   dataKey="category"
-                  tick={{ fontSize: 10 }}
+                  tick={{ fontSize: 8 }}
                   angle={-45}
                   textAnchor="end"
-                  height={60}
+                  height={80}
+                  interval={0}
                 />
-                <YAxis tick={{ fontSize: 10 }} />
-                <Tooltip />
-                <Legend wrapperStyle={{ fontSize: '12px' }} />
-                <Bar dataKey="totalViews" fill="#10B981" name="סה״כ צפיות" />
-                <Bar dataKey="avgCompletionRate" fill="#3B82F6" name="אחוז השלמה ממוצע" />
+                <YAxis tick={{ fontSize: 8 }} width={30} />
+                <Tooltip contentStyle={{ fontSize: '12px' }} />
+                <Legend wrapperStyle={{ fontSize: '10px' }} iconSize={10} />
+                <Bar dataKey="totalViews" fill="#10B981" name="צפיות" />
+                <Bar dataKey="avgCompletionRate" fill="#3B82F6" name="השלמה" />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -321,24 +322,25 @@ export default function ContentAnalyticsPage() {
             <div className="text-muted-foreground">{t.noData}</div>
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <Table className="min-w-[500px]">
+          <div className="w-full">
+            <Table>
               <TableHeader>
                 <TableRow>
                   <TableHead className="text-right">{t.guideTitle}</TableHead>
-                  <TableHead className="text-right">{t.category}</TableHead>
+                  <TableHead className="text-right hidden md:table-cell">{t.category}</TableHead>
                   <TableHead
                     className="text-right cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800"
                     onClick={() => handleSort('views')}
                   >
                     <div className="flex items-center justify-end">
                       <SortIcon column="views" />
-                      <IconEye className="w-4 h-4 ml-1" />
-                      {t.views}
+                      <IconEye className="w-4 h-4 ml-1 hidden sm:block" />
+                      <span className="hidden sm:inline">{t.views}</span>
+                      <span className="sm:hidden">צפ׳</span>
                     </div>
                   </TableHead>
                   <TableHead
-                    className="text-right cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800"
+                    className="text-right cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 hidden lg:table-cell"
                     onClick={() => handleSort('uniqueViewers')}
                   >
                     <div className="flex items-center justify-end">
@@ -348,7 +350,7 @@ export default function ContentAnalyticsPage() {
                     </div>
                   </TableHead>
                   <TableHead
-                    className="text-right cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800"
+                    className="text-right cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 hidden xl:table-cell"
                     onClick={() => handleSort('avgTimeMinutes')}
                   >
                     <div className="flex items-center justify-end">
@@ -363,12 +365,13 @@ export default function ContentAnalyticsPage() {
                   >
                     <div className="flex items-center justify-end">
                       <SortIcon column="completionRate" />
-                      <IconCircleCheck className="w-4 h-4 ml-1" />
-                      {t.completionRate}
+                      <IconCircleCheck className="w-4 h-4 ml-1 hidden sm:block" />
+                      <span className="hidden md:inline">{t.completionRate}</span>
+                      <span className="md:hidden">%</span>
                     </div>
                   </TableHead>
                   <TableHead
-                    className="text-right cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800"
+                    className="text-right cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 hidden lg:table-cell"
                     onClick={() => handleSort('helpfulVotes')}
                   >
                     <div className="flex items-center justify-end">
@@ -378,7 +381,7 @@ export default function ContentAnalyticsPage() {
                     </div>
                   </TableHead>
                   <TableHead
-                    className="text-right cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800"
+                    className="text-right cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 hidden xl:table-cell"
                     onClick={() => handleSort('commentsCount')}
                   >
                     <div className="flex items-center justify-end">
@@ -387,37 +390,37 @@ export default function ContentAnalyticsPage() {
                       {t.comments}
                     </div>
                   </TableHead>
-                  <TableHead className="text-right">{t.engagement}</TableHead>
+                  <TableHead className="text-right hidden sm:table-cell">{t.engagement}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {guides.map((guide) => (
                   <TableRow key={guide.guideSlug}>
-                    <TableCell className="font-medium text-right max-w-xs truncate">
+                    <TableCell className="font-medium text-right max-w-[150px] sm:max-w-xs truncate text-sm">
                       {guide.guideTitle}
                     </TableCell>
-                    <TableCell className="text-right text-muted-foreground dark:text-gray-400">
+                    <TableCell className="text-right text-muted-foreground dark:text-gray-400 text-sm hidden md:table-cell">
                       {guide.category}
                     </TableCell>
-                    <TableCell className="text-right">
+                    <TableCell className="text-right text-sm">
                       {guide.views.toLocaleString('he-IL')}
                     </TableCell>
-                    <TableCell className="text-right">
+                    <TableCell className="text-right text-sm hidden lg:table-cell">
                       {guide.uniqueViewers.toLocaleString('he-IL')}
                     </TableCell>
-                    <TableCell className="text-right">
+                    <TableCell className="text-right text-sm hidden xl:table-cell">
                       {guide.avgTimeMinutes} {t.minutes}
                     </TableCell>
-                    <TableCell className="text-right">
+                    <TableCell className="text-right text-sm">
                       {guide.completionRate}%
                     </TableCell>
-                    <TableCell className="text-right">
+                    <TableCell className="text-right text-sm hidden lg:table-cell">
                       {guide.helpfulVotes.toLocaleString('he-IL')}
                     </TableCell>
-                    <TableCell className="text-right">
+                    <TableCell className="text-right text-sm hidden xl:table-cell">
                       {guide.commentsCount.toLocaleString('he-IL')}
                     </TableCell>
-                    <TableCell className="text-right">
+                    <TableCell className="text-right hidden sm:table-cell">
                       <span
                         className={`px-2 py-1 rounded-full text-xs font-medium ${getEngagementColor(
                           guide.engagementLevel

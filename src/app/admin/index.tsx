@@ -105,7 +105,7 @@ export function AdminDashboardPage() {
   }
 
   return (
-    <div className="px-4 md:px-6 lg:px-8 py-6 md:py-8">
+    <div className="container mx-auto px-4 md:px-6 lg:px-8 py-6 md:py-8">
       <div className="max-w-[1600px] mx-auto space-y-8">
         {/* Header with Date Range Filter - Story 10.5: Responsive typography */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -172,40 +172,44 @@ export function AdminDashboardPage() {
               {hebrewLocale.pages.admin.noData}
             </div>
           ) : (
-            <ResponsiveContainer width="100%" height={300}>
+            <div className="w-full">
+              <ResponsiveContainer width="100%" height={300}>
               <LineChart data={activityData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis
                   dataKey="date"
-                  tick={{ fontSize: 10 }}
+                  tick={{ fontSize: 8 }}
                   angle={-45}
                   textAnchor="end"
-                  height={60}
+                  height={80}
+                  interval="preserveStartEnd"
                   tickFormatter={(value) => new Date(value).toLocaleDateString('he-IL', { month: 'short', day: 'numeric' })}
                 />
-                <YAxis tick={{ fontSize: 10 }} />
+                <YAxis tick={{ fontSize: 8 }} width={30} />
                 <Tooltip
+                  contentStyle={{ fontSize: '12px' }}
                   labelFormatter={(value) => new Date(value).toLocaleDateString('he-IL', { year: 'numeric', month: 'long', day: 'numeric' })}
                 />
-                <Legend wrapperStyle={{ fontSize: '12px' }} />
+                <Legend wrapperStyle={{ fontSize: '10px' }} iconSize={10} />
                 <Line
                   type="monotone"
                   dataKey="activeUsers"
-                  name={hebrewLocale.pages.admin.dailyActiveUsers}
+                  name="משתמשים"
                   stroke="#10B981"
                   strokeWidth={2}
-                  dot={{ r: 3 }}
+                  dot={{ r: 2 }}
                 />
                 <Line
                   type="monotone"
                   dataKey="guideViews"
-                  name={hebrewLocale.pages.admin.guideViewsPerDay}
+                  name="צפיות"
                   stroke="#3B82F6"
                   strokeWidth={2}
-                  dot={{ r: 3 }}
+                  dot={{ r: 2 }}
                 />
               </LineChart>
             </ResponsiveContainer>
+            </div>
           )}
         </Card>
 
@@ -230,14 +234,14 @@ export function AdminDashboardPage() {
               {hebrewLocale.pages.admin.noData}
             </div>
           ) : (
-            <div className="overflow-x-auto">
-              <Table className="min-w-[500px]">
+            <div className="w-full">
+              <Table>
                 <TableHeader>
                   <TableRow>
                     <TableHead>{hebrewLocale.pages.admin.guideTitle}</TableHead>
                     <TableHead className="text-center">{hebrewLocale.pages.admin.views}</TableHead>
-                    <TableHead className="text-center">{hebrewLocale.pages.admin.uniqueViewers}</TableHead>
-                    <TableHead className="text-center">{hebrewLocale.pages.admin.avgTime}</TableHead>
+                    <TableHead className="text-center hidden md:table-cell">{hebrewLocale.pages.admin.uniqueViewers}</TableHead>
+                    <TableHead className="text-center hidden lg:table-cell">{hebrewLocale.pages.admin.avgTime}</TableHead>
                     <TableHead className="text-center">{hebrewLocale.pages.admin.completionRate}</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -246,13 +250,13 @@ export function AdminDashboardPage() {
                     <TableRow key={guide.guideSlug}>
                       <TableCell className="font-medium">
                         <div className="flex items-center gap-2">
-                          <span className="text-gray-400 text-sm">#{index + 1}</span>
-                          <span>{guide.guideTitle}</span>
+                          <span className="text-gray-400 text-xs sm:text-sm">#{index + 1}</span>
+                          <span className="text-sm truncate max-w-[150px] sm:max-w-none">{guide.guideTitle}</span>
                         </div>
                       </TableCell>
-                      <TableCell className="text-center">{guide.views}</TableCell>
-                      <TableCell className="text-center">{guide.uniqueViewers}</TableCell>
-                      <TableCell className="text-center">{guide.avgTimeMinutes} דק'</TableCell>
+                      <TableCell className="text-center text-sm">{guide.views}</TableCell>
+                      <TableCell className="text-center text-sm hidden md:table-cell">{guide.uniqueViewers}</TableCell>
+                      <TableCell className="text-center text-sm hidden lg:table-cell">{guide.avgTimeMinutes} דק'</TableCell>
                       <TableCell className="text-center">
                         <span
                           className={`inline-flex px-2 py-1 rounded-full text-xs font-semibold ${
@@ -295,13 +299,13 @@ export function AdminDashboardPage() {
               {hebrewLocale.pages.admin.noData}
             </div>
           ) : (
-            <div className="overflow-x-auto">
-              <Table className="min-w-[500px]">
+            <div className="w-full">
+              <Table>
                 <TableHeader>
                   <TableRow>
                     <TableHead>{hebrewLocale.pages.admin.activityType}</TableHead>
-                    <TableHead>{hebrewLocale.pages.admin.user}</TableHead>
-                    <TableHead>{hebrewLocale.pages.admin.target}</TableHead>
+                    <TableHead className="hidden sm:table-cell">{hebrewLocale.pages.admin.user}</TableHead>
+                    <TableHead className="hidden md:table-cell">{hebrewLocale.pages.admin.target}</TableHead>
                     <TableHead>{hebrewLocale.pages.admin.timestamp}</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -313,9 +317,9 @@ export function AdminDashboardPage() {
                           {formatActivityType(activity.activityType)}
                         </span>
                       </TableCell>
-                      <TableCell className="font-medium">{activity.userName}</TableCell>
-                      <TableCell className="text-muted-foreground">{activity.targetSlug || '-'}</TableCell>
-                      <TableCell className="text-gray-500 text-sm">
+                      <TableCell className="font-medium text-sm hidden sm:table-cell">{activity.userName}</TableCell>
+                      <TableCell className="text-muted-foreground text-sm truncate max-w-[100px] hidden md:table-cell">{activity.targetSlug || '-'}</TableCell>
+                      <TableCell className="text-gray-500 text-xs sm:text-sm">
                         {formatDistanceToNow(new Date(activity.createdAt), {
                           addSuffix: true,
                           locale: he,

@@ -162,8 +162,8 @@ export default function EngagementReportPage() {
           <h1 className="text-2xl sm:text-3xl font-bold text-foreground">{t.title}</h1>
           <p className="text-sm md:text-base text-muted-foreground mt-1">{t.subtitle}</p>
         </div>
-        <Button 
-          onClick={handleExportAll} 
+        <Button
+          onClick={handleExportAll}
           variant="outline"
           className="w-full sm:w-auto min-h-[44px]"
         >
@@ -213,8 +213,8 @@ export default function EngagementReportPage() {
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={segments}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis 
-                dataKey="segmentName" 
+              <XAxis
+                dataKey="segmentName"
                 tick={{ fontSize: 10 }}
                 angle={-45}
                 textAnchor="end"
@@ -273,20 +273,21 @@ export default function EngagementReportPage() {
       <Card className="p-4 md:p-6">
         <h2 className="text-lg md:text-2xl font-bold text-foreground mb-4 md:mb-6">{t.activityHeatmap}</h2>
 
-        <div className="overflow-x-auto">
-            <div className="grid grid-cols-25 gap-1 min-w-[600px]" style={{ gridTemplateColumns: 'auto repeat(24, 1fr)' }}>
+        <div className="w-full">
+            <div className="grid gap-1" style={{ gridTemplateColumns: 'auto repeat(24, minmax(0, 1fr))' }}>
               {/* Header row - Hours */}
-              <div className="text-xs text-muted-foreground p-1"></div>
+              <div className="text-[8px] sm:text-xs text-muted-foreground p-0.5 sm:p-1"></div>
               {Array.from({ length: 24 }, (_, hour) => (
-                <div key={hour} className="text-xs text-muted-foreground text-center p-1">
-                  {hour}
+                <div key={hour} className="text-[6px] sm:text-[8px] md:text-xs text-muted-foreground text-center p-0.5 sm:p-1">
+                  <span className="hidden sm:inline">{hour}</span>
+                  <span className="sm:hidden">{hour % 3 === 0 ? hour : ''}</span>
                 </div>
               ))}
 
               {/* Heatmap rows - Days */}
               {Array.from({ length: 7 }, (_, day) => (
                 <div key={day} className="contents">
-                  <div className="text-xs text-muted-foreground p-1 flex items-center">
+                  <div className="text-[8px] sm:text-xs text-muted-foreground p-0.5 sm:p-1 flex items-center">
                     {dayNames[day]}
                   </div>
                   {Array.from({ length: 24 }, (_, hour) => {
@@ -295,7 +296,7 @@ export default function EngagementReportPage() {
                     return (
                       <div
                         key={`${day}-${hour}`}
-                        className="aspect-square rounded cursor-pointer hover:ring-2 hover:ring-emerald-500 transition-all"
+                        className="aspect-square rounded cursor-pointer hover:ring-1 sm:hover:ring-2 hover:ring-emerald-500 transition-all"
                         style={{ backgroundColor: getHeatColor(count, maxActivity) }}
                         title={`${dayNames[day]} ${hour}:00 - ${count} ${t.activityLevel}`}
                       />
@@ -327,17 +328,17 @@ export default function EngagementReportPage() {
         <h2 className="text-lg md:text-2xl font-bold text-foreground mb-4 md:mb-6">{t.cohortAnalysis}</h2>
 
         {cohortData.length > 0 ? (
-          <div className="overflow-x-auto">
-            <Table className="min-w-[500px]">
+          <div className="w-full">
+            <Table>
               <TableHeader>
                 <TableRow>
                   <TableHead className="text-right">
                     <div className="flex items-center justify-end">
-                      <IconCalendar className="w-4 h-4 ml-2" />
-                      {t.registrationMonth}
+                      <IconCalendar className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2" />
+                      <span className="text-xs sm:text-sm">{t.registrationMonth}</span>
                     </div>
                   </TableHead>
-                  <TableHead className="text-right">
+                  <TableHead className="text-right hidden sm:table-cell">
                     <div className="flex items-center justify-end">
                       <IconUsers className="w-4 h-4 ml-2" />
                       {t.cohortUsers}
@@ -345,32 +346,32 @@ export default function EngagementReportPage() {
                   </TableHead>
                   <TableHead className="text-right">
                     <div className="flex items-center justify-end">
-                      <IconTrendingUp className="w-4 h-4 ml-2" />
-                      {t.cohortRetention}
+                      <IconTrendingUp className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2" />
+                      <span className="text-xs sm:text-sm">{t.cohortRetention}</span>
                     </div>
                   </TableHead>
-                  <TableHead className="text-right">
-                    {t.cohortCompletion}
+                  <TableHead className="text-right hidden md:table-cell">
+                    <span className="text-xs sm:text-sm">{t.cohortCompletion}</span>
                   </TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {cohortData.map((cohort) => (
                   <TableRow key={cohort.cohortMonth}>
-                    <TableCell className="font-medium">{cohort.cohortMonth}</TableCell>
-                    <TableCell>{cohort.userCount}</TableCell>
+                    <TableCell className="font-medium text-xs sm:text-sm">{cohort.cohortMonth}</TableCell>
+                    <TableCell className="text-xs sm:text-sm hidden sm:table-cell">{cohort.userCount}</TableCell>
                     <TableCell>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1 sm:gap-2">
                         <div className="flex-1 bg-gray-200 rounded-full h-2">
                           <div
                             className="bg-emerald-500 h-2 rounded-full transition-all"
                             style={{ width: `${cohort.retentionRate}%` }}
                           />
                         </div>
-                        <span className="text-sm text-muted-foreground w-12 text-left">{cohort.retentionRate}%</span>
+                        <span className="text-xs sm:text-sm text-muted-foreground w-8 sm:w-12 text-left">{cohort.retentionRate}%</span>
                       </div>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden md:table-cell">
                       <div className="flex items-center gap-2">
                         <div className="flex-1 bg-gray-200 rounded-full h-2">
                           <div
