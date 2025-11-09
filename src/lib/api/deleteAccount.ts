@@ -119,13 +119,27 @@ export async function deleteAccount(): Promise<{ success: boolean; error?: strin
     }
 
     // 9. Delete notifications (references profiles) - Story 0.22
-    const { error: notificationsError } = await supabase
+    // Note: notifications table uses recipient_id and actor_id, not user_id
+    // Delete notifications where user is the recipient
+    const { error: notificationsError1 } = await supabase
       .from('notifications')
       .delete()
-      .eq('user_id', userId);
+      .eq('recipient_id', userId);
 
-    if (notificationsError) {
-      console.error('[deleteAccount] Error deleting notifications:', notificationsError);
+    if (notificationsError1) {
+      console.error('[deleteAccount] Error deleting notifications (recipient):', notificationsError1);
+      // Don't throw - table might not exist in all environments
+      console.warn('[deleteAccount] Continuing despite notifications deletion error');
+    }
+
+    // Also delete notifications where user is the actor
+    const { error: notificationsError2 } = await supabase
+      .from('notifications')
+      .delete()
+      .eq('actor_id', userId);
+
+    if (notificationsError2) {
+      console.error('[deleteAccount] Error deleting notifications (actor):', notificationsError2);
       // Don't throw - table might not exist in all environments
       console.warn('[deleteAccount] Continuing despite notifications deletion error');
     }

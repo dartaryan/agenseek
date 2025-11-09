@@ -54,6 +54,7 @@ CREATE POLICY "Users can delete own profile"
 -- ============================================
 
 -- Check if notifications table exists and has RLS enabled
+-- Note: notifications table uses 'recipient_id' not 'user_id'
 DO $$
 BEGIN
   IF EXISTS (
@@ -61,35 +62,27 @@ BEGIN
     WHERE table_schema = 'public'
     AND table_name = 'notifications'
   ) THEN
-    -- Users can delete own notifications
-    EXECUTE 'CREATE POLICY "Users can delete own notifications"
-      ON notifications FOR DELETE
-      USING (auth.uid() = user_id)';
+    -- Check if policy doesn't already exist
+    IF NOT EXISTS (
+      SELECT 1 FROM pg_policies
+      WHERE tablename = 'notifications'
+      AND policyname = 'Users can delete own notifications'
+    ) THEN
+      -- Users can delete own notifications
+      EXECUTE 'CREATE POLICY "Users can delete own notifications"
+        ON notifications FOR DELETE
+        USING (auth.uid() = recipient_id)';
+    END IF;
   END IF;
 END $$;
 
 -- ============================================
--- ADMIN_NOTIFICATIONS - Add DELETE Policy (if table exists)
+-- ADMIN_NOTIFICATIONS - Already has DELETE Policy
 -- ============================================
 
-DO $$
-BEGIN
-  IF EXISTS (
-    SELECT 1 FROM information_schema.tables
-    WHERE table_schema = 'public'
-    AND table_name = 'admin_notifications'
-  ) THEN
-    -- Admins can delete admin notifications
-    EXECUTE 'CREATE POLICY "Admins can delete admin notifications"
-      ON admin_notifications FOR DELETE
-      USING (
-        EXISTS (
-          SELECT 1 FROM profiles
-          WHERE id = auth.uid() AND is_admin = true
-        )
-      )';
-  END IF;
-END $$;
+-- Note: admin_notifications already has a DELETE policy:
+-- "Admins can delete admin notifications" (created in 20241108_create_admin_notifications.sql)
+-- No action needed here.
 
 -- ============================================
 -- USER_ACHIEVEMENTS - Add DELETE Policy (if table exists)

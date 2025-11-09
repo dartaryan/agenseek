@@ -14,7 +14,7 @@ This is because RLS policies are missing DELETE permissions for several tables.
 
 **Current State:**
 - ❌ user_progress → Data persists after deletion
-- ❌ user_activity → Data persists after deletion  
+- ❌ user_activity → Data persists after deletion
 - ❌ profiles → Data persists after deletion
 - ❌ user_achievements → Data persists after deletion
 - ❌ notifications → Data persists after deletion
@@ -58,16 +58,16 @@ Run this in SQL Editor:
 
 ```sql
 -- Check DELETE policies exist
-SELECT 
-  schemaname, 
-  tablename, 
-  policyname, 
+SELECT
+  schemaname,
+  tablename,
+  policyname,
   cmd
-FROM pg_policies 
+FROM pg_policies
 WHERE cmd = 'DELETE'
   AND tablename IN (
     'user_progress',
-    'user_activity', 
+    'user_activity',
     'profiles',
     'user_achievements',
     'notifications'
@@ -86,7 +86,7 @@ ORDER BY tablename;
 
 ```sql
 -- Check if data was actually deleted
-SELECT 
+SELECT
   (SELECT COUNT(*) FROM user_progress WHERE user_id = 'USER_ID') as progress_count,
   (SELECT COUNT(*) FROM user_activity WHERE user_id = 'USER_ID') as activity_count,
   (SELECT COUNT(*) FROM profiles WHERE id = 'USER_ID') as profile_count,
@@ -123,7 +123,7 @@ CREATE POLICY "Users can delete own achievements"
   ON user_achievements FOR DELETE
   USING (auth.uid() = user_id);
 
--- 5. notifications - Allow users to delete notifications  
+-- 5. notifications - Allow users to delete notifications
 CREATE POLICY "Users can delete own notifications"
   ON notifications FOR DELETE
   USING (auth.uid() = user_id);

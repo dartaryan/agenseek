@@ -22,7 +22,7 @@ The `deleteAccount()` function in `src/lib/api/deleteAccount.ts` was attempting 
 ### Tables WITH Delete Policies (Data WAS Being Deleted)
 
 ✅ **user_notes** - Has "Users can delete own notes" policy
-✅ **user_tasks** - Has "Users can delete own tasks" policy  
+✅ **user_tasks** - Has "Users can delete own tasks" policy
 ✅ **guide_comments** - Has "Users can delete own comments" policy
 ✅ **comment_votes** - Has "Users can delete own votes" policy
 ✅ **guide_bookmarks** - Has "Users can delete own bookmarks" policy
