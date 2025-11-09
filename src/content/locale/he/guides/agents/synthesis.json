@@ -114,18 +114,32 @@
       "columns": 2,
       "gap": "md",
       "items": [
-        {
-          "type": "card",
-          "icon": "Briefcase",
-          "title": "John - Product Manager",
-          "content": "מנהל מוצר. מגדיר חזון, דרישות, עדיפויות. יוצר PRDs ומנהל backlog."
-        },
-        {
-          "type": "card",
-          "icon": "ChartBar",
-          "title": "Mary - Business Analyst",
-          "content": "אנליסטית עסקית. מחקר שוק, ניתוח תחרות, נתונים. תומכת בהחלטות מבוססות מידע."
-        }
+        [
+          {
+            "type": "card",
+            "icon": "Briefcase",
+            "title": "John - Product Manager",
+            "content": [
+              {
+                "type": "text",
+                "content": "מנהל מוצר. מגדיר חזון, דרישות, עדיפויות. יוצר PRDs ומנהל backlog."
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "icon": "ChartBar",
+            "title": "Mary - Business Analyst",
+            "content": [
+              {
+                "type": "text",
+                "content": "אנליסטית עסקית. מחקר שוק, ניתוח תחרות, נתונים. תומכת בהחלטות מבוססות מידע."
+              }
+            ]
+          }
+        ]
       ]
     },
     {
@@ -139,18 +153,32 @@
       "columns": 2,
       "gap": "md",
       "items": [
-        {
-          "type": "card",
-          "icon": "BuildingArch",
-          "title": "Sarah - Architect",
-          "content": "ארכיטקטית מערכת. מתכננת ארכיטקטורה, בוחרת טכנולוגיות, כותבת ADRs."
-        },
-        {
-          "type": "card",
-          "icon": "Palette",
-          "title": "Sally - UX Designer",
-          "content": "מעצבת חוויית משתמש. מחקר משתמשים, wireframes, prototypes, design systems."
-        }
+        [
+          {
+            "type": "card",
+            "icon": "BuildingArch",
+            "title": "Sarah - Architect",
+            "content": [
+              {
+                "type": "text",
+                "content": "ארכיטקטית מערכת. מתכננת ארכיטקטורה, בוחרת טכנולוגיות, כותבת ADRs."
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "icon": "Palette",
+            "title": "Sally - UX Designer",
+            "content": [
+              {
+                "type": "text",
+                "content": "מעצבת חוויית משתמש. מחקר משתמשים, wireframes, prototypes, design systems."
+              }
+            ]
+          }
+        ]
       ]
     },
     {
@@ -164,24 +192,45 @@
       "columns": 3,
       "gap": "md",
       "items": [
-        {
-          "type": "card",
-          "icon": "Users",
-          "title": "Bob - Scrum Master",
-          "content": "מנחה תהליכים. מנהל ספרינטים, מסיר חסמים, רטרו."
-        },
-        {
-          "type": "card",
-          "icon": "Code",
-          "title": "Amelia - Developer",
-          "content": "מפתחת. כותבת קוד, code reviews, refactoring, debugging."
-        },
-        {
-          "type": "card",
-          "icon": "TestPipe",
-          "title": "Murat - TEA",
-          "content": "מומחה בדיקות. אסטרטגיית testing, test plans, automation."
-        }
+        [
+          {
+            "type": "card",
+            "icon": "Users",
+            "title": "Bob - Scrum Master",
+            "content": [
+              {
+                "type": "text",
+                "content": "מנחה תהליכים. מנהל ספרינטים, מסיר חסמים, רטרו."
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "icon": "Code",
+            "title": "Amelia - Developer",
+            "content": [
+              {
+                "type": "text",
+                "content": "מפתחת. כותבת קוד, code reviews, refactoring, debugging."
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "icon": "TestPipe",
+            "title": "Murat - TEA",
+            "content": [
+              {
+                "type": "text",
+                "content": "מומחה בדיקות. אסטרטגיית testing, test plans, automation."
+              }
+            ]
+          }
+        ]
       ]
     },
     {
@@ -195,12 +244,19 @@
       "columns": 1,
       "gap": "md",
       "items": [
-        {
-          "type": "card",
-          "icon": "Book",
-          "title": "Mike - Tech Writer",
-          "content": "כותב טכני. API docs, user guides, architecture docs, examples."
-        }
+        [
+          {
+            "type": "card",
+            "icon": "Book",
+            "title": "Mike - Tech Writer",
+            "content": [
+              {
+                "type": "text",
+                "content": "כותב טכני. API docs, user guides, architecture docs, examples."
+              }
+            ]
+          }
+        ]
       ]
     },
     {
@@ -214,24 +270,45 @@
       "columns": 3,
       "gap": "md",
       "items": [
-        {
-          "type": "card",
-          "icon": "DeviceGamepad2",
-          "title": "Game Designer",
-          "content": "מעצב משחקים. גיימפליי, מכניקות, balance, progression."
-        },
-        {
-          "type": "card",
-          "icon": "BuildingArch",
-          "title": "Game Architect",
-          "content": "ארכיטקט משחקים. Engine, physics, rendering, performance."
-        },
-        {
-          "type": "card",
-          "icon": "Code",
-          "title": "Game Dev",
-          "content": "מפתח משחקים. מימוש gameplay, graphics, audio, AI."
-        }
+        [
+          {
+            "type": "card",
+            "icon": "DeviceGamepad2",
+            "title": "Game Designer",
+            "content": [
+              {
+                "type": "text",
+                "content": "מעצב משחקים. גיימפליי, מכניקות, balance, progression."
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "icon": "BuildingArch",
+            "title": "Game Architect",
+            "content": [
+              {
+                "type": "text",
+                "content": "ארכיטקט משחקים. Engine, physics, rendering, performance."
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "icon": "Code",
+            "title": "Game Dev",
+            "content": [
+              {
+                "type": "text",
+                "content": "מפתח משחקים. מימוש gameplay, graphics, audio, AI."
+              }
+            ]
+          }
+        ]
       ]
     },
     {
@@ -860,24 +937,45 @@
       "columns": 3,
       "gap": "md",
       "items": [
-        {
-          "type": "card",
-          "icon": "GitBranch",
-          "title": "סדרת Workflows",
-          "content": "למדו על הוורקפלואים - התהליכים המובנים של BMAD"
-        },
-        {
-          "type": "card",
-          "icon": "Checklist",
-          "title": "Best Practices",
-          "content": "טיפים ושיטות עבודה מומלצות לעבודה מקצועית"
-        },
-        {
-          "type": "card",
-          "icon": "Rocket",
-          "title": "תרגול",
-          "content": "קחו פרויקט אמיתי ותתחילו לעבוד עם האג'נטים!"
-        }
+        [
+          {
+            "type": "card",
+            "icon": "GitBranch",
+            "title": "סדרת Workflows",
+            "content": [
+              {
+                "type": "text",
+                "content": "למדו על הוורקפלואים - התהליכים המובנים של BMAD"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "icon": "Checklist",
+            "title": "Best Practices",
+            "content": [
+              {
+                "type": "text",
+                "content": "טיפים ושיטות עבודה מומלצות לעבודה מקצועית"
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "type": "card",
+            "icon": "Rocket",
+            "title": "תרגול",
+            "content": [
+              {
+                "type": "text",
+                "content": "קחו פרויקט אמיתי ותתחילו לעבוד עם האג'נטים!"
+              }
+            ]
+          }
+        ]
       ]
     },
     {

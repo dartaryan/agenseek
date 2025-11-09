@@ -19,18 +19,21 @@ interface GridBlockProps {
 function NestedContentRenderer({ blocks }: { blocks: ContentBlock[] }) {
   return (
     <div className="space-y-3">
-      {blocks.map((block) => {
+      {blocks.map((block, index) => {
+        // Generate unique key with fallback to index
+        const uniqueKey = block.id || `nested-block-${index}`;
+
         switch (block.type) {
           case 'text':
             return (
-              <p key={block.id} className="text-slate-700 dark:text-slate-300 leading-relaxed">
+              <p key={uniqueKey} className="text-slate-700 dark:text-slate-300 leading-relaxed">
                 {block.content}
               </p>
             );
           case 'heading': {
             const headingTag = `h${block.level}`;
             const headingProps = {
-              key: block.id,
+              key: uniqueKey,
               className: 'font-semibold text-slate-900 dark:text-slate-100',
             };
             return React.createElement(headingTag, headingProps, block.content);
@@ -42,14 +45,14 @@ function NestedContentRenderer({ blocks }: { blocks: ContentBlock[] }) {
             } list-inside space-y-1 text-slate-700 dark:text-slate-300`;
             return React.createElement(
               listTag,
-              { key: block.id, className: listClass },
+              { key: uniqueKey, className: listClass },
               block.items.map((item, idx) => React.createElement('li', { key: idx }, item.content))
             );
           }
           case 'image':
             return (
               <img
-                key={block.id}
+                key={uniqueKey}
                 src={block.src}
                 alt={block.alt}
                 loading={block.lazy ? 'lazy' : 'eager'}
@@ -59,7 +62,7 @@ function NestedContentRenderer({ blocks }: { blocks: ContentBlock[] }) {
           case 'code':
             return (
               <pre
-                key={block.id}
+                key={uniqueKey}
                 className="bg-slate-900 text-slate-100 p-3 rounded text-sm overflow-x-auto"
               >
                 <code>{block.code}</code>
@@ -67,7 +70,7 @@ function NestedContentRenderer({ blocks }: { blocks: ContentBlock[] }) {
             );
           default:
             return (
-              <div key={block.id} className="text-slate-500 text-sm">
+              <div key={uniqueKey} className="text-slate-500 text-sm">
                 [Unsupported nested block type: {block.type}]
               </div>
             );
@@ -81,6 +84,7 @@ function GridBlock({ block }: GridBlockProps) {
   // Responsive grid columns based on configuration
   // Mobile: 1 column, Tablet: 2 columns max, Desktop: full columns
   const gridColsMap = {
+    1: 'grid-cols-1',
     2: 'grid-cols-1 sm:grid-cols-2',
     3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
     4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4',

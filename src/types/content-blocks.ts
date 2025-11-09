@@ -165,7 +165,7 @@ export interface ChartBlock extends BaseBlock {
 
 export interface GridBlock extends BaseBlock {
   type: 'grid';
-  columns: 2 | 3 | 4;
+  columns: 1 | 2 | 3 | 4;
   gap?: 'sm' | 'md' | 'lg';
   items: ContentBlock[][]; // Each array is content for one grid cell
 }

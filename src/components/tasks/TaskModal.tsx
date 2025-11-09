@@ -325,7 +325,7 @@ export function TaskModal({
                 <SelectValue placeholder="בחר מדריך..." />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="none">ללא מדריך</SelectItem>
+                <SelectItem key="none" value="none">ללא מדריך</SelectItem>
                 {guides.map((guide) => (
                   <SelectItem key={guide.id} value={guide.id}>
                     {guide.title}

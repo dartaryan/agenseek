@@ -12,7 +12,7 @@
  * - Bulk actions (export CSV)
  */
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Fragment } from 'react';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
@@ -517,10 +517,9 @@ export function UserManagementPage() {
                 </TableHeader>
                 <TableBody>
                   {users.map((user) => (
-                    <>
+                    <Fragment key={user.id}>
                       {/* Main Row */}
                       <TableRow
-                        key={user.id}
                         className="cursor-pointer hover:bg-muted/50"
                         onClick={() => handleToggleExpand(user.id)}
                       >
@@ -726,7 +725,7 @@ export function UserManagementPage() {
                           </TableCell>
                         </TableRow>
                       )}
-                    </>
+                    </Fragment>
                   ))}
                 </TableBody>
               </Table>

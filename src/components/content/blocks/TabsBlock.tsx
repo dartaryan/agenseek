@@ -54,6 +54,19 @@ function TabsBlock({ block }: TabsBlockProps) {
           const uniqueKey = tab.id || `tab-content-${index}`;
           const uniqueValue = tab.id || `tab-${index}`;
 
+          // Handle content: if it's a string (markdown), wrap it in a text block
+          // If it's already an array, use it as-is
+          let contentBlocks = tab.content;
+          if (typeof tab.content === 'string') {
+            contentBlocks = [
+              {
+                type: 'text',
+                content: tab.content,
+                markdown: true,
+              },
+            ];
+          }
+
           return (
             <TabsContent
               key={uniqueKey}
@@ -61,7 +74,7 @@ function TabsBlock({ block }: TabsBlockProps) {
               className="mt-4 p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg"
             >
               <div className="space-y-4">
-                <ContentRenderer blocks={tab.content} />
+                <ContentRenderer blocks={contentBlocks} />
               </div>
             </TabsContent>
           );

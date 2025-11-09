@@ -209,27 +209,29 @@ export default function EngagementReportPage() {
         </div>
 
         {/* Segmentation Bar Chart */}
-        <div className="h-64 mt-6">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={segments}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis
-                dataKey="segmentName"
-                tick={{ fontSize: 10 }}
-                angle={-45}
-                textAnchor="end"
-                height={60}
-              />
-              <YAxis tick={{ fontSize: 10 }} />
-              <Tooltip />
-              <Bar dataKey="userCount" name={t.users}>
-                {segments.map((segment) => (
-                  <Cell key={segment.segment} fill={getSegmentColor(segment.segment)} />
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
+        {segments.length > 0 && (
+          <div className="w-full h-64 min-h-64 mt-6">
+            <ResponsiveContainer width="100%" height="100%" minWidth={300}>
+              <BarChart data={segments}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis
+                  dataKey="segmentName"
+                  tick={{ fontSize: 10 }}
+                  angle={-45}
+                  textAnchor="end"
+                  height={60}
+                />
+                <YAxis tick={{ fontSize: 10 }} />
+                <Tooltip />
+                <Bar dataKey="userCount" name={t.users}>
+                  {segments.map((segment) => (
+                    <Cell key={segment.segment} fill={getSegmentColor(segment.segment)} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        )}
       </Card>
 
       {/* Engagement Funnel */}
