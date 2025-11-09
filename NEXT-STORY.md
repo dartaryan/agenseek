@@ -1,4 +1,4 @@
-# 🚀 NEXT STORY: Story 10.2 - Optimize Guide Reader for Mobile
+# 🚀 NEXT STORY: Story 10.3 - Accessibility Compliance (WCAG 2.1 AA)
 
 **Updated:** November 9, 2025
 
@@ -6,363 +6,410 @@
 
 ## ✅ Previous Work
 
-### Story 10.1 Complete!
+### Story 10.2 Complete!
 
-Mobile-responsive navigation is now fully implemented! Features include:
+Mobile-optimized guide reader is now fully implemented! Features include:
 
-- **Mobile Hamburger Menu:**
-  - 44x44px touch target
-  - Visible only on mobile (<768px)
-  - Smooth animations
-  - Tabler Icons (no emojis)
-- **Drawer Navigation:**
-  - Slides from right (RTL support)
-  - Full navigation menu (7 items)
-  - Admin section for admin users (5 admin items)
-  - Active route highlighting
-  - User avatar and profile link
-  - Theme toggle and sign out
-- **Accessibility:**
-  - Focus trap when open
-  - Focus returns to hamburger on close
-  - ESC key to close
-  - Body scroll lock while open
-  - Proper ARIA labels
-  - Keyboard navigation (Tab, Enter, ESC)
-- **Touch Interactions:**
-  - All buttons ≥44x44px
-  - Immediate visual feedback
-  - Smooth scrolling
-  - No hover interference
+- **Mobile Layout Optimizations:**
+  - ToC sidebar hidden on mobile (floating button shown)
+  - Content area full width on mobile
+  - Actions sidebar hidden on mobile
+  - Mobile-specific bottom action bar
+  - Optimized padding (24px horizontal)
+
+- **Reading Optimizations:**
+  - Font size: 18px on mobile (up from 16px)
+  - Line height: 1.8 on mobile (relaxed)
+  - Paragraph spacing: 1.5em
+  - Responsive images (max-width: 100%)
+  - Code blocks: horizontal scroll
+  - Tables: horizontal scroll container
+  - No text overflow
+
+- **Touch Gestures:**
+  - Swipe right: Previous guide
+  - Swipe left: Next guide
+  - Smooth gesture feedback
+  - 100px swipe threshold
+
+- **Mobile Action Bar:**
+  - Fixed at bottom (sticky)
+  - 4 action buttons:
+    - Add Note (IconNotes)
+    - Create Task (IconChecklist)
+    - Mark Complete (IconCheck)
+    - Share (IconShare)
+  - 48x48px touch targets
+  - Active/completed states
+  - Subtle shadow for visibility
+
+- **Mobile Breadcrumbs:**
+  - "< Back" button (to library)
+  - Guide title shown prominently
+  - Category badge visible
+  - Collapsed navigation on mobile
+
 - **Desktop Unchanged:**
-  - Hamburger hidden on desktop
-  - Standard navigation visible
-  - Sidebar visible
+  - 3-panel layout preserved
+  - No bottom action bar
+  - Standard breadcrumbs
+  - All existing functionality intact
 
-**Completion File:** See `STORY-10.1-COMPLETE.md` for full details.
+**Completion File:** See `STORY-10.2-COMPLETE.md` for full details.
 
-**Epic 10 Status:** 1/5 stories complete (20%) ✅
+**Epic 10 Status:** 2/5 stories complete (40%) ✅
 
 ---
 
 ## 📍 Next Story to Implement
 
-### **Story 10.2: Optimize Guide Reader for Mobile**
+### **Story 10.3: Accessibility Compliance (WCAG 2.1 AA)**
 
 **Epic:** 10 - Responsive Design & Accessibility
-**Priority:** P0
+**Priority:** P0 (Blocker for launch)
 **Sprint:** 13 (Week 13)
-**Story Points:** 3
-**Dependencies:** Story 10.1 Complete ✅
+**Story Points:** 5
+**Dependencies:** Story 10.2 Complete ✅
 
 ---
 
-## 🎯 Story 10.2 Overview
+## 🎯 Story 10.3 Overview
 
-Optimize the guide reading experience for mobile devices, including layout adaptations, typography improvements, touch gestures, and mobile-specific UI components.
+Ensure Agenseek meets WCAG 2.1 Level AA accessibility standards, making the platform usable by people with disabilities using assistive technologies like screen readers, keyboard navigation, and voice control.
 
 ### User Story
 
-**As a mobile user reading a guide,**
-**I want an optimized reading experience,**
-**So that I can comfortably read content on my phone without layout issues or difficult interactions.**
+**As a user with disabilities (visual, motor, cognitive),**
+**I want the platform to be fully accessible,**
+**So that I can navigate, read guides, take notes, and complete all tasks independently.**
 
 ---
 
 ## 📋 Acceptance Criteria
 
-### 1. Mobile Layout Adaptations
+### 1. Keyboard Navigation
 
-**Given I am reading a guide on mobile (<640px)**
-**When the page loads**
+**Given I am using only a keyboard**
 **Then:**
 
-- [ ] ToC sidebar hidden by default
-- [ ] Floating button (bottom-right) to open ToC as bottom sheet
-- [ ] Content area full width (no 60% constraint)
-- [ ] Actions sidebar hidden
-- [ ] Sticky bottom action bar with icons:
-  - Add note
-  - Create task
-  - Mark complete
-  - Share (optional)
+- [ ] All interactive elements are keyboard accessible (Tab, Enter, Space, Escape, Arrows)
+- [ ] Visible focus indicators on all focusable elements
+- [ ] Logical tab order through all pages
+- [ ] Skip to main content link at top
+- [ ] Keyboard shortcuts documented and accessible
+- [ ] Modal/dialog focus trap when open
+- [ ] Focus returns to trigger on modal close
+- [ ] No keyboard traps anywhere
 
-### 2. Reading Optimizations
+### 2. Screen Reader Support
 
-**Given I am reading guide content on mobile**
+**Given I am using a screen reader (NVDA, JAWS, VoiceOver)**
 **Then:**
 
-- [ ] Font size: 18px (up from 16px)
-- [ ] Line height: 1.8 (up from 1.6)
-- [ ] Content padding: 24px horizontal
-- [ ] Paragraph spacing: 1.5em
-- [ ] Images responsive (max-width: 100%, height: auto)
-- [ ] Code blocks:
-  - Horizontal scroll if needed
-  - Preserve formatting
-  - Copy button visible and tappable
-- [ ] Tables:
-  - Horizontal scroll in container
-  - Sticky first column (optional)
-  - Readable on small screens
-- [ ] No text overflow or horizontal page scroll
+- [ ] All images have alt text (or marked decorative)
+- [ ] Form inputs have associated labels
+- [ ] Buttons have descriptive text/aria-labels
+- [ ] Links are descriptive (not "click here")
+- [ ] Headings create logical document structure
+- [ ] Lists use proper semantic markup
+- [ ] Tables have headers and captions
+- [ ] ARIA landmarks (main, nav, aside, etc.)
+- [ ] ARIA live regions for dynamic content
+- [ ] Status messages announced
 
-### 3. Touch Gestures
+### 3. Color and Contrast
 
-**Given I am reading on a touch device**
+**Given I have low vision**
 **Then:**
 
-- [ ] Swipe right: Go to previous section (or previous guide)
-- [ ] Swipe left: Go to next section (or next guide)
-- [ ] Optional: Pinch to zoom on images
-- [ ] Optional: Double-tap to zoom on images
-- [ ] Smooth gesture feedback
+- [ ] Text contrast ≥ 4.5:1 (normal text)
+- [ ] Large text contrast ≥ 3:1 (18pt+ or 14pt+ bold)
+- [ ] Interactive elements contrast ≥ 3:1
+- [ ] Focus indicators contrast ≥ 3:1
+- [ ] Information not conveyed by color alone
+- [ ] Dark mode also meets contrast requirements
+- [ ] Links distinguishable from text (not just color)
 
-### 4. ToC Bottom Sheet (Mobile Only)
+### 4. Text and Typography
 
-**Given I tap the ToC floating button**
-**When the bottom sheet opens**
+**Given I need to adjust text for readability**
 **Then:**
 
-- [ ] Sheet slides up from bottom
-- [ ] Shows table of contents with sections
-- [ ] Current section highlighted
-- [ ] Progress dots for each section
-- [ ] Tapping section scrolls to it and closes sheet
-- [ ] Backdrop or swipe down to close
-- [ ] Max height: 70% of viewport
+- [ ] Text resizable up to 200% without loss of functionality
+- [ ] Line height at least 1.5x font size
+- [ ] Paragraph spacing at least 1.5x line height
+- [ ] No text in images (unless decorative)
+- [ ] Text not justified (left-aligned)
+- [ ] Font size responsive (mobile/desktop)
 
-### 5. Sticky Bottom Action Bar
+### 5. Forms and Inputs
 
-**Given I am scrolling through a guide on mobile**
+**Given I am completing a form**
 **Then:**
 
-- [ ] Bottom bar fixed at viewport bottom
-- [ ] 4 action buttons (icon only):
-  - Add Note (IconNotes)
-  - Create Task (IconChecklist)
-  - Mark Complete (IconCheck)
-  - Share (IconShare - optional)
-- [ ] Buttons are 48x48px touch targets
-- [ ] Active/completed states visible
-- [ ] Tapping opens respective modal
-- [ ] Bar has subtle shadow for visibility
+- [ ] All inputs have visible labels
+- [ ] Required fields clearly marked
+- [ ] Error messages clear and associated with field
+- [ ] Success messages announced to screen readers
+- [ ] Multi-step forms show progress
+- [ ] Auto-complete attributes where appropriate
+- [ ] Field validation on blur (not just submit)
 
-### 6. Mobile Breadcrumbs
+### 6. Semantic HTML
 
-**Given I am on a guide page (mobile)**
+**Given assistive tech is parsing the page**
 **Then:**
 
-- [ ] Breadcrumbs collapse to "< Back" button
-- [ ] Back button navigates to guide library
-- [ ] Guide title shown below back button
-- [ ] Category badge visible
+- [ ] Proper HTML5 semantic elements (header, nav, main, article, aside, footer)
+- [ ] Headings in logical order (h1 → h2 → h3, no skips)
+- [ ] Lists use `<ul>`, `<ol>`, `<li>`
+- [ ] Buttons use `<button>`, links use `<a>`
+- [ ] Forms use `<form>`, `<label>`, `<input>`
+- [ ] Tables use `<table>`, `<th>`, `<tr>`, `<td>`
 
-### 7. Desktop Unchanged
+### 7. ARIA Attributes
 
-**Given I am on desktop (≥640px)**
+**Given interactive patterns need ARIA**
 **Then:**
 
-- [ ] 3-panel layout remains (ToC | Content | Actions)
-- [ ] No bottom action bar
-- [ ] No floating ToC button
-- [ ] Standard breadcrumbs
-- [ ] All existing functionality preserved
+- [ ] `aria-label` on icon-only buttons
+- [ ] `aria-labelledby` on dialog titles
+- [ ] `aria-describedby` for help text
+- [ ] `aria-live` for dynamic updates
+- [ ] `aria-expanded` on expandable elements
+- [ ] `aria-current` on active nav items
+- [ ] `aria-hidden` on decorative elements
+- [ ] No ARIA unless necessary (semantic HTML preferred)
+
+### 8. Media Accessibility
+
+**Given content includes media**
+**Then:**
+
+- [ ] Videos have captions/subtitles
+- [ ] Audio has transcripts
+- [ ] Images have descriptive alt text
+- [ ] Decorative images have empty alt (`alt=""`)
+- [ ] Complex images have long descriptions
+- [ ] Animated content can be paused
+
+### 9. Mobile Accessibility
+
+**Given I am using a mobile device**
+**Then:**
+
+- [ ] Touch targets ≥ 44x44px
+- [ ] Spacing between touch targets ≥ 8px
+- [ ] Pinch to zoom enabled (no `user-scalable=no`)
+- [ ] Orientation (portrait/landscape) both work
+- [ ] Screen reader gestures work (TalkBack, VoiceOver)
+
+### 10. Language and Reading Level
+
+**Given I am reading content**
+**Then:**
+
+- [ ] `lang` attribute on `<html>` tag
+- [ ] Changes in language marked with `lang`
+- [ ] Content written clearly (no jargon without explanation)
+- [ ] Abbreviations explained on first use
+- [ ] Complex concepts have simple explanations
 
 ---
 
 ## 🔨 Implementation Plan
 
-### 1. Update Guide Reader Layout
+### 1. Accessibility Audit
 
-**File:** `src/app/guides/guide-reader.tsx`
+**Tool:** Axe DevTools, Lighthouse, WAVE
 
-**Changes:**
-- Detect screen size with `useMediaQuery` hook
-- Conditionally render 3-panel vs mobile layout
-- Hide ToC and actions sidebar on mobile
-- Show floating ToC button on mobile
-- Show sticky bottom action bar on mobile
+**Actions:**
+- Run automated accessibility scans on all pages
+- Document all violations (severity: critical, serious, moderate, minor)
+- Prioritize fixes: P0 (critical), P1 (serious), P2 (moderate), P3 (minor)
+- Create checklist of all violations to fix
 
-### 2. Create Mobile ToC Bottom Sheet
+### 2. Keyboard Navigation Fixes
 
-**File:** `src/components/guides/MobileTocSheet.tsx` (new)
-
-**Features:**
-- Use Radix UI Sheet component (bottom variant)
-- Display table of contents
-- Highlight current section
-- Close on section tap
-- Progress indicators
-
-### 3. Create Mobile Action Bar
-
-**File:** `src/components/guides/MobileActionBar.tsx` (new)
-
-**Features:**
-- Fixed bottom positioning
-- 4 icon buttons (note, task, complete, share)
-- Opens respective modals
-- Completion state handling
-
-### 4. Add Touch Gestures
-
-**File:** `src/hooks/useSwipeGesture.ts` (new)
-
-**Features:**
-- Detect left/right swipes
-- Navigate to prev/next section or guide
-- Smooth transitions
-- Configurable threshold
-
-### 5. Update Content Styles
-
-**File:** `src/components/content/ContentRenderer.tsx` or global CSS
+**Files to Update:**
+- All interactive components (buttons, links, inputs)
+- All modal/dialog components
+- Navigation components
+- Form components
 
 **Changes:**
-- Increase font size and line height on mobile
-- Adjust padding and spacing
-- Ensure images and code blocks responsive
-- Tables horizontally scrollable
+- Ensure `tabIndex` is correct (0 for interactive, -1 for programmatic only)
+- Add visible focus styles (not `:focus { outline: none }`)
+- Add skip navigation link
+- Fix tab order if needed
+- Add keyboard event handlers where missing
 
-### 6. Update Breadcrumbs Component
+### 3. Screen Reader Fixes
 
-**File:** `src/components/guides/GuideBreadcrumbs.tsx`
+**Files to Update:**
+- All components with icons, images, buttons, forms
+- Navigation components
+- Dashboard widgets
+- Guide reader components
 
 **Changes:**
-- Render "< Back" button on mobile
-- Collapse breadcrumb trail
-- Show guide title and category
+- Add `aria-label` to icon-only buttons
+- Add alt text to all images
+- Add proper heading structure
+- Add ARIA landmarks
+- Add live regions for dynamic updates
+- Test with actual screen reader
+
+### 4. Contrast and Color Fixes
+
+**Files to Update:**
+- Tailwind config (colors)
+- All components with text/backgrounds
+
+**Changes:**
+- Audit all text/background color combinations
+- Ensure 4.5:1 contrast for normal text
+- Ensure 3:1 contrast for large text and interactive elements
+- Add non-color indicators (icons, borders) where needed
+- Update dark mode colors if needed
+
+### 5. Form Accessibility
+
+**Files to Update:**
+- All form components (Login, Register, Notes, Tasks, Comments, Profile)
+
+**Changes:**
+- Associate labels with inputs (`htmlFor` + `id`)
+- Add required indicators
+- Add error message associations (`aria-describedby`)
+- Add success/error live regions
+- Add autocomplete attributes
+- Test with keyboard and screen reader
+
+### 6. Documentation
+
+**Files to Create:**
+- `docs/accessibility.md` - Accessibility guidelines and testing procedures
+- `docs/keyboard-shortcuts.md` - Complete list of keyboard shortcuts
+
+**Content:**
+- WCAG 2.1 AA compliance statement
+- Accessibility features
+- Keyboard shortcuts reference
+- Screen reader testing notes
+- Known issues (if any)
+- Contact for accessibility feedback
 
 ---
 
-## 🎨 UI/UX Considerations
+## 🧪 Testing Plan
 
-### Mobile Reading Typography
-- **Font Size:** 18px (larger for comfort)
-- **Line Height:** 1.8 (better readability)
-- **Paragraph Spacing:** 1.5em between paragraphs
-- **Max Line Length:** ~60 characters ideal
+### Automated Testing
 
-### ToC Bottom Sheet
-- **Height:** 70% of viewport max
-- **Animation:** Slide up 300ms ease-out
-- **Backdrop:** Semi-transparent
-- **Close:** Swipe down or tap backdrop
+**Tools:**
+- Axe DevTools (Chrome extension)
+- Lighthouse (Chrome DevTools)
+- WAVE (Browser extension)
+- Pa11y (Command line)
 
-### Bottom Action Bar
-- **Height:** 64px
-- **Background:** White with subtle shadow
-- **Icons:** 24x24px, emerald color
-- **Spacing:** Evenly distributed
-- **Safe Area:** Account for iOS notch/home indicator
+**Pages to Test:**
+- Home/Landing
+- Login/Register
+- Dashboard
+- Guide Library
+- Guide Reader
+- Notes
+- Tasks
+- Profile
+- Admin Dashboard (if admin)
 
-### Floating ToC Button
-- **Position:** Bottom-right, 16px from edges
-- **Size:** 56x56px
-- **Icon:** IconList (Tabler)
-- **Color:** Emerald background, white icon
-- **Shadow:** Medium elevation
-- **Animation:** Fade in/out on scroll (optional)
+### Manual Testing: Keyboard
 
----
+**Test Scenarios:**
 
-## 🧪 Testing Scenarios
+1. **Full Site Navigation (Tab Only)**
+   - Tab through entire site
+   - Verify all interactive elements reachable
+   - Verify logical tab order
+   - Verify visible focus indicators
+   - Verify no keyboard traps
 
-### Happy Path - Mobile Reading
+2. **Form Completion (Keyboard Only)**
+   - Complete registration form
+   - Create a note
+   - Create a task
+   - Post a comment
+   - Verify all fields accessible
+   - Verify Enter submits, Escape cancels
 
-1. User opens guide on mobile (iPhone 375px)
-2. **Expected:**
-   - Content full width
-   - Font size 18px, line height 1.8
-   - ToC hidden, floating button visible
-   - Bottom action bar visible
-   - Images responsive, no overflow
-3. User taps ToC button
-4. **Expected:**
-   - Bottom sheet slides up
-   - ToC with current section highlighted
-   - Tapping section scrolls and closes
-5. User swipes left
-6. **Expected:**
-   - Navigates to next section
-   - Smooth transition
+3. **Modal Interaction (Keyboard Only)**
+   - Open modal (Enter/Space)
+   - Tab through modal (focus trapped)
+   - Close modal (Escape)
+   - Focus returns to trigger
 
-### Happy Path - Bottom Action Bar
+4. **Keyboard Shortcuts**
+   - Ctrl+K for command palette
+   - Ctrl+T for task creation
+   - Arrow keys for guide navigation
+   - All shortcuts work as expected
 
-1. User scrolls in guide (mobile)
-2. **Expected:**
-   - Bottom bar stays fixed at bottom
-   - All 4 buttons visible
-3. User taps "Add Note" button
-4. **Expected:**
-   - Note modal opens
-   - Guide pre-filled
-5. User saves note
-6. **Expected:**
-   - Modal closes
-   - Success toast
-   - Note count updated
+### Manual Testing: Screen Reader
 
-### Happy Path - Touch Gestures
+**Tools:**
+- NVDA (Windows - free)
+- JAWS (Windows - trial)
+- VoiceOver (macOS/iOS - built-in)
+- TalkBack (Android - built-in)
 
-1. User swipes right on guide content
-2. **Expected:**
-   - Navigates to previous section
-   - URL updates
-   - Content updates smoothly
-3. User swipes left
-4. **Expected:**
-   - Navigates to next section
-   - Smooth transition
+**Test Scenarios:**
 
-### Edge Case - First/Last Section
+1. **Site Navigation**
+   - Navigate by landmarks (main, nav, aside)
+   - Navigate by headings (H key)
+   - Navigate by links (K key)
+   - Navigate by forms (F key)
+   - All elements announced correctly
 
-1. User is on first section
-2. User swipes right
-3. **Expected:**
-   - Optional: Navigate to previous guide
-   - Or: Show toast "First section"
-   - Or: Bounce animation (no action)
-4. User is on last section
-5. User swipes left
-6. **Expected:**
-   - Optional: Navigate to next guide
-   - Or: Show toast "Last section"
+2. **Form Interaction**
+   - Labels read with inputs
+   - Required fields announced
+   - Error messages announced
+   - Success messages announced
 
-### Edge Case - Long Tables
+3. **Dynamic Content**
+   - Toast notifications announced
+   - Progress updates announced
+   - New comments announced
+   - Loading states announced
 
-1. Guide has wide table
-2. User views on mobile
-3. **Expected:**
-   - Table in scrollable container
-   - Horizontal scroll works smoothly
-   - No page-wide overflow
-   - Optional: Sticky first column
+4. **Guide Reading**
+   - Table of contents navigable
+   - Headings create proper structure
+   - Code blocks announced
+   - Images have descriptive alt text
 
----
+### Manual Testing: Visual
 
-## 🔐 Accessibility Requirements
+**Test Scenarios:**
 
-### Touch Targets
-- All interactive elements ≥44x44px
-- Bottom action bar buttons: 48x48px
-- ToC items: 44px minimum height
+1. **Color Contrast**
+   - Use color contrast checker on all text
+   - Verify 4.5:1 for body text
+   - Verify 3:1 for large text and UI elements
+   - Test in both light and dark modes
 
-### Keyboard Navigation (Mobile)
-- External keyboard support (tablets)
-- Tab through action bar buttons
-- Enter to activate
+2. **Text Resize**
+   - Zoom browser to 200%
+   - Verify no text overlap
+   - Verify no horizontal scroll (except tables/code)
+   - Verify all functionality still works
 
-### Screen Reader
-- Action bar buttons have aria-labels
-- ToC button has descriptive label
-- Swipe gestures announced (if possible)
-
-### Zoom and Scaling
-- Content zoomable (no maximum-scale restriction)
-- Layout adapts to zoom
-- No fixed positioning issues when zoomed
+3. **Mobile Accessibility**
+   - Test on real device (iPhone, Android)
+   - Verify touch targets ≥ 44px
+   - Verify pinch to zoom works
+   - Test with VoiceOver/TalkBack
 
 ---
 
@@ -370,57 +417,73 @@ Optimize the guide reading experience for mobile devices, including layout adapt
 
 Before marking story complete:
 
-- [ ] Mobile layout implemented (content full width)
-- [ ] ToC hidden, floating button shown on mobile
-- [ ] Mobile ToC bottom sheet functional
-- [ ] Bottom action bar implemented
-- [ ] 4 action buttons functional (note, task, complete, share)
-- [ ] Touch gestures implemented (swipe left/right)
-- [ ] Reading typography optimized (18px, 1.8 line height)
-- [ ] Content padding adjusted (24px)
-- [ ] Images responsive
-- [ ] Code blocks scrollable horizontally
-- [ ] Tables scrollable horizontally
-- [ ] Breadcrumbs collapsed to "< Back" on mobile
-- [ ] Desktop layout unchanged
+### Automated Tests Pass
+- [ ] Axe DevTools: 0 violations (or documented exceptions)
+- [ ] Lighthouse Accessibility: Score ≥ 95
+- [ ] WAVE: 0 errors (or documented exceptions)
+
+### Manual Tests Pass
+- [ ] Full keyboard navigation works
+- [ ] All focus indicators visible
+- [ ] Screen reader announces all content correctly
+- [ ] Forms accessible with keyboard and screen reader
+- [ ] Modals trap focus and return focus correctly
+- [ ] Color contrast meets WCAG 2.1 AA
+- [ ] Text resizable to 200% without breaking
+- [ ] Mobile touch targets ≥ 44px
+- [ ] Pinch to zoom enabled
+
+### Documentation Complete
+- [ ] `docs/accessibility.md` created
+- [ ] `docs/keyboard-shortcuts.md` created
+- [ ] Accessibility statement on site
+- [ ] Known issues documented (if any)
+
+### Code Quality
 - [ ] No TypeScript errors
 - [ ] No linter errors
 - [ ] Build succeeds
-- [ ] Tested on iPhone (Safari)
-- [ ] Tested on Android (Chrome)
-- [ ] Tested on tablet (iPad)
-- [ ] All acceptance criteria verified
+- [ ] All components have proper ARIA attributes
+- [ ] All images have alt text
 
 ---
 
 ## 🚀 Ready to Implement!
 
-Story 10.1 complete! Story 10.2 will optimize the guide reading experience for mobile devices, making content comfortable and accessible to read on phones.
+Story 10.2 complete! Story 10.3 will ensure Agenseek is accessible to all users, meeting WCAG 2.1 Level AA standards. This is a critical blocker for launch.
 
-**Key Changes:**
-- Mobile-first guide reader layout
-- Touch-optimized interactions
-- Improved typography for reading
-- Bottom action bar for quick actions
-- ToC as bottom sheet
-- Swipe gestures for navigation
+**Key Focus Areas:**
+- Keyboard navigation
+- Screen reader support
+- Color contrast
+- Form accessibility
+- Semantic HTML and ARIA
 
-**Full details in:** Story 10.2 acceptance criteria (above)
+**Full details in:** Story 10.3 acceptance criteria (above)
 
-**Let's make guide reading delightful on mobile! 📱📚**
+**Let's make Agenseek accessible to everyone! ♿️**
 
 ---
 
-## 📚 Related Stories
+## 📚 Related Resources
 
-### Completed:
-- ✅ Story 4.5: Guide Reader 3-Panel Layout (desktop foundation)
-- ✅ Story 5.1.1: Mobile Reader UX Improvements (initial mobile work)
-- ✅ Story 6.3: Quick Note from Guide
-- ✅ Story 6.7: Task Quick Actions from Guide
-- ✅ Story 10.1: Mobile-Responsive Navigation
+### WCAG 2.1 Guidelines
+- https://www.w3.org/WAI/WCAG21/quickref/
+- Level AA requirements
 
-### To Be Enhanced:
-- Story 10.3: Accessibility Compliance (builds on 10.2)
-- Story 10.4: Performance Optimization (loading, rendering)
-- Story 10.5: Responsive Layouts (dashboard, library)
+### Testing Tools
+- Axe DevTools: https://www.deque.com/axe/devtools/
+- Lighthouse: Built into Chrome DevTools
+- WAVE: https://wave.webaim.org/extension/
+- Pa11y: https://pa11y.org/
+
+### Screen Readers
+- NVDA (Windows): https://www.nvaccess.org/
+- JAWS (Windows): https://www.freedomscientific.com/products/software/jaws/
+- VoiceOver (Mac/iOS): Built-in
+- TalkBack (Android): Built-in
+
+### Guidelines
+- WebAIM: https://webaim.org/
+- A11y Project: https://www.a11yproject.com/
+- Inclusive Components: https://inclusive-components.design/

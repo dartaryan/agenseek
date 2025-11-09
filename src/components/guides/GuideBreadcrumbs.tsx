@@ -1,14 +1,16 @@
 /**
- * Guide Breadcrumbs Component - Story 4.5 + 4.8
+ * Guide Breadcrumbs Component - Story 4.5 + 4.8 + 10.2
  *
  * Breadcrumb navigation: Home > Category > Guide Title
  * Story 4.8: Responsive mobile collapse
+ * Story 10.2: Mobile "< Back" button with category badge
  */
 
 import { Link } from 'react-router-dom';
-import { IconChevronLeft, IconHome } from '@tabler/icons-react';
+import { IconChevronLeft, IconArrowRight } from '@tabler/icons-react';
 import type { GuideCategory } from '@/types/guide-catalog';
 import { CATEGORY_CONFIG } from '@/types/guide-catalog';
+import { Badge } from '@/components/ui/badge';
 
 interface GuideBreadcrumbsProps {
   category: GuideCategory;
@@ -20,12 +22,12 @@ export function GuideBreadcrumbs({ category, guideTitle, className = '' }: Guide
   const categoryConfig = CATEGORY_CONFIG[category];
 
   return (
-    <nav
-      className={`flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 ${className}`}
-      aria-label="ניווט דף"
-    >
+    <div className={className}>
       {/* Desktop: Full breadcrumbs */}
-      <div className="hidden sm:flex items-center gap-2">
+      <nav
+        className="hidden md:flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
+        aria-label="ניווט דף"
+      >
         {/* Home */}
         <Link
           to="/dashboard"
@@ -50,31 +52,32 @@ export function GuideBreadcrumbs({ category, guideTitle, className = '' }: Guide
         <span className="text-gray-900 dark:text-gray-100 font-medium truncate max-w-md">
           {guideTitle}
         </span>
-      </div>
+      </nav>
 
-      {/* Mobile: Collapsed breadcrumbs (home icon + category only) */}
-      <div className="flex sm:hidden items-center gap-2">
-        {/* Home icon */}
+      {/* Mobile: Back button with title and category badge */}
+      <div className="md:hidden space-y-3">
+        {/* Back button */}
         <Link
-          to="/dashboard"
-          className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
-          aria-label="בית"
+          to="/guides"
+          className="inline-flex items-center gap-2 text-sm text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
         >
-          <IconHome className="w-4 h-4" />
+          <IconArrowRight className="w-4 h-4" />
+          <span>חזרה לספרייה</span>
         </Link>
 
-        <IconChevronLeft className="w-4 h-4 flex-shrink-0" />
-
-        {/* Category */}
-        <Link
-          to={`/guides?category=${category}`}
-          className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors text-xs"
-        >
-          {categoryConfig.label}
-        </Link>
-
-        {/* Guide title shown below in mobile layout */}
+        {/* Guide title and category */}
+        <div className="space-y-2">
+          <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100 leading-tight">
+            {guideTitle}
+          </h1>
+          <Badge
+            variant="outline"
+            className="bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800"
+          >
+            {categoryConfig.label}
+          </Badge>
+        </div>
       </div>
-    </nav>
+    </div>
   );
 }

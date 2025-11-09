@@ -1,5 +1,5 @@
 /**
- * Guide Reader Page - Story 4.5 + 4.6 + 4.7 + 4.8 + Story 5.1.1 + Story 5.1.2 + Story 6.3 + Story 6.7
+ * Guide Reader Page - Story 4.5 + 4.6 + 4.7 + 4.8 + Story 5.1.1 + Story 5.1.2 + Story 6.3 + Story 6.7 + Story 10.2
  *
  * 3-panel layout guide reader with:
  * - ToC sidebar (left/right based on RTL)
@@ -18,6 +18,7 @@
  * - Story 5.1.2: Toggle guide completion status (mark/unmark complete)
  * - Story 6.3: Quick note creation from guide with floating tooltip
  * - Story 6.7: Quick task creation from guide with Ctrl+T shortcut
+ * - Story 10.2: Mobile-optimized reading experience with swipe gestures, bottom action bar
  */
 
 import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
@@ -39,9 +40,11 @@ import { FloatingNoteTooltip } from '@/components/guides/FloatingNoteTooltip'; /
 import { NoteEditorModal } from '@/components/notes/NoteEditorModal'; // Story 6.3
 import { TaskModal } from '@/components/tasks/TaskModal'; // Story 6.7
 import { CommentThread } from '@/components/comments'; // Story 8.1
+import { MobileActionBar } from '@/components/guides/MobileActionBar'; // Story 10.2
 import { loadGuide, getAdjacentGuides } from '@/lib/guide-loader';
 import { useAuth } from '@/hooks/useAuth';
 import { useAchievements } from '@/hooks/useAchievements';
+import { useSwipeGesture } from '@/hooks/useSwipeGesture'; // Story 10.2
 import { supabase } from '@/lib/supabase';
 import { toast } from '@/hooks/use-toast';
 import MobileTocContext from '@/contexts/MobileTocContext';
@@ -621,6 +624,23 @@ export function GuideReaderPage() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [prev, next, navigate, handleCreateTask]);
 
+  // Story 10.2: Touch gestures for mobile navigation
+  useSwipeGesture(contentRef, {
+    onSwipeLeft: () => {
+      // Swipe left = next guide (RTL)
+      if (next) {
+        navigate(`/guides/${next.id}`);
+      }
+    },
+    onSwipeRight: () => {
+      // Swipe right = previous guide (RTL)
+      if (prev) {
+        navigate(`/guides/${prev.id}`);
+      }
+    },
+    threshold: 100, // 100px minimum swipe
+  });
+
   // Loading state
   if (loading) {
     return (
@@ -669,30 +689,40 @@ export function GuideReaderPage() {
           </div>
         </aside>
 
-        {/* Center content area */}
-        <main className="col-span-1 lg:col-span-6 xl:col-span-7 px-4 lg:px-6 xl:px-8 pb-24" ref={contentRef}>
-          {/* Breadcrumbs */}
+        {/* Center content area - Story 10.2: Mobile-optimized padding and full width */}
+        <main className="col-span-1 lg:col-span-6 xl:col-span-7 px-6 md:px-4 lg:px-6 xl:px-8 pb-32 md:pb-24" ref={contentRef}>
+          {/* Breadcrumbs - Story 10.2: Shows title and back button on mobile */}
           <GuideBreadcrumbs
             category={guide.metadata.category as import('@/types/guide-catalog').GuideCategory}
             guideTitle={guide.metadata.title}
             className="mb-6"
           />
 
-          {/* Guide header */}
-          <GuideHeader
-            title={guide.metadata.title}
-            difficulty={guide.metadata.difficulty}
-            estimatedMinutes={guide.metadata.estimatedMinutes}
-            progress={scrollProgress}
-            onAddNote={() => handleAddNote()}
-            onCreateTask={handleCreateTask}
-            onBookmark={() => toast({ title: 'נשמר למועדפים' })}
-            onCopyLink={handleCopyLink}
-            className="mb-8"
-          />
+          {/* Guide header - Story 10.2: Hidden on mobile (title shown in breadcrumbs) */}
+          <div className="hidden md:block">
+            <GuideHeader
+              title={guide.metadata.title}
+              difficulty={guide.metadata.difficulty}
+              estimatedMinutes={guide.metadata.estimatedMinutes}
+              progress={scrollProgress}
+              onAddNote={() => handleAddNote()}
+              onCreateTask={handleCreateTask}
+              onBookmark={() => toast({ title: 'נשמר למועדפים' })}
+              onCopyLink={handleCopyLink}
+              className="mb-8"
+            />
+          </div>
 
-          {/* Content renderer */}
-          <div className="prose prose-lg max-w-none dark:prose-invert">
+          {/* Content renderer - Story 10.2: Mobile-optimized typography (18px, 1.8 line height) */}
+          <div className="prose prose-lg max-w-none dark:prose-invert
+            md:prose-base
+            [&_p]:text-lg [&_p]:md:text-base [&_p]:leading-relaxed [&_p]:md:leading-normal
+            [&_li]:text-lg [&_li]:md:text-base [&_li]:leading-relaxed [&_li]:md:leading-normal
+            [&_p]:mb-6 [&_p]:md:mb-4
+            [&_img]:w-full [&_img]:h-auto [&_img]:rounded-lg
+            [&_pre]:overflow-x-auto [&_pre]:max-w-full
+            [&_table]:block [&_table]:overflow-x-auto [&_table]:max-w-full
+          ">
             <ContentRenderer blocks={guide.content} />
           </div>
 
@@ -822,6 +852,15 @@ export function GuideReaderPage() {
 
       {/* Story 6.3: Floating Note Tooltip */}
       <FloatingNoteTooltip onAddNote={handleAddNote} />
+
+      {/* Story 10.2: Mobile Action Bar */}
+      <MobileActionBar
+        isCompleted={isCompleted}
+        onAddNote={() => handleAddNote()}
+        onCreateTask={handleCreateTask}
+        onMarkComplete={isCompleted ? handleUnmarkCompleteClick : handleMarkCompleteClick}
+        onShare={handleCopyLink}
+      />
       </div>
     </MobileTocContext.Provider>
   );
