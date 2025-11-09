@@ -506,6 +506,32 @@ export function ProfilePage() {
             {!isEditing ? (
               /* Display Mode */
               <div className="space-y-4">
+                {/* Show alert if no preferences are set (OAuth users who skipped onboarding) */}
+                {!selectedRole && selectedInterests.length === 0 && !selectedExperience && (
+                  <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4 space-y-2">
+                    <div className="flex items-start gap-2">
+                      <IconAlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-500 flex-shrink-0 mt-0.5" />
+                      <div className="space-y-2 flex-1">
+                        <p className="text-sm font-semibold text-amber-900 dark:text-amber-200">
+                          העדפות הלמידה שלך לא הוגדרו
+                        </p>
+                        <p className="text-sm text-amber-800 dark:text-amber-300">
+                          לקבלת המלצות מותאמות אישית למדריכים ולמסלול למידה מיטבי, אנא הגדר את העדפות הלמידה שלך.
+                        </p>
+                        <div className="flex gap-2 mt-3">
+                          <Button onClick={handleRerunOnboarding} variant="default" size="sm" className="bg-amber-600 hover:bg-amber-700">
+                            <IconSparkles className="w-4 h-4 ml-2" />
+                            השלם הגדרת העדפות
+                          </Button>
+                          <Button onClick={() => setIsEditing(true)} variant="outline" size="sm" className="border-amber-300 dark:border-amber-700">
+                            הגדר כאן
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {/* Role */}
                 <div>
                   <h4 className="text-sm font-semibold text-foreground mb-2">

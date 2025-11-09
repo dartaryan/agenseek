@@ -48,7 +48,8 @@
 - ✅ Story 0.4 - UX Polish
 - ✅ Story 0.5 - Avatar Expansion & Onboarding (Completed Nov 9, 2025)
 - ✅ Story 0.6 - Dark Mode Infrastructure (Completed Nov 9, 2025)
-- 🚧 Story 0.14 - Avatar Completion (Completed Nov 9, 2025)
+- ✅ Story 0.14 - Avatar Completion (Completed Nov 9, 2025)
+- ✅ Story 0.16 - Navigation Merge + UX Fixes (Completed Nov 9, 2025)
 
 ### Pending (To Execute)
 
@@ -64,8 +65,9 @@
 | 0.12 | Console Log Cleanup | 1 | ~2h | P2 |
 | 0.13 | Installation Guide Access | 1 | ~1.5h | P2 |
 | 0.15 | Dark Mode Polish & Implementation | 3 | 2-3 sessions | P2 |
+| 0.16 | Navigation Merge + UX Fixes | 1 | ~2h | P1 |
 
-**Total:** 24-25 points, ~2-3 weeks
+**Total:** 25-26 points, ~2-3 weeks
 
 **Note:**
 - Story 0.6 implemented the dark mode infrastructure, but the theme toggle is temporarily hidden until Story 0.15 completes the visual polish and styling refinements.

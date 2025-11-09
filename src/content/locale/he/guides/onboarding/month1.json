@@ -1,0 +1,1229 @@
+{
+  "metadata": {
+    "id": "onboarding-month1",
+    "slug": "onboarding-month1",
+    "title": "הדרכה לחודש הראשון",
+    "description": "תוכנית חודשית מקיפה להפיכה למומחי BMAD. תוך חודש אחד תכירו את כל 19 האגנטים, תשלטו ב-30+ וורקפלואים, ותבנו פרויקט מלא מקצה לקצה!",
+    "category": "onboarding",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 60,
+    "icon": "IconCalendar",
+    "tags": ["הדרכה", "חודש-ראשון", "onboarding", "אגנטים", "וורקפלואים", "מתקדם"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "מה נעשה החודש?",
+      "level": 2,
+      "anchor": "what-this-month"
+    },
+    {
+      "id": "toc-2",
+      "title": "שבוע 2: כל האגנטים העיקריים",
+      "level": 2,
+      "anchor": "week-2"
+    },
+    {
+      "id": "toc-3",
+      "title": "שבוע 3: וורקפלואים מתקדמים",
+      "level": 2,
+      "anchor": "week-3"
+    },
+    {
+      "id": "toc-4",
+      "title": "שבוע 4: פרויקט מלא מקצה לקצה",
+      "level": 2,
+      "anchor": "week-4"
+    },
+    {
+      "id": "toc-5",
+      "title": "מיומנויות מתקדמות",
+      "level": 2,
+      "anchor": "advanced-skills"
+    },
+    {
+      "id": "toc-6",
+      "title": "עבודה צוותית",
+      "level": 2,
+      "anchor": "team-work"
+    },
+    {
+      "id": "toc-7",
+      "title": "תרומה לקהילה",
+      "level": 2,
+      "anchor": "community"
+    },
+    {
+      "id": "toc-8",
+      "title": "המסלול שלכם קדימה",
+      "level": 2,
+      "anchor": "your-path"
+    },
+    {
+      "id": "toc-9",
+      "title": "סיכום החודש",
+      "level": 2,
+      "anchor": "summary"
+    },
+    {
+      "id": "toc-10",
+      "title": "שאלות נפוצות",
+      "level": 2,
+      "anchor": "faq"
+    }
+  ],
+  "content": [
+    {
+      "id": "main-title",
+      "type": "heading",
+      "level": 1,
+      "content": "הדרכה לחודש הראשון עם BMAD",
+      "anchor": "main-title"
+    },
+    {
+      "id": "welcome-callout",
+      "type": "callout",
+      "variant": "success",
+      "title": "החודש שבו תהפכו למומחי BMAD!",
+      "content": "סיימתם את השבוע הראשון - כל הכבוד! עכשיו בואו נעבור לרמה הבאה. החודש הזה ישנה את הדרך שבה אתם בונים תוכנה!"
+    },
+    {
+      "id": "divider-1",
+      "type": "divider"
+    },
+    {
+      "id": "what-this-month",
+      "type": "heading",
+      "level": 2,
+      "content": "מה נעשה החודש?",
+      "anchor": "what-this-month"
+    },
+    {
+      "id": "month-intro",
+      "type": "text",
+      "markdown": true,
+      "content": "החודש הראשון הוא **מסע הלמידה המרכזי** שבו תעברו ממשתמשים בסיסיים ל**מומחים אמיתיים** ב-BMAD.\n\nבסוף החודש תדעו:\n- איך לעבוד עם **כל 19 האגנטים**\n- איך להריץ **30+ וורקפלואים**\n- איך לנהל **פרויקט מלא מקצה לקצה**\n- איך לשלב BMAD **בעבודה היום-יומית**\n- איך **ללמד אחרים** להשתמש ב-BMAD"
+    },
+    {
+      "id": "month-plan-callout",
+      "type": "callout",
+      "variant": "info",
+      "title": "תוכנית החודש",
+      "content": "שבוע 1: ✅ יסודות (הושלם!)\n\nשבוע 2: כל האגנטים העיקריים\n- יום 1: BMM Core Agents (5 אגנטים)\n- יום 2: BMM Extended (4 אגנטים)\n- יום 3: Game Agents (3 אגנטים)\n- יום 4-5: תרגול מעשי\n\nשבוע 3: וורקפלואים מתקדמים\n- Phase 0-1: Ideation to Brief\n- Phase 2: Solutioning\n- Phase 3: Planning\n- Phase 4: Implementation\n- Phase 5: Management\n\nשבוע 4: פרויקט מלא + תרומה\n- ימים 1-2: Phase 0-2 (Ideation to Architecture)\n- ימים 3-4: Phase 3-4 (Planning to Implementation)\n- יום 5: סיום ו-Retrospective\n\nכל שבוע: 3-5 שעות עבודה"
+    },
+    {
+      "id": "flexible-callout",
+      "type": "callout",
+      "variant": "tip",
+      "title": "קחו את הקצב שלכם!",
+      "content": "התוכנית החודשית היא המלצה - לא חובה!\n\nיש מי שמסיים ב-3 שבועות, ויש מי שלוקח חודשיים.\nשניהם בסדר גמור!\n\nהחשוב הוא להבין ולתרגל, לא לסיים מהר."
+    },
+    {
+      "id": "divider-2",
+      "type": "divider"
+    },
+    {
+      "id": "week-2",
+      "type": "heading",
+      "level": 2,
+      "content": "שבוע 2: כל האגנטים העיקריים",
+      "anchor": "week-2"
+    },
+    {
+      "id": "week-2-intro",
+      "type": "text",
+      "markdown": true,
+      "content": "השבוע השני מוקדש ל**הכרת כל האגנטים**. יש 19 אגנטים שונים ב-BMAD, וכל אחד מומחה בתחום אחר.\n\nהאגנטים מחולקים ל-3 קבוצות:\n- **BMM Core Agents** (5 אגנטים) - הליבה הראשית\n- **BMM Extended Agents** (4 אגנטים) - הרחבות חשובות\n- **Game Agents** (3 אגנטים) - מתמחים במשחקים"
+    },
+    {
+      "id": "week-2-goal",
+      "type": "heading",
+      "level": 3,
+      "content": "מטרת השבוע",
+      "anchor": "week-2-goal"
+    },
+    {
+      "id": "week-2-goal-text",
+      "type": "text",
+      "markdown": true,
+      "content": "**להכיר את כל האגנטים העיקריים** ולהבין מתי להשתמש בכל אחד.\n\nלא צריך להיות מומחים בכולם - רק להכיר ולדעת שהם קיימים!"
+    },
+    {
+      "id": "week-2-day1",
+      "type": "heading",
+      "level": 3,
+      "content": "יום 1: BMM Core Agents (5 אגנטים)",
+      "anchor": "week-2-day1"
+    },
+    {
+      "id": "week-2-day1-intro",
+      "type": "text",
+      "markdown": true,
+      "content": "האגנטים הבסיסיים ביותר - אלו שתשתמשו בהם הכי הרבה!"
+    },
+    {
+      "id": "week-2-day1-agents",
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "agent-pm",
+          "title": "1. PM (John) - מנהל המוצר",
+          "content": [
+            {
+              "id": "agent-pm-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**John - Product Manager**\n\n**מה הוא עושה:**\n- מגדיר דרישות מוצר (PRD)\n- מנתח משתמשים וצרכים\n- יוצר Epics ו-Stories\n- מבצע מחקר שוק\n- מגדיר MVP\n\n**וורקפלואים עיקריים:**\n- `*product-brief` - תיאור ראשוני\n- `*prd` - מסמך דרישות מפורט\n- `*create-epics-and-stories` - פירוק לסטוריז\n- `*research` - מחקר משתמשים\n\n**איך פותחים:**\n1. פתחו: `bmad/bmm/agents/pm.md`\n2. לחצו Chat / Cmd+L\n3. John מברך אתכם!\n\n**מתי להשתמש:**\nכשאתם מתחילים פרויקט חדש או מגדירים פיצ'ר חדש"
+            }
+          ]
+        },
+        {
+          "id": "agent-analyst",
+          "title": "2. Analyst (Mary) - האנליסטית",
+          "content": [
+            {
+              "id": "agent-analyst-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**Mary - Business Analyst**\n\n**מה היא עושה:**\n- מנתחת צרכים עסקיים\n- מבצעת Brainstorming\n- חוקרת נתונים\n- מגדירה בעיות\n- מציעה פתרונות\n\n**וורקפלואים עיקריים:**\n- `*brainstorming` - חקירת רעיונות\n- `*research` - מחקר מעמיק\n- `*brainstorm-project` - חקירת פרויקט\n\n**איך פותחים:**\n1. פתחו: `bmad/bmm/agents/analyst.md`\n2. לחצו Chat / Cmd+L\n3. Mary מוכנה לנתח!\n\n**מתי להשתמש:**\nכשאתם לא בטוחים מה לבנות, או צריכים להבין בעיה לעומק"
+            }
+          ]
+        },
+        {
+          "id": "agent-architect",
+          "title": "3. Architect (Winston) - הארכיטקט",
+          "content": [
+            {
+              "id": "agent-architect-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**Winston - Software Architect**\n\n**מה הוא עושה:**\n- מתכנן ארכיטקטורה\n- בוחר טכנולוגיות\n- כותב החלטות טכניות (ADR)\n- מתכנן מבנה מערכת\n- מעריך סיכונים טכניים\n\n**וורקפלואים עיקריים:**\n- `*architecture` - תכנון ארכיטקטורה מלא\n- `*tech-spec` - מפרט טכני מפורט\n- `*solutioning-gate-check` - בדיקת מוכנות לפיתוח\n\n**איך פותחים:**\n1. פתחו: `bmad/bmm/agents/architect.md`\n2. לחצו Chat / Cmd+L\n3. Winston מתחיל לייעץ!\n\n**מתי להשתמש:**\nכשאתם מתכננים מערכת חדשה או צריכים החלטות טכניות"
+            }
+          ]
+        },
+        {
+          "id": "agent-sm",
+          "title": "4. SM (Sarah) - סקראם מאסטר",
+          "content": [
+            {
+              "id": "agent-sm-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**Sarah - Scrum Master**\n\n**מה היא עושה:**\n- מנהלת ספרינטים\n- מתכננת תהליכי עבודה\n- מבצעת רטרוספקטיבות\n- עוקבת אחרי התקדמות\n- מסירה חסמים\n\n**וורקפלואים עיקריים:**\n- `*sprint-planning` - תכנון ספרינט\n- `*retrospective` - רטרוספקטיבה\n- `*workflow-status` - מצב פרויקט\n- `*correct-course` - תיקון מסלול\n\n**איך פותחים:**\n1. פתחו: `bmad/bmm/agents/sm.md`\n2. לחצו Chat / Cmd+L\n3. Sarah מוכנה לנהל!\n\n**מתי להשתמש:**\nכשאתם מנהלים פרויקט, מתכננים עבודה, או צריכים לעקוב אחרי התקדמות"
+            }
+          ]
+        },
+        {
+          "id": "agent-dev",
+          "title": "5. Dev (Amelia) - המפתחת",
+          "content": [
+            {
+              "id": "agent-dev-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**Amelia - Software Developer**\n\n**מה היא עושה:**\n- כותבת קוד איכותי\n- מבצעת Stories\n- עושה Code Reviews\n- פותרת באגים\n- מבצעת רפקטורינג\n\n**וורקפלואים עיקריים:**\n- `*dev-story` - פיתוח סטורי מקצה לקצה\n- `*code-review` - ביקורת קוד\n- `*story-context` - הבנת קונטקסט\n- `*story-done` - סיום סטורי\n\n**איך פותחים:**\n1. פתחו: `bmad/bmm/agents/dev.md`\n2. לחצו Chat / Cmd+L\n3. Amelia מוכנה לקוד!\n\n**מתי להשתמש:**\nכשאתם כותבים קוד, עושים רפקטורינג, או צריכים ביקורת"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "week-2-day1-exercise",
+      "type": "callout",
+      "variant": "success",
+      "title": "תרגיל יום 1: היכרות עם ה-5",
+      "content": "1. פתחו כל אחד מ-5 האגנטים\n2. כתבו *help וקראו את התפריט\n3. נסו פקודה אחת מכל אגנט\n4. תעדו לעצמכם: מה כל אגנט עושה?\n\nזמן מוערך: 60-90 דקות\n\nאל תנסו לשלוט בכולם ביום אחד - רק היכרות ראשונית!"
+    },
+    {
+      "id": "week-2-day2",
+      "type": "heading",
+      "level": 3,
+      "content": "יום 2: BMM Extended (4 אגנטים)",
+      "anchor": "week-2-day2"
+    },
+    {
+      "id": "week-2-day2-intro",
+      "type": "text",
+      "markdown": true,
+      "content": "אגנטים מתקדמים שמוסיפים יכולות חשובות למערכת."
+    },
+    {
+      "id": "week-2-day2-agents",
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "agent-tea",
+          "title": "6. TEA (Emma) - Master Test Architect",
+          "content": [
+            {
+              "id": "agent-tea-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**Emma - Test Engineer & Architect**\n\n**מה היא עושה:**\n- מתכננת אסטרטגיית בדיקות\n- כותבת תסריטי בדיקה\n- מבצעת בדיקות איכות\n- מתכננת אוטומציה\n- מבצעת Shift-Left Testing\n\n**וורקפלואים עיקריים:**\n- בדיקות unit\n- בדיקות integration\n- בדיקות E2E\n- אסטרטגיית בדיקות\n\n**איך פותחים:**\n1. פתחו: `bmad/bmm/agents/tea.md`\n2. לחצו Chat / Cmd+L\n3. Emma מוכנה לבדוק!\n\n**מתי להשתמש:**\nכשאתם צריכים לתכנן בדיקות או לוודא איכות"
+            }
+          ]
+        },
+        {
+          "id": "agent-ux",
+          "title": "7. UX Designer (Iris) - מעצבת UX/UI",
+          "content": [
+            {
+              "id": "agent-ux-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**Iris - UX/UI Designer**\n\n**מה היא עושה:**\n- מעצבת ממשקי משתמש\n- מבצעת מחקר משתמשים\n- יוצרת wireframes\n- מתכננת User Flows\n- מבצעת Usability Testing\n\n**וורקפלואים עיקריים:**\n- `*create-ux-design` - עיצוב UX מקיף\n- מחקר משתמשים\n- עיצוב ממשק\n\n**איך פותחים:**\n1. פתחו: `bmad/bmm/agents/ux-designer.md`\n2. לחצו Chat / Cmd+L\n3. Iris מוכנה לעצב!\n\n**מתי להשתמש:**\nכשאתם מעצבים ממשק משתמש או צריכים לשפר UX"
+            }
+          ]
+        },
+        {
+          "id": "agent-techwriter",
+          "title": "8. Tech Writer (Paige) - הכותבת הטכנית",
+          "content": [
+            {
+              "id": "agent-techwriter-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**Paige - Technical Writer**\n\n**מה היא עושה:**\n- כותבת תיעוד טכני\n- יוצרת מדריכי משתמש\n- מתעדת API\n- כותבת README\n- יוצרת דוקומנטציה\n\n**וורקפלואים עיקריים:**\n- `*document-project` - תיעוד פרויקט מקיף\n- תיעוד API\n- מדריכי משתמש\n\n**איך פותחים:**\n1. פתחו: `bmad/bmm/agents/tech-writer.md`\n2. לחצו Chat / Cmd+L\n3. Paige מוכנה לכתוב!\n\n**מתי להשתמש:**\nכשאתם צריכים לכתוב תיעוד, README, או מדריכים"
+            }
+          ]
+        },
+        {
+          "id": "agent-master",
+          "title": "9. BMAD Master - המדריך הראשי",
+          "content": [
+            {
+              "id": "agent-master-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**BMAD Master - The Guide**\n\n**מה הוא עושה:**\n- מדריך ומארגן\n- עוזר לנווט במערכת\n- מריץ וורקפלואים כלליים\n- מנהל את המצב\n- מתאם בין אגנטים\n\n**וורקפלואים עיקריים:**\n- `*workflow-init` - אתחול פרויקט\n- `*workflow-status` - מצב נוכחי\n- `*help` - עזרה כללית\n- `*party-mode` - עבודה עם מספר אגנטים\n\n**איך פותחים:**\n1. פתחו: `bmad/core/agents/bmad-master.md`\n2. לחצו Chat / Cmd+L\n3. BMAD Master מברך אתכם!\n\n**מתי להשתמש:**\nכשאתם מתחילים פרויקט, לא בטוחים מה לעשות, או צריכים תיאום"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "week-2-day2-exercise",
+      "type": "callout",
+      "variant": "success",
+      "title": "תרגיל יום 2: העמקה ב-Extended",
+      "content": "1. פתחו כל אחד מ-4 האגנטים\n2. קראו את התיאור המפורט\n3. נסו וורקפלואו אחד מכל אגנט\n4. השוו: מה ההבדל בין האגנטים?\n\nזמן מוערך: 45-60 דקות\n\nשימו לב איך כל אגנט משלים את האחרים!"
+    },
+    {
+      "id": "week-2-day3",
+      "type": "heading",
+      "level": 3,
+      "content": "יום 3: Game Agents (3 אגנטים)",
+      "anchor": "week-2-day3"
+    },
+    {
+      "id": "week-2-day3-intro",
+      "type": "text",
+      "markdown": true,
+      "content": "אגנטים מיוחדים לפיתוח משחקים. גם אם אתם לא מפתחי משחקים - כדאי להכיר!"
+    },
+    {
+      "id": "week-2-day3-callout",
+      "type": "callout",
+      "variant": "info",
+      "title": "למי זה מיועד?",
+      "content": "אמנם אגנטים אלו מיועדים למפתחי משחקים, אבל:\n\n- העקרונות רלוונטיים לכל פרויקט\n- מושגי Game Design שימושיים ב-UX\n- הגישה המתודולוגית מועילה לכולם\n\nלכן כדאי להכיר, גם אם לא תשתמשו בהם!"
+    },
+    {
+      "id": "week-2-day3-agents",
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "agent-game-designer",
+          "title": "10. Game Designer - מעצב המשחק",
+          "content": [
+            {
+              "id": "agent-game-designer-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**Game Designer - עיצוב חוויית משחק**\n\n**מה הוא עושה:**\n- מעצב מכניקות משחק\n- מגדיר חוויית שחקן\n- יוצר Game Design Document\n- מתכנן רמות ואתגרים\n- מאזן משחקיות\n\n**וורקפלואים עיקריים:**\n- `*game-brief` - תיאור רעיון משחק\n- `*gdd` - מסמך עיצוב משחק מקיף\n\n**איך פותחים:**\n1. פתחו: `bmad/bmm/agents/game-designer.md`\n2. לחצו Chat / Cmd+L\n\n**למה זה רלוונטי לכולם:**\nעקרונות gamification שימושיים בכל אפליקציה!"
+            }
+          ]
+        },
+        {
+          "id": "agent-game-architect",
+          "title": "11. Game Architect - ארכיטקט משחקים",
+          "content": [
+            {
+              "id": "agent-game-architect-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**Game Architect - תכנון טכני למשחקים**\n\n**מה הוא עושה:**\n- מתכנן ארכיטקטורת משחק\n- בוחר Engine ו-Tools\n- מתכנן מערכות (Physics, AI, Rendering)\n- מבנה קוד למשחקים\n- אופטימיזציה וביצועים\n\n**וורקפלואים עיקריים:**\n- תכנון ארכיטקטורה למשחקים\n- בחירת Engine\n- תכנון מערכות\n\n**איך פותחים:**\n1. פתחו: `bmad/bmm/agents/game-architect.md`\n2. לחצו Chat / Cmd+L\n\n**למה זה רלוונטי לכולם:**\nגישה למערכות מורכבות ואופטימיזציה!"
+            }
+          ]
+        },
+        {
+          "id": "agent-game-dev",
+          "title": "12. Game Dev - מפתח משחקים",
+          "content": [
+            {
+              "id": "agent-game-dev-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**Game Dev - פיתוח משחקים**\n\n**מה הוא עושה:**\n- כותב קוד למשחק\n- מממש מכניקות\n- משלב אסטים (גרפיקה, סאונד)\n- מבצע debugging\n- אופטימיזציה\n\n**וורקפלואים עיקריים:**\n- פיתוח מכניקות\n- אינטגרציית אסטים\n- debugging\n\n**איך פותחים:**\n1. פתחו: `bmad/bmm/agents/game-dev.md`\n2. לחצו Chat / Cmd+L\n\n**למה זה רלוונטי לכולם:**\nטכניקות ביצועים ואינטראקטיביות!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "week-2-day3-exercise",
+      "type": "callout",
+      "variant": "success",
+      "title": "תרגיל יום 3: היכרות עם Game Agents",
+      "content": "1. פתחו כל אחד מ-3 אגנטי המשחקים\n2. קראו את התיאורים\n3. אם אתם מפתחי משחקים - נסו game-brief!\n4. אם לא - חשבו איך העקרונות רלוונטיים לפרויקט שלכם\n\nזמן מוערך: 30 דקות\n\nלא חובה להעמיק - רק להכיר!"
+    },
+    {
+      "id": "week-2-day45",
+      "type": "heading",
+      "level": 3,
+      "content": "ימים 4-5: תרגול מעשי",
+      "anchor": "week-2-day45"
+    },
+    {
+      "id": "week-2-day45-intro",
+      "type": "text",
+      "markdown": true,
+      "content": "עכשיו שהכרתם את כל האגנטים - הגיע הזמן לתרגל!"
+    },
+    {
+      "id": "week-2-day45-exercises",
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        { "content": "**תרגיל 1:** בחרו רעיון לפרויקט קטן" },
+        { "content": "**תרגיל 2:** עבדו עם Mary (Analyst) על brainstorming" },
+        { "content": "**תרגיל 3:** צרו product-brief עם John (PM)" },
+        { "content": "**תרגיל 4:** תכננו ארכיטקטורה עם Winston" },
+        { "content": "**תרגיל 5:** צרו תוכנית עבודה עם Sarah (SM)" }
+      ]
+    },
+    {
+      "id": "week-2-day45-callout",
+      "type": "callout",
+      "variant": "tip",
+      "title": "טיפ לתרגול",
+      "content": "אל תנסו לבנות פרויקט אמיתי עדיין!\n\nהמטרה של ימים 4-5 היא **לתרגל עבודה עם האגנטים**, לא לבנות משהו מוגמר.\n\nזה בסדר אם לא מסיימים - החשוב הוא התהליך!"
+    },
+    {
+      "id": "week-2-summary",
+      "type": "callout",
+      "variant": "info",
+      "title": "סיכום שבוע 2",
+      "content": "הכרתם את כל האגנטים העיקריים:\n✅ 5 BMM Core Agents\n✅ 4 BMM Extended Agents\n✅ 3 Game Agents\n✅ תרגול מעשי\n\nכל הכבוד! אתם מכירים עכשיו את כל הצוות!"
+    },
+    {
+      "id": "divider-3",
+      "type": "divider"
+    },
+    {
+      "id": "week-3",
+      "type": "heading",
+      "level": 2,
+      "content": "שבוע 3: וורקפלואים מתקדמים",
+      "anchor": "week-3"
+    },
+    {
+      "id": "week-3-intro",
+      "type": "text",
+      "markdown": true,
+      "content": "השבוע השלישי מוקדש ל**וורקפלואים** - התהליכים המובנים שעוברים מרעיון לקוד.\n\nיש 5 פאזות עיקריות ב-BMAD, עם 30+ וורקפלואים שונים."
+    },
+    {
+      "id": "week-3-goal",
+      "type": "heading",
+      "level": 3,
+      "content": "מטרת השבוע",
+      "anchor": "week-3-goal"
+    },
+    {
+      "id": "week-3-goal-text",
+      "type": "text",
+      "markdown": true,
+      "content": "**להבין את כל הפאזות** ולהכיר את הוורקפלואים העיקריים בכל פאזה.\n\nשוב - לא צריך לשלוט בהכל, רק להבין מה קיים!"
+    },
+    {
+      "id": "week-3-phases",
+      "type": "heading",
+      "level": 3,
+      "content": "5 הפאזות של BMAD",
+      "anchor": "week-3-phases"
+    },
+    {
+      "id": "week-3-phases-accordion",
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "phase-0-1",
+          "title": "Phase 0-1: Ideation to Brief",
+          "content": [
+            {
+              "id": "phase-0-1-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**הפאזה הראשונה: מרעיון לתיאור**\n\n**מטרה:** להפוך רעיון מעורפל למסמך Brief ברור.\n\n**וורקפלואים עיקריים:**\n\n1. `*brainstorming` - חקירת הרעיון\n2. `*brainstorm-project` - חקירת פרויקט\n3. `*brainstorm-game` - חקירת משחק\n4. `*product-brief` - תיאור מוצר\n5. `*game-brief` - תיאור משחק\n6. `*research` - מחקר והעמקה\n\n**משך ממוצע:** 1-3 ימים\n\n**תוצר:** מסמך Brief מסודר\n\n**מתי לדלג:**\nאם יש לכם כבר תיאור ברור של מה לבנות"
+            }
+          ]
+        },
+        {
+          "id": "phase-2",
+          "title": "Phase 2: Solutioning",
+          "content": [
+            {
+              "id": "phase-2-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**פאזה 2: תכנון הפתרון**\n\n**מטרה:** להחליט **איך** לבנות את המוצר.\n\n**וורקפלואים עיקריים:**\n\n1. `*prd` - מסמך דרישות מפורט\n2. `*tech-spec` - מפרט טכני\n3. `*architecture` - תכנון ארכיטקטורה\n4. `*create-ux-design` - עיצוב UX\n5. `*gdd` - מסמך עיצוב משחק\n6. `*solutioning-gate-check` - בדיקת מוכנות\n\n**משך ממוצע:** 3-7 ימים\n\n**תוצר:** תוכנית טכנית מלאה\n\n**מתי לדלג:**\nאל תדלגו! זו הפאזה החשובה ביותר"
+            }
+          ]
+        },
+        {
+          "id": "phase-3",
+          "title": "Phase 3: Planning",
+          "content": [
+            {
+              "id": "phase-3-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**פאזה 3: תכנון העבודה**\n\n**מטרה:** לפרק את התוכנית לסטוריז ולתכנן ספרינטים.\n\n**וורקפלואים עיקריים:**\n\n1. `*create-epics-and-stories` - יצירת Epics ו-Stories\n2. `*create-story` - יצירת סטורי בודדת\n3. `*epic-tech-context` - הקשר טכני ל-Epic\n4. `*story-context` - הקשר לסטורי\n5. `*story-ready` - וידוא שסטורי מוכנה\n6. `*sprint-planning` - תכנון ספרינט\n\n**משך ממוצע:** 1-3 ימים\n\n**תוצר:** רשימת Stories מסודרת\n\n**מתי לדלג:**\nאם הפרויקט ממש קטן (1-2 ימי עבודה)"
+            }
+          ]
+        },
+        {
+          "id": "phase-4",
+          "title": "Phase 4: Implementation",
+          "content": [
+            {
+              "id": "phase-4-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**פאזה 4: הביצוע**\n\n**מטרה:** לכתוב את הקוד בפועל.\n\n**וורקפלואים עיקריים:**\n\n1. `*story-context` - הבנת ההקשר\n2. `*dev-story` - פיתוח הסטורי\n3. `*code-review` - ביקורת קוד\n4. `*story-done` - סיום וסיכום\n\n**משך ממוצע:** רוב זמן הפרויקט\n\n**תוצר:** קוד עובד ואיכותי\n\n**מתי לדלג:**\nאל תדלגו - זה הפרויקט בפועל!"
+            }
+          ]
+        },
+        {
+          "id": "phase-5",
+          "title": "Phase 5: Management & Improvement",
+          "content": [
+            {
+              "id": "phase-5-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**פאזה 5: ניהול ושיפור**\n\n**מטרה:** לעקוב אחרי ההתקדמות ולשפר תוך כדי.\n\n**וורקפלואים עיקריים:**\n\n1. `*workflow-status` - מעקב מצב\n2. `*sprint-planning` - תכנון ספרינטים\n3. `*retrospective` - רטרוספקטיבה\n4. `*correct-course` - תיקון מסלול\n5. `*document-project` - תיעוד\n\n**משך ממוצע:** לאורך כל הפרויקט\n\n**תוצר:** פרויקט מנוהל ומשופר\n\n**מתי לדלג:**\nאל תדלגו - הניהול חלק מההצלחה!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "week-3-exercise",
+      "type": "callout",
+      "variant": "success",
+      "title": "תרגיל שבוע 3: עבור על כל הפאזות",
+      "content": "1. בחרו רעיון לפרויקט (או אותו מהשבוע הקודם)\n2. עברו על כל 5 הפאזות:\n   - Phase 0-1: צרו Brief\n   - Phase 2: צרו Tech Spec\n   - Phase 3: צרו 3-5 Stories\n   - Phase 4: פתחו סטורי אחת\n   - Phase 5: עשו Retrospective\n\nזמן מוערך: 4-6 שעות על פני השבוע\n\nלא צריך להשלים הכל - המטרה להבין את הזרימה!"
+    },
+    {
+      "id": "week-3-summary",
+      "type": "callout",
+      "variant": "info",
+      "title": "סיכום שבוע 3",
+      "content": "הכרתם את כל הפאזות והוורקפלואים:\n✅ Phase 0-1: Ideation to Brief\n✅ Phase 2: Solutioning\n✅ Phase 3: Planning\n✅ Phase 4: Implementation\n✅ Phase 5: Management\n\nעכשיו אתם מבינים את התהליך המלא!"
+    },
+    {
+      "id": "divider-4",
+      "type": "divider"
+    },
+    {
+      "id": "week-4",
+      "type": "heading",
+      "level": 2,
+      "content": "שבוע 4: פרויקט מלא מקצה לקצה",
+      "anchor": "week-4"
+    },
+    {
+      "id": "week-4-intro",
+      "type": "text",
+      "markdown": true,
+      "content": "**השבוע הרביעי והאחרון - הזמן להפגין את כל מה שלמדתם!**\n\nהשבוע נבנה **פרויקט אמיתי ומורכב** מקצה לקצה, תוך שימוש בכל האגנטים והוורקפלואים."
+    },
+    {
+      "id": "week-4-project",
+      "type": "heading",
+      "level": 3,
+      "content": "הפרויקט שנבנה",
+      "anchor": "week-4-project"
+    },
+    {
+      "id": "week-4-project-desc",
+      "type": "callout",
+      "variant": "info",
+      "title": "דוגמה לפרויקט",
+      "content": "**SaaS Dashboard Platform:**\n\n- Authentication & Authorization\n- User Dashboard עם ויזואליזציות\n- CRUD operations\n- Reports & Analytics\n- Responsive Design\n- API Integration\n\nזה דוגמה - בחרו פרויקט שמעניין אתכם!\n\nהחשוב: שיהיה מספיק מורכב כדי להשתמש בכל מה שלמדתם."
+    },
+    {
+      "id": "week-4-day12",
+      "type": "heading",
+      "level": 3,
+      "content": "ימים 1-2: Phase 0-2 (Ideation to Architecture)",
+      "anchor": "week-4-day12"
+    },
+    {
+      "id": "week-4-day12-accordion",
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "week-4-day1-morning",
+          "title": "יום 1 - בוקר: Ideation & Research",
+          "content": [
+            {
+              "id": "week-4-day1-morning-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**שעות 09:00-12:00**\n\n1. **Brainstorming עם Mary**\n   - חקרו את הרעיון לעומק\n   - הגדירו את הבעיה\n   - מיפוי משתמשים\n\n2. **Research עם Mary**\n   - מחקר שוק\n   - טכנולוגיות דומות\n   - Best practices"
+            }
+          ]
+        },
+        {
+          "id": "week-4-day1-afternoon",
+          "title": "יום 1 - אחר הצהריים: Brief & PRD",
+          "content": [
+            {
+              "id": "week-4-day1-afternoon-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**שעות 13:00-17:00**\n\n1. **Product Brief עם John**\n   - תיאור המוצר\n   - קהל יעד\n   - MVP definition\n\n2. **PRD עם John**\n   - דרישות מפורטות\n   - User Stories ברמה גבוהה\n   - Success criteria"
+            }
+          ]
+        },
+        {
+          "id": "week-4-day2-morning",
+          "title": "יום 2 - בוקר: Tech Spec & UX",
+          "content": [
+            {
+              "id": "week-4-day2-morning-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**שעות 09:00-12:00**\n\n1. **Tech Spec עם John/Winston**\n   - בחירת Stack\n   - API design\n   - Database schema\n\n2. **UX Design עם Iris**\n   - Wireframes\n   - User flows\n   - Design system"
+            }
+          ]
+        },
+        {
+          "id": "week-4-day2-afternoon",
+          "title": "יום 2 - אחר הצהריים: Architecture",
+          "content": [
+            {
+              "id": "week-4-day2-afternoon-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**שעות 13:00-17:00**\n\n1. **Architecture עם Winston**\n   - תכנון ארכיטקטורה\n   - מבנה תיקיות\n   - Component hierarchy\n\n2. **Solutioning Gate Check עם Winston**\n   - וידוא שהכל מוכן\n   - זיהוי סיכונים\n   - Go/No-Go decision"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "week-4-day34",
+      "type": "heading",
+      "level": 3,
+      "content": "ימים 3-4: Phase 3-4 (Planning to Implementation)",
+      "anchor": "week-4-day34"
+    },
+    {
+      "id": "week-4-day34-accordion",
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "week-4-day3-morning",
+          "title": "יום 3 - בוקר: Stories & Sprint Planning",
+          "content": [
+            {
+              "id": "week-4-day3-morning-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**שעות 09:00-12:00**\n\n1. **Create Epics & Stories עם John**\n   - פירוק ל-Epics\n   - יצירת Stories\n   - הגדרת Acceptance Criteria\n\n2. **Sprint Planning עם Sarah**\n   - תכנון ספרינט ראשון\n   - עדיפויות\n   - הערכות"
+            }
+          ]
+        },
+        {
+          "id": "week-4-day3-afternoon",
+          "title": "יום 3 - אחר הצהריים: Development מתחיל",
+          "content": [
+            {
+              "id": "week-4-day3-afternoon-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**שעות 13:00-17:00**\n\n1. **Story Context עם Amelia**\n   - העברת הקשר\n   - Setup environment\n\n2. **Dev Story #1 עם Amelia**\n   - Authentication basic\n   - קוד ראשוני"
+            }
+          ]
+        },
+        {
+          "id": "week-4-day4-morning",
+          "title": "יום 4 - בוקר: More Development",
+          "content": [
+            {
+              "id": "week-4-day4-morning-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**שעות 09:00-12:00**\n\n1. **Dev Story #2 עם Amelia**\n   - Dashboard components\n   - Data fetching\n\n2. **Dev Story #3 עם Amelia**\n   - CRUD operations\n   - Forms"
+            }
+          ]
+        },
+        {
+          "id": "week-4-day4-afternoon",
+          "title": "יום 4 - אחר הצהריים: Quality & Testing",
+          "content": [
+            {
+              "id": "week-4-day4-afternoon-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**שעות 13:00-17:00**\n\n1. **Code Review עם Amelia**\n   - ביקורת הקוד\n   - רפקטורינג\n\n2. **Testing Strategy עם Emma**\n   - תכנון בדיקות\n   - בדיקות בסיסיות"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "week-4-day5",
+      "type": "heading",
+      "level": 3,
+      "content": "יום 5: סיום ו-Retrospective",
+      "anchor": "week-4-day5"
+    },
+    {
+      "id": "week-4-day5-tasks",
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        { "content": "**Story Done** - סיכום כל הסטוריז שביצעתם" },
+        { "content": "**Documentation** - תיעוד הפרויקט עם Paige" },
+        { "content": "**Retrospective** - מה למדתם? מה היה טוב? מה לשפר?" },
+        { "content": "**Workflow Status** - מבט על המצב הכללי" },
+        { "content": "**חגיגה!** - סיימתם פרויקט מלא!" }
+      ]
+    },
+    {
+      "id": "week-4-success",
+      "type": "callout",
+      "variant": "success",
+      "title": "סיימתם את השבוע הרביעי!",
+      "content": "בניתם פרויקט מלא מקצה לקצה:\n✅ מרעיון ל-Brief\n✅ מ-Brief ל-Architecture\n✅ מ-Architecture ל-Stories\n✅ מ-Stories לקוד\n✅ מקוד לתיעוד\n\nזה הישג אדיר! אתם כבר לא מתחילים - אתם מומחים!"
+    },
+    {
+      "id": "divider-5",
+      "type": "divider"
+    },
+    {
+      "id": "advanced-skills",
+      "type": "heading",
+      "level": 2,
+      "content": "מיומנויות מתקדמות",
+      "anchor": "advanced-skills"
+    },
+    {
+      "id": "advanced-skills-intro",
+      "type": "text",
+      "markdown": true,
+      "content": "עכשיו שאתם שולטים ביסודות - בואו נלמד כמה טכניקות מתקדמות."
+    },
+    {
+      "id": "advanced-skills-accordion",
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "party-mode",
+          "title": "Party Mode - עבודה עם מספר אגנטים",
+          "content": [
+            {
+              "id": "party-mode-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**Party Mode** מאפשר לכם לעבוד עם **מספר אגנטים במקביל**.\n\n**מתי להשתמש:**\n- כשצריך תשומות מכמה אגנטים\n- כשרוצים דיון בין אגנטים\n- כשצריך פרספקטיבות שונות\n\n**איך זה עובד:**\n1. פתחו את BMAD Master\n2. כתבו: `*party-mode`\n3. בחרו את האגנטים שרוצים להזמין\n4. הם יעבדו ביחד!\n\n**דוגמה:**\nהזמנת John (PM), Winston (Architect), ו-Amelia (Dev) לדון על פיצ'ר חדש."
+            }
+          ]
+        },
+        {
+          "id": "context-management",
+          "title": "Context Management - ניהול הקשר",
+          "content": [
+            {
+              "id": "context-management-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**Context** הוא המידע שהאגנט יודע.\n\n**למה זה חשוב:**\n- ל-AI יש מגבלת זיכרון\n- צריך לתת לו המידע הרלוונטי\n- אי אפשר לשים הכל\n\n**טיפים לניהול Context:**\n\n1. **התחל עם סיכום** - תנו לאגנט סיכום של הפרויקט\n2. **הוסיפו מסמכים רלוונטיים** - רק מה שצריך עכשיו\n3. **השתמשו ב-workflow-status** - מעדכן את האגנט על המצב\n4. **פצלו לסשנים** - אל תנסו לעשות הכל בשיחה אחת\n\n**דוגמה טובה:**\n\"שלום Amelia! אני עובד על פרויקט Dashboard. יש לי Brief מוכן ו-Tech Spec. רוצה לפתח את הסטורי של Authentication. קובץ ה-Brief: [...]\""
+            }
+          ]
+        },
+        {
+          "id": "custom-workflows",
+          "title": "Custom Workflows - וורקפלואים מותאמים",
+          "content": [
+            {
+              "id": "custom-workflows-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**אפשר ליצור וורקפלואים משלכם!**\n\n**מתי ליצור:**\n- תהליך שחוזר על עצמו\n- תהליך ייחודי לארגון שלכם\n- צירוף של כמה וורקפלואים\n\n**איך ליצור:**\n1. זהו תהליך שחוזר\n2. תעדו את השלבים\n3. צרו YAML workflow\n4. שמרו ב-`bmad/custom/workflows/`\n5. האגנטים יזהו אותו!\n\n**דוגמה:**\nוורקפלואו מותאם לכל feature חדש שעובר דרך PM → Architect → 3 Devs → TEA"
+            }
+          ]
+        },
+        {
+          "id": "integration",
+          "title": "Integration עם כלים חיצוניים",
+          "content": [
+            {
+              "id": "integration-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**BMAD משתלב עם הכלים שלכם!**\n\n**אינטגרציות נפוצות:**\n\n1. **Git**\n   - Commits מתועדים\n   - PRs עם context\n   - Branch naming conventions\n\n2. **CI/CD**\n   - GitHub Actions\n   - GitLab CI\n   - Jenkins\n\n3. **Project Management**\n   - Jira\n   - Linear\n   - GitHub Projects\n\n4. **Communication**\n   - Slack notifications\n   - Discord webhooks\n\n**איך:**\nרוב האינטגרציות דרך output files שBMAD יוצר."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "divider-6",
+      "type": "divider"
+    },
+    {
+      "id": "team-work",
+      "type": "heading",
+      "level": 2,
+      "content": "עבודה צוותית",
+      "anchor": "team-work"
+    },
+    {
+      "id": "team-work-intro",
+      "type": "text",
+      "markdown": true,
+      "content": "BMAD מצוין לעבודה **אישית**, אבל הוא עוד יותר חזק כש**צוות שלם** משתמש בו!"
+    },
+    {
+      "id": "team-adoption",
+      "type": "heading",
+      "level": 3,
+      "content": "אימוץ BMAD בצוות",
+      "anchor": "team-adoption"
+    },
+    {
+      "id": "team-adoption-text",
+      "type": "text",
+      "markdown": true,
+      "content": "**איך מביאים את הצוות:**"
+    },
+    {
+      "id": "team-adoption-list",
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        { "content": "**התחילו עם אדם אחד** - למדו לבד קודם" },
+        { "content": "**הראו תוצאות** - הצליחו בפרויקט קטן" },
+        { "content": "**הדגימו ליד נוסף** - למדו אותו 1-על-1" },
+        { "content": "**וורקשופ צוותי** - הדרכה של 2-3 שעות" },
+        { "content": "**פיילוט קטן** - פרויקט אחד עם הצוות" },
+        { "content": "**הרחבה** - כל הצוות משתמש" }
+      ]
+    },
+    {
+      "id": "team-structure",
+      "type": "heading",
+      "level": 3,
+      "content": "ארגון מסמכים משותף",
+      "anchor": "team-structure"
+    },
+    {
+      "id": "team-structure-text",
+      "type": "text",
+      "markdown": true,
+      "content": "**מבנה מומלץ לצוות:**"
+    },
+    {
+      "id": "team-structure-code",
+      "type": "code",
+      "language": "text",
+      "code": "project/\n├── bmad/              # BMAD rules (shared)\n├── output/            # Generated docs\n│   ├── briefs/\n│   ├── specs/\n│   ├── architecture/\n│   └── stories/\n├── docs/              # Team documentation\n└── .gitignore         # Don't commit everything!",
+      "showLineNumbers": false
+    },
+    {
+      "id": "team-communication",
+      "type": "heading",
+      "level": 3,
+      "content": "תקשורת וסנכרון",
+      "anchor": "team-communication"
+    },
+    {
+      "id": "team-communication-text",
+      "type": "text",
+      "markdown": true,
+      "content": "**איך מתואמים:**\n\n- **Daily Standups** - מה כל אחד עובד עליו\n- **Shared workflow-status** - כולם רואים את המצב\n- **Output folder ב-Git** - כולם רואים את המסמכים\n- **Party Mode** - דיונים משותפים\n- **Retrospectives** - שיפור מתמיד"
+    },
+    {
+      "id": "divider-7",
+      "type": "divider"
+    },
+    {
+      "id": "community",
+      "type": "heading",
+      "level": 2,
+      "content": "תרומה לקהילה",
+      "anchor": "community"
+    },
+    {
+      "id": "community-intro",
+      "type": "text",
+      "markdown": true,
+      "content": "**עכשיו שאתם מומחים - הגיע הזמן להחזיר לקהילה!**"
+    },
+    {
+      "id": "community-why",
+      "type": "heading",
+      "level": 3,
+      "content": "למה לתרום?",
+      "anchor": "community-why"
+    },
+    {
+      "id": "community-why-list",
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        { "content": "**תעזרו לאחרים** - מי שהיה במקום שלכם" },
+        { "content": "**תלמדו עוד יותר** - ללמד = ללמוד" },
+        { "content": "**תשפרו את BMAD** - לטובת כולם" },
+        { "content": "**תבנו reputation** - בקהילה וב-industry" },
+        { "content": "**זה מרגיש טוב!** - החזרה לקהילה" }
+      ]
+    },
+    {
+      "id": "community-how",
+      "type": "heading",
+      "level": 3,
+      "content": "איפה אפשר לתרום?",
+      "anchor": "community-how"
+    },
+    {
+      "id": "community-how-accordion",
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "community-discord",
+          "title": "1. עזרה ב-Discord",
+          "content": [
+            {
+              "id": "community-discord-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**הדרך הקלה ביותר לתרום!**\n\n- ענו על שאלות של מתחילים\n- שתפו טיפים וטריקים\n- עזרו לפתור בעיות\n- שתפו את הניסיון שלכם\n\n**זמן נדרש:** 10-30 דקות ביום"
+            }
+          ]
+        },
+        {
+          "id": "community-guides",
+          "title": "2. כתיבת מדריכים",
+          "content": [
+            {
+              "id": "community-guides-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**שתפו את הידע שלכם!**\n\n- כתבו blog posts\n- יצרו video tutorials\n- תרגמו מדריכים\n- הוסיפו דוגמאות\n\n**זמן נדרש:** כמה שעות, פעם בחודש"
+            }
+          ]
+        },
+        {
+          "id": "community-code",
+          "title": "3. תיקון באגים ו-Features",
+          "content": [
+            {
+              "id": "community-code-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**שפרו את BMAD עצמו!**\n\n- דווחו על באגים\n- תקנו באגים\n- הציעו features\n- תרמו קוד\n\n**זמן נדרש:** משתנה"
+            }
+          ]
+        },
+        {
+          "id": "community-examples",
+          "title": "4. דוגמאות ופרויקטים",
+          "content": [
+            {
+              "id": "community-examples-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**הראו מה אפשר לעשות!**\n\n- שתפו פרויקטים שבניתם\n- צרו templates\n- בנו starters\n- כתבו case studies\n\n**זמן נדרש:** כמה שעות, כשיש פרויקט מוכן"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "divider-8",
+      "type": "divider"
+    },
+    {
+      "id": "your-path",
+      "type": "heading",
+      "level": 2,
+      "content": "המסלול שלכם קדימה",
+      "anchor": "your-path"
+    },
+    {
+      "id": "your-path-intro",
+      "type": "text",
+      "markdown": true,
+      "content": "**סיימתם את החודש הראשון - מה הלאה?**\n\nהמסלול תלוי בתפקיד ובמטרות שלכם."
+    },
+    {
+      "id": "your-path-tabs",
+      "type": "tabs",
+      "items": [
+        {
+          "id": "path-dev",
+          "label": "אני מפתח/ת",
+          "content": [
+            {
+              "id": "path-dev-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**מסלול מומלץ למפתחים:**\n\n**חודש 2:**\n- העמקה ב-Dev Agent (Amelia)\n- למידת dev-story מתקדם\n- code-review best practices\n- אינטגרציה עם Git\n\n**חודש 3:**\n- Custom workflows לפיתוח\n- Testing עם TEA\n- Performance optimization\n- CI/CD integration\n\n**חודש 4+:**\n- הובלת פיתוח עם BMAD\n- חונכות למפתחים אחרים\n- תרומה לקהילה"
+            }
+          ]
+        },
+        {
+          "id": "path-pm",
+          "label": "אני מנהל/ת מוצר",
+          "content": [
+            {
+              "id": "path-pm-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**מסלול מומלץ למנהלי מוצר:**\n\n**חודש 2:**\n- העמקה ב-PM Agent (John)\n- למידת PRD מתקדם\n- research ו-brainstorming\n- אסטרטגיית מוצר\n\n**חודש 3:**\n- עבודה צוותית עם אגנטים\n- ניהול roadmap\n- data-driven decisions\n- stakeholder management\n\n**חודש 4+:**\n- הובלת מוצר עם BMAD\n- חונכות ל-PMs אחרים\n- תרומה לקהילה"
+            }
+          ]
+        },
+        {
+          "id": "path-architect",
+          "label": "אני ארכיטקט/ית",
+          "content": [
+            {
+              "id": "path-architect-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**מסלול מומלץ לארכיטקטים:**\n\n**חודש 2:**\n- העמקה ב-Architect Agent (Winston)\n- למידת architecture מתקדם\n- ADR (Architecture Decision Records)\n- tech stack decisions\n\n**חודש 3:**\n- System design מורכב\n- Scalability & Performance\n- Security architecture\n- Cloud architecture\n\n**חודש 4+:**\n- הובלת ארכיטקטורה עם BMAD\n- חונכות לארכיטקטים אחרים\n- תרומה לקהילה"
+            }
+          ]
+        },
+        {
+          "id": "path-lead",
+          "label": "אני Lead",
+          "content": [
+            {
+              "id": "path-lead-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**מסלול מומלץ ל-Team Leads:**\n\n**חודש 2:**\n- העמקה ב-SM Agent (Sarah)\n- אימוץ BMAD בצוות\n- workflow management\n- team productivity\n\n**חודש 3:**\n- Party Mode מתקדם\n- Custom workflows לצוות\n- Metrics & Reporting\n- Process improvement\n\n**חודש 4+:**\n- הובלת צוות עם BMAD\n- חונכות ל-Leads אחרים\n- תרומה לקהילה"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "divider-9",
+      "type": "divider"
+    },
+    {
+      "id": "summary",
+      "type": "heading",
+      "level": 2,
+      "content": "סיכום החודש - מה השגנו?",
+      "anchor": "summary"
+    },
+    {
+      "id": "summary-intro",
+      "type": "text",
+      "markdown": true,
+      "content": "**איזה חודש! בואו נסכם את כל ההישגים המדהימים שלכם:**"
+    },
+    {
+      "id": "summary-grid",
+      "type": "grid",
+      "columns": 2,
+      "items": [
+        {
+          "id": "summary-agents",
+          "type": "card",
+          "title": "כל האגנטים",
+          "content": "הכרתם ועבדתם עם כל 19 האגנטים:\n✅ 5 BMM Core\n✅ 4 BMM Extended\n✅ 3 Game Agents\n\nאתם יודעים מתי להשתמש בכל אחד!"
+        },
+        {
+          "id": "summary-workflows",
+          "type": "card",
+          "title": "30+ וורקפלואים",
+          "content": "שלטתם בכל הוורקפלואים:\n✅ Phase 0-1: Ideation\n✅ Phase 2: Solutioning\n✅ Phase 3: Planning\n✅ Phase 4: Implementation\n✅ Phase 5: Management"
+        },
+        {
+          "id": "summary-project",
+          "type": "card",
+          "title": "פרויקט מלא",
+          "content": "בניתם פרויקט מורכב מקצה לקצה:\n✅ מרעיון לקוד\n✅ כל הפאזות\n✅ תיעוד מלא\n\nזה הישג אדיר!"
+        },
+        {
+          "id": "summary-advanced",
+          "type": "card",
+          "title": "מיומנויות מתקדמות",
+          "content": "למדתם טכניקות מתקדמות:\n✅ Party Mode\n✅ Context Management\n✅ Custom Workflows\n✅ Integrations"
+        }
+      ]
+    },
+    {
+      "id": "summary-callout",
+      "type": "callout",
+      "variant": "success",
+      "title": "אתם מומחים!",
+      "content": "אחרי החודש הזה, אתם **מומחי BMAD** אמיתיים!\n\nיש לכם את הידע, הכלים, והניסיון לבנות כל פרויקט עם BMAD.\n\nכל הכבוד על המסע המדהים הזה!"
+    },
+    {
+      "id": "divider-10",
+      "type": "divider"
+    },
+    {
+      "id": "faq",
+      "type": "heading",
+      "level": 2,
+      "content": "שאלות נפוצות",
+      "anchor": "faq"
+    },
+    {
+      "id": "faq-accordion",
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "faq-1",
+          "title": "לא הצלחתי לסיים את כל החודש, זה בסדר?",
+          "content": [
+            {
+              "id": "faq-1-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**כמובן! זה בסדר גמור!**\n\nהתוכנית החודשית היא **המלצה, לא חובה**.\n\nכל אחד לומד בקצב שלו:\n- יש מי שסיים ב-3 שבועות\n- יש מי שלוקח 2-3 חודשים\n- שניהם בסדר גמור!\n\n**החשוב:** להבין את המושגים ולתרגל, לא לסיים מהר.\n\nקחו את הזמן שאתם צריכים!"
+            }
+          ]
+        },
+        {
+          "id": "faq-2",
+          "title": "איך אני יודע אם אני מוכן לפרויקט אמיתי?",
+          "content": [
+            {
+              "id": "faq-2-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**אתם מוכנים אם:**\n\n✅ אתם מכירים את 5-7 האגנטים העיקריים\n✅ אתם יודעים להריץ 10+ וורקפלואים\n✅ בניתם פרויקט קטן אחד (גם אם לא מושלם)\n✅ אתם מבינים את זרימת הפאזות\n\n**לא צריך:**\n❌ לדעת את כל האגנטים\n❌ לדעת את כל הוורקפלואים\n❌ להיות מומחים\n\n**הטיפ שלנו:** פשוט תתחילו!\n\nתלמדו תוך כדי, ותשאלו אם אתם תקועים."
+            }
+          ]
+        },
+        {
+          "id": "faq-3",
+          "title": "מה אם הפרויקט שלי שונה מהדוגמאות?",
+          "content": [
+            {
+              "id": "faq-3-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**מצוין! זה בדיוק הרעיון!**\n\nBMAD הוא **framework גמיש** - הוא מתאים לכל סוג פרויקט:\n\n- Web Apps\n- Mobile Apps\n- Desktop Apps\n- Backend Services\n- APIs\n- משחקים\n- כלים\n- ספריות\n\n**ואפילו:**\n- מסמכים\n- מחקרים\n- תהליכים\n\n**השתמשו בפאזות והאגנטים הרלוונטיים לפרויקט שלכם.**\n\nאין \"דרך נכונה\" אחת!"
+            }
+          ]
+        },
+        {
+          "id": "faq-4",
+          "title": "איך מביאים את הצוות להשתמש ב-BMAD?",
+          "content": [
+            {
+              "id": "faq-4-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**האסטרטגיה המנצחת:**\n\n**שלב 1: הוכיחו לעצמכם**\n- השתמשו ב-BMAD בפרויקט אישי\n- הצליחו\n- תעדו את התוצאות\n\n**שלב 2: הדגמה**\n- הראו מה עשיתם\n- הסבירו איך BMAD עזר\n- ענו על שאלות\n\n**שלב 3: פיילוט קטן**\n- מצאו אדם אחד שמעוניין\n- עבדו ביחד על פרויקט קטן\n- הראו תוצאות\n\n**שלב 4: הרחבה**\n- וורקשופ צוותי (2-3 שעות)\n- פרויקט ראשון עם הצוות\n- תמיכה מתמשכת\n\n**הטיפ:** אל תכפו! תראו ערך, והאנשים יבואו."
+            }
+          ]
+        },
+        {
+          "id": "faq-5",
+          "title": "מה אם יש לי רעיון לשיפור ב-BMAD?",
+          "content": [
+            {
+              "id": "faq-5-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**מעולה! אנחנו רוצים לשמוע!**\n\n**דרכים לשתף:**\n\n1. **Discord**\n   - שתפו ב-#feature-requests\n   - דונו עם הקהילה\n\n2. **GitHub**\n   - פתחו Issue עם ההצעה\n   - תארו את הבעיה והפתרון\n\n3. **Pull Request**\n   - אם אתם יכולים - תרמו קוד!\n   - נסקור ונשלב\n\n**הקהילה והצוות אוהבים רעיונות חדשים!**\n\nBMAD משתפר כל הזמן בזכות אנשים כמוכם."
+            }
+          ]
+        },
+        {
+          "id": "faq-6",
+          "title": "איך נשארים מעודכנים עם BMAD?",
+          "content": [
+            {
+              "id": "faq-6-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**דרכים להישאר מעודכנים:**\n\n1. **Discord Community**\n   - עדכונים שוטפים\n   - דיונים\n   - טיפים\n\n2. **GitHub**\n   - Watch the repository\n   - Releases & Changelogs\n\n3. **Newsletter** (אם קיים)\n   - עדכונים שבועיים/חודשיים\n   - פיצ'רים חדשים\n\n4. **Twitter/LinkedIn**\n   - עקבו אחרי הצוות\n   - שיתופים וטיפים\n\n**גם:**\n- הריצו `npx bmad-method@alpha update` מדי פעם\n- קראו את ה-changelog\n- נסו features חדשים"
+            }
+          ]
+        },
+        {
+          "id": "faq-7",
+          "title": "מה אם אני רוצה להעמיק עוד יותר?",
+          "content": [
+            {
+              "id": "faq-7-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**מסלולי העמקה:**\n\n**1. מדריכים מתקדמים**\n- קראו את כל מדריכי האגנטים\n- קראו את כל מדריכי הוורקפלואים\n- למדו Best Practices מתקדמים\n\n**2. קוד ה-BMAD עצמו**\n- צללו לקוד\n- הבינו את המנגנונים\n- תרמו שיפורים\n\n**3. תרומה לקהילה**\n- כתבו מדריכים\n- עזרו לאחרים\n- שתפו ניסיון\n\n**4. פרויקטים מורכבים**\n- בנו משהו גדול\n- תעדו את התהליך\n- שתפו case study\n\n**העמקה = למידה + תרומה + תרגול**"
+            }
+          ]
+        },
+        {
+          "id": "faq-8",
+          "title": "כמה זמן לוקח להפוך למומחה אמיתי?",
+          "content": [
+            {
+              "id": "faq-8-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**תלוי ברמת המומחיות:**\n\n**משתמש יעיל:** חודש אחד (הושלם!)\n- שולט באגנטים עיקריים\n- מריץ וורקפלואים שוטפים\n- בונה פרויקטים בהצלחה\n\n**משתמש מתקדם:** 2-3 חודשים\n- מכיר את כל המערכת\n- משתמש בטכניקות מתקדמות\n- מותאם BMAD לצרכים\n\n**מומחה:** 6+ חודשים\n- שולט בכל פינה\n- תורם לקהילה\n- מדריך אחרים\n- יוצר תוכן\n\n**אבל:** כבר אחרי חודש אחד אתם **מסוגלים** לעבוד בצורה מקצועית עם BMAD!\n\nהשאר זה פשוט חידוד."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "divider-11",
+      "type": "divider"
+    },
+    {
+      "id": "final-message",
+      "type": "callout",
+      "variant": "success",
+      "title": "סיימתם את החודש הראשון!",
+      "content": "מזל טוב על הישג מדהים! סיימתם את החודש הראשון עם BMAD והפכתם למומחים אמיתיים.\n\nעכשיו המסע האמיתי מתחיל - בנו דברים מדהימים, עזרו לאחרים, ותרמו לקהילה!\n\nאתם חלק מקהילת BMAD!"
+    },
+    {
+      "id": "final-quote",
+      "type": "callout",
+      "variant": "info",
+      "title": "המסע נמשך",
+      "content": "\"המומחיות לא נמדדת במה שיודעים, אלא במה שעושים.\"\n\nאתם יודעים. עכשיו תלך ותעשו דברים מדהימים!"
+    }
+  ]
+}
+

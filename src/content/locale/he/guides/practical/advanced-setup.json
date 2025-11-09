@@ -1,0 +1,954 @@
+{
+  "metadata": {
+    "id": "advanced-setup",
+    "slug": "advanced-setup",
+    "title": "התקנה והגדרה מתקדמת של BMAD",
+    "description": "מדריך מקיף להגדרות מתקדמות, קונפיגורציה מותאמת אישית, והתאמת BMAD לצרכים ייחודיים של הצוות והארגון שלכם. למדו איך להגדיר משתני סביבה, ליצור אגנטים ווורקפלואים מותאמים אישית, ולשלב את BMAD עם CI/CD.",
+    "category": "practical",
+    "difficulty": "advanced",
+    "estimatedMinutes": 40,
+    "icon": "IconSettings",
+    "tags": ["התקנה", "קונפיגורציה", "הגדרות", "מתקדם", "התאמה-אישית", "CI/CD"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "למה צריך הגדרות מתקדמות?",
+      "level": 2,
+      "anchor": "why-advanced-setup"
+    },
+    {
+      "id": "toc-2",
+      "title": "קונפיגורציה מתקדמת - קובץ config.yaml",
+      "level": 2,
+      "anchor": "advanced-configuration"
+    },
+    {
+      "id": "toc-3",
+      "title": "משתני סביבה (Environment Variables)",
+      "level": 2,
+      "anchor": "environment-variables"
+    },
+    {
+      "id": "toc-4",
+      "title": "יצירת אגנטים מותאמים אישית",
+      "level": 2,
+      "anchor": "custom-agents"
+    },
+    {
+      "id": "toc-5",
+      "title": "יצירת וורקפלואים מותאמים אישית",
+      "level": 2,
+      "anchor": "custom-workflows"
+    },
+    {
+      "id": "toc-6",
+      "title": "שילוב עם CI/CD Pipelines",
+      "level": 2,
+      "anchor": "cicd-integration"
+    },
+    {
+      "id": "toc-7",
+      "title": "הגדרות לפי סביבה (Dev/Staging/Prod)",
+      "level": 2,
+      "anchor": "environment-specific-settings"
+    },
+    {
+      "id": "toc-8",
+      "title": "אוטומציה וסקריפטים",
+      "level": 2,
+      "anchor": "automation-scripts"
+    },
+    {
+      "id": "toc-9",
+      "title": "אבטחה והרשאות",
+      "level": 2,
+      "anchor": "security-permissions"
+    },
+    {
+      "id": "toc-10",
+      "title": "טיפים מתקדמים לאופטימיזציה",
+      "level": 2,
+      "anchor": "optimization-tips"
+    },
+    {
+      "id": "toc-11",
+      "title": "פתרון בעיות מתקדם",
+      "level": 2,
+      "anchor": "advanced-troubleshooting"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "התקנה והגדרה מתקדמת של BMAD",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "למי מיועד מדריך זה?",
+      "content": "מדריך זה מיועד למשתמשים מתקדמים שרוצים להתאים את BMAD לצרכים ייחודיים של הצוות או הארגון שלהם. אם אתם עדיין מתחילים, מומלץ להתחיל עם מדריך ההתחלה המהירה."
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מה תלמדו כאן?",
+      "content": "תלמדו איך להגדיר קונפיגורציה מותאמת אישית, ליצור אגנטים ווורקפלואים מיוחדים, לשלב עם CI/CD, להגדיר משתני סביבה, ולהתאים את BMAD למקרי שימוש מורכבים."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "למה צריך הגדרות מתקדמות?",
+      "id": "why-advanced-setup"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "ההתקנה הבסיסית של BMAD מספיקה למרבית המשתמשים, אבל יש מצבים בהם צריך יותר:\n\n**תרחישים נפוצים:**\n- ארגון גדול עם כללי עבודה ייחודיים\n- צוותים מרובים עם צרכים שונים\n- שילוב עם כלים וממשקים קיימים\n- אוטומציה של תהליכי פיתוח\n- דרישות אבטחה מיוחדות\n- סביבות פיתוח מורכבות (multi-environment)"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**היתרונות של הגדרה מתקדמת:**\n- התאמה מדויקת לתהליכי העבודה שלכם\n- חיסכון בזמן באמצעות אוטומציה\n- שמירה על אחידות בין צוותים\n- שליטה טובה יותר באבטחה\n- גמישות מקסימלית"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "קונפיגורציה מתקדמת - קובץ config.yaml",
+      "id": "advanced-configuration"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "קובץ הקונפיגורציה `bmad/bmm/config.yaml` הוא הלב של ההגדרות. כאן אתם מגדירים את כל ההתנהגות של BMAD."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מבנה קובץ config.yaml",
+      "id": "config-structure"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# BMM Module Configuration\n# Version: 6.0.0\n\nproject_name: my-project\ninclude_game_planning: false\nuser_skill_level: advanced  # beginner | intermediate | advanced\ntech_docs: '{project-root}/docs'\ndev_story_location: '{project-root}/docs/stories'\ninstall_user_docs: true\ntea_use_mcp_enhancements: true\n\n# Core Configuration Values\nuser_name: Your Name\ncommunication_language: Hebrew  # English | Hebrew\ndocument_output_language: Hebrew\noutput_folder: '{project-root}/docs'",
+      "filename": "bmad/bmm/config.yaml",
+      "showLineNumbers": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הגדרות מתקדמות נוספות",
+      "id": "advanced-settings"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "אתם יכולים להוסיף הגדרות מותאמות אישית לקובץ הקונפיגורציה:"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# Custom Organization Settings\norganization_name: Acme Corp\nteam_size: large  # small | medium | large | enterprise\ndefault_branch: main\ncode_review_required: true\n\n# Custom Paths\ncustom_agents_path: '{project-root}/.bmad/custom-agents'\ncustom_workflows_path: '{project-root}/.bmad/custom-workflows'\ntemplates_path: '{project-root}/.bmad/templates'\n\n# Workflow Defaults\ndefault_sprint_length: 2  # weeks\ndefault_story_points: 5\nrequire_architecture_review: true\nrequire_security_review: true\n\n# Output Preferences\ngenerate_markdown: true\ngenerate_pdf: false\nauto_commit_docs: false\nauto_create_branches: true",
+      "filename": "bmad/bmm/config.yaml",
+      "showLineNumbers": true
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "שימו לב!",
+      "content": "שינויים בקובץ הקונפיגורציה דורשים הפעלה מחדש של Cursor או של האגנטים כדי להיכנס לתוקף."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הגדרות ספציפיות לאגנטים",
+      "id": "agent-specific-settings"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "אתם יכולים להגדיר התנהגות ייחודית לכל אגנט:"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# Agent-Specific Settings\nagent_settings:\n  pm:\n    default_prd_template: 'enterprise'\n    require_stakeholder_approval: true\n    auto_link_jira: true\n  \n  architect:\n    require_adr: true  # Architecture Decision Records\n    default_architecture_style: 'microservices'\n    tech_stack_validation: true\n  \n  dev:\n    code_style: 'airbnb'  # airbnb | google | standard\n    test_coverage_required: 80  # percentage\n    auto_format: true\n  \n  tea:\n    test_framework: 'jest'  # jest | mocha | pytest\n    e2e_framework: 'playwright'  # playwright | cypress\n    generate_test_data: true",
+      "filename": "bmad/bmm/config.yaml",
+      "showLineNumbers": true
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "משתני סביבה (Environment Variables)",
+      "id": "environment-variables"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "משתני סביבה מאפשרים לכם לשלוט בהתנהגות BMAD בלי לשנות קבצים. זה שימושי במיוחד ל-CI/CD וסביבות שונות."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "משתנים זמינים",
+      "id": "available-env-vars"
+    },
+    {
+      "type": "table",
+      "caption": "משתני סביבה ב-BMAD",
+      "headers": ["משתנה", "תיאור", "ברירת מחדל"],
+      "rows": [
+        ["BMAD_PROJECT_ROOT", "שורש הפרויקט", "תיקייה נוכחית"],
+        ["BMAD_CONFIG_PATH", "נתיב לקובץ config", "bmad/bmm/config.yaml"],
+        ["BMAD_OUTPUT_DIR", "תיקיית פלט", "docs/"],
+        ["BMAD_LOG_LEVEL", "רמת לוג", "info"],
+        ["BMAD_AUTO_COMMIT", "commit אוטומטי", "false"],
+        ["BMAD_DRY_RUN", "ריצת ניסוי", "false"],
+        ["BMAD_PARALLEL_AGENTS", "אגנטים מקבילים", "true"],
+        ["BMAD_MAX_CONTEXT_SIZE", "גודל context מקסימלי", "100000"]
+      ],
+      "alignment": ["left", "left", "left"]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הגדרת משתני סביבה",
+      "id": "setting-env-vars"
+    },
+    {
+      "type": "tabs",
+      "defaultTab": "bash",
+      "items": [
+        {
+          "id": "bash",
+          "label": "Bash/Linux/Mac",
+          "content": "# הגדרה זמנית (session בודד)\nexport BMAD_LOG_LEVEL=debug\nexport BMAD_AUTO_COMMIT=true\n\n# הגדרה קבועה - הוסיפו ל-~/.bashrc או ~/.zshrc\necho 'export BMAD_PROJECT_ROOT=/path/to/project' >> ~/.bashrc\nsource ~/.bashrc"
+        },
+        {
+          "id": "powershell",
+          "label": "PowerShell/Windows",
+          "content": "# הגדרה זמנית (session בודד)\n$env:BMAD_LOG_LEVEL = \"debug\"\n$env:BMAD_AUTO_COMMIT = \"true\"\n\n# הגדרה קבועה (למשתמש נוכחי)\n[System.Environment]::SetEnvironmentVariable('BMAD_PROJECT_ROOT', 'C:\\path\\to\\project', 'User')\n\n# הגדרה קבועה (למערכת כולה - דורש הרשאות admin)\n[System.Environment]::SetEnvironmentVariable('BMAD_LOG_LEVEL', 'debug', 'Machine')"
+        },
+        {
+          "id": "env-file",
+          "label": "קובץ .env",
+          "content": "# צרו קובץ .env בשורש הפרויקט\nBMAD_PROJECT_ROOT=/path/to/project\nBMAD_LOG_LEVEL=debug\nBMAD_OUTPUT_DIR=docs/generated\nBMAD_AUTO_COMMIT=false\nBMAD_DRY_RUN=false\nBMAD_PARALLEL_AGENTS=true\n\n# BMAD יטען את הקובץ אוטומטית"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "טיפ מקצועי",
+      "content": "השתמשו בקובץ .env לפיתוח מקומי, ובמשתני סביבה אמיתיים ב-CI/CD. אל תעלו את קובץ .env ל-Git (הוסיפו אותו ל-.gitignore)."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "משתנים מותאמים אישית",
+      "id": "custom-env-vars"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "אתם יכולים להגדיר משתני סביבה משלכם ולהשתמש בהם בקובץ הקונפיגורציה:"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# config.yaml - שימוש במשתני סביבה\nproject_name: ${BMAD_PROJECT_NAME:-default-project}\norganization_name: ${ORG_NAME}\napi_endpoint: ${BMAD_API_URL:-https://api.default.com}\nslack_webhook: ${SLACK_WEBHOOK_URL}\njira_url: ${JIRA_URL}\ngithub_token: ${GITHUB_TOKEN}\n\n# ${VAR_NAME:-default} = משתנה עם ברירת מחדל\n# ${VAR_NAME} = משתנה ללא ברירת מחדל (חובה)",
+      "filename": "bmad/bmm/config.yaml",
+      "showLineNumbers": false
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "יצירת אגנטים מותאמים אישית",
+      "id": "custom-agents"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "לפעמים אתם צריכים אגנט שלא קיים ב-BMAD הבסיסי - למשל אגנט לתחום מומחיות ייחודי לארגון שלכם."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מבנה אגנט מותאם אישית",
+      "id": "custom-agent-structure"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "---\nname: \"data-engineer\"\ndescription: \"Data Engineer Agent\"\n---\n\nYou must fully embody this agent's persona and follow all activation instructions.\n\n```xml\n<agent id=\"custom/data-engineer\" name=\"dana\" title=\"Data Engineer\" icon=\"IconDatabase\">\n<activation critical=\"MANDATORY\">\n  <step n=\"1\">Load persona from this agent file</step>\n  <step n=\"2\">Load config from {project-root}/bmad/bmm/config.yaml</step>\n  <step n=\"3\">Greet user using {user_name} from config</step>\n  <step n=\"4\">Show menu and wait for input</step>\n</activation>\n\n<persona>\n  <role>Data Engineering Specialist</role>\n  <identity>מהנדסת נתונים מנוסה עם מומחיות בETL, data pipelines, ו-data warehousing</identity>\n  <communication_style>טכנית ומדויקת, עם דגש על performance וscalability</communication_style>\n  <principles>Data quality first, automation over manual work, scalability by design</principles>\n</persona>\n\n<menu>\n  <item cmd=\"*help\">Show menu</item>\n  <item cmd=\"*design-pipeline\" action=\"Design data pipeline\">עיצוב data pipeline</item>\n  <item cmd=\"*create-etl\" action=\"Create ETL workflow\">יצירת תהליך ETL</item>\n  <item cmd=\"*optimize-query\" action=\"Optimize database query\">אופטימיזציה של queries</item>\n  <item cmd=\"*data-quality\" action=\"Design data quality checks\">תכנון בדיקות איכות נתונים</item>\n  <item cmd=\"*exit\">Exit</item>\n</menu>\n</agent>\n```",
+      "filename": ".bmad/custom-agents/data-engineer.mdc",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שלבים ליצירת אגנט מותאם",
+      "id": "custom-agent-steps"
+    },
+    {
+      "type": "list",
+      "variant": "ordered",
+      "items": [
+        { "content": "צרו תיקייה: .bmad/custom-agents/" },
+        { "content": "צרו קובץ: .bmad/custom-agents/your-agent.mdc" },
+        { "content": "הגדירו את ה-persona - תפקיד, זהות, סגנון תקשורת, עקרונות" },
+        { "content": "הגדירו את ה-menu - פקודות ופעולות של האגנט" },
+        { "content": "הוסיפו workflows אם צריך (אופציונלי)" },
+        { "content": "הפעילו את האגנט: @your-agent.mdc" }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "טיפ",
+      "content": "התחילו מאגנט קיים שדומה לצורך שלכם, העתיקו אותו, ושנו לפי הצורך. זה יותר קל מלכתוב מאפס."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה - אגנט DevOps",
+      "id": "devops-agent-example"
+    },
+    {
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "devops-full",
+          "title": "קוד מלא של אגנט DevOps מותאם אישית",
+          "content": [
+            {
+              "id": "devops-full-code",
+              "type": "code",
+              "language": "markdown",
+              "code": "---\nname: \"devops-engineer\"\ndescription: \"DevOps Engineer Agent\"\n---\n\n<agent id=\"custom/devops\" name=\"david\" title=\"DevOps Engineer\" icon=\"IconServerCog\">\n<persona>\n  <role>DevOps Engineering Expert</role>\n  <identity>מהנדס DevOps מנוסה עם מומחיות ב-CI/CD, Kubernetes, IaC, וניטור</identity>\n  <communication_style>פרקטי וממוקד בפתרונות, עם דגש על אוטומציה ויציבות</communication_style>\n  <principles>Infrastructure as Code, automate everything, measure everything, fail fast</principles>\n</persona>\n\n<menu>\n  <item cmd=\"*setup-cicd\">הגדרת CI/CD pipeline</item>\n  <item cmd=\"*configure-k8s\">קונפיגורציית Kubernetes</item>\n  <item cmd=\"*create-terraform\">יצירת Terraform modules</item>\n  <item cmd=\"*setup-monitoring\">הגדרת ניטור ואלרטים</item>\n  <item cmd=\"*disaster-recovery\">תכנון Disaster Recovery</item>\n  <item cmd=\"*security-hardening\">חיזוק אבטחה</item>\n  <item cmd=\"*exit\">יציאה</item>\n</menu>\n</agent>",
+              "showLineNumbers": false
+            }
+          ]
+        },
+        {
+          "id": "devops-usage",
+          "title": "איך להשתמש באגנט DevOps",
+          "content": [
+            {
+              "id": "devops-usage-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**שימוש באגנט:**\n\n1. שמרו את הקוד לעיל בקובץ `.bmad/custom-agents/devops.mdc`\n2. הפעילו ב-Cursor: `@devops.mdc`\n3. האגנט יברך אתכם ויציג את התפריט\n4. בחרו פקודה מהתפריט (מספר או טקסט)\n5. עקבו אחר ההוראות של האגנט"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "יצירת וורקפלואים מותאמים אישית",
+      "id": "custom-workflows"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "וורקפלואים מותאמים אישית מאפשרים לאוטמט תהליכים ייחודיים לארגון שלכם."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מבנה וורקפלו מותאם אישית",
+      "id": "custom-workflow-structure"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# .bmad/custom-workflows/code-deployment.yaml\nworkflow:\n  id: code-deployment\n  name: Code Deployment Workflow\n  description: תהליך deployment מלא מ-dev ל-production\n  version: 1.0\n  agents:\n    - dev\n    - architect\n    - tea\n    - devops  # אגנט מותאם אישית\n\nphases:\n  - phase: 1\n    name: Pre-Deployment Checks\n    agent: tea\n    steps:\n      - step: 1\n        title: Run all tests\n        action: execute_tests\n        validation:\n          - all_tests_pass\n          - coverage_above_80\n      \n      - step: 2\n        title: Security scan\n        action: security_scan\n        validation:\n          - no_critical_vulnerabilities\n\n  - phase: 2\n    name: Build & Package\n    agent: dev\n    steps:\n      - step: 1\n        title: Build application\n        action: build_app\n      \n      - step: 2\n        title: Create Docker image\n        action: create_image\n        validation:\n          - image_size_acceptable\n\n  - phase: 3\n    name: Deploy to Staging\n    agent: devops\n    steps:\n      - step: 1\n        title: Deploy to staging\n        action: deploy_staging\n      \n      - step: 2\n        title: Run smoke tests\n        action: smoke_tests\n        validation:\n          - staging_healthy\n\n  - phase: 4\n    name: Production Deployment\n    agent: devops\n    approval_required: true\n    steps:\n      - step: 1\n        title: Create backup\n        action: backup_production\n      \n      - step: 2\n        title: Deploy to production\n        action: deploy_production\n        rollback_on_failure: true\n      \n      - step: 3\n        title: Monitor deployment\n        action: monitor\n        duration: 15  # minutes\n\noutputs:\n  - deployment_report.md\n  - deployment_metrics.json\n  - rollback_plan.md",
+      "filename": ".bmad/custom-workflows/code-deployment.yaml",
+      "showLineNumbers": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הרצת וורקפלו מותאם אישית",
+      "id": "running-custom-workflow"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# הרצה בסיסית\nbmad run code-deployment\n\n# הרצה עם פרמטרים\nbmad run code-deployment --env=staging --branch=release/v2.0\n\n# הרצת ניסוי (לא מבצע שינויים)\nbmad run code-deployment --dry-run\n\n# הרצה עם אישור אוטומטי\nbmad run code-deployment --auto-approve",
+      "language": "bash",
+      "showLineNumbers": false
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "חשוב!",
+      "content": "וורקפלואים שמשנים סביבת production צריכים תמיד לכלול approval_required: true ו-rollback_on_failure: true."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שילוב עם CI/CD Pipelines",
+      "id": "cicd-integration"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "BMAD יכול להשתלב בתוך pipeline של CI/CD כדי לאוטמט משימות כמו יצירת תיעוד, בדיקות, ו-deployment."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שילוב עם GitHub Actions",
+      "id": "github-actions-integration"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# .github/workflows/bmad-workflow.yml\nname: BMAD Automated Workflow\n\non:\n  push:\n    branches: [main, develop]\n  pull_request:\n    branches: [main]\n\njobs:\n  bmad-documentation:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v3\n      \n      - name: Setup Node.js\n        uses: actions/setup-node@v3\n        with:\n          node-version: '18'\n      \n      - name: Install BMAD\n        run: npm install -g bmad-method\n      \n      - name: Generate Documentation\n        env:\n          BMAD_AUTO_COMMIT: false\n          BMAD_LOG_LEVEL: info\n        run: |\n          bmad run document-project --auto\n      \n      - name: Commit Documentation\n        if: github.event_name == 'push'\n        run: |\n          git config --local user.email \"action@github.com\"\n          git config --local user.name \"GitHub Action\"\n          git add docs/\n          git diff --quiet && git diff --staged --quiet || git commit -m \"docs: auto-generated documentation\"\n          git push\n\n  bmad-code-review:\n    runs-on: ubuntu-latest\n    if: github.event_name == 'pull_request'\n    steps:\n      - uses: actions/checkout@v3\n      \n      - name: Setup Node.js\n        uses: actions/setup-node@v3\n        with:\n          node-version: '18'\n      \n      - name: Install BMAD\n        run: npm install -g bmad-method\n      \n      - name: Run Code Review\n        env:\n          BMAD_LOG_LEVEL: debug\n        run: |\n          bmad run code-review --pr=${{ github.event.pull_request.number }}\n      \n      - name: Post Review Comments\n        uses: actions/github-script@v6\n        with:\n          script: |\n            const fs = require('fs');\n            const review = JSON.parse(fs.readFileSync('bmad-review.json', 'utf8'));\n            github.rest.pulls.createReview({\n              owner: context.repo.owner,\n              repo: context.repo.repo,\n              pull_number: context.issue.number,\n              body: review.summary,\n              event: review.approved ? 'APPROVE' : 'COMMENT'\n            });",
+      "filename": ".github/workflows/bmad-workflow.yml",
+      "showLineNumbers": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שילוב עם GitLab CI",
+      "id": "gitlab-ci-integration"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# .gitlab-ci.yml\nstages:\n  - test\n  - build\n  - deploy\n  - documentation\n\nvariables:\n  BMAD_LOG_LEVEL: \"info\"\n  BMAD_AUTO_COMMIT: \"false\"\n\nbmad-tests:\n  stage: test\n  image: node:18\n  before_script:\n    - npm install -g bmad-method\n  script:\n    - bmad run story-context --story=$CI_COMMIT_BRANCH\n    - bmad run code-review --auto\n  only:\n    - merge_requests\n\nbmad-documentation:\n  stage: documentation\n  image: node:18\n  before_script:\n    - npm install -g bmad-method\n  script:\n    - bmad run document-project --auto\n    - bmad run generate-api-docs\n  artifacts:\n    paths:\n      - docs/\n    expire_in: 30 days\n  only:\n    - main\n\nbmad-deployment:\n  stage: deploy\n  image: node:18\n  before_script:\n    - npm install -g bmad-method\n  script:\n    - bmad run code-deployment --env=$CI_ENVIRONMENT_NAME\n  environment:\n    name: production\n  when: manual\n  only:\n    - main",
+      "filename": ".gitlab-ci.yml",
+      "showLineNumbers": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "שילוב עם Azure DevOps",
+      "id": "azure-devops-integration"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# azure-pipelines.yml\ntrigger:\n  - main\n  - develop\n\npool:\n  vmImage: 'ubuntu-latest'\n\nvariables:\n  BMAD_LOG_LEVEL: 'info'\n  NODE_VERSION: '18.x'\n\nstages:\n- stage: Documentation\n  jobs:\n  - job: GenerateDocs\n    steps:\n    - task: NodeTool@0\n      inputs:\n        versionSpec: $(NODE_VERSION)\n      displayName: 'Install Node.js'\n    \n    - script: |\n        npm install -g bmad-method\n      displayName: 'Install BMAD'\n    \n    - script: |\n        bmad run document-project --auto\n      displayName: 'Generate Documentation'\n      env:\n        BMAD_AUTO_COMMIT: false\n    \n    - task: PublishBuildArtifacts@1\n      inputs:\n        PathtoPublish: 'docs'\n        ArtifactName: 'documentation'\n      displayName: 'Publish Documentation'\n\n- stage: CodeReview\n  condition: eq(variables['Build.Reason'], 'PullRequest')\n  jobs:\n  - job: ReviewCode\n    steps:\n    - task: NodeTool@0\n      inputs:\n        versionSpec: $(NODE_VERSION)\n    \n    - script: |\n        npm install -g bmad-method\n      displayName: 'Install BMAD'\n    \n    - script: |\n        bmad run code-review --pr=$(System.PullRequest.PullRequestId)\n      displayName: 'Run Code Review'\n      env:\n        BMAD_LOG_LEVEL: debug",
+      "filename": "azure-pipelines.yml",
+      "showLineNumbers": true
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "טיפ מקצועי",
+      "content": "השתמשו במשתני סביבה של ה-CI/CD platform (כמו secrets) להעברת מידע רגיש כמו API tokens. אל תשמרו אותם בקוד!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "הגדרות לפי סביבה (Dev/Staging/Prod)",
+      "id": "environment-specific-settings"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "בפרויקטים אמיתיים יש צורך בהגדרות שונות לסביבות שונות."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מבנה קבצים לפי סביבה",
+      "id": "environment-file-structure"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": ".bmad/\n├── config/\n│   ├── config.base.yaml      # הגדרות משותפות\n│   ├── config.dev.yaml       # development\n│   ├── config.staging.yaml   # staging\n│   └── config.prod.yaml      # production\n├── custom-agents/\n└── custom-workflows/",
+      "language": "bash",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "קובץ Base - הגדרות משותפות",
+      "id": "base-config-file"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# .bmad/config/config.base.yaml\nproject_name: my-project\nuser_skill_level: intermediate\ntech_docs: '{project-root}/docs'\ndev_story_location: '{project-root}/docs/stories'\n\n# Shared settings\ndefault_branch: main\ncode_review_required: true\ntest_coverage_required: 80",
+      "filename": ".bmad/config/config.base.yaml",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "קובץ Development",
+      "id": "dev-config-file"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# .bmad/config/config.dev.yaml\ninherit: config.base.yaml\n\nenvironment: development\nlog_level: debug\nauto_commit_docs: true\nrequire_approval: false\nparallel_agents: true\n\n# Development-specific\napi_endpoint: http://localhost:3000\ndb_host: localhost\ndb_name: myproject_dev\nenable_debug_tools: true",
+      "filename": ".bmad/config/config.dev.yaml",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "קובץ Production",
+      "id": "prod-config-file"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# .bmad/config/config.prod.yaml\ninherit: config.base.yaml\n\nenvironment: production\nlog_level: error\nauto_commit_docs: false\nrequire_approval: true\nparallel_agents: false  # safer for production\n\n# Production-specific\napi_endpoint: https://api.production.com\ndb_host: ${PROD_DB_HOST}  # from environment variable\ndb_name: myproject_prod\nenable_debug_tools: false\n\n# Extra security\nrequire_security_review: true\nrequire_architecture_review: true\nbackup_before_deployment: true",
+      "filename": ".bmad/config/config.prod.yaml",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "בחירת קובץ config לפי סביבה",
+      "id": "selecting-config-file"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# דרך 1: משתנה סביבה\nexport BMAD_ENV=dev\nbmad run workflow  # ישתמש ב-config.dev.yaml\n\nexport BMAD_ENV=prod\nbmad run workflow  # ישתמש ב-config.prod.yaml\n\n# דרך 2: פרמטר בשורת הפקודה\nbmad run workflow --env=staging\n\n# דרך 3: קובץ .bmadrc בשורש הפרויקט\necho \"BMAD_ENV=dev\" > .bmadrc",
+      "language": "bash",
+      "showLineNumbers": false
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "אוטומציה וסקריפטים",
+      "id": "automation-scripts"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "סקריפטים לאוטומציה של משימות חוזרות יכולים לחסוך המון זמן."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "סקריפט לבדיקות יומיות",
+      "id": "daily-checks-script"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "#!/bin/bash\n# scripts/daily-bmad-checks.sh\n\necho \"🚀 Running daily BMAD checks...\"\n\n# 1. עדכון תיעוד\necho \"📚 Updating documentation...\"\nbmad run document-project --auto\n\n# 2. בדיקת איכות קוד\necho \"✅ Running code quality checks...\"\nbmad run code-review --all-files\n\n# 3. בדיקת כיסוי בדיקות\necho \"🧪 Checking test coverage...\"\nnpm run test:coverage\n\n# 4. סריקת אבטחה\necho \"🔒 Running security scan...\"\nnpm audit\n\n# 5. יצירת דוח\necho \"📊 Generating daily report...\"\nbmad run generate-daily-report --date=$(date +%Y-%m-%d)\n\necho \"✨ Daily checks completed!\"",
+      "filename": "scripts/daily-bmad-checks.sh",
+      "showLineNumbers": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "סקריפט להכנת release",
+      "id": "release-prep-script"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "#!/bin/bash\n# scripts/prepare-release.sh\n\nVERSION=$1\n\nif [ -z \"$VERSION\" ]; then\n  echo \"Usage: ./prepare-release.sh <version>\"\n  exit 1\nfi\n\necho \"🎉 Preparing release v$VERSION\"\n\n# 1. וידוא שהכל מעודכן\necho \"📥 Pulling latest changes...\"\ngit pull origin main\n\n# 2. רץ כל הבדיקות\necho \"🧪 Running all tests...\"\nnpm run test:all\nif [ $? -ne 0 ]; then\n  echo \"❌ Tests failed. Aborting release.\"\n  exit 1\nfi\n\n# 3. עדכון תיעוד\necho \"📚 Updating documentation...\"\nbmad run document-project --auto\n\n# 4. יצירת changelog\necho \"📝 Generating changelog...\"\nbmad run generate-changelog --version=$VERSION\n\n# 5. יצירת release notes\necho \"📄 Creating release notes...\"\nbmad run create-release-notes --version=$VERSION\n\n# 6. יצירת branch חדש\necho \"🌿 Creating release branch...\"\ngit checkout -b release/v$VERSION\n\n# 7. commit השינויים\necho \"💾 Committing changes...\"\ngit add .\ngit commit -m \"chore: prepare release v$VERSION\"\n\n# 8. יצירת tag\necho \"🏷️ Creating tag...\"\ngit tag -a v$VERSION -m \"Release v$VERSION\"\n\necho \"✅ Release v$VERSION prepared!\"\necho \"Next steps:\"\necho \"  1. Review the changes: git diff main\"\necho \"  2. Push: git push origin release/v$VERSION\"\necho \"  3. Push tag: git push origin v$VERSION\"\necho \"  4. Create PR to main\"",
+      "filename": "scripts/prepare-release.sh",
+      "showLineNumbers": true
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "אוטומציה עם npm scripts",
+      "id": "npm-scripts-automation"
+    },
+    {
+      "type": "code",
+      "language": "json",
+      "code": "{\n  \"scripts\": {\n    \"bmad:docs\": \"bmad run document-project --auto\",\n    \"bmad:review\": \"bmad run code-review --auto\",\n    \"bmad:test-plan\": \"bmad run create-test-plan --story=$STORY_ID\",\n    \"bmad:daily\": \"./scripts/daily-bmad-checks.sh\",\n    \"bmad:release\": \"./scripts/prepare-release.sh\",\n    \n    \"pre-commit\": \"npm run bmad:review && npm run test\",\n    \"pre-push\": \"npm run bmad:docs && npm run test:all\",\n    \n    \"story:start\": \"bmad run story-context --story=$STORY_ID\",\n    \"story:dev\": \"bmad run dev-story --story=$STORY_ID\",\n    \"story:done\": \"bmad run story-done --story=$STORY_ID\"\n  }\n}",
+      "filename": "package.json",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**שימוש:**"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# עדכון תיעוד\nnpm run bmad:docs\n\n# סקירת קוד\nnpm run bmad:review\n\n# בדיקות יומיות\nnpm run bmad:daily\n\n# הכנת release\nnpm run bmad:release 2.0.0\n\n# התחלת עבודה על story\nSTORY_ID=5.3 npm run story:start",
+      "language": "bash",
+      "showLineNumbers": false
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "אבטחה והרשאות",
+      "id": "security-permissions"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "הגדרות אבטחה הן קריטיות, במיוחד בסביבות production וכשעובדים עם נתונים רגישים."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הגנה על מידע רגיש",
+      "id": "protecting-sensitive-data"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        { "content": "אל תשמרו API tokens או secrets בקובצי config - השתמשו במשתני סביבה" },
+        { "content": "הוסיפו את .env ו-.bmadrc ל-.gitignore" },
+        { "content": "השתמשו ב-secrets management (AWS Secrets Manager, Azure Key Vault, HashiCorp Vault)" },
+        { "content": "הצפינו קבצי config רגישים" },
+        { "content": "אל תשמרו passwords בטקסט פשוט" }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה - שימוש ב-secrets",
+      "id": "secrets-usage-example"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# config.yaml - ✅ נכון\napi_endpoint: ${API_ENDPOINT}  # ממשתנה סביבה\napi_token: ${API_TOKEN}         # ממשתנה סביבה\ndb_password: ${DB_PASSWORD}     # ממשתנה סביבה\n\n# ❌ לא נכון - אל תעשו ככה!\napi_endpoint: https://api.example.com\napi_token: sk_live_abc123xyz789  # סוד חשוף!\ndb_password: MyPassword123       # סיסמה בטקסט פשוט!",
+      "filename": "config.yaml",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הגבלת הרשאות",
+      "id": "permission-restrictions"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# config.yaml - הגדרות הרשאות\npermissions:\n  agents:\n    pm:\n      allowed_operations:\n        - create_prd\n        - update_stories\n      forbidden_operations:\n        - deploy_code\n        - delete_database\n    \n    dev:\n      allowed_operations:\n        - write_code\n        - run_tests\n        - create_pr\n      forbidden_operations:\n        - deploy_production\n        - modify_infrastructure\n    \n    devops:\n      allowed_operations:\n        - deploy_staging\n        - deploy_production\n        - modify_infrastructure\n      require_approval:\n        - deploy_production\n        - delete_resources\n\n  workflows:\n    require_approval:\n      - code-deployment\n      - database-migration\n      - infrastructure-change\n    \n    forbidden_in_production:\n      - experimental-workflow\n      - debug-workflow",
+      "filename": "config.yaml",
+      "showLineNumbers": false
+    },
+    {
+      "type": "callout",
+      "variant": "error",
+      "title": "אזהרת אבטחה!",
+      "content": "אל תריצו BMAD עם הרשאות root או admin אלא אם אין ברירה. השתמשו בהרשאות מינימליות הדרושות (Principle of Least Privilege)."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "טיפים מתקדמים לאופטימיזציה",
+      "id": "optimization-tips"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מהירות וביצועים",
+      "id": "speed-performance"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "השתמשו ב-parallel agents כשאפשר",
+          "children": [
+            { "content": "הגדירו BMAD_PARALLEL_AGENTS=true" },
+            { "content": "שימו לב שזה דורש יותר זיכרון" }
+          ]
+        },
+        {
+          "content": "הגבילו את גודל ה-context",
+          "children": [
+            { "content": "הגדירו BMAD_MAX_CONTEXT_SIZE לגודל סביר" },
+            { "content": "context גדול מדי מאט את התגובות" }
+          ]
+        },
+        {
+          "content": "השתמשו ב-caching",
+          "children": [
+            { "content": "BMAD שומר cache של תוצאות workflows" },
+            { "content": "השתמשו בדגל --use-cache" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "ניהול זיכרון",
+      "id": "memory-management"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# config.yaml - הגדרות זיכרון\nperformance:\n  max_context_size: 100000  # תווים\n  max_parallel_agents: 3\n  cache_enabled: true\n  cache_ttl: 3600  # seconds\n  \n  memory_limits:\n    agent_max_memory: 512  # MB\n    workflow_max_memory: 1024  # MB\n  \n  timeouts:\n    agent_response_timeout: 60  # seconds\n    workflow_timeout: 300  # seconds",
+      "filename": "config.yaml",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "לוגים וניטור",
+      "id": "logging-monitoring"
+    },
+    {
+      "type": "code",
+      "language": "yaml",
+      "code": "# config.yaml - הגדרות לוג\nlogging:\n  level: info  # debug | info | warn | error\n  output: file  # console | file | both\n  file_path: '{project-root}/logs/bmad.log'\n  max_file_size: 10  # MB\n  max_files: 5  # rotation\n  \n  # מה לרשום\n  log_agent_inputs: false  # ימלא את הלוגים מהר\n  log_agent_outputs: true\n  log_workflow_steps: true\n  log_errors: true\n  \n  # פורמט\n  format: json  # json | text\n  timestamp: true\n  include_stack_trace: true",
+      "filename": "config.yaml",
+      "showLineNumbers": false
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "פתרון בעיות מתקדם",
+      "id": "advanced-troubleshooting"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הפעלת מצב debug",
+      "id": "enabling-debug-mode"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# הפעלת debug logging\nexport BMAD_LOG_LEVEL=debug\n\n# הפעלת debug בריצת workflow ספציפי\nbmad run workflow --debug\n\n# שמירת debug output לקובץ\nbmad run workflow --debug > debug.log 2>&1",
+      "language": "bash",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "בעיות נפוצות ופתרונות",
+      "id": "common-issues-solutions"
+    },
+    {
+      "type": "accordion",
+      "allowMultiple": true,
+      "items": [
+        {
+          "id": "issue-slow",
+          "title": "BMAD איטי מדי",
+          "content": [
+            {
+              "id": "issue-slow-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**סיבות אפשריות:**\n- Context גדול מדי → הקטינו את BMAD_MAX_CONTEXT_SIZE\n- יותר מדי אגנטים במקביל → הקטינו את max_parallel_agents\n- אין caching → הפעילו cache_enabled: true\n- רשת איטית → בדקו את החיבור ל-API\n\n**פתרון:**\n```yaml\nperformance:\n  max_context_size: 50000\n  max_parallel_agents: 2\n  cache_enabled: true\n```"
+            }
+          ]
+        },
+        {
+          "id": "issue-memory",
+          "title": "שגיאות זיכרון (Out of Memory)",
+          "content": [
+            {
+              "id": "issue-memory-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**סיבות אפשריות:**\n- context גדול מדי\n- יותר מדי workflows במקביל\n- memory leaks\n\n**פתרון:**\n```bash\n# הגבלת שימוש בזיכרון\nexport NODE_OPTIONS=\"--max-old-space-size=4096\"\n\n# ריצה עם פחות אגנטים במקביל\nbmad run workflow --parallel=1\n```"
+            }
+          ]
+        },
+        {
+          "id": "issue-config",
+          "title": "שינויים בconfig לא נכנסים לתוקף",
+          "content": [
+            {
+              "id": "issue-config-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**פתרון:**\n1. סגרו את Cursor לגמרי\n2. נקו את ה-cache: `bmad cache clear`\n3. פתחו את Cursor מחדש\n4. בדקו שה-config נטען: `bmad config show`"
+            }
+          ]
+        },
+        {
+          "id": "issue-custom",
+          "title": "אגנט מותאם אישית לא נטען",
+          "content": [
+            {
+              "id": "issue-custom-text",
+              "type": "text",
+              "markdown": true,
+              "content": "**בדיקות:**\n1. וודאו שהקובץ נמצא ב-.bmad/custom-agents/\n2. וודאו שהקובץ מסתיים ב-.mdc\n3. בדקו syntax של ה-XML\n4. בדקו שה-config מצביע לתיקייה הנכונה\n5. הפעילו עם הנתיב המלא: `@.bmad/custom-agents/my-agent.mdc`"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "כלי debug שימושיים",
+      "id": "useful-debug-tools"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# הצגת config נוכחי\nbmad config show\n\n# בדיקת תקינות config\nbmad config validate\n\n# הצגת אגנטים זמינים\nbmad agents list\n\n# הצגת workflows זמינים\nbmad workflows list\n\n# בדיקת גרסה\nbmad --version\n\n# ניקוי cache\nbmad cache clear\n\n# הצגת לוגים\ntail -f logs/bmad.log",
+      "language": "bash",
+      "showLineNumbers": false
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "עזרה נוספת",
+      "content": "אם אתם נתקלים בבעיה שלא מופיעה כאן, פתחו issue ב-GitHub repository של BMAD עם לוגים מלאים ותיאור הבעיה."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "סיכום - Checklist להגדרה מתקדמת",
+      "id": "advanced-setup-checklist"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "לפני שמסיימים, עברו על ה-checklist:"
+    },
+    {
+      "type": "list",
+      "variant": "unordered",
+      "items": [
+        {
+          "content": "קונפיגורציה בסיסית",
+          "children": [
+            { "content": "config.yaml מוגדר נכון" },
+            { "content": "משתני סביבה מוגדרים" },
+            { "content": "paths נכונים" }
+          ]
+        },
+        {
+          "content": "אגנטים ווורקפלואים מותאמים",
+          "children": [
+            { "content": "אגנטים מותאמים נמצאים ב-.bmad/custom-agents/" },
+            { "content": "וורקפלואים מותאמים נמצאים ב-.bmad/custom-workflows/" },
+            { "content": "כל הקבצים עם syntax תקין" }
+          ]
+        },
+        {
+          "content": "CI/CD",
+          "children": [
+            { "content": "Pipeline מוגדר (GitHub Actions / GitLab CI / Azure DevOps)" },
+            { "content": "משתני סביבה מוגדרים ב-CI/CD" },
+            { "content": "Secrets מוגדרים נכון" }
+          ]
+        },
+        {
+          "content": "סביבות",
+          "children": [
+            { "content": "config נפרד לכל סביבה (dev/staging/prod)" },
+            { "content": "הבדלים בין הסביבות מתועדים" },
+            { "content": "mechanism לבחירת סביבה" }
+          ]
+        },
+        {
+          "content": "אוטומציה",
+          "children": [
+            { "content": "סקריפטים לבדיקות יומיות" },
+            { "content": "npm scripts להרצות נפוצות" },
+            { "content": "אוטומציה של release process" }
+          ]
+        },
+        {
+          "content": "אבטחה",
+          "children": [
+            { "content": "אין secrets בקבצי config" },
+            { "content": ".env ו-.bmadrc ב-.gitignore" },
+            { "content": "הרשאות מוגדרות נכון" },
+            { "content": "approval נדרש לפעולות רגישות" }
+          ]
+        },
+        {
+          "content": "ביצועים",
+          "children": [
+            { "content": "הגדרות זיכרון מותאמות" },
+            { "content": "caching מופעל" },
+            { "content": "timeouts מוגדרים" }
+          ]
+        },
+        {
+          "content": "ניטור ולוגים",
+          "children": [
+            { "content": "logging מוגדר" },
+            { "content": "log rotation פעיל" },
+            { "content": "debug mode זמין במקרה הצורך" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מזל טוב!",
+      "content": "אם עברתם על כל הרשימה, יש לכם הגדרה מתקדמת ומקצועית של BMAD. עכשיו אתם מוכנים לפרויקטים מורכבים, צוותים גדולים, וסביבות enterprise!"
+    }
+  ],
+  "relatedGuides": [
+    "best-practices",
+    "customization-guide",
+    "integration-systems",
+    "configuration-management"
+  ],
+  "prerequisites": [
+    "quick-start",
+    "onboarding-week1"
+  ],
+  "nextSteps": [
+    "customization-guide",
+    "integration-systems",
+    "cicd-automation"
+  ]
+}
+

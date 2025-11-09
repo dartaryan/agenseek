@@ -1,6 +1,6 @@
 # Next Story to Implement
 
-**Last Completed:** Story 0.10.1 - Merge Profile and Settings Navigation ✅
+**Last Completed:** Story 0.16 - Navigation Merge + Critical UX Fixes ✅
 
 **Completion Date:** November 9, 2025
 
@@ -8,14 +8,13 @@
 
 ## Recent Completions
 
-### Story 0.10.1 Summary ✅
-Successfully merged Profile and Settings into unified navigation:
-- ✅ Merged navigation items in Sidebar (Desktop)
-- ✅ Merged navigation items in Mobile drawer
-- ✅ Merged commands in Command Palette (Ctrl+K)
-- ✅ Updated Footer links
-- ✅ Profile page already served as unified "פרופיל והגדרות" page
-- ✅ All navigation now points to single `/profile` destination
+### Story 0.16 Summary ✅
+Successfully completed multiple critical UX fixes:
+- ✅ **Navigation Merge**: Merged Profile & Settings into unified "פרופיל והגדרות" across all surfaces
+- ✅ **Sidebar Fix**: Removed auto-collapse - sidebar now manual control only per user request
+- ✅ **Avatar Fix**: Fixed avatar display issue - selected avatars now show instead of logo
+- ✅ **OAuth Fix**: Added preferences warning + validation for OAuth users without preferences
+- ✅ All changes based on direct user feedback and improve overall UX
 
 ### Story 0.9 Summary ✅
 Successfully implemented comprehensive settings page features:
@@ -42,36 +41,48 @@ Implemented real-time avatar updates:
 
 ---
 
-## 🎯 Next Story: Story 0.10 - My Learning Journey (מסלול הלמידה שלי)
+## 🎯 Next Story: Story 0.10.1 - Journey Page Core & Data Layer
 
+**Parent:** Story 0.10 - My Learning Journey (מסלול הלמידה שלי)
 **Priority:** P1 (High)
-**Story Points:** 5
-**Estimated Time:** 6-9 days
+**Story Points:** 2-3
+**Estimated Time:** 2-3 days
 **Status:** Ready for Implementation
-**Note:** May be divided into sub-stories for easier implementation
+**Note:** Story 0.10 divided into 3 sub-stories (see STORY-0.10-DIVISION.md)
 
-### Story 0.10 Overview
+### Story 0.10.1 Overview (Current)
 
-Build comprehensive learning journey system with visual roadmap, phase-based progression, and gamification.
+Build the foundation of the learning journey system: functionality over aesthetics.
 
-**Focus:** Visual roadmap showing user's learning journey through BMAD phases
+**Focus:** Core data layer and functional journey page
 
 **Key Features:**
-- `/journey` route and page with visual roadmap
-- 4 phases: Discovery, Foundation, Application, Mastery
-- Phase unlocking based on guide completion
-- Progress tracking per phase
-- Gamification (badges, milestones)
+- `/journey` route and page structure
+- `getJourneyData()` with all helper functions
+- Basic PhaseCard components (no animations yet)
+- Phase unlocking logic
 - Dashboard journey preview card
-- Mobile responsive journey view
+- Mobile responsive layout
+- Journey state persistence
 
 **Deliverables:**
-- Fully functional journey page
-- Phase-based progression system
-- Visual journey roadmap
-- Integration with existing progress tracking
+- Fully functional journey page with accurate data
+- All 4 phases display correctly
+- Phase lock states work
+- Ready for animations (Story 0.10.2)
 
-**See:** `STORY-0.10.md` for complete details
+**Files to Create:**
+- `src/lib/journey.ts` - All data logic
+- `src/app/journey/index.tsx` - Main page
+- `src/components/journey/PhaseCard.tsx` - Phase display
+- `src/components/journey/JourneyHero.tsx` - Hero section
+- `src/components/dashboard/JourneyPreviewCard.tsx` - Dashboard widget
+
+**See:** `STORY-0.10.1.md` for complete details
+
+**After 0.10.1:**
+- Story 0.10.2: Visual Polish & Animations (2 points, 2-3 days)
+- Story 0.10.3: Gamification & Integration (1 point, 1-2 days)
 
 ---
 
@@ -128,15 +139,15 @@ After Story 0.6, continue with these in order:
 - ✅ Story 0.7 - Real-time Avatar Updates (Complete)
 - ✅ Story 0.8 - Admin Mobile Responsiveness (Complete)
 - ✅ Story 0.9 - Settings Implementation (Complete)
-- ✅ Story 0.10.1 - Merge Profile & Settings Navigation (Complete)
-- ⏩ **Story 0.10 - Learning Journey** (NEXT)
+- ⏩ **Story 0.10 - Learning Journey** (NEXT - divided into 0.10.1, 0.10.2, 0.10.3)
 - ⏸️ Story 0.11 - Documentation Archive
 - ⏸️ Story 0.12 - Console Log Cleanup
 - ⏸️ Story 0.13 - Installation Guide
+- ✅ Story 0.16 - Navigation Merge + UX Fixes (Complete)
 
 **Total:** 10 of 14 complete (71%)
 **Remaining:** 4 stories, ~9 points
-**Note:** Story 0.6 (Dark Mode) postponed; Story 0.10.1 was a quick UX improvement
+**Note:** Story 0.6 (Dark Mode) postponed; Story 0.10 divided into 3 sub-stories; Story 0.16 was a quick UX improvement
 
 ---
 

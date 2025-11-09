@@ -31,10 +31,10 @@ export function OAuthCallbackPage() {
           throw new Error('לא נמצאה הפעלת חשבון');
         }
 
-        // Get user profile to check onboarding status
+        // Get user profile to check onboarding status and preferences
         const { data: profile, error: profileError } = await supabase
           .from('profiles')
-          .select('completed_onboarding')
+          .select('completed_onboarding, role, interests, experience_level')
           .eq('id', session.user.id)
           .single();
 
@@ -46,14 +46,20 @@ export function OAuthCallbackPage() {
           return;
         }
 
-        // Redirect based on onboarding status
-        if (profile?.completed_onboarding) {
+        // Check if user has actually set their preferences (not just marked onboarding complete)
+        const hasPreferences = profile.role ||
+                              (profile.interests && profile.interests.length > 0) ||
+                              profile.experience_level;
+
+        // Redirect based on onboarding status AND whether they have preferences
+        if (profile?.completed_onboarding && hasPreferences) {
           toast({
             title: 'התחברת בהצלחה!',
             description: 'ברוך הבא חזרה',
           });
           navigate('/dashboard', { replace: true });
         } else {
+          // User hasn't completed onboarding or hasn't set preferences
           navigate('/onboarding', { replace: true });
         }
       } catch (error) {
