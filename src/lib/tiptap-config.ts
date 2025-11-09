@@ -23,7 +23,8 @@ export const getTiptapExtensions = () => [
         class: 'bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded font-mono text-sm',
       },
     },
-    // Note: Link is not part of StarterKit, but we add it separately below
+    // Note: StarterKit v3.10.2+ includes Link by default, so we exclude it to configure it separately
+    link: false,
   }),
   Link.configure({
     openOnClick: false,

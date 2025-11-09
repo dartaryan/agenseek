@@ -54,9 +54,7 @@ export function LoginPage() {
 
   // Redirect to dashboard if already logged in
   useEffect(() => {
-    console.log('[LoginPage] Auth state check:', { authLoading, hasUser: !!user });
     if (!authLoading && user) {
-      console.log('[LoginPage] User already logged in, redirecting to dashboard');
       navigate('/dashboard', { replace: true });
     }
   }, [user, authLoading, navigate]);
@@ -64,9 +62,7 @@ export function LoginPage() {
   const onSubmit = async (data: LoginFormData) => {
     setIsLoading(true);
     try {
-      console.log('[LoginPage] Attempting sign in...');
-      const result = await signIn({ email: data.email, password: data.password });
-      console.log('[LoginPage] Sign in successful:', result);
+      await signIn({ email: data.email, password: data.password });
 
       toast({
         title: he.loginSuccess,
@@ -76,7 +72,6 @@ export function LoginPage() {
 
       // Don't manually navigate - let the useEffect handle it when auth state updates
       // This prevents race condition where we navigate before AuthProvider updates
-      console.log('[LoginPage] Waiting for auth state to update...');
     } catch (error) {
       console.error('[LoginPage] Sign in error:', error);
       toast({

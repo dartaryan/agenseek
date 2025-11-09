@@ -39,7 +39,6 @@ export function BadgeModal({
 
   const handleShare = () => {
     // Future: Implement sharing functionality
-    console.log('Share badge:', badge.id);
   };
 
   return (

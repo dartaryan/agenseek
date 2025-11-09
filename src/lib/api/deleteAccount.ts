@@ -25,8 +25,6 @@ export async function deleteAccount(): Promise<{ success: boolean; error?: strin
 
     const userId = user.id;
 
-    console.log('[deleteAccount] Starting account deletion for user:', userId);
-
     // NOTE: Cascade deletion is configured in the database schema
     // with ON DELETE CASCADE for all foreign key relationships.
     // We only need to delete the profile, and all related data
@@ -153,8 +151,6 @@ export async function deleteAccount(): Promise<{ success: boolean; error?: strin
       throw new Error('Failed to delete profile - this is a critical error');
     }
 
-    console.log('[deleteAccount] All data deleted successfully');
-
     // 11. Delete from Supabase Auth (must be last)
     // Note: This requires admin privileges, so we'll use the auth.admin API
     // For client-side deletion, we can use the regular auth.signOut() after database cleanup
@@ -175,9 +171,6 @@ export async function deleteAccount(): Promise<{ success: boolean; error?: strin
       console.error('[deleteAccount] Error signing out:', signOutError);
       // Continue anyway, account data is deleted
     }
-
-    console.log('[deleteAccount] Account deletion completed successfully');
-    console.log('[deleteAccount] Note: Auth user NOT deleted - requires admin API');
 
     return { success: true };
   } catch (error) {

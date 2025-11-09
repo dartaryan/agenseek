@@ -4,7 +4,9 @@ import './styles/globals.css';
 import App from './App.tsx';
 
 // Story 1.5 Verification: Test Supabase environment variables
-import './lib/supabase-test';
+// NOTE: Commented out to prevent console output in production
+// Uncomment if you need to verify Supabase setup
+// import './lib/supabase-test';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

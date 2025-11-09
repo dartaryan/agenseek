@@ -69,8 +69,6 @@ export function OnboardingWizardPage() {
     }
 
     try {
-      console.log('[Onboarding Skip] Starting skip process...');
-
       // Check if profile exists first
       const { data: existingProfile } = await supabase
         .from('profiles')
@@ -80,7 +78,6 @@ export function OnboardingWizardPage() {
 
       if (!existingProfile) {
         // Profile doesn't exist - create it (happens after account deletion)
-        console.log('[Onboarding Skip] No profile found - creating new profile');
         const { error: createError } = await supabase
           .from('profiles')
           .insert({
@@ -98,7 +95,6 @@ export function OnboardingWizardPage() {
         }
       } else {
         // Profile exists - update it
-        console.log('[Onboarding Skip] Updating existing profile');
         const { error } = await supabase
           .from('profiles')
           .update({
@@ -110,11 +106,8 @@ export function OnboardingWizardPage() {
         if (error) throw error;
       }
 
-      console.log('[Onboarding Skip] Profile updated in database');
-
       // CRITICAL FIX: Verify profile update completed before navigating
       // Same fix as handleComplete to prevent infinite loop
-      console.log('[Onboarding Skip] Verifying profile update...');
 
       // Poll database to confirm update (max 3 seconds)
       const maxAttempts = 30;
@@ -132,7 +125,6 @@ export function OnboardingWizardPage() {
 
         if (verifyProfile?.completed_onboarding === true) {
           profileUpdated = true;
-          console.log(`[Onboarding Skip] ✓ Profile verified (attempt ${attempts + 1}/${maxAttempts})`);
         } else {
           attempts++;
         }
@@ -145,11 +137,9 @@ export function OnboardingWizardPage() {
 
       // NOW refresh the profile in AuthContext
       await refreshProfile();
-      console.log('[Onboarding Skip] AuthContext refreshed');
 
       // Wait for React state propagation
       await new Promise((resolve) => setTimeout(resolve, 150));
-      console.log('[Onboarding Skip] State propagation complete');
 
       toast({
         title: 'דילגת על האון בורדינג',
@@ -157,7 +147,6 @@ export function OnboardingWizardPage() {
       });
 
       // Navigate to dashboard
-      console.log('[Onboarding Skip] Navigating to dashboard...');
       navigate('/dashboard');
     } catch (error) {
       console.error('[Onboarding Skip] Error:', error);
@@ -976,8 +965,6 @@ function LearningPathStep({
     setIsSaving(true);
 
     try {
-      console.log('[Onboarding] Starting completion process...');
-
       // Check if profile exists first
       const { data: existingProfile } = await supabase
         .from('profiles')
@@ -987,7 +974,6 @@ function LearningPathStep({
 
       if (!existingProfile) {
         // Profile doesn't exist - create it with all preferences
-        console.log('[Onboarding] No profile found - creating new profile with preferences');
         const { error: createError } = await supabase
           .from('profiles')
           .insert({
@@ -1011,7 +997,6 @@ function LearningPathStep({
         }
       } else {
         // Profile exists - update it
-        console.log('[Onboarding] Updating existing profile with preferences');
         const { error } = await supabase
           .from('profiles')
           .update({
@@ -1029,11 +1014,8 @@ function LearningPathStep({
         if (error) throw error;
       }
 
-      console.log('[Onboarding] Profile updated in database');
-
       // CRITICAL FIX: Verify profile update completed before navigating
       // This prevents infinite redirect loop between onboarding and dashboard
-      console.log('[Onboarding] Verifying profile update...');
 
       // Poll database to confirm update (max 3 seconds)
       const maxAttempts = 30; // 30 attempts * 100ms = 3 seconds
@@ -1052,12 +1034,8 @@ function LearningPathStep({
 
         if (verifyProfile?.completed_onboarding === true) {
           profileUpdated = true;
-          console.log(`[Onboarding] ✓ Profile verified (attempt ${attempts + 1}/${maxAttempts})`);
         } else {
           attempts++;
-          if (attempts % 5 === 0) {
-            console.log(`[Onboarding] Still waiting for DB update... (${attempts}/${maxAttempts})`);
-          }
         }
       }
 
@@ -1068,11 +1046,9 @@ function LearningPathStep({
 
       // NOW refresh the profile in AuthContext so ProtectedRoute won't redirect
       await refreshProfile();
-      console.log('[Onboarding] AuthContext refreshed with updated profile');
 
       // Extra safety: wait for React state propagation
       await new Promise((resolve) => setTimeout(resolve, 150));
-      console.log('[Onboarding] State propagation complete');
 
       // Fire confetti celebration
       confetti({
@@ -1090,7 +1066,6 @@ function LearningPathStep({
 
       // Wait a moment for confetti before redirecting
       await new Promise((resolve) => setTimeout(resolve, 1500));
-      console.log('[Onboarding] Navigating to dashboard...');
 
       // Navigate to dashboard
       onComplete();

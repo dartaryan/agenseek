@@ -131,11 +131,6 @@ export async function measurePerformance<T>(
 
   try {
     const result = await fn();
-    const end = performance.now();
-    const duration = end - start;
-
-    console.log(`[Performance] ${name}: ${duration.toFixed(2)}ms`);
-
     return result;
   } catch (error) {
     const end = performance.now();
@@ -207,21 +202,16 @@ export function isSlowConnection(): boolean {
 
 /**
  * Log Web Vitals for monitoring
+ * @param _metric - Web Vitals metric data (unused in current implementation)
  */
-export function logWebVitals(metric: {
+export function logWebVitals(_metric: {
   name: string;
   value: number;
   delta: number;
   id: string;
 }): void {
-  console.log('[Web Vitals]', {
-    name: metric.name,
-    value: Math.round(metric.value),
-    delta: Math.round(metric.delta),
-    id: metric.id,
-  });
-
   // In production, send to analytics
   // Example: sendToAnalytics(metric);
+  // Future: Integrate with monitoring service (Sentry, LogRocket, etc.)
 }
 

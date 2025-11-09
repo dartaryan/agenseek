@@ -29,18 +29,8 @@ export function ProtectedRoute({
   const { user, profile, isLoading } = useAuth();
   const location = useLocation();
 
-  console.log('[ProtectedRoute]', {
-    path: location.pathname,
-    isLoading,
-    hasUser: !!user,
-    hasProfile: !!profile,
-    requireAdmin,
-    skipOnboardingCheck,
-  });
-
   // Show loading state while checking auth and profile
   if (isLoading) {
-    console.log('[ProtectedRoute] Showing loading state');
     return (
       <div className="flex items-center justify-center min-h-screen">
         <BrandedLoader size="lg" />
@@ -50,7 +40,6 @@ export function ProtectedRoute({
 
   // Redirect to login if not authenticated
   if (!user) {
-    console.log('[ProtectedRoute] No user, redirecting to login');
     return <Navigate to="/auth/login" state={{ from: location }} replace />;
   }
 
@@ -59,13 +48,11 @@ export function ProtectedRoute({
     // Case 1: No profile at all (user exists but profile missing)
     // This happens after account deletion - redirect to onboarding to recreate profile
     if (!profile && user) {
-      console.log('[ProtectedRoute] No profile found for authenticated user - redirecting to onboarding');
       return <Navigate to="/onboarding" replace />;
     }
 
     // Case 2: Profile exists but onboarding not completed
     if (profile && !profile.completed_onboarding) {
-      console.log('[ProtectedRoute] User has not completed onboarding - redirecting');
       return <Navigate to="/onboarding" replace />;
     }
   }

@@ -149,12 +149,9 @@ export async function fetchWithCache<T>(
   if (!skipCache) {
     const cachedData = getCachedData<T>(cacheKey);
     if (cachedData !== null) {
-      console.log('[API] Cache hit for:', cacheKey);
       return cachedData;
     }
   }
-
-  console.log('[API] Cache miss, fetching:', cacheKey);
 
   // Fetch with retry logic
   const data = await retryWithBackoff(async () => {
@@ -221,11 +218,8 @@ export async function cachedSupabaseQuery<T>(
   // Check cache first
   const cachedData = getCachedData<T>(cacheKey);
   if (cachedData !== null) {
-    console.log('[Supabase Cache] Hit for:', cacheKey);
     return cachedData;
   }
-
-  console.log('[Supabase Cache] Miss, querying:', cacheKey);
 
   // Execute query with retry logic
   const data = await retryWithBackoff(queryFn, {

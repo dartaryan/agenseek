@@ -11,10 +11,6 @@ import { TaskModal } from '../components/tasks/TaskModal';
 import { NoteEditorModal } from '../components/notes/NoteEditorModal';
 import { KeyboardShortcutsModal, useKeyboardShortcutsModal } from '../components/common/KeyboardShortcutsModal';
 import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
-import type { Database } from '../types/database';
-
-type UserTask = Database['public']['Tables']['user_tasks']['Row'];
-type UserNote = Database['public']['Tables']['user_notes']['Row'];
 
 /**
  * Layout Component
@@ -51,15 +47,13 @@ export function Layout() {
   });
 
   // Handler for task modal save
-  const handleTaskSaved = (task: UserTask) => {
-    console.log('Task saved:', task);
+  const handleTaskSaved = () => {
     setTaskModalOpen(false);
     // Optionally: Navigate to tasks page or show toast
   };
 
   // Handler for note modal save
-  const handleNoteSaved = (note: UserNote) => {
-    console.log('Note saved:', note);
+  const handleNoteSaved = () => {
     setNoteModalOpen(false);
     // Optionally: Navigate to notes page or show toast
   };

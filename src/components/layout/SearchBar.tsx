@@ -45,7 +45,7 @@ export const SearchBar = forwardRef<SearchBarRef>(function SearchBar(_props, ref
   }));
 
   // Use search hook with user ID for personalized results
-  const { query, setQuery, results, isSearching, error } = useSearch({
+  const { query, setQuery, results, isSearching } = useSearch({
     userId: user?.id,
     debounceMs: 300,
     limitPerType: 5, // Top 5 per type as per AC
@@ -54,20 +54,6 @@ export const SearchBar = forwardRef<SearchBarRef>(function SearchBar(_props, ref
 
   // Calculate total results count
   const totalResults = results.guides.length + results.notes.length + results.tasks.length;
-
-  // Debug logging
-  useEffect(() => {
-    if (query) {
-      console.log('🔍 Search Query:', query);
-      console.log('📊 Results:', {
-        guides: results.guides.length,
-        notes: results.notes.length,
-        tasks: results.tasks.length
-      });
-      console.log('⏳ Is Searching:', isSearching);
-      if (error) console.error('❌ Search Error:', error);
-    }
-  }, [query, results, isSearching, error]);
 
   // Flatten results for keyboard navigation
   const flatResults: SearchResult[] = [

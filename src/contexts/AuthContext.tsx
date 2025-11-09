@@ -43,7 +43,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     if (!user?.id) return;
 
     try {
-      console.log('[AuthProvider] Manually refreshing profile for user:', user.id);
       const { data: profileData, error: profileError } = await supabase
         .from('profiles')
         .select('*')
@@ -53,7 +52,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
       if (profileError) {
         console.error('[AuthProvider] Error refreshing profile:', profileError);
       } else {
-        console.log('[AuthProvider] Profile refreshed successfully');
         setProfile(profileData);
       }
     } catch (err) {
@@ -68,7 +66,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
 
     try {
-      console.log('[AuthProvider] Updating avatar for user:', user.id);
       const { error } = await supabase
         .from('profiles')
         .update({
@@ -95,8 +92,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
           avatar_options: config.options || {},
         };
       });
-
-      console.log('[AuthProvider] Avatar updated successfully');
     } catch (err) {
       console.error('[AuthProvider] Exception during avatar update:', err);
       throw err;
@@ -109,7 +104,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     // Get initial session and profile
     const initAuth = async () => {
       try {
-        console.log('[AuthProvider] Initializing auth...');
         const {
           data: { session },
           error: sessionError,
@@ -124,7 +118,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
           return;
         }
 
-        console.log('[AuthProvider] Session:', session?.user ? 'User logged in' : 'No user');
         if (isMounted) {
           setUser(session?.user ?? null);
         }
@@ -153,7 +146,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
         }
 
         if (isMounted) {
-          console.log('[AuthProvider] Auth initialization complete, isLoading = false');
           setIsLoading(false);
         }
       } catch (err) {
@@ -172,16 +164,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
     } = supabase.auth.onAuthStateChange(async (event, session) => {
       if (!isMounted) return;
 
-      console.log(
-        '[AuthProvider] Auth state changed:',
-        event,
-        session?.user ? 'User present' : 'No user'
-      );
-
       // Skip processing INITIAL_SESSION event - initAuth() handles it properly
       // This prevents race condition where isLoading is set false before profile loads
       if (event === 'INITIAL_SESSION') {
-        console.log('[AuthProvider] Skipping INITIAL_SESSION - handled by initAuth()');
         return;
       }
 
@@ -193,8 +178,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       // Fetch profile in background
       if (session?.user) {
-        console.log('[AuthProvider] Fetching profile for user:', session.user.id);
-
         // Fetch profile with timeout
         const fetchProfileWithTimeout = async () => {
           try {
@@ -204,18 +187,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
               .eq('id', session.user.id)
               .single();
 
-            console.log('[AuthProvider] Profile fetch result:', {
-              profileData,
-              profileError,
-              isMounted,
-            });
-
             if (isMounted) {
               if (profileError) {
                 console.error('[AuthProvider] Error fetching profile:', profileError);
                 setProfile(null);
               } else {
-                console.log('[AuthProvider] Setting profile data:', profileData);
                 setProfile(profileData);
               }
             }
