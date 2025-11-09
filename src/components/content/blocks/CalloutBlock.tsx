@@ -4,6 +4,7 @@
  * Story 3.5: Supports 4 variants (info, warning, success, error)
  * with colored icons, borders, and optional titles.
  * Content can be string or nested ContentBlock arrays.
+ * Story 10.4: Optimized with React.memo to prevent unnecessary re-renders
  */
 
 import React from 'react';
@@ -136,7 +137,7 @@ function renderContent(content: string | ContentBlock[]): React.ReactNode {
   return <NestedContentRenderer blocks={content} />;
 }
 
-function CalloutBlock({ block }: CalloutBlockProps) {
+const CalloutBlock = React.memo(function CalloutBlock({ block }: CalloutBlockProps) {
   // Fallback to 'info' if variant is invalid or missing
   const variant = block.variant || 'info';
   const config = variantConfig[variant] || variantConfig.info;
@@ -181,6 +182,6 @@ function CalloutBlock({ block }: CalloutBlockProps) {
       </div>
     </div>
   );
-}
+});
 
 export default CalloutBlock;

@@ -19,9 +19,10 @@
  * - Story 6.3: Quick note creation from guide with floating tooltip
  * - Story 6.7: Quick task creation from guide with Ctrl+T shortcut
  * - Story 10.2: Mobile-optimized reading experience with swipe gestures, bottom action bar
+ * - Story 10.4: Lazy load heavy modals (NoteEditorModal, TaskModal)
  */
 
-import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
+import { useEffect, useState, useRef, useCallback, useMemo, lazy, Suspense } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
@@ -37,8 +38,6 @@ import { GuideCompletionModal } from '@/components/guides/GuideCompletionModal';
 import { RelatedGuides } from '@/components/guides/RelatedGuides';
 import { BadgeUnlockAnimation } from '@/components/dashboard/BadgeUnlockAnimation';
 import { FloatingNoteTooltip } from '@/components/guides/FloatingNoteTooltip'; // Story 6.3
-import { NoteEditorModal } from '@/components/notes/NoteEditorModal'; // Story 6.3
-import { TaskModal } from '@/components/tasks/TaskModal'; // Story 6.7
 import { CommentThread } from '@/components/comments'; // Story 8.1
 import { MobileActionBar } from '@/components/guides/MobileActionBar'; // Story 10.2
 import { loadGuide, getAdjacentGuides } from '@/lib/guide-loader';
@@ -50,6 +49,10 @@ import { toast } from '@/hooks/use-toast';
 import MobileTocContext from '@/contexts/MobileTocContext';
 import type { Guide, GuideMetadata } from '@/types/content-blocks';
 import type { Database } from '@/types/database';
+
+// Story 10.4: Lazy load heavy modals with editors
+const NoteEditorModal = lazy(() => import('@/components/notes/NoteEditorModal').then(m => ({ default: m.NoteEditorModal }))); // Story 6.3
+const TaskModal = lazy(() => import('@/components/tasks/TaskModal').then(m => ({ default: m.TaskModal }))); // Story 6.7
 
 type UserTask = Database['public']['Tables']['user_tasks']['Row'];
 
@@ -832,23 +835,31 @@ export function GuideReaderPage() {
         nextGuide={nextGuide}
       />
 
-      {/* Story 6.3: Note Editor Modal */}
-      <NoteEditorModal
-        open={isNoteEditorOpen}
-        onOpenChange={setIsNoteEditorOpen}
-        guideSlug={slug}
-        guideTitle={guide.metadata.title}
-        initialContent={noteInitialContent}
-        onSaved={handleNoteSaved}
-      />
+      {/* Story 6.3: Note Editor Modal - Lazy loaded */}
+      {isNoteEditorOpen && (
+        <Suspense fallback={null}>
+          <NoteEditorModal
+            open={isNoteEditorOpen}
+            onOpenChange={setIsNoteEditorOpen}
+            guideSlug={slug}
+            guideTitle={guide.metadata.title}
+            initialContent={noteInitialContent}
+            onSaved={handleNoteSaved}
+          />
+        </Suspense>
+      )}
 
-      {/* Story 6.7: Task Modal */}
-      <TaskModal
-        open={isTaskModalOpen}
-        onOpenChange={setIsTaskModalOpen}
-        guideSlug={slug}
-        onSaved={handleTaskSaved}
-      />
+      {/* Story 6.7: Task Modal - Lazy loaded */}
+      {isTaskModalOpen && (
+        <Suspense fallback={null}>
+          <TaskModal
+            open={isTaskModalOpen}
+            onOpenChange={setIsTaskModalOpen}
+            guideSlug={slug}
+            onSaved={handleTaskSaved}
+          />
+        </Suspense>
+      )}
 
       {/* Story 6.3: Floating Note Tooltip */}
       <FloatingNoteTooltip onAddNote={handleAddNote} />

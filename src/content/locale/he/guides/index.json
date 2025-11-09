@@ -270,8 +270,8 @@
     "category": "workflows",
     "difficulty": "intermediate",
     "estimatedMinutes": 45,
-    "icon": "IconGitBranch",
-    "tags": ["וורקפלואים", "מפרט", "ארכיטקטורה", "תכנון"],
+    "icon": "IconFileText",
+    "tags": ["וורקפלואים", "מפרט", "ארכיטקטורה", "תכנון", "PRD", "tech-spec"],
     "path": "workflows/phase2-core.json"
   },
   {

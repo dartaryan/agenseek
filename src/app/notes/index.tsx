@@ -1,9 +1,10 @@
 /**
  * Notes Page - Story 6.2
  * Notes library with search, filters, and sorting
+ * Story 10.4: Lazy load Note Editor Modal (contains heavy Tiptap dependency)
  */
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, lazy, Suspense } from 'react';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
@@ -17,7 +18,6 @@ import {
 import { hebrewLocale } from '../../lib/locale/he';
 import { useAuth } from '../../hooks/useAuth';
 import { getUserNotes } from '../../lib/api/notes';
-import { NoteEditorModal } from '../../components/notes/NoteEditorModal';
 import { NoteCard } from '../../components/notes/NoteCard';
 import { extractUniqueGuides, extractUniqueTags } from '../../lib/utils/note-utils';
 import {
@@ -28,6 +28,9 @@ import {
 } from '@tabler/icons-react';
 import { BrandedLoader } from '../../components/ui/branded-loader';
 import type { Database } from '../../types/database';
+
+// Story 10.4: Lazy load Note Editor Modal (Tiptap is ~50KB)
+const NoteEditorModal = lazy(() => import('../../components/notes/NoteEditorModal').then(m => ({ default: m.NoteEditorModal })));
 
 type UserNote = Database['public']['Tables']['user_notes']['Row'];
 
@@ -333,13 +336,17 @@ export function NotesPage() {
           </div>
         )}
 
-        {/* Note Editor Modal */}
-        <NoteEditorModal
-          open={isEditorOpen}
-          onOpenChange={setIsEditorOpen}
-          note={selectedNote}
-          onSaved={handleNoteSaved}
-        />
+        {/* Note Editor Modal - Lazy loaded */}
+        {isEditorOpen && (
+          <Suspense fallback={null}>
+            <NoteEditorModal
+              open={isEditorOpen}
+              onOpenChange={setIsEditorOpen}
+              note={selectedNote}
+              onSaved={handleNoteSaved}
+            />
+          </Suspense>
+        )}
       </div>
     </div>
   );

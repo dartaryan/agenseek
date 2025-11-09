@@ -2,9 +2,10 @@
  * CodeBlock - Full-featured code block with syntax highlighting
  * Supports: syntax highlighting, line numbers, copy button, highlighted lines
  * Story 3.4: Build Code Block with Syntax Highlighting
+ * Story 10.4: Optimized with React.memo to prevent unnecessary re-renders
  */
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { IconCopy, IconCheck } from '@tabler/icons-react';
@@ -44,14 +45,14 @@ const LANGUAGE_NAMES: Record<string, string> = {
   graphql: 'GraphQL',
 };
 
-function CodeBlock({ block }: CodeBlockProps) {
+const CodeBlock = React.memo(function CodeBlock({ block }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
 
   // Detect dark mode
   const isDarkMode =
     typeof window !== 'undefined' && document.documentElement.classList.contains('dark');
 
-  const handleCopy = async () => {
+  const handleCopy = React.useCallback(async () => {
     try {
       await navigator.clipboard.writeText(block.code);
       setCopied(true);
@@ -59,7 +60,7 @@ function CodeBlock({ block }: CodeBlockProps) {
     } catch (error) {
       console.error('Failed to copy code:', error);
     }
-  };
+  }, [block.code]);
 
   const languageDisplayName = LANGUAGE_NAMES[block.language] || block.language.toUpperCase();
 
@@ -137,6 +138,6 @@ function CodeBlock({ block }: CodeBlockProps) {
       </div>
     </div>
   );
-}
+});
 
 export default CodeBlock;

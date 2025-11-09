@@ -1,41 +1,61 @@
 /* eslint-disable react-refresh/only-export-components */
+import { lazy, Suspense } from 'react';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { ProtectedRoute } from '../components/common/ProtectedRoute';
 import { useAuth } from '../hooks/useAuth';
 import { BrandedLoader } from '../components/ui/branded-loader';
 import { Layout } from './layout';
 
-// Auth pages
-import { LoginPage } from './auth/login';
-import { RegisterPage } from './auth/register';
-import { ForgotPasswordPage } from './auth/forgot-password';
-import { ResetPasswordPage } from './auth/reset-password';
-import { OAuthCallbackPage } from './auth/callback';
+// Story 10.4: Lazy load all page components for better code splitting
+// Auth pages - lazy loaded
+const LoginPage = lazy(() => import('./auth/login').then(m => ({ default: m.LoginPage })));
+const RegisterPage = lazy(() => import('./auth/register').then(m => ({ default: m.RegisterPage })));
+const ForgotPasswordPage = lazy(() => import('./auth/forgot-password').then(m => ({ default: m.ForgotPasswordPage })));
+const ResetPasswordPage = lazy(() => import('./auth/reset-password').then(m => ({ default: m.ResetPasswordPage })));
+const OAuthCallbackPage = lazy(() => import('./auth/callback').then(m => ({ default: m.OAuthCallbackPage })));
 
-// Onboarding
-import { OnboardingWizardPage } from './onboarding/wizard';
+// Onboarding - lazy loaded
+const OnboardingWizardPage = lazy(() => import('./onboarding/wizard').then(m => ({ default: m.OnboardingWizardPage })));
 
-// Protected pages
-import { DashboardPage } from './dashboard';
-import { ProgressDetailsPage } from './progress';
-import { GuidesPage } from './guides';
-import { GuideDetailPage } from './guides/guide-detail';
-import ContentDemo from './guides/content-demo';
-import GuideLibraryDemo from './guides/library-demo';
-import CalloutDemo from './guides/callout-demo';
-import { NotesPage } from './notes';
-import { TasksPage } from './tasks';
-import { ProfilePage } from './profile';
-import { SettingsPage } from './settings';
-import { SearchResultsPage } from './search';
+// Protected pages - lazy loaded
+const DashboardPage = lazy(() => import('./dashboard').then(m => ({ default: m.DashboardPage })));
+const ProgressDetailsPage = lazy(() => import('./progress').then(m => ({ default: m.ProgressDetailsPage })));
+const GuidesPage = lazy(() => import('./guides').then(m => ({ default: m.GuidesPage })));
+const GuideDetailPage = lazy(() => import('./guides/guide-detail').then(m => ({ default: m.GuideDetailPage })));
+const ContentDemo = lazy(() => import('./guides/content-demo'));
+const GuideLibraryDemo = lazy(() => import('./guides/library-demo'));
+const CalloutDemo = lazy(() => import('./guides/callout-demo'));
+const NotesPage = lazy(() => import('./notes').then(m => ({ default: m.NotesPage })));
+const TasksPage = lazy(() => import('./tasks').then(m => ({ default: m.TasksPage })));
+const ProfilePage = lazy(() => import('./profile').then(m => ({ default: m.ProfilePage })));
+const SettingsPage = lazy(() => import('./settings').then(m => ({ default: m.SettingsPage })));
+const SearchResultsPage = lazy(() => import('./search').then(m => ({ default: m.SearchResultsPage })));
 
-// Admin pages
-import { AdminDashboardPage } from './admin';
-import { UserManagementPage } from './admin/users';
-import ContentAnalyticsPage from './admin/analytics';
-import EngagementReportPage from './admin/engagement';
-import { AdminNotificationPreferencesPage } from './admin/notifications/preferences';
-import AdminActionLogPage from './admin/logs';
+// Admin pages - lazy loaded (heavy analytics components)
+const AdminDashboardPage = lazy(() => import('./admin').then(m => ({ default: m.AdminDashboardPage })));
+const UserManagementPage = lazy(() => import('./admin/users').then(m => ({ default: m.UserManagementPage })));
+const ContentAnalyticsPage = lazy(() => import('./admin/analytics'));
+const EngagementReportPage = lazy(() => import('./admin/engagement'));
+const AdminNotificationPreferencesPage = lazy(() => import('./admin/notifications/preferences').then(m => ({ default: m.AdminNotificationPreferencesPage })));
+const AdminActionLogPage = lazy(() => import('./admin/logs'));
+
+/**
+ * Suspense wrapper for lazy loaded routes
+ * Shows branded loader while route component is loading
+ */
+function RouteSuspense({ children }: { children: React.ReactNode }) {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center min-h-screen">
+          <BrandedLoader size="lg" />
+        </div>
+      }
+    >
+      {children}
+    </Suspense>
+  );
+}
 
 /**
  * Root route component
@@ -82,30 +102,52 @@ export const router = createBrowserRouter([
   // Public routes (no layout)
   {
     path: '/auth/login',
-    element: <LoginPage />,
+    element: (
+      <RouteSuspense>
+        <LoginPage />
+      </RouteSuspense>
+    ),
   },
   {
     path: '/auth/register',
-    element: <RegisterPage />,
+    element: (
+      <RouteSuspense>
+        <RegisterPage />
+      </RouteSuspense>
+    ),
   },
   {
     path: '/auth/forgot-password',
-    element: <ForgotPasswordPage />,
+    element: (
+      <RouteSuspense>
+        <ForgotPasswordPage />
+      </RouteSuspense>
+    ),
   },
   {
     path: '/auth/reset-password',
-    element: <ResetPasswordPage />,
+    element: (
+      <RouteSuspense>
+        <ResetPasswordPage />
+      </RouteSuspense>
+    ),
   },
   {
     path: '/auth/callback',
-    element: <OAuthCallbackPage />,
+    element: (
+      <RouteSuspense>
+        <OAuthCallbackPage />
+      </RouteSuspense>
+    ),
   },
   // Onboarding (protected, but no layout - full screen wizard)
   {
     path: '/onboarding',
     element: (
       <ProtectedRoute skipOnboardingCheck>
-        <OnboardingWizardPage />
+        <RouteSuspense>
+          <OnboardingWizardPage />
+        </RouteSuspense>
       </ProtectedRoute>
     ),
   },
@@ -119,51 +161,99 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/dashboard',
-        element: <DashboardPage />,
+        element: (
+          <RouteSuspense>
+            <DashboardPage />
+          </RouteSuspense>
+        ),
       },
       {
         path: '/progress',
-        element: <ProgressDetailsPage />,
+        element: (
+          <RouteSuspense>
+            <ProgressDetailsPage />
+          </RouteSuspense>
+        ),
       },
       {
         path: '/guides',
-        element: <GuidesPage />,
+        element: (
+          <RouteSuspense>
+            <GuidesPage />
+          </RouteSuspense>
+        ),
       },
       {
         path: '/guides/demo',
-        element: <ContentDemo />,
+        element: (
+          <RouteSuspense>
+            <ContentDemo />
+          </RouteSuspense>
+        ),
       },
       {
         path: '/guides/library-demo',
-        element: <GuideLibraryDemo />,
+        element: (
+          <RouteSuspense>
+            <GuideLibraryDemo />
+          </RouteSuspense>
+        ),
       },
       {
         path: '/guides/callout-demo',
-        element: <CalloutDemo />,
+        element: (
+          <RouteSuspense>
+            <CalloutDemo />
+          </RouteSuspense>
+        ),
       },
       {
         path: '/guides/:slug',
-        element: <GuideDetailPage />,
+        element: (
+          <RouteSuspense>
+            <GuideDetailPage />
+          </RouteSuspense>
+        ),
       },
       {
         path: '/notes',
-        element: <NotesPage />,
+        element: (
+          <RouteSuspense>
+            <NotesPage />
+          </RouteSuspense>
+        ),
       },
       {
         path: '/tasks',
-        element: <TasksPage />,
+        element: (
+          <RouteSuspense>
+            <TasksPage />
+          </RouteSuspense>
+        ),
       },
       {
         path: '/profile',
-        element: <ProfilePage />,
+        element: (
+          <RouteSuspense>
+            <ProfilePage />
+          </RouteSuspense>
+        ),
       },
       {
         path: '/settings',
-        element: <SettingsPage />,
+        element: (
+          <RouteSuspense>
+            <SettingsPage />
+          </RouteSuspense>
+        ),
       },
       {
         path: '/search',
-        element: <SearchResultsPage />,
+        element: (
+          <RouteSuspense>
+            <SearchResultsPage />
+          </RouteSuspense>
+        ),
       },
     ],
   },
@@ -178,27 +268,51 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <AdminDashboardPage />,
+        element: (
+          <RouteSuspense>
+            <AdminDashboardPage />
+          </RouteSuspense>
+        ),
       },
       {
         path: 'users',
-        element: <UserManagementPage />,
+        element: (
+          <RouteSuspense>
+            <UserManagementPage />
+          </RouteSuspense>
+        ),
       },
       {
         path: 'analytics',
-        element: <ContentAnalyticsPage />,
+        element: (
+          <RouteSuspense>
+            <ContentAnalyticsPage />
+          </RouteSuspense>
+        ),
       },
       {
         path: 'engagement',
-        element: <EngagementReportPage />,
+        element: (
+          <RouteSuspense>
+            <EngagementReportPage />
+          </RouteSuspense>
+        ),
       },
       {
         path: 'notifications/preferences',
-        element: <AdminNotificationPreferencesPage />,
+        element: (
+          <RouteSuspense>
+            <AdminNotificationPreferencesPage />
+          </RouteSuspense>
+        ),
       },
       {
         path: 'logs',
-        element: <AdminActionLogPage />,
+        element: (
+          <RouteSuspense>
+            <AdminActionLogPage />
+          </RouteSuspense>
+        ),
       },
     ],
   },

@@ -1,0 +1,1303 @@
+{
+  "metadata": {
+    "id": "workflows-phase2-core",
+    "slug": "workflows-phase2-core",
+    "title": "מדריך וורקפלואים - חלק 2א: Phase 2 Core (Spec + Arch)",
+    "description": "וורקפלואים למפרט ותכנון - PRD, tech-spec, architecture. איך להפוך בריף למסמכי דרישות מפורטים וארכיטקטורה מוגדרת.",
+    "category": "workflows",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 45,
+    "icon": "IconFileText",
+    "tags": ["וורקפלואים", "מפרט", "ארכיטקטורה", "תכנון", "PRD", "tech-spec"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "Phase 2: סקירה כללית",
+      "level": 2,
+      "anchor": "phase-overview"
+    },
+    {
+      "id": "toc-2",
+      "title": "prd - Product Requirements Document",
+      "level": 2,
+      "anchor": "prd"
+    },
+    {
+      "id": "toc-3",
+      "title": "tech-spec - Technical Specification",
+      "level": 2,
+      "anchor": "tech-spec"
+    },
+    {
+      "id": "toc-4",
+      "title": "architecture - ארכיטקטורה",
+      "level": 2,
+      "anchor": "architecture"
+    },
+    {
+      "id": "toc-5",
+      "title": "create-epics-and-stories - פירוק לסיפורים",
+      "level": 2,
+      "anchor": "create-epics-stories"
+    },
+    {
+      "id": "toc-6",
+      "title": "solutioning-gate-check - בדיקת מוכנות",
+      "level": 2,
+      "anchor": "solutioning-gate-check"
+    },
+    {
+      "id": "toc-7",
+      "title": "תהליך מלא מקצה לקצה",
+      "level": 2,
+      "anchor": "full-process"
+    },
+    {
+      "id": "toc-8",
+      "title": "שאלות נפוצות",
+      "level": 2,
+      "anchor": "faq"
+    },
+    {
+      "id": "toc-9",
+      "title": "סיכום ומעבר ל-Phase 3",
+      "level": 2,
+      "anchor": "summary"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מדריך וורקפלואים - חלק 2א: Phase 2 Core (Spec + Arch)",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "על מה המדריך הזה?",
+      "content": "במדריך זה נלמד על וורקפלואים של Phase 2 Core - איך לקחת Product Brief ולהפוך אותו למפרט טכני מפורט (PRD או Tech Spec), ארכיטקטורה מוגדרת, וסיפורי פיתוח מוכנים למימוש."
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "דרישות מוקדמות",
+      "content": "לפני שמתחילים את המדריך הזה, חובה לקרוא את חלק 1ב (Phase 0-1) ולהבין איך יוצרים Product Brief או Game Brief. בלי Brief, אי אפשר להתחיל את Phase 2."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Phase 2: סקירה כללית",
+      "id": "phase-overview"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה Phase 2?",
+      "id": "what-is-phase2"
+    },
+    {
+      "type": "text",
+      "content": "**Phase 2 (Solutioning)** הוא השלב שבו לוקחים רעיון ברור (Brief) והופכים אותו לתוכנית מימוש מפורטת. זה השלב הקריטי שבין \"אנחנו יודעים מה לבנות\" ל\"אנחנו מוכנים לבנות את זה\"."
+    },
+    {
+      "type": "text",
+      "content": "**במילים אחרות:** אם Phase 0-1 עונה על **\"מה ולמה\"**, אז Phase 2 עונה על **\"איך בדיוק\"**."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "למה Phase הזה כל כך חשוב?",
+      "id": "why-important"
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "טעות נפוצה מספר 1",
+      "content": "הרבה צוותים קופצים מ-Brief ישר לכתיבת קוד. \"יש לנו Brief, בואו נתחיל לפתח!\" התוצאה? מחצית הדרך מגלים שחסרים פרטים, יש סתירות, הארכיטקטורה לא מתאימה, והמפתחים מבלבלים."
+    },
+    {
+      "type": "text",
+      "content": "**למה לא לדלג:**"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**מונע בלבול** - כולם יודעים בדיוק מה לבנות ואיך",
+        "**חוסך זמן** - שבוע תכנון חוסך חודשים של refactoring",
+        "**מגלה בעיות מוקדם** - עדיף לגלות שמשהו לא אפשרי טכנית לפני שכתבתם 50% מהקוד",
+        "**מקל על אומדנים** - עם מפרט טוב אפשר להעריך כמה זמן ייקח",
+        "**מאפשר עבודה מקבילית** - צוות יכול להתחלק למשימות כשיש תוכנית ברורה",
+        "**בסיס לבדיקות** - ה-QA יודע מה לבדוק כשיש מפרט ברור"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הוורקפלואים של Phase 2 Core",
+      "id": "workflows-list"
+    },
+    {
+      "type": "text",
+      "content": "Phase 2 מתחלק לשני חלקים:"
+    },
+    {
+      "type": "tabs",
+      "tabs": [
+        {
+          "id": "core-workflows",
+          "label": "Core (חלק 2א - המדריך הזה)",
+          "content": [
+            {
+              "type": "text",
+              "content": "**prd** - מסמך דרישות מוצר מפורט\n\n**tech-spec** - מפרט טכני\n\n**architecture** - תכנון ארכיטקטורה\n\n**create-epics-and-stories** - פירוק לסיפורים\n\n**solutioning-gate-check** - בדיקת מוכנות",
+              "markdown": true
+            }
+          ]
+        },
+        {
+          "id": "design-workflows",
+          "label": "Design (חלק 2ב)",
+          "content": [
+            {
+              "type": "text",
+              "content": "**create-ux-design** - עיצוב חוויית משתמש\n\n**gdd** - Game Design Document\n\n**narrative** - סיפור וסיפורת (למשחקים)\n\nנכסה במדריך הבא!",
+              "markdown": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "headers": ["וורקפלו", "אגנט", "מתי להשתמש", "תפוקה", "זמן"],
+      "rows": [
+        ["prd", "PM", "פרויקט מוצר מורכב", "PRD מלא", "3-7 ימים"],
+        ["tech-spec", "PM/Architect", "פרויקט טכני/קטן יותר", "Tech Spec", "2-5 ימים"],
+        ["architecture", "Architect", "כל פרויקט", "Architecture Doc", "3-7 ימים"],
+        ["create-epics-stories", "PM", "אחרי PRD/Spec", "Epics + Stories", "2-5 ימים"],
+        ["solutioning-gate", "PM/Architect", "לפני פיתוח", "דוח מוכנות", "1 יום"]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "סדר מומלץ",
+      "content": "PRD/Tech-Spec → Architecture → Create-Epics-Stories → Solutioning-Gate-Check. אבל אפשר גם לעבוד במקביל (למשל, PRD ו-Architecture ביחד)."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מתי PRD ומתי Tech Spec?",
+      "id": "prd-vs-tech-spec"
+    },
+    {
+      "type": "text",
+      "content": "זו שאלה שמאוד הרבה אנשים שואלים. הנה הכלל הפשוט:"
+    },
+    {
+      "type": "table",
+      "headers": ["PRD", "Tech Spec"],
+      "rows": [
+        ["מוצר עם משתמשים", "פרויקט טכני פנימי"],
+        ["פיצ'רים רבים", "פיצ'רים מעטים"],
+        ["צוות גדול (5+)", "צוות קטן (1-4)"],
+        ["דגש על חוויית משתמש", "דגש על ביצועים/טכנולוגיה"],
+        ["App, Website, Game", "API, Library, Tool, Microservice"]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "טיפ מקצועי",
+      "content": "אם אתם לא בטוחים - תתחילו עם PRD. אפשר תמיד \"לקצר\" אותו אם מתברר שזה יותר מדי. קשה יותר להוסיף פרטים אחרי שהתחלתם לפתח."
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "גם וגם?",
+      "content": "בפרויקטים מורכבים, לפעמים עושים גם וגם: PRD למוצר + Tech Spec לחלקים הטכניים המורכבים (למשל, אלגוריתם AI או ארכיטקטורת Real-Time)."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "prd - Product Requirements Document",
+      "id": "prd"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה PRD?",
+      "id": "prd-what"
+    },
+    {
+      "type": "text",
+      "content": "**PRD (Product Requirements Document)** הוא המסמך המרכזי של המוצר שלכם. זה מסמך מפורט (10-30 עמודים) שמגדיר כל פיצ'ר, כל מסך, כל תרחיש שימוש - בדיוק איך המוצר אמור לעבוד מנקודת המבט של המשתמש."
+    },
+    {
+      "type": "text",
+      "content": "**PRD טוב עונה על השאלות:**"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "מה כל פיצ'ר עושה בדיוק?",
+        "איך משתמש מתקשר עם המוצר?",
+        "מה קורה בכל תרחיש?",
+        "מה הכללים העסקיים?",
+        "מה צריך להיות במסך X?",
+        "איך המערכת מגיבה למצב Y?",
+        "מה קורה כשמשהו משתבש?"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה בתוך PRD?",
+      "id": "prd-contents"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "prd-section1",
+          "title": "1. Overview (סקירה)",
+          "content": [
+            {
+              "type": "text",
+              "content": "**מה כלול:**\n- Vision & Goals\n- Product Brief (תקציר מה-Brief המקורי)\n- Scope (מה בתוך, מה בחוץ)\n- Success Metrics\n\n**למה זה חשוב:** מזכיר לכולם למה אנחנו פה ומה המטרה."
+            }
+          ]
+        },
+        {
+          "id": "prd-section2",
+          "title": "2. User Personas & Scenarios (משתמשים ותרחישים)",
+          "content": [
+            {
+              "type": "text",
+              "content": "**מה כלול:**\n- Personas - מי המשתמשים?\n- User Journeys - איך הם משתמשים במוצר?\n- Use Cases - תרחישי שימוש ספציפיים\n\n**דוגמה:**\n**Persona:** Sarah - מנהלת פרויקטים בסטארט-אפ, 32, משתמשת ב-Trello היום\n\n**Journey:** Sarah נכנסת לאפליקציה → רואה dashboard עם כל המשימות → לוחצת על משימה → רואה פרטים → מוסיפה תגובה → שומרת"
+            }
+          ]
+        },
+        {
+          "id": "prd-section3",
+          "title": "3. Features & Requirements (פיצ'רים ודרישות)",
+          "content": [
+            {
+              "type": "text",
+              "content": "**זה החלק הכי ארוך!**\n\nכל פיצ'ר כולל:\n- תיאור כללי\n- User Stories\n- Acceptance Criteria\n- UI/UX mockups (קישורים)\n- Business Rules\n- Edge Cases\n\n**דוגמה לפיצ'ר:**\n\n**Feature 1.2: Add Task**\n\n**Description:** משתמש יכול ליצור משימה חדשה\n\n**User Story:** בתור Sarah, אני רוצה ליצור משימה חדשה כדי לעקוב אחרי עבודה שצריך לעשות\n\n**Acceptance Criteria:**\n- כפתור \"+ New Task\" גלוי בכל מקום באפליקציה\n- לחיצה פותחת modal\n- חובה למלא: Title, Description\n- אופציונלי: Due Date, Assignee, Priority, Tags\n- לחיצה על Save יוצרת משימה ומציגה הודעה\n\n**Business Rules:**\n- Title: 3-200 תווים\n- Description: עד 5000 תווים\n- Due Date: לא יכול להיות בעבר\n- Priority: Low/Medium/High (ברירת מחדל: Medium)\n\n**Edge Cases:**\n- מה קורה אם הרשת נתקעת באמצע?\n- מה אם מילאו title אבל לא description?\n- מה אם יש 1000+ tasks כבר?"
+            }
+          ]
+        },
+        {
+          "id": "prd-section4",
+          "title": "4. Non-Functional Requirements (דרישות לא פונקציונליות)",
+          "content": [
+            {
+              "type": "text",
+              "content": "**מה כלול:**\n- Performance (כמה מהר?)\n- Security (כמה מאובטח?)\n- Scalability (כמה משתמשים?)\n- Availability (זמינות)\n- Accessibility (נגישות)\n\n**דוגמה:**\n- טעינת דף ראשי: < 2 שניות\n- תמיכה ב-1000 concurrent users\n- 99.9% uptime\n- תואם WCAG 2.1 AA\n- כל הנתונים מוצפנים ב-transit וב-rest"
+            }
+          ]
+        },
+        {
+          "id": "prd-section5",
+          "title": "5. Dependencies & Constraints (תלויות ומגבלות)",
+          "content": [
+            {
+              "type": "text",
+              "content": "**מה כלול:**\n- תלות בשירותים חיצוניים\n- מגבלות טכנולוגיות\n- מגבלות תקציב/זמן\n- השפעות על מערכות קיימות\n\n**דוגמה:**\n- תלות: Stripe API לתשלומים\n- מגבלה: חייבים לתמוך ב-IE11 (legacy customers)\n- מגבלה: תקציב cloud: $500/חודש\n- השפעה: אינטגרציה עם Jira הקיים"
+            }
+          ]
+        },
+        {
+          "id": "prd-section6",
+          "title": "6. Release Plan (תוכנית השקה)",
+          "content": [
+            {
+              "type": "text",
+              "content": "**מה כלול:**\n- MVP (מה בגרסה 1.0?)\n- Future Phases (מה ב-1.1, 2.0?)\n- Timeline\n- Risks & Mitigation\n\n**דוגמה:**\n\n**MVP (v1.0):** Task CRUD, Basic Board View, User Auth\n\n**v1.1:** Comments, Attachments\n\n**v2.0:** AI Suggestions, Advanced Reports\n\n**Timeline:** 4 חודשים ל-MVP"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מתי להשתמש ב-PRD?",
+      "id": "prd-when"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**יש Product Brief מוכן** - PRD בא אחרי Brief",
+        "**פרויקט מוצר משמעותי** - לא micro-project",
+        "**צוות של 3+ אנשים** - צריך תיאום",
+        "**פיצ'רים מרובים** - 5+ פיצ'רים עיקריים",
+        "**משתמשים חיצוניים** - לא רק כלי פנימי",
+        "**לפני ארכיטקטורה** - PRD עוזר לארכיטקט להבין דרישות"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך מריצים?",
+      "id": "prd-how"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# שלב 1: טעינת PM\n@pm hi\n\n# שלב 2: בחירת prd\n*prd\n\n# John (PM) ישאל שאלות ויוביל אתכם דרך תהליך כתיבת PRD",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה מפורטת - תהליך יצירת PRD",
+      "id": "prd-example"
+    },
+    {
+      "type": "text",
+      "content": "**תרחיש:** יצירת PRD ל-TaskMaster Pro (המשך לדוגמה מ-Phase 0-1)"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "prd-process-step1",
+          "title": "שלב 1: John קורא את ה-Brief",
+          "content": [
+            {
+              "type": "text",
+              "content": "**John אומר:**\n\"אני רואה שיש לכם Product Brief מוכן. בואו נתחיל מזה.\"\n\n**John קורא:**\n- Vision: Task management פשוט + חכם\n- Target: סטארט-אפים 3-10 עובדים\n- Key Features: Board View, AI Suggestions, Async Communication\n\n**John שואל:**\n\"נראה טוב! בואו נעמיק בכל פיצ'ר. נתחיל?\""
+            }
+          ]
+        },
+        {
+          "id": "prd-process-step2",
+          "title": "שלב 2: פירוט Personas ו-Journeys",
+          "content": [
+            {
+              "type": "text",
+              "content": "**John:**\n\"בואו נגדיר את ה-Personas. תארו לי משתמש טיפוסי אחד.\"\n\n**אתם:**\n\"Sarah, מנהלת פרויקטים בסטארט-אפ של 7 אנשים. היום משתמשת ב-Trello אבל זה לא מספיק.\"\n\n**John:**\n\"מצוין. עכשיו - תארו לי יום טיפוסי שלה. מה היא עושה?\"\n\n**אתם:**\n\"בוקר - נכנסת לאפליקציה, רואה מה קורה. בוחרת משימות להיום. במהלך היום מוסיפה עדכונים. סוף יום - בודקת שהכל מתקדם.\"\n\n**John מתעד:**\n✅ Persona: Sarah (PM, 32, סטארט-אפ)\n✅ Daily Journey: Morning Check → Task Selection → Updates → Evening Review"
+            }
+          ]
+        },
+        {
+          "id": "prd-process-step3",
+          "title": "שלב 3: פירוט Feature 1 - Dashboard",
+          "content": [
+            {
+              "type": "text",
+              "content": "**John:**\n\"בואו נפרט את הפיצ'ר הראשון - Dashboard. מה Sarah רואה כשהיא נכנסת?\"\n\n**דיון:**\n- Overview של כל המשימות\n- פילטר לפי: My Tasks / All Tasks / By Priority\n- Stats: Tasks Today, Overdue, Completed This Week\n- Quick Actions: Add Task, Start Timer\n\n**John מתעד:**\n\n**Feature 1.1: Dashboard Overview**\n\n**Description:** דף בית שמציג סטטוס כולל\n\n**User Story:** בתור Sarah, אני רוצה לראות במבט אחד מה צריך תשומת לב שלי\n\n**UI Elements:**\n- Header: Logo, User Menu, Notifications\n- Filters: Dropdown לבחירת תצוגה\n- Stats Cards: 3 כרטיסים עם מספרים\n- Task List: רשימת משימות ממוינת\n- FAB: כפתור + צף בפינה\n\n**Acceptance Criteria:**\n- טעינה תוך פחות משניה\n- ברירת מחדל: My Tasks\n- Stats מתעדכנים real-time\n- רשימה paginated (20 per page)"
+            }
+          ]
+        },
+        {
+          "id": "prd-process-step4",
+          "title": "שלב 4: פירוט Feature 2 - Add Task (מפורט)",
+          "content": [
+            {
+              "type": "text",
+              "content": "**John:**\n\"עכשיו בואו נפרט את Add Task. זה פיצ'ר מרכזי.\"\n\n**דיון מפורט:**\n\n**Form Fields:**\n1. Title (required, 3-200 chars)\n2. Description (optional, markdown, 5000 chars)\n3. Due Date (optional, date picker)\n4. Assignee (optional, dropdown מצוות)\n5. Priority (Low/Medium/High, default: Medium)\n6. Tags (optional, multi-select)\n7. Attachments (optional, drag & drop, max 10MB)\n\n**Validation:**\n- Title: לא ריק, לא רק רווחים\n- Due Date: לא בעבר\n- Attachments: png/jpg/pdf/doc/xls רק\n\n**Behavior:**\n- Save → סוגר modal, מציג toast \"Task created!\"\n- Cancel → prompt \"Discard changes?\" אם יש שינויים\n- Auto-save draft כל 30 שניות\n\n**Edge Cases:**\n- Network error → שומר local, sync כשחוזר\n- Duplicate title → warning אבל מאפשר\n- 1000+ tasks → search/filter חובה\n\n**John מתעד הכל מפורט ב-PRD**"
+            }
+          ]
+        },
+        {
+          "id": "prd-process-step5",
+          "title": "שלב 5: Non-Functional Requirements",
+          "content": [
+            {
+              "type": "text",
+              "content": "**John:**\n\"עכשיו בואו נדבר על דרישות טכניות. כמה מהיר צריך להיות?\"\n\n**דיון:**\n\n**Performance:**\n- Dashboard load: < 1.5s (3G)\n- Task action: < 500ms\n- Search: < 300ms\n\n**Scalability:**\n- Support 10,000 users\n- 100 concurrent users per team\n- 50,000 tasks per workspace\n\n**Security:**\n- HTTPS only\n- JWT auth\n- Data encryption at rest\n- GDPR compliant\n\n**Availability:**\n- 99.9% uptime\n- Graceful degradation (offline mode)\n\n**John מתעד:**\n✅ כל הדרישות מוגדרות בבירור"
+            }
+          ]
+        },
+        {
+          "id": "prd-process-step6",
+          "title": "שלב 6: סיכום והמשך",
+          "content": [
+            {
+              "type": "text",
+              "content": "**אחרי 3-7 ימים של עבודה עם John:**\n\n✅ **PRD מלא מוכן!**\n\n**תוכן:**\n- 25 עמודים\n- 12 פיצ'רים מפורטים\n- 40+ User Stories\n- UI mockups (קישורים לFigma)\n- כל ה-Edge Cases\n- Timeline: 4 חודשים\n\n**הקובץ:**\n`docs/specs/prd.md` - מוכן לשימוש!\n\n**John:**\n\"המסמך מוכן! עכשיו כדאי לתת אותו לארכיטקט ולהתחיל לתכנן את הארכיטקטורה.\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מה קיבלתם?",
+      "content": "PRD מקיף שכל מפתח יכול לקחת ולהתחיל לעבוד - הוא יודע בדיוק מה לבנות, איך זה אמור לעבוד, ומה הכללים."
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "טיפ חשוב",
+      "content": "PRD הוא מסמך חי! לאורך הפרויקט תגלו דברים שלא חשבתם עליהם - עדכנו את ה-PRD. מסמך מעודכן שווה זהב."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "tech-spec - Technical Specification",
+      "id": "tech-spec"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה Tech Spec?",
+      "id": "tech-spec-what"
+    },
+    {
+      "type": "text",
+      "content": "**Tech Spec (Technical Specification)** הוא המקבילה הטכנית ל-PRD. בעוד ש-PRD מתמקד במה המשתמש רואה ועושה, Tech Spec מתמקד באיך המערכת עובדת מאחורי הקלעים."
+    },
+    {
+      "type": "text",
+      "content": "**Tech Spec מתאים ל:**"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**API / Backend Services** - מערכת שמשתמשים לא רואים ישירות",
+        "**Libraries / SDKs** - כלים למפתחים אחרים",
+        "**Microservices** - שירותים פנימיים",
+        "**Tools / Scripts** - אוטומציה פנימית",
+        "**פרויקטים קטנים** - כש-PRD יהיה overkill",
+        "**פיצ'רים טכניים מורכבים** - בתוך פרויקט גדול יותר"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה בתוך Tech Spec?",
+      "id": "tech-spec-contents"
+    },
+    {
+      "type": "tabs",
+      "tabs": [
+        {
+          "id": "tech-spec-part1",
+          "label": "חלק 1: רקע",
+          "content": [
+            {
+              "type": "text",
+              "content": "**1. Problem Statement**\nמה הבעיה הטכנית?\n\n**2. Goals & Non-Goals**\nמה בסקופ, מה לא?\n\n**3. Context**\nמה קיים היום? איפה זה משתלב?\n\n**דוגמה:**\n\n**Problem:** API הקיים איטי מדי (3s response time), לא scale-able\n\n**Goals:**\n- Response time < 200ms\n- Support 10K requests/sec\n- RESTful + GraphQL\n\n**Non-Goals:**\n- לא real-time (WebSockets)\n- לא data migration מהמערכת הישנה"
+            }
+          ]
+        },
+        {
+          "id": "tech-spec-part2",
+          "label": "חלק 2: תכנון טכני",
+          "content": [
+            {
+              "type": "text",
+              "content": "**4. Architecture Overview**\nדיאגרמה של המערכת\n\n**5. Data Model**\nטבלאות, schemas, relationships\n\n**6. API Design**\nכל ה-endpoints, requests, responses\n\n**7. Technology Stack**\nאיזה טכנולוגיות משתמשים?\n\n**דוגמה:**\n\n**Stack:**\n- Backend: Node.js + Express\n- Database: PostgreSQL + Redis (cache)\n- Queue: RabbitMQ\n- Deploy: Docker + Kubernetes\n\n**API Endpoints:**\n```\nPOST /api/tasks - Create task\nGET /api/tasks/:id - Get task\nPUT /api/tasks/:id - Update task\nDELETE /api/tasks/:id - Delete task\nGET /api/tasks - List tasks (with filters)\n```"
+            }
+          ]
+        },
+        {
+          "id": "tech-spec-part3",
+          "label": "חלק 3: מימוש",
+          "content": [
+            {
+              "type": "text",
+              "content": "**8. Implementation Details**\nפרטי מימוש קריטיים\n\n**9. Error Handling**\nאיך מטפלים בשגיאות?\n\n**10. Testing Strategy**\nאיך בודקים?\n\n**11. Monitoring & Observability**\nאיך עוקבים?\n\n**דוגמה:**\n\n**Error Handling:**\n- 400: Bad Request (validation errors)\n- 401: Unauthorized\n- 404: Not Found\n- 500: Internal Server Error\n- כל שגיאה מחזירה: `{error: string, code: string, details?: object}`\n\n**Testing:**\n- Unit Tests: Jest (80% coverage)\n- Integration Tests: Supertest\n- E2E: Playwright\n- Load Tests: k6 (10K req/s)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך מריצים?",
+      "id": "tech-spec-how"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# אופציה 1: דרך PM (אם זה חלק ממוצר)\n@pm hi\n*tech-spec\n\n# אופציה 2: דרך Architect (פרויקטים טכניים)\n@architect hi\n*tech-spec",
+      "showLineNumbers": false
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאה",
+      "content": "Tech Spec מפורט (`docs/specs/tech-spec.md`) שמגדיר בדיוק איך לבנות את המערכת מבחינה טכנית."
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "Tech Spec vs Architecture",
+      "content": "Tech Spec = What + How (ברמת הקוד)\nArchitecture = High-Level Structure\n\nלפעמים עושים גם וגם, לפעמים רק Architecture מספיק."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "architecture - ארכיטקטורה",
+      "id": "architecture"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה Architecture?",
+      "id": "architecture-what"
+    },
+    {
+      "type": "text",
+      "content": "**Architecture** (ארכיטקטורה) היא התוכנית הכוללת של איך המערכת בנויה ברמה הגבוהה. זה כמו תוכנית של בניין - לא כל הפרטים הקטנים, אבל מספיק כדי להבין את המבנה הכללי."
+    },
+    {
+      "type": "text",
+      "content": "**Architecture Document עונה על:**"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "איזה רכיבים יש במערכת?",
+        "איך הם מדברים ביניהם?",
+        "איך הנתונים זורמים?",
+        "איזה טכנולוגיות משתמשים?",
+        "איך המערכת scale?",
+        "מה נקודות הכשל?",
+        "איך מפרסים לפרודקשן?"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מתי צריך Architecture?",
+      "id": "architecture-when"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תמיד!",
+      "content": "כל פרויקט צריך ארכיטקטורה - גם קטנים. ההבדל הוא רק בעומק. פרויקט קטן = ארכיטקטורה של עמוד אחד. פרויקט גדול = 20 עמודים עם דיאגרמות."
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**אחרי PRD/Tech-Spec** - יש הבנה של הדרישות",
+        "**לפני כתיבת קוד** - חשוב להבין את המבנה מראש",
+        "**בשינויים גדולים** - כשמוסיפים פיצ'ר שמשנה את הארכיטקטורה",
+        "**לפני בחירת טכנולוגיות** - ארכיטקטורה עוזרת להחליט"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה בתוך Architecture Document?",
+      "id": "architecture-contents"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "arch-section1",
+          "title": "1. High-Level Architecture",
+          "content": [
+            {
+              "type": "text",
+              "content": "**דיאגרמה של המערכת:**\n\n- Frontend (React)\n- Backend API (Node.js)\n- Database (PostgreSQL)\n- Cache (Redis)\n- Queue (RabbitMQ)\n- Storage (S3)\n\n**איך הם מדברים:**\n- Frontend ↔ Backend: HTTPS REST\n- Backend ↔ Database: SQL\n- Backend ↔ Cache: Redis protocol\n- Backend → Queue: AMQP\n- Backend → Storage: S3 API"
+            }
+          ]
+        },
+        {
+          "id": "arch-section2",
+          "title": "2. Component Design",
+          "content": [
+            {
+              "type": "text",
+              "content": "**פירוט כל רכיב:**\n\n**Frontend:**\n- Framework: React 18\n- State: Zustand\n- Routing: React Router\n- UI: Tailwind + shadcn/ui\n- Build: Vite\n\n**Backend:**\n- Framework: Express\n- Auth: Passport + JWT\n- Validation: Zod\n- ORM: Prisma\n\n**Database:**\n- Main: PostgreSQL 15\n- Tables: users, tasks, comments, tags\n- Indexes: optimized for common queries"
+            }
+          ]
+        },
+        {
+          "id": "arch-section3",
+          "title": "3. Data Flow",
+          "content": [
+            {
+              "type": "text",
+              "content": "**תרחיש: יצירת משימה**\n\n1. User clicks \"Add Task\" (Frontend)\n2. Frontend sends POST /api/tasks (HTTPS)\n3. Backend validates (Zod)\n4. Backend checks auth (JWT)\n5. Backend saves to DB (Prisma → PostgreSQL)\n6. Backend invalidates cache (Redis)\n7. Backend returns response\n8. Frontend updates UI\n\n**תרחיש: Task Reminder (Background)**\n\n1. Cron job runs every 5 minutes\n2. Checks tasks with due_date < 1 hour\n3. Publishes to queue (RabbitMQ)\n4. Worker picks up message\n5. Sends email/notification\n6. Marks as reminded"
+            }
+          ]
+        },
+        {
+          "id": "arch-section4",
+          "title": "4. Scalability & Performance",
+          "content": [
+            {
+              "type": "text",
+              "content": "**איך המערכת scale:**\n\n**Horizontal Scaling:**\n- Backend: כמה instances מאחורי Load Balancer\n- Workers: כמה workers לקריאה מה-queue\n\n**Caching Strategy:**\n- User data: 5 דקות\n- Task lists: 30 שניות\n- Static assets: CDN (CloudFlare)\n\n**Database Optimization:**\n- Read replicas לקריאות כבדות\n- Connection pooling (max 100)\n- Query optimization + indexes\n\n**Performance Targets:**\n- API: < 200ms (p95)\n- Page Load: < 2s (3G)\n- Database queries: < 50ms (p95)"
+            }
+          ]
+        },
+        {
+          "id": "arch-section5",
+          "title": "5. Security",
+          "content": [
+            {
+              "type": "text",
+              "content": "**אבטחה:**\n\n**Authentication:**\n- JWT tokens (15min access, 7d refresh)\n- HTTP-only cookies\n- CSRF protection\n\n**Authorization:**\n- Role-based (Admin/Member/Viewer)\n- Row-level security בDB\n\n**Data Protection:**\n- HTTPS everywhere (TLS 1.3)\n- Encryption at rest (AES-256)\n- Sensitive data hashed (bcrypt)\n\n**Infrastructure:**\n- Network isolation (VPC)\n- Firewall rules\n- Regular security updates"
+            }
+          ]
+        },
+        {
+          "id": "arch-section6",
+          "title": "6. Deployment & Operations",
+          "content": [
+            {
+              "type": "text",
+              "content": "**איך מפרסמים:**\n\n**CI/CD:**\n- GitHub Actions\n- Tests → Build → Deploy\n- Blue-Green deployment\n\n**Environments:**\n- Development (local)\n- Staging (staging.taskmaster.com)\n- Production (app.taskmaster.com)\n\n**Monitoring:**\n- Logs: CloudWatch\n- Metrics: Prometheus + Grafana\n- Errors: Sentry\n- Uptime: Pingdom\n\n**Backup:**\n- Database: daily snapshots (30d retention)\n- Files: S3 versioning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך מריצים?",
+      "id": "architecture-how"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# דרך Architect (מומלץ)\n@architect hi\n*architecture\n\n# Winston (Architect) יוביל אתכם דרך תהליך התכנון",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה מהירה - תהליך",
+      "id": "architecture-example"
+    },
+    {
+      "type": "text",
+      "content": "**Winston (Architect) עובד איתכם:**"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "**קורא את ה-PRD** - מבין את הדרישות",
+        "**שואל שאלות טכניות** - כמה users? כמה data? כמה traffic?",
+        "**מציע ארכיטקטורה** - \"אני ממליץ על...\"",
+        "**מסביר את הבחירות** - למה Node.js? למה PostgreSQL?",
+        "**מתאר את ה-tradeoffs** - \"אם נלך בכיוון הזה, היתרון הוא X אבל החיסרון הוא Y\"",
+        "**יוצר דיאגרמות** - Visual של המערכת",
+        "**שומר את המסמך** - `docs/architecture/architecture.md`"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מה קיבלתם?",
+      "content": "Architecture Document מקיף עם דיאגרמות, הסברים, ו-tradeoffs. כל מפתח יכול להבין איך המערכת בנויה ואיפה להתחיל."
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "ארכיטקטורה משתנה!",
+      "content": "ארכיטקטורה לא חרוטה באבן. לאורך הפרויקט תגלו דברים שלא ידעתם - עדכנו את המסמך! Architecture Drift (סטייה מהתוכנית) הוא נורמלי, אבל צריך לתעד."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "create-epics-and-stories - פירוק לסיפורים",
+      "id": "create-epics-stories"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה Epics ו-Stories?",
+      "id": "epics-stories-what"
+    },
+    {
+      "type": "text",
+      "content": "**Epic** הוא פיצ'ר גדול שמחולק ל-Stories קטנים יותר."
+    },
+    {
+      "type": "text",
+      "content": "**Story** הוא יחידת עבודה קטנה שמפתח יכול לממש בימים ספורים."
+    },
+    {
+      "type": "table",
+      "headers": ["Epic", "Story"],
+      "rows": [
+        ["גדול", "קטן"],
+        ["2-6 שבועות", "1-5 ימים"],
+        ["\"Task Management\"", "\"Create Task Form\""],
+        ["רמה גבוהה", "ספציפי מאוד"],
+        ["מכיל Stories", "לא מתחלק יותר"]
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה הוורקפלו עושה?",
+      "id": "epics-stories-workflow"
+    },
+    {
+      "type": "text",
+      "content": "**create-epics-and-stories** לוקח את ה-PRD או Tech Spec ופורק אותו ל-Epics ו-Stories מוכנים למימוש."
+    },
+    {
+      "type": "text",
+      "content": "**התהליך:**"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "קריאת ה-PRD/Tech-Spec",
+        "זיהוי פיצ'רים עיקריים → Epics",
+        "פירוק כל Epic ל-Stories",
+        "הגדרת dependencies (מה צריך לעשות קודם?)",
+        "תיעדוף (מה הכי חשוב?)",
+        "אומדן זמן (כמה ייקח כל Story?)",
+        "שמירת הכל בקבצים מובנים"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה - פירוק TaskMaster Pro",
+      "id": "epics-stories-example"
+    },
+    {
+      "type": "text",
+      "content": "בואו נראה איך John (PM) פורק את ה-PRD של TaskMaster Pro:"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "epic-1",
+          "title": "Epic 1: User Authentication",
+          "content": [
+            {
+              "type": "text",
+              "content": "**Epic 1: User Authentication**\n\n**Description:** משתמשים יכולים להירשם, להתחבר, ולנהל חשבון\n\n**Stories:**\n\n**1.1: User Registration**\n- Form: email, password, name\n- Validation: email format, password strength\n- Save to DB\n- Send verification email\n- **Estimate:** 3 days\n\n**1.2: Email Verification**\n- Click link → verify account\n- Token expiration (24h)\n- Resend option\n- **Estimate:** 2 days\n\n**1.3: User Login**\n- Form: email, password\n- JWT token generation\n- Remember me option\n- **Estimate:** 2 days\n\n**1.4: Password Reset**\n- Forgot password flow\n- Email with reset link\n- New password form\n- **Estimate:** 2 days\n\n**1.5: User Profile**\n- View profile\n- Edit name, email, avatar\n- Change password\n- **Estimate:** 3 days\n\n**סה\"כ Epic 1:** 12 ימים"
+            }
+          ]
+        },
+        {
+          "id": "epic-2",
+          "title": "Epic 2: Task Management",
+          "content": [
+            {
+              "type": "text",
+              "content": "**Epic 2: Task Management**\n\n**Description:** CRUD operations על משימות\n\n**Stories:**\n\n**2.1: Create Task**\n- Form with all fields\n- Validation\n- Save to DB\n- Show in list\n- **Estimate:** 3 days\n\n**2.2: View Task Details**\n- Task detail page\n- All info visible\n- Edit/Delete buttons\n- **Estimate:** 2 days\n\n**2.3: Edit Task**\n- Edit form (same as create)\n- Update DB\n- Optimistic updates\n- **Estimate:** 2 days\n\n**2.4: Delete Task**\n- Confirmation dialog\n- Soft delete (keep in DB)\n- Remove from UI\n- **Estimate:** 1 day\n\n**2.5: Task List View**\n- Paginated list\n- Sorting options\n- Filter by status/priority\n- **Estimate:** 3 days\n\n**2.6: Task Search**\n- Search bar\n- Full-text search\n- Results highlighting\n- **Estimate:** 3 days\n\n**סה\"כ Epic 2:** 14 ימים"
+            }
+          ]
+        },
+        {
+          "id": "epic-3",
+          "title": "Epic 3: Board View",
+          "content": [
+            {
+              "type": "text",
+              "content": "**Epic 3: Board View (Kanban)**\n\n**Description:** תצוגת לוח כמו Trello\n\n**Stories:**\n\n**3.1: Board Layout**\n- 3 columns: To Do, In Progress, Done\n- Drag & drop infrastructure\n- Responsive design\n- **Estimate:** 4 days\n\n**3.2: Drag & Drop Tasks**\n- DnD library (react-beautiful-dnd)\n- Move between columns\n- Update status in DB\n- **Estimate:** 3 days\n\n**3.3: Add Task from Board**\n- Quick add (just title)\n- Opens in column\n- Saves with status\n- **Estimate:** 2 days\n\n**3.4: Board Filters**\n- Filter by assignee/tags\n- Show/hide completed\n- Clear filters\n- **Estimate:** 2 days\n\n**סה\"כ Epic 3:** 11 ימים"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "סה\"כ",
+      "content": "3 Epics = 37 ימי פיתוח = ~7-8 שבועות (עם צוות של 2 מפתחים)"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך מריצים?",
+      "id": "epics-stories-how"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# דרך PM\n@pm hi\n*create-epics-and-stories\n\n# John יקרא את ה-PRD ויתחיל לפרק",
+      "showLineNumbers": false
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאה",
+      "content": "קבצי Epics ו-Stories מובנים (`docs/epics/`) שכל Story מוכן למימוש - יש לו תיאור, acceptance criteria, ואומדן זמן."
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "Story טוב",
+      "content": "Story טוב הוא: Independent (עצמאי), Negotiable (ניתן להתאמה), Valuable (בעל ערך), Estimable (ניתן לאומדן), Small (קטן), Testable (ניתן לבדיקה) - INVEST!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "solutioning-gate-check - בדיקת מוכנות לפיתוח",
+      "id": "solutioning-gate-check"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה Solutioning Gate Check?",
+      "id": "gate-check-what"
+    },
+    {
+      "type": "text",
+      "content": "**Solutioning Gate Check** הוא \"בדיקת איכות\" לפני שמתחילים לפתח. זו נקודת עצירה שבה אנחנו שואלים: \"האם באמת מוכנים להתחיל לכתוב קוד?\""
+    },
+    {
+      "type": "text",
+      "content": "**המטרה:** למנוע מצב שבו מתחילים לפתח ואז מגלים שחסרים פרטים, יש סתירות, או שמשהו לא אפשרי."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה הוורקפלו בודק?",
+      "id": "gate-check-checks"
+    },
+    {
+      "type": "tabs",
+      "tabs": [
+        {
+          "id": "gate-check-docs",
+          "label": "תיעוד",
+          "content": [
+            {
+              "type": "text",
+              "content": "**בדיקות תיעוד:**\n\n✅ יש Product Brief?\n✅ יש PRD או Tech-Spec?\n✅ יש Architecture Document?\n✅ יש Epics ו-Stories?\n\n❌ חסר משהו → צריך להשלים לפני המשך"
+            }
+          ]
+        },
+        {
+          "id": "gate-check-completeness",
+          "label": "שלמות",
+          "content": [
+            {
+              "type": "text",
+              "content": "**בדיקות שלמות:**\n\n✅ כל הפיצ'רים מה-Brief מופיעים ב-PRD?\n✅ כל הדרישות ב-PRD מכוסות ב-Stories?\n✅ כל ה-Stories יש להם acceptance criteria?\n✅ כל הטכנולוגיות מוגדרות?\n\n❌ יש פערים → צריך למלא"
+            }
+          ]
+        },
+        {
+          "id": "gate-check-feasibility",
+          "label": "אפשרות מימוש",
+          "content": [
+            {
+              "type": "text",
+              "content": "**בדיקות אפשרות:**\n\n✅ האם הארכיטקטורה מתאימה לדרישות?\n✅ האם הטכנולוגיות שנבחרו זמינות?\n✅ האם לצוות יש את הידע?\n✅ האם יש תלויות חיצוניות?\n✅ האם האומדנים ריאליים?\n\n❌ יש בעיה → צריך לתקן או לשנות תוכנית"
+            }
+          ]
+        },
+        {
+          "id": "gate-check-risks",
+          "label": "סיכונים",
+          "content": [
+            {
+              "type": "text",
+              "content": "**זיהוי סיכונים:**\n\n⚠️ מה יכול להשתבש?\n⚠️ מה אנחנו מניחים?\n⚠️ איפה יכול להיות bottleneck?\n⚠️ מה לא ברור?\n\n→ לכל סיכון צריך Mitigation Plan"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך מריצים?",
+      "id": "gate-check-how"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# דרך PM או Architect\n@pm hi\n*solutioning-gate-check\n\n# או\n@architect hi\n*solutioning-gate-check",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה - Gate Check Report",
+      "id": "gate-check-example"
+    },
+    {
+      "type": "card",
+      "title": "Solutioning Gate Check Report - TaskMaster Pro",
+      "description": "תאריך: 2024-01-20 | מבצע: John (PM) + Winston (Architect)",
+      "icon": "IconChecklist"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "gate-check-result",
+          "title": "תוצאות הבדיקה",
+          "content": [
+            {
+              "type": "text",
+              "content": "**✅ Pass - Documentation**\n- Product Brief: ✅\n- PRD: ✅ (25 pages, 12 features)\n- Architecture: ✅ (with diagrams)\n- Epics & Stories: ✅ (3 epics, 15 stories)\n\n**✅ Pass - Completeness**\n- All Brief features → PRD: ✅\n- All PRD requirements → Stories: ✅\n- All stories have AC: ✅\n- All tech choices documented: ✅\n\n**⚠️ Partial - Feasibility**\n- Architecture matches requirements: ✅\n- Technologies available: ✅\n- Team has skills: ⚠️ (צריך training ב-Redis)\n- External dependencies: ✅ (Stripe API documented)\n- Time estimates: ⚠️ (נראה אופטימי - +20% buffer מומלץ)\n\n**⚠️ Concerns - Risks**\n- **Risk 1:** צוות לא מכיר Redis\n  - **Mitigation:** 2 ימי training לפני Sprint 1\n- **Risk 2:** Stripe API limits (100 req/min)\n  - **Mitigation:** implement rate limiting + queue\n- **Risk 3:** אומדנים אופטימיים\n  - **Mitigation:** הוסף 20% buffer, plan for 10 weeks instead of 8\n\n**📊 Overall: CONDITIONAL PASS**\n\n**המלצות:**\n1. תן 2 ימים לtraining ב-Redis\n2. עדכן timeline: 8 weeks → 10 weeks\n3. תוסיף Story לrate limiting\n4. אחרי זה - ✅ **GO FOR DEVELOPMENT!**"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "אחרי Gate Check מוצלח",
+      "content": "אתם מוכנים לעבור ל-Phase 3 (Planning & Execution)! תתחילו עם sprint-planning ואז dev-story."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תהליך מלא: מ-Brief ל-Stories",
+      "id": "full-process"
+    },
+    {
+      "type": "text",
+      "content": "עכשיו שהכרנו את כל הוורקפלואים, בואו נראה איך הם עובדים ביחד בתהליך מלא מקצה לקצה:"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "טיימליין של 3 שבועות",
+      "id": "three-week-timeline"
+    },
+    {
+      "type": "tabs",
+      "tabs": [
+        {
+          "id": "week1-timeline",
+          "label": "שבוע 1: PRD + Architecture",
+          "content": [
+            {
+              "type": "text",
+              "content": "**ימים 1-3: יצירת PRD**\n\n1. `@pm hi` → `*prd`\n2. John קורא את ה-Brief\n3. שואל שאלות מפרטות\n4. מפרט כל פיצ'ר\n5. יוצר PRD מלא (25 עמודים)\n\n**תוצאה:** `docs/specs/prd.md`\n\n---\n\n**ימים 4-7: תכנון ארכיטקטורה**\n\n1. `@architect hi` → `*architecture`\n2. Winston קורא את ה-PRD\n3. שואל שאלות טכניות\n4. מציע ארכיטקטורה\n5. יוצר Architecture Doc\n\n**תוצאה:** `docs/architecture/architecture.md`\n\n---\n\n**סוף שבוע 1:**\n✅ PRD מלא\n✅ Architecture מוגדרת\n✅ מוכנים לפרק ל-Stories"
+            }
+          ]
+        },
+        {
+          "id": "week2-timeline",
+          "label": "שבוע 2: Epics + Stories",
+          "content": [
+            {
+              "type": "text",
+              "content": "**ימים 8-10: פירוק ל-Epics ו-Stories**\n\n1. `@pm hi` → `*create-epics-and-stories`\n2. John פורק את ה-PRD\n3. מזהה 3-5 Epics\n4. מפרק כל Epic ל-Stories\n5. מוסיף acceptance criteria\n6. מעריך זמן לכל Story\n\n**תוצאה:** `docs/epics/` עם כל הקבצים\n\n---\n\n**ימים 11-12: תיעדוף ו-dependencies**\n\nJohn עובד על:\n- סדר מימוש (מה קודם?)\n- dependencies (Story 2.3 צריך 2.1)\n- תיעדוף (High/Medium/Low)\n\n**תוצאה:** תוכנית מימוש ברורה\n\n---\n\n**סוף שבוע 2:**\n✅ 3 Epics עם 15 Stories\n✅ כל Story מוגדר ומוערך\n✅ סדר מימוש ברור"
+            }
+          ]
+        },
+        {
+          "id": "week3-timeline",
+          "label": "שבוע 3: Gate Check + הכנה",
+          "content": [
+            {
+              "type": "text",
+              "content": "**ימים 13-14: Solutioning Gate Check**\n\n1. `@pm hi` → `*solutioning-gate-check`\n2. בדיקת תיעוד\n3. בדיקת שלמות\n4. זיהוי סיכונים\n5. דוח מוכנות\n\n**תוצאה:** Gate Check Report\n\n---\n\n**יום 15: תיקון ממצאים**\n\nאם Gate Check מצא בעיות:\n- תיקון פערים\n- השלמת חסר\n- עדכון אומדנים\n\n---\n\n**סוף שבוע 3:**\n✅ Gate Check עבר!\n✅ כל הממצאים תוקנו\n✅ מוכנים להתחיל Phase 3 (Sprint Planning)\n\n**הצעד הבא:**\n`@sm hi` → `*sprint-planning`"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "סה\"כ: 3 שבועות מ-Brief ל-Ready for Dev",
+      "content": "זמן השקעה שחוסך חודשים של בלבול, רפקטורינג ותיקוני כיוון בהמשך!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחישים שונים",
+      "id": "different-scenarios"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "scenario-small-project",
+          "title": "תרחיש 1: פרויקט קטן",
+          "content": [
+            {
+              "type": "text",
+              "content": "**פרויקט:** API פשוט עם 5 endpoints\n\n**תהליך מקוצר:**\n\n**שבוע 1:**\n- Tech-Spec במקום PRD (2 ימים)\n- Architecture מינימלי (1 יום)\n- פירוק ל-5 Stories (1 יום)\n- Gate Check מהיר (חצי יום)\n\n**סה\"כ:** 4-5 ימים ומוכנים לפיתוח\n\n**מה דילגנו:**\n- PRD מפורט (Tech-Spec מספיק)\n- UX Design (אין UI)\n- תהליך Brainstorming ארוך"
+            }
+          ]
+        },
+        {
+          "id": "scenario-large-project",
+          "title": "תרחיש 2: פרויקט גדול",
+          "content": [
+            {
+              "type": "text",
+              "content": "**פרויקט:** פלטפורמה מורכבת עם 20+ פיצ'רים\n\n**תהליך מורחב:**\n\n**שבוע 1-2: PRD**\n- PRD מפורט (50 עמודים)\n- הרבה User Stories\n- Wireframes/Mockups\n\n**שבוע 3: Architecture**\n- Architecture מקיפה\n- בחירת טכנולוגיות מורכבת\n- Proof of Concepts (POCs)\n\n**שבוע 4: UX Design**\n- `*create-ux-design` (חלק 2ב)\n- כל המסכים\n- Design System\n\n**שבוע 5: Epics + Stories**\n- 10+ Epics\n- 50+ Stories\n- תיעדוף מורכב\n\n**שבוע 6: Gate Check + תיקונים**\n- Gate Check מקיף\n- תיקון ממצאים\n- אישורים\n\n**סה\"כ:** 6 שבועות - אבל פרויקט של שנה!"
+            }
+          ]
+        },
+        {
+          "id": "scenario-existing-system",
+          "title": "תרחיש 3: פיצ'ר חדש למערכת קיימת",
+          "content": [
+            {
+              "type": "text",
+              "content": "**תרחיש:** מוסיפים \"Comments\" ל-TaskMaster Pro קיים\n\n**תהליך:**\n\n**יום 1: Tech-Spec לפיצ'ר**\n- `@pm hi` → `*tech-spec`\n- Tech-Spec רק לComments\n- איך משתלב במערכת קיימת\n\n**יום 2: Architecture Update**\n- `@architect hi` → `*architecture`\n- עדכון ה-Architecture הקיים\n- הוספת Comments component\n- שינויים ב-Database schema\n\n**יום 3: Stories**\n- `@pm hi` → `*create-epics-and-stories`\n- Epic אחד: Comments\n- 5 Stories\n\n**יום 4: Gate Check**\n- בדיקה מהירה\n- מוכנים לפיתוח\n\n**סה\"כ:** 4 ימים\n\n**למה מהר יותר?**\n- רוב המערכת כבר קיימת\n- ארכיטקטורה מוגדרת\n- הצוות מכיר את הקוד"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שאלות נפוצות (FAQ)",
+      "id": "faq"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "faq-1",
+          "title": "האם חובה לעשות גם PRD וגם Tech-Spec?",
+          "content": [
+            {
+              "type": "text",
+              "content": "לא! בדרך כלל עושים אחד או השני, תלוי בסוג הפרויקט:\n\n**PRD:** מוצרים עם משתמשים (apps, websites)\n**Tech-Spec:** פרויקטים טכניים (APIs, libraries, tools)\n\n**גם וגם:** רק בפרויקטים מורכבים מאוד - למשל, PRD למוצר + Tech-Spec למנוע AI מורכב שבתוכו.\n\nברוב המקרים - בחרו אחד!"
+            }
+          ]
+        },
+        {
+          "id": "faq-2",
+          "title": "כמה זמן לוקח Phase 2 בסה\"כ?",
+          "content": [
+            {
+              "type": "text",
+              "content": "תלוי בגודל הפרויקט:\n\n**פרויקט קטן:** 1 שבוע\n- Tech-Spec: 2 ימים\n- Architecture: 1 יום\n- Stories: 1 יום\n- Gate Check: חצי יום\n\n**פרויקט בינוני:** 2-3 שבועות\n- PRD: 1 שבוע\n- Architecture: 3-5 ימים\n- Stories: 3-5 ימים\n- Gate Check: 1-2 ימים\n\n**פרויקט גדול:** 4-6 שבועות\n- כולל: PRD מקיף, UX Design, POCs, תיעדוף מורכב\n\nכלל אצבע: ~10% מזמן הפרויקט הכולל"
+            }
+          ]
+        },
+        {
+          "id": "faq-3",
+          "title": "מה אם מוצאים טעות ב-PRD אחרי שהתחלנו לפתח?",
+          "content": [
+            {
+              "type": "text",
+              "content": "זה נורמלי לחלוטין! PRD לא מושלם מהפעם הראשונה.\n\n**מה לעשות:**\n1. עצרו ועדכנו את ה-PRD\n2. בדקו אם זה משפיע על Stories קיימים\n3. עדכנו Stories אם צריך\n4. המשיכו\n\n**חשוב:** PRD הוא מסמך חי - עדכנו אותו לאורך כל הפרויקט. מסמך מעודכן שווה זהב!\n\n**טיפ:** יש Sprint Review? זה הזמן המושלם לעדכן את ה-PRD בהתבסס על מה שלמדתם."
+            }
+          ]
+        },
+        {
+          "id": "faq-4",
+          "title": "האם אפשר לעשות PRD ו-Architecture במקביל?",
+          "content": [
+            {
+              "type": "text",
+              "content": "כן, אבל זהירות!\n\n**יתרון:** חוסך זמן\n\n**חיסרון:** ייתכן שהארכיטקטורה תצטרך להשתנות אם ה-PRD משתנה\n\n**מתי זה עובד:**\n- כשה-Brief ממש ברור\n- כשיש הבנה טובה של הדרישות\n- כשהצוות גדול מספיק (PM + Architect עובדים בנפרד)\n\n**מתי לא מומלץ:**\n- הדרישות לא ברורות\n- פרויקט חדשני/ניסיוני\n- צוות קטן (אותו אדם עושה הכל)\n\nכלל אצבע: אם יש ספק - עשו בסדר (PRD → Architecture)"
+            }
+          ]
+        },
+        {
+          "id": "faq-5",
+          "title": "מה אם Gate Check נכשל? מה אז?",
+          "content": [
+            {
+              "type": "text",
+              "content": "Gate Check נכשל = יש בעיה שצריך לתקן לפני שממשיכים.\n\n**תהליך:**\n\n1. **קראו את הדוח** - מה הבעיות?\n\n2. **תעדפו** - מה קריטי, מה ניתן לדחות?\n\n3. **תקנו:**\n   - חסרים פרטים ב-PRD? השלימו\n   - ארכיטקטורה לא מתאימה? תקנו\n   - אומדנים לא ריאליים? עדכנו\n\n4. **הריצו Gate Check שוב** - וודאו שהבעיות נפתרו\n\n5. **אם עבר - GO!**\n\n**חשוב:** Gate Check שנכשל זה טוב! עדיף לגלות בעיות עכשיו מאשר אחרי 3 חודשי פיתוח."
+            }
+          ]
+        },
+        {
+          "id": "faq-6",
+          "title": "איך מנהלים שינויים ב-PRD לאורך הפרויקט?",
+          "content": [
+            {
+              "type": "text",
+              "content": "**Best Practice לניהול שינויים:**\n\n1. **Version Control** - שמרו את ה-PRD ב-Git\n   - כל שינוי = commit\n   - Commit message מתאר מה השתנה\n\n2. **Change Log בסוף המסמך**\n   - תאריך | מה השתנה | למה | מי החליט\n\n3. **הודעה לצוות**\n   - שינוי משמעותי? הודיעו לכולם\n   - הסבירו את ההשלכות\n\n4. **עדכון Stories**\n   - אם PRD השתנה, בדקו אם Stories צריכים עדכון\n\n5. **Re-run Gate Check (אופציונלי)**\n   - שינוי גדול? תריצו Gate Check שוב\n\n**דוגמה לChange Log:**\n\n```\n## Change Log\n\n### 2024-02-15 - Added Real-Time Notifications\nAdded Feature 4.5: Real-time push notifications\nReason: Customer feedback - users want instant updates\nDecision: John (PM) + Team vote\nImpact: +2 weeks to timeline, requires WebSocket\n```"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "סיכום ומעבר ל-Phase 3",
+      "id": "summary"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה למדנו במדריך הזה?",
+      "id": "what-learned"
+    },
+    {
+      "type": "text",
+      "content": "במדריך זה כיסינו את **Phase 2 Core** - איך לקחת Brief ולהפוך אותו למפרט, ארכיטקטורה, ו-Stories מוכנים למימוש:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**prd** - יצירת Product Requirements Document מקיף עם כל הפיצ'רים מפורטים",
+        "**tech-spec** - יצירת Technical Specification למערכות טכניות",
+        "**architecture** - תכנון ארכיטקטורה ברמה גבוהה עם בחירת טכנולוגיות",
+        "**create-epics-and-stories** - פירוק PRD/Tech-Spec ל-Epics ו-Stories מוכנים למימוש",
+        "**solutioning-gate-check** - בדיקת מוכנות לפני תחילת הפיתוח"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "התפוקות של Phase 2",
+      "id": "deliverables"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "items": [
+        {
+          "type": "card",
+          "title": "PRD או Tech-Spec",
+          "description": "מסמך מפורט עם כל הדרישות, פיצ'רים, ו-acceptance criteria",
+          "icon": "IconFileText"
+        },
+        {
+          "type": "card",
+          "title": "Architecture Document",
+          "description": "תוכנית ארכיטקטונית עם דיאגרמות, טכנולוגיות, ו-tradeoffs",
+          "icon": "IconBuilding"
+        },
+        {
+          "type": "card",
+          "title": "Epics & Stories",
+          "description": "פירוק מלא למשימות מוכנות למימוש עם אומדני זמן",
+          "icon": "IconListCheck"
+        },
+        {
+          "type": "card",
+          "title": "Gate Check Report",
+          "description": "אישור מוכנות עם זיהוי סיכונים וממצאים",
+          "icon": "IconChecklist"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "כל הכבוד - Phase 2 Core הושלם!",
+      "content": "אתם מוכנים לעבור ל-Phase 3 (Planning & Execution)! הצוות שלכם יכול להתחיל לתכנן ספרינטים ולממש את הסיפורים."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "המדריכים הבאים בסדרה",
+      "id": "next-guides"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "items": [
+        {
+          "type": "card",
+          "title": "חלק 2ב: Phase 2 Design",
+          "description": "create-ux-design, gdd, narrative - עיצוב חוויית משתמש ותכנון משחקים",
+          "icon": "IconPalette"
+        },
+        {
+          "type": "card",
+          "title": "חלק 3א: Solutioning",
+          "description": "story-context, story-ready, sprint-planning - הכנת Stories למימוש",
+          "icon": "IconClipboardCheck"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה עושים עכשיו?",
+      "id": "what-now"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        "**נסו את הוורקפלואים** - קחו פרויקט אמיתי או דמה ועברו את התהליך המלא",
+        "**תרגלו PRD** - כתבו PRD לפיצ'ר אחד מהמוצר שלכם",
+        "**בנו ארכיטקטורה** - תכננו ארכיטקטורה למערכת קטנה",
+        "**פרקו ל-Stories** - קחו PRD קיים ופרקו אותו ל-Epics + Stories",
+        "**קראו את המדריך הבא** - Phase 2 Design (UX + GDD) או Phase 3 Solutioning"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "טיפ אחרון",
+      "content": "הזמן שמשקיעים ב-Phase 2 הוא ההשקעה הטובה ביותר שאתם יכולים לעשות. שבוע תכנון חוסך חודשים של refactoring, debugging, ותיקוני כיוון!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מדריך Phase 2 Core הושלם!",
+      "content": "אתם עכשיו יודעים איך לקחת Brief ולהפוך אותו למפרט מפורט, ארכיטקטורה מוגדרת, ו-Stories מוכנים למימוש. המשיכו למדריך הבא כדי ללמוד על עיצוב UX או על תכנון ספרינטים!"
+    }
+  ],
+  "relatedGuides": [
+    "workflows-phase0-1",
+    "workflows-phase2-design",
+    "workflows-solutioning",
+    "agents-intro-pm-analyst",
+    "agents-architect-sm-dev"
+  ],
+  "prerequisites": [
+    "workflows-intro-critical",
+    "workflows-phase0-1"
+  ],
+  "nextSteps": [
+    "workflows-phase2-design",
+    "workflows-solutioning"
+  ]
+}
+

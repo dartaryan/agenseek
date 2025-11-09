@@ -9,8 +9,11 @@
  * - Progress indicator (when started)
  * - Action button (Start/Continue)
  * - Hover animations with emerald glow
+ *
+ * Story 10.4: Optimized with React.memo to prevent unnecessary re-renders in lists
  */
 
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import * as TablerIcons from '@tabler/icons-react';
@@ -104,8 +107,9 @@ function getIconComponent(
 
 /**
  * GuideCard Component
+ * Memoized to prevent unnecessary re-renders when rendering large lists
  */
-export function GuideCard({
+export const GuideCard = React.memo(function GuideCard({
   guide,
   progressPercent = 0,
   isStarted = false,
@@ -331,4 +335,4 @@ export function GuideCard({
       </Link>
     </motion.div>
   );
-}
+});

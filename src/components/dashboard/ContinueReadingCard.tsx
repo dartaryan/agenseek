@@ -1,6 +1,6 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import * as TablerIcons from '@tabler/icons-react';
-import { IconBook, IconClock, IconArrowRight } from '@tabler/icons-react';
 import { Card } from '../ui/card';
 import { Button } from '../ui/button';
 import { hebrewLocale } from '../../lib/locale/he';
@@ -11,6 +11,7 @@ import type { GuideCatalogEntry } from '../../types/guide-catalog';
  * Shows last 3 in-progress guides with progress bars and last section
  * Story 5.1 - Dashboard Home Page
  * Story 5.4 - Build Continue Reading Section (Enhanced)
+ * Story 10.4 - Optimized with React.memo to prevent unnecessary re-renders
  */
 
 interface InProgressGuide extends GuideCatalogEntry {
@@ -74,7 +75,7 @@ function formatSectionName(headingId: string | null): string {
     .join(' ');
 }
 
-function InProgressGuideItem({ guide }: { guide: InProgressGuide }) {
+const InProgressGuideItem = React.memo(function InProgressGuideItem({ guide }: { guide: InProgressGuide }) {
   const IconComponent = getIconComponent(guide.icon);
 
   return (
@@ -96,7 +97,7 @@ function InProgressGuideItem({ guide }: { guide: InProgressGuide }) {
           <div className="flex flex-col gap-1 mt-1 text-xs text-gray-600 dark:text-gray-400">
             <div className="flex items-center gap-3">
               <span className="flex items-center gap-1">
-                <IconClock className="w-3 h-3" stroke={1.5} />
+                <TablerIcons.IconClock className="w-3 h-3" stroke={1.5} />
                 {guide.estimatedMinutes} {hebrewLocale.dashboard.minutes}
               </span>
               <span>•</span>
@@ -126,16 +127,16 @@ function InProgressGuideItem({ guide }: { guide: InProgressGuide }) {
         </div>
 
         {/* Arrow Icon */}
-        <IconArrowRight
+        <TablerIcons.IconArrowRight
           className="w-5 h-5 text-gray-400 group-hover:text-emerald-500 transition-colors flex-shrink-0"
           stroke={1.5}
         />
       </div>
     </Link>
   );
-}
+});
 
-export function ContinueReadingCard({ inProgressGuides }: ContinueReadingCardProps) {
+export const ContinueReadingCard = React.memo(function ContinueReadingCard({ inProgressGuides }: ContinueReadingCardProps) {
   const hasGuides = inProgressGuides.length > 0;
 
   return (
@@ -163,7 +164,7 @@ export function ContinueReadingCard({ inProgressGuides }: ContinueReadingCardPro
         ) : (
           <div className="flex flex-col items-center justify-center py-8 text-center">
             <div className="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-3">
-              <IconBook className="w-8 h-8 text-gray-400" stroke={1.5} />
+              <TablerIcons.IconBook className="w-8 h-8 text-gray-400" stroke={1.5} />
             </div>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
               {hebrewLocale.dashboard.noInProgressGuides}
@@ -179,12 +180,12 @@ export function ContinueReadingCard({ inProgressGuides }: ContinueReadingCardPro
           <Button variant="outline" className="w-full" asChild>
             <Link to="/guides" className="flex items-center justify-center gap-2">
               {hebrewLocale.dashboard.browseGuides}
-              <IconArrowRight className="w-4 h-4" stroke={1.5} />
+              <TablerIcons.IconArrowRight className="w-4 h-4" stroke={1.5} />
             </Link>
           </Button>
         )}
       </div>
     </Card>
   );
-}
+});
 

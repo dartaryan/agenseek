@@ -1,0 +1,871 @@
+{
+  "metadata": {
+    "id": "workflows-phase2-design",
+    "slug": "workflows-phase2-design",
+    "title": "מדריך וורקפלואים - חלק 2ב: Phase 2 Design (UX + GDD)",
+    "description": "וורקפלואים לעיצוב - create-ux-design, gdd, narrative. מחקר משתמשים, עיצוב ממשקים, ותכנון חווית משתמש מקצועית.",
+    "category": "workflows",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 40,
+    "icon": "IconPalette",
+    "tags": ["וורקפלואים", "עיצוב", "UX", "GDD", "משחקים", "narrative"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "Phase 2 Design: סקירה כללית",
+      "level": 2,
+      "anchor": "phase-design-overview"
+    },
+    {
+      "id": "toc-2",
+      "title": "create-ux-design - עיצוב חוויית משתמש",
+      "level": 2,
+      "anchor": "create-ux-design"
+    },
+    {
+      "id": "toc-3",
+      "title": "gdd - Game Design Document",
+      "level": 2,
+      "anchor": "gdd"
+    },
+    {
+      "id": "toc-4",
+      "title": "narrative - סיפור וסיפורת",
+      "level": 2,
+      "anchor": "narrative"
+    },
+    {
+      "id": "toc-5",
+      "title": "שילוב עם Spec + Arch",
+      "level": 2,
+      "anchor": "integration"
+    },
+    {
+      "id": "toc-6",
+      "title": "תהליך מלא מקצה לקצה",
+      "level": 2,
+      "anchor": "full-process"
+    },
+    {
+      "id": "toc-7",
+      "title": "שאלות נפוצות",
+      "level": 2,
+      "anchor": "faq"
+    },
+    {
+      "id": "toc-8",
+      "title": "סיכום ומעבר הלאה",
+      "level": 2,
+      "anchor": "summary"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מדריך וורקפלואים - חלק 2ב: Phase 2 Design (UX + GDD)",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "על מה המדריך הזה?",
+      "content": "במדריך זה נלמד על וורקפלואים של Phase 2 Design - איך ליצור עיצוב UX מקצועי למוצרים, GDD (Game Design Document) למשחקים, ו-Narrative לסיפורים. זה ההשלמה המושלמת ל-Phase 2 Core!"
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "דרישות מוקדמות",
+      "content": "לפני שמתחילים את המדריך הזה, חובה לקרוא את חלק 2א (Phase 2 Core) ולהבין את PRD, Tech-Spec, ו-Architecture. בלי מפרט, אי אפשר לעצב!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Phase 2 Design: סקירה כללית",
+      "id": "phase-design-overview"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה Phase 2 Design?",
+      "id": "what-is-phase2-design"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**Phase 2 Design** הוא החלק של Phase 2 שעוסק **בעיצוב** - איך המוצר נראה, איך המשתמש מרגיש, ואיך הסיפור מסופר.\n\n**במילים אחרות:** אם Phase 2 Core עונה על **\"מה ואיך\"**, אז Phase 2 Design עונה על **\"למי ואיך זה מרגיש\"**."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "למה עיצוב כל כך חשוב?",
+      "id": "why-design-important"
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "טעות נפוצה מספר 1",
+      "content": "הרבה צוותים חושבים: \"יש לנו מפרט, בואו נתחיל לפתח ונעצב תוך כדי\". התוצאה? ממשק מבולגן, חוויית משתמש רעה, ומפתחים שמשתגעים מהשינויים."
+    },
+    {
+      "type": "text",
+      "content": "למה לא לדלג על עיצוב:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        {
+          "content": "**חווית משתמש טובה יותר** - עיצוב מתוכנן מראש יוצר חוויה קוהרנטית"
+        },
+        {
+          "content": "**פחות שינויים בפיתוח** - כשהכל מתוכנן, פחות \"אה, שכחנו את המסך הזה\""
+        },
+        {
+          "content": "**מפתחים מאושרים** - הם יודעים בדיוק מה לבנות ואיך זה צריך להיראות"
+        },
+        {
+          "content": "**משוב מוקדם** - אפשר לבדוק עם משתמשים לפני שכתבתם שורת קוד אחת"
+        },
+        {
+          "content": "**עקביות ויזואלית** - Design System מבטיח שהכל נראה אותו דבר"
+        },
+        {
+          "content": "**פחות bugs** - כשהעיצוב ברור, פחות באגים של \"זה לא מה שחשבתי\""
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "הוורקפלואים של Phase 2 Design",
+      "id": "design-workflows-list"
+    },
+    {
+      "type": "table",
+      "headers": ["וורקפלו", "אגנט", "מתי להשתמש", "תפוקה", "זמן"],
+      "rows": [
+        ["create-ux-design", "UX Designer", "כל מוצר עם UI", "UX Design Doc + Wireframes", "3-7 ימים"],
+        ["gdd", "Game Designer", "משחקים", "Game Design Document", "5-10 ימים"],
+        ["narrative", "Game Designer", "משחקים עם סיפור", "Narrative Document", "3-5 ימים"]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "מתי להשתמש במה?",
+      "content": "App/Website → create-ux-design | Game ללא סיפור → gdd | Game עם סיפור → gdd + narrative"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך Phase 2 Design משתלב עם Phase 2 Core?",
+      "id": "how-it-fits"
+    },
+    {
+      "type": "tabs",
+      "tabs": [
+        {
+          "id": "parallel-approach",
+          "label": "גישה מקבילית (מומלץ)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**שבוע 1:** PRD + UX Design במקביל\n\n**שבוע 2:** Architecture + GDD (אם רלוונטי)\n\n**שבוע 3:** Epics + Stories\n\n**יתרונות:**\n- חוסך זמן\n- UX Designer ו-PM עובדים ביחד\n- עיצוב משפיע על מפרט (ולהיפך)\n\n**חיסרונות:**\n- צריך תיאום\n- שינויים ב-PRD משפיעים על עיצוב"
+            }
+          ]
+        },
+        {
+          "id": "sequential-approach",
+          "label": "גישה רציפה (בטוחה יותר)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**שבוע 1:** PRD\n\n**שבוע 2:** UX Design (מבוסס על PRD)\n\n**שבוע 3:** Architecture\n\n**שבוע 4:** Epics + Stories\n\n**יתרונות:**\n- פחות שינויים\n- PRD סופי לפני עיצוב\n- בטוח יותר\n\n**חיסרונות:**\n- לוקח יותר זמן\n- UX Designer מחכה"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "create-ux-design - עיצוב חוויית משתמש",
+      "id": "create-ux-design"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה UX Design?",
+      "id": "ux-design-what"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**UX Design (User Experience Design)** הוא תהליך של תכנון חוויית המשתמש במוצר - איך המשתמש מתקשר עם המוצר, מה הוא רואה, ואיך הוא מרגיש.\n\n**UX Design כולל:**\n- מחקר משתמשים (User Research)\n- Wireframes (שרטוטים)\n- Prototypes (אב-טיפוס)\n- User Flows (זרימות משתמש)\n- Design System (מערכת עיצוב)\n- UI Mockups (מסכים מעוצבים)"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה בתוך UX Design Document?",
+      "id": "ux-design-contents"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "ux-section1",
+          "title": "1. User Research - מחקר משתמשים",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n\n- **Personas:** מיהם המשתמשים?\n- **User Interviews:** מה הם צריכים?\n- **Competitive Analysis:** מה קיים בשוק?\n- **Pain Points:** מה מפריע להם היום?\n\n**דוגמה:**\n\n**Persona: Sarah - PM בסטארט-אפ**\n- גיל: 32\n- תפקיד: מנהלת מוצר\n- משתמשת היום: Trello\n- Pain Points: קשה לעקוב אחר התקדמות, אין AI suggestions\n- מטרות: לנהל 3-5 פרויקטים במקביל ביעילות"
+            }
+          ]
+        },
+        {
+          "id": "ux-section2",
+          "title": "2. Information Architecture - ארכיטקטורת מידע",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n\n- **Site Map:** מבנה הדפים/מסכים\n- **Navigation:** איך משתמשים מנווטים\n- **Content Hierarchy:** מה חשוב יותר\n\n**דוגמה:**\n\n```\nHomepage\n├── Dashboard\n│   ├── My Tasks\n│   ├── Team Tasks\n│   └── Calendar View\n├── Projects\n│   ├── Project List\n│   └── Project Detail\n│       ├── Tasks\n│       ├── Members\n│       └── Settings\n├── Settings\n└── Profile\n```"
+            }
+          ]
+        },
+        {
+          "id": "ux-section3",
+          "title": "3. User Flows - זרימות משתמש",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n\n- **Task Flows:** איך משתמש משלים משימה?\n- **Decision Points:** איפה המשתמש מחליט?\n- **Error Flows:** מה קורה כששגיאה מתרחשת?\n\n**דוגמה - Create Task Flow:**\n\n1. User clicks \"+ New Task\"\n2. Modal opens\n3. User fills Title (required)\n4. User fills Description (optional)\n5. User selects Due Date (optional)\n6. User clicks \"Save\"\n7. System validates\n8. IF valid → Save + Show success toast\n9. IF invalid → Show error message\n10. Close modal\n11. Task appears in list"
+            }
+          ]
+        },
+        {
+          "id": "ux-section4",
+          "title": "4. Wireframes - שרטוטים",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n\n- **Low-Fidelity:** סקיצות מהירות (נייר או דיגיטלי)\n- **Mid-Fidelity:** שרטוטים מפורטים יותר\n- **High-Fidelity:** כמעט מסך אמיתי (בלי צבעים)\n\n**כל Wireframe כולל:**\n- Layout: איפה כל אלמנט\n- Content: מה כתוב\n- Actions: מה קורה בלחיצה\n- States: איך נראה כשטוען/שגיאה/ריק"
+            }
+          ]
+        },
+        {
+          "id": "ux-section5",
+          "title": "5. Design System - מערכת עיצוב",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n\n- **Colors:** פלטת צבעים\n- **Typography:** פונטים וגדלים\n- **Components:** כפתורים, inputs, cards\n- **Spacing:** מרווחים (4px, 8px, 16px...)\n- **Icons:** סט אייקונים\n\n**דוגמה:**\n\n**Colors:**\n- Primary: #3B82F6 (כחול)\n- Secondary: #10B981 (ירוק)\n- Error: #EF4444 (אדום)\n- Background: #FFFFFF\n- Text: #1F2937\n\n**Typography:**\n- Heading 1: 32px, Bold\n- Heading 2: 24px, Bold\n- Body: 16px, Regular\n- Small: 14px, Regular"
+            }
+          ]
+        },
+        {
+          "id": "ux-section6",
+          "title": "6. UI Mockups - מסכים מעוצבים",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n\n- **All Screens:** כל המסכים של המוצר\n- **Styled:** צבעים, פונטים, תמונות\n- **Interactive:** Prototype שאפשר ללחוץ עליו\n- **Responsive:** איך נראה בנייד/טאבלט/דסקטופ\n\n**כלים נפוצים:**\n- Figma (מומלץ!)\n- Sketch\n- Adobe XD\n- Framer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מתי להשתמש ב-create-ux-design?",
+      "id": "ux-design-when"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        {
+          "content": "**יש PRD מוכן** - UX Design מבוסס על דרישות מה-PRD"
+        },
+        {
+          "content": "**מוצר עם UI** - אפליקציה, אתר, dashboard (לא API)"
+        },
+        {
+          "content": "**משתמשים סופיים** - לא כלי פנימי לצוות"
+        },
+        {
+          "content": "**לפני פיתוח** - כדי שהמפתחים ידעו מה לבנות"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך מריצים?",
+      "id": "ux-design-how"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# שלב 1: טעינת UX Designer\n@ux-designer hi\n\n# שלב 2: בחירת create-ux-design\n*create-ux-design\n\n# Sally (UX Designer) תוביל אתכם דרך תהליך העיצוב",
+      "showLineNumbers": false
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאה",
+      "content": "UX Design Document מלא עם: User Research, Wireframes, Design System, UI Mockups (קישורים לFigma), ו-Prototype אינטראקטיבי."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "gdd - Game Design Document",
+      "id": "gdd"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה GDD?",
+      "id": "gdd-what"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**GDD (Game Design Document)** הוא מסמך המגדיר את **כל ההיבטים** של משחק - מכניקות, רמות, דמויות, חוקים, ואיזון. זה ה-PRD של משחקים.\n\n**GDD עונה על:**\n- איך המשחק עובד?\n- מה השחקן עושה?\n- מה המטרות?\n- מה הכללים?\n- איך מנצחים?"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה בתוך GDD?",
+      "id": "gdd-contents"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "gdd-section1",
+          "title": "1. Game Overview - סקירה כללית",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n\n- **High Concept:** המשחק במשפט אחד\n- **Genre:** סוג המשחק (Action, Strategy, RPG...)\n- **Target Audience:** לקהל יעד\n- **Platform:** PC/Console/Mobile\n- **Art Style:** סגנון גרפי\n\n**דוגמה:**\n\n**High Concept:** \"משחק אסטרטגיה turn-based שבו אתם בונים אימפריה בחלל\"\n\n**Genre:** 4X Strategy (eXplore, eXpand, eXploit, eXterminate)\n\n**Target:** גיימרים מבוגרים (25-45) שאוהבים אסטרטגיה מורכבת\n\n**Platform:** PC (Steam)\n\n**Art Style:** Sci-Fi, Low-Poly, Colorful"
+            }
+          ]
+        },
+        {
+          "id": "gdd-section2",
+          "title": "2. Gameplay - מכניקות משחק",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n\n- **Core Loop:** מה השחקן עושה 90% מהזמן?\n- **Mechanics:** כללי המשחק\n- **Controls:** איך שולטים?\n- **Difficulty:** קשיי המשחק\n\n**דוגמה - Core Loop:**\n\n1. **Explore:** חקור מערכות שמש חדשות\n2. **Expand:** בנה מושבות על כוכבי לכת\n3. **Exploit:** כרה משאבים ובנה צבא\n4. **Exterminate:** לחם באימפריות אחרות\n5. **Repeat:** חזור על התהליך עם אימפריה גדולה יותר"
+            }
+          ]
+        },
+        {
+          "id": "gdd-section3",
+          "title": "3. Characters & Entities - דמויות וישויות",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n\n- **Player Character:** הדמות שהשחקן שולט בה\n- **NPCs:** דמויות לא-שחקן\n- **Enemies:** אויבים\n- **Stats:** סטטיסטיקות (HP, Attack, Defense...)\n\n**דוגמה:**\n\n**Spaceship Types:**\n\n1. **Scout Ship**\n   - Speed: Fast\n   - HP: Low (100)\n   - Attack: Weak (10)\n   - Special: Can see farther\n\n2. **Battleship**\n   - Speed: Slow\n   - HP: High (500)\n   - Attack: Strong (50)\n   - Special: Area damage"
+            }
+          ]
+        },
+        {
+          "id": "gdd-section4",
+          "title": "4. Levels & Progression - רמות והתקדמות",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n\n- **Level Design:** איך כל רמה בנויה?\n- **Progression:** איך השחקן מתקדם?\n- **Unlocks:** מה פותחים?\n- **Difficulty Curve:** איך הקושי עולה?\n\n**דוגמה:**\n\n**Era 1: Early Space (Turns 1-50)**\n- Unlocks: Basic ships, Small colonies\n- Difficulty: Easy - 1-2 AI enemies\n- Goal: Build 3 colonies\n\n**Era 2: Expansion (Turns 51-100)**\n- Unlocks: Advanced ships, Large colonies\n- Difficulty: Medium - 3-4 AI enemies\n- Goal: Control 10 systems\n\n**Era 3: Dominance (Turns 101+)**\n- Unlocks: Capital ships, Mega structures\n- Difficulty: Hard - All AI unite against you\n- Goal: Conquer the galaxy"
+            }
+          ]
+        },
+        {
+          "id": "gdd-section5",
+          "title": "5. Economy & Balance - כלכלה ואיזון",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מה כלול:**\n\n- **Resources:** אילו משאבים יש?\n- **Costs:** כמה עולה כל דבר?\n- **Income:** איך מרוויחים?\n- **Balance:** האם זה fair?\n\n**דוגמה:**\n\n**Resources:**\n- Credits: כסף (עבור כל דבר)\n- Minerals: לבניינים\n- Energy: לחללית\n- Research: לטכנולוגיות\n\n**Balance Rules:**\n- Scout Ship (Fast) costs 50% less but has 50% less HP\n- Battleship (Strong) costs 300% more but has 500% more HP\n- No unit should cost less than 10 turns of income"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך מריצים?",
+      "id": "gdd-how"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# דרך Game Designer\n@game-designer hi\n*gdd\n\n# Game Designer יוביל אתכם דרך תהליך התכנון",
+      "showLineNumbers": false
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "תוצאה",
+      "content": "GDD מקיף (30-50 עמודים) עם כל מכניקות המשחק, דמויות, רמות, ואיזון. מוכן למפתחים!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "narrative - סיפור וסיפורת",
+      "id": "narrative"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה Narrative?",
+      "id": "narrative-what"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**Narrative Document** מגדיר את **הסיפור** של המשחק - עלילה, דמויות, דיאלוגים, ועולם המשחק.\n\n**Narrative עונה על:**\n- מה הסיפור?\n- מיהן הדמויות?\n- מה המוטיבציה?\n- איך הסיפור מתפתח?\n- איך נגמר?"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה בתוך Narrative Document?",
+      "id": "narrative-contents"
+    },
+    {
+      "type": "tabs",
+      "tabs": [
+        {
+          "id": "narrative-part1",
+          "label": "סיפור + דמויות",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**1. Story Overview**\n- פתיח: איך המשחק מתחיל?\n- אמצע: מה קורה?\n- סיום: איך נגמר?\n\n**2. Characters**\n- שם, גיל, רקע\n- מוטיבציה\n- קשרים לדמויות אחרות\n- Arc: איך הדמות משתנה?\n\n**דוגמה:**\n\n**Captain Nova - הגיבורה**\n- גיל: 35\n- רקע: פיילטית צבאית לשעבר\n- מוטיבציה: למצוא את אחיה שאבד בחלל\n- Arc: מלוחמת קרה → מנהיגה אמפתית"
+            }
+          ]
+        },
+        {
+          "id": "narrative-part2",
+          "label": "עולם + דיאלוגים",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**3. World Building**\n- היסטוריה: מה קרה לפני?\n- תרבויות: אילו גזעים/חברות?\n- פוליטיקה: מי שולט?\n- טכנולוגיה: מה אפשרי?\n\n**4. Dialogue**\n- טון: רציני/משעשע/אפל?\n- סגנון: פורמלי/עממי?\n- דוגמאות לדיאלוגים\n\n**דוגמה:**\n\n**Scene: First Contact**\n\nNova: \"This is Captain Nova of the Starfire. Identify yourself.\"\n\nAlien: \"We are the Zyn. You entered our space without permission.\"\n\nNova: [CHOICE]\n→ \"I didn't know. I'm looking for my brother.\"\n→ \"Your space? Says who?\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך מריצים?",
+      "id": "narrative-how"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# דרך Game Designer\n@game-designer hi\n*narrative\n\n# Game Designer יעזור לכם לכתוב את הסיפור",
+      "showLineNumbers": false
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "טיפ",
+      "content": "Narrative בא בדרך כלל אחרי GDD - תחילה מכניקות, אחר כך סיפור. אבל למשחקים story-driven, אפשר גם במקביל!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שילוב עם Phase 2 Core (Spec + Arch)",
+      "id": "integration"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "עכשיו שהכרנו את כל הוורקפלואים, בואו נראה איך Phase 2 Design משתלב עם Phase 2 Core:"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 1: Web/Mobile App",
+      "id": "scenario-app"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**תהליך מלא:**\n\n1. **Product Brief** (Phase 0-1)\n2. **PRD** (Phase 2 Core) ← מגדיר מה\n3. **UX Design** (Phase 2 Design) ← מגדיר איך נראה\n4. **Architecture** (Phase 2 Core) ← מגדיר איך בנוי\n5. **Epics + Stories** (Phase 2 Core)\n6. **Gate Check**\n\n**משך זמן:** 3-4 שבועות"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרחיש 2: משחק מורכב",
+      "id": "scenario-game"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**תהליך מלא:**\n\n1. **Game Brief** (Phase 0-1)\n2. **GDD** (Phase 2 Design) ← מכניקות + גיימפליי\n3. **Narrative** (Phase 2 Design) ← סיפור + דמויות\n4. **Tech Spec** (Phase 2 Core) ← מה צריך לבנות טכנית\n5. **Architecture** (Phase 2 Core) ← איך בנוי\n6. **Epics + Stories** (Phase 2 Core)\n7. **Gate Check**\n\n**משך זמן:** 5-6 שבועות"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "items": [
+        {
+          "type": "card",
+          "title": "למוצרים (Apps/Websites)",
+          "icon": "IconDeviceDesktop",
+          "content": "PRD → UX Design → Architecture → Stories"
+        },
+        {
+          "type": "card",
+          "title": "למשחקים",
+          "icon": "IconDeviceGamepad2",
+          "content": "GDD → Narrative → Tech Spec → Architecture → Stories"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תהליך מלא: דוגמה מעשית",
+      "id": "full-process"
+    },
+    {
+      "type": "text",
+      "content": "בואו נראה תהליך מלא של יצירת TaskMaster Pro עם UX Design:"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "fullprocess-week1",
+          "title": "שבוע 1: PRD + UX Research",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**ימים 1-3: John (PM) יוצר PRD**\n- כל הפיצ'רים מפורטים\n- User Stories\n- דרישות\n\n**ימים 4-7: Sally (UX) עושה מחקר**\n- Personas\n- User Interviews\n- Competitive Analysis\n- Pain Points\n\n**תוצאה:** PRD + User Research מוכנים"
+            }
+          ]
+        },
+        {
+          "id": "fullprocess-week2",
+          "title": "שבוע 2: UX Design + Architecture (במקביל)",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**Sally (UX):**\n- Information Architecture\n- User Flows\n- Wireframes (Low → Mid → High)\n- Design System\n\n**Winston (Architect):**\n- קורא את ה-PRD\n- מתכנן ארכיטקטורה\n- בוחר טכנולוגיות\n\n**תוצאה:** Wireframes + Architecture מוכנים"
+            }
+          ]
+        },
+        {
+          "id": "fullprocess-week3",
+          "title": "שבוע 3: UI Mockups + Epics/Stories",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**Sally (UX):**\n- יוצרת UI Mockups ב-Figma\n- כל המסכים מעוצבים\n- Prototype אינטראקטיבי\n\n**John (PM):**\n- פורק את ה-PRD ל-Epics + Stories\n- מוסיף קישורים למסכים מ-Figma\n\n**תוצאה:** Mockups + Stories מוכנים"
+            }
+          ]
+        },
+        {
+          "id": "fullprocess-week4",
+          "title": "שבוע 4: Gate Check + הכנה",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**Gate Check:**\n- בדיקת תיעוד ✅\n- בדיקת שלמות ✅\n- בדיקת UX ✅\n- בדיקת ארכיטקטורה ✅\n\n**תיקון ממצאים:**\n- עדכון 2 mockups\n- הוספת 1 Story שחסר\n\n**תוצאה:** ✅ **READY FOR DEVELOPMENT!**"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "סה\"כ: 4 שבועות מ-Brief ל-Ready for Dev",
+      "content": "כולל UX Design מלא! עכשיו המפתחים יודעים בדיוק מה לבנות ואיך זה צריך להיראות."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שאלות נפוצות (FAQ)",
+      "id": "faq"
+    },
+    {
+      "type": "accordion",
+      "items": [
+        {
+          "id": "faq-1",
+          "title": "האם חובה לעשות UX Design לכל מוצר?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "לא חובה, אבל **מאוד מומלץ** אם:\n\n✅ יש משתמשים סופיים (לא רק צוות פנימי)\n✅ המוצר מורכב (5+ מסכים)\n✅ יש תקציב ל-UX Designer\n✅ אתם רוצים חוויית משתמש טובה\n\n❌ אפשר לדלג אם:\n- פרויקט זמני/ניסיון\n- כלי פנימי פשוט\n- API ללא UI\n- MVP מינימלי מאוד\n\nאבל זכרו: עיצוב רע = משתמשים עוזבים!"
+            }
+          ]
+        },
+        {
+          "id": "faq-2",
+          "title": "מה אם אין לי UX Designer בצוות?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**אופציות:**\n\n**1. השתמש באגנט UX Designer ב-BMAD**\n- Sally תעזור לכם ליצור wireframes\n- תנחה אתכם דרך התהליך\n\n**2. שכור freelancer**\n- רק לשלב ה-UX Design\n- 1-2 שבועות עבודה\n\n**3. PM עושה UX בסיסי**\n- Wireframes פשוטים\n- Design System מוכן (Tailwind/Material/Ant Design)\n\n**4. השתמש בטמפלייטים**\n- UI kits מוכנים\n- Templates מFigma Community\n\nזה לא אידיאלי, אבל עדיף מכלום!"
+            }
+          ]
+        },
+        {
+          "id": "faq-3",
+          "title": "האם צריך Figma או Sketch?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**מומלץ מאוד!** אבל יש חלופות:\n\n**כלים מקצועיים:**\n- **Figma** (מומלץ!) - חינמי לפרויקטים קטנים\n- **Sketch** - מקצועי, רק Mac\n- **Adobe XD** - חלק מ-Creative Cloud\n- **Framer** - גם עיצוב וגם קוד\n\n**חלופות זולות/חינמיות:**\n- **Penpot** - חינמי, open-source, כמו Figma\n- **Lunacy** - חינמי לWindows\n- **Mockplus** - פשוט, לwireframes\n\n**אפילו:**\n- נייר ועט (wireframes מהירים!)\n- Excalidraw (sketches דיגיטליים)\n\nהחשוב הוא לתכנן, לא הכלי!"
+            }
+          ]
+        },
+        {
+          "id": "faq-4",
+          "title": "מה ההבדל בין UX ו-UI?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**UX (User Experience):**\n- **איך המוצר עובד**\n- User flows, wireframes, logic\n- האם זה intuitive?\n- האם קל לעשות משימות?\n\n**UI (User Interface):**\n- **איך המוצר נראה**\n- צבעים, פונטים, אייקונים\n- האם זה יפה?\n- האם זה עקבי?\n\n**אנלוגיה:**\n- UX = תוכנית הבית (חדרים, מעברים)\n- UI = עיצוב פנים (צבעים, רהיטים)\n\nשניהם חשובים! UX רע = בלבול. UI רע = לא נעים.\n\nב-BMAD, Sally (UX Designer) עושה גם וגם!"
+            }
+          ]
+        },
+        {
+          "id": "faq-5",
+          "title": "איך מתמודדים עם שינויים ב-UX במהלך הפיתוח?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**זה קורה לכולם!** איך להתמודד:\n\n**1. קטן → תקן ב-Figma מיד**\n- שינוי צבע, טקסט, spacing\n- עדכן ב-Figma\n- הודע למפתח\n\n**2. בינוני → Change Request**\n- שינוי flow, מסך חדש\n- עדכן UX Doc\n- עדכן ב-Figma\n- עדכן Stories רלוונטיים\n- אשר עם PM\n\n**3. גדול → חזור ל-Phase 2**\n- שינוי מהותי (למשל: chat במקום email)\n- עצור פיתוח\n- עדכן PRD\n- עדכן UX Design מחדש\n- Re-run Gate Check\n\n**Best Practice:**\n- שמור Figma מעודכן תמיד\n- Version control (Figma versions)\n- סנכרון שבועי בין UX ו-Dev"
+            }
+          ]
+        },
+        {
+          "id": "faq-6",
+          "title": "האם GDD רלוונטי רק למשחקים גדולים?",
+          "content": [
+            {
+              "type": "text",
+              "markdown": true,
+              "content": "**לא!** GDD מתאים לכל משחק, אבל בגדלים שונים:\n\n**משחק קטן (Hyper-casual):**\n- GDD של 5-10 עמודים\n- Core Loop + Mechanics בלבד\n- זמן: 1-2 ימים\n\n**משחק בינוני (Mobile game):**\n- GDD של 20-30 עמודים\n- Gameplay + Progression + Economy\n- זמן: 3-5 ימים\n\n**משחק גדול (AAA):**\n- GDD של 100+ עמודים\n- הכל מפורט עד הסוף\n- זמן: 2-4 שבועות\n\n**כלל אצבע:**\nאם המשחק לוקח יותר מחודש לפתח - צריך GDD!\n\nאפילו משחק קטן מרוויח מGDD פשוט - זה חוסך בלבול."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "סיכום ומעבר ל-Phase 3",
+      "id": "summary"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה למדנו במדריך הזה?",
+      "id": "what-learned"
+    },
+    {
+      "type": "text",
+      "content": "במדריך זה כיסינו את Phase 2 Design - איך ליצור עיצוב מקצועי למוצרים ומשחקים:"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        {
+          "content": "**create-ux-design** - יצירת UX Design מקצועי עם User Research, Wireframes, Design System, ו-UI Mockups"
+        },
+        {
+          "content": "**gdd** - יצירת Game Design Document מקיף עם מכניקות, דמויות, רמות, ואיזון"
+        },
+        {
+          "content": "**narrative** - יצירת Narrative Document עם סיפור, דמויות, עולם, ודיאלוגים"
+        },
+        {
+          "content": "**שילוב עם Phase 2 Core** - איך Design ו-Core עובדים ביחד בתהליך מלא"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "התפוקות של Phase 2 Design",
+      "id": "deliverables"
+    },
+    {
+      "type": "grid",
+      "columns": 3,
+      "items": [
+        {
+          "type": "card",
+          "title": "UX Design Doc",
+          "description": "User Research, Wireframes, Design System, UI Mockups, Prototype",
+          "icon": "IconPalette"
+        },
+        {
+          "type": "card",
+          "title": "Game Design Document",
+          "description": "מכניקות משחק, דמויות, רמות, כלכלה, איזון",
+          "icon": "IconDeviceGamepad2"
+        },
+        {
+          "type": "card",
+          "title": "Narrative Document",
+          "description": "סיפור, דמויות, עולם, דיאלוגים",
+          "icon": "IconBook"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "כל הכבוד - Phase 2 Design הושלם!",
+      "content": "יחד עם Phase 2 Core, יש לכם כעת תוכנית מלאה - מפרט, ארכיטקטורה, עיצוב, ו-Stories. אתם מוכנים לעבור ל-Phase 3!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "המדריכים הבאים בסדרה",
+      "id": "next-guides"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "items": [
+        {
+          "type": "card",
+          "title": "חלק 3א: Solutioning",
+          "description": "story-context, story-ready, solutioning - הכנת Stories למימוש",
+          "icon": "IconClipboardCheck"
+        },
+        {
+          "type": "card",
+          "title": "חלק 3ב: Sprint Setup",
+          "description": "sprint-planning, epic-tech-context - תכנון ספרינטים",
+          "icon": "IconCalendar"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה עושים עכשיו?",
+      "id": "what-now"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        {
+          "content": "**נסו create-ux-design** - קחו פרויקט ועשו UX Design מלא"
+        },
+        {
+          "content": "**תרגלו Wireframes** - שרטטו 3-5 מסכים בנייר או Figma"
+        },
+        {
+          "content": "**צרו Design System** - בחרו צבעים, פונטים, components"
+        },
+        {
+          "content": "**אם משחק - תכננו GDD** - כתבו core loop ומכניקות"
+        },
+        {
+          "content": "**קראו את המדריך הבא** - Phase 3 Solutioning"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "טיפ אחרון",
+      "content": "עיצוב טוב לא אומר \"יפה\". עיצוב טוב אומר \"עובד טוב\". עדיף מוצר פשוט שקל להשתמש בו, ממוצר מפואר שמבלבל!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מדריך Phase 2 Design הושלם!",
+      "content": "אתם עכשיו יודעים איך ליצור עיצוב UX מקצועי למוצרים, GDD מקיף למשחקים, ו-Narrative מרתק לסיפורים. המשיכו ל-Phase 3 כדי ללמוד על תכנון ספרינטים ומימוש!"
+    }
+  ],
+  "relatedGuides": [
+    "workflows-phase2-core",
+    "workflows-solutioning",
+    "agents-tea-ux",
+    "role-ux-designers",
+    "role-game-developers"
+  ],
+  "prerequisites": [
+    "workflows-intro-critical",
+    "workflows-phase0-1",
+    "workflows-phase2-core"
+  ],
+  "nextSteps": [
+    "workflows-solutioning",
+    "workflows-sprint-setup"
+  ]
+}
+

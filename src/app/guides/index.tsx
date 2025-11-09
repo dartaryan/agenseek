@@ -6,7 +6,13 @@
 
 import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import * as TablerIcons from '@tabler/icons-react';
+import {
+  IconLayoutGrid,
+  IconList,
+  IconFilter,
+  IconX,
+  IconSearch,
+} from '@tabler/icons-react';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
@@ -36,6 +42,7 @@ import { categorizeGuidesByLearningPath } from '@/lib/learning-path';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/lib/supabase';
 import { cn } from '@/lib/utils';
+import { cachedSupabaseQuery, createCacheKey, CACHE_DURATION, clearCache } from '@/lib/api-cache';
 
 /**
  * Story 0.1: Guide progress data from database
@@ -80,7 +87,7 @@ export function GuidesPage() {
   const [progressData, setProgressData] = useState<Record<string, GuideProgress>>({});
   const [, setProgressLoading] = useState(true);
 
-  // Story 0.1: Fetch real progress data from database
+  // Story 0.1 & 10.4: Fetch real progress data from database with caching
   useEffect(() => {
     async function fetchProgressData() {
       if (!user?.id) {
@@ -91,16 +98,26 @@ export function GuidesPage() {
       try {
         setProgressLoading(true);
 
-        const { data, error } = await supabase
-          .from('user_progress')
-          .select('guide_slug, progress_percent, completed')
-          .eq('user_id', user.id);
+        const cacheKey = createCacheKey('user-progress', user.id);
 
-        if (error) throw error;
+        // Use cached query with SHORT duration (5min) since progress changes frequently
+        const data = await cachedSupabaseQuery(
+          cacheKey,
+          async () => {
+            const { data, error } = await supabase
+              .from('user_progress')
+              .select('guide_slug, progress_percent, completed')
+              .eq('user_id', user.id);
+
+            if (error) throw error;
+            return data || [];
+          },
+          CACHE_DURATION.SHORT
+        );
 
         // Transform array to lookup map
         const progressMap: Record<string, GuideProgress> = {};
-        data?.forEach((item) => {
+        data.forEach((item) => {
           progressMap[item.guide_slug] = {
             guideId: item.guide_slug,
             progressPercent: item.progress_percent,
@@ -316,7 +333,7 @@ export function GuidesPage() {
                   onClick={() => setViewMode('grid')}
                   className="h-8 w-8 p-0"
                 >
-                  <TablerIcons.IconLayoutGrid className="w-4 h-4" />
+                  <IconLayoutGrid className="w-4 h-4" />
                 </Button>
                 <Button
                   variant={viewMode === 'list' ? 'default' : 'ghost'}
@@ -324,7 +341,7 @@ export function GuidesPage() {
                   onClick={() => setViewMode('list')}
                   className="h-8 w-8 p-0"
                 >
-                  <TablerIcons.IconList className="w-4 h-4" />
+                  <IconList className="w-4 h-4" />
                 </Button>
               </div>
 
@@ -335,7 +352,7 @@ export function GuidesPage() {
                 onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 className="lg:hidden"
               >
-                <TablerIcons.IconFilter className="w-4 h-4 ml-2" />
+                <IconFilter className="w-4 h-4 ml-2" />
                 סינון
                 {getActiveFilterCount() > 0 && (
                   <span className="mr-1 bg-emerald-500 text-white text-xs px-1.5 py-0.5 rounded-full">
@@ -363,7 +380,7 @@ export function GuidesPage() {
                     onClick={chip.onRemove}
                     className="hover:bg-emerald-200 dark:hover:bg-emerald-800 rounded-full p-0.5 transition-colors"
                   >
-                    <TablerIcons.IconX className="w-3 h-3" />
+                    <IconX className="w-3 h-3" />
                   </button>
                 </motion.div>
               ))}
@@ -374,7 +391,7 @@ export function GuidesPage() {
                   onClick={clearAllFilters}
                   className="text-emerald-600 hover:text-emerald-700 dark:text-emerald-400"
                 >
-                  <TablerIcons.IconX className="w-4 h-4 ml-1" />
+                  <IconX className="w-4 h-4 ml-1" />
                   נקה הכל
                 </Button>
               )}
@@ -406,7 +423,7 @@ export function GuidesPage() {
               onClick={() => setIsSidebarOpen(false)}
               className="lg:hidden absolute top-4 left-4"
             >
-              <TablerIcons.IconX className="w-5 h-5" />
+              <IconX className="w-5 h-5" />
             </Button>
 
             <div className="space-y-6 mt-12 lg:mt-0">
@@ -501,7 +518,7 @@ export function GuidesPage() {
               {/* Clear filters button */}
               {hasActiveFilters() && (
                 <Button variant="outline" size="sm" onClick={clearAllFilters} className="w-full">
-                  <TablerIcons.IconX className="w-4 h-4 ml-2" />
+                  <IconX className="w-4 h-4 ml-2" />
                   נקה סינונים
                 </Button>
               )}
@@ -525,7 +542,7 @@ export function GuidesPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-center py-16"
               >
-                <TablerIcons.IconSearch className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                <IconSearch className="w-16 h-16 text-gray-400 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   לא נמצאו מדריכים
                 </h3>
@@ -534,7 +551,7 @@ export function GuidesPage() {
                 </p>
                 {hasActiveFilters() && (
                   <Button onClick={clearAllFilters} variant="default">
-                    <TablerIcons.IconX className="w-4 h-4 ml-2" />
+                    <IconX className="w-4 h-4 ml-2" />
                     נקה סינונים
                   </Button>
                 )}

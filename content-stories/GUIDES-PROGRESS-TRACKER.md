@@ -1,7 +1,7 @@
 # 📊 מעקב התקדמות מדריכים - Guides Progress Tracker
 
 **תאריך עדכון:** 9 נובמבר 2025
-**סטטוס:** 17/47 הושלמו (36%)
+**סטטוס:** 19/47 הושלמו (40%)
 
 ---
 
@@ -25,9 +25,9 @@
 | Onboarding | 3 | 2 | 1 | 67% |
 | Roles | 9 | 6 | 3 | 67% |
 | Agents | 8 | 4 | 4 | 50% |
-| Workflows | 10 | 2 | 8 | 20% |
+| Workflows | 10 | 3 | 7 | 30% |
 | Practical | 9 | 0 | 9 | 0% |
-| **סה"כ** | **47** | **17** | **30** | **36%** |
+| **סה"כ** | **47** | **18** | **29** | **38%** |
 
 ---
 
@@ -63,7 +63,7 @@
 | 15 | `agents-techwriter-master` | מדריך אגנטים - חלק 2ב: Tech Writer + BMAD Master | agents | ✅ |
 | 16 | `workflows-intro-critical` | מדריך וורקפלואים - חלק 1א: מבוא + וורקפלואים קריטיים | workflows | ✅ |
 | 17 | `workflows-phase0-1` | מדריך וורקפלואים - חלק 1ב: Phase 0-1 (Idea to Brief) | workflows | ✅ |
-| 18 | `workflows-phase2-core` | מדריך וורקפלואים - חלק 2א: Phase 2 Core (Spec + Arch) | workflows | ⏳ |
+| 18 | `workflows-phase2-core` | מדריך וורקפלואים - חלק 2א: Phase 2 Core (Spec + Arch) | workflows | ✅ |
 | 19 | `workflows-phase2-design` | מדריך וורקפלואים - חלק 2ב: Phase 2 Design (UX + GDD) | workflows | ⏳ |
 | 20 | `best-practices` | שיטות עבודה מומלצות | practical | ⏳ |
 | 21 | `learning-paths` | מסלולי למידה מומלצים | practical | ⏳ |
@@ -72,7 +72,7 @@
 | 24 | `faq-workflows` | שאלות ותשובות - חלק 2ב: וורקפלואים | faq | ⏳ |
 | 25 | `onboarding-month1` | הדרכה לחודש הראשון | onboarding | ⏳ |
 
-**סטטוס P1:** ✅ 13/15 הושלמו (87%)
+**סטטוס P1:** ✅ 14/15 הושלמו (93%)
 
 ---
 
@@ -112,26 +112,26 @@
 
 **לפי עדיפות P1, המדריך הבא הוא:**
 
-### 📌 `workflows-phase2-core`
+### 📌 `workflows-phase2-design`
 
 **פרטים:**
-- **כותרת:** מדריך וורקפלואים - חלק 2א: Phase 2 Core (Spec + Arch)
+- **כותרת:** מדריך וורקפלואים - חלק 2ב: Phase 2 Design (UX + GDD)
 - **קטגוריה:** workflows
 - **רמת קושי:** intermediate
-- **זמן קריאה:** 45 דקות
+- **זמן קריאה:** 40 דקות
 - **עדיפות:** 🟡 P1
 
 **קבצים לקרוא:**
 1. `content-stories/FOR-AI-AGENTS.md` - הפרומפט המלא (חשוב! כולל הנחיות ליצירה בחלקים)
-2. `content-stories/stories/workflows/phase2-core.md` - הסטורי המפורט
-3. `src/content/locale/he/guides/workflows/phase0-1.json` - המדריך הקודם בסדרה
-4. `src/content/locale/he/guides/agents/intro-pm-analyst.json` - דוגמה מסדרת מדריכים
+2. `content-stories/stories/workflows/phase2-design.md` - הסטורי המפורט
+3. `src/content/locale/he/guides/workflows/phase2-core.json` - המדריך הקודם בסדרה
+4. `src/content/locale/he/guides/agents/tea-ux.json` - מדריך UX Designer
 
 **היכן לשמור:**
-- `src/content/locale/he/guides/workflows/phase2-core.json`
+- `src/content/locale/he/guides/workflows/phase2-design.json`
 
 **לא לשכוח:**
-- **זה מדריך intermediate (45 דקות) - עשוי לדרוש יצירה בחלקים של 700 שורות**
+- **זה מדריך intermediate (40 דקות) - עשוי לדרוש יצירה בחלקים של 700 שורות**
 - לעדכן את `src/content/locale/he/guides/index.json` (אם צריך)
 - לעדכן את הקובץ הזה (GUIDES-PROGRESS-TRACKER.md)
 
