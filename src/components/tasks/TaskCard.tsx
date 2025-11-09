@@ -214,25 +214,25 @@ export function TaskCard({
         </div>
 
         {/* Quick Actions */}
-        <div className="flex items-center gap-2 pt-2 border-t border-gray-200">
+        <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-gray-200">
           <Button
             variant="ghost"
             size="sm"
             onClick={() => onEditTask(task)}
-            className="text-gray-600 hover:text-gray-900"
+            className="text-gray-600 hover:text-gray-900 flex-shrink-0"
           >
-            <IconEdit className="w-4 h-4 mr-1" />
-            <span>ערוך</span>
+            <IconEdit className="w-4 h-4 sm:mr-1" />
+            <span className="hidden sm:inline">ערוך</span>
           </Button>
 
           <Button
             variant="ghost"
             size="sm"
             onClick={() => onAddSubTask(task)}
-            className="text-gray-600 hover:text-gray-900"
+            className="text-gray-600 hover:text-gray-900 flex-shrink-0"
           >
-            <IconPlus className="w-4 h-4 mr-1" />
-            <span>הוסף משימת משנה</span>
+            <IconPlus className="w-4 h-4 sm:mr-1" />
+            <span className="hidden sm:inline">משימת משנה</span>
           </Button>
 
           <Button
@@ -240,10 +240,10 @@ export function TaskCard({
             size="sm"
             onClick={handleDelete}
             disabled={isDeleting}
-            className="text-red-600 hover:text-red-700 mr-auto"
+            className="text-red-600 hover:text-red-700 sm:mr-auto flex-shrink-0"
           >
-            <IconTrash className="w-4 h-4 mr-1" />
-            <span>{isDeleting ? 'מוחק...' : 'מחק'}</span>
+            <IconTrash className="w-4 h-4 sm:mr-1" />
+            <span className="hidden sm:inline">{isDeleting ? 'מוחק...' : 'מחק'}</span>
           </Button>
         </div>
       </div>

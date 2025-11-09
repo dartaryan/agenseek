@@ -11,6 +11,8 @@ import { isEnglishName } from '../../lib/utils/detectLanguage';
 import { UserAvatar } from '../../components/ui/user-avatar';
 import { AvatarSelector } from '../../components/avatar-selector';
 import { getDefaultAvatarConfig, type AvatarConfig } from '../../lib/avatar';
+import { NotificationSettings } from '../../components/settings/NotificationSettings';
+import { DeleteAccountDialog } from '../../components/settings/DeleteAccountDialog';
 import {
   IconCode,
   IconChartBar,
@@ -34,6 +36,8 @@ import {
   IconLoader2,
   IconSparkles,
   IconEdit,
+  IconAlertTriangle,
+  IconTrash,
 } from '@tabler/icons-react';
 
 // Role definitions (same as onboarding)
@@ -185,7 +189,8 @@ const EXPERIENCE_LEVELS: ExperienceLevel[] = [
 ];
 
 /**
- * Profile Page with Learning Preferences Editor
+ * Profile Page with Learning Preferences Editor & Settings
+ * Combined Profile + Settings page
  */
 export function ProfilePage() {
   const { user, profile, refreshProfile, updateAvatar } = useAuth();
@@ -195,6 +200,7 @@ export function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [isEditingDisplayName, setIsEditingDisplayName] = useState(false);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   // Form state
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
@@ -403,81 +409,83 @@ export function ProfilePage() {
         <div className="max-w-[1600px] mx-auto space-y-8">
           <div className="space-y-2">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
-              {hebrewLocale.pages.profile.title}
+              פרופיל והגדרות
             </h1>
             <p className="text-muted-foreground">
-              {hebrewLocale.pages.profile.description}
+              ערוך את פרטי החשבון, העדפות הלמידה וההתראות שלך
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Account Details */}
-            <Card className="p-6 space-y-4">
-              <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold text-foreground">פרטי חשבון</h3>
-                <Button
-                  onClick={() => setIsEditingDisplayName(true)}
-                  variant="outline"
-                  size="sm"
-                >
-                  ערוך שם
-                </Button>
-              </div>
-
-              {/* Avatar Display and Edit - Story 0.3 + Story 0.7 */}
-              <div className="flex items-center gap-4 pb-4 border-b border-border">
-                <div className="relative">
-                  <UserAvatar
-                    config={
-                      profile?.avatar_style && (profile?.avatar_seed || user?.id)
-                        ? {
-                            style: profile.avatar_style as any,
-                            seed: profile.avatar_seed || user?.id || 'default',
-                            options: (profile.avatar_options as Record<string, any>) || {},
-                          }
-                        : undefined
-                    }
-                    userId={user?.id}
-                    size="xl"
-                  />
-                  {isSavingAvatar && (
-                    <div className="absolute inset-0 bg-black/50 rounded-full flex items-center justify-center">
-                      <IconLoader2 className="h-8 w-8 text-white animate-spin" />
-                    </div>
-                  )}
-                </div>
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-foreground mb-2">
-                    אווטר פרופיל
-                  </p>
+          <div className="space-y-6">
+            {/* Row 1: Account Details & Learning Preferences */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Account Details & Avatar */}
+              <Card className="p-6 space-y-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold text-foreground">פרטי חשבון</h3>
                   <Button
+                    onClick={() => setIsEditingDisplayName(true)}
                     variant="outline"
                     size="sm"
-                    onClick={() => setShowAvatarSelector(true)}
-                    disabled={isSavingAvatar}
                   >
-                    <IconEdit className="w-4 h-4 ml-2" />
-                    {isSavingAvatar ? 'שומר...' : 'שנה אווטר'}
+                    ערוך שם
                   </Button>
                 </div>
-              </div>
 
-              <div className="space-y-2 text-muted-foreground">
-                <p>
-                  <strong>שם תצוגה:</strong> {profile?.display_name || 'לא הוגדר'}
-                </p>
-                <p>
-                  <strong>{hebrewLocale.auth.email}:</strong> {user?.email}
-                </p>
-                <p>
-                  <strong>נוצר:</strong>{' '}
-                  {user?.created_at ? new Date(user.created_at).toLocaleDateString('he-IL') : 'לא זמין'}
-                </p>
-              </div>
-            </Card>
+                {/* Avatar Display and Edit - Story 0.3 + Story 0.7 */}
+                <div className="flex items-center gap-4 pb-4 border-b border-border">
+                  <div className="relative">
+                    <UserAvatar
+                      config={
+                        profile?.avatar_style && (profile?.avatar_seed || user?.id)
+                          ? {
+                              style: profile.avatar_style as any,
+                              seed: profile.avatar_seed || user?.id || 'default',
+                              options: (profile.avatar_options as Record<string, any>) || {},
+                            }
+                          : undefined
+                      }
+                      userId={user?.id}
+                      size="xl"
+                    />
+                    {isSavingAvatar && (
+                      <div className="absolute inset-0 bg-black/50 rounded-full flex items-center justify-center">
+                        <IconLoader2 className="h-8 w-8 text-white animate-spin" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-foreground mb-2">
+                      אווטר פרופיל
+                    </p>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setShowAvatarSelector(true)}
+                      disabled={isSavingAvatar}
+                    >
+                      <IconEdit className="w-4 h-4 ml-2" />
+                      {isSavingAvatar ? 'שומר...' : 'שנה אווטר'}
+                    </Button>
+                  </div>
+                </div>
 
-          {/* Learning Preferences */}
-          <Card className="p-6 space-y-6">
+                <div className="space-y-2 text-muted-foreground">
+                  <p>
+                    <strong>שם תצוגה:</strong> {profile?.display_name || 'לא הוגדר'}
+                  </p>
+                  <p>
+                    <strong>{hebrewLocale.auth.email}:</strong> {user?.email}
+                  </p>
+                  <p>
+                    <strong>נוצר:</strong>{' '}
+                    {user?.created_at ? new Date(user.created_at).toLocaleDateString('he-IL') : 'לא זמין'}
+                  </p>
+                </div>
+              </Card>
+
+              {/* Learning Preferences */}
+              <Card className="p-6 space-y-6">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold text-foreground">
                 העדפות למידה
@@ -749,10 +757,39 @@ export function ProfilePage() {
                 </div>
               </div>
             )}
-          </Card>
+              </Card>
+            </div>
+
+            {/* Row 2: Notification Settings */}
+            <NotificationSettings />
+
+            {/* Row 3: Danger Zone - Account Deletion */}
+            <Card className="p-6 space-y-3 border-red-200 dark:border-red-900">
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-semibold text-foreground">{hebrewLocale.accountDeletion.title}</h3>
+                <IconAlertTriangle className="w-5 h-5 text-red-500 dark:text-red-400" />
+              </div>
+
+              <p className="text-sm text-muted-foreground">{hebrewLocale.accountDeletion.warningDataLoss}</p>
+
+              {/* Delete Button */}
+              <div className="pt-1">
+                <Button
+                  variant="outline"
+                  onClick={() => setIsDeleteDialogOpen(true)}
+                  className="text-red-600 dark:text-red-400 border-red-300 dark:border-red-800 hover:bg-red-50 dark:hover:bg-red-950/30 hover:text-red-700 dark:hover:text-red-300"
+                >
+                  <IconTrash className="w-4 h-4 mr-2" />
+                  {hebrewLocale.accountDeletion.deleteAccountButton}
+                </Button>
+              </div>
+            </Card>
+
+            {/* Delete Account Dialog */}
+            <DeleteAccountDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen} />
+          </div>
         </div>
       </div>
-    </div>
     </>
   );
 }

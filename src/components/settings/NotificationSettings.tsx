@@ -9,7 +9,7 @@ import { useToast } from '../../hooks/use-toast';
 
 /**
  * NotificationSettings Component
- * Story 0.9: Notification preferences settings (simplified - in-app only)
+ * Story 0.9: Notification preferences - what to notify about
  */
 export function NotificationSettings() {
   const { notificationPrefs, updateNotificationPrefs, resetToDefaults } = usePreferences();
@@ -51,13 +51,6 @@ export function NotificationSettings() {
     }
   };
 
-  const handleTestNotification = () => {
-    toast({
-      title: 'התראת בדיקה',
-      description: 'זוהי התראת בדיקה - ההגדרות שלך פועלות!',
-    });
-  };
-
   return (
     <Card className="p-6 space-y-6">
       <div className="flex items-center justify-between">
@@ -76,58 +69,74 @@ export function NotificationSettings() {
         </Button>
       </div>
 
-      {/* In-App Notifications */}
-      <div className="space-y-3">
-        <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-          התראות באפליקציה
-        </h4>
+      <p className="text-sm text-muted-foreground">
+        בחר על אילו פעילויות תרצה לקבל התראות באתר
+      </p>
 
-        <p className="text-sm text-muted-foreground">
-          קבל התראות על פעילויות חשובות ישירות בתוך האתר
-        </p>
-
-        <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <Label htmlFor="in-app-push" className="text-sm">
-              התראות דחיפה
+      <div className="space-y-4">
+        <div className="flex items-center justify-between py-2">
+          <div className="flex-1">
+            <Label htmlFor="notify-comments" className="text-sm font-medium">
+              תגובות חדשות
             </Label>
-            <Switch
-              id="in-app-push"
-              checked={notificationPrefs.in_app_push}
-              onCheckedChange={(checked) => handleToggle('in_app_push', checked)}
-            />
+            <p className="text-xs text-muted-foreground mt-1">
+              קבל התראה כשמישהו מגיב על התגובה שלך
+            </p>
           </div>
-
-          <div className="flex items-center justify-between">
-            <Label htmlFor="in-app-sound" className="text-sm">
-              התראות קוליות
-            </Label>
-            <Switch
-              id="in-app-sound"
-              checked={notificationPrefs.in_app_sound}
-              onCheckedChange={(checked) => handleToggle('in_app_sound', checked)}
-            />
-          </div>
-
-          <div className="flex items-center justify-between">
-            <Label htmlFor="in-app-desktop" className="text-sm">
-              התראות שולחן עבודה
-            </Label>
-            <Switch
-              id="in-app-desktop"
-              checked={notificationPrefs.in_app_desktop}
-              onCheckedChange={(checked) => handleToggle('in_app_desktop', checked)}
-            />
-          </div>
+          <Switch
+            id="notify-comments"
+            checked={notificationPrefs.email_comment_replies}
+            onCheckedChange={(checked) => handleToggle('email_comment_replies', checked)}
+          />
         </div>
-      </div>
 
-      {/* Test Button */}
-      <div className="pt-2">
-        <Button variant="outline" size="sm" onClick={handleTestNotification}>
-          <IconBell className="w-4 h-4 ml-2" />
-          בדוק התראה
-        </Button>
+        <div className="flex items-center justify-between py-2">
+          <div className="flex-1">
+            <Label htmlFor="notify-guides" className="text-sm font-medium">
+              מדריכים חדשים
+            </Label>
+            <p className="text-xs text-muted-foreground mt-1">
+              קבל התראה על מדריכים חדשים שמתאימים לתחומי העניין שלך
+            </p>
+          </div>
+          <Switch
+            id="notify-guides"
+            checked={notificationPrefs.email_new_guides}
+            onCheckedChange={(checked) => handleToggle('email_new_guides', checked)}
+          />
+        </div>
+
+        <div className="flex items-center justify-between py-2">
+          <div className="flex-1">
+            <Label htmlFor="notify-milestones" className="text-sm font-medium">
+              הישגים וציוני דרך
+            </Label>
+            <p className="text-xs text-muted-foreground mt-1">
+              קבל התראה כשאתה משלים יעדי למידה והישגים
+            </p>
+          </div>
+          <Switch
+            id="notify-milestones"
+            checked={notificationPrefs.email_milestones}
+            onCheckedChange={(checked) => handleToggle('email_milestones', checked)}
+          />
+        </div>
+
+        <div className="flex items-center justify-between py-2">
+          <div className="flex-1">
+            <Label htmlFor="notify-admin" className="text-sm font-medium">
+              הודעות מנהלי המערכת
+            </Label>
+            <p className="text-xs text-muted-foreground mt-1">
+              קבל התראה על עדכונים חשובים ושינויים באתר
+            </p>
+          </div>
+          <Switch
+            id="notify-admin"
+            checked={notificationPrefs.email_admin_announcements}
+            onCheckedChange={(checked) => handleToggle('email_admin_announcements', checked)}
+          />
+        </div>
       </div>
     </Card>
   );

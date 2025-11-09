@@ -28,7 +28,6 @@ const CalloutDemo = lazy(() => import('./guides/callout-demo'));
 const NotesPage = lazy(() => import('./notes').then(m => ({ default: m.NotesPage })));
 const TasksPage = lazy(() => import('./tasks').then(m => ({ default: m.TasksPage })));
 const ProfilePage = lazy(() => import('./profile').then(m => ({ default: m.ProfilePage })));
-const SettingsPage = lazy(() => import('./settings').then(m => ({ default: m.SettingsPage })));
 const SearchResultsPage = lazy(() => import('./search').then(m => ({ default: m.SearchResultsPage })));
 
 // Admin pages - lazy loaded (heavy analytics components)
@@ -241,11 +240,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/settings',
-        element: (
-          <RouteSuspense>
-            <SettingsPage />
-          </RouteSuspense>
-        ),
+        element: <Navigate to="/profile" replace />,
       },
       {
         path: '/search',

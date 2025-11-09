@@ -3,12 +3,12 @@
     "id": "faq-installation",
     "slug": "faq-installation",
     "title": "שאלות ותשובות - התקנה",
-    "description": "מדריך מקיף לפתרון בעיות התקנה והגדרה של BMAD - דרישות מערכת, התקנת Node.js, Cursor, והגדרות ראשוניות. תשובות לכל השאלות הנפוצות.",
+    "description": "כל השאלות והבעיות הנפוצות על התקנת BMAD - פתרונות לבעיות עם Node.js, Cursor, Claude, והגדרות. מדריך פתרון בעיות מקיף למתחילים.",
     "category": "faq",
     "difficulty": "beginner",
     "estimatedMinutes": 20,
-    "icon": "IconDownload",
-    "tags": ["התקנה", "הגדרה", "Setup", "Node.js", "Cursor", "בעיות"],
+    "icon": "Download",
+    "tags": ["שאלות", "התקנה", "טכני", "בעיות", "פתרון-תקלות"],
     "author": "צוות BMAD",
     "version": "1.0"
   },
@@ -23,55 +23,43 @@
       "id": "toc-2",
       "title": "התקנת Node.js",
       "level": 2,
-      "anchor": "nodejs-installation"
+      "anchor": "install-nodejs"
     },
     {
       "id": "toc-3",
       "title": "התקנת Cursor",
       "level": 2,
-      "anchor": "cursor-installation"
+      "anchor": "install-cursor"
     },
     {
       "id": "toc-4",
       "title": "התקנת BMAD",
       "level": 2,
-      "anchor": "bmad-installation"
+      "anchor": "install-bmad"
     },
     {
       "id": "toc-5",
       "title": "בעיות התקנה נפוצות",
       "level": 2,
-      "anchor": "common-installation-issues"
+      "anchor": "common-issues"
     },
     {
       "id": "toc-6",
       "title": "קונפיגורציה ראשונית",
       "level": 2,
-      "anchor": "initial-configuration"
+      "anchor": "initial-config"
     },
     {
       "id": "toc-7",
       "title": "בדיקת התקנה",
       "level": 2,
-      "anchor": "verify-installation"
+      "anchor": "testing-install"
     },
     {
       "id": "toc-8",
-      "title": "עדכון גרסה",
+      "title": "עדכון והסרה",
       "level": 2,
-      "anchor": "version-update"
-    },
-    {
-      "id": "toc-9",
-      "title": "הסרת התקנה",
-      "level": 2,
-      "anchor": "uninstallation"
-    },
-    {
-      "id": "toc-10",
-      "title": "עדיין יש בעיות?",
-      "level": 2,
-      "anchor": "still-have-issues"
+      "anchor": "update-uninstall"
     }
   ],
   "content": [
@@ -85,7 +73,7 @@
       "type": "callout",
       "variant": "info",
       "title": "מדריך פתרון בעיות התקנה",
-      "content": "מדריך מקיף לכל שאלה שיכולה להתעורר בזמן התקנה והגדרה של BMAD - מדרישות מערכת ועד בעיות נפוצות ופתרונות"
+      "content": "כל השאלות והבעיות הנפוצות על התקנת BMAD - פתרונות מעשיים לבעיות עם Node.js, Cursor, Claude, והגדרות. אם נתקלתם בבעיה, התשובה כאן!"
     },
     {
       "type": "divider"
@@ -97,40 +85,27 @@
       "id": "system-requirements"
     },
     {
-      "type": "text",
-      "content": "לפני שמתחילים להתקין, חשוב לוודא שהמערכת שלכם עומדת בדרישות המינימליות.",
-      "markdown": true
-    },
-    {
       "type": "accordion",
       "items": [
         {
           "title": "מה דרישות המערכת המינימליות?",
-          "content": "**תשובה:** BMAD נתמך במגוון רחב של מערכות:\n\n**מערכת הפעלה:**\n- **Windows:** 10/11 (64-bit)\n- **macOS:** 10.15 (Catalina) ומעלה\n- **Linux:** Ubuntu 18.04+, Fedora 32+, Debian 10+\n\n**חומרה:**\n- **RAM:** מינימום 4GB (מומלץ 8GB+)\n- **דיסק:** 2GB פנויים\n- **מעבד:** כל מעבד מודרני מ-5 שנים אחרונות\n\n**רשת:**\n- חיבור אינטרנט יציב\n\n**טיפ:** רוב המחשבים המודרניים מתאימים!"
+          "content": "**תשובה:** דרישות בסיסיות למערכת:\n\n**חומרה מינימלית:**\n- **מעבד:** Intel Core i5 / AMD Ryzen 5 או טוב יותר\n- **RAM:** 8GB לפחות (מומלץ 16GB)\n- **אחסון:** 5GB פנויים לפחות\n- **אינטרנט:** חיבור יציב (לשירותי AI)\n\n**מערכות הפעלה נתמכות:**\n- **Windows:** Windows 10/11 (64-bit)\n- **macOS:** macOS 10.15 Catalina ומעלה\n- **Linux:** Ubuntu 20.04+, Fedora 34+, או distros אחרים\n\n**הערה:** מערכות 32-bit לא נתמכות"
         },
         {
-          "title": "האם BMAD עובד על Windows?",
-          "content": "**תשובה:** כן! BMAD עובד מצוין על Windows.\n\n**גרסאות נתמכות:**\n- Windows 10 (64-bit)\n- Windows 11\n\n**לא נתמך:**\n- Windows 7/8 (ישנים מדי)\n- Windows 32-bit\n\n**הערה:** Cursor ו-Node.js דורשים Windows 10 ומעלה\n\n**טיפ:** Windows 11 מומלץ לחוויה הטובה ביותר"
+          "title": "איזו גרסת Node.js נדרשת?",
+          "content": "**תשובה:** Node.js בגרסה מינימלית:\n\n**גרסה מינימלית:** Node.js 18.x או גבוה יותר\n**גרסה מומלצת:** Node.js 20.x LTS (Long Term Support)\n\n**איך לבדוק את הגרסה שלכם:**\n```bash\nnode --version\n```\n\n**אם הגרסה נמוכה מ-18:** צריך לעדכן Node.js\n\n**הורדה:** [nodejs.org](https://nodejs.org/) - בחרו ב-LTS version\n\n**טיפ:** תמיד בחרו ב-LTS (Long Term Support) - זו הגרסה היציבה והמומלצת"
         },
         {
-          "title": "האם BMAD עובד על Mac?",
-          "content": "**תשובה:** בהחלט! Mac הוא אחת הפלטפורמות הפופולריות ביותר.\n\n**דרישות:**\n- macOS 10.15 (Catalina) ומעלה\n- שבבי Intel או Apple Silicon (M1/M2/M3)\n\n**Apple Silicon (M1/M2/M3):**\n- עובד מצוין!\n- Cursor ו-Node.js נתמכים במקור\n- ביצועים מעולים\n\n**טיפ:** משתמשי Mac מקבלים חוויה נהדרת עם BMAD"
-        },
-        {
-          "title": "האם BMAD עובד על Linux?",
-          "content": "**תשובה:** כן! Linux נתמך במלואו.\n\n**דיסטרו נתמכות:**\n- **Ubuntu:** 18.04 ומעלה (מומלץ 22.04)\n- **Debian:** 10 ומעלה\n- **Fedora:** 32 ומעלה\n- **Arch Linux:** גרסה עדכנית\n- **אחרות:** רוב הדיסטרו המודרניות\n\n**הערה:** צריך להתקין dependencies ידנית\n\n**טיפ:** Ubuntu 22.04 LTS מומלץ למתחילים"
+          "title": "האם יש דרישות לכרטיס מסך?",
+          "content": "**תשובה:** לא, אין דרישות מיוחדות.\n\n**BMAD לא צריך:**\n- כרטיס מסך ייעודי (GPU)\n- כרטיס מסך משחקים\n- תמיכה ב-CUDA או OpenCL\n\n**מספיק:** כרטיס מסך משולב (integrated) רגיל\n\n**למה?** BMAD עובד עם שירותי AI בענן (Claude/GPT) - החישוב קורה בשרתים שלהם, לא במחשב שלכם\n\n**חריג:** אם אתם מפתחים משחקים 3D עם BMAD, אז כן - תצטרכו GPU טוב"
         },
         {
           "title": "כמה מקום צריך על הדיסק?",
-          "content": "**תשובה:** לא הרבה!\n\n**פירוט:**\n- **Cursor IDE:** ~500MB\n- **Node.js:** ~50MB\n- **BMAD:** ~100MB\n- **שטח עבודה:** 500MB-1GB (לפרויקטים)\n\n**סה\"כ:** בערך 2GB\n\n**מומלץ:** 5GB פנויים לנוחות\n\n**טיפ:** הפרויקטים שלכם ידרשו יותר מקום מ-BMAD עצמו"
+          "content": "**תשובה:** תלוי מה מתקינים:\n\n**התקנה מינימלית:**\n- **BMAD עצמו:** ~50MB\n- **Node.js:** ~200MB\n- **Cursor:** ~300MB\n- **סה\"כ:** ~550MB\n\n**התקנה מלאה (עם פרויקטים):**\n- התקנה בסיסית: 550MB\n- Node modules (לפרויקט ממוצע): ~200-500MB\n- פרויקטים: משתנה\n- **סה\"כ מומלץ:** 5GB פנויים\n\n**טיפ:** השאירו מקום למספר פרויקטים - Node modules תופסים הרבה מקום"
         },
         {
-          "title": "כמה RAM צריך?",
-          "content": "**תשובה:** תלוי בסוג העבודה:\n\n**מינימום:** 4GB\n- עובד, אבל עלול להיות איטי\n- בסדר לפרויקטים קטנים\n\n**מומלץ:** 8GB\n- חוויה חלקה\n- מתאים לרוב הפרויקטים\n\n**אידיאלי:** 16GB+\n- ריבוי פרויקטים במקביל\n- עבודה עם מודלים גדולים\n\n**טיפ:** אם יש לכם 8GB - אתם במצב טוב!"
-        },
-        {
-          "title": "האם צריך כרטיס מסך חזק?",
-          "content": "**תשובה:** לא!\n\n**הסבר:**\n- BMAD לא משתמש ב-GPU\n- Cursor וה-AI רצים על המעבד\n- כרטיס מסך משולב מספיק לחלוטין\n\n**מתי כן צריך GPU:**\n- אם אתם מריצים AI מקומי (לא נדרש)\n- אם הפרויקט שלכם דורש גרפיקה (משחקים, 3D)\n\n**טיפ:** התמקדו ב-RAM ומעבד, לא GPU"
+          "title": "האם צריך חיבור אינטרנט מהיר?",
+          "content": "**תשובה:** לא בהכרח מהיר, אבל **יציב**.\n\n**למה צריך אינטרנט:**\n- תקשורת עם Claude/GPT בזמן אמת\n- הורדת packages (npm)\n- עדכוני Cursor ו-BMAD\n\n**מהירות מינימלית:** 5 Mbps download, 1 Mbps upload\n**מהירות מומלצת:** 10+ Mbps download, 2+ Mbps upload\n\n**החשוב יותר:** **יציבות החיבור**\n- אובדן חיבור = שיחה עם AI נקטעת\n- latency גבוה = תגובות איטיות\n\n**טיפ:** אם האינטרנט שלכם איטי אבל יציב - זה יעבוד בסדר"
         }
       ]
     },
@@ -141,39 +116,34 @@
       "type": "heading",
       "level": 2,
       "text": "התקנת Node.js",
-      "id": "nodejs-installation"
-    },
-    {
-      "type": "text",
-      "content": "Node.js הוא תנאי הכרחי להרצת כלים רבים בסביבת הפיתוח. למרות שהוא לא חובה ל-BMAD עצמו, מומלץ מאוד להתקין אותו.",
-      "markdown": true
+      "id": "install-nodejs"
     },
     {
       "type": "accordion",
       "items": [
         {
-          "title": "האם צריך Node.js בשביל BMAD?",
-          "content": "**תשובה:** תלוי מה אתם רוצים לעשות:\n\n**לא חובה עבור:**\n- שימוש באגנטים BMAD\n- ריצת וורקפלואים\n- כתיבת מסמכים (PRD, ארכיטקטורה)\n\n**כן חובה עבור:**\n- הרצת פרויקטים שבניתם\n- שימוש ב-npm packages\n- פיתוח אפליקציות web\n\n**המלצה:** התקינו - זה כמעט תמיד נדרש בשלב מסוים\n\n**טיפ:** עדיף להתקין מראש ולחסוך זמן אחר כך"
+          "title": "איך מתקינים Node.js?",
+          "content": "**תשובה:** תהליך פשוט:\n\n**צעד 1:** לכו ל-[nodejs.org](https://nodejs.org/)\n\n**צעד 2:** הורידו את **LTS version** (כפתור הירוק)\n- Windows: הורידו `.msi` installer\n- macOS: הורידו `.pkg` installer\n- Linux: השתמשו ב-package manager\n\n**צעד 3:** הריצו את ההתקנה:\n- לחצו Next/Continue בכל השלבים\n- אישרו הרשאות אם מתבקש\n- המתינו להתקנה להסתיים\n\n**צעד 4:** בדקו שההתקנה הצליחה:\n```bash\nnode --version\nnpm --version\n```\n\n**אם רואים מספרי גרסה - מצוין! Node.js מותקן**"
         },
         {
-          "title": "איזו גרסת Node.js צריך?",
-          "content": "**תשובה:** גרסה עדכנית יחסית:\n\n**מומלץ:**\n- **Node.js 18 LTS** (Long Term Support)\n- **Node.js 20 LTS** (חדש יותר)\n\n**מינימום:**\n- Node.js 16 (עובד, אבל ישן)\n\n**לא מומלץ:**\n- גרסאות מתחת ל-16 (לא נתמכות)\n\n**איך לבדוק:** פתחו terminal והקלידו `node --version`\n\n**טיפ:** תמיד בחרו ב-LTS (Long Term Support) לייצוב"
+          "title": "ההתקנה של Node.js נכשלה, מה לעשות?",
+          "content": "**תשובה:** תלוי בשגיאה:\n\n**בעיה 1: \"אין לך הרשאות\"**\n- **Windows:** הריצו את ההתקנה כ-Administrator (לחיצה ימנית → Run as Administrator)\n- **macOS/Linux:** השתמשו ב-sudo\n\n**בעיה 2: \"גרסה קיימת מותקנת\"**\n- הסירו את הגרסה הישנה קודם\n- Windows: דרך Control Panel → Programs\n- macOS: השתמשו ב-uninstaller\n\n**בעיה 3: \"הקובץ פגום\"**\n- הורידו שוב את הקובץ\n- כבו antivirus זמנית\n\n**פתרון כללי:** נסו לעשות restart למחשב ולהתקין שוב"
         },
         {
-          "title": "איך מתקינים Node.js ב-Windows?",
-          "content": "**תשובה:** תהליך פשוט:\n\n**שלבים:**\n1. **הורידו:** גשו ל-[nodejs.org](https://nodejs.org)\n2. **בחרו:** לחצו על \"LTS\" (הכפתור השמאלי)\n3. **הורידו:** קובץ .msi יורד\n4. **התקינו:** הפעילו את הקובץ ועקבו אחר ההוראות\n5. **אשרו הכל:** לחצו Next עד הסוף\n6. **בדקו:** פתחו PowerShell והקלידו `node --version`\n\n**משך זמן:** 5-10 דקות\n\n**טיפ:** אפשרו את \"Automatically install necessary tools\" בהתקנה"
+          "title": "איך בודקים אם Node.js מותקן?",
+          "content": "**תשובה:** פקודה פשוטה בטרמינל:\n\n**Windows:**\n1. פתחו Command Prompt (Win+R, כתבו cmd)\n2. הקלידו: `node --version`\n3. הקלידו: `npm --version`\n\n**macOS/Linux:**\n1. פתחו Terminal\n2. הקלידו: `node --version`\n3. הקלידו: `npm --version`\n\n**תוצאה מצופה:**\n```\nnode --version\nv20.10.0\n\nnpm --version\n10.2.3\n```\n\n**אם רואים מספרים - Node.js מותקן!**\n**אם רואים \"command not found\" - Node.js לא מותקן או לא ב-PATH**"
         },
         {
-          "title": "איך מתקינים Node.js ב-Mac?",
-          "content": "**תשובה:** יש שתי דרכים:\n\n**דרך 1: מהאתר הרשמי (פשוט)**\n1. גשו ל-[nodejs.org](https://nodejs.org)\n2. הורידו את ה-LTS\n3. פתחו את קובץ ה-.pkg\n4. עקבו אחר ההתקנה\n5. בדקו: `node --version` ב-Terminal\n\n**דרך 2: עם Homebrew (מומלץ למפתחים)**\n```bash\nbrew install node\n```\n\n**יתרון Homebrew:** עדכונים קלים יותר\n\n**טיפ:** אם יש לכם Homebrew - השתמשו בו!"
+          "title": "מה זה npm ולמה צריך אותו?",
+          "content": "**תשובה:** npm = Node Package Manager\n\n**מה זה עושה:**\n- מתקין ספריות וכלים (packages) של JavaScript\n- מנהל תלויות (dependencies) של פרויקטים\n- מריץ סקריפטים\n\n**למה צריך אותו ל-BMAD:**\n- BMAD מותקן דרך npm: `npx bmad-method@alpha install`\n- פרויקטים שאתם בונים יצטרכו packages שונים\n\n**חדשות טובות:** npm מגיע אוטומטית עם Node.js - לא צריך להתקין בנפרד!\n\n**טיפ:** אם Node.js מותקן, גם npm מותקן"
         },
         {
-          "title": "איך מתקינים Node.js ב-Linux?",
-          "content": "**תשובה:** תלוי בדיסטרו:\n\n**Ubuntu/Debian:**\n```bash\ncurl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -\nsudo apt-get install -y nodejs\n```\n\n**Fedora:**\n```bash\nsudo dnf install nodejs\n```\n\n**Arch Linux:**\n```bash\nsudo pacman -S nodejs npm\n```\n\n**בדיקה:**\n```bash\nnode --version\nnpm --version\n```\n\n**טיפ:** השתמשו ב-NodeSource PPA לגרסאות עדכניות"
+          "title": "node/npm לא מזוהים בטרמינל, למה?",
+          "content": "**תשובה:** בעיית PATH - המערכת לא יודעת איפה Node.js.\n\n**פתרון Windows:**\n1. חפשו \"Environment Variables\" בחיפוש\n2. לחצו על \"Edit the system environment variables\"\n3. לחצו \"Environment Variables\"\n4. תחת \"System variables\" מצאו \"Path\"\n5. וודאו שיש שורה: `C:\\Program Files\\nodejs\\`\n6. אם אין - הוסיפו אותה\n7. **חשוב:** סגרו ופתחו מחדש את הטרמינל\n\n**פתרון macOS/Linux:**\n1. פתחו ~/.bashrc או ~/.zshrc\n2. הוסיפו: `export PATH=\"/usr/local/bin:$PATH\"`\n3. הריצו: `source ~/.bashrc`\n\n**טיפ:** restart לטרמינל אחרי שינוי PATH!"
         },
         {
-          "title": "Node.js לא עובד אחרי ההתקנה, מה לעשות?",
-          "content": "**תשובה:** בעיות נפוצות ופתרונות:\n\n**בעיה 1: הפקודה לא נמצאת**\n- **פתרון:** סגרו ופתחו מחדש את ה-terminal\n- **אם לא עזר:** הוסיפו את Node ל-PATH ידנית\n\n**בעיה 2: הרשאות (Linux/Mac)**\n- **פתרון:** אל תריצו עם sudo - תקנו הרשאות\n- **פקודה:** `sudo chown -R $USER /usr/local/lib/node_modules`\n\n**בעיה 3: גרסה ישנה**\n- **פתרון:** הסירו והתקינו מחדש\n\n**עזרה נוספת:** [nodejs.org/en/download](https://nodejs.org/en/download)"
+          "title": "איך מעדכנים Node.js?",
+          "content": "**תשובה:** תלוי איך התקנתם:\n\n**דרך האתר הרשמי (הכי פשוט):**\n1. הורידו גרסה חדשה מ-[nodejs.org](https://nodejs.org/)\n2. הריצו את ההתקנה (תדרוס את הישנה)\n3. עשו restart למחשב\n4. בדקו: `node --version`\n\n**דרך nvm (Node Version Manager) - למתקדמים:**\n```bash\nnvm install 20\nnvm use 20\n```\n\n**Windows (דרך installer):**\n- פשוט הורידו והתקינו גרסה חדשה\n- לא צריך להסיר את הישנה קודם\n\n**טיפ:** עדכנו כל 6-12 חודשים ל-LTS version חדש"
         }
       ]
     },
@@ -184,43 +154,34 @@
       "type": "heading",
       "level": 2,
       "text": "התקנת Cursor",
-      "id": "cursor-installation"
-    },
-    {
-      "type": "text",
-      "content": "Cursor הוא ה-IDE המומלץ (והכמעט הכרחי) לעבודה עם BMAD. ההתקנה פשוטה, אבל יש כמה נקודות חשובות.",
-      "markdown": true
+      "id": "install-cursor"
     },
     {
       "type": "accordion",
       "items": [
         {
-          "title": "מאיפה מורידים את Cursor?",
-          "content": "**תשובה:** רק מהאתר הרשמי:\n\n**אתר רשמי:** [cursor.sh](https://cursor.sh)\n\n**⚠️ חשוב:**\n- **אל תורידו ממקורות אחרים!**\n- בדקו שה-URL הוא cursor.sh\n- יש אתרי phishing מזויפים\n\n**כפתור ההורדה:**\n- מזהה אוטומטית את מערכת ההפעלה שלכם\n- מוריד את הגרסה המתאימה\n\n**טיפ:** הורדה חינמית - לא צריך כרטיס אשראי להורדה"
+          "title": "איך מתקינים את Cursor?",
+          "content": "**תשובה:** תהליך התקנה פשוט:\n\n**צעד 1:** לכו ל-[cursor.sh](https://cursor.sh/)\n\n**צעד 2:** לחצו \"Download\" (הכפתור הגדול)\n- Windows: הורידו את ה-`.exe` installer\n- macOS: הורידו את ה-`.dmg` file\n- Linux: הורידו את ה-`.AppImage` או השתמשו ב-package manager\n\n**צעד 3:** הריצו את ההתקנה:\n- **Windows:** הריצו את ה-exe → Next → Install\n- **macOS:** פתחו את ה-dmg → גררו ל-Applications\n- **Linux:** תנו הרשאת הרצה: `chmod +x cursor.AppImage`\n\n**צעד 4:** פתחו את Cursor\n- אם זו הפעם הראשונה - יתבקש להירשם/להתחבר\n\n**הכל מוכן!**"
         },
         {
-          "title": "איך מתקינים Cursor ב-Windows?",
-          "content": "**תשובה:** תהליך התקנה מהיר:\n\n**שלבים:**\n1. **הורידו:** מ-[cursor.sh](https://cursor.sh)\n2. **הפעילו:** קובץ CursorSetup.exe\n3. **אשרו:** אפשרו ל-installer לעבוד (Windows Defender עשוי לשאול)\n4. **המתינו:** 2-5 דקות התקנה\n5. **הפעילו:** Cursor יפתח אוטומטית\n\n**הגדרות ראשונות:**\n- בחרו צבעים (אפשר לשנות אחר כך)\n- חיברו חשבון (או דלגו)\n\n**משך זמן:** 5-10 דקות\n\n**טיפ:** אין צורך להסיר VS Code אם יש לכם"
+          "title": "מה ההבדל בין Cursor Free ל-Pro?",
+          "content": "**תשובה:** הבדלים במכסות השימוש:\n\n**Cursor Free (חינמי):**\n- **AI completions:** 2000/חודש\n- **Requests:** 50 requests/יום\n- **מודלים:** GPT-3.5 + Claude 3\n- **מחיר:** $0\n\n**Cursor Pro ($20/חודש):**\n- **AI completions:** Unlimited (fair use)\n- **Requests:** 500 requests/יום\n- **מודלים:** כל המודלים (GPT-4, Claude 3.5)\n- **תמיכה:** עדיפות\n- **מחיר:** $20/חודש\n\n**למתחילים:** התחילו עם Free\n**לשימוש רציני:** שדרגו ל-Pro\n\n**טיפ:** אם אתם משתמשים הרבה - Pro משתלם"
         },
         {
-          "title": "איך מתקינים Cursor ב-Mac?",
-          "content": "**תשובה:** פשוט מאוד:\n\n**שלבים:**\n1. **הורידו:** קובץ .dmg מ-cursor.sh\n2. **פתחו:** את קובץ ה-DMG\n3. **גררו:** את אייקון Cursor לתיקיית Applications\n4. **הפעילו:** מ-Applications או Spotlight (⌘+Space)\n5. **אשרו:** \"Open\" כשמופיעה אזהרה (אפליקציה חדשה)\n\n**Apple Silicon (M1/M2/M3):**\n- עובד מצוין!\n- אין צורך ב-Rosetta\n\n**טיפ:** הוסיפו ל-Dock לגישה מהירה"
+          "title": "Cursor לא נפתח, מה לעשות?",
+          "content": "**תשובה:** כמה פתרונות:\n\n**פתרון 1: Restart**\n- סגרו את Cursor לגמרי (Task Manager/Force Quit)\n- פתחו מחדש\n\n**פתרון 2: בדקו antivirus**\n- Antivirus אולי חוסם את Cursor\n- הוסיפו Cursor ל-whitelist\n\n**פתרון 3: הסרה והתקנה מחדש**\n- הסירו את Cursor\n- מחקו את התיקייה: `~/.cursor` (macOS/Linux) או `%APPDATA%\\Cursor` (Windows)\n- התקינו מחדש\n\n**פתרון 4: בדקו logs**\n- מצאו את לוגים: Help → Toggle Developer Tools → Console\n- חפשו שגיאות באדום\n\n**עדיין לא עובד?** נסו להריץ מהטרמינל לראות שגיאות"
         },
         {
-          "title": "איך מתקינים Cursor ב-Linux?",
-          "content": "**תשובה:** תלוי בדיסטרו:\n\n**Ubuntu/Debian (.deb):**\n```bash\nwget https://downloader.cursor.sh/linux/appImage/x64\nchmod +x cursor-*.AppImage\n./cursor-*.AppImage\n```\n\n**אחרות (AppImage):**\n1. הורידו את קובץ ה-AppImage\n2. `chmod +x cursor-*.AppImage`\n3. הפעילו: `./cursor-*.AppImage`\n\n**אינטגרציה:**\n- צרו desktop entry ל-launcher\n- או הריצו מה-terminal\n\n**טיפ:** AppImage עובד על כל הדיסטרו"
+          "title": "איך מחברים את Cursor ל-Claude?",
+          "content": "**תשובה:** תהליך חיבור:\n\n**אופציה 1: Cursor Pro (הכי פשוט)**\n1. לכו ל-Settings (Ctrl/Cmd + ,)\n2. לחצו על \"Account\"\n3. התחברו עם חשבון Cursor Pro\n4. Claude מחובר אוטומטית!\n\n**אופציה 2: Claude API (למתקדמים)**\n1. צרו API key ב-[console.anthropic.com](https://console.anthropic.com/)\n2. העתיקו את ה-key\n3. ב-Cursor: Settings → AI → Claude API\n4. הדביקו את ה-key\n5. שמרו\n\n**בדיקה:**\n- פתחו קובץ חדש\n- לחצו Ctrl/Cmd + L (צ'אט)\n- שאלו משהו\n- אם Claude עונה - עובד!\n\n**טיפ:** Cursor Pro פשוט יותר מ-API key"
         },
         {
-          "title": "Cursor לא נפתח, מה הבעיה?",
-          "content": "**תשובה:** בעיות נפוצות:\n\n**Windows:**\n- **Antivirus חוסם:** הוסיפו Cursor לחריגים\n- **NET Framework חסר:** התקינו מ-Microsoft\n- **הרשאות:** הריצו כ-Administrator\n\n**Mac:**\n- **Gatekeeper:** System Preferences → Security → \"Open Anyway\"\n- **הרשאות:** אפשרו גישה לקבצים\n\n**Linux:**\n- **הרשאות הרצה:** `chmod +x`\n- **Dependencies:** התקינו libgtk-3-0\n\n**פתרון אחרון:** הסירו והתקינו מחדש"
+          "title": "לא מצליח להתחבר לחשבון Cursor, למה?",
+          "content": "**תשובה:** בעיות חיבור נפוצות:\n\n**בעיה 1: שגיאת network**\n- בדקו חיבור אינטרנט\n- נסו להתחבר דרך דפדפן: [cursor.sh/sign-in](https://cursor.sh/sign-in)\n- בדקו שאין firewall/proxy חוסם\n\n**בעיה 2: \"Invalid credentials\"**\n- וודאו שהסיסמה נכונה\n- נסו \"Forgot Password?\"\n- אם נרשמתם עם Google/GitHub - התחברו בדרך זו\n\n**בעיה 3: \"Account not found\"**\n- אולי טרם נרשמתם?\n- לחצו \"Sign Up\" במקום \"Sign In\"\n\n**פתרון כללי:**\n- נסו logout → login\n- נסו דרך דפדפן\n- הסירו cache: מחקו `~/.cursor/auth`"
         },
         {
-          "title": "איך מגדירים את Cursor לפעם הראשונה?",
-          "content": "**תשובה:** הגדרות בסיסיות מומלצות:\n\n**שלב 1: בחרו Theme**\n- Dark/Light לפי העדפה אישית\n\n**שלב 2: חברו AI**\n- Settings → AI → הזינו Claude API key\n- או התחברו עם חשבון Claude\n\n**שלב 3: הגדרות Editor**\n- Font size: 14-16 (נוח לקריאה)\n- Auto save: On\n- Tab size: 2 spaces\n\n**שלב 4: Extensions (אופציונלי)**\n- התקינו extensions מועדפים\n\n**טיפ:** אפשר לשנות הכל אחר כך!"
-        },
-        {
-          "title": "האם צריך מנוי Cursor Pro?",
-          "content": "**תשובה:** לא הכרחי, אבל יש יתרונות:\n\n**Cursor Free:**\n- 2000 completions חינמיות/חודש\n- גישה בסיסית ל-AI\n- מספיק למתחילים\n\n**Cursor Pro ($20/חודש):**\n- Completions ללא הגבלה\n- מהירות תגובה טובה יותר\n- תמיכה בצ'אט ארוך\n- עדיפות בשרתים\n\n**מתי צריך Pro:**\n- אם אתם משתמשים יותר מ-2000/חודש\n- עבודה מקצועית\n\n**טיפ:** התחילו עם Free - תוכלו לשדרג אחר כך"
+          "title": "האם אפשר להשתמש ב-VS Code במקום Cursor?",
+          "content": "**תשובה:** טכנית כן, אבל **לא מומלץ למתחילים**.\n\n**למה Cursor עדיף:**\n- תמיכה מובנית ב-AI (Claude/GPT)\n- פיצ'ר @ לטעינת אגנטים\n- Context management מתקדם\n- UI/UX אופטימלי לעבודה עם AI\n\n**אם בכל זאת רוצים VS Code:**\n- צריך להתקין extensions: Claude API, Continue\n- צריך להגדיר ידנית API keys\n- חוויה פחות טובה\n\n**למי זה מתאים:**\n- מפתחים מנוסים שכבר עובדים ב-VS Code\n- מי שיש לו workflow מותאם אישית\n\n**למתחילים:** פשוט התחילו עם Cursor - תחסכו כאב ראש"
         }
       ]
     },
@@ -231,35 +192,34 @@
       "type": "heading",
       "level": 2,
       "text": "התקנת BMAD",
-      "id": "bmad-installation"
-    },
-    {
-      "type": "text",
-      "content": "עכשיו מגיע החלק המרכזי - התקנת BMAD עצמו. זה קל יותר ממה שחושבים!",
-      "markdown": true
+      "id": "install-bmad"
     },
     {
       "type": "accordion",
       "items": [
         {
           "title": "איך מתקינים את BMAD?",
-          "content": "**תשובה:** תהליך פשוט:\n\n**אופציה 1: דרך Cursor (מומלץ)**\n1. פתחו Cursor\n2. לחצו Ctrl+Shift+P (או Cmd+Shift+P)\n3. חפשו \"BMAD: Install\"\n4. בחרו והמתינו להתקנה\n\n**אופציה 2: ידנית (למתקדמים)**\n```bash\ngit clone https://github.com/bmad-method/bmad\ncd bmad\nnpm install\n```\n\n**משך זמן:** 3-5 דקות\n\n**טיפ:** אופציה 1 פשוטה יותר למתחילים"
+          "content": "**תשובה:** פקודה אחת!\n\n**צעד 1:** פתחו Terminal (macOS/Linux) או PowerShell (Windows)\n\n**צעד 2:** נווטו לתיקיית הפרויקט:\n```bash\ncd C:\\Projects\\MyProject\n```\n\n**צעד 3:** הריצו את פקודת ההתקנה:\n```bash\nnpx bmad-method@alpha install\n```\n\n**צעד 4:** עקבו אחר ההוראות על המסך:\n- בחרו מודולים (BMM, CIS, וכו')\n- הזינו את השם שלכם\n- בחרו שפת תקשורת\n- בחרו IDE\n\n**צעד 5:** המתינו להתקנה להסתיים\n\n**זהו! BMAD מותקן בתיקייה `bmad/`**"
         },
         {
-          "title": "איפה BMAD מתקין את עצמו?",
-          "content": "**תשובה:** תלוי באופן ההתקנה:\n\n**התקנה דרך Cursor:**\n- **Windows:** `C:\\Users\\[USERNAME]\\.cursor\\bmad\\`\n- **Mac:** `~/Library/Application Support/Cursor/bmad/`\n- **Linux:** `~/.config/Cursor/bmad/`\n\n**התקנה ידנית:**\n- במקום שבו הרצתם `git clone`\n\n**מה מותקן:**\n- קבצי האגנטים (.mdc)\n- קבצי הוורקפלואים (.yaml)\n- קונפיגורציה (config.yaml)\n\n**טיפ:** לא צריך לדעת את המיקום המדויק בדרך כלל"
+          "title": "מה זה npx ולמה משתמשים בו?",
+          "content": "**תשובה:** npx = Node Package Execute\n\n**מה זה עושה:**\n- מריץ packages של Node.js בלי להתקין אותם קבוע\n- מוריד גרסה עדכנית של הכלי\n- מריץ אותו פעם אחת\n\n**למה טוב:**\n- לא צריך להתקין BMAD globally\n- תמיד מקבלים את הגרסה העדכנית\n- לא \"מלכלכים\" את המערכת\n\n**אלטרנטיבה (לא מומלץ):**\n```bash\nnpm install -g bmad-method@alpha\nbmad install\n```\n\n**טיפ:** npx זה הדרך המומלצת - פשוט וחכם"
         },
         {
-          "title": "איך יודעים שההתקנה הצליחה?",
-          "content": "**תשובה:** כמה בדיקות מהירות:\n\n**בדיקה 1: טענו אגנט**\n- בCursor, הקלידו `@`\n- אתם צריכים לראות רשימת אגנטים (pm, architect, dev...)\n\n**בדיקה 2: הריצו אגנט**\n- `@pm` + Enter\n- האגנט צריך להגיב\n\n**בדיקה 3: בדקו קונפיג**\n- פתחו את `bmad/bmm/config.yaml`\n- וודאו שהשדות מלאים\n\n**אם הכל עובד:** ההתקנה הצליחה! 🎉\n\n**טיפ:** התחילו עם @pm - הכי פשוט לבדיקה"
+          "title": "ההתקנה של BMAD נכשלה, מה לעשות?",
+          "content": "**תשובה:** תלוי בשגיאה:\n\n**שגיאה 1: \"npm/npx not found\"**\n- Node.js לא מותקן או לא ב-PATH\n- פתרון: התקינו Node.js והוסיפו ל-PATH\n\n**שגיאה 2: \"Permission denied\"**\n- אין הרשאות כתיבה לתיקייה\n- **Windows:** הריצו PowerShell כ-Administrator\n- **macOS/Linux:** השתמשו ב-`sudo` (לא מומלץ, עדיף להתקין בתיקייה עם הרשאות)\n\n**שגיאה 3: \"Network error\" / \"ENOTFOUND\"**\n- בעיית חיבור אינטרנט\n- firewall/proxy חוסם את npm\n- פתרון: בדקו חיבור ואת הגדרות firewall\n\n**שגיאה 4: \"Package not found\"**\n- הפקודה לא נכונה\n- וודאו: `npx bmad-method@alpha install` (עם @alpha)\n\n**פתרון כללי:** נקו את cache:\n```bash\nnpm cache clean --force\nnpx bmad-method@alpha install\n```"
         },
         {
-          "title": "מה עושים אחרי ההתקנה?",
-          "content": "**תשובה:** 3 צעדים ראשונים:\n\n**1. הגדירו config.yaml:**\n```yaml\nuser_name: השם שלכם\ncommunication_language: Hebrew\noutput_folder: '{project-root}/docs'\n```\n\n**2. נסו אגנט ראשון:**\n- פתחו Cursor\n- הקלידו `@pm שלום!`\n- האגנט יציג תפריט\n\n**3. הריצו וורקפלוא פשוט:**\n- `@pm בוא נכתוב PRD פשוט`\n- עקבו אחר ההוראות\n\n**הצעד הבא:** [הדרכה ליום הראשון](/guides/onboarding-day1)"
+          "title": "איפה BMAD מותקן?",
+          "content": "**תשובה:** BMAD מתקין את עצמו בפרויקט:\n\n**מבנה תיקיות:**\n```\nMyProject/\n├── bmad/               ← כאן BMAD מותקן!\n│   ├── bmm/\n│   │   ├── agents/    ← האגנטים\n│   │   ├── workflows/ ← הוורקפלואים\n│   │   └── config.yaml\n│   └── ...\n├── node_modules/      ← packages\n└── ...\n```\n\n**חשוב:** BMAD מתקין **לכל פרויקט בנפרד**\n- אין התקנה גלובלית\n- כל פרויקט יש לו `bmad/` משלו\n\n**למה?** כך אפשר להתאים BMAD לכל פרויקט (config, אגנטים מותאמים)\n\n**טיפ:** אל תמחקו את התיקייה `bmad/` - שם כל הקסם!"
         },
         {
-          "title": "האם צריך Git?",
-          "content": "**תשובה:** תלוי:\n\n**לא חובה עבור:**\n- שימוש ב-BMAD (אם התקנתם דרך Cursor)\n- הפעלת אגנטים\n\n**כן חובה עבור:**\n- התקנה ידנית של BMAD\n- ניהול version control של הפרויקטים שלכם\n- תרומה ל-BMAD\n\n**איך מתקינים Git:**\n- **Windows:** [git-scm.com](https://git-scm.com)\n- **Mac:** `brew install git` או מהאתר\n- **Linux:** `sudo apt install git`\n\n**המלצה:** התקינו - זה שימושי גם מעבר ל-BMAD"
+          "title": "כמה זמן לוקחת ההתקנה?",
+          "content": "**תשובה:** תלוי במהירות האינטרנט:\n\n**התקנה מלאה:**\n- הורדת BMAD: 1-2 דקות\n- התקנת dependencies: 3-5 דקות\n- הגדרות אינטראקטיביות: 2-3 דקות\n- **סה\"כ:** 6-10 דקות\n\n**התקנה מינימלית (רק BMM):**\n- **סה\"כ:** 3-5 דקות\n\n**גורמים משפיעים:**\n- מהירות אינטרנט (הכי משפיע)\n- מהירות דיסק\n- מעבד\n\n**טיפ:** אם זה לוקח יותר מ-15 דקות, יש בעיה (בדקו אינטרנט)"
+        },
+        {
+          "title": "מה ההבדל בין המודולים השונים?",
+          "content": "**תשובה:** BMAD מורכב ממודולים:\n\n**BMM (Basic Methodology Module) - הכרחי:**\n- האגנטים הבסיסיים (PM, Architect, Dev, TEA, וכו')\n- הוורקפלואים המרכזיים\n- זה המודול העיקרי - **חובה להתקין**\n\n**CIS (Collaborative Intelligence System) - אופציונלי:**\n- Party Mode (מספר אגנטים עובדים ביחד)\n- תרחישי שיתוף פעולה מורכבים\n- בונוס למתקדמים\n\n**Game Module - אופציונלי:**\n- אגנטים לפיתוח משחקים\n- וורקפלואים לגיימדב\n- רק למפתחי משחקים\n\n**המלצה למתחילים:** התחילו רק עם BMM. תוסיפו מודולים אחר כך אם צריך."
         }
       ]
     },
@@ -270,48 +230,48 @@
       "type": "heading",
       "level": 2,
       "text": "בעיות התקנה נפוצות",
-      "id": "common-installation-issues"
+      "id": "common-issues"
     },
     {
       "type": "callout",
       "variant": "warning",
-      "title": "נתקלתם בבעיה?",
-      "content": "רוב בעיות ההתקנה נפתרות בקלות. להלן הבעיות הנפוצות ביותר והפתרונות שלהן"
+      "title": "שגיאות נפוצות ופתרונות",
+      "content": "רוב בעיות ההתקנה נובעות מ-3 דברים: הרשאות, חיבור אינטרנט, או Node.js לא מעודכן. בדקו את אלה קודם!"
     },
     {
       "type": "accordion",
       "items": [
         {
           "title": "שגיאה: 'node' is not recognized",
-          "content": "**בעיה:** Windows/PowerShell לא מזהה את Node.js\n\n**פתרון 1: Restart Terminal**\n- סגרו את כל חלונות הטרמינל\n- פתחו חדש\n- נסו שוב\n\n**פתרון 2: בדקו PATH**\n1. חפשו \"Environment Variables\"\n2. ב-System Variables מצאו \"Path\"\n3. וודאו שיש: `C:\\Program Files\\nodejs\\`\n4. אם לא - הוסיפו ידנית\n\n**פתרון 3: התקינו מחדש**\n- הסירו Node.js\n- הורידו מחדש והתקינו\n- **חשוב:** אשרו \"Add to PATH\" בהתקנה"
+          "content": "**שגיאה:**\n```\n'node' is not recognized as an internal or external command\n```\n\n**סיבה:** Node.js לא מותקן או לא ב-PATH\n\n**פתרון:**\n1. וודאו ש-Node.js מותקן: לכו ל-[nodejs.org](https://nodejs.org/)\n2. אם מותקן אבל לא עובד - בעיית PATH:\n   - **Windows:** הוסיפו `C:\\Program Files\\nodejs\\` ל-PATH\n   - **macOS/Linux:** הוסיפו `/usr/local/bin` ל-PATH\n3. **חשוב:** סגרו ופתחו מחדש את הטרמינל\n4. בדקו שוב: `node --version`\n\n**אם עדיין לא עובד:** עשו restart למחשב"
         },
         {
-          "title": "שגיאה: Permission denied (Mac/Linux)",
-          "content": "**בעיה:** אין הרשאות להתקנה\n\n**⚠️ אל תשתמשו ב-sudo לכל דבר!**\n\n**פתרון נכון:**\n```bash\n# תקנו הרשאות npm\nmkdir ~/.npm-global\nnpm config set prefix '~/.npm-global'\n\n# הוסיפו ל-PATH\necho 'export PATH=~/.npm-global/bin:$PATH' >> ~/.bashrc\nsource ~/.bashrc\n```\n\n**עכשיו אפשר להתקין בלי sudo:**\n```bash\nnpm install -g [package]\n```\n\n**טיפ:** אחרי זה הכל יעבוד חלק יותר"
+          "title": "שגיאה: EACCES permission denied",
+          "content": "**שגיאה:**\n```\nError: EACCES: permission denied, mkdir '/path/to/folder'\n```\n\n**סיבה:** אין הרשאות כתיבה לתיקייה\n\n**פתרון Windows:**\n1. סגרו את הטרמינל\n2. פתחו PowerShell כ-Administrator (לחיצה ימנית → Run as Administrator)\n3. נווטו לתיקייה\n4. הריצו שוב: `npx bmad-method@alpha install`\n\n**פתרון macOS/Linux:**\n1. **לא מומלץ:** `sudo npx bmad-method@alpha install`\n2. **מומלץ:** התקינו בתיקייה עם הרשאות:\n```bash\ncd ~/Documents/MyProject\nnpx bmad-method@alpha install\n```\n\n**טיפ:** אל תריצו npm עם sudo אם לא חובה"
         },
         {
-          "title": "Cursor לא מוצא את האגנטים",
-          "content": "**בעיה:** @ לא מציג אגנטים\n\n**פתרון 1: Reload Window**\n- Ctrl+Shift+P\n- \"Reload Window\"\n- נסו שוב\n\n**פתרון 2: בדקו מיקום BMAD**\n- וודאו ש-BMAD בתיקייה הנכונה\n- Settings → BMAD → Path\n\n**פתרון 3: התקינו מחדש**\n- מחקו את תיקיית bmad\n- התקינו שוב דרך Cursor\n\n**פתרון 4: בדקו .cursorrules**\n- פתחו `.cursorrules`\n- וודאו שיש רפרנס ל-BMAD agents"
+          "title": "שגיאה: Cannot find module",
+          "content": "**שגיאה:**\n```\nError: Cannot find module 'xyz'\n```\n\n**סיבה:** חסר package או התקנה לא הושלמה\n\n**פתרון:**\n1. נקו את cache:\n```bash\nnpm cache clean --force\n```\n2. מחקו `node_modules/` ו-`package-lock.json`:\n```bash\nrm -rf node_modules package-lock.json\n```\n3. התקינו מחדש:\n```bash\nnpm install\n```\n4. נסו שוב להריץ BMAD\n\n**אם עדיין לא עובד:** ייתכן שיש בעיה עם גרסת Node.js - וודאו שיש לכם 18+"
         },
         {
-          "title": "Claude לא עובד / No API key",
-          "content": "**בעיה:** הודעת שגיאה על API key\n\n**פתרון:**\n\n**אם יש מנוי Claude Pro:**\n1. Cursor → Settings → AI\n2. בחרו \"Claude\"\n3. התחברו עם החשבון שלכם\n\n**אם משתמשים ב-API:**\n1. קבלו API key מ-[console.anthropic.com](https://console.anthropic.com)\n2. Cursor → Settings → AI → API Keys\n3. הדביקו את המפתח\n4. שמרו\n\n**בדיקה:**\n- נסו לשאול שאלה ב-Cursor\n- אם עובד - הגדרתם נכון!\n\n**טיפ:** שמרו את ה-API key במקום בטוח"
+          "title": "שגיאה: network timeout / ETIMEDOUT",
+          "content": "**שגיאה:**\n```\nnpm ERR! network timeout\nnpm ERR! code ETIMEDOUT\n```\n\n**סיבה:** בעיית חיבור לשרתי npm\n\n**פתרון:**\n1. בדקו חיבור אינטרנט\n2. נסו שוב - לפעמים זו בעיה זמנית\n3. אם אתם מאחורי proxy/firewall:\n```bash\nnpm config set proxy http://proxy-server:port\nnpm config set https-proxy http://proxy-server:port\n```\n4. נסו להשתמש ב-registry אחר:\n```bash\nnpm config set registry https://registry.npmjs.org/\n```\n\n**טיפ:** אם זה קורה הרבה, בדקו הגדרות firewall/antivirus"
         },
         {
-          "title": "ההתקנה תקועה / Stuck",
-          "content": "**בעיה:** ההתקנה לא מתקדמת\n\n**אבחון:**\n1. בדקו חיבור אינטרנט\n2. בדקו אם firewall/antivirus חוסם\n3. בדקו שטח דיסק פנוי\n\n**פתרון 1: המתינו**\n- לפעמים לוקח זמן (במיוחד download גדול)\n- עד 10 דקות זה נורמלי\n\n**פתרון 2: בטלו והתחילו מחדש**\n- Ctrl+C כדי לבטל\n- נסו שוב\n\n**פתרון 3: נקו cache**\n```bash\nnpm cache clean --force\n```\n\n**פתרון 4: נסו רשת אחרת**\n- לפעמים רשת החברה חוסמת"
+          "title": "שגיאה: Cursor לא מזהה את האגנטים",
+          "content": "**שגיאה:** כותבים @ ואף אגנט לא מופיע\n\n**סיבה:** Cursor לא רואה את התיקייה `bmad/`\n\n**פתרון:**\n1. וודאו שאתם בפרויקט הנכון:\n   - File → Open Folder → בחרו בתיקייה עם `bmad/`\n2. וודאו ש-`bmad/` קיימת ומכילה קבצים\n3. רענון:\n   - Ctrl/Cmd + Shift + P\n   - חפשו \"Reload Window\"\n4. בדקו הגדרות Cursor:\n   - Settings → Extensions → וודאו שאין דבר שחוסם\n\n**אם עדיין לא עובד:**\n- סגרו Cursor לגמרי\n- פתחו מחדש\n- נסו לכתוב @bmad-master\n\n**טיפ:** @ צריך לעבוד רק בצ'אט (Ctrl/Cmd + L)"
         },
         {
-          "title": "Windows Defender חוסם את Cursor",
-          "content": "**בעיה:** Antivirus מזהה Cursor כאיום\n\n**פתרון:**\n\n**זה תקין!** Cursor הוא תוכנה לגיטימית - זו false positive\n\n**הוסיפו חריגה:**\n1. פתחו Windows Security\n2. Virus & threat protection\n3. Manage settings\n4. Add exclusion\n5. בחרו את תיקיית Cursor\n\n**חלופה:**\n- השתמשו ב-antivirus אחר שפחות aggressive\n- או כבו זמנית בזמן ההתקנה (לא מומלץ)\n\n**טיפ:** Cursor חתום דיגיטלית - הוא בטוח"
+          "title": "האגנט לא עונה / תקוע",
+          "content": "**בעיה:** שלחתם הודעה לאגנט והוא לא עונה\n\n**סיבות אפשריות:**\n\n**1. אין חיבור ל-AI:**\n- בדקו שיש חיבור ל-Claude/GPT\n- Settings → AI → וודאו שה-API key/מנוי פעיל\n\n**2. נגמרה מכסה:**\n- Cursor Free: 2000 completions/חודש\n- אם נגמר - צריך לחכות לחודש הבא או לשדרג ל-Pro\n\n**3. הקשר גדול מדי:**\n- Claude/GPT יש מגבלת context\n- פתרון: התחילו שיחה חדשה\n\n**4. שגיאת server:**\n- לפעמים שרתי Anthropic/OpenAI עמוסים\n- פתרון: חכו כמה דקות ונסו שוב\n\n**פתרון מהיר:** סגרו את הצ'אט ופתחו חדש"
         },
         {
-          "title": "שגיאה: EACCES או EPERM",
-          "content": "**בעיה:** שגיאת הרשאות\n\n**Windows:**\n- הריצו PowerShell כ-Administrator\n- או שנו הרשאות לתיקייה\n\n**Mac/Linux:**\n```bash\n# אל תשתמשו ב-sudo!\n# במקום - תקנו הרשאות:\nsudo chown -R $USER /usr/local/lib/node_modules\nsudo chown -R $USER /usr/local/bin\n```\n\n**אחרי זה:**\n```bash\nnpm install\n```\n\n**טיפ:** תקנו הרשאות פעם אחת ותחסכו בעיות"
+          "title": "Claude מחזיר שגיאות או תשובות מוזרות",
+          "content": "**בעיה:** האגנט עונה אבל התשובות לא הגיוניות\n\n**סיבות וטיפים:**\n\n**1. הקשר לא ברור:**\n- תנו יותר context באחת\n- הסבירו מה הפרויקט\n- תנו דוגמאות\n\n**2. הפרומפט מבלבל:**\n- היו ספציפיים\n- שאלו שאלה אחת בכל פעם\n- אל תשלבו הרבה נושאים\n\n**3. האגנט לא מתאים:**\n- משתמשים ב-Dev לשאלות PM? לא יעבוד טוב\n- השתמשו באגנט הנכון למשימה\n\n**4. גרסה ישנה:**\n- ודאו שיש לכם את הגרסה העדכנית של BMAD\n\n**פתרון:** התחילו שיחה חדשה עם context ברור יותר"
         },
         {
-          "title": "הורדה איטית מאוד",
-          "content": "**בעיה:** ההתקנה לוקחת שעות\n\n**סיבות אפשריות:**\n1. **חיבור אינטרנט איטי**\n2. **שרת npm עמוס**\n3. **Firewall מאט**\n4. **VPN**\n\n**פתרונות:**\n\n**1. השתמשו במראה מהירה:**\n```bash\nnpm config set registry https://registry.npmmirror.com\n```\n\n**2. נסו שעות אחרות:**\n- הורדה בלילה לפעמים מהירה יותר\n\n**3. כבו VPN:**\n- זה יכול להאט\n\n**4. בדקו מהירות:**\n```bash\nspeed-test\n```\n\n**טיפ:** אם המהירות מתחת ל-1Mbps - זה יקח זמן"
+          "title": "ההתקנה תקועה / לוקחת נצח",
+          "content": "**בעיה:** ההתקנה רצה יותר מ-15 דקות\n\n**מה לעשות:**\n\n**1. תנו עוד זמן:**\n- אם האינטרנט איטי - זה יכול לקחת זמן\n- אם רואים התקדמות (downloading...) - המתינו\n\n**2. בדקו אם זה תקוע:**\n- אם אין שום output במשך 5+ דקות - תקוע\n- Ctrl+C לביטול\n\n**3. נסו שוב עם verbose:**\n```bash\nnpx bmad-method@alpha install --verbose\n```\n- תראו יותר פרטים מה קורה\n\n**4. בדקו antivirus:**\n- לפעמים antivirus סורק כל קובץ → מאט\n- כבו זמנית ונסו שוב\n\n**5. נקו cache ונסו שוב:**\n```bash\nnpm cache clean --force\nnpx bmad-method@alpha install\n```"
         }
       ]
     },
@@ -322,31 +282,30 @@
       "type": "heading",
       "level": 2,
       "text": "קונפיגורציה ראשונית",
-      "id": "initial-configuration"
-    },
-    {
-      "type": "text",
-      "content": "אחרי ההתקנה, יש כמה הגדרות שכדאי לעשות כדי להתאים את BMAD לצרכים שלכם.",
-      "markdown": true
+      "id": "initial-config"
     },
     {
       "type": "accordion",
       "items": [
         {
-          "title": "איך מגדירים את config.yaml?",
-          "content": "**תשובה:** הקובץ המרכזי להגדרות:\n\n**מיקום:**\n- `bmad/bmm/config.yaml`\n\n**הגדרות חובה:**\n```yaml\nuser_name: השם שלכם\ncommunication_language: Hebrew\ndocument_output_language: Hebrew\noutput_folder: '{project-root}/docs'\n```\n\n**הגדרות אופציונליות:**\n```yaml\nuser_skill_level: beginner\ninclude_game_planning: false\ntea_use_mcp_enhancements: false\n```\n\n**טיפ:** שמרו בדיוק כמו שכתוב - YAML רגיש לרווחים!"
+          "title": "איפה קובץ הקונפיגורציה?",
+          "content": "**תשובה:** הקונפיגורציה נמצאת ב:\n\n```\nMyProject/\n└── bmad/\n    └── bmm/\n        └── config.yaml  ← כאן!\n```\n\n**מה יש בקובץ:**\n```yaml\nproject_name: MyProject\nuser_name: Ben\ncommunication_language: English\ndocument_output_language: Hebrew\noutput_folder: '{project-root}/docs'\nuser_skill_level: intermediate\n```\n\n**מה אפשר לערוך:**\n- **user_name:** השם שלכם (האגנטים יפנו בשם)\n- **communication_language:** שפת תקשורת (English/Hebrew)\n- **document_output_language:** בשפה זו ייכתבו מסמכים\n- **user_skill_level:** beginner/intermediate/advanced\n\n**טיפ:** אחרי שינוי - שמרו ואתחלו את האגנט"
         },
         {
-          "title": "מה זה user_name ולמה זה חשוב?",
-          "content": "**תשובה:** השם שהאגנטים יפנו אליכם:\n\n**דוגמה:**\n```yaml\nuser_name: דני\n```\n\n**השימוש:**\n- אגנטים יפנו אליכם \"שלום דני!\"\n- הופך את השיחה לאישית יותר\n- משתמש בתיעוד\n\n**טיפים:**\n- השתמשו בשם פרטי (לא שם משפחה)\n- עברית או אנגלית - שניהם עובדים\n- אפשר לשנות בכל עת\n\n**זה לא חובה, אבל:** זה עושה את החוויה נעימה יותר"
+          "title": "איך משנים שפת תקשורת?",
+          "content": "**תשובה:** עריכת קובץ config.yaml:\n\n**צעד 1:** פתחו את הקובץ:\n```\nbmad/bmm/config.yaml\n```\n\n**צעד 2:** מצאו את השורה:\n```yaml\ncommunication_language: English\n```\n\n**צעד 3:** שנו לשפה רצויה:\n```yaml\ncommunication_language: Hebrew  # או English\n```\n\n**צעד 4:** שמרו את הקובץ\n\n**צעד 5:** אתחלו את האגנט (סגרו ופתחו שיחה חדשה)\n\n**שפות נתמכות:**\n- English\n- Hebrew\n- עוד שפות בהמשך\n\n**הערה:** האגנטים יתקשרו איתכם בשפה שבחרתם"
         },
         {
-          "title": "איך משנים את שפת התקשורת?",
-          "content": "**תשובה:** דרך config.yaml:\n\n**עברית:**\n```yaml\ncommunication_language: Hebrew\ndocument_output_language: Hebrew\n```\n\n**אנגלית:**\n```yaml\ncommunication_language: English\ndocument_output_language: English\n```\n\n**מעורב (אגנטים באנגלית, מסמכים בעברית):**\n```yaml\ncommunication_language: English\ndocument_output_language: Hebrew\n```\n\n**טיפ:** רוב המשתמשים הישראלים מעדיפים עברית בשניהם"
+          "title": "מה זה user_skill_level ואיך זה משפיע?",
+          "content": "**תשובה:** הגדרת רמת הניסיון שלכם:\n\n**רמות:**\n- **beginner:** מתחיל - האגנטים יסבירו יותר, יתנו דוגמאות\n- **intermediate:** בינוני - איזון בין הסבר לקוד\n- **advanced:** מתקדם - פחות הסברים, יותר קוד\n\n**איך זה משפיע:**\n- **beginner:** \"אני אסביר מה זה API endpoint...\"\n- **intermediate:** \"נבנה REST API עם Express\"\n- **advanced:** \"נשתמש ב-GraphQL federation pattern\"\n\n**איך משנים:**\n```yaml\nuser_skill_level: intermediate  # או beginner / advanced\n```\n\n**טיפ:** התחילו עם `intermediate` - תמיד אפשר לשנות"
         },
         {
-          "title": "מה זה output_folder?",
-          "content": "**תשובה:** המקום שבו BMAD שומר קבצים:\n\n**ברירת מחדל:**\n```yaml\noutput_folder: '{project-root}/docs'\n```\n\n**משמעות:**\n- `{project-root}` = תיקיית הפרויקט\n- `/docs` = תת-תיקייה לתיעוד\n\n**אפשר לשנות:**\n```yaml\noutput_folder: '{project-root}/documentation'\noutput_folder: 'C:/MyProjects/Docs'\n```\n\n**טיפ:** השאירו ברירת מחדל אלא אם יש סיבה טובה לשנות"
+          "title": "איך משנים את תיקיית הפלט?",
+          "content": "**תשובה:** עריכת output_folder בקונפיג:\n\n**צעד 1:** פתחו `bmad/bmm/config.yaml`\n\n**צעד 2:** מצאו:\n```yaml\noutput_folder: '{project-root}/docs'\n```\n\n**צעד 3:** שנו לנתיב רצוי:\n```yaml\noutput_folder: '{project-root}/documentation'\n# או נתיב מלא:\noutput_folder: 'C:/MyDocs/ProjectDocs'\n```\n\n**צעד 4:** שמרו\n\n**למה זה משמש:**\n- כאן יישמרו מסמכים שהאגנטים יוצרים (PRD, Tech Spec, וכו')\n- סטטוס וורקפלואים\n- תיעוד\n\n**טיפ:** השתמשו ב-`{project-root}` לנתיב יחסי"
+        },
+        {
+          "title": "האם צריך להגדיר משהו ב-Cursor?",
+          "content": "**תשובה:** מינימום הגדרות:\n\n**הכרחי:**\n1. **חיבור ל-AI:**\n   - Settings → AI\n   - הגדירו Claude API או Cursor Pro\n2. **פתיחת הפרויקט:**\n   - File → Open Folder\n   - בחרו את התיקייה עם `bmad/`\n\n**מומלץ:**\n1. **הגדרות Editor:**\n   - Settings → Editor → Tab Size: 2 או 4\n   - Format On Save: ✓\n2. **הרחבות שימושיות:**\n   - ESLint (לJavaScript)\n   - Prettier (לעיצוב קוד)\n   - GitLens (ל-Git)\n\n**לא חובה:**\n- אפשר לעבוד מיד ללא הגדרות נוספות\n\n**טיפ:** Cursor מגיע עם הגדרות טובות out-of-the-box"
         }
       ]
     },
@@ -357,40 +316,36 @@
       "type": "heading",
       "level": 2,
       "text": "בדיקת התקנה",
-      "id": "verify-installation"
-    },
-    {
-      "type": "text",
-      "content": "חשוב לוודא שהכל עובד כמו שצריך לפני שמתחילים לעבוד.",
-      "markdown": true
+      "id": "testing-install"
     },
     {
       "type": "callout",
-      "variant": "tip",
-      "title": "Checklist מהיר",
-      "content": "עברו על הבדיקות הבאות כדי לוודא שהכל מוכן"
-    },
-    {
-      "type": "list",
-      "ordered": true,
-      "items": [
-        "**Node.js:** הקלידו `node --version` → צריך להציג מספר גרסה (16+)",
-        "**Cursor:** פתחו את Cursor → צריך להפעיל ללא שגיאות",
-        "**BMAD:** הקלידו `@` ב-Cursor → צריך להציג רשימת אגנטים",
-        "**Claude:** נסו לשאול שאלה → צריך לקבל תשובה",
-        "**Config:** פתחו config.yaml → צריך להכיל את השם שלכם"
-      ]
+      "variant": "success",
+      "title": "בדיקה מהירה",
+      "content": "הדרך הכי טובה לוודא שהכל עובד היא להריץ את האגנט הראשון שלכם!"
     },
     {
       "type": "accordion",
       "items": [
         {
-          "title": "איך בודקים שהכל עובד?",
-          "content": "**תשובה:** בדיקה מקיפה בכמה צעדים:\n\n**Test 1: Node.js**\n```bash\nnode --version\nnpm --version\n```\n**צפוי:** מספרי גרסה\n\n**Test 2: Cursor + AI**\n- פתחו Cursor\n- הקלידו שאלה בצ'אט\n- קבלו תשובה\n\n**Test 3: BMAD Agents**\n- הקלידו `@`\n- רשימת אגנטים מופיעה\n\n**Test 4: Run Agent**\n```\n@pm שלום!\n```\n**צפוי:** האגנט מגיב עם תפריט\n\n**אם הכל עבר:** אתם מוכנים! 🎉"
+          "title": "איך בודקים שההתקנה הצליחה?",
+          "content": "**תשובה:** 5 בדיקות מהירות:\n\n**1. בדקו שהתיקייה קיימת:**\n```bash\nls bmad/  # או dir bmad (Windows)\n```\n- צריך לראות: `bmm/`, `README.md`, ועוד\n\n**2. בדקו קובץ config:**\n```bash\ncat bmad/bmm/config.yaml\n```\n- צריך לראות את ההגדרות שלכם\n\n**3. בדקו אגנטים:**\n```bash\nls bmad/bmm/agents/\n```\n- צריך לראות: `pm.md`, `architect.md`, `dev.md`, וכו'\n\n**4. פתחו Cursor:**\n- File → Open Folder → בחרו הפרויקט\n- לחצו Ctrl/Cmd + L (פתיחת צ'אט)\n- כתבו `@` → צריך לראות רשימת אגנטים\n\n**5. בדיקת אגנט:**\n- כתבו `@bmad-master`\n- שאלו: \"Hello, are you working?\"\n- אם עונה - **הכל עובד!**"
         },
         {
-          "title": "איך מריצים test command ראשון?",
-          "content": "**תשובה:** ניסוי פשוט:\n\n**1. פתחו Cursor**\n\n**2. הקלידו:**\n```\n@pm שלום! תציג את התפריט שלך\n```\n\n**3. צפוי:**\n- האגנט John (PM) מגיב\n- מציג תפריט ממוספר\n- מחכה לבחירה\n\n**4. נסו:**\n- הקלידו `1` (או כל מספר)\n- האגנט יתחיל את הוורקפלוא\n\n**אם זה עבד:** ההתקנה מושלמת!\n\n**טיפ:** זה הניסוי הטוב ביותר לוודא שהכל עובד"
+          "title": "איך מריצים את האגנט הראשון?",
+          "content": "**תשובה:** בואו ננסה!\n\n**צעד 1:** פתחו Cursor\n\n**צעד 2:** לחצו Ctrl/Cmd + L (פתיחת צ'אט AI)\n\n**צעד 3:** כתבו `@bmad-master`\n\n**צעד 4:** האגנט יגיד שלום! משהו כמו:\n```\n🧙 BMad Master Awakens\n\nGreetings, [שמכם]!\n\nAvailable Operations:\n1. *help\n2. *workflow-init\n...\n```\n\n**צעד 5:** כתבו `*help` כדי לראות את התפריט\n\n**צעד 6:** נסו להריץ משהו פשוט:\n```\n*workflow-init\n```\n\n**אם זה עובד - מזל טוב! ההתקנה הצליחה!**"
+        },
+        {
+          "title": "מה לעשות אם הבדיקה נכשלה?",
+          "content": "**תשובה:** תלוי מה לא עבד:\n\n**בעיה 1: אין תיקיית bmad/**\n- ההתקנה לא הושלמה\n- הריצו שוב: `npx bmad-method@alpha install`\n\n**בעיה 2: @ לא מראה אגנטים**\n- Cursor לא בתיקייה הנכונה\n- File → Open Folder → בחרו הפרויקט\n- עשו Reload Window\n\n**בעיה 3: אגנט לא עונה**\n- אין חיבור ל-AI\n- בדקו Settings → AI\n- וודאו מנוי פעיל (Claude Pro/API)\n\n**בעיה 4: שגיאה בהרצת אגנט**\n- קובץ האגנט פגום\n- נסו להתקין מחדש BMAD\n\n**עזרה נוספת:** [בעיות נפוצות](#common-issues)"
+        },
+        {
+          "title": "איך יודעים שהאגנט עובד נכון?",
+          "content": "**תשובה:** סימנים שהכל בסדר:\n\n**✅ האגנט עובד נכון אם:**\n- עונה בשפה שבחרתם (English/Hebrew)\n- מציג תפריט מסודר עם אפשרויות\n- מגיב לפקודות (כמו `*help`, `*workflow-init`)\n- מפנה אליכם בשם שהגדרתם\n- מספק תשובות רלוונטיות\n\n**❌ האגנט לא עובד אם:**\n- לא עונה בכלל\n- עונה בשפה לא נכונה\n- התשובות גנריות מדי (לא מבין את תפקידו)\n- לא מציג תפריט\n- מתבלבל בהקשר\n\n**בדיקה מהירה:**\n- שאלו: \"מה התפקיד שלך?\"\n- אגנט PM צריך לענות: \"אני מנהל מוצר...\"\n- אם עונה נכון - עובד!"
+        },
+        {
+          "title": "איך בודקים את כל האגנטים?",
+          "content": "**תשובה:** בדיקה שיטתית:\n\n**רשימת האגנטים (BMM):**\n1. @bmad-master - המדריך\n2. @pm - מנהל מוצר\n3. @analyst - אנליסט\n4. @architect - ארכיטקט\n5. @sm - סקראם מאסטר\n6. @dev - מפתח\n7. @tea - מומחה בדיקות\n8. @ux - מעצב UX\n9. @tech-writer - כותב טכני\n10. @game-designer - מעצב משחקים (אם התקנתם)\n11. @game-architect - ארכיטקט משחקים (אם התקנתם)\n\n**איך לבדוק:**\n- פתחו צ'אט חדש\n- כתבו `@[שם-אגנט]`\n- שאלו: \"מה התפקיד שלך?\"\n- עברו לאגנט הבא\n\n**לא חובה:** אפשר לבדוק רק את האגנטים שתשתמשו בהם"
         }
       ]
     },
@@ -400,101 +355,33 @@
     {
       "type": "heading",
       "level": 2,
-      "text": "עדכון גרסה",
-      "id": "version-update"
-    },
-    {
-      "type": "text",
-      "content": "BMAD מתעדכן מעת לעת עם תכונות חדשות ותיקוני באגים. כדאי לשמור על גרסה עדכנית.",
-      "markdown": true
+      "text": "עדכון והסרה",
+      "id": "update-uninstall"
     },
     {
       "type": "accordion",
       "items": [
         {
-          "title": "איך בודקים איזו גרסה מותקנת?",
-          "content": "**תשובה:** יש כמה דרכים:\n\n**דרך 1: קובץ גרסה**\n- פתחו `bmad/version.txt`\n- הגרסה כתובה שם\n\n**דרך 2: דרך Cursor**\n- Ctrl+Shift+P\n- \"BMAD: Show Version\"\n\n**דרך 3: דרך Git**\n```bash\ncd bmad\ngit describe --tags\n```\n\n**פורמט גרסה:**\n- `6.0.0` = Major.Minor.Patch\n- `6.0.0-alpha.6` = Pre-release\n\n**טיפ:** שמרו רשימה של הגרסה הנוכחית"
+          "title": "איך מעדכנים את BMAD לגרסה חדשה?",
+          "content": "**תשובה:** פשוט מאוד!\n\n**דרך 1: התקנה מחדש (הפשוטה):**\n```bash\ncd MyProject\nnpx bmad-method@alpha install\n```\n- זה יזהה שיש כבר BMAD\n- ישאל אם לעדכן\n- הגדרות קיימות יישארו\n\n**דרך 2: עדכון ידני:**\n1. גבו את `bmad/bmm/config.yaml`\n2. מחקו את `bmad/`\n3. הריצו: `npx bmad-method@alpha install`\n4. החזירו את ה-config (אם השתנה)\n\n**איך יודעים שיש גרסה חדשה?**\n- בדקו ב-[GitHub releases](https://github.com/bmad-method/bmad)\n- האגנט BMAD Master יכול להגיד לכם\n\n**כמה פעמים לעדכן?** כל 1-2 חודשים או כשיש פיצ'רים חדשים"
         },
         {
-          "title": "איך מעדכנים ל-BMAD לגרסה חדשה?",
-          "content": "**תשובה:** תלוי באופן ההתקנה:\n\n**אם התקנתם דרך Cursor:**\n1. Ctrl+Shift+P\n2. \"BMAD: Update\"\n3. המתינו להשלמה\n4. Reload Window\n\n**אם התקנתם ידנית (Git):**\n```bash\ncd bmad\ngit pull origin main\nnpm install\n```\n\n**בדיקה:**\n- `@pm` → האגנט צריך לעבוד\n- בדקו גרסה שוב\n\n**משך זמן:** 2-5 דקות\n\n**טיפ:** גבו את config.yaml לפני עדכון!"
+          "title": "האם העדכון ימחק את ההגדרות שלי?",
+          "content": "**תשובה:** לא! ההגדרות נשמרות.\n\n**מה נשמר:**\n- `bmad/bmm/config.yaml` - כל ההגדרות שלכם\n- אגנטים מותאמים אישית (אם יצרתם)\n- וורקפלואים מותאמים\n\n**מה מתעדכן:**\n- קבצי האגנטים הבסיסיים\n- וורקפלואים חדשים\n- תיקוני באגים\n\n**בכל זאת מומלץ:**\n- גיבוי של `config.yaml` לפני עדכון\n- גיבוי של אגנטים מותאמים\n\n**טיפ:** שימרו קובץ `.gitignore` עם:\n```\nbmad/bmm/config.yaml  # כדי שלא לשכתב בטעות\n```"
         },
-        {
-          "title": "מה לעשות לפני עדכון?",
-          "content": "**תשובה:** Checklist לעדכון בטוח:\n\n**1. גיבוי config:**\n```bash\ncp bmad/bmm/config.yaml config.yaml.backup\n```\n\n**2. סיימו עבודות פתוחות:**\n- שמרו קבצים\n- סיימו וורקפלואים\n\n**3. רשמו את הגרסה הנוכחית:**\n- למקרה שצריך לחזור אחורה\n\n**4. קראו changelog:**\n- בדקו מה חדש\n- וודאו שאין breaking changes\n\n**5. עדכנו בזמן פנוי:**\n- לא באמצע עבודה קריטית\n\n**טיפ:** עדכון הוא בדרך כלל חלק, אבל עדיף להיות מוכנים"
-        },
-        {
-          "title": "העדכון הפסיד את ההגדרות שלי!",
-          "content": "**תשובה:** זה לא אמור לקרות, אבל אם קרה:\n\n**שחזור:**\n1. השתמשו בגיבוי:\n```bash\ncp config.yaml.backup bmad/bmm/config.yaml\n```\n\n**אם אין גיבוי:**\n1. פתחו `bmad/bmm/config.yaml`\n2. מלאו מחדש:\n```yaml\nuser_name: השם שלכם\ncommunication_language: Hebrew\n```\n\n**למניעה בעתיד:**\n- גבו את config.yaml לפני כל עדכון\n- שמרו העתק במקום אחר\n\n**טיפ:** ההגדרות הן קובץ אחד קטן - קל לשחזר"
-        },
-        {
-          "title": "איך חוזרים לגרסה קודמת?",
-          "content": "**תשובה:** אם העדכון יצר בעיות:\n\n**אם התקנתם דרך Git:**\n```bash\ncd bmad\ngit log --oneline  # מצאו commit קודם\ngit checkout [commit-hash]\nnpm install\n```\n\n**אם דרך Cursor:**\n1. מחקו את bmad\n2. התקינו גרסה ישנה מ-GitHub\n3. או חכו לתיקון\n\n**הכי טוב:**\n- דווחו על הבאג\n- הצוות ישחרר תיקון מהר\n\n**טיפ:** לעיתים רחוקות צריך לחזור - העדכונים בדרך כלל יציבים"
-        }
-      ]
-    },
-    {
-      "type": "divider"
-    },
-    {
-      "type": "heading",
-      "level": 2,
-      "text": "הסרת התקנה",
-      "id": "uninstallation"
-    },
-    {
-      "type": "text",
-      "content": "אם מסיבה כלשהי אתם רוצים להסיר את BMAD (אנחנו מקווים שלא!), הנה איך.",
-      "markdown": true
-    },
-    {
-      "type": "accordion",
-      "items": [
         {
           "title": "איך מסירים את BMAD?",
-          "content": "**תשובה:** תהליך פשוט:\n\n**אם התקנתם דרך Cursor:**\n1. Ctrl+Shift+P\n2. \"BMAD: Uninstall\"\n3. אשרו\n\n**אם התקנתם ידנית:**\n```bash\n# פשוט מחקו את התיקייה\nrm -rf bmad\n```\n\n**ניקוי נוסף (אופציונלי):**\n- מחקו `.cursorrules` אם רק BMAD היה שם\n- מחקו קבצי config ישנים\n\n**זהו!** BMAD הוסר לחלוטין\n\n**טיפ:** השאירו את Cursor ו-Node.js - הם שימושיים למעבר לכלים אחרים"
+          "content": "**תשובה:** תהליך הסרה פשוט:\n\n**דרך 1: הסרה ידנית (הפשוטה):**\n```bash\ncd MyProject\nrm -rf bmad/  # או del /s bmad (Windows)\n```\n\n**דרך 2: דרך הפקודה (אם קיימת):**\n```bash\nnpx bmad-method@alpha uninstall\n```\n\n**מה עוד למחוק (אופציונלי):**\n- `package.json` - הסירו dependencies של BMAD\n- `node_modules/` - אפשר למחוק ולהתקין מחדש\n\n**שימו לב:**\n- הסרת BMAD **לא** מוחקת את הפרויקט שלכם\n- הקוד שכתבתם נשאר\n- רק הכלים והאגנטים נמחקים\n\n**טיפ:** לפני הסרה - גבו את config.yaml אם רוצים לשמור הגדרות"
         },
         {
-          "title": "האם הסרת BMAD משפיעה על Cursor?",
-          "content": "**תשובה:** לא!\n\n**מה לא מושפע:**\n- Cursor ממשיך לעבוד רגיל\n- כל ה-extensions האחרים\n- הגדרות Cursor\n- הפרויקטים שלכם\n\n**מה כן מוסר:**\n- האגנטים של BMAD\n- הוורקפלואים\n- קונפיגורציית BMAD\n\n**משמעות:** אתם יכולים להסיר BMAD בלי חשש\n\n**טיפ:** תמיד אפשר להתקין מחדש אחר כך!"
+          "title": "האם אפשר להתקין כמה גרסאות של BMAD?",
+          "content": "**תשובה:** כן, לכל פרויקט גרסה משלו!\n\n**איך זה עובד:**\n- **פרויקט A:** BMAD version 5.0\n- **פרויקט B:** BMAD version 6.0\n- **פרויקט C:** BMAD version 6.1-alpha\n\n**למה זה טוב:**\n- פרויקטים ישנים לא נשברים\n- אפשר לבדוק גרסאות חדשות בפרויקט נסיוני\n- גמישות\n\n**איך מתקינים גרסה ספציפית:**\n```bash\nnpx bmad-method@5.0.0 install  # גרסה ספציפית\nnpx bmad-method@alpha install  # גרסת alpha\nnpx bmad-method@latest install # גרסה אחרונה יציבה\n```\n\n**טיפ:** לפרויקטים production - השתמשו בגרסה יציבה (@latest)"
         },
         {
-          "title": "מה קורה לפרויקטים שיצרתי עם BMAD?",
-          "content": "**תשובה:** הם נשארים!\n\n**מה נשמר:**\n- כל הקוד שנכתב\n- כל המסמכים (PRD, ארכיטקטורות)\n- הפרויקטים שלכם\n- ה-Git history\n\n**מה אבד:**\n- היכולת להפעיל אגנטים BMAD\n- הוורקפלואים\n\n**משמעות:**\n- אפשר להמשיך לעבוד על הפרויקטים\n- פשוט בלי עזרת BMAD\n\n**טיפ:** BMAD לא \"שם מנעול\" על הקוד - הכל שלכם!"
+          "title": "איך יודעים איזו גרסה מותקנת?",
+          "content": "**תשובה:** כמה דרכים:\n\n**דרך 1: שאלו את BMAD Master:**\n```\n@bmad-master\n\"מה הגרסה שלך?\"\n```\n\n**דרך 2: בדקו את package.json:**\n```bash\ncat package.json | grep bmad\n```\n\n**דרך 3: בדקו README:**\n```bash\ncat bmad/README.md\n```\n- בראש הקובץ יש מידע על הגרסה\n\n**דרך 4: דרך npm:**\n```bash\nnpm list bmad-method\n```\n\n**טיפ:** כדאי לרשום את גרסת BMAD ב-README של הפרויקט שלכם"
         }
       ]
-    },
-    {
-      "type": "divider"
-    },
-    {
-      "type": "heading",
-      "level": 2,
-      "text": "עדיין יש בעיות?",
-      "id": "still-have-issues"
-    },
-    {
-      "type": "text",
-      "content": "אם עדיין נתקלתם בבעיות התקנה, אל תוותרו! יש עוד משאבים שיכולים לעזור:",
-      "markdown": true
-    },
-    {
-      "type": "list",
-      "ordered": false,
-      "items": [
-        "**[מדריך התחלה מהירה](/guides/quick-start)** - מדריך step-by-step מפורט יותר",
-        "**[הדרכה ליום הראשון](/guides/onboarding-day1)** - מדריך למתחילים עם פתרון בעיות",
-        "**[שאלות ותשובות - יסודות](/guides/faq-basics)** - שאלות כלליות",
-        "**[פתרון בעיות](/guides/troubleshooting)** - מדריך מקיף (בקרוב)",
-        "**GitHub Issues** - דווחו על באגים או בקשו עזרה",
-        "**קהילת Discord** - שאלו את הקהילה (בקרוב)"
-      ]
-    },
-    {
-      "type": "callout",
-      "variant": "warning",
-      "title": "דווחו על באגים!",
-      "content": "אם מצאתם באג או בעיה שלא מופיעה כאן - דווחו! זה עוזר לנו לשפר את BMAD ולעזור למשתמשים הבאים"
     },
     {
       "type": "divider"
@@ -502,20 +389,41 @@
     {
       "type": "callout",
       "variant": "success",
-      "title": "ההתקנה הסתיימה בהצלחה?",
-      "content": "מעולה! עכשיו אתם מוכנים להתחיל לעבוד. המדריך הבא: [הדרכה ליום הראשון](/guides/onboarding-day1) ילווה אתכם בצעדים הראשונים"
+      "title": "מוכנים להתחיל!",
+      "content": "אם הגעתם עד כאן והכל עובד - מזל טוב! ההתקנה הושלמה בהצלחה. הצעד הבא: התחילו לעבוד עם האגנטים!"
+    },
+    {
+      "type": "text",
+      "content": "**המדריכים הבאים שכדאי לקרוא:**",
+      "markdown": true
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        "**[מדריך התחלה מהירה](/guides/quick-start)** - הפקודה הראשונה שלכם",
+        "**[הדרכה ליום הראשון](/guides/onboarding-day1)** - יום ראשון עם BMAD",
+        "**[מדריך אגנטים](/guides/agents-intro-pm-analyst)** - הכירו את האגנטים",
+        "**[שיטות עבודה מומלצות](/guides/best-practices)** - טיפים ושיטות עבודה"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "עדיין יש שאלות?",
+      "content": "בדקו את שאר חלקי ה-FAQ: [שאלות בסיסיות](/guides/faq-basics), [שאלות על אגנטים](/guides/faq-agents), [שאלות על וורקפלואים](/guides/faq-workflows)"
     }
   ],
   "relatedGuides": [
     "quick-start",
-    "onboarding-day1",
     "faq-basics",
-    "glossary"
+    "onboarding-day1",
+    "best-practices"
   ],
   "prerequisites": [],
   "nextSteps": [
-    "onboarding-day1",
     "quick-start",
-    "faq-agents"
+    "onboarding-day1",
+    "agents-intro-pm-analyst"
   ]
 }
