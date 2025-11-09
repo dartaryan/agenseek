@@ -1,0 +1,532 @@
+{
+  "metadata": {
+    "id": "non-technical",
+    "slug": "non-technical",
+    "title": "מדריך לתפקידים לא טכניים",
+    "description": "BMAD לכולם! מדריך מיוחד למשווקים, אנשי מכירות, משאבי אנוש, ותפעול - איך להשתמש ב-BMAD ללא ידע טכני. יצירת תוכן, ניהול פרויקטים, וניתוח נתונים בעזרת AI.",
+    "category": "roles",
+    "difficulty": "beginner",
+    "estimatedMinutes": 25,
+    "icon": "IconBulb",
+    "tags": ["לא-טכני", "marketing", "מכירות", "משאבי-אנוש", "תפעול", "non-tech"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "למי מדריך זה מיועד",
+      "level": 2,
+      "anchor": "who-is-this-for"
+    },
+    {
+      "id": "toc-2",
+      "title": "BMAD בלי לדעת לתכנת",
+      "level": 2,
+      "anchor": "no-coding-needed"
+    },
+    {
+      "id": "toc-3",
+      "title": "אגנטים ווורקפלואים שימושיים",
+      "level": 2,
+      "anchor": "useful-tools"
+    },
+    {
+      "id": "toc-4",
+      "title": "תרחישי שימוש לפי תפקיד",
+      "level": 2,
+      "anchor": "use-cases"
+    },
+    {
+      "id": "toc-5",
+      "title": "תקשורת עם הצוות הטכני",
+      "level": 2,
+      "anchor": "communicating-with-tech"
+    },
+    {
+      "id": "toc-6",
+      "title": "התחלה מעשית",
+      "level": 2,
+      "anchor": "getting-started"
+    },
+    {
+      "id": "toc-7",
+      "title": "סיכום ומה הלאה",
+      "level": 2,
+      "anchor": "summary"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "content": "מדריך לתפקידים לא טכניים - BMAD לכולם!",
+      "id": "main-title",
+      "anchor": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "אתם לא צריכים לדעת לתכנת!",
+      "content": "BMAD זה לא רק למפתחים. גם אם אתם ממשאבי אנוש, שיווק, מכירות, או תפעול - BMAD יכול לעזור לכם. המדריך הזה יראה לכם איך להשתמש ב-BMAD בלי ידע טכני, וכיצד זה יכול לשפר את העבודה שלכם.",
+      "id": "intro-callout"
+    },
+    {
+      "type": "divider",
+      "id": "div-1"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "למי מדריך זה מיועד",
+      "id": "who-is-this-for",
+      "anchor": "who-is-this-for"
+    },
+    {
+      "type": "text",
+      "content": "מדריך זה מיועד לכל מי שעובד בארגון טכנולוגי אבל לא בתפקיד טכני:",
+      "id": "target-intro"
+    },
+    {
+      "type": "grid",
+      "id": "roles-grid",
+      "columns": 2,
+      "items": [
+        {
+          "title": "Marketing / שיווק",
+          "content": "מנהלי שיווק, יוצרי תוכן, מנהלי קמפיינים, Social Media Managers",
+          "icon": "IconSpeakerphone"
+        },
+        {
+          "title": "Sales / מכירות",
+          "content": "מנהלי מכירות, Account Managers, Pre-sales, Customer Success",
+          "icon": "IconShoppingCart"
+        },
+        {
+          "title": "HR / משאבי אנוש",
+          "content": "מנהלי HR, Recruiters, People Ops, Training & Development",
+          "icon": "IconUsers"
+        },
+        {
+          "title": "Operations / תפעול",
+          "content": "Operations Managers, Admin, Finance, Legal",
+          "icon": "IconSettings"
+        },
+        {
+          "title": "Support / תמיכה",
+          "content": "Customer Support, Technical Support, Community Management",
+          "icon": "IconHeadset"
+        },
+        {
+          "title": "Business / עסקי",
+          "content": "Business Analysts, Strategy, Partnerships, Consulting",
+          "icon": "IconBriefcase"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "אם אתם לא בטוחים אם זה בשבילכם",
+      "content": "אם אתם עובדים עם צוות פיתוח, צריכים ליצור תוכן, לנהל פרויקטים, או פשוט רוצים להיות יותר יעילים בעבודה - המדריך הזה בשבילכם!",
+      "id": "if-unsure"
+    },
+    {
+      "type": "divider",
+      "id": "div-2"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "BMAD בלי לדעת לתכנת",
+      "id": "no-coding-needed",
+      "anchor": "no-coding-needed"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "מה זה BMAD? (בשפה פשוטה)",
+      "id": "what-is-bmad"
+    },
+    {
+      "type": "text",
+      "content": "BMAD זה מערכת שעוזרת לכם לעבוד עם בינה מלאכותית בצורה מסודרת. במקום לשאול את ChatGPT שאלות אקראיות, יש לכם \"אגנטים\" מקצועיים שמתמחים בתחומים שונים.",
+      "id": "bmad-simple"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "למה זה שימושי בשבילכם?",
+      "id": "why-useful"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "id": "benefits-list",
+      "items": [
+        "**יצירת תוכן מקצועי:** מאמרים, מצגות, דוחות, מיילים - בעזרת AI",
+        "**ניהול פרויקטים:** תכנון, מעקב, ודיווח - בלי Excel מסובך",
+        "**ניתוח נתונים:** הבנת מגמות, הפקת תובנות, יצירת דשבורדים",
+        "**תקשורת טובה יותר:** הבנה של מה הצוות הטכני עושה",
+        "**חיסכון בזמן:** מה שלקח שעות לוקח דקות"
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "דוגמה מהחיים",
+      "content": "מנהלת שיווק שהיתה צריכה 3 שעות לכתוב מסמך דרישות למאמר בבלוג - עם BMAD זה לוקח לה 20 דקות, והתוצאה יותר מקצועית!",
+      "id": "real-example"
+    },
+    {
+      "type": "divider",
+      "id": "div-3"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "אגנטים ווורקפלואים שימושיים",
+      "id": "useful-tools",
+      "anchor": "useful-tools"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "האגנטים המועילים ביותר עבורכם",
+      "id": "useful-agents"
+    },
+    {
+      "type": "text",
+      "content": "לא צריכים להכיר את כל 19 האגנטים. הנה אלה שהכי שימושיים לתפקידים לא טכניים:",
+      "id": "agents-intro"
+    },
+    {
+      "type": "accordion",
+      "id": "agents-accordion",
+      "items": [
+        {
+          "title": "John - Product Manager (מנהל מוצר)",
+          "content": "**מה הוא עושה:** עוזר להגדיר דרישות, לכתוב מסמכים, לתכנן פיצ'רים.\n\n**מתי להשתמש:**\n- כשאתם רוצים להגדיר תכונה חדשה במוצר\n- כשצריכים לכתוב מסמך דרישות (PRD)\n- כשרוצים להבין מה הלקוחות צריכים\n\n**דוגמה:** \"John, עזור לי לכתוב PRD לפיצ'ר חדש של התראות במערכת\""
+        },
+        {
+          "title": "Mary - Business Analyst (אנליסטית עסקית)",
+          "content": "**מה היא עושה:** מנתחת נתונים, יוצרת דוחות, מפיקה תובנות.\n\n**מתי להשתמש:**\n- כשצריכים לנתח נתוני מכירות או שיווק\n- כשרוצים להבין מגמות\n- כשצריכים להכין מצגת עם נתונים\n\n**דוגמה:** \"Mary, תנתחי את נתוני המכירות מהרבעון האחרון ותראי לי מגמות\""
+        },
+        {
+          "title": "Sally - UX Designer (מעצבת חוויית משתמש)",
+          "content": "**מה היא עושה:** עוזרת לתכנן חוויות משתמש, לעצב ממשקים, לבצע מחקר.\n\n**מתי להשתמש:**\n- כשרוצים לשפר את חוויית המשתמש באתר/אפליקציה\n- כשצריכים לתכנן landing page חדש\n- כשרוצים לבצע סקר משתמשים\n\n**דוגמה:** \"Sally, עזרי לי לתכנן את העמוד הראשי של האתר החדש\""
+        },
+        {
+          "title": "Mike - Tech Writer (כותב טכני)",
+          "content": "**מה הוא עושה:** כותב תיעוד, מדריכים, מאמרים טכניים.\n\n**מתי להשתמש:**\n- כשצריכים לכתוב מדריך למשתמשים\n- כשרוצים ליצור FAQ\n- כשצריכים להסביר משהו טכני בשפה פשוטה\n\n**דוגמה:** \"Mike, עזור לי לכתוב מדריך למשתמשים על התכונה החדשה\""
+        },
+        {
+          "title": "BMAD Master - המדריך הראשי",
+          "content": "**מה הוא עושה:** מנווט אתכם במערכת, עוזר לבחור את האגנט הנכון.\n\n**מתי להשתמש:**\n- כשלא בטוחים מאיפה להתחיל\n- כשצריכים עזרה כללית\n- כשרוצים לראות מה אפשר לעשות\n\n**דוגמה:** \"Master, אני צריך עזרה ביצירת קמפיין שיווקי, מה האגנט המתאים?\""
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "וורקפלואים שימושיים",
+      "id": "useful-workflows"
+    },
+    {
+      "type": "text",
+      "content": "וורקפלואים זה תהליכים מובנים שעוזרים לכם לעשות משימות ספציפיות. הנה הכי שימושיים:",
+      "id": "workflows-intro"
+    },
+    {
+      "type": "table",
+      "id": "workflows-table",
+      "headers": ["Workflow", "מה הוא עושה", "דוגמה"],
+      "rows": [
+        ["brainstorming", "עוזר לסעור מוחות ולפתח רעיונות", "רעיונות לקמפיין חדש"],
+        ["research", "מבצע מחקר ואיסוף מידע", "מחקר שוק למוצר חדש"],
+        ["product-brief", "יוצר תקציר מוצר", "הגדרת תכונה חדשה"],
+        ["create-ux-design", "עוזר לתכנן ממשק משתמש", "עיצוב דף נחיתה"],
+        ["document-project", "יוצר תיעוד לפרויקט", "מדריך למשתמשים"]
+      ]
+    },
+    {
+      "type": "divider",
+      "id": "div-4"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "תרחישי שימוש לפי תפקיד",
+      "id": "use-cases",
+      "anchor": "use-cases"
+    },
+    {
+      "type": "text",
+      "content": "בואו נראה דוגמאות קונקרטיות איך כל תפקיד יכול להשתמש ב-BMAD:",
+      "id": "use-cases-intro"
+    },
+    {
+      "type": "tabs",
+      "id": "use-cases-tabs",
+      "defaultTab": 0,
+      "tabs": [
+        {
+          "label": "Marketing",
+          "content": "### תרחישים נפוצים:\n\n**1. יצירת תוכן:**\n- כתיבת מאמרי בלוג מקצועיים\n- יצירת תוכן למדיה חברתית\n- הכנת newsletters\n\n**איך:**\n```\n@Mike\n\"כתוב לי מאמר על היתרונות של המוצר שלנו,\nקהל יעד: מנהלים טכניים,\nטון: מקצועי אבל נגיש,\nאורך: 800-1000 מילים\"\n```\n\n**2. תכנון קמפיינים:**\n- brainstorming לקמפיינים חדשים\n- הגדרת קהלי יעד\n- בניית landing pages\n\n**איך:**\n```\n@John + @Sally\nJohn: תכנן קמפיין למוצר החדש\nSally: תעצבי את הדף הראשי לקמפיין\n```\n\n**3. ניתוח ביצועים:**\n- ניתוח נתוני קמפיינים\n- הפקת תובנות מ-Analytics\n- דוחות שבועיים/חודשיים\n\n**איך:**\n```\n@Mary\n\"נתחי את ביצועי הקמפיין האחרון,\nתראי לי מה עבד ומה לא\"\n```"
+        },
+        {
+          "label": "Sales",
+          "content": "### תרחישים נפוצים:\n\n**1. הכנת proposals:**\n- יצירת הצעות מחיר מקצועיות\n- התאמת מסמכים ללקוחות ספציפיים\n- כתיבת case studies\n\n**איך:**\n```\n@John\n\"עזור לי להכין proposal ללקוח בתחום הבריאות,\nהם צריכים מערכת CRM מותאמת\"\n```\n\n**2. מחקר לקוחות:**\n- הבנת צרכי הלקוח\n- מחקר על חברות פוטנציאליות\n- הכנה לפגישות\n\n**איך:**\n```\n@Mary\n\"תחקרי את החברה XYZ - מה הם עושים,\nמה הצרכים שלהם, איך המוצר שלנו יכול לעזור\"\n```\n\n**3. ניהול pipeline:**\n- מעקב אחר עסקאות\n- תיעדוף לידים\n- דוחות מכירות\n\n**איך:**\n```\n@Mary\n\"תראי לי את כל העסקאות שבשלב Negotiation,\nודרגי אותן לפי סבירות לסגירה\"\n```"
+        },
+        {
+          "label": "HR",
+          "content": "### תרחישים נפוצים:\n\n**1. גיוס:**\n- כתיבת משרות\n- סינון קורות חיים\n- הכנה לראיונות\n\n**איך:**\n```\n@John\n\"כתוב לי תיאור משרה למפתח Senior,\nדגש על היכולות הרכות והטכניות\"\n```\n\n**2. Onboarding:**\n- יצירת חומרי הדרכה\n- תכנון תהליכי onboarding\n- מדריכים לעובדים חדשים\n\n**איך:**\n```\n@Mike\n\"צור מדריך onboarding לעובדים חדשים,\nכולל כל המידע הדרוש על החברה והתפקיד\"\n```\n\n**3. תקשורת פנימית:**\n- דיוורים לעובדים\n- מסמכי policy\n- סקרי שביעות רצון\n\n**איך:**\n```\n@Mike\n\"כתוב דיוור לעובדים על השינויים בבנפיטים,\nטון: ידידותי אבל ברור\"\n```"
+        },
+        {
+          "label": "Operations",
+          "content": "### תרחישים נפוצים:\n\n**1. תהליכים:**\n- תיעוד תהליכי עבודה\n- שיפור תהליכים\n- SOP (Standard Operating Procedures)\n\n**איך:**\n```\n@Mike\n\"תעד את תהליך הטיפול בתקלות,\nצעד אחר צעד עם דיאגרמת זרימה\"\n```\n\n**2. ניתוח נתונים:**\n- דוחות תפעוליים\n- ניתוח efficiency\n- זיהוי bottlenecks\n\n**איך:**\n```\n@Mary\n\"נתחי את זמני התגובה שלנו לפניות לקוחות,\nמצאי היכן יש עיכובים\"\n```\n\n**3. ניהול פרויקטים:**\n- תכנון פרויקטים\n- מעקב אחר התקדמות\n- דיווח להנהלה\n\n**איך:**\n```\n@John\n\"תכנן פרויקט למעבר למשרדים החדשים,\nכולל timeline ו-milestones\"\n```"
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "id": "div-5"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "תקשורת עם הצוות הטכני",
+      "id": "communicating-with-tech",
+      "anchor": "communicating-with-tech"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "למה זה חשוב?",
+      "id": "why-communication-matters"
+    },
+    {
+      "type": "text",
+      "content": "אחד האתגרים הגדולים בארגונים טכנולוגיים הוא התקשורת בין תפקידים לא טכניים לצוות הפיתוח. BMAD עוזר לגשר על הפער הזה.",
+      "id": "communication-intro"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "איך BMAD עוזר",
+      "id": "how-bmad-helps-communication"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "id": "communication-benefits",
+      "items": [
+        "**שפה משותפת:** כולם משתמשים באותם אגנטים ווורקפלואים",
+        "**מסמכים מובנים:** PRDs, Stories, Tech Specs - מבנה קבוע שכולם מבינים",
+        "**הבנה הדדית:** אתם מבינים מה הצוות הטכני צריך, הם מבינים מה אתם רוצים",
+        "**פחות אי-הבנות:** פחות \"אבל חשבתי שאתה מתכוון ל...\""
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "טיפים לתקשורת טובה",
+      "id": "communication-tips"
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "טיפ 1: השתמשו באותה מינוח",
+      "content": "כשאתם מדברים על \"Story\" או \"Epic\" - כולם יודעים בדיוק על מה אתם מדברים.",
+      "id": "tip-1"
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "טיפ 2: תעדו הכל",
+      "content": "השתמשו ב-John או Mike לתעד שיחות, החלטות, ודרישות. כך אין \"אבל דיברנו על זה...\"",
+      "id": "tip-2"
+    },
+    {
+      "type": "callout",
+      "variant": "tip",
+      "title": "טיפ 3: שאלו שאלות",
+      "content": "לא מבינים משהו טכני? שאלו את Mary (Analyst) או Mike (Tech Writer) לתרגם לשפה פשוטה.",
+      "id": "tip-3"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "דוגמה: תהליך מקצה לקצה",
+      "id": "end-to-end-example"
+    },
+    {
+      "type": "text",
+      "content": "בואו נראה תהליך שלם - איך רעיון משיווק הופך לפיצ'ר במוצר:",
+      "id": "example-intro"
+    },
+    {
+      "type": "code",
+      "id": "example-flow",
+      "language": "text",
+      "code": "1. Marketing (אתם) - רעיון לפיצ'ר חדש\n   └─> @John: brainstorming + product-brief\n       → מסמך: Product Brief\n\n2. Product Manager (צוות מוצר)\n   └─> קורא את ה-Brief, מחליט אם לאמץ\n       → מסמך: PRD (Product Requirements Document)\n\n3. Architect (ארכיטקט)\n   └─> מתכנן איך לבנות את זה\n       → מסמך: Tech Spec\n\n4. Developers (מפתחים)\n   └─> בונים את הפיצ'ר\n       → קוד + תיעוד\n\n5. QA (בדיקות)\n   └─> בודקים שהכל עובד\n       → דוח בדיקות\n\n6. Marketing (אתם שוב!) - משיקים!\n   └─> @Mike: מדריך למשתמשים\n       → Launch!"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "רואים את הקסם?",
+      "content": "כל שלב מתועד, כולם יודעים מה קורה, ואתם חלק מהתהליך מהתחלה ועד הסוף!",
+      "id": "magic-callout"
+    },
+    {
+      "type": "divider",
+      "id": "div-6"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "התחלה מעשית",
+      "id": "getting-started",
+      "anchor": "getting-started"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "צעדים ראשונים",
+      "id": "first-steps"
+    },
+    {
+      "type": "text",
+      "content": "מוכנים להתחיל? הנה תוכנית פעולה פשוטה:",
+      "id": "getting-started-intro"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "id": "first-steps-list",
+      "items": [
+        "**קראו את מדריך ההתחלה המהירה** - 15 דקות שיעזרו לכם להבין את היסודות",
+        "**התקינו את BMAD** - אם יש לכם VS Code או Cursor (אם לא, תבקשו מהצוות הטכני)",
+        "**פתחו את BMAD Master** - זה הנקודה הראשונה",
+        "**נסו משימה קטנה** - למשל: \"תכתוב לי מייל ללקוח על...\"",
+        "**תרגלו** - ככל שתשתמשו יותר, זה יהיה יותר טבעי"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "משימות מומלצות להתחלה",
+      "id": "recommended-tasks"
+    },
+    {
+      "type": "text",
+      "content": "הנה כמה משימות קלות להתחלה:",
+      "id": "tasks-intro"
+    },
+    {
+      "type": "card",
+      "id": "task-cards",
+      "cards": [
+        {
+          "title": "משימה 1: כתיבת מייל",
+          "content": "השתמשו ב-Mike לכתוב מייל מקצועי ללקוח או לצוות.\n\n**קל, מהיר, תוצאות מיידיות!**",
+          "variant": "default"
+        },
+        {
+          "title": "משימה 2: מחקר פשוט",
+          "content": "בקשו מ-Mary לחקור נושא או לנתח נתונים פשוטים.\n\n**תראו איך AI יכול לחסוך לכם זמן!**",
+          "variant": "default"
+        },
+        {
+          "title": "משימה 3: תכנון קצר",
+          "content": "השתמשו ב-John לתכנן פרויקט קטן או משימה.\n\n**תרגישו את הכוח של תכנון מובנה!**",
+          "variant": "default"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "איפה לקבל עזרה",
+      "id": "where-to-get-help"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "id": "help-resources",
+      "items": [
+        "**BMAD Master** - תמיד מקום ראשון לשאול",
+        "**הצוות הטכני שלכם** - הם כבר מכירים את BMAD",
+        "**מדריכים ב-Learning Hub** - הרבה דוגמאות ומדריכים",
+        "**קהילת BMAD** - Discord/Slack - אנשים ידידותיים שעוזרים בשמחה"
+      ]
+    },
+    {
+      "type": "divider",
+      "id": "div-7"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "content": "סיכום ומה הלאה",
+      "id": "summary",
+      "anchor": "summary"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "מה למדנו",
+      "id": "what-learned"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "id": "summary-list",
+      "items": [
+        "BMAD זה לא רק למפתחים - זה לכולם!",
+        "אין צורך בידע טכני - האגנטים עושים את העבודה הקשה",
+        "יש המון תרחישי שימוש מעשיים לכל תפקיד",
+        "BMAD משפר את התקשורת עם הצוות הטכני",
+        "אפשר להתחיל עם משימות קטנות ולהתקדם"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "הצעדים הבאים",
+      "id": "next-steps"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "תוכנית פעולה",
+      "content": "**השבוע:** קראו את מדריך ההתחלה המהירה\n\n**השבוע הבא:** התקינו את BMAD ונסו משימה ראשונה\n\n**החודש הראשון:** השתמשו ב-BMAD לפחות פעם בשבוע\n\n**אחרי 3 חודשים:** BMAD יהיה חלק טבעי מהעבודה שלכם!",
+      "id": "action-plan"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "content": "משאבים נוספים",
+      "id": "additional-resources"
+    },
+    {
+      "type": "table",
+      "id": "resources-table",
+      "headers": ["משאב", "תיאור", "למי מתאים"],
+      "rows": [
+        ["התחלה מהירה", "מדריך 15 דקות ליסודות", "כולם - התחילו כאן!"],
+        ["מילון מונחים", "הסבר על כל המונחים", "כשלא מבינים מושג"],
+        ["מדריך אגנטים", "כל האגנטים במפורט", "כשרוצים להעמיק"],
+        ["שאלות ותשובות", "תשובות לשאלות נפוצות", "כשיש שאלות"]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "אתם יכולים את זה!",
+      "content": "אל תפחדו מטכנולוגיה. BMAD תוכנן להיות פשוט וידידותי. אלפי אנשים בתפקידים לא טכניים כבר משתמשים בזה בהצלחה - ואתם גם תצליחו! התחילו קטן, תתרגלו, ותראו איך העבודה שלכם משתפרת.",
+      "id": "final-encouragement"
+    }
+  ]
+}
+
