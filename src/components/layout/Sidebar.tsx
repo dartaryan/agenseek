@@ -1,5 +1,4 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import {
   IconLayoutDashboard,
   IconBooks,
@@ -28,8 +27,6 @@ import {
 } from '@/components/ui/tooltip';
 import { KeyboardShortcutHint } from '../ui/KeyboardShortcut';
 import { UserAvatar } from '../ui/user-avatar';
-import { supabase } from '../../lib/supabase';
-import type { AvatarConfig } from '../../lib/avatar';
 
 interface NavItem {
   name: string;
@@ -72,29 +69,8 @@ export function Sidebar() {
   const location = useLocation();
   const { isCollapsed, toggle } = useSidebar();
   const { user, profile } = useAuth();
-  const [avatarConfig, setAvatarConfig] = useState<AvatarConfig | null>(null);
 
-  // Load avatar configuration - Story 0.3
-  useEffect(() => {
-    async function loadAvatar() {
-      if (!user?.id) return;
-
-      const { data } = await supabase
-        .from('profiles')
-        .select('avatar_style, avatar_seed, avatar_options')
-        .eq('id', user.id)
-        .single();
-
-      if (data?.avatar_style) {
-        setAvatarConfig({
-          style: data.avatar_style as any,
-          seed: data.avatar_seed || user.id,
-          options: (data.avatar_options as Record<string, any>) || {},
-        });
-      }
-    }
-    loadAvatar();
-  }, [user?.id]);
+  // Story 0.7: Avatar now comes from profile (no local loading needed)
 
   const isActive = (href: string) => {
     if (href === '/dashboard') {
@@ -210,13 +186,21 @@ export function Sidebar() {
         {/* Bottom Section - User & Help - only visible when expanded */}
         {!isCollapsed && (
           <div className="border-t border-border">
-            {/* User Section - Story 0.3 */}
+            {/* User Section - Story 0.3 + Story 0.7: Real-time updates */}
             <Link
               to="/profile"
               className="flex items-center gap-3 p-4 hover:bg-muted transition-colors border-b border-border"
             >
               <UserAvatar
-                config={avatarConfig}
+                config={
+                  profile?.avatar_style && (profile?.avatar_seed || user?.id)
+                    ? {
+                        style: profile.avatar_style as any,
+                        seed: profile.avatar_seed || user?.id || 'default',
+                        options: (profile.avatar_options as Record<string, any>) || {},
+                      }
+                    : undefined
+                }
                 userId={user?.id}
                 size="md"
               />

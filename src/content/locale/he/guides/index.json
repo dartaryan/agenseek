@@ -321,12 +321,12 @@
   {
     "id": "workflows-management",
     "title": "מדריך וורקפלואים - חלק 3ד: Project Management",
-    "description": "וורקפלואים לניהול הפרויקט - retrospective, correct-course, workflow-status. מעקב, התאמות, ושיפור מתמיד של התהליכים.",
+    "description": "ניהול פרויקט שוטף - מעקב אחר סטטוס, רטרוספקטיבות, ותיקון מסלול. איך עוקבים אחרי התקדמות הפרויקט, מזהים בעיות, ומתקנים כיוון בזמן.",
     "category": "workflows",
     "difficulty": "intermediate",
     "estimatedMinutes": 35,
-    "icon": "IconGitBranch",
-    "tags": ["וורקפלואים", "ניהול", "רטרו", "מעקב"],
+    "icon": "IconChartLine",
+    "tags": ["וורקפלואים", "ניהול", "management", "retrospective", "status"],
     "path": "workflows/management.json"
   },
   {

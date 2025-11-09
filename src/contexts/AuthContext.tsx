@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import { supabase } from '@/lib/supabase';
 import type { User, AuthError } from '@supabase/supabase-js';
 import type { Database } from '@/types/database';
+import type { AvatarConfig } from '@/lib/avatar';
 
 type Profile = Database['public']['Tables']['profiles']['Row'];
 
@@ -13,6 +14,7 @@ interface AuthContextType {
   isLoading: boolean;
   error: AuthError | null;
   refreshProfile: () => Promise<void>;
+  updateAvatar: (config: AvatarConfig) => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -56,6 +58,48 @@ export function AuthProvider({ children }: AuthProviderProps) {
       }
     } catch (err) {
       console.error('[AuthProvider] Exception during profile refresh:', err);
+    }
+  };
+
+  // Function to update avatar (Story 0.7: Real-time Avatar Update Reflection)
+  const updateAvatar = async (config: AvatarConfig) => {
+    if (!user?.id) {
+      throw new Error('User not authenticated');
+    }
+
+    try {
+      console.log('[AuthProvider] Updating avatar for user:', user.id);
+      const { error } = await supabase
+        .from('profiles')
+        .update({
+          avatar_style: config.style,
+          avatar_seed: config.seed,
+          avatar_options: config.options || {},
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', user.id);
+
+      if (error) {
+        console.error('[AuthProvider] Error updating avatar:', error);
+        throw error;
+      }
+
+      // CRITICAL: Immediately update local profile state
+      // This ensures all components using useAuth() see the new avatar instantly
+      setProfile((prev) => {
+        if (!prev) return prev;
+        return {
+          ...prev,
+          avatar_style: config.style,
+          avatar_seed: config.seed,
+          avatar_options: config.options || {},
+        };
+      });
+
+      console.log('[AuthProvider] Avatar updated successfully');
+    } catch (err) {
+      console.error('[AuthProvider] Exception during avatar update:', err);
+      throw err;
     }
   };
 
@@ -194,7 +238,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, profile, isLoading, error, refreshProfile }}>
+    <AuthContext.Provider value={{ user, profile, isLoading, error, refreshProfile, updateAvatar }}>
       {children}
     </AuthContext.Provider>
   );

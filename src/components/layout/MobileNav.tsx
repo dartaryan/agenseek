@@ -149,7 +149,7 @@ export function MobileNav() {
 
       <SheetContent
         side="right"
-        className="w-[280px] p-0 flex flex-col bg-background"
+        className="w-[280px] p-0 flex flex-col bg-white"
         aria-label="תפריט ניווט"
       >
         {/* Header Section - Story 0.3: User Avatar */}

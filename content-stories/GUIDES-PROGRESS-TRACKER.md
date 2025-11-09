@@ -1,7 +1,7 @@
 # 📊 מעקב התקדמות מדריכים - Guides Progress Tracker
 
 **תאריך עדכון:** 9 נובמבר 2025
-**סטטוס:** 29/47 הושלמו (62%)
+**סטטוס:** 30/47 הושלמו (64%)
 
 ---
 
@@ -25,9 +25,9 @@
 | Onboarding | 3 | 2 | 1 | 67% |
 | Roles | 9 | 9 | 0 | 100% |
 | Agents | 8 | 8 | 0 | 100% |
-| Workflows | 10 | 7 | 3 | 70% |
+| Workflows | 10 | 8 | 2 | 80% |
 | Practical | 9 | 0 | 9 | 0% |
-| **סה"כ** | **47** | **29** | **18** | **62%** |
+| **סה"כ** | **47** | **30** | **17** | **64%** |
 
 ---
 
@@ -90,7 +90,7 @@
 | 33 | `workflows-solutioning` | מדריך וורקפלואים - חלק 3א: Solutioning (Ready for Dev) | workflows | ✅ |
 | 34 | `workflows-sprint-setup` | מדריך וורקפלואים - חלק 3ב: Sprint Setup | workflows | ✅ |
 | 35 | `workflows-development` | מדריך וורקפלואים - חלק 3ג: Development Flow | workflows | ✅ |
-| 36 | `workflows-management` | מדריך וורקפלואים - חלק 3ד: Project Management | workflows | ⏳ |
+| 36 | `workflows-management` | מדריך וורקפלואים - חלק 3ד: Project Management | workflows | ✅ |
 | 37 | `workflows-testing` | מדריך וורקפלואים - חלק 4: Testing & Quality | workflows | ⏳ |
 | 38 | `workflows-cis-synthesis` | מדריך וורקפלואים - חלק 5: סינתזה ותרחישים מורכבים | workflows | ⏳ |
 | 39 | `advanced-setup` | התקנה והגדרה מתקדמת | practical | ⏳ |
@@ -104,7 +104,7 @@
 | 47 | `faq-development` | שאלות ותשובות - חלק 3א: פיתוח | faq | ⏳ |
 | 48 | `faq-team` | שאלות ותשובות - חלק 3ב: עבודה צוותית | faq | ⏳ |
 
-**סטטוס P2:** ✅ 9/27 הושלמו (33%)
+**סטטוס P2:** ✅ 10/27 הושלמו (37%)
 
 ---
 
@@ -113,25 +113,26 @@
 **🎉 כל מדריכי P1 הושלמו!**
 **🎉 כל מדריכי Roles הושלמו! (9/9 - 100%)**
 **🎉 כל מדריכי Agents הושלמו! (8/8 - 100%)**
+**🎉 workflows-management הושלם!**
 
 **המדריך הבא הוא מ-P2:**
 
-### 📌 `workflows-management`
+### 📌 `workflows-testing`
 
 **פרטים:**
-- **כותרת:** מדריך וורקפלואים - חלק 3ד: Project Management
+- **כותרת:** מדריך וורקפלואים - חלק 4: Testing & Quality
 - **קטגוריה:** workflows
 - **רמת קושי:** intermediate
-- **זמן קריאה:** 35 דקות
+- **זמן קריאה:** 40 דקות
 - **עדיפות:** 🟢 P2
 
 **קבצים לקרוא:**
 1. `content-stories/FOR-AI-AGENTS.md` - הפרומפט המלא
-2. `content-stories/stories/workflows/management.md` - הסטורי המפורט
-3. `src/content/locale/he/guides/workflows/development.json` - מדריך וורקפלואים קודם (דוגמה)
+2. `content-stories/stories/workflows/testing.md` - הסטורי המפורט
+3. `src/content/locale/he/guides/workflows/management.json` - מדריך וורקפלואים קודם (דוגמה)
 
 **היכן לשמור:**
-- `src/content/locale/he/guides/workflows/management.json`
+- `src/content/locale/he/guides/workflows/testing.json`
 
 **לא לשכוח:**
 - לעדכן את הקובץ הזה (GUIDES-PROGRESS-TRACKER.md)
@@ -275,7 +276,7 @@ src/content/locale/he/guides/
 7. cis-last2 - מדריך אגנטים - חלק 4ב: שילוב בין אגנטים (2 אחרונים)
 8. synthesis - מדריך אגנטים - חלק 5: סינתזה ותמונה כוללת
 
-### ✅ Workflows (7/10 - 70%)
+### ✅ Workflows (8/10 - 80%)
 1. intro-critical - מדריך וורקפלואים - חלק 1א: מבוא + וורקפלואים קריטיים
 2. phase0-1 - מדריך וורקפלואים - חלק 1ב: Phase 0-1 (Idea to Brief)
 3. phase2-core - מדריך וורקפלואים - חלק 2א: Phase 2 Core (Spec + Arch)
@@ -283,6 +284,7 @@ src/content/locale/he/guides/
 5. solutioning - מדריך וורקפלואים - חלק 3א: Solutioning (Ready for Dev)
 6. sprint-setup - מדריך וורקפלואים - חלק 3ב: Sprint Setup
 7. development - מדריך וורקפלואים - חלק 3ג: Development Flow
+8. management - מדריך וורקפלואים - חלק 3ד: Project Management
 
 ---
 

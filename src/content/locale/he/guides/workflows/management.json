@@ -1,0 +1,945 @@
+{
+  "metadata": {
+    "id": "workflows-management",
+    "slug": "workflows-management",
+    "title": "מדריך וורקפלואים - חלק 3ד: Project Management",
+    "description": "ניהול פרויקט שוטף - מעקב אחר סטטוס, רטרוספקטיבות, ותיקון מסלול. איך עוקבים אחרי התקדמות הפרויקט, מזהים בעיות, ומתקנים כיוון בזמן.",
+    "category": "workflows",
+    "difficulty": "intermediate",
+    "estimatedMinutes": 35,
+    "icon": "IconChartLine",
+    "tags": ["וורקפלואים", "ניהול", "management", "retrospective", "status"],
+    "author": "צוות BMAD",
+    "version": "1.0"
+  },
+  "tableOfContents": [
+    {
+      "id": "toc-1",
+      "title": "Project Management: סקירה",
+      "level": 2,
+      "anchor": "pm-overview"
+    },
+    {
+      "id": "toc-2",
+      "title": "workflow-status - מעקב אחר סטטוס",
+      "level": 2,
+      "anchor": "workflow-status"
+    },
+    {
+      "id": "toc-3",
+      "title": "retrospective - רטרוספקטיבה",
+      "level": 2,
+      "anchor": "retrospective"
+    },
+    {
+      "id": "toc-4",
+      "title": "correct-course - תיקון מסלול",
+      "level": 2,
+      "anchor": "correct-course"
+    },
+    {
+      "id": "toc-5",
+      "title": "תהליך מלא - דוגמה מקצה לקצה",
+      "level": 2,
+      "anchor": "full-process"
+    },
+    {
+      "id": "toc-6",
+      "title": "שאלות נפוצות",
+      "level": 2,
+      "anchor": "faq"
+    },
+    {
+      "id": "toc-7",
+      "title": "סיכום ומסקנות",
+      "level": 2,
+      "anchor": "summary"
+    }
+  ],
+  "content": [
+    {
+      "type": "heading",
+      "level": 1,
+      "text": "מדריך וורקפלואים - חלק 3ד: Project Management",
+      "id": "main-title"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "על מה המדריך הזה?",
+      "content": "במדריך זה נלמד על Project Management - ניהול הפרויקט השוטף. איך עוקבים אחר סטטוס הפרויקט, מזהים בעיות, עורכים רטרוספקטיבות, ומתקנים כיוון בזמן אמת."
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "דרישות מוקדמות",
+      "content": "לפני שמתחילים את המדריך הזה, מומלץ לקרוא את חלק 3א (Solutioning), 3ב (Sprint Setup), ו-3ג (Development Flow). המדריך הזה מתאר את הניהול השוטף של הפרויקט."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Project Management: סקירה",
+      "id": "pm-overview"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה Project Management ב-BMAD?",
+      "id": "what-is-pm"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**Project Management** ב-BMAD הוא **ניהול שוטף של הפרויקט** - מעקב אחר התקדמות, זיהוי בעיות, למידה מהתהליך, ותיקון כיוון.\n\n**במילים פשוטות:** אתם מפתחים Stories, אבל צריך גם **לעקוב אחר הכל**, **ללמוד מטעויות**, ו**לתקן כיוון** כשצריך."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "למה צריך ניהול פרויקט?",
+      "id": "why-pm"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**בלי ניהול:**\n- לא יודעים איפה הפרויקט\n- בעיות מתגלות מאוחר מדי\n- חוזרים על טעויות\n- לא משתפרים\n\n**עם Project Management:**\n- **שקיפות מלאה** - תמיד יודעים את המצב\n- **זיהוי בעיות מוקדם** - מתקנים לפני שמאוחר\n- **למידה מתמדת** - רטרוספקטיבות קבועות\n- **שיפור מתמיד** - כל ספרינט יותר טוב"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "3 הוורקפלואים של Project Management",
+      "id": "three-workflows"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        {
+          "text": "**workflow-status** - מעקב אחר סטטוס הספרינט/פרויקט בזמן אמת"
+        },
+        {
+          "text": "**retrospective** - רטרוספקטיבה מובנית לסיום ספרינט/פרויקט"
+        },
+        {
+          "text": "**correct-course** - תיקון כיוון כשמזהים בעיה או סטייה מהתוכנית"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**כל וורקפלוא משרת מטרה אחרת** - ביחד הם מבטיחים ניהול מוצלח!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מתי משתמשים בכל וורקפלוא?",
+      "id": "when-to-use"
+    },
+    {
+      "type": "table",
+      "headers": ["וורקפלוא", "מתי", "תדירות"],
+      "rows": [
+        ["workflow-status", "בכל זמן - לבדיקת מצב", "יומי/לפי צורך"],
+        ["retrospective", "בסוף ספרינט/milestone", "כל 1-2 שבועות"],
+        ["correct-course", "כשמזהים בעיה", "לפי צורך"]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "המטרה",
+      "content": "בסוף התהליך יש לכם פרויקט מנוהל טוב - אתם יודעים את המצב, לומדים מטעויות, ומתקנים כיוון בזמן!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "workflow-status - מעקב אחר סטטוס",
+      "id": "workflow-status"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה workflow-status?",
+      "id": "what-is-status"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**workflow-status** הוא וורקפלוא שמציג **דוח מצב מלא** של הספרינט או הפרויקט.\n\n**מה הוא מראה?**\n- **Stories** - כמה הושלמו, כמה בתהליך, כמה נותרו\n- **התקדמות** - אחוזי השלמה\n- **Blockers** - מה עוצר אותנו\n- **Risks** - סיכונים פוטנציאליים\n- **Timeline** - האם אנחנו on-track או מאחור"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "למה צריך את זה?",
+      "id": "why-status"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**בלי workflow-status:**\n- צריך לעבור על כל הקבצים ידנית\n- לא רואים את התמונה הכוללת\n- קשה לזהות בעיות\n- אין דוח למנהלים\n\n**עם workflow-status:**\n- **דוח אוטומטי** - הכל במקום אחד\n- **תמונה מלאה** - רואים הכל במבט\n- **זיהוי בעיות** - Blockers וסיכונים מסומנים\n- **תקשורת קלה** - אפשר לשתף עם כולם"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך זה עובד?",
+      "id": "how-status-works"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        {
+          "text": "**סורק קבצים** - קורא sprint-status.yaml + כל קבצי ה-Stories"
+        },
+        {
+          "text": "**אוסף מידע** - סטטוס כל Story, Tasks, Blockers, זמנים"
+        },
+        {
+          "text": "**מחשב מדדים** - אחוזי השלמה, velocity, burndown"
+        },
+        {
+          "text": "**מזהה בעיות** - Stories תקועות, Blockers, סטיות מהתוכנית"
+        },
+        {
+          "text": "**יוצר דוח** - markdown מעוצב עם כל המידע"
+        },
+        {
+          "text": "**שומר** - הדוח נשמר ב-docs/status/sprint-N-status.md"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה - דוח סטטוס",
+      "id": "status-example"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "# Sprint 3 - Status Report\n\n**תאריך:** 2024-01-15\n**ימים בספרינט:** 5/10\n**התקדמות כוללת:** 45%\n\n## Stories\n\n### הושלמו (3)\n✅ 5.1 - User Authentication\n✅ 5.2 - Password Reset\n✅ 5.3 - User Profile\n\n### בתהליך (2)\n🔄 5.4 - Settings Page (80%)\n🔄 5.5 - Email Notifications (30%)\n\n### לא התחילו (2)\n⏳ 5.6 - Push Notifications\n⏳ 5.7 - Preferences\n\n## Blockers\n\n⚠️ **Story 5.5** - מחכים ל-API key מה-Email service\n  - עוצר: 2 ימים\n  - Action: צריך לפנות ל-DevOps\n\n## Timeline\n\n📊 **Burndown:**\n- צפוי: 50% (5/10 ימים)\n- בפועל: 45%\n- **סטטוס:** קצת מאחור, אבל ניתן לניהול\n\n## המלצות\n\n1. לטפל ב-Blocker של 5.5 היום\n2. להאיץ את 5.4 כדי לסיים מחר\n3. שיקול: לדחות 5.7 לספרינט הבא",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך מריצים workflow-status?",
+      "id": "run-status"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# אופציה 1: סטטוס הספרינט הנוכחי\n@workflow-status\n\n# אופציה 2: סטטוס ספרינט ספציפי\n@workflow-status\nאני רוצה סטטוס של Sprint 3\n\n# אופציה 3: סטטוס כל הפרויקט\n@workflow-status\nתן לי סטטוס כללי של כל הפרויקט",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה יש בדוח?",
+      "id": "status-content"
+    },
+    {
+      "type": "accordion",
+      "variant": "default",
+      "items": [
+        {
+          "id": "status-section-1",
+          "title": "סיכום כללי",
+          "content": "**כולל:**\n- תאריך הדוח\n- ימים בספרינט\n- אחוזי השלמה\n- סטטוס כללי (On Track / At Risk / Behind)"
+        },
+        {
+          "id": "status-section-2",
+          "title": "Stories Breakdown",
+          "content": "**רשימה של:**\n- Stories שהושלמו (Done)\n- Stories בתהליך (In Progress) + אחוזי השלמה\n- Stories שלא התחילו (Todo)\n\n**כל Story עם:**\n- מספר ושם\n- סטטוס\n- זמן משוער להשלמה"
+        },
+        {
+          "id": "status-section-3",
+          "title": "Blockers & Risks",
+          "content": "**רשימה של:**\n- Blockers פעילים - מה עוצר את העבודה\n- Risks מזוהים - מה עלול להיות בעיה\n- כמה זמן כל Blocker קיים\n- Action items לפתרון"
+        },
+        {
+          "id": "status-section-4",
+          "title": "Timeline Analysis",
+          "content": "**ניתוח של:**\n- Burndown - האם אנחנו on-track?\n- Velocity - כמה Story Points ליום\n- ETA - מתי צפוי סיום\n- Gap analysis - פער בין תוכנית למציאות"
+        },
+        {
+          "id": "status-section-5",
+          "title": "המלצות",
+          "content": "**מה לעשות:**\n- Actions מיידיים\n- שינויי עדיפויות\n- סיכונים לטפל בהם\n- שיקולים לספרינט הבא"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מתי להריץ?",
+      "id": "when-to-run-status"
+    },
+    {
+      "type": "list",
+      "ordered": false,
+      "items": [
+        {
+          "text": "**יומי** - בבוקר, לבדיקת מצב"
+        },
+        {
+          "text": "**לפני Stand-up** - כדי לדעת מה לדווח"
+        },
+        {
+          "text": "**אחרי Story נסגר** - לראות את השפעה על הכלל"
+        },
+        {
+          "text": "**כשיש Blocker** - לקבל תמונה מלאה"
+        },
+        {
+          "text": "**לפני פגישות** - לעדכן מנהלים/לקוח"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "טיפ",
+      "content": "הדוח נשמר אוטומטית ב-docs/status/ - אפשר לעקוב אחר השינויים לאורך זמן ולראות מגמות!"
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "retrospective - רטרוספקטיבה",
+      "id": "retrospective"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זו רטרוספקטיבה?",
+      "id": "what-is-retro"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**retrospective** הוא וורקפלוא שעורך **רטרוספקטיבה מובנית** - סיכום ולמידה מספרינט או milestone.\n\n**מה זה עושה?**\n- סוקר מה קרה בספרינט\n- מזהה מה עבד טוב\n- מזהה מה לא עבד\n- מציע action items לשיפור\n- יוצר דוח רטרוספקטיבה"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "למה צריך רטרוספקטיבות?",
+      "id": "why-retro"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**בלי רטרוספקטיבות:**\n- חוזרים על אותן טעויות\n- לא לומדים מהתהליך\n- לא משתפרים\n- מפספסים insights חשובים\n\n**עם רטרוספקטיבות:**\n- **למידה מתמדת** - יודעים מה עבד ומה לא\n- **שיפור מתמיד** - כל ספרינט יותר טוב\n- **מניעת בעיות** - לא חוזרים על טעויות\n- **העצמת הצוות** - כולם משתתפים בשיפור"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך זה עובד?",
+      "id": "how-retro-works"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        {
+          "text": "**איסוף נתונים** - קורא sprint-status.yaml, status reports, commit history"
+        },
+        {
+          "text": "**ניתוח ביצועים** - מחשב velocity, cycle time, blockers frequency"
+        },
+        {
+          "text": "**זיהוי patterns** - מה קרה שוב ושוב? מה היה חריג?"
+        },
+        {
+          "text": "**Mad/Sad/Glad** - מה הרגיז, מה היה עצוב, מה שימח"
+        },
+        {
+          "text": "**Start/Stop/Continue** - מה להתחיל, מה להפסיק, מה להמשיך"
+        },
+        {
+          "text": "**Action Items** - צעדים ספציפיים לשיפור"
+        },
+        {
+          "text": "**יצירת דוח** - רטרוספקטיבה מלאה ומובנית"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה - דוח רטרוספקטיבה",
+      "id": "retro-example"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "# Sprint 3 - Retrospective\n\n**תאריך:** 2024-01-20\n**משתתפים:** כל הצוות\n**משך ספרינט:** 10 ימים\n\n## מדדי ביצועים\n\n📊 **Velocity:** 25 Story Points\n📊 **Completion Rate:** 85% (6/7 Stories)\n📊 **Avg Cycle Time:** 2.5 ימים\n📊 **Blockers:** 3 (כולם נפתרו)\n\n## 😡 Mad - מה הרגיז?\n\n1. **Email API Blocker**\n   - עצר אותנו 2 ימים\n   - לא היה לנו מידע מראש\n   - פגע ב-Story 5.5\n\n2. **Code Review איטי**\n   - לקח 24+ שעות\n   - עיכב Stories\n\n## 😢 Sad - מה היה עצוב?\n\n1. **Story 5.7 לא הושלם**\n   - נדחה לספרינט הבא\n   - הערכנו לא נכון\n\n2. **Documentation חסר**\n   - לא היה זמן לעדכן docs\n\n## 😊 Glad - מה שימח?\n\n1. **3 Stories הושלמו מהר**\n   - 5.1, 5.2, 5.3 עברו חלק\n   - איכות קוד גבוהה\n\n2. **Code Reviews משופרים**\n   - מצאנו באגים לפני production\n\n3. **תקשורת טובה**\n   - Daily stand-ups עזרו\n\n## 🎯 Start / Stop / Continue\n\n### 🟢 Start - נתחיל\n1. לבדוק dependencies בתחילת ספרינט\n2. Code Review תוך 4 שעות (SLA)\n3. לעדכן documentation תוך כדי\n\n### 🔴 Stop - נפסיק\n1. להעריך Stories בלי לבדוק dependencies\n2. לדחות Code Review ליום למחרת\n\n### 🟡 Continue - נמשיך\n1. Daily stand-ups - עובד מצוין!\n2. story-context לפני dev - חוסך זמן\n3. code-review אוטומטי - מוצא באגים\n\n## ✅ Action Items\n\n- [ ] **Ben:** ליצור checklist של dependencies לתחילת ספרינט\n- [ ] **Team:** להגדיר SLA של 4 שעות ל-Code Review\n- [ ] **Ben:** להוסיף documentation ל-DoD\n- [ ] **Team:** לשקול automation נוסף\n\n## 📈 שיפורים לספרינט הבא\n\n1. **תכנון:** לבדוק dependencies מראש\n2. **Code Review:** להגדיר SLA ברור\n3. **Documentation:** חלק מ-DoD\n4. **Velocity:** לכוון ל-28 SP (שיפור של 12%)\n\n---\n\n**סיכום:** ספרינט טוב! 85% completion, אבל יש מקום לשיפור בתכנון ובמהירות reviews. הצוות עובד מצוין ביחד!",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך מריצים retrospective?",
+      "id": "run-retro"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# אופציה 1: רטרו על הספרינט הנוכחי\n@retrospective\n\n# אופציה 2: רטרו על ספרינט ספציפי\n@retrospective\nרטרוספקטיבה על Sprint 3\n\n# אופציה 3: רטרו על Epic שלם\n@retrospective\nרטרו על Epic 5",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מתי להריץ?",
+      "id": "when-to-run-retro"
+    },
+    {
+      "type": "table",
+      "headers": ["מתי", "למה"],
+      "rows": [
+        ["בסוף ספרינט", "ללמוד מה-2 שבועות האחרונות"],
+        ["אחרי Epic גדול", "ללמוד מתהליך ארוך"],
+        ["אחרי Milestone", "לסכם שלב בפרויקט"],
+        ["כשיש בעיה חוזרת", "לזהות pattern ולתקן"],
+        ["כל חודש", "גם אם אין ספרינט פורמלי"]
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "טיפ זהב",
+      "content": "הוורקפלוא יוצר רטרו מבוסס נתונים, אבל מומלץ גם לעשות פגישת רטרו עם הצוות! השלימו את הדוח האוטומטי עם insights מהצוות."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה עושים עם ה-Action Items?",
+      "id": "action-items"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        {
+          "text": "**תעדפו** - לא הכל חשוב באותה מידה"
+        },
+        {
+          "text": "**הקצו אחראים** - כל Action עם שם"
+        },
+        {
+          "text": "**הגדירו מועד** - עד מתי"
+        },
+        {
+          "text": "**עקבו** - בדקו שזה קורה"
+        },
+        {
+          "text": "**בדקו בספרינט הבא** - האם השיפור קרה?"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "correct-course - תיקון מסלול",
+      "id": "correct-course"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה זה correct-course?",
+      "id": "what-is-correct-course"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**correct-course** הוא וורקפלוא ש**מתקן את מסלול הפרויקט** כשמזהים בעיה או סטייה מהתוכנית.\n\n**מתי משתמשים?**\n- הספרינט מאחור בלוחות זמנים\n- יש Blocker משמעותי\n- דרישות השתנו\n- צריך לשנות עדיפויות\n- זיהינו סיכון גדול"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "למה צריך את זה?",
+      "id": "why-correct-course"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**בלי correct-course:**\n- ממשיכים בכיוון הלא נכון\n- הבעיה רק גדלה\n- מגיעים לסוף ספרינט ללא תוצאות\n- לא ברור מה לעשות\n\n**עם correct-course:**\n- **תיקון מהיר** - מזהים ומתקנים בזמן\n- **החלטות מבוססות נתונים** - לא אינטואיציה\n- **תוכנית ברורה** - יודעים בדיוק מה לעשות\n- **עדכון כולם** - כל הצוות מיושר"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך זה עובד?",
+      "id": "how-correct-course-works"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        {
+          "text": "**ניתוח המצב** - מה קרה? איפה אנחנו? מה הבעיה?"
+        },
+        {
+          "text": "**זיהוי השורש** - למה זה קרה? מה הגורם האמיתי?"
+        },
+        {
+          "text": "**חישוב GAP** - מה הפער בין תוכנית למציאות?"
+        },
+        {
+          "text": "**אפשרויות** - מה אפשר לעשות? (3-5 אופציות)"
+        },
+        {
+          "text": "**המלצה** - מה האופציה הטובה ביותר?"
+        },
+        {
+          "text": "**תוכנית** - צעדים ספציפיים לתיקון"
+        },
+        {
+          "text": "**עדכון תיעוד** - שינוי sprint-status, Stories, priorities"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "דוגמה - תיקון מסלול",
+      "id": "correct-course-example"
+    },
+    {
+      "type": "code",
+      "language": "markdown",
+      "code": "# Course Correction - Sprint 3\n\n**תאריך:** 2024-01-17 (יום 7/10)\n**סיבה:** הספרינט מאחור בלוחות זמנים\n\n## 📊 המצב הנוכחי\n\n- **התקדמות:** 35% (צפוי: 70%)\n- **Stories הושלמו:** 2/7\n- **ימים נותרו:** 3\n- **סטטוס:** 🔴 Behind Schedule\n\n## 🔍 ניתוח הבעיה\n\n**מה קרה:**\n- Story 5.5 תקוע 2 ימים (Email API blocker)\n- Story 5.4 לקח יותר זמן מהצפוי (הערכה שגויה)\n- Code Reviews איטיים (24+ שעות)\n\n**שורש הבעיה:**\n1. לא בדקנו dependencies לפני הספרינט\n2. הערכת 5.4 הייתה אופטימית מדי\n3. אין SLA ל-Code Review\n\n## 📈 GAP Analysis\n\n**תוכנית מקורית:**\n- 7 Stories, 30 SP\n- 10 ימים\n- Velocity: 3 SP/day\n\n**מציאות:**\n- 2 Stories הושלמו, 3 בתהליך, 2 לא התחילו\n- 7 ימים עברו\n- Velocity בפועל: 1.4 SP/day\n\n**פער:**\n- צריכים 21 SP ב-3 ימים = 7 SP/day ❌ לא ריאלי\n\n## 🎯 אפשרויות\n\n### אופציה 1: Reduce Scope\n**מה:** לדחות Stories 5.6 + 5.7 לספרינט הבא\n**יתרונות:** ריאלי, מתמקדים באיכות\n**חסרונות:** לא משיגים את כל היעדים\n**Velocity נדרש:** 4 SP/day (אפשרי!)\n\n### אופציה 2: Extend Sprint\n**מה:** להאריך ספרינט ב-3 ימים\n**יתרונות:** משיגים הכל\n**חסרונות:** משבש תכנון, לא sustainable\n**Velocity נדרש:** 3.5 SP/day\n\n### אופציה 3: Add Resources\n**מה:** להביא עוד מפתח\n**יתרונות:** יותר כוח עבודה\n**חסרונות:** onboarding time, תקורת תקשורת\n**Velocity נדרש:** 7 SP/day (אפילו עם עזרה)\n\n### אופציה 4: Reduce Quality\n**מה:** לדלג על Code Review או בדיקות\n**יתרונות:** מהר יותר\n**חסרונות:** ❌ לא מומלץ בכלל! באגים בפרודקשן\n\n## ✅ ההמלצה: אופציה 1 - Reduce Scope\n\n**החלטה:**\nלדחות Stories 5.6 + 5.7 לספרינט 4, להתמקד בסיום 5.4 + 5.5 באיכות גבוהה.\n\n**סיבות:**\n1. ריאלי - 4 SP/day אפשרי\n2. שומר על איכות - לא מתפשרים\n3. Scope ברור - 5 Stories זה הצלחה\n4. למידה - נהיה יותר ריאליסטיים בהמשך\n\n## 📋 תוכנית התיקון\n\n### מיידי (היום)\n- [x] לפתור Email API blocker\n- [x] לעדכן sprint-status.yaml\n- [x] להעביר 5.6 + 5.7 ל-Sprint 4\n- [ ] לעדכן את כל הצוות\n\n### יום 8-9\n- [ ] לסיים 5.4\n- [ ] להאיץ Code Review (תוך 4 שעות)\n- [ ] להתחיל 5.5\n\n### יום 10\n- [ ] לסיים 5.5\n- [ ] לעשות retrospective\n- [ ] לתכנן Sprint 4\n\n## 📢 תקשורת\n\n**למי לעדכן:**\n- ✅ צוות הפיתוח - עודכן\n- ⏳ Product Manager - לעדכן היום\n- ⏳ Stakeholders - לעדכן מחר\n\n**המסר:**\nהספרינט נתקל באתגרים (Blocker + הערכה שגויה). החלטנו לדחות 2 Stories כדי לסיים 5 Stories באיכות גבוהה. זה success, לא failure!\n\n---\n\n**סיכום:** תיקנו מסלול בזמן! מתמקדים ב-5 Stories איכותיות במקום 7 בחצי איכות.",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "איך מריצים correct-course?",
+      "id": "run-correct-course"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# אופציה 1: תיקון מסלול כללי\n@correct-course\n\n# אופציה 2: עם תיאור הבעיה\n@correct-course\nהספרינט מאחור - רק 35% הושלמו ב-70% מהזמן\n\n# אופציה 3: תיקון מסלול של Epic\n@correct-course\nEpic 5 לא יסתיים בזמן",
+      "showLineNumbers": false
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מתי להריץ?",
+      "id": "when-to-run-correct-course"
+    },
+    {
+      "type": "accordion",
+      "variant": "default",
+      "items": [
+        {
+          "id": "trigger-1",
+          "title": "מאחור בלוחות זמנים",
+          "content": "**כשלראות:**\n- אחוזי השלמה < אחוזי זמן שעבר\n- Burndown מעל הקו הצפוי\n- Stories לא יסתיימו בזמן\n\n**דוגמה:** 35% הושלמו אבל 70% מהזמן עבר"
+        },
+        {
+          "id": "trigger-2",
+          "title": "Blocker משמעותי",
+          "content": "**כשיש:**\n- Blocker שעוצר 2+ Stories\n- Blocker שקיים יותר מ-2 ימים\n- Blocker שלא ניתן לפתור מהר\n\n**דוגמה:** API key חסר ולא יגיע שבוע"
+        },
+        {
+          "id": "trigger-3",
+          "title": "שינוי דרישות",
+          "content": "**כשמתקבל:**\n- דרישה חדשה משמעותית\n- שינוי באפיפויות\n- ביטול תכונה\n\n**דוגמה:** הלקוח רוצה תכונה נוספת במקום אחרת"
+        },
+        {
+          "id": "trigger-4",
+          "title": "סיכון מזוהה",
+          "content": "**כשמזהים:**\n- סיכון טכני (ארכיטקטורה)\n- סיכון משאבים (חוסר אנשים)\n- סיכון לוחות זמנים\n\n**דוגמה:** המערכת לא תעמוד בעומס הצפוי"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "variant": "warning",
+      "title": "חשוב!",
+      "content": "correct-course הוא לשינויים משמעותיים! לשינויים קטנים - פשוט עדכנו את sprint-status.yaml ידנית או בצ'אט רגיל."
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "תהליך מלא - דוגמה מקצה לקצה",
+      "id": "full-process"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "בואו נעבור על **דוגמה מלאה** של ניהול פרויקט עם שלושת הוורקפלואים. נראה איך כל הכלים עובדים ביחד."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "התרחיש: Sprint 3 - ניהול מקצה לקצה",
+      "id": "scenario"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**המצב:**\n- ספרינט 3 התחיל\n- 7 Stories מתוכננות\n- 10 ימים\n- צוות של 3 מפתחים\n\n**המטרה:** לנהל את הספרינט מהתחלה עד סוף."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "יום 1: בוקר הספרינט",
+      "id": "day-1"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# בדיקת סטטוס התחלתי\n@workflow-status",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**תוצאה:**\n- כל ה-Stories ב-Todo\n- אין Blockers\n- 0% השלמה\n- ✅ All good to start!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "יום 3: בדיקת התקדמות",
+      "id": "day-3"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "@workflow-status",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**תוצאה:**\n- Story 5.1 ✅ Done\n- Story 5.2 🔄 In Progress (70%)\n- Story 5.3 🔄 In Progress (40%)\n- סטטוס: 🟢 On Track"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "יום 5: Stand-up בבוקר",
+      "id": "day-5"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "@workflow-status",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**תוצאה:**\n- 5.1, 5.2 ✅ Done\n- 5.3 🔄 In Progress (90%)\n- 5.4 🔄 In Progress (20%)\n- סטטוס: 🟢 On Track\n- **הכל נראה טוב!**"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "יום 7: אוקטט! בעיה מזוהה",
+      "id": "day-7"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "@workflow-status",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**תוצאה מדאיגה:**\n- 5.1, 5.2, 5.3 ✅ Done (3/7)\n- 5.4 🔄 In Progress (80%)\n- 5.5 🔄 In Progress (30%)\n- ⚠️ **Blocker:** Email API key חסר (2 ימים)\n- סטטוס: 🔴 Behind - רק 35% הושלמו אבל 70% מהזמן עבר!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "יום 7: תיקון מסלול מיידי",
+      "id": "day-7-correction"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "# צריך לתקן כיוון!\n@correct-course\nהספרינט מאחור - רק 35% הושלמו ב-70% מהזמן",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**הוורקפלוא מנתח ומציע:**\n\n**אופציות:**\n1. ✅ Reduce Scope - דחות 5.6+5.7\n2. Extend Sprint - הארכה\n3. Add Resources - עוד אנשים\n4. ❌ Reduce Quality - לא!\n\n**המלצה:** אופציה 1 - Reduce Scope\n\n**תוכנית:**\n- לפתור ה-Blocker היום\n- לסיים 5.4 מחר\n- להאיץ 5.5\n- לדחות 5.6+5.7 לספרינט 4\n\n**החלטה:** מקבלים את ההמלצה!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "יום 8-9: ביצוע התוכנית",
+      "id": "day-8-9"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**מה קרה:**\n- ה-Blocker נפתר (קיבלנו API key)\n- 5.4 הושלם ביום 8 ✅\n- 5.5 התקדם ל-70% ביום 9\n- 5.6+5.7 הועברו לספרינט 4 ועודכנו"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "יום 10: סיום הספרינט",
+      "id": "day-10"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "@workflow-status",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**תוצאה סופית:**\n- 5.1, 5.2, 5.3, 5.4, 5.5 ✅ Done (5/5)\n- **100% מה-Scope החדש!**\n- אין Blockers\n- סטטוס: 🟢 Success!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "יום 10: רטרוספקטיבה",
+      "id": "day-10-retro"
+    },
+    {
+      "type": "code",
+      "language": "bash",
+      "code": "@retrospective",
+      "showLineNumbers": false
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**ממצאים:**\n\n**😡 Mad:**\n- Email API Blocker (לא בדקנו מראש)\n- הערכת 5.4 שגויה\n\n**😊 Glad:**\n- תיקון מסלול עבד!\n- 5 Stories באיכות גבוהה\n- תקשורת מצוינת\n\n**Action Items:**\n- [ ] לבדוק dependencies בתחילת כל ספרינט\n- [ ] להגדיר SLA ל-Code Review\n- [ ] לשפר הערכות - להוסיף buffer"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "התוצאה",
+      "content": "ספרינט מוצלח! זיהינו בעיה בזמן, תיקנו מסלול, והשלמנו 5 Stories באיכות גבוהה. למדנו ונשתפר לספרינט הבא!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "תרשים התהליך המלא",
+      "id": "full-process-diagram"
+    },
+    {
+      "type": "code",
+      "language": "mermaid",
+      "code": "graph TD\n    A[Sprint Start] --> B[Day 1: workflow-status]\n    B --> C{סטטוס?}\n    C -->|All Good| D[Keep Working]\n    D --> E[Day 3: workflow-status]\n    E --> F{סטטוס?}\n    F -->|On Track| G[Keep Working]\n    G --> H[Day 7: workflow-status]\n    H --> I{סטטוס?}\n    I -->|Behind!| J[correct-course]\n    J --> K[תוכנית תיקון]\n    K --> L[Execute Plan]\n    L --> M[Day 10: workflow-status]\n    M --> N[Sprint Done!]\n    N --> O[retrospective]\n    O --> P[Action Items]\n    P --> Q[Sprint 4 Planning]",
+      "showLineNumbers": false
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "שאלות נפוצות",
+      "id": "faq"
+    },
+    {
+      "type": "accordion",
+      "variant": "default",
+      "items": [
+        {
+          "id": "faq-1",
+          "title": "כמה פעמים צריך להריץ workflow-status?",
+          "content": "**תלוי בגודל הפרויקט:**\n\n**פרויקט קטן (1-3 מפתחים):**\n- פעם ביום - בבוקר\n- לפני פגישות\n\n**פרויקט בינוני (4-10 מפתחים):**\n- פעמיים ביום - בוקר וצהריים\n- לפני stand-ups\n- אחרי סגירת Stories\n\n**פרויקט גדול (10+ מפתחים):**\n- 3-4 פעמים ביום\n- אוטומציה (CI/CD)\n\n**תמיד:**\n- לפני פגישה עם מנהלים\n- כשיש Blocker\n- כשמישהו שואל \"מה המצב?\""
+        },
+        {
+          "id": "faq-2",
+          "title": "מה אם אין זמן לרטרוספקטיבה?",
+          "content": "**תמצאו זמן!** 🚨\n\nרטרוספקטיבה היא **לא luxury**, זה **necessity**.\n\n**בלי רטרו:**\n- תחזרו על טעויות\n- לא תשתפרו\n- הצוות לא ילמד\n\n**פתרונות:**\n- רטרו קצר (30 דק)\n- רטרו אסינכרוני (כולם כותבים)\n- הוורקפלוא אוטומטי (עושה חלק מהעבודה)\n\n**המינימום:** רטרו אחת לחודש!"
+        },
+        {
+          "id": "faq-3",
+          "title": "מתי לא להריץ correct-course?",
+          "content": "**אל תריצו correct-course אם:**\n\n1. **השינוי קטן** - עדכון קל ב-status\n2. **אתם לא בטוחים** - תבדקו עוד\n3. **אין זמן לביצוע** - אין טעם בתוכנית שלא תקרה\n4. **הספרינט כמעט נגמר** - חכו לרטרו\n\n**כן תריצו אם:**\n1. השינוי משמעותי (scope/timeline)\n2. יש Blocker משמעותי\n3. צריך החלטה מהירה\n4. צריך לעדכן stakeholders"
+        },
+        {
+          "id": "faq-4",
+          "title": "האם הוורקפלואים האלה מחליפים Scrum Master?",
+          "content": "**לא! הם משלימים.**\n\n**הוורקפלואים:**\n- אוספים נתונים\n- מנתחים\n- מציעים המלצות\n- יוצרים דוחות\n\n**Scrum Master/PM:**\n- מוביל את הפגישות\n- מקבל החלטות\n- מנהל את האנשים\n- פותר קונפליקטים\n\n**הם עובדים ביחד!**\nהוורקפלואים חוסכים זמן ונותנים נתונים, האדם מוביל ומחליט."
+        },
+        {
+          "id": "faq-5",
+          "title": "מה עושים עם ה-Action Items מהרטרו?",
+          "content": "**תהליך מומלץ:**\n\n1. **סיום הרטרו:**\n   - רשימת Action Items\n   - כל אחד עם אחראי\n\n2. **תיעדוף:**\n   - P0 - קריטי (עושים בספרינט הבא)\n   - P1 - חשוב (עושים בחודש)\n   - P2 - נחמד (כשיש זמן)\n\n3. **Tracking:**\n   - הוסיפו ל-sprint-status.yaml\n   - או יצרו Story 0.X (on-the-go)\n   - או רשימה ב-docs/retro-actions.md\n\n4. **בדיקה:**\n   - ברטרו הבא - האם עשינו?\n   - אם לא - למה? עדיין רלוונטי?"
+        },
+        {
+          "id": "faq-6",
+          "title": "איך משלבים עם כלי ניהול אחרים (Jira, Trello)?",
+          "content": "**BMAD משלים, לא מחליף!**\n\n**אינטגרציה אפשרית:**\n\n1. **Jira:**\n   - workflow-status קורא מ-Jira API\n   - מעדכן Jira אחרי correct-course\n   - רטרו נשמר גם ב-Confluence\n\n2. **Trello:**\n   - קריאה מ-Trello boards\n   - סנכרון סטטוסים\n\n3. **GitHub Projects:**\n   - קריאה מ-Issues\n   - עדכון Labels\n\n**כרגע:**\nהוורקפלואים עובדים עם הקבצים המקומיים (docs/), אבל אפשר להוסיף אינטגרציות!"
+        },
+        {
+          "id": "faq-7",
+          "title": "מה אם הצוות לא מעדכן סטטוסים?",
+          "content": "**בעיה נפוצה! פתרונות:**\n\n**קצר טווח:**\n1. הזכירו בכל stand-up\n2. הוסיפו ל-DoD: \"עדכן סטטוס\"\n3. הפכו למי שעושה tracking\n\n**ארוך טווח:**\n1. **הסבירו את הערך** - למה זה חשוב\n2. **הראו דוגמאות** - איך זה עוזר\n3. **אוטומציה** - עדכונים מ-commits/PRs\n4. **תרבות** - שיפור תרבות התיעוד\n\n**זכרו:**\nאם קשה לצוות לעדכן, אולי התהליך מסורבל מדי. פשטו!"
+        },
+        {
+          "id": "faq-8",
+          "title": "איך יודעים שהניהול עובד?",
+          "content": "**סימנים לניהול טוב:**\n\n✅ **אין הפתעות** - תמיד יודעים את המצב\n✅ **בעיות מזוהות מוקדם** - לא ברגע האחרון\n✅ **Velocity יציב** - כל ספרינט דומה\n✅ **הצוות רגוע** - לא stress\n✅ **השלמה עקבית** - משיגים מטרות\n✅ **שיפור מתמיד** - כל ספרינט יותר טוב\n\n**סימנים לבעיה:**\n\n🔴 **הפתעות תמידיות** - \"איך לא ידענו?\"\n🔴 **בעיות מאוחר** - מגלים בסוף\n🔴 **Velocity משתנה** - 10 SP אחרי 30 SP\n🔴 **הצוות תחת לחץ** - overtime קבוע\n🔴 **לא משיגים מטרות** - כל פעם דוחים\n\nאם יש בעיות - הריצו retrospective וחפשו את השורש!"
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "סיכום ומסקנות",
+      "id": "summary"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**במדריך זה למדנו:**\n\n**3 הוורקפלואים של Project Management:**\n1. **workflow-status** - מעקב אחר סטטוס בזמן אמת\n2. **retrospective** - רטרוספקטיבה מובנית ולמידה\n3. **correct-course** - תיקון מסלול כשצריך\n\n**התהליך המלא:**\nמעקב יומי → זיהוי בעיות → תיקון מהיר → רטרו וסיכום → שיפור!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "העקרונות המרכזיים",
+      "id": "key-principles"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "items": [
+        {
+          "id": "principle-1",
+          "content": {
+            "type": "card",
+            "title": "שקיפות",
+            "description": "תמיד לדעת את המצב האמיתי - לא להסתיר בעיות",
+            "variant": "default"
+          }
+        },
+        {
+          "id": "principle-2",
+          "content": {
+            "type": "card",
+            "title": "זריזות",
+            "description": "לזהות בעיות מוקדם ולתקן מהר - לא לחכות",
+            "variant": "default"
+          }
+        },
+        {
+          "id": "principle-3",
+          "content": {
+            "type": "card",
+            "title": "למידה",
+            "description": "ללמוד מכל ספרינט - לא לחזור על טעויות",
+            "variant": "default"
+          }
+        },
+        {
+          "id": "principle-4",
+          "content": {
+            "type": "card",
+            "title": "שיפור מתמיד",
+            "description": "כל ספרינט קצת יותר טוב - לא להישאר באותו מקום",
+            "variant": "default"
+          }
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "מה הלאה?",
+      "id": "whats-next"
+    },
+    {
+      "type": "text",
+      "markdown": true,
+      "content": "**עכשיו שאתם יודעים לנהל פרויקטים**, המשיכו ללמוד:\n\n**חלק 4: Testing & Quality**\n- testing workflows\n- quality assurance\n- automation\n\nזה יעזור לכם **לשמור על איכות גבוהה** לאורך כל הפרויקט!"
+    },
+    {
+      "type": "callout",
+      "variant": "info",
+      "title": "טיפ אחרון",
+      "content": "ניהול פרויקט טוב הוא לא מה שקורה כשהכל טוב - זה מה שקורה כשיש בעיות. תתרגלו את הוורקפלואים האלה וראו איך הפרויקטים שלכם הופכים יותר צפויים ומוצלחים!"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "משאבים נוספים",
+      "id": "resources"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "items": [
+        {
+          "id": "resource-1",
+          "content": {
+            "type": "card",
+            "title": "מדריך למנהלי פרויקטים",
+            "description": "כל מה שמנהל פרויקט צריך לדעת",
+            "link": "/guides/role-project-managers",
+            "variant": "default"
+          }
+        },
+        {
+          "id": "resource-2",
+          "content": {
+            "type": "card",
+            "title": "Sprint Setup",
+            "description": "איך לתכנן ספרינט מוצלח",
+            "link": "/guides/workflows-sprint-setup",
+            "variant": "default"
+          }
+        },
+        {
+          "id": "resource-3",
+          "content": {
+            "type": "card",
+            "title": "Development Flow",
+            "description": "תהליך הפיתוח המלא",
+            "link": "/guides/workflows-development",
+            "variant": "default"
+          }
+        },
+        {
+          "id": "resource-4",
+          "content": {
+            "type": "card",
+            "title": "שאלות ותשובות",
+            "description": "FAQ על BMAD",
+            "link": "/guides/faq-basics",
+            "variant": "default"
+          }
+        }
+      ]
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "callout",
+      "variant": "success",
+      "title": "מזל טוב! סיימתם את חלק 3ד!",
+      "content": "עכשיו אתם יודעים לנהל פרויקטים עם BMAD - לעקוב, ללמוד, ולתקן מסלול. המשיכו לחלק 4 (Testing & Quality) כדי ללמוד איך לשמור על איכות גבוהה!"
+    }
+  ]
+}
+

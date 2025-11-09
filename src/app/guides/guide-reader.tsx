@@ -39,7 +39,7 @@ import { RelatedGuides } from '@/components/guides/RelatedGuides';
 import { BadgeUnlockAnimation } from '@/components/dashboard/BadgeUnlockAnimation';
 import { FloatingNoteTooltip } from '@/components/guides/FloatingNoteTooltip'; // Story 6.3
 import { CommentThread } from '@/components/comments'; // Story 8.1
-import { MobileActionBar } from '@/components/guides/MobileActionBar'; // Story 10.2
+// import { MobileActionBar } from '@/components/guides/MobileActionBar'; // Story 10.2 - Currently unused
 import { loadGuide, getAdjacentGuides } from '@/lib/guide-loader';
 import { useAuth } from '@/hooks/useAuth';
 import { useAchievements } from '@/hooks/useAchievements';
@@ -864,14 +864,14 @@ export function GuideReaderPage() {
       {/* Story 6.3: Floating Note Tooltip */}
       <FloatingNoteTooltip onAddNote={handleAddNote} />
 
-      {/* Story 10.2: Mobile Action Bar */}
-      <MobileActionBar
+      {/* Story 10.2: Mobile Action Bar - Hidden per user preference */}
+      {/* <MobileActionBar
         isCompleted={isCompleted}
         onAddNote={() => handleAddNote()}
         onCreateTask={handleCreateTask}
         onMarkComplete={isCompleted ? handleUnmarkCompleteClick : handleMarkCompleteClick}
         onShare={handleCopyLink}
-      />
+      /> */}
       </div>
     </MobileTocContext.Provider>
   );

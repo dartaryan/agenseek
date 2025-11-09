@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle, useRef, useState, useEffect } from 'react';
+import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { IconList } from '@tabler/icons-react';
 // Story 0.15: IconMoon, IconSun temporarily removed (theme toggle hidden)
@@ -17,8 +17,6 @@ import { SearchBar, type SearchBarRef } from './SearchBar';
 import { NotificationDropdown } from './NotificationDropdown';
 import { AdminNotificationBell } from '../admin/AdminNotificationBell';
 import { UserAvatar } from '../ui/user-avatar';
-import { supabase } from '../../lib/supabase';
-import type { AvatarConfig } from '../../lib/avatar';
 
 /**
  * Header public methods (Story 7.5)
@@ -49,29 +47,8 @@ export const Header = forwardRef<HeaderRef>(function Header(_props, ref) {
   // Story 0.15: Theme toggle temporarily disabled
   // const { setTheme, resolvedTheme } = useTheme();
   const searchBarRef = useRef<SearchBarRef>(null);
-  const [avatarConfig, setAvatarConfig] = useState<AvatarConfig | null>(null);
 
-  // Story 0.3: Load avatar configuration
-  useEffect(() => {
-    async function loadAvatar() {
-      if (!user?.id) return;
-
-      const { data } = await supabase
-        .from('profiles')
-        .select('avatar_style, avatar_seed, avatar_options')
-        .eq('id', user.id)
-        .single();
-
-      if (data?.avatar_style) {
-        setAvatarConfig({
-          style: data.avatar_style as any,
-          seed: data.avatar_seed || user.id,
-          options: (data.avatar_options as Record<string, any>) || {},
-        });
-      }
-    }
-    loadAvatar();
-  }, [user?.id]);
+  // Story 0.7: Avatar now comes from profile (no local loading needed)
 
   // Story 7.5: Expose focusSearch method to parent via ref
   useImperativeHandle(ref, () => ({
@@ -177,13 +154,21 @@ export const Header = forwardRef<HeaderRef>(function Header(_props, ref) {
             </Button>
             */}
 
-            {/* User Profile - Story 0.3: Avatar */}
+            {/* User Profile - Story 0.3: Avatar + Story 0.7: Real-time updates */}
             {user && (
               <div className="flex items-center gap-3">
                 <Link to="/profile">
                   <Button variant="ghost" size="sm" className="gap-2" aria-label={`פרופיל של ${profile?.display_name || user.email?.split('@')[0]}`}>
                     <UserAvatar
-                      config={avatarConfig}
+                      config={
+                        profile?.avatar_style && (profile?.avatar_seed || user.id)
+                          ? {
+                              style: profile.avatar_style as any,
+                              seed: profile.avatar_seed || user.id || 'default',
+                              options: (profile.avatar_options as Record<string, any>) || {},
+                            }
+                          : undefined
+                      }
                       userId={user.id}
                       size="sm"
                     />

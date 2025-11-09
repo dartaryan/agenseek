@@ -7,7 +7,7 @@ Execute all pending 0.X "on-the-go" stories in sequential order, from Story 0.5 
 ## 📋 Story List (Execute in Order)
 
 1. **Story 0.5** (3 points, ~4.5h) - Expand Avatar Collection & Add Onboarding Avatar Selection
-2. **Story 0.6** (3 points, ~8h) - Dark Mode Full Implementation
+2. ~~**Story 0.6** (3 points, ~8h) - Dark Mode Full Implementation~~ **[NOT DOING NOW]**
 3. **Story 0.7** (1 point, ~2h) - Real-time Avatar Update Reflection
 4. **Story 0.8** (2 points, ~6.5h) - Admin Pages Mobile Responsiveness
 5. **Story 0.9** (5 points, ~7.5h) - Implement Settings Page Features
@@ -16,7 +16,7 @@ Execute all pending 0.X "on-the-go" stories in sequential order, from Story 0.5 
 8. **Story 0.12** (1 point, ~2h) - Remove Console Logs from Codebase
 9. **Story 0.13** (1 point, ~1.5h) - Create BMAD Installation Guide Access Point
 
-**Total:** 23 points, ~2-3 weeks
+**Total:** 20 points, ~2-3 weeks (Story 0.6 postponed)
 
 ## 🔄 Workflow for Each Story
 
@@ -118,11 +118,11 @@ For **EACH** story, follow this exact workflow:
 - Update to 6-step onboarding flow
 - Change term to "און בורדינג"
 
-### Story 0.6: Dark Mode
-- Fix dark mode toggle functionality
-- Implement dark mode for ALL pages (including auth)
-- Theme persistence across sessions
-- WCAG AA contrast compliance
+### ~~Story 0.6: Dark Mode~~ [NOT DOING NOW]
+- ~~Fix dark mode toggle functionality~~
+- ~~Implement dark mode for ALL pages (including auth)~~
+- ~~Theme persistence across sessions~~
+- ~~WCAG AA contrast compliance~~
 
 ### Story 0.7: Avatar Real-time Update
 - Create UserContext for global avatar state

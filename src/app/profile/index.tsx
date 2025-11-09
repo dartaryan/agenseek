@@ -188,7 +188,7 @@ const EXPERIENCE_LEVELS: ExperienceLevel[] = [
  * Profile Page with Learning Preferences Editor
  */
 export function ProfilePage() {
-  const { user, profile, refreshProfile } = useAuth();
+  const { user, profile, refreshProfile, updateAvatar } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -203,7 +203,7 @@ export function ProfilePage() {
 
   // Avatar state
   const [showAvatarSelector, setShowAvatarSelector] = useState(false);
-  const [avatarConfig, setAvatarConfig] = useState<AvatarConfig | null>(null);
+  const [isSavingAvatar, setIsSavingAvatar] = useState(false);
 
   // Load current preferences from profile
   useEffect(() => {
@@ -214,27 +214,8 @@ export function ProfilePage() {
     }
   }, [profile]);
 
-  // Load avatar configuration from profile
-  useEffect(() => {
-    async function loadAvatar() {
-      if (!user?.id) return;
-
-      const { data } = await supabase
-        .from('profiles')
-        .select('avatar_style, avatar_seed, avatar_options')
-        .eq('id', user.id)
-        .single();
-
-      if (data?.avatar_style) {
-        setAvatarConfig({
-          style: data.avatar_style as any,
-          seed: data.avatar_seed || user.id,
-          options: (data.avatar_options as Record<string, any>) || {},
-        });
-      }
-    }
-    loadAvatar();
-  }, [user?.id]);
+  // Story 0.7: Avatar now comes from AuthContext profile
+  // No need for local loading - profile contains avatar fields
 
   // Check if we should open display name edit modal from query param
   useEffect(() => {
@@ -364,24 +345,18 @@ export function ProfilePage() {
   const handleSaveAvatar = async (config: AvatarConfig) => {
     if (!user?.id) return;
 
+    setIsSavingAvatar(true);
     try {
-      const { error } = await supabase
-        .from('profiles')
-        .update({
-          avatar_style: config.style,
-          avatar_seed: config.seed,
-          avatar_options: config.options,
-          updated_at: new Date().toISOString(),
-        })
-        .eq('id', user.id);
+      // Story 0.7: Use updateAvatar from AuthContext
+      // This updates DB and immediately refreshes all components
+      await updateAvatar(config);
 
-      if (error) throw error;
-
-      setAvatarConfig(config);
       toast({
         title: 'האווטר עודכן בהצלחה',
         description: 'האווטר שלך שונה',
       });
+
+      setShowAvatarSelector(false);
     } catch (error) {
       console.error('Error saving avatar:', error);
       toast({
@@ -389,6 +364,8 @@ export function ProfilePage() {
         title: 'שגיאה בשמירת אווטר',
         description: 'אנא נסה שוב',
       });
+    } finally {
+      setIsSavingAvatar(false);
     }
   };
 
@@ -403,12 +380,20 @@ export function ProfilePage() {
         onSave={handleUpdateDisplayName}
       />
 
-      {/* Avatar Selector - Story 0.3 */}
+      {/* Avatar Selector - Story 0.3 + Story 0.7 */}
       {user?.id && (
         <AvatarSelector
           open={showAvatarSelector}
           onClose={() => setShowAvatarSelector(false)}
-          currentConfig={avatarConfig || getDefaultAvatarConfig(user.id)}
+          currentConfig={
+            profile?.avatar_style
+              ? {
+                  style: profile.avatar_style as any,
+                  seed: profile.avatar_seed || user.id,
+                  options: (profile.avatar_options as Record<string, any>) || {},
+                }
+              : getDefaultAvatarConfig(user.id)
+          }
           onSave={handleSaveAvatar}
           userId={user.id}
         />
@@ -439,13 +424,28 @@ export function ProfilePage() {
                 </Button>
               </div>
 
-              {/* Avatar Display and Edit - Story 0.3 */}
+              {/* Avatar Display and Edit - Story 0.3 + Story 0.7 */}
               <div className="flex items-center gap-4 pb-4 border-b border-border">
-                <UserAvatar
-                  config={avatarConfig}
-                  userId={user?.id}
-                  size="xl"
-                />
+                <div className="relative">
+                  <UserAvatar
+                    config={
+                      profile?.avatar_style && (profile?.avatar_seed || user?.id)
+                        ? {
+                            style: profile.avatar_style as any,
+                            seed: profile.avatar_seed || user?.id || 'default',
+                            options: (profile.avatar_options as Record<string, any>) || {},
+                          }
+                        : undefined
+                    }
+                    userId={user?.id}
+                    size="xl"
+                  />
+                  {isSavingAvatar && (
+                    <div className="absolute inset-0 bg-black/50 rounded-full flex items-center justify-center">
+                      <IconLoader2 className="h-8 w-8 text-white animate-spin" />
+                    </div>
+                  )}
+                </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium text-foreground mb-2">
                     אווטר פרופיל
@@ -454,9 +454,10 @@ export function ProfilePage() {
                     variant="outline"
                     size="sm"
                     onClick={() => setShowAvatarSelector(true)}
+                    disabled={isSavingAvatar}
                   >
                     <IconEdit className="w-4 h-4 ml-2" />
-                    שנה אווטר
+                    {isSavingAvatar ? 'שומר...' : 'שנה אווטר'}
                   </Button>
                 </div>
               </div>
