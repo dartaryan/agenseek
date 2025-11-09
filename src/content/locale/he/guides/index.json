@@ -463,13 +463,13 @@
   },
   {
     "id": "faq-installation",
-    "title": "שאלות ותשובות - חלק 1ב: התקנה",
-    "description": "שאלות נפוצות על התקנה והגדרה - בעיות נפוצות, תאימות למערכות שונות, הגדרת IDEs, ותיקון שגיאות התקנה.",
+    "title": "שאלות ותשובות - התקנה",
+    "description": "כל השאלות והבעיות הנפוצות על התקנת BMAD - פתרונות לבעיות עם Node.js, Cursor, Claude, והגדרות. מדריך פתרון בעיות מקיף למתחילים.",
     "category": "faq",
     "difficulty": "beginner",
     "estimatedMinutes": 20,
-    "icon": "IconQuestionMark",
-    "tags": ["שאלות", "התקנה", "טכני", "בעיות"],
+    "icon": "IconDownload",
+    "tags": ["שאלות", "התקנה", "טכני", "בעיות", "פתרון-תקלות"],
     "path": "faq/installation.json"
   },
   {
