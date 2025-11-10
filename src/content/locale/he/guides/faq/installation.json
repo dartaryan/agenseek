@@ -203,7 +203,7 @@
         },
         {
           "title": "האם אפשר להשתמש ב-VS Code במקום Cursor?",
-          "content": "**תשובה:** טכנית כן, אבל **לא מומלץ למתחילים**.\n\n**למה Cursor עדיף:**\n- תמיכה מובנית ב-AI (Claude/GPT)\n- פיצ'ר @ לטעינת אגנטים\n- Context management מתקדם\n- UI/UX אופטימלי לעבודה עם AI\n\n**אם בכל זאת רוצים VS Code:**\n- צריך להתקין extensions: Claude API, Continue\n- צריך להגדיר ידנית API keys\n- חוויה פחות טובה\n\n**למי זה מתאים:**\n- מפתחים מנוסים שכבר עובדים ב-VS Code\n- מי שיש לו workflow מותאם אישית\n\n**למתחילים:** פשוט התחילו עם Cursor - תחסכו כאב ראש",
+          "content": "**תשובה:** טכנית כן, אבל **לא מומלץ למתחילים**.\n\n**למה Cursor עדיף:**\n- תמיכה מובנית ב-AI (Claude/GPT)\n- פיצ'ר @ לטעינת סוכנים\n- Context management מתקדם\n- UI/UX אופטימלי לעבודה עם AI\n\n**אם בכל זאת רוצים VS Code:**\n- צריך להתקין extensions: Claude API, Continue\n- צריך להגדיר ידנית API keys\n- חוויה פחות טובה\n\n**למי זה מתאים:**\n- מפתחים מנוסים שכבר עובדים ב-VS Code\n- מי שיש לו workflow מותאם אישית\n\n**למתחילים:** פשוט התחילו עם Cursor - תחסכו כאב ראש",
           "markdown": true
         }
       ]
@@ -237,7 +237,7 @@
         },
         {
           "title": "איפה BMAD מותקן?",
-          "content": "**תשובה:** BMAD מתקין את עצמו בפרויקט:\n\n**מבנה תיקיות:**\n```\nMyProject/\n├── bmad/               ← כאן BMAD מותקן!\n│   ├── bmm/\n│   │   ├── agents/    ← האגנטים\n│   │   ├── workflows/ ← הוורקפלואים\n│   │   └── config.yaml\n│   └── ...\n├── node_modules/      ← packages\n└── ...\n```\n\n**חשוב:** BMAD מתקין **לכל פרויקט בנפרד**\n- אין התקנה גלובלית\n- כל פרויקט יש לו `bmad/` משלו\n\n**למה?** כך אפשר להתאים BMAD לכל פרויקט (config, אגנטים מותאמים)\n\n**טיפ:** אל תמחקו את התיקייה `bmad/` - שם כל הקסם!",
+          "content": "**תשובה:** BMAD מתקין את עצמו בפרויקט:\n\n**מבנה תיקיות:**\n```\nMyProject/\n├── bmad/               ← כאן BMAD מותקן!\n│   ├── bmm/\n│   │   ├── agents/    ← הסוכנים\n│   │   ├── workflows/ ← הוורקפלואים\n│   │   └── config.yaml\n│   └── ...\n├── node_modules/      ← packages\n└── ...\n```\n\n**חשוב:** BMAD מתקין **לכל פרויקט בנפרד**\n- אין התקנה גלובלית\n- כל פרויקט יש לו `bmad/` משלו\n\n**למה?** כך אפשר להתאים BMAD לכל פרויקט (config, סוכנים מותאמים)\n\n**טיפ:** אל תמחקו את התיקייה `bmad/` - שם כל הקסם!",
           "markdown": true
         },
         {
@@ -247,7 +247,7 @@
         },
         {
           "title": "מה ההבדל בין המודולים השונים?",
-          "content": "**תשובה:** BMAD מורכב ממודולים:\n\n**BMM (Basic Methodology Module) - הכרחי:**\n- האגנטים הבסיסיים (PM, Architect, Dev, TEA, וכו')\n- הוורקפלואים המרכזיים\n- זה המודול העיקרי - **חובה להתקין**\n\n**CIS (Collaborative Intelligence System) - אופציונלי:**\n- Party Mode (מספר אגנטים עובדים ביחד)\n- תרחישי שיתוף פעולה מורכבים\n- בונוס למתקדמים\n\n**Game Module - אופציונלי:**\n- אגנטים לפיתוח משחקים\n- וורקפלואים לגיימדב\n- רק למפתחי משחקים\n\n**המלצה למתחילים:** התחילו רק עם BMM. תוסיפו מודולים אחר כך אם צריך.",
+          "content": "**תשובה:** BMAD מורכב ממודולים:\n\n**BMM (Basic Methodology Module) - הכרחי:**\n- הסוכנים הבסיסיים (PM, Architect, Dev, TEA, וכו')\n- הוורקפלואים המרכזיים\n- זה המודול העיקרי - **חובה להתקין**\n\n**CIS (Collaborative Intelligence System) - אופציונלי:**\n- Party Mode (מספר סוכנים עובדים ביחד)\n- תרחישי שיתוף פעולה מורכבים\n- בונוס למתקדמים\n\n**Game Module - אופציונלי:**\n- סוכנים לפיתוח משחקים\n- וורקפלואים לגיימדב\n- רק למפתחי משחקים\n\n**המלצה למתחילים:** התחילו רק עם BMM. תוסיפו מודולים אחר כך אם צריך.",
           "markdown": true
         }
       ]
@@ -291,18 +291,18 @@
           "markdown": true
         },
         {
-          "title": "שגיאה: Cursor לא מזהה את האגנטים",
-          "content": "**שגיאה:** כותבים @ ואף אגנט לא מופיע\n\n**סיבה:** Cursor לא רואה את התיקייה `bmad/`\n\n**פתרון:**\n1. וודאו שאתם בפרויקט הנכון:\n   - File → Open Folder → בחרו בתיקייה עם `bmad/`\n2. וודאו ש-`bmad/` קיימת ומכילה קבצים\n3. רענון:\n   - Ctrl/Cmd + Shift + P\n   - חפשו \"Reload Window\"\n4. בדקו הגדרות Cursor:\n   - Settings → Extensions → וודאו שאין דבר שחוסם\n\n**אם עדיין לא עובד:**\n- סגרו Cursor לגמרי\n- פתחו מחדש\n- נסו לכתוב @bmad-master\n\n**טיפ:** @ צריך לעבוד רק בצ'אט (Ctrl/Cmd + L)",
+          "title": "שגיאה: Cursor לא מזהה את הסוכנים",
+          "content": "**שגיאה:** כותבים @ ואף סוכן לא מופיע\n\n**סיבה:** Cursor לא רואה את התיקייה `bmad/`\n\n**פתרון:**\n1. וודאו שאתם בפרויקט הנכון:\n   - File → Open Folder → בחרו בתיקייה עם `bmad/`\n2. וודאו ש-`bmad/` קיימת ומכילה קבצים\n3. רענון:\n   - Ctrl/Cmd + Shift + P\n   - חפשו \"Reload Window\"\n4. בדקו הגדרות Cursor:\n   - Settings → Extensions → וודאו שאין דבר שחוסם\n\n**אם עדיין לא עובד:**\n- סגרו Cursor לגמרי\n- פתחו מחדש\n- נסו לכתוב @bmad-master\n\n**טיפ:** @ צריך לעבוד רק בצ'אט (Ctrl/Cmd + L)",
           "markdown": true
         },
         {
-          "title": "האגנט לא עונה / תקוע",
-          "content": "**בעיה:** שלחתם הודעה לאגנט והוא לא עונה\n\n**סיבות אפשריות:**\n\n**1. אין חיבור ל-AI:**\n- בדקו שיש חיבור ל-Claude/GPT\n- Settings → AI → וודאו שה-API key/מנוי פעיל\n\n**2. נגמרה מכסה:**\n- Cursor Free: 2000 completions/חודש\n- אם נגמר - צריך לחכות לחודש הבא או לשדרג ל-Pro\n\n**3. הקשר גדול מדי:**\n- Claude/GPT יש מגבלת context\n- פתרון: התחילו שיחה חדשה\n\n**4. שגיאת server:**\n- לפעמים שרתי Anthropic/OpenAI עמוסים\n- פתרון: חכו כמה דקות ונסו שוב\n\n**פתרון מהיר:** סגרו את הצ'אט ופתחו חדש",
+          "title": "הסוכן לא עונה / תקוע",
+          "content": "**בעיה:** שלחתם הודעה לסוכן והוא לא עונה\n\n**סיבות אפשריות:**\n\n**1. אין חיבור ל-AI:**\n- בדקו שיש חיבור ל-Claude/GPT\n- Settings → AI → וודאו שה-API key/מנוי פעיל\n\n**2. נגמרה מכסה:**\n- Cursor Free: 2000 completions/חודש\n- אם נגמר - צריך לחכות לחודש הבא או לשדרג ל-Pro\n\n**3. הקשר גדול מדי:**\n- Claude/GPT יש מגבלת context\n- פתרון: התחילו שיחה חדשה\n\n**4. שגיאת server:**\n- לפעמים שרתי Anthropic/OpenAI עמוסים\n- פתרון: חכו כמה דקות ונסו שוב\n\n**פתרון מהיר:** סגרו את הצ'אט ופתחו חדש",
           "markdown": true
         },
         {
           "title": "Claude מחזיר שגיאות או תשובות מוזרות",
-          "content": "**בעיה:** האגנט עונה אבל התשובות לא הגיוניות\n\n**סיבות וטיפים:**\n\n**1. הקשר לא ברור:**\n- תנו יותר context באחת\n- הסבירו מה הפרויקט\n- תנו דוגמאות\n\n**2. הפרומפט מבלבל:**\n- היו ספציפיים\n- שאלו שאלה אחת בכל פעם\n- אל תשלבו הרבה נושאים\n\n**3. האגנט לא מתאים:**\n- משתמשים ב-Dev לשאלות PM? לא יעבוד טוב\n- השתמשו באגנט הנכון למשימה\n\n**4. גרסה ישנה:**\n- ודאו שיש לכם את הגרסה העדכנית של BMAD\n\n**פתרון:** התחילו שיחה חדשה עם context ברור יותר",
+          "content": "**בעיה:** הסוכן עונה אבל התשובות לא הגיוניות\n\n**סיבות וטיפים:**\n\n**1. הקשר לא ברור:**\n- תנו יותר context באחת\n- הסבירו מה הפרויקט\n- תנו דוגמאות\n\n**2. הפרומפט מבלבל:**\n- היו ספציפיים\n- שאלו שאלה אחת בכל פעם\n- אל תשלבו הרבה נושאים\n\n**3. הסוכן לא מתאים:**\n- משתמשים ב-Dev לשאלות PM? לא יעבוד טוב\n- השתמשו בסוכן הנכון למשימה\n\n**4. גרסה ישנה:**\n- ודאו שיש לכם את הגרסה העדכנית של BMAD\n\n**פתרון:** התחילו שיחה חדשה עם context ברור יותר",
           "markdown": true
         },
         {
@@ -326,22 +326,22 @@
       "items": [
         {
           "title": "איפה קובץ הקונפיגורציה?",
-          "content": "**תשובה:** הקונפיגורציה נמצאת ב:\n\n```\nMyProject/\n└── bmad/\n    └── bmm/\n        └── config.yaml  ← כאן!\n```\n\n**מה יש בקובץ:**\n```yaml\nproject_name: MyProject\nuser_name: Ben\ncommunication_language: English\ndocument_output_language: Hebrew\noutput_folder: '{project-root}/docs'\nuser_skill_level: intermediate\n```\n\n**מה אפשר לערוך:**\n- **user_name:** השם שלכם (האגנטים יפנו בשם)\n- **communication_language:** שפת תקשורת (English/Hebrew)\n- **document_output_language:** בשפה זו ייכתבו מסמכים\n- **user_skill_level:** beginner/intermediate/advanced\n\n**טיפ:** אחרי שינוי - שמרו ואתחלו את האגנט",
+          "content": "**תשובה:** הקונפיגורציה נמצאת ב:\n\n```\nMyProject/\n└── bmad/\n    └── bmm/\n        └── config.yaml  ← כאן!\n```\n\n**מה יש בקובץ:**\n```yaml\nproject_name: MyProject\nuser_name: Ben\ncommunication_language: English\ndocument_output_language: Hebrew\noutput_folder: '{project-root}/docs'\nuser_skill_level: intermediate\n```\n\n**מה אפשר לערוך:**\n- **user_name:** השם שלכם (הסוכנים יפנו בשם)\n- **communication_language:** שפת תקשורת (English/Hebrew)\n- **document_output_language:** בשפה זו ייכתבו מסמכים\n- **user_skill_level:** beginner/intermediate/advanced\n\n**טיפ:** אחרי שינוי - שמרו ואתחלו את הסוכן",
           "markdown": true
         },
         {
           "title": "איך משנים שפת תקשורת?",
-          "content": "**תשובה:** עריכת קובץ config.yaml:\n\n**צעד 1:** פתחו את הקובץ:\n```\nbmad/bmm/config.yaml\n```\n\n**צעד 2:** מצאו את השורה:\n```yaml\ncommunication_language: English\n```\n\n**צעד 3:** שנו לשפה רצויה:\n```yaml\ncommunication_language: Hebrew  # או English\n```\n\n**צעד 4:** שמרו את הקובץ\n\n**צעד 5:** אתחלו את האגנט (סגרו ופתחו שיחה חדשה)\n\n**שפות נתמכות:**\n- English\n- Hebrew\n- עוד שפות בהמשך\n\n**הערה:** האגנטים יתקשרו איתכם בשפה שבחרתם",
+          "content": "**תשובה:** עריכת קובץ config.yaml:\n\n**צעד 1:** פתחו את הקובץ:\n```\nbmad/bmm/config.yaml\n```\n\n**צעד 2:** מצאו את השורה:\n```yaml\ncommunication_language: English\n```\n\n**צעד 3:** שנו לשפה רצויה:\n```yaml\ncommunication_language: Hebrew  # או English\n```\n\n**צעד 4:** שמרו את הקובץ\n\n**צעד 5:** אתחלו את הסוכן (סגרו ופתחו שיחה חדשה)\n\n**שפות נתמכות:**\n- English\n- Hebrew\n- עוד שפות בהמשך\n\n**הערה:** הסוכנים יתקשרו איתכם בשפה שבחרתם",
           "markdown": true
         },
         {
           "title": "מה זה user_skill_level ואיך זה משפיע?",
-          "content": "**תשובה:** הגדרת רמת הניסיון שלכם:\n\n**רמות:**\n- **beginner:** מתחיל - האגנטים יסבירו יותר, יתנו דוגמאות\n- **intermediate:** בינוני - איזון בין הסבר לקוד\n- **advanced:** מתקדם - פחות הסברים, יותר קוד\n\n**איך זה משפיע:**\n- **beginner:** \"אני אסביר מה זה API endpoint...\"\n- **intermediate:** \"נבנה REST API עם Express\"\n- **advanced:** \"נשתמש ב-GraphQL federation pattern\"\n\n**איך משנים:**\n```yaml\nuser_skill_level: intermediate  # או beginner / advanced\n```\n\n**טיפ:** התחילו עם `intermediate` - תמיד אפשר לשנות",
+          "content": "**תשובה:** הגדרת רמת הניסיון שלכם:\n\n**רמות:**\n- **beginner:** מתחיל - הסוכנים יסבירו יותר, יתנו דוגמאות\n- **intermediate:** בינוני - איזון בין הסבר לקוד\n- **advanced:** מתקדם - פחות הסברים, יותר קוד\n\n**איך זה משפיע:**\n- **beginner:** \"אני אסביר מה זה API endpoint...\"\n- **intermediate:** \"נבנה REST API עם Express\"\n- **advanced:** \"נשתמש ב-GraphQL federation pattern\"\n\n**איך משנים:**\n```yaml\nuser_skill_level: intermediate  # או beginner / advanced\n```\n\n**טיפ:** התחילו עם `intermediate` - תמיד אפשר לשנות",
           "markdown": true
         },
         {
           "title": "איך משנים את תיקיית הפלט?",
-          "content": "**תשובה:** עריכת output_folder בקונפיג:\n\n**צעד 1:** פתחו `bmad/bmm/config.yaml`\n\n**צעד 2:** מצאו:\n```yaml\noutput_folder: '{project-root}/docs'\n```\n\n**צעד 3:** שנו לנתיב רצוי:\n```yaml\noutput_folder: '{project-root}/documentation'\n# או נתיב מלא:\noutput_folder: 'C:/MyDocs/ProjectDocs'\n```\n\n**צעד 4:** שמרו\n\n**למה זה משמש:**\n- כאן יישמרו מסמכים שהאגנטים יוצרים (PRD, Tech Spec, וכו')\n- סטטוס וורקפלואים\n- תיעוד\n\n**טיפ:** השתמשו ב-`{project-root}` לנתיב יחסי",
+          "content": "**תשובה:** עריכת output_folder בקונפיג:\n\n**צעד 1:** פתחו `bmad/bmm/config.yaml`\n\n**צעד 2:** מצאו:\n```yaml\noutput_folder: '{project-root}/docs'\n```\n\n**צעד 3:** שנו לנתיב רצוי:\n```yaml\noutput_folder: '{project-root}/documentation'\n# או נתיב מלא:\noutput_folder: 'C:/MyDocs/ProjectDocs'\n```\n\n**צעד 4:** שמרו\n\n**למה זה משמש:**\n- כאן יישמרו מסמכים שהסוכנים יוצרים (PRD, Tech Spec, וכו')\n- סטטוס וורקפלואים\n- תיעוד\n\n**טיפ:** השתמשו ב-`{project-root}` לנתיב יחסי",
           "markdown": true
         },
         {
@@ -364,34 +364,34 @@
       "type": "callout",
       "variant": "success",
       "title": "בדיקה מהירה",
-      "content": "הדרך הכי טובה לוודא שהכל עובד היא להריץ את האגנט הראשון שלכם!"
+      "content": "הדרך הכי טובה לוודא שהכל עובד היא להריץ את הסוכן הראשון שלכם!"
     },
     {
       "type": "accordion",
       "items": [
         {
           "title": "איך בודקים שההתקנה הצליחה?",
-          "content": "**תשובה:** 5 בדיקות מהירות:\n\n**1. בדקו שהתיקייה קיימת:**\n```bash\nls bmad/  # או dir bmad (Windows)\n```\n- צריך לראות: `bmm/`, `README.md`, ועוד\n\n**2. בדקו קובץ config:**\n```bash\ncat bmad/bmm/config.yaml\n```\n- צריך לראות את ההגדרות שלכם\n\n**3. בדקו אגנטים:**\n```bash\nls bmad/bmm/agents/\n```\n- צריך לראות: `pm.md`, `architect.md`, `dev.md`, וכו'\n\n**4. פתחו Cursor:**\n- File → Open Folder → בחרו הפרויקט\n- לחצו Ctrl/Cmd + L (פתיחת צ'אט)\n- כתבו `@` → צריך לראות רשימת אגנטים\n\n**5. בדיקת אגנט:**\n- כתבו `@bmad-master`\n- שאלו: \"Hello, are you working?\"\n- אם עונה - **הכל עובד!**",
+          "content": "**תשובה:** 5 בדיקות מהירות:\n\n**1. בדקו שהתיקייה קיימת:**\n```bash\nls bmad/  # או dir bmad (Windows)\n```\n- צריך לראות: `bmm/`, `README.md`, ועוד\n\n**2. בדקו קובץ config:**\n```bash\ncat bmad/bmm/config.yaml\n```\n- צריך לראות את ההגדרות שלכם\n\n**3. בדקו סוכנים:**\n```bash\nls bmad/bmm/agents/\n```\n- צריך לראות: `pm.md`, `architect.md`, `dev.md`, וכו'\n\n**4. פתחו Cursor:**\n- File → Open Folder → בחרו הפרויקט\n- לחצו Ctrl/Cmd + L (פתיחת צ'אט)\n- כתבו `@` → צריך לראות רשימת סוכנים\n\n**5. בדיקת סוכן:**\n- כתבו `@bmad-master`\n- שאלו: \"Hello, are you working?\"\n- אם עונה - **הכל עובד!**",
           "markdown": true
         },
         {
-          "title": "איך מריצים את האגנט הראשון?",
-          "content": "**תשובה:** בואו ננסה!\n\n**צעד 1:** פתחו Cursor\n\n**צעד 2:** לחצו Ctrl/Cmd + L (פתיחת צ'אט AI)\n\n**צעד 3:** כתבו `@bmad-master`\n\n**צעד 4:** האגנט יגיד שלום! משהו כמו:\n```\n🧙 BMad Master Awakens\n\nGreetings, [שמכם]!\n\nAvailable Operations:\n1. *help\n2. *workflow-init\n...\n```\n\n**צעד 5:** כתבו `*help` כדי לראות את התפריט\n\n**צעד 6:** נסו להריץ משהו פשוט:\n```\n*workflow-init\n```\n\n**אם זה עובד - מזל טוב! ההתקנה הצליחה!**",
+          "title": "איך מריצים את הסוכן הראשון?",
+          "content": "**תשובה:** בואו ננסה!\n\n**צעד 1:** פתחו Cursor\n\n**צעד 2:** לחצו Ctrl/Cmd + L (פתיחת צ'אט AI)\n\n**צעד 3:** כתבו `@bmad-master`\n\n**צעד 4:** הסוכן יגיד שלום! משהו כמו:\n```\n🧙 BMad Master Awakens\n\nGreetings, [שמכם]!\n\nAvailable Operations:\n1. *help\n2. *workflow-init\n...\n```\n\n**צעד 5:** כתבו `*help` כדי לראות את התפריט\n\n**צעד 6:** נסו להריץ משהו פשוט:\n```\n*workflow-init\n```\n\n**אם זה עובד - מזל טוב! ההתקנה הצליחה!**",
           "markdown": true
         },
         {
           "title": "מה לעשות אם הבדיקה נכשלה?",
-          "content": "**תשובה:** תלוי מה לא עבד:\n\n**בעיה 1: אין תיקיית bmad/**\n- ההתקנה לא הושלמה\n- הריצו שוב: `npx bmad-method@alpha install`\n\n**בעיה 2: @ לא מראה אגנטים**\n- Cursor לא בתיקייה הנכונה\n- File → Open Folder → בחרו הפרויקט\n- עשו Reload Window\n\n**בעיה 3: אגנט לא עונה**\n- אין חיבור ל-AI\n- בדקו Settings → AI\n- וודאו מנוי פעיל (Claude Pro/API)\n\n**בעיה 4: שגיאה בהרצת אגנט**\n- קובץ האגנט פגום\n- נסו להתקין מחדש BMAD\n\n**עזרה נוספת:** [בעיות נפוצות](#common-issues)",
+          "content": "**תשובה:** תלוי מה לא עבד:\n\n**בעיה 1: אין תיקיית bmad/**\n- ההתקנה לא הושלמה\n- הריצו שוב: `npx bmad-method@alpha install`\n\n**בעיה 2: @ לא מראה סוכנים**\n- Cursor לא בתיקייה הנכונה\n- File → Open Folder → בחרו הפרויקט\n- עשו Reload Window\n\n**בעיה 3: סוכן לא עונה**\n- אין חיבור ל-AI\n- בדקו Settings → AI\n- וודאו מנוי פעיל (Claude Pro/API)\n\n**בעיה 4: שגיאה בהרצת סוכן**\n- קובץ הסוכן פגום\n- נסו להתקין מחדש BMAD\n\n**עזרה נוספת:** [בעיות נפוצות](#common-issues)",
           "markdown": true
         },
         {
-          "title": "איך יודעים שהאגנט עובד נכון?",
-          "content": "**תשובה:** סימנים שהכל בסדר:\n\n**✅ האגנט עובד נכון אם:**\n- עונה בשפה שבחרתם (English/Hebrew)\n- מציג תפריט מסודר עם אפשרויות\n- מגיב לפקודות (כמו `*help`, `*workflow-init`)\n- מפנה אליכם בשם שהגדרתם\n- מספק תשובות רלוונטיות\n\n**❌ האגנט לא עובד אם:**\n- לא עונה בכלל\n- עונה בשפה לא נכונה\n- התשובות גנריות מדי (לא מבין את תפקידו)\n- לא מציג תפריט\n- מתבלבל בהקשר\n\n**בדיקה מהירה:**\n- שאלו: \"מה התפקיד שלך?\"\n- אגנט PM צריך לענות: \"אני מנהל מוצר...\"\n- אם עונה נכון - עובד!",
+          "title": "איך יודעים שהסוכן עובד נכון?",
+          "content": "**תשובה:** סימנים שהכל בסדר:\n\n**✅ הסוכן עובד נכון אם:**\n- עונה בשפה שבחרתם (English/Hebrew)\n- מציג תפריט מסודר עם אפשרויות\n- מגיב לפקודות (כמו `*help`, `*workflow-init`)\n- מפנה אליכם בשם שהגדרתם\n- מספק תשובות רלוונטיות\n\n**❌ הסוכן לא עובד אם:**\n- לא עונה בכלל\n- עונה בשפה לא נכונה\n- התשובות גנריות מדי (לא מבין את תפקידו)\n- לא מציג תפריט\n- מתבלבל בהקשר\n\n**בדיקה מהירה:**\n- שאלו: \"מה התפקיד שלך?\"\n- סוכן PM צריך לענות: \"אני מנהל מוצר...\"\n- אם עונה נכון - עובד!",
           "markdown": true
         },
         {
-          "title": "איך בודקים את כל האגנטים?",
-          "content": "**תשובה:** בדיקה שיטתית:\n\n**רשימת האגנטים (BMM):**\n1. @bmad-master - המדריך\n2. @pm - מנהל מוצר\n3. @analyst - אנליסט\n4. @architect - ארכיטקט\n5. @sm - סקראם מאסטר\n6. @dev - מפתח\n7. @tea - מומחה בדיקות\n8. @ux - מעצב UX\n9. @tech-writer - כותב טכני\n10. @game-designer - מעצב משחקים (אם התקנתם)\n11. @game-architect - ארכיטקט משחקים (אם התקנתם)\n\n**איך לבדוק:**\n- פתחו צ'אט חדש\n- כתבו `@[שם-אגנט]`\n- שאלו: \"מה התפקיד שלך?\"\n- עברו לאגנט הבא\n\n**לא חובה:** אפשר לבדוק רק את האגנטים שתשתמשו בהם",
+          "title": "איך בודקים את כל הסוכנים?",
+          "content": "**תשובה:** בדיקה שיטתית:\n\n**רשימת הסוכנים (BMM):**\n1. @bmad-master - המדריך\n2. @pm - מנהל מוצר\n3. @analyst - אנליסט\n4. @architect - ארכיטקט\n5. @sm - סקראם מאסטר\n6. @dev - מפתח\n7. @tea - מומחה בדיקות\n8. @ux - מעצב UX\n9. @tech-writer - כותב טכני\n10. @game-designer - מעצב משחקים (אם התקנתם)\n11. @game-architect - ארכיטקט משחקים (אם התקנתם)\n\n**איך לבדוק:**\n- פתחו צ'אט חדש\n- כתבו `@[שם-סוכן]`\n- שאלו: \"מה התפקיד שלך?\"\n- עברו לסוכן הבא\n\n**לא חובה:** אפשר לבדוק רק את הסוכנים שתשתמשו בהם",
           "markdown": true
         }
       ]
@@ -410,17 +410,17 @@
       "items": [
         {
           "title": "איך מעדכנים את BMAD לגרסה חדשה?",
-          "content": "**תשובה:** פשוט מאוד!\n\n**דרך 1: התקנה מחדש (הפשוטה):**\n```bash\ncd MyProject\nnpx bmad-method@alpha install\n```\n- זה יזהה שיש כבר BMAD\n- ישאל אם לעדכן\n- הגדרות קיימות יישארו\n\n**דרך 2: עדכון ידני:**\n1. גבו את `bmad/bmm/config.yaml`\n2. מחקו את `bmad/`\n3. הריצו: `npx bmad-method@alpha install`\n4. החזירו את ה-config (אם השתנה)\n\n**איך יודעים שיש גרסה חדשה?**\n- בדקו ב-[GitHub releases](https://github.com/bmad-method/bmad)\n- האגנט BMAD Master יכול להגיד לכם\n\n**כמה פעמים לעדכן?** כל 1-2 חודשים או כשיש פיצ'רים חדשים",
+          "content": "**תשובה:** פשוט מאוד!\n\n**דרך 1: התקנה מחדש (הפשוטה):**\n```bash\ncd MyProject\nnpx bmad-method@alpha install\n```\n- זה יזהה שיש כבר BMAD\n- ישאל אם לעדכן\n- הגדרות קיימות יישארו\n\n**דרך 2: עדכון ידני:**\n1. גבו את `bmad/bmm/config.yaml`\n2. מחקו את `bmad/`\n3. הריצו: `npx bmad-method@alpha install`\n4. החזירו את ה-config (אם השתנה)\n\n**איך יודעים שיש גרסה חדשה?**\n- בדקו ב-[GitHub releases](https://github.com/bmad-method/bmad)\n- הסוכן BMAD Master יכול להגיד לכם\n\n**כמה פעמים לעדכן?** כל 1-2 חודשים או כשיש פיצ'רים חדשים",
           "markdown": true
         },
         {
           "title": "האם העדכון ימחק את ההגדרות שלי?",
-          "content": "**תשובה:** לא! ההגדרות נשמרות.\n\n**מה נשמר:**\n- `bmad/bmm/config.yaml` - כל ההגדרות שלכם\n- אגנטים מותאמים אישית (אם יצרתם)\n- וורקפלואים מותאמים\n\n**מה מתעדכן:**\n- קבצי האגנטים הבסיסיים\n- וורקפלואים חדשים\n- תיקוני באגים\n\n**בכל זאת מומלץ:**\n- גיבוי של `config.yaml` לפני עדכון\n- גיבוי של אגנטים מותאמים\n\n**טיפ:** שימרו קובץ `.gitignore` עם:\n```\nbmad/bmm/config.yaml  # כדי שלא לשכתב בטעות\n```",
+          "content": "**תשובה:** לא! ההגדרות נשמרות.\n\n**מה נשמר:**\n- `bmad/bmm/config.yaml` - כל ההגדרות שלכם\n- סוכנים מותאמים אישית (אם יצרתם)\n- וורקפלואים מותאמים\n\n**מה מתעדכן:**\n- קבצי הסוכנים הבסיסיים\n- וורקפלואים חדשים\n- תיקוני באגים\n\n**בכל זאת מומלץ:**\n- גיבוי של `config.yaml` לפני עדכון\n- גיבוי של סוכנים מותאמים\n\n**טיפ:** שימרו קובץ `.gitignore` עם:\n```\nbmad/bmm/config.yaml  # כדי שלא לשכתב בטעות\n```",
           "markdown": true
         },
         {
           "title": "איך מסירים את BMAD?",
-          "content": "**תשובה:** תהליך הסרה פשוט:\n\n**דרך 1: הסרה ידנית (הפשוטה):**\n```bash\ncd MyProject\nrm -rf bmad/  # או del /s bmad (Windows)\n```\n\n**דרך 2: דרך הפקודה (אם קיימת):**\n```bash\nnpx bmad-method@alpha uninstall\n```\n\n**מה עוד למחוק (אופציונלי):**\n- `package.json` - הסירו dependencies של BMAD\n- `node_modules/` - אפשר למחוק ולהתקין מחדש\n\n**שימו לב:**\n- הסרת BMAD **לא** מוחקת את הפרויקט שלכם\n- הקוד שכתבתם נשאר\n- רק הכלים והאגנטים נמחקים\n\n**טיפ:** לפני הסרה - גבו את config.yaml אם רוצים לשמור הגדרות",
+          "content": "**תשובה:** תהליך הסרה פשוט:\n\n**דרך 1: הסרה ידנית (הפשוטה):**\n```bash\ncd MyProject\nrm -rf bmad/  # או del /s bmad (Windows)\n```\n\n**דרך 2: דרך הפקודה (אם קיימת):**\n```bash\nnpx bmad-method@alpha uninstall\n```\n\n**מה עוד למחוק (אופציונלי):**\n- `package.json` - הסירו dependencies של BMAD\n- `node_modules/` - אפשר למחוק ולהתקין מחדש\n\n**שימו לב:**\n- הסרת BMAD **לא** מוחקת את הפרויקט שלכם\n- הקוד שכתבתם נשאר\n- רק הכלים והסוכנים נמחקים\n\n**טיפ:** לפני הסרה - גבו את config.yaml אם רוצים לשמור הגדרות",
           "markdown": true
         },
         {
@@ -442,7 +442,7 @@
       "type": "callout",
       "variant": "success",
       "title": "מוכנים להתחיל!",
-      "content": "אם הגעתם עד כאן והכל עובד - מזל טוב! ההתקנה הושלמה בהצלחה. הצעד הבא: התחילו לעבוד עם האגנטים!"
+      "content": "אם הגעתם עד כאן והכל עובד - מזל טוב! ההתקנה הושלמה בהצלחה. הצעד הבא: התחילו לעבוד עם הסוכנים!"
     },
     {
       "type": "text",
@@ -455,7 +455,7 @@
       "items": [
         "**[מדריך התחלה מהירה](/guides/quick-start)** - הפקודה הראשונה שלכם",
         "**[הדרכה ליום הראשון](/guides/onboarding-day1)** - יום ראשון עם BMAD",
-        "**[מדריך אגנטים](/guides/agents-intro-pm-analyst)** - הכירו את האגנטים",
+        "**[מדריך סוכנים](/guides/agents-intro-pm-analyst)** - הכירו את הסוכנים",
         "**[שיטות עבודה מומלצות](/guides/best-practices)** - טיפים ושיטות עבודה"
       ]
     },
@@ -463,7 +463,7 @@
       "type": "callout",
       "variant": "info",
       "title": "עדיין יש שאלות?",
-      "content": "בדקו את שאר חלקי ה-FAQ: [שאלות בסיסיות](/guides/faq-basics), [שאלות על אגנטים](/guides/faq-agents), [שאלות על וורקפלואים](/guides/faq-workflows)",
+      "content": "בדקו את שאר חלקי ה-FAQ: [שאלות בסיסיות](/guides/faq-basics), [שאלות על סוכנים](/guides/faq-agents), [שאלות על וורקפלואים](/guides/faq-workflows)",
       "markdown": true
     }
   ],

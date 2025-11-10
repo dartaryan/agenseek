@@ -11,7 +11,7 @@
 export type GuideCategory =
   | 'core' // יסודות - Core guides everyone should read
   | 'roles' // תפקידים - Role-specific guides
-  | 'agents' // אגנטים - Agent documentation
+  | 'agents' // סוכנים - Agent documentation
   | 'workflows' // וורקפלואים - Workflow guides
   | 'practical' // מעשי - Practical guides and how-tos
   | 'faq' // שאלות ותשובות - Frequently asked questions
@@ -90,9 +90,9 @@ export const CATEGORY_CONFIG: Record<GuideCategory, CategoryConfig> = {
     icon: 'IconUsers',
   },
   agents: {
-    label: 'אגנטים',
+    label: 'סוכנים',
     color: 'blue',
-    description: 'הכרת האגנטים והשימוש בהם',
+    description: 'הכרת הסוכנים והשימוש בהם',
     icon: 'IconRobot',
   },
   workflows: {

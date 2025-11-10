@@ -863,14 +863,14 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "**Workflow: sprint-planning + party-mode**\n\nשימוש מתואם בין אגנטים:"
+      "content": "**Workflow: sprint-planning + party-mode**\n\nשימוש מתואם בין סוכנים:"
     },
     {
       "type": "table",
       "headers": [
         "צוות",
-        "אגנט ראשי",
-        "אגנטים משניים",
+        "סוכן ראשי",
+        "סוכנים משניים",
         "תפקיד"
       ],
       "rows": [
@@ -927,7 +927,7 @@
         },
         {
           "title": "Level 2: Epic Tech Context (בין צוותים)",
-          "content": "**Workflow: epic-tech-context**\n\nכל Epic דורש תיאום בין צוותים:\n\nEpic 5: Shopping Cart\n- Frontend: UI של עגלה\n- Backend: Cart API + Inventory sync\n- Mobile: Native cart experience\n- QA: E2E testing של תהליך\n\nהאגנטים יוצרים Epic Tech Context משותף.",
+          "content": "**Workflow: epic-tech-context**\n\nכל Epic דורש תיאום בין צוותים:\n\nEpic 5: Shopping Cart\n- Frontend: UI של עגלה\n- Backend: Cart API + Inventory sync\n- Mobile: Native cart experience\n- QA: E2E testing של תהליך\n\nהסוכנים יוצרים Epic Tech Context משותף.",
           "markdown": true
         },
         {
@@ -1159,7 +1159,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "**Workflow: document-project**\n\nאגנט Tech Writer (Mike) יצר תיעוד מקיף:"
+      "content": "**Workflow: document-project**\n\nסוכן Tech Writer (Mike) יצר תיעוד מקיף:"
     },
     {
       "type": "list",
@@ -1511,7 +1511,7 @@
       "type": "list",
       "ordered": false,
       "items": [
-        "**מדריך Agents** - הכירו לעומק את כל האגנטים",
+        "**מדריך Agents** - הכירו לעומק את כל הסוכנים",
         "**מדריך Workflows** - כל הוורקפלואים במדריך אחד",
         "**Best Practices** - שיטות עבודה מומלצות",
         "**Architecture Guide** - עקרונות ארכיטקטוניים",

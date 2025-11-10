@@ -3,7 +3,7 @@
     "id": "advanced-setup",
     "slug": "advanced-setup",
     "title": "התקנה והגדרה מתקדמת של BMAD",
-    "description": "מדריך מקיף להגדרות מתקדמות, קונפיגורציה מותאמת אישית, והתאמת BMAD לצרכים ייחודיים של הצוות והארגון שלכם. למדו איך להגדיר משתני סביבה, ליצור אגנטים ווורקפלואים מותאמים אישית, ולשלב את BMAD עם CI/CD.",
+    "description": "מדריך מקיף להגדרות מתקדמות, קונפיגורציה מותאמת אישית, והתאמת BMAD לצרכים ייחודיים של הצוות והארגון שלכם. למדו איך להגדיר משתני סביבה, ליצור סוכנים ווורקפלואים מותאמים אישית, ולשלב את BMAD עם CI/CD.",
     "category": "practical",
     "difficulty": "advanced",
     "estimatedMinutes": 40,
@@ -33,7 +33,7 @@
     },
     {
       "id": "toc-4",
-      "title": "יצירת אגנטים מותאמים אישית",
+      "title": "יצירת סוכנים מותאמים אישית",
       "level": 2,
       "anchor": "custom-agents"
     },
@@ -97,7 +97,7 @@
       "type": "callout",
       "variant": "success",
       "title": "מה תלמדו כאן?",
-      "content": "תלמדו איך להגדיר קונפיגורציה מותאמת אישית, ליצור אגנטים ווורקפלואים מיוחדים, לשלב עם CI/CD, להגדיר משתני סביבה, ולהתאים את BMAD למקרי שימוש מורכבים."
+      "content": "תלמדו איך להגדיר קונפיגורציה מותאמת אישית, ליצור סוכנים ווורקפלואים מיוחדים, לשלב עם CI/CD, להגדיר משתני סביבה, ולהתאים את BMAD למקרי שימוש מורכבים."
     },
     {
       "type": "divider"
@@ -167,18 +167,18 @@
       "type": "callout",
       "variant": "warning",
       "title": "שימו לב!",
-      "content": "שינויים בקובץ הקונפיגורציה דורשים הפעלה מחדש של Cursor או של האגנטים כדי להיכנס לתוקף."
+      "content": "שינויים בקובץ הקונפיגורציה דורשים הפעלה מחדש של Cursor או של הסוכנים כדי להיכנס לתוקף."
     },
     {
       "type": "heading",
       "level": 3,
-      "text": "הגדרות ספציפיות לאגנטים",
+      "text": "הגדרות ספציפיות לסוכנים",
       "id": "agent-specific-settings"
     },
     {
       "type": "text",
       "markdown": true,
-      "content": "אתם יכולים להגדיר התנהגות ייחודית לכל אגנט:"
+      "content": "אתם יכולים להגדיר התנהגות ייחודית לכל סוכן:"
     },
     {
       "type": "code",
@@ -218,7 +218,7 @@
         ["BMAD_LOG_LEVEL", "רמת לוג", "info"],
         ["BMAD_AUTO_COMMIT", "commit אוטומטי", "false"],
         ["BMAD_DRY_RUN", "ריצת ניסוי", "false"],
-        ["BMAD_PARALLEL_AGENTS", "אגנטים מקבילים", "true"],
+        ["BMAD_PARALLEL_AGENTS", "סוכנים מקבילים", "true"],
         ["BMAD_MAX_CONTEXT_SIZE", "גודל context מקסימלי", "100000"]
       ],
       "alignment": ["left", "left", "left"]
@@ -280,18 +280,18 @@
     {
       "type": "heading",
       "level": 2,
-      "text": "יצירת אגנטים מותאמים אישית",
+      "text": "יצירת סוכנים מותאמים אישית",
       "id": "custom-agents"
     },
     {
       "type": "text",
       "markdown": true,
-      "content": "לפעמים אתם צריכים אגנט שלא קיים ב-BMAD הבסיסי - למשל אגנט לתחום מומחיות ייחודי לארגון שלכם."
+      "content": "לפעמים אתם צריכים סוכן שלא קיים ב-BMAD הבסיסי - למשל סוכן לתחום מומחיות ייחודי לארגון שלכם."
     },
     {
       "type": "heading",
       "level": 3,
-      "text": "מבנה אגנט מותאם אישית",
+      "text": "מבנה סוכן מותאם אישית",
       "id": "custom-agent-structure"
     },
     {
@@ -304,7 +304,7 @@
     {
       "type": "heading",
       "level": 3,
-      "text": "שלבים ליצירת אגנט מותאם",
+      "text": "שלבים ליצירת סוכן מותאם",
       "id": "custom-agent-steps"
     },
     {
@@ -314,21 +314,21 @@
         { "content": "צרו תיקייה: .bmad/custom-agents/" },
         { "content": "צרו קובץ: .bmad/custom-agents/your-agent.mdc" },
         { "content": "הגדירו את ה-persona - תפקיד, זהות, סגנון תקשורת, עקרונות" },
-        { "content": "הגדירו את ה-menu - פקודות ופעולות של האגנט" },
+        { "content": "הגדירו את ה-menu - פקודות ופעולות של הסוכן" },
         { "content": "הוסיפו workflows אם צריך (אופציונלי)" },
-        { "content": "הפעילו את האגנט: @your-agent.mdc" }
+        { "content": "הפעילו את הסוכן: @your-agent.mdc" }
       ]
     },
     {
       "type": "callout",
       "variant": "info",
       "title": "טיפ",
-      "content": "התחילו מאגנט קיים שדומה לצורך שלכם, העתיקו אותו, ושנו לפי הצורך. זה יותר קל מלכתוב מאפס."
+      "content": "התחילו מסוכן קיים שדומה לצורך שלכם, העתיקו אותו, ושנו לפי הצורך. זה יותר קל מלכתוב מאפס."
     },
     {
       "type": "heading",
       "level": 3,
-      "text": "דוגמה - אגנט DevOps",
+      "text": "דוגמה - סוכן DevOps",
       "id": "devops-agent-example"
     },
     {
@@ -337,7 +337,7 @@
       "items": [
         {
           "id": "devops-full",
-          "title": "קוד מלא של אגנט DevOps מותאם אישית",
+          "title": "קוד מלא של סוכן DevOps מותאם אישית",
           "content": [
             {
               "id": "devops-full-code",
@@ -350,13 +350,13 @@
         },
         {
           "id": "devops-usage",
-          "title": "איך להשתמש באגנט DevOps",
+          "title": "איך להשתמש בסוכן DevOps",
           "content": [
             {
               "id": "devops-usage-text",
               "type": "text",
               "markdown": true,
-              "content": "**שימוש באגנט:**\n\n1. שמרו את הקוד לעיל בקובץ `.bmad/custom-agents/devops.mdc`\n2. הפעילו ב-Cursor: `@devops.mdc`\n3. האגנט יברך אתכם ויציג את התפריט\n4. בחרו פקודה מהתפריט (מספר או טקסט)\n5. עקבו אחר ההוראות של האגנט"
+              "content": "**שימוש בסוכן:**\n\n1. שמרו את הקוד לעיל בקובץ `.bmad/custom-agents/devops.mdc`\n2. הפעילו ב-Cursor: `@devops.mdc`\n3. הסוכן יברך אתכם ויציג את התפריט\n4. בחרו פקודה מהתפריט (מספר או טקסט)\n5. עקבו אחר ההוראות של הסוכן"
             }
           ]
         }
@@ -385,7 +385,7 @@
     {
       "type": "code",
       "language": "yaml",
-      "code": "# .bmad/custom-workflows/code-deployment.yaml\nworkflow:\n  id: code-deployment\n  name: Code Deployment Workflow\n  description: תהליך deployment מלא מ-dev ל-production\n  version: 1.0\n  agents:\n    - dev\n    - architect\n    - tea\n    - devops  # אגנט מותאם אישית\n\nphases:\n  - phase: 1\n    name: Pre-Deployment Checks\n    agent: tea\n    steps:\n      - step: 1\n        title: Run all tests\n        action: execute_tests\n        validation:\n          - all_tests_pass\n          - coverage_above_80\n      \n      - step: 2\n        title: Security scan\n        action: security_scan\n        validation:\n          - no_critical_vulnerabilities\n\n  - phase: 2\n    name: Build & Package\n    agent: dev\n    steps:\n      - step: 1\n        title: Build application\n        action: build_app\n      \n      - step: 2\n        title: Create Docker image\n        action: create_image\n        validation:\n          - image_size_acceptable\n\n  - phase: 3\n    name: Deploy to Staging\n    agent: devops\n    steps:\n      - step: 1\n        title: Deploy to staging\n        action: deploy_staging\n      \n      - step: 2\n        title: Run smoke tests\n        action: smoke_tests\n        validation:\n          - staging_healthy\n\n  - phase: 4\n    name: Production Deployment\n    agent: devops\n    approval_required: true\n    steps:\n      - step: 1\n        title: Create backup\n        action: backup_production\n      \n      - step: 2\n        title: Deploy to production\n        action: deploy_production\n        rollback_on_failure: true\n      \n      - step: 3\n        title: Monitor deployment\n        action: monitor\n        duration: 15  # minutes\n\noutputs:\n  - deployment_report.md\n  - deployment_metrics.json\n  - rollback_plan.md",
+      "code": "# .bmad/custom-workflows/code-deployment.yaml\nworkflow:\n  id: code-deployment\n  name: Code Deployment Workflow\n  description: תהליך deployment מלא מ-dev ל-production\n  version: 1.0\n  agents:\n    - dev\n    - architect\n    - tea\n    - devops  # סוכן מותאם אישית\n\nphases:\n  - phase: 1\n    name: Pre-Deployment Checks\n    agent: tea\n    steps:\n      - step: 1\n        title: Run all tests\n        action: execute_tests\n        validation:\n          - all_tests_pass\n          - coverage_above_80\n      \n      - step: 2\n        title: Security scan\n        action: security_scan\n        validation:\n          - no_critical_vulnerabilities\n\n  - phase: 2\n    name: Build & Package\n    agent: dev\n    steps:\n      - step: 1\n        title: Build application\n        action: build_app\n      \n      - step: 2\n        title: Create Docker image\n        action: create_image\n        validation:\n          - image_size_acceptable\n\n  - phase: 3\n    name: Deploy to Staging\n    agent: devops\n    steps:\n      - step: 1\n        title: Deploy to staging\n        action: deploy_staging\n      \n      - step: 2\n        title: Run smoke tests\n        action: smoke_tests\n        validation:\n          - staging_healthy\n\n  - phase: 4\n    name: Production Deployment\n    agent: devops\n    approval_required: true\n    steps:\n      - step: 1\n        title: Create backup\n        action: backup_production\n      \n      - step: 2\n        title: Deploy to production\n        action: deploy_production\n        rollback_on_failure: true\n      \n      - step: 3\n        title: Monitor deployment\n        action: monitor\n        duration: 15  # minutes\n\noutputs:\n  - deployment_report.md\n  - deployment_metrics.json\n  - rollback_plan.md",
       "filename": ".bmad/custom-workflows/code-deployment.yaml",
       "showLineNumbers": true
     },
@@ -782,7 +782,7 @@
               "id": "issue-slow-text",
               "type": "text",
               "markdown": true,
-              "content": "**סיבות אפשריות:**\n- Context גדול מדי → הקטינו את BMAD_MAX_CONTEXT_SIZE\n- יותר מדי אגנטים במקביל → הקטינו את max_parallel_agents\n- אין caching → הפעילו cache_enabled: true\n- רשת איטית → בדקו את החיבור ל-API\n\n**פתרון:**\n```yaml\nperformance:\n  max_context_size: 50000\n  max_parallel_agents: 2\n  cache_enabled: true\n```"
+              "content": "**סיבות אפשריות:**\n- Context גדול מדי → הקטינו את BMAD_MAX_CONTEXT_SIZE\n- יותר מדי סוכנים במקביל → הקטינו את max_parallel_agents\n- אין caching → הפעילו cache_enabled: true\n- רשת איטית → בדקו את החיבור ל-API\n\n**פתרון:**\n```yaml\nperformance:\n  max_context_size: 50000\n  max_parallel_agents: 2\n  cache_enabled: true\n```"
             }
           ]
         },
@@ -794,7 +794,7 @@
               "id": "issue-memory-text",
               "type": "text",
               "markdown": true,
-              "content": "**סיבות אפשריות:**\n- context גדול מדי\n- יותר מדי workflows במקביל\n- memory leaks\n\n**פתרון:**\n```bash\n# הגבלת שימוש בזיכרון\nexport NODE_OPTIONS=\"--max-old-space-size=4096\"\n\n# ריצה עם פחות אגנטים במקביל\nbmad run workflow --parallel=1\n```"
+              "content": "**סיבות אפשריות:**\n- context גדול מדי\n- יותר מדי workflows במקביל\n- memory leaks\n\n**פתרון:**\n```bash\n# הגבלת שימוש בזיכרון\nexport NODE_OPTIONS=\"--max-old-space-size=4096\"\n\n# ריצה עם פחות סוכנים במקביל\nbmad run workflow --parallel=1\n```"
             }
           ]
         },
@@ -812,7 +812,7 @@
         },
         {
           "id": "issue-custom",
-          "title": "אגנט מותאם אישית לא נטען",
+          "title": "סוכן מותאם אישית לא נטען",
           "content": [
             {
               "id": "issue-custom-text",
@@ -833,7 +833,7 @@
     {
       "type": "code",
       "language": "bash",
-      "code": "# הצגת config נוכחי\nbmad config show\n\n# בדיקת תקינות config\nbmad config validate\n\n# הצגת אגנטים זמינים\nbmad agents list\n\n# הצגת workflows זמינים\nbmad workflows list\n\n# בדיקת גרסה\nbmad --version\n\n# ניקוי cache\nbmad cache clear\n\n# הצגת לוגים\ntail -f logs/bmad.log",
+      "code": "# הצגת config נוכחי\nbmad config show\n\n# בדיקת תקינות config\nbmad config validate\n\n# הצגת סוכנים זמינים\nbmad agents list\n\n# הצגת workflows זמינים\nbmad workflows list\n\n# בדיקת גרסה\nbmad --version\n\n# ניקוי cache\nbmad cache clear\n\n# הצגת לוגים\ntail -f logs/bmad.log",
       "language": "bash",
       "showLineNumbers": false
     },
@@ -870,9 +870,9 @@
           ]
         },
         {
-          "content": "אגנטים ווורקפלואים מותאמים",
+          "content": "סוכנים ווורקפלואים מותאמים",
           "children": [
-            { "content": "אגנטים מותאמים נמצאים ב-.bmad/custom-agents/" },
+            { "content": "סוכנים מותאמים נמצאים ב-.bmad/custom-agents/" },
             { "content": "וורקפלואים מותאמים נמצאים ב-.bmad/custom-workflows/" },
             { "content": "כל הקבצים עם syntax תקין" }
           ]

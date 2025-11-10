@@ -247,12 +247,12 @@
     },
     {
       "type": "text",
-      "content": "להריץ את workflow-status אפשר דרך כל אגנט ב-BMAD:"
+      "content": "להריץ את workflow-status אפשר דרך כל סוכן ב-BMAD:"
     },
     {
       "type": "code",
       "language": "bash",
-      "code": "# דרך 1: טעינת אגנט כלשהו\n@pm hi\n# ואז בחירה מהתפריט:\n*workflow-status\n\n# דרך 2: טעינת BMAD Master\n@bmad-master hi\n*workflow-status\n\n# דרך 3: אגנט אחר\n@analyst hi\n*workflow-status",
+      "code": "# דרך 1: טעינת סוכן כלשהו\n@pm hi\n# ואז בחירה מהתפריט:\n*workflow-status\n\n# דרך 2: טעינת BMAD Master\n@bmad-master hi\n*workflow-status\n\n# דרך 3: סוכן אחר\n@analyst hi\n*workflow-status",
       "showLineNumbers": false
     },
     {
@@ -270,7 +270,7 @@
       "items": [
         {
           "id": "status-step1",
-          "title": "שלב 1: טעינת אגנט",
+          "title": "שלב 1: טעינת סוכן",
           "content": [
             {
               "type": "code",
@@ -381,7 +381,7 @@
     },
     {
       "type": "text",
-      "content": "להריץ את workflow-init אפשר דרך כמעט כל אגנט:"
+      "content": "להריץ את workflow-init אפשר דרך כמעט כל סוכן:"
     },
     {
       "type": "code",
@@ -404,7 +404,7 @@
       "items": [
         {
           "id": "init-step1",
-          "title": "שלב 1: טעינת אגנט והרצת workflow-init",
+          "title": "שלב 1: טעינת סוכן והרצת workflow-init",
           "content": [
             {
               "type": "code",
@@ -711,11 +711,11 @@
         },
         {
           "id": "faq-3",
-          "title": "איך אני יודע איזה אגנט להשתמש לאיזה וורקפלו?",
+          "title": "איך אני יודע איזה סוכן להשתמש לאיזה וורקפלו?",
           "content": [
             {
               "type": "text",
-              "content": "כל אגנט מציג תפריט עם הוורקפלואים שהוא יכול להריץ. לדוגמה:\n\n- PM (John) → prd, tech-spec, create-epics-and-stories\n- Architect (Winston) → architecture\n- DEV (Amelia) → dev-story, code-review\n\nבמקרה של ספק, הריצו workflow-status והוא יגיד לכם איזה אגנט לטעון."
+              "content": "כל סוכן מציג תפריט עם הוורקפלואים שהוא יכול להריץ. לדוגמה:\n\n- PM (John) → prd, tech-spec, create-epics-and-stories\n- Architect (Winston) → architecture\n- DEV (Amelia) → dev-story, code-review\n\nבמקרה של ספק, הריצו workflow-status והוא יגיד לכם איזה סוכן לטעון."
             }
           ]
         },
@@ -766,7 +766,7 @@
           "content": [
             {
               "type": "text",
-              "content": "תלוי באגנטים שאתם משתמשים בהם. אם אתם עובדים עם מודלים מקומיים (Local LLMs), אז כן. אם אתם משתמשים ב-Claude / GPT דרך API, אז צריך חיבור לאינטרנט."
+              "content": "תלוי בסוכנים שאתם משתמשים בהם. אם אתם עובדים עם מודלים מקומיים (Local LLMs), אז כן. אם אתם משתמשים ב-Claude / GPT דרך API, אז צריך חיבור לאינטרנט."
             }
           ]
         },
@@ -854,7 +854,7 @@
       "items": [
         "**נסו workflow-status** - בפרויקט קיים או חדש, הריצו אותו וראו מה קורה",
         "**אתחלו פרויקט דמה** - צרו פרויקט קטן עם workflow-init כדי להרגיש איך זה עובד",
-        "**קראו על האגנטים** - אם עדיין לא, קראו את מדריך האגנטים חלק 1א + 1ב",
+        "**קראו על הסוכנים** - אם עדיין לא, קראו את מדריך הסוכנים חלק 1א + 1ב",
         "**המשיכו לחלק הבא** - למדו על הוורקפלואים של Phase 0-1 במדריך הבא"
       ]
     },
@@ -862,7 +862,7 @@
       "type": "callout",
       "variant": "info",
       "title": "מומלץ במיוחד",
-      "content": "אם אתם חדשים ב-BMAD, קראו גם את מדריך האגנטים (חלק 1א) כדי להבין מי הם האגנטים שמריצים את הוורקפלואים האלה."
+      "content": "אם אתם חדשים ב-BMAD, קראו גם את מדריך הסוכנים (חלק 1א) כדי להבין מי הם הסוכנים שמריצים את הוורקפלואים האלה."
     },
     {
       "type": "divider"

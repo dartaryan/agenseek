@@ -87,7 +87,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "**למה מקרי מבחן?**\n\nהתיאוריה חשובה, אבל שום דבר לא מלמד כמו דוגמאות אמיתיות מהשטח. במדריך הזה תראו 5 פרויקטים שונים שנבנו עם BMAD - מתחילת הרעיון ועד למוצר המוגמר.\n\n**מה תלמדו:**\n\n**דוגמאות מעשיות** - איך משתמשים באגנטים ווורקפלואים בפרויקטים אמיתיים\n\n**תהליכי עבודה** - מהרעיון הראשוני ועד ל-production\n\n**החלטות ארכיטקטוניות** - למה בחרו בטכנולוגיות מסוימות\n\n**בעיות ופתרונות** - אתגרים שנתקלו בהם ואיך פתרו אותם\n\n**טיפים מקצועיים** - לקחים שלמדו בדרך"
+      "content": "**למה מקרי מבחן?**\n\nהתיאוריה חשובה, אבל שום דבר לא מלמד כמו דוגמאות אמיתיות מהשטח. במדריך הזה תראו 5 פרויקטים שונים שנבנו עם BMAD - מתחילת הרעיון ועד למוצר המוגמר.\n\n**מה תלמדו:**\n\n**דוגמאות מעשיות** - איך משתמשים בסוכנים ווורקפלואים בפרויקטים אמיתיים\n\n**תהליכי עבודה** - מהרעיון הראשוני ועד ל-production\n\n**החלטות ארכיטקטוניות** - למה בחרו בטכנולוגיות מסוימות\n\n**בעיות ופתרונות** - אתגרים שנתקלו בהם ואיך פתרו אותם\n\n**טיפים מקצועיים** - לקחים שלמדו בדרך"
     },
     {
       "type": "callout",
@@ -140,7 +140,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "התחילו עם **אגנט PM (John)** והריצו את הוורקפלואים הבאים:"
+      "content": "התחילו עם **סוכן PM (John)** והריצו את הוורקפלואים הבאים:"
     },
     {
       "type": "code",
@@ -167,7 +167,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "המשיכו עם **אגנט PM** ליצירת PRD:"
+      "content": "המשיכו עם **סוכן PM** ליצירת PRD:"
     },
     {
       "type": "code",
@@ -188,7 +188,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "עבדו עם **אגנט UX Designer (Sally)**:"
+      "content": "עבדו עם **סוכן UX Designer (Sally)**:"
     },
     {
       "type": "code",
@@ -215,7 +215,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "עברו ל**אגנט Architect (Winston)** לתכנון הארכיטקטורה:"
+      "content": "עברו ל**סוכן Architect (Winston)** לתכנון הארכיטקטורה:"
     },
     {
       "type": "code",
@@ -272,7 +272,7 @@
       "type": "callout",
       "variant": "info",
       "title": "למה הבחירות האלה?",
-      "content": "האגנט Architect המליץ על Next.js כי הוא משלב Frontend ו-Backend, מפחית complexity ומאפשר לצוות קטן לנהל הכל במקום אחד."
+      "content": "הסוכן Architect המליץ על Next.js כי הוא משלב Frontend ו-Backend, מפחית complexity ומאפשר לצוות קטן לנהל הכל במקום אחד."
     },
     {
       "type": "text",
@@ -282,7 +282,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "המפתח עבד עם **אגנט Dev (Amelia)** בתהליך איטרטיבי:"
+      "content": "המפתח עבד עם **סוכן Dev (Amelia)** בתהליך איטרטיבי:"
     },
     {
       "type": "code",
@@ -323,7 +323,7 @@
       "type": "callout",
       "variant": "tip",
       "title": "הערה חשובה",
-      "content": "האגנט Dev המליץ להתחיל עם תשתית חזקה (Epic 1) לפני פיתוח פיצ'רים - זה חסך המון זמן בהמשך."
+      "content": "הסוכן Dev המליץ להתחיל עם תשתית חזקה (Epic 1) לפני פיתוח פיצ'רים - זה חסך המון זמן בהמשך."
     },
     {
       "type": "text",
@@ -333,7 +333,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "במקביל לפיתוח, **אגנט TEA (Murat)** תכנן את אסטרטגיית הבדיקות:"
+      "content": "במקביל לפיתוח, **סוכן TEA (Murat)** תכנן את אסטרטגיית הבדיקות:"
     },
     {
       "type": "code",
@@ -458,7 +458,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "התחילו עם **אגנט Analyst (Mary)** למחקר שוק:"
+      "content": "התחילו עם **סוכן Analyst (Mary)** למחקר שוק:"
     },
     {
       "type": "code",
@@ -479,7 +479,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "עברו ל**אגנט PM (John)** ליצירת אסטרטגיה:"
+      "content": "עברו ל**סוכן PM (John)** ליצירת אסטרטגיה:"
     },
     {
       "type": "code",
@@ -550,7 +550,7 @@
       "type": "callout",
       "variant": "info",
       "title": "החלטה אסטרטגית",
-      "content": "האגנט PM המליץ להתחיל עם 4 Epics מרכזיים ולהוסיף פיצ'רים נוספים (ביקורות, תוכנית נאמנות) בגרסה 2.0."
+      "content": "הסוכן PM המליץ להתחיל עם 4 Epics מרכזיים ולהוסיף פיצ'רים נוספים (ביקורות, תוכנית נאמנות) בגרסה 2.0."
     },
     {
       "type": "text",
@@ -560,7 +560,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "המעצב עבד עם **אגנט UX Designer (Sally)**:"
+      "content": "המעצב עבד עם **סוכן UX Designer (Sally)**:"
     },
     {
       "type": "code",
@@ -610,7 +610,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "**אגנט Architect (Winston)** תכנן מערכת מורכבת יותר:"
+      "content": "**סוכן Architect (Winston)** תכנן מערכת מורכבת יותר:"
     },
     {
       "type": "code",
@@ -677,7 +677,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "שני המפתחים עבדו במקביל - אחד על Frontend ואחד על Backend, בתיאום הדוק עם **אגנט Dev**."
+      "content": "שני המפתחים עבדו במקביל - אחד על Frontend ואחד על Backend, בתיאום הדוק עם **סוכן Dev**."
     },
     {
       "type": "heading",
@@ -765,7 +765,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "שילוב של **אגנט Analyst** ו-**אגנט PM**:"
+      "content": "שילוב של **סוכן Analyst** ו-**סוכן PM**:"
     },
     {
       "type": "code",
@@ -786,7 +786,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "**אגנט UX Designer** עיצב חוויה מוטיבטית:"
+      "content": "**סוכן UX Designer** עיצב חוויה מוטיבטית:"
     },
     {
       "type": "code",
@@ -824,7 +824,7 @@
       "type": "callout",
       "variant": "tip",
       "title": "החלטה קריטית",
-      "content": "האגנט UX המליץ להתמקד ב-3 סוגי אימונים בלבד (כוח, אירובי, גמישות) במקום 10+ קטגוריות שתכננו בהתחלה. זה פישט את הפיתוח ושיפר את החוויה."
+      "content": "הסוכן UX המליץ להתמקד ב-3 סוגי אימונים בלבד (כוח, אירובי, גמישות) במקום 10+ קטגוריות שתכננו בהתחלה. זה פישט את הפיתוח ושיפר את החוויה."
     },
     {
       "type": "text",
@@ -886,7 +886,7 @@
       "type": "callout",
       "variant": "info",
       "title": "למה Firebase?",
-      "content": "האגנט Architect המליץ על Firebase כי הוא מפשט משמעותית - Auth, Real-time DB, Storage, Analytics, ו-Push Notifications במקום אחד. לצוות קטן זה חוסך חודשים."
+      "content": "הסוכן Architect המליץ על Firebase כי הוא מפשט משמעותית - Auth, Real-time DB, Storage, Analytics, ו-Push Notifications במקום אחד. לצוות קטן זה חוסך חודשים."
     },
     {
       "type": "text",
@@ -896,7 +896,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "הפיתוח בוצע ב-**7 Epics** עם **אגנט Dev:**"
+      "content": "הפיתוח בוצע ב-**7 Epics** עם **סוכן Dev:**"
     },
     {
       "type": "list",
@@ -1019,7 +1019,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "**אגנט Analyst (Mary)** ביצעה מחקר מעמיק:"
+      "content": "**סוכן Analyst (Mary)** ביצעה מחקר מעמיק:"
     },
     {
       "type": "code",
@@ -1046,7 +1046,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "**אגנט PM** יצר PRD מפורט מאוד (89 User Stories!):"
+      "content": "**סוכן PM** יצר PRD מפורט מאוד (89 User Stories!):"
     },
     {
       "type": "code",
@@ -1128,7 +1128,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "**אגנט Architect** תכנן מערכת enterprise-grade:"
+      "content": "**סוכן Architect** תכנן מערכת enterprise-grade:"
     },
     {
       "type": "code",
@@ -1195,7 +1195,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "3 מפתחים עבדו במקביל עם **אגנט Dev** ו-**אגנט TEA**."
+      "content": "3 מפתחים עבדו במקביל עם **סוכן Dev** ו-**סוכן TEA**."
     },
     {
       "type": "heading",
@@ -1286,7 +1286,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "התחילו עם **אגנט PM** לאימות הרעיון:"
+      "content": "התחילו עם **סוכן PM** לאימות הרעיון:"
     },
     {
       "type": "code",
@@ -1303,7 +1303,7 @@
       "type": "callout",
       "variant": "success",
       "title": "לקח מרכזי",
-      "content": "האגנט PM עזר להתמקד ב-**core value proposition** בלבד - יצירת נסיעה, חיפוש, והזמנה. הכל האחר נדחה לגרסאות עתידיות.",
+      "content": "הסוכן PM עזר להתמקד ב-**core value proposition** בלבד - יצירת נסיעה, חיפוש, והזמנה. הכל האחר נדחה לגרסאות עתידיות.",
       "markdown": true
     },
     {
@@ -1354,7 +1354,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "UX freelancer עבדה עם **אגנט UX Designer** לעיצוב מהיר:"
+      "content": "UX freelancer עבדה עם **סוכן UX Designer** לעיצוב מהיר:"
     },
     {
       "type": "code",
@@ -1375,7 +1375,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "**אגנט Architect** המליץ על stack שמפחית זמן פיתוח:"
+      "content": "**סוכן Architect** המליץ על stack שמפחית זמן פיתוח:"
     },
     {
       "type": "table",
@@ -1431,7 +1431,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "שני המפתחים עבדו במקביל עם **אגנט Dev** בספרינטים של שבוע:"
+      "content": "שני המפתחים עבדו במקביל עם **סוכן Dev** בספרינטים של שבוע:"
     },
     {
       "type": "list",
@@ -1467,7 +1467,7 @@
       "type": "callout",
       "variant": "warning",
       "title": "הלחץ היה אמיתי",
-      "content": "האגנט Dev עזר לתעדף - כל feature נבדק: \"האם זה blocking ל-MVP?\" אם לא - נדחה. רק כך הצליחו לעמוד ב-timeline."
+      "content": "הסוכן Dev עזר לתעדף - כל feature נבדק: \"האם זה blocking ל-MVP?\" אם לא - נדחה. רק כך הצליחו לעמוד ב-timeline."
     },
     {
       "type": "heading",
@@ -1512,7 +1512,7 @@
           "content": "התמקדות בפיצ'ר 1 שעובד מצוין עדיף על 5 פיצ'רים חצי-גמורים"
         },
         {
-          "content": "האגנט PM שיחק תפקיד קריטי ב\"לומר לא\" לפיצ'רים מפתים"
+          "content": "הסוכן PM שיחק תפקיד קריטי ב\"לומר לא\" לפיצ'רים מפתים"
         },
         {
           "content": "Beta testing חשוב - מצאו 12 UX issues שלא חשבו עליהם"
@@ -1591,7 +1591,7 @@
     {
       "type": "heading",
       "level": 3,
-      "text": "2. האגנטים והוורקפלואים הנכונים",
+      "text": "2. הסוכנים והוורקפלואים הנכונים",
       "id": "lesson-agents"
     },
     {
@@ -1705,7 +1705,7 @@
       "type": "callout",
       "variant": "warning",
       "title": "זכרו",
-      "content": "Feature creep הורג פרויקטים. האגנטים עזרו לשמור על פוקוס."
+      "content": "Feature creep הורג פרויקטים. הסוכנים עזרו לשמור על פוקוס."
     },
     {
       "type": "heading",
@@ -1796,7 +1796,7 @@
       "type": "callout",
       "variant": "info",
       "title": "תהליך מובנה מנצח Chaos",
-      "content": "BMAD נותן לכם תהליך ברור, אגנטים מומחים, ווורקפלואים מוכחים. תעקבו אחריו, ותצליחו."
+      "content": "BMAD נותן לכם תהליך ברור, סוכנים מומחים, ווורקפלואים מוכחים. תעקבו אחריו, ותצליחו."
     },
     {
       "type": "text",

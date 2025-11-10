@@ -3,7 +3,7 @@
     "id": "game-developers",
     "slug": "game-developers",
     "title": "מדריך למפתחי משחקים: יצירת משחקים עם BMAD-METHOD",
-    "description": "מדריך מקיף למפתחי משחקים המשתמשים ב-BMAD לפיתוח משחקים מקצועיים. לומדים איך להשתמש באגנטי Game Designer, Game Architect, ו-Game Dev, לעבוד עם GDD ו-Narrative, ולשלב עם Unity/Unreal.",
+    "description": "מדריך מקיף למפתחי משחקים המשתמשים ב-BMAD לפיתוח משחקים מקצועיים. לומדים איך להשתמש בסוכןי Game Designer, Game Architect, ו-Game Dev, לעבוד עם GDD ו-Narrative, ולשלב עם Unity/Unreal.",
     "category": "roles",
     "difficulty": "advanced",
     "estimatedMinutes": 50,
@@ -39,7 +39,7 @@
         },
         {
           "id": "toc-2-3",
-          "title": "שלב 3: שליטה באגנטי משחקים",
+          "title": "שלב 3: שליטה בסוכןי משחקים",
           "level": 3,
           "anchor": "stage-3"
         }
@@ -47,7 +47,7 @@
     },
     {
       "id": "toc-3",
-      "title": "האגנטים שלך - מדריך מפורט",
+      "title": "הסוכנים שלך - מדריך מפורט",
       "level": 2,
       "anchor": "your-agents"
     },
@@ -87,7 +87,7 @@
       "type": "callout",
       "variant": "info",
       "title": "מה תלמדו במדריך זה",
-      "content": "איך להשתמש ב-BMAD לפיתוח משחקים מקצועיים, עם אגנטי Game Designer, Game Architect, ו-Game Dev. תלמדו לעבוד עם GDD (מסמך עיצוב משחק), Narrative Workflows, ושילוב עם Unity ו-Unreal Engine."
+      "content": "איך להשתמש ב-BMAD לפיתוח משחקים מקצועיים, עם סוכןי Game Designer, Game Architect, ו-Game Dev. תלמדו לעבוד עם GDD (מסמך עיצוב משחק), Narrative Workflows, ושילוב עם Unity ו-Unreal Engine."
     },
     {
       "type": "divider"
@@ -125,7 +125,7 @@
       "variant": "unordered",
       "items": [
         {
-          "content": "אגנטים מיוחדים למשחקים: Game Designer, Game Architect, Game Dev - מבינים את השפה והמושגים של משחקים"
+          "content": "סוכנים מיוחדים למשחקים: Game Designer, Game Architect, Game Dev - מבינים את השפה והמושגים של משחקים"
         },
         {
           "content": "GDD (Game Design Document): מסמך מרכזי שמגדיר את כל היבטי המשחק - מכניקות, רמות, progression, balance"
@@ -289,7 +289,7 @@
     {
       "type": "code",
       "language": "bash",
-      "code": "# התקן את הפקודה הגלובלית\nnpx bmad-cli install\n\n# התקן את מודול BMM (כולל אגנטי משחקים)\nnpx bmad-cli install bmm"
+      "code": "# התקן את הפקודה הגלובלית\nnpx bmad-cli install\n\n# התקן את מודול BMM (כולל סוכןי משחקים)\nnpx bmad-cli install bmm"
     },
     {
       "type": "heading",
@@ -305,13 +305,13 @@
     {
       "type": "code",
       "language": "yaml",
-      "code": "# הגדרות בסיסיות\nuser_name: \"השם שלך\"\ncommunication_language: \"Hebrew\"\ndocument_output_language: \"Hebrew\"\n\n# הגדרות משחקים\ninclude_game_planning: true          # הפעל אגנטי משחקים\ngame_engine: \"unity\"                 # unity, unreal, godot, custom\nproject_type: \"game\"                 # חשוב! מסמן שזה פרויקט משחק\n\n# תיקיות\noutput_folder: \"{project-root}/docs\"\ndev_story_location: \"{project-root}/stories\"\ngdd_location: \"{project-root}/docs/design/gdd.md\"\nnarrative_location: \"{project-root}/docs/design/narrative.md\"\n\n# הגדרות פיתוח\nrun_until_complete: true\nrun_tests_command: \"npm test\"\nrun_playtest_command: \"npm run playtest\"  # אופציונלי"
+      "code": "# הגדרות בסיסיות\nuser_name: \"השם שלך\"\ncommunication_language: \"Hebrew\"\ndocument_output_language: \"Hebrew\"\n\n# הגדרות משחקים\ninclude_game_planning: true          # הפעל סוכןי משחקים\ngame_engine: \"unity\"                 # unity, unreal, godot, custom\nproject_type: \"game\"                 # חשוב! מסמן שזה פרויקט משחק\n\n# תיקיות\noutput_folder: \"{project-root}/docs\"\ndev_story_location: \"{project-root}/stories\"\ngdd_location: \"{project-root}/docs/design/gdd.md\"\nnarrative_location: \"{project-root}/docs/design/narrative.md\"\n\n# הגדרות פיתוח\nrun_until_complete: true\nrun_tests_command: \"npm test\"\nrun_playtest_command: \"npm run playtest\"  # אופציונלי"
     },
     {
       "type": "callout",
       "variant": "warning",
       "title": "חשוב: include_game_planning: true",
-      "content": "חובה להגדיר include_game_planning: true כדי שהאגנטים של משחקים (Game Designer, Game Architect, Game Dev) יהיו זמינים!"
+      "content": "חובה להגדיר include_game_planning: true כדי שהסוכנים של משחקים (Game Designer, Game Architect, Game Dev) יהיו זמינים!"
     },
     {
       "type": "heading",
@@ -330,13 +330,13 @@
     {
       "type": "heading",
       "level": 3,
-      "text": "שלב 3: שליטה באגנטי משחקים (שבוע 2-4)",
+      "text": "שלב 3: שליטה בסוכןי משחקים (שבוע 2-4)",
       "id": "stage-3"
     },
     {
       "type": "text",
       "markdown": true,
-      "content": "**מטרה:** ללמוד להשתמש בשלושת האגנטים המרכזיים למשחקים.\n\nשלושת האגנטים שתעבדו איתם הכי הרבה:"
+      "content": "**מטרה:** ללמוד להשתמש בשלושת הסוכנים המרכזיים למשחקים.\n\nשלושת הסוכנים שתעבדו איתם הכי הרבה:"
     },
     {
       "type": "list",
@@ -381,7 +381,7 @@
           "content": "טענו את River והריצו dev-story על Story אחד"
         },
         {
-          "content": "שימו לב איך כל אגנט קורא את המסמכים הקודמים"
+          "content": "שימו לב איך כל סוכן קורא את המסמכים הקודמים"
         }
       ]
     },
@@ -389,7 +389,7 @@
       "type": "callout",
       "variant": "success",
       "title": "סימנים שאתם מוכנים להמשיך",
-      "content": "אתם מבינים את ההבדל בין Game Brief, GDD, ו-Tech Spec. אתם יודעים איך לטעון כל אגנט ולהריץ את הוורקפלואים שלו. אתם מבינים שה-GDD הוא ה-source of truth למשחק."
+      "content": "אתם מבינים את ההבדל בין Game Brief, GDD, ו-Tech Spec. אתם יודעים איך לטעון כל סוכן ולהריץ את הוורקפלואים שלו. אתם מבינים שה-GDD הוא ה-source of truth למשחק."
     },
     {
       "type": "divider"
@@ -397,7 +397,7 @@
     {
       "type": "heading",
       "level": 2,
-      "text": "האגנטים שלך - מדריך מפורט",
+      "text": "הסוכנים שלך - מדריך מפורט",
       "id": "your-agents"
     },
     {

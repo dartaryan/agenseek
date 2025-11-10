@@ -239,7 +239,7 @@
       "type": "callout",
       "variant": "info",
       "title": "טיפ",
-      "content": "קובץ ה-context הזה מועבר ל-dev-story כך שהאגנט שמפתח יודע בדיוק מה לעשות!"
+      "content": "קובץ ה-context הזה מועבר ל-dev-story כך שהסוכן שמפתח יודע בדיוק מה לעשות!"
     },
     {
       "type": "heading",
@@ -262,7 +262,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "**אחרי שהוורקפלוא מסתיים:**\n\n1. **יש קובץ context** - `docs/stories/5-3-user-profile.context.xml`\n2. **קובץ זה זמין** - לאגנט שמפתח (dev-story)\n3. **מוכן לפיתוח** - עכשיו אפשר להתחיל לכתוב קוד!"
+      "content": "**אחרי שהוורקפלוא מסתיים:**\n\n1. **יש קובץ context** - `docs/stories/5-3-user-profile.context.xml`\n2. **קובץ זה זמין** - לסוכן שמפתח (dev-story)\n3. **מוכן לפיתוח** - עכשיו אפשר להתחיל לכתוב קוד!"
     },
     {
       "type": "callout",
@@ -332,7 +332,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "**האגנט עובד משימה אחת בכל פעם** ומעדכן את ה-status בזמן אמת!"
+      "content": "**הסוכן עובד משימה אחת בכל פעם** ומעדכן את ה-status בזמן אמת!"
     },
     {
       "type": "heading",
@@ -359,25 +359,25 @@
         {
           "id": "dev-step-1",
           "title": "שלב 1: הכנה",
-          "content": "**האגנט:**\n- קורא את context\n- מזהה Tasks\n- בונה תוכנית עבודה\n- שואל הבהרות אם צריך",
+          "content": "**הסוכן:**\n- קורא את context\n- מזהה Tasks\n- בונה תוכנית עבודה\n- שואל הבהרות אם צריך",
           "markdown": true
         },
         {
           "id": "dev-step-2",
           "title": "שלב 2: פיתוח",
-          "content": "**האגנט:**\n- כותב קוד לכל Task\n- מריץ בדיקות\n- מתקן שגיאות\n- שואל feedback אם צריך",
+          "content": "**הסוכן:**\n- כותב קוד לכל Task\n- מריץ בדיקות\n- מתקן שגיאות\n- שואל feedback אם צריך",
           "markdown": true
         },
         {
           "id": "dev-step-3",
           "title": "שלב 3: בדיקות",
-          "content": "**האגנט:**\n- מריץ כל הבדיקות\n- בודק linter\n- בודק DoD\n- מדווח על תוצאות",
+          "content": "**הסוכן:**\n- מריץ כל הבדיקות\n- בודק linter\n- בודק DoD\n- מדווח על תוצאות",
           "markdown": true
         },
         {
           "id": "dev-step-4",
           "title": "שלב 4: סיום",
-          "content": "**האגנט:**\n- מסמן Tasks כהושלמו\n- משנה סטטוס ל-Ready for Review\n- מעדכן את קובץ הסטורי\n- מדווח על סיום",
+          "content": "**הסוכן:**\n- מסמן Tasks כהושלמו\n- משנה סטטוס ל-Ready for Review\n- מעדכן את קובץ הסטורי\n- מדווח על סיום",
           "markdown": true
         }
       ]
@@ -698,7 +698,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "**מה קורה:**\n\n1. **האגנט קורא:**\n   - קובץ Context\n   - קובץ הסטורי עם Tasks\n   - DoD\n\n2. **האגנט מפתח Task 1:**\n   - יוצר User Profile Component\n   - מוסיף form validation\n   - מוסיף responsive layout\n   - מריץ בדיקות\n   - מסמן Task 1 כהושלם\n\n3. **האגנט מפתח Task 2:**\n   - יוצר API service\n   - מוסיף error handling\n   - כותב unit tests\n   - מריץ בדיקות\n   - מסמן Task 2 כהושלם\n\n4. **האגנט בודק DoD:**\n   - ✅ All tests passing\n   - ✅ No linter errors\n   - ✅ Documentation updated\n   - ✅ Ready for Review\n\n5. **האגנט מעדכן:**\n   - משנה סטטוס ל-\"Ready for Review\"\n   - מדווח: \"הסטורי מוכן ל-Code Review!\""
+      "content": "**מה קורה:**\n\n1. **הסוכן קורא:**\n   - קובץ Context\n   - קובץ הסטורי עם Tasks\n   - DoD\n\n2. **הסוכן מפתח Task 1:**\n   - יוצר User Profile Component\n   - מוסיף form validation\n   - מוסיף responsive layout\n   - מריץ בדיקות\n   - מסמן Task 1 כהושלם\n\n3. **הסוכן מפתח Task 2:**\n   - יוצר API service\n   - מוסיף error handling\n   - כותב unit tests\n   - מריץ בדיקות\n   - מסמן Task 2 כהושלם\n\n4. **הסוכן בודק DoD:**\n   - ✅ All tests passing\n   - ✅ No linter errors\n   - ✅ Documentation updated\n   - ✅ Ready for Review\n\n5. **הסוכן מעדכן:**\n   - משנה סטטוס ל-\"Ready for Review\"\n   - מדווח: \"הסטורי מוכן ל-Code Review!\""
     },
     {
       "type": "heading",
@@ -715,7 +715,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "**מה קורה:**\n\n1. **האגנט בודק:**\n   - Code quality ✅\n   - Best practices ✅\n   - Security ⚠️ (מצא בעיה קטנה)\n   - Performance ✅\n   - Tests ✅\n\n2. **האגנט כותב דוח:**\n   - בעיה: Password validation צריכה שיפור\n   - המלצה: הוסף regex חזק יותר\n   - סטטוס: Changes Requested\n\n3. **האגנט מעדכן:**\n   - מחזיר הסטורי ל-\"In Progress\"\n   - מוסיף Action Items\n   - מדווח: \"נמצאה בעיה אחת - תקנו ותריצו שוב\""
+      "content": "**מה קורה:**\n\n1. **הסוכן בודק:**\n   - Code quality ✅\n   - Best practices ✅\n   - Security ⚠️ (מצא בעיה קטנה)\n   - Performance ✅\n   - Tests ✅\n\n2. **הסוכן כותב דוח:**\n   - בעיה: Password validation צריכה שיפור\n   - המלצה: הוסף regex חזק יותר\n   - סטטוס: Changes Requested\n\n3. **הסוכן מעדכן:**\n   - מחזיר הסטורי ל-\"In Progress\"\n   - מוסיף Action Items\n   - מדווח: \"נמצאה בעיה אחת - תקנו ותריצו שוב\""
     },
     {
       "type": "heading",
@@ -785,7 +785,7 @@
         {
           "id": "faq-1",
           "title": "האם חובה להריץ story-context לפני dev-story?",
-          "content": "**לא חובה, אבל מומלץ מאוד!**\n\ndev-story יכול לעבוד גם בלי context, אבל:\n- האגנט יצטרך למצוא את המידע בעצמו\n- זה יקח יותר זמן\n- יכול לפספס מידע חשוב\n\n**המלצה:** תמיד הריצו story-context קודם!",
+          "content": "**לא חובה, אבל מומלץ מאוד!**\n\ndev-story יכול לעבוד גם בלי context, אבל:\n- הסוכן יצטרך למצוא את המידע בעצמו\n- זה יקח יותר זמן\n- יכול לפספס מידע חשוב\n\n**המלצה:** תמיד הריצו story-context קודם!",
           "markdown": true
         },
         {

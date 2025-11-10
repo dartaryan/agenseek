@@ -141,7 +141,7 @@
     },
     {
       "type": "table",
-      "headers": ["וורקפלו", "אגנט", "מתי להשתמש", "תפוקה", "זמן"],
+      "headers": ["וורקפלו", "סוכן", "מתי להשתמש", "תפוקה", "זמן"],
       "rows": [
         ["create-ux-design", "UX Designer", "כל פרויקט עם UI", "UX Design Doc", "3-7 ימים"],
         ["gdd", "Game Designer", "משחקים בלבד", "Game Design Doc", "5-10 ימים"],

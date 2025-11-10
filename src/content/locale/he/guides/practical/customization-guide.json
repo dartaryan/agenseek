@@ -3,7 +3,7 @@
     "id": "customization-guide",
     "slug": "customization-guide",
     "title": "מדריך התאמה אישית של BMAD",
-    "description": "מדריך מקיף ליצירת אגנטים, וורקפלואים ותבניות מותאמות אישית. למדו איך להתאים את BMAD בדיוק לצרכים של הארגון שלכם - מאגנטים ייחודיים לתחומים ספציפיים ועד תבניות קוד ותהליכי עבודה ארגוניים.",
+    "description": "מדריך מקיף ליצירת סוכנים, וורקפלואים ותבניות מותאמות אישית. למדו איך להתאים את BMAD בדיוק לצרכים של הארגון שלכם - מסוכנים ייחודיים לתחומים ספציפיים ועד תבניות קוד ותהליכי עבודה ארגוניים.",
     "category": "practical",
     "difficulty": "advanced",
     "estimatedMinutes": 45,
@@ -11,7 +11,7 @@
     "tags": [
       "התאמה-אישית",
       "קונפיגורציה",
-      "אגנטים",
+      "סוכנים",
       "וורקפלואים",
       "תבניות",
       "ארגון"
@@ -28,7 +28,7 @@
     },
     {
       "id": "toc-2",
-      "title": "יצירת אגנטים מותאמים אישית - מדריך מעמיק",
+      "title": "יצירת סוכנים מותאמים אישית - מדריך מעמיק",
       "level": 2,
       "anchor": "custom-agents-deep-dive"
     },
@@ -104,7 +104,7 @@
       "type": "callout",
       "variant": "success",
       "title": "מה תלמדו כאן?",
-      "content": "איך ליצור אגנטים ווורקפלואים מותאמים אישית, לבנות תבניות קוד ומסמכים, להגדיר כללי עבודה ארגוניים, ולנהל את ההתאמות האישיות שלכם לאורך זמן."
+      "content": "איך ליצור סוכנים ווורקפלואים מותאמים אישית, לבנות תבניות קוד ומסמכים, להגדיר כללי עבודה ארגוניים, ולנהל את ההתאמות האישיות שלכם לאורך זמן."
     },
     {
       "type": "divider"
@@ -118,7 +118,7 @@
     {
       "type": "text",
       "markdown": true,
-      "content": "BMAD מגיע עם מערך מושלם של אגנטים ווורקפלואים, אבל לכל ארגון יש צרכים ייחודיים:\n\n**תרחישים נפוצים להתאמה אישית:**\n- תחום מומחיות ייחודי לארגון (למשל: Embedded Systems, IoT, Blockchain)\n- תהליכי עבודה ספציפיים לחברה (למשל: תהליך אישור פנימי, compliance checks)\n- סטנדרטים ארגוניים (למשל: coding standards, documentation format)\n- אינטגרציה עם כלים פנימיים (למשל: מערכת ניהול פרויקטים פנימית)\n- שפות תכנות או טכנולוגיות ספציפיות שלא מכוסות באגנטים הקיימים"
+      "content": "BMAD מגיע עם מערך מושלם של סוכנים ווורקפלואים, אבל לכל ארגון יש צרכים ייחודיים:\n\n**תרחישים נפוצים להתאמה אישית:**\n- תחום מומחיות ייחודי לארגון (למשל: Embedded Systems, IoT, Blockchain)\n- תהליכי עבודה ספציפיים לחברה (למשל: תהליך אישור פנימי, compliance checks)\n- סטנדרטים ארגוניים (למשל: coding standards, documentation format)\n- אינטגרציה עם כלים פנימיים (למשל: מערכת ניהול פרויקטים פנימית)\n- שפות תכנות או טכנולוגיות ספציפיות שלא מכוסות בסוכנים הקיימים"
     },
     {
       "type": "text",
@@ -131,34 +131,34 @@
     {
       "type": "heading",
       "level": 2,
-      "text": "יצירת אגנטים מותאמים אישית - מדריך מעמיק",
+      "text": "יצירת סוכנים מותאמים אישית - מדריך מעמיק",
       "id": "custom-agents-deep-dive"
     },
     {
       "type": "text",
       "markdown": true,
-      "content": "אגנטים מותאמים אישית הם הלב של ההתאמה האישית. הם מאפשרים לכם ליצור מומחים וירטואליים לכל תחום שאתם צריכים."
+      "content": "סוכנים מותאמים אישית הם הלב של ההתאמה האישית. הם מאפשרים לכם ליצור מומחים וירטואליים לכל תחום שאתם צריכים."
     },
     {
       "type": "heading",
       "level": 3,
-      "text": "אנטומיה של אגנט מותאם אישית",
+      "text": "אנטומיה של סוכן מותאם אישית",
       "id": "agent-anatomy"
     },
     {
       "type": "text",
       "markdown": true,
-      "content": "כל אגנט מותאם אישית מורכב מ-5 חלקים עיקריים:"
+      "content": "כל סוכן מותאם אישית מורכב מ-5 חלקים עיקריים:"
     },
     {
       "type": "list",
       "variant": "ordered",
       "items": [
         {
-          "content": "Metadata - מידע בסיסי על האגנט",
+          "content": "Metadata - מידע בסיסי על הסוכן",
           "children": [
             {
-              "content": "name - שם האגנט"
+              "content": "name - שם הסוכן"
             },
             {
               "content": "description - תיאור קצר"
@@ -169,7 +169,7 @@
           "content": "Activation - תהליך הפעלה",
           "children": [
             {
-              "content": "צעדים שהאגנט מבצע בהפעלה"
+              "content": "צעדים שהסוכן מבצע בהפעלה"
             },
             {
               "content": "טעינת config וקבצים"
@@ -177,7 +177,7 @@
           ]
         },
         {
-          "content": "Persona - אישיות האגנט",
+          "content": "Persona - אישיות הסוכן",
           "children": [
             {
               "content": "role - התפקיד"
@@ -215,13 +215,13 @@
     {
       "type": "heading",
       "level": 3,
-      "text": "מדריך צעד-אחר-צעד ליצירת אגנט",
+      "text": "מדריך צעד-אחר-צעד ליצירת סוכן",
       "id": "step-by-step-agent-creation"
     },
     {
       "type": "text",
       "markdown": true,
-      "content": "בואו ניצור אגנט **Security Specialist** מאפס:"
+      "content": "בואו ניצור סוכן **Security Specialist** מאפס:"
     },
     {
       "type": "code",
@@ -248,7 +248,7 @@
               "id": "explain-metadata-text",
               "type": "text",
               "markdown": true,
-              "content": "**name:** המזהה הייחודי של האגנט (באנגלית, ללא רווחים)\n\n**description:** תיאור קצר למה האגנט משמש\n\n**דוגמה:**\n```yaml\nname: \"security-specialist\"\ndescription: \"Security & Compliance Specialist Agent\"\n```"
+              "content": "**name:** המזהה הייחודי של הסוכן (באנגלית, ללא רווחים)\n\n**description:** תיאור קצר למה הסוכן משמש\n\n**דוגמה:**\n```yaml\nname: \"security-specialist\"\ndescription: \"Security & Compliance Specialist Agent\"\n```"
             }
           ]
         },
@@ -260,19 +260,19 @@
               "id": "explain-activation-text",
               "type": "text",
               "markdown": true,
-              "content": "**מטרה:** להגדיר מה קורה כשהאגנט מופעל\n\n**צעדים חשובים:**\n- טעינת קובץ config\n- קריאת קבצים נוספים (מדיניות, תבניות)\n- ברכה למשתמש\n- הצגת תפריט\n- המתנה לקלט\n\n**טיפ:** השתמשו ב-`{project-root}` לנתיבים יחסיים"
+              "content": "**מטרה:** להגדיר מה קורה כשהסוכן מופעל\n\n**צעדים חשובים:**\n- טעינת קובץ config\n- קריאת קבצים נוספים (מדיניות, תבניות)\n- ברכה למשתמש\n- הצגת תפריט\n- המתנה לקלט\n\n**טיפ:** השתמשו ב-`{project-root}` לנתיבים יחסיים"
             }
           ]
         },
         {
           "id": "explain-persona",
-          "title": "Persona - אישיות האגנט",
+          "title": "Persona - אישיות הסוכן",
           "content": [
             {
               "id": "explain-persona-text",
               "type": "text",
               "markdown": true,
-              "content": "**role:** התפקיד של האגנט (למשל: Security Expert)\n\n**identity:** תיאור מפורט של הידע והניסיון של האגנט. זה מה שמגדיר את המומחיות.\n\n**communication_style:** איך האגנט מדבר - פורמלי? ידידותי? טכני?\n\n**principles:** העקרונות המנחים את החלטות האגנט\n\n**חשוב:** ה-persona הוא מה שקובע איך האגנט יתנהג!"
+              "content": "**role:** התפקיד של הסוכן (למשל: Security Expert)\n\n**identity:** תיאור מפורט של הידע והניסיון של הסוכן. זה מה שמגדיר את המומחיות.\n\n**communication_style:** איך הסוכן מדבר - פורמלי? ידידותי? טכני?\n\n**principles:** העקרונות המנחים את החלטות הסוכן\n\n**חשוב:** ה-persona הוא מה שקובע איך הסוכן יתנהג!"
             }
           ]
         },
@@ -284,7 +284,7 @@
               "id": "explain-menu-text",
               "type": "text",
               "markdown": true,
-              "content": "**מבנה item:**\n\n```xml\n<item cmd=\"*command-name\" \n      action=\"מה האגנט עושה\"\n      workflow=\"נתיב לוורקפלו\">\n  תיאור למשתמש\n</item>\n```\n\n**action:** פקודה פשוטה - האגנט מבצע את מה שכתוב\n\n**workflow:** הפניה לוורקפלו מורכב\n\n**טיפ:** התחילו עם 5-8 פקודות. אפשר להוסיף אחר כך."
+              "content": "**מבנה item:**\n\n```xml\n<item cmd=\"*command-name\" \n      action=\"מה הסוכן עושה\"\n      workflow=\"נתיב לוורקפלו\">\n  תיאור למשתמש\n</item>\n```\n\n**action:** פקודה פשוטה - הסוכן מבצע את מה שכתוב\n\n**workflow:** הפניה לוורקפלו מורכב\n\n**טיפ:** התחילו עם 5-8 פקודות. אפשר להוסיף אחר כך."
             }
           ]
         }
@@ -293,7 +293,7 @@
     {
       "type": "heading",
       "level": 3,
-      "text": "טיפים ליצירת אגנטים איכותיים",
+      "text": "טיפים ליצירת סוכנים איכותיים",
       "id": "quality-agent-tips"
     },
     {
@@ -301,7 +301,7 @@
       "variant": "unordered",
       "items": [
         {
-          "content": "Persona מפורט = אגנט טוב יותר",
+          "content": "Persona מפורט = סוכן טוב יותר",
           "children": [
             {
               "content": "תארו את תחום המומחיות בדיוק"
@@ -329,7 +329,7 @@
           ]
         },
         {
-          "content": "בדקו את האגנט",
+          "content": "בדקו את הסוכן",
           "children": [
             {
               "content": "הפעילו והריצו כל פקודה"
@@ -343,7 +343,7 @@
           ]
         },
         {
-          "content": "תעדו את האגנט",
+          "content": "תעדו את הסוכן",
           "children": [
             {
               "content": "כתבו קובץ README"
@@ -362,7 +362,7 @@
       "type": "callout",
       "variant": "success",
       "title": "טיפ מקצועי",
-      "content": "התחילו מאגנט קיים שדומה לצורך שלכם. העתיקו, שנו את ה-persona ואת התפריט, ובדקו. זה הדרך המהירה ביותר ליצור אגנט איכותי."
+      "content": "התחילו מסוכן קיים שדומה לצורך שלכם. העתיקו, שנו את ה-persona ואת התפריט, ובדקו. זה הדרך המהירה ביותר ליצור סוכן איכותי."
     },
     {
       "type": "divider"
@@ -397,7 +397,7 @@
           "content": "Metadata - מידע בסיסי (id, name, description, version)"
         },
         {
-          "content": "Agents - רשימת האגנטים המשתתפים"
+          "content": "Agents - רשימת הסוכנים המשתתפים"
         },
         {
           "content": "Phases - שלבים של הוורקפלו"
@@ -416,7 +416,7 @@
     {
       "type": "code",
       "language": "yaml",
-      "code": "# .bmad/custom-workflows/security-review.yaml\nworkflow:\n  id: security-review\n  name: Comprehensive Security Review\n  description: תהליך סקירת אבטחה מקיף לפני release\n  version: 1.0\n  author: Security Team\n  agents:\n    - architect\n    - dev\n    - security-specialist  # אגנט מותאם אישית\n    - tea\n\nphases:\n  # Phase 1: Pre-Review Preparation\n  - phase: 1\n    name: הכנה לסקירה\n    agent: dev\n    description: איסוף מידע והכנת המערכת לסקירה\n    steps:\n      - step: 1\n        title: Update dependencies\n        action: update_all_dependencies\n        validation:\n          - no_critical_vulnerabilities\n      \n      - step: 2\n        title: Run automated security scans\n        action: run_security_scans\n        tools:\n          - npm audit\n          - snyk test\n          - eslint security plugin\n        validation:\n          - scan_completed\n          - results_documented\n      \n      - step: 3\n        title: Generate dependency tree\n        action: create_dependency_report\n        output: docs/security/dependency-tree.md\n\n  # Phase 2: Architecture Security Review\n  - phase: 2\n    name: סקירת ארכיטקטורת אבטחה\n    agent: architect\n    description: בדיקת העיצוב והארכיטקטורה מזווית אבטחתית\n    steps:\n      - step: 1\n        title: Review authentication design\n        action: review_auth_architecture\n        checklist:\n          - Password hashing algorithm (bcrypt/argon2)\n          - Session management\n          - Token expiration\n          - Multi-factor authentication\n      \n      - step: 2\n        title: Review authorization model\n        action: review_authorization\n        checklist:\n          - Role-based access control (RBAC)\n          - Permission granularity\n          - Privilege escalation prevention\n      \n      - step: 3\n        title: Data flow analysis\n        action: analyze_data_flows\n        output: docs/security/data-flow-diagram.mmd\n        validation:\n          - all_data_classified\n          - encryption_documented\n\n  # Phase 3: Code Security Review\n  - phase: 3\n    name: סקירת אבטחת קוד\n    agent: security-specialist\n    description: סקירה מעמיקה של הקוד לזיהוי פגיעויות\n    steps:\n      - step: 1\n        title: OWASP Top 10 check\n        action: check_owasp_top10\n        areas:\n          - Injection flaws (SQL, NoSQL, Command)\n          - Broken authentication\n          - Sensitive data exposure\n          - XML External Entities (XXE)\n          - Broken access control\n          - Security misconfiguration\n          - Cross-Site Scripting (XSS)\n          - Insecure deserialization\n          - Using components with known vulnerabilities\n          - Insufficient logging & monitoring\n      \n      - step: 2\n        title: Check for hardcoded secrets\n        action: scan_for_secrets\n        tools:\n          - git-secrets\n          - truffleHog\n        validation:\n          - no_secrets_found\n      \n      - step: 3\n        title: API security review\n        action: review_api_security\n        checklist:\n          - Authentication on all endpoints\n          - Rate limiting\n          - Input validation\n          - CORS configuration\n          - API versioning\n      \n      - step: 4\n        title: Generate security report\n        action: create_security_report\n        output: docs/security/code-review-report.md\n        include:\n          - Executive summary\n          - Critical findings\n          - High/Medium/Low findings\n          - Remediation recommendations\n\n  # Phase 4: Penetration Testing\n  - phase: 4\n    name: בדיקות חדירה\n    agent: security-specialist\n    description: מבחני חדירה ידניים ואוטומטיים\n    approval_required: true\n    steps:\n      - step: 1\n        title: Automated penetration testing\n        action: run_automated_pentest\n        tools:\n          - OWASP ZAP\n          - Burp Suite\n        target_environment: staging\n      \n      - step: 2\n        title: Manual penetration testing\n        action: manual_pentest\n        areas:\n          - Authentication bypass attempts\n          - Authorization bypass attempts\n          - Business logic flaws\n          - Session management\n        duration: 4 hours\n      \n      - step: 3\n        title: Document findings\n        action: document_pentest_results\n        output: docs/security/pentest-report.md\n\n  # Phase 5: Testing & Validation\n  - phase: 5\n    name: בדיקות ואימות\n    agent: tea\n    description: וידוא שכל התיקונים עובדים\n    steps:\n      - step: 1\n        title: Security test cases\n        action: create_security_tests\n        coverage:\n          - Authentication tests\n          - Authorization tests\n          - Input validation tests\n          - XSS prevention tests\n          - SQL injection prevention tests\n      \n      - step: 2\n        title: Run security test suite\n        action: run_security_tests\n        validation:\n          - all_tests_pass\n          - coverage_above_90\n      \n      - step: 3\n        title: Regression testing\n        action: run_regression_tests\n        validation:\n          - no_regressions\n\n  # Phase 6: Documentation & Sign-off\n  - phase: 6\n    name: תיעוד וחתימה\n    agent: security-specialist\n    description: סיכום הסקירה והנפקת אישור\n    steps:\n      - step: 1\n        title: Create executive summary\n        action: create_executive_summary\n        output: docs/security/executive-summary.md\n      \n      - step: 2\n        title: Create remediation plan\n        action: create_remediation_plan\n        output: docs/security/remediation-plan.md\n        include:\n          - Timeline\n          - Priorities\n          - Assigned owners\n      \n      - step: 3\n        title: Security sign-off\n        action: security_signoff\n        approval_required: true\n        approvers:\n          - security_team_lead\n          - ciso\n        output: docs/security/security-signoff.md\n\noutputs:\n  - docs/security/dependency-tree.md\n  - docs/security/data-flow-diagram.mmd\n  - docs/security/code-review-report.md\n  - docs/security/pentest-report.md\n  - docs/security/executive-summary.md\n  - docs/security/remediation-plan.md\n  - docs/security/security-signoff.md\n\npost_workflow:\n  - action: notify_team\n    channel: slack\n    message: \"Security review completed. Check docs/security/ for reports.\"\n  \n  - action: create_jira_tickets\n    for_each: finding\n    priority_mapping:\n      critical: P0\n      high: P1\n      medium: P2\n      low: P3",
+      "code": "# .bmad/custom-workflows/security-review.yaml\nworkflow:\n  id: security-review\n  name: Comprehensive Security Review\n  description: תהליך סקירת אבטחה מקיף לפני release\n  version: 1.0\n  author: Security Team\n  agents:\n    - architect\n    - dev\n    - security-specialist  # סוכן מותאם אישית\n    - tea\n\nphases:\n  # Phase 1: Pre-Review Preparation\n  - phase: 1\n    name: הכנה לסקירה\n    agent: dev\n    description: איסוף מידע והכנת המערכת לסקירה\n    steps:\n      - step: 1\n        title: Update dependencies\n        action: update_all_dependencies\n        validation:\n          - no_critical_vulnerabilities\n      \n      - step: 2\n        title: Run automated security scans\n        action: run_security_scans\n        tools:\n          - npm audit\n          - snyk test\n          - eslint security plugin\n        validation:\n          - scan_completed\n          - results_documented\n      \n      - step: 3\n        title: Generate dependency tree\n        action: create_dependency_report\n        output: docs/security/dependency-tree.md\n\n  # Phase 2: Architecture Security Review\n  - phase: 2\n    name: סקירת ארכיטקטורת אבטחה\n    agent: architect\n    description: בדיקת העיצוב והארכיטקטורה מזווית אבטחתית\n    steps:\n      - step: 1\n        title: Review authentication design\n        action: review_auth_architecture\n        checklist:\n          - Password hashing algorithm (bcrypt/argon2)\n          - Session management\n          - Token expiration\n          - Multi-factor authentication\n      \n      - step: 2\n        title: Review authorization model\n        action: review_authorization\n        checklist:\n          - Role-based access control (RBAC)\n          - Permission granularity\n          - Privilege escalation prevention\n      \n      - step: 3\n        title: Data flow analysis\n        action: analyze_data_flows\n        output: docs/security/data-flow-diagram.mmd\n        validation:\n          - all_data_classified\n          - encryption_documented\n\n  # Phase 3: Code Security Review\n  - phase: 3\n    name: סקירת אבטחת קוד\n    agent: security-specialist\n    description: סקירה מעמיקה של הקוד לזיהוי פגיעויות\n    steps:\n      - step: 1\n        title: OWASP Top 10 check\n        action: check_owasp_top10\n        areas:\n          - Injection flaws (SQL, NoSQL, Command)\n          - Broken authentication\n          - Sensitive data exposure\n          - XML External Entities (XXE)\n          - Broken access control\n          - Security misconfiguration\n          - Cross-Site Scripting (XSS)\n          - Insecure deserialization\n          - Using components with known vulnerabilities\n          - Insufficient logging & monitoring\n      \n      - step: 2\n        title: Check for hardcoded secrets\n        action: scan_for_secrets\n        tools:\n          - git-secrets\n          - truffleHog\n        validation:\n          - no_secrets_found\n      \n      - step: 3\n        title: API security review\n        action: review_api_security\n        checklist:\n          - Authentication on all endpoints\n          - Rate limiting\n          - Input validation\n          - CORS configuration\n          - API versioning\n      \n      - step: 4\n        title: Generate security report\n        action: create_security_report\n        output: docs/security/code-review-report.md\n        include:\n          - Executive summary\n          - Critical findings\n          - High/Medium/Low findings\n          - Remediation recommendations\n\n  # Phase 4: Penetration Testing\n  - phase: 4\n    name: בדיקות חדירה\n    agent: security-specialist\n    description: מבחני חדירה ידניים ואוטומטיים\n    approval_required: true\n    steps:\n      - step: 1\n        title: Automated penetration testing\n        action: run_automated_pentest\n        tools:\n          - OWASP ZAP\n          - Burp Suite\n        target_environment: staging\n      \n      - step: 2\n        title: Manual penetration testing\n        action: manual_pentest\n        areas:\n          - Authentication bypass attempts\n          - Authorization bypass attempts\n          - Business logic flaws\n          - Session management\n        duration: 4 hours\n      \n      - step: 3\n        title: Document findings\n        action: document_pentest_results\n        output: docs/security/pentest-report.md\n\n  # Phase 5: Testing & Validation\n  - phase: 5\n    name: בדיקות ואימות\n    agent: tea\n    description: וידוא שכל התיקונים עובדים\n    steps:\n      - step: 1\n        title: Security test cases\n        action: create_security_tests\n        coverage:\n          - Authentication tests\n          - Authorization tests\n          - Input validation tests\n          - XSS prevention tests\n          - SQL injection prevention tests\n      \n      - step: 2\n        title: Run security test suite\n        action: run_security_tests\n        validation:\n          - all_tests_pass\n          - coverage_above_90\n      \n      - step: 3\n        title: Regression testing\n        action: run_regression_tests\n        validation:\n          - no_regressions\n\n  # Phase 6: Documentation & Sign-off\n  - phase: 6\n    name: תיעוד וחתימה\n    agent: security-specialist\n    description: סיכום הסקירה והנפקת אישור\n    steps:\n      - step: 1\n        title: Create executive summary\n        action: create_executive_summary\n        output: docs/security/executive-summary.md\n      \n      - step: 2\n        title: Create remediation plan\n        action: create_remediation_plan\n        output: docs/security/remediation-plan.md\n        include:\n          - Timeline\n          - Priorities\n          - Assigned owners\n      \n      - step: 3\n        title: Security sign-off\n        action: security_signoff\n        approval_required: true\n        approvers:\n          - security_team_lead\n          - ciso\n        output: docs/security/security-signoff.md\n\noutputs:\n  - docs/security/dependency-tree.md\n  - docs/security/data-flow-diagram.mmd\n  - docs/security/code-review-report.md\n  - docs/security/pentest-report.md\n  - docs/security/executive-summary.md\n  - docs/security/remediation-plan.md\n  - docs/security/security-signoff.md\n\npost_workflow:\n  - action: notify_team\n    channel: slack\n    message: \"Security review completed. Check docs/security/ for reports.\"\n  \n  - action: create_jira_tickets\n    for_each: finding\n    priority_mapping:\n      critical: P0\n      high: P1\n      medium: P2\n      low: P3",
       "filename": ".bmad/custom-workflows/security-review.yaml",
       "showLineNumbers": true
     },
@@ -580,7 +580,7 @@
       "type": "callout",
       "variant": "info",
       "title": "שימוש בתבניות מסמכים",
-      "content": "האגנט PM יכול להשתמש בתבנית הזו אוטומטית כשמריצים workflow product-brief או prd. פשוט הגדירו את הנתיב בconfig.yaml."
+      "content": "הסוכן PM יכול להשתמש בתבנית הזו אוטומטית כשמריצים workflow product-brief או prd. פשוט הגדירו את הנתיב בconfig.yaml."
     },
     {
       "type": "divider"
@@ -612,13 +612,13 @@
     {
       "type": "heading",
       "level": 3,
-      "text": "הטמעת הכללים באגנטים",
+      "text": "הטמעת הכללים בסוכנים",
       "id": "embedding-rules-in-agents"
     },
     {
       "type": "text",
       "markdown": true,
-      "content": "כל אגנט יכול לטעון את הכללים הארגוניים בactivation:"
+      "content": "כל סוכן יכול לטעון את הכללים הארגוניים בactivation:"
     },
     {
       "type": "code",
@@ -676,7 +676,7 @@
               "id": "fintech-solution-text",
               "type": "text",
               "markdown": true,
-              "content": "**1. יצרו אגנט Compliance Specialist:**\n- מומחה ב-PCI-DSS ו-SOC2\n- בודק כל PR עבור compliance\n- מייצר דוחות audit\n\n**2. הוסיפו שלב compliance לכל workflow:**\n- לפני merge ל-main\n- compliance-check חובה\n- אישור מ-compliance officer\n\n**3. תבניות מסמכים:**\n- Data Processing Agreement\n- Security Assessment Report\n- Compliance Checklist\n\n**תוצאה:** עברו audit של SOC2 בפעם הראשונה ללא findings."
+              "content": "**1. יצרו סוכן Compliance Specialist:**\n- מומחה ב-PCI-DSS ו-SOC2\n- בודק כל PR עבור compliance\n- מייצר דוחות audit\n\n**2. הוסיפו שלב compliance לכל workflow:**\n- לפני merge ל-main\n- compliance-check חובה\n- אישור מ-compliance officer\n\n**3. תבניות מסמכים:**\n- Data Processing Agreement\n- Security Assessment Report\n- Compliance Checklist\n\n**תוצאה:** עברו audit של SOC2 בפעם הראשונה ללא findings."
             }
           ]
         }
@@ -712,7 +712,7 @@
               "id": "enterprise-solution-text",
               "type": "text",
               "markdown": true,
-              "content": "**1. כללים ארגוניים מרכזיים:**\n- organizational-rules.yaml משותף\n- כל צוות חייב לעקוב\n- סטנדרטים אחידים\n\n**2. תבניות משותפות:**\n- תבניות קוד לכל שפה\n- תבניות מסמכים\n- תבניות PR/Issue\n\n**3. אגנט Enterprise Compliance:**\n- בודק שכולם עוקבים אחר הסטנדרטים\n- מזהה חריגות\n- מייצר דוחות ברמת ארגון\n\n**תוצאה:** עקביות של 95% בין כל הצוותים תוך 3 חודשים."
+              "content": "**1. כללים ארגוניים מרכזיים:**\n- organizational-rules.yaml משותף\n- כל צוות חייב לעקוב\n- סטנדרטים אחידים\n\n**2. תבניות משותפות:**\n- תבניות קוד לכל שפה\n- תבניות מסמכים\n- תבניות PR/Issue\n\n**3. סוכן Enterprise Compliance:**\n- בודק שכולם עוקבים אחר הסטנדרטים\n- מזהה חריגות\n- מייצר דוחות ברמת ארגון\n\n**תוצאה:** עקביות של 95% בין כל הצוותים תוך 3 חודשים."
             }
           ]
         }
@@ -748,7 +748,7 @@
               "id": "game-solution-text",
               "type": "text",
               "markdown": true,
-              "content": "**1. אגנטים מיוחדים (BMAD כבר כולל!):**\n- Game Designer\n- Game Architect\n- Game Developer\n\n**2. וורקפלואים ייחודיים:**\n- game-brief → gdd → narrative\n- level-design workflow\n- game-balancing workflow\n\n**3. תבניות game-specific:**\n- GDD (Game Design Document)\n- Level Design Doc\n- Balancing Spreadsheets\n\n**תוצאה:** קיצרו זמן פיתוח ב-30%, שיפרו איכות המשחקים."
+              "content": "**1. סוכנים מיוחדים (BMAD כבר כולל!):**\n- Game Designer\n- Game Architect\n- Game Developer\n\n**2. וורקפלואים ייחודיים:**\n- game-brief → gdd → narrative\n- level-design workflow\n- game-balancing workflow\n\n**3. תבניות game-specific:**\n- GDD (Game Design Document)\n- Level Design Doc\n- Balancing Spreadsheets\n\n**תוצאה:** קיצרו זמן פיתוח ב-30%, שיפרו איכות המשחקים."
             }
           ]
         }
@@ -844,7 +844,7 @@
           "content": "רשמו ב-BMAD Registry (אם קיים)",
           "children": [
             {
-              "content": "אגנטים ווורקפלואים שימושיים"
+              "content": "סוכנים ווורקפלואים שימושיים"
             },
             {
               "content": "מידע מפורט"
@@ -893,7 +893,7 @@
     {
       "type": "code",
       "language": "yaml",
-      "code": "# כל אגנט/וורקפלו צריך גרסה\nworkflow:\n  id: security-review\n  name: Security Review\n  version: 2.1.0  # major.minor.patch\n  changelog:\n    - version: 2.1.0\n      date: 2024-01-15\n      changes:\n        - Added pentest automation\n        - Improved reporting\n    - version: 2.0.0\n      date: 2023-12-01\n      changes:\n        - Breaking: Changed approval flow\n        - Added compliance checks\n    - version: 1.0.0\n      date: 2023-10-15\n      changes:\n        - Initial release",
+      "code": "# כל סוכן/וורקפלו צריך גרסה\nworkflow:\n  id: security-review\n  name: Security Review\n  version: 2.1.0  # major.minor.patch\n  changelog:\n    - version: 2.1.0\n      date: 2024-01-15\n      changes:\n        - Added pentest automation\n        - Improved reporting\n    - version: 2.0.0\n      date: 2023-12-01\n      changes:\n        - Breaking: Changed approval flow\n        - Added compliance checks\n    - version: 1.0.0\n      date: 2023-10-15\n      changes:\n        - Initial release",
       "showLineNumbers": false
     },
     {
@@ -945,10 +945,10 @@
       "variant": "ordered",
       "items": [
         {
-          "content": "**התחילו קטן** - אל תיצרו 20 אגנטים בבת אחת",
+          "content": "**התחילו קטן** - אל תיצרו 20 סוכנים בבת אחת",
           "children": [
             {
-              "content": "התחילו עם 1-2 אגנטים קריטיים"
+              "content": "התחילו עם 1-2 סוכנים קריטיים"
             },
             {
               "content": "בדקו שהם עובדים טוב"
@@ -963,7 +963,7 @@
           "content": "**תעדו הכל** - אם זה לא מתועד, זה לא קיים",
           "children": [
             {
-              "content": "README לכל אגנט/וורקפלו"
+              "content": "README לכל סוכן/וורקפלו"
             },
             {
               "content": "דוגמאות שימוש"
@@ -1121,7 +1121,7 @@
       "rows": [
         [
           "תחום מומחיות ייחודי",
-          "אגנט מותאם + וורקפלואים",
+          "סוכן מותאם + וורקפלואים",
           "בינונית"
         ],
         [
@@ -1136,17 +1136,17 @@
         ],
         [
           "אינטגרציה עם כלי פנימי",
-          "אגנט מותאם + API calls",
+          "סוכן מותאם + API calls",
           "גבוהה"
         ],
         [
           "תבניות קוד ספציפיות",
-          "code templates + אגנט Dev",
+          "code templates + סוכן Dev",
           "נמוכה"
         ],
         [
           "compliance (GDPR/SOC2)",
-          "אגנט Compliance + workflows",
+          "סוכן Compliance + workflows",
           "גבוהה"
         ],
         [
@@ -1156,7 +1156,7 @@
         ],
         [
           "דוחות מנהלים",
-          "אגנט Reports + תבניות",
+          "סוכן Reports + תבניות",
           "בינונית"
         ],
         [

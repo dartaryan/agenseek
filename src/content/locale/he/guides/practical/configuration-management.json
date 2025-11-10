@@ -3,7 +3,7 @@
     "id": "configuration-management",
     "slug": "configuration-management",
     "title": "ניהול תצורה ו-Version Control",
-    "description": "מדריך מקיף לניהול קבצי תצורה, גרסאות של אגנטים ווורקפלואים, עבודה צוותית עם Git, ושמירה על עקביות בין סביבות עבודה. למדו איך לנהל config.yaml נכון, לגבות מסמכים, לעבוד בצוות, ולשמור היסטוריה מלאה.",
+    "description": "מדריך מקיף לניהול קבצי תצורה, גרסאות של סוכנים ווורקפלואים, עבודה צוותית עם Git, ושמירה על עקביות בין סביבות עבודה. למדו איך לנהל config.yaml נכון, לגבות מסמכים, לעבוד בצוות, ולשמור היסטוריה מלאה.",
     "category": "practical",
     "difficulty": "intermediate",
     "estimatedMinutes": 35,
@@ -216,12 +216,12 @@
         ],
         [
           "user_name",
-          "השם שלכם (לאגנטים)",
+          "השם שלכם (לסוכנים)",
           "John Doe"
         ],
         [
           "communication_language",
-          "שפת תקשורת עם אגנטים",
+          "שפת תקשורת עם סוכנים",
           "English / Hebrew"
         ],
         [
@@ -275,7 +275,7 @@
       "items": [
         {
           "title": "שינוי שפת תקשורת לעברית",
-          "content": "```yaml\n# לפני:\ncommunication_language: English\n\n# אחרי:\ncommunication_language: Hebrew\n```\n\nעכשיו האגנטים ידברו איתכם בעברית!",
+          "content": "```yaml\n# לפני:\ncommunication_language: English\n\n# אחרי:\ncommunication_language: Hebrew\n```\n\nעכשיו הסוכנים ידברו איתכם בעברית!",
           "markdown": true
         },
         {
@@ -285,12 +285,12 @@
         },
         {
           "title": "שינוי רמת מיומנות",
-          "content": "```yaml\n# לפני:\nuser_skill_level: beginner\n\n# אחרי:\nuser_skill_level: intermediate\n```\n\nהאגנטים יתאימו את רמת ההסברים.",
+          "content": "```yaml\n# לפני:\nuser_skill_level: beginner\n\n# אחרי:\nuser_skill_level: intermediate\n```\n\nהסוכנים יתאימו את רמת ההסברים.",
           "markdown": true
         },
         {
           "title": "הוספת תכנון משחקים",
-          "content": "```yaml\n# לפני:\ninclude_game_planning: false\n\n# אחרי:\ninclude_game_planning: true\n```\n\nעכשיו תהיה גישה לאגנטי משחקים (Game Designer, Game Architect, Game Dev).",
+          "content": "```yaml\n# לפני:\ninclude_game_planning: false\n\n# אחרי:\ninclude_game_planning: true\n```\n\nעכשיו תהיה גישה לסוכןי משחקים (Game Designer, Game Architect, Game Dev).",
           "markdown": true
         }
       ]

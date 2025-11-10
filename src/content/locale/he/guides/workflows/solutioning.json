@@ -135,7 +135,7 @@
     },
     {
       "type": "table",
-      "headers": ["וורקפלו", "אגנט", "מתי להשתמש", "תפוקה", "זמן"],
+      "headers": ["וורקפלו", "סוכן", "מתי להשתמש", "תפוקה", "זמן"],
       "rows": [
         ["epic-tech-context", "Architect", "פעם אחת לכל Epic", "Technical Context Doc", "2-4 שעות"],
         ["story-ready", "Architect + Dev", "לכל Story לפני פיתוח", "Technical Solution + Tasks", "30-90 דקות"],

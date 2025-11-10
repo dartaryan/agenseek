@@ -162,7 +162,7 @@
       "type": "table",
       "headers": [
         "וורקפלו",
-        "אגנט",
+        "סוכן",
         "מתי להשתמש",
         "תפוקה"
       ],
@@ -522,8 +522,8 @@
     {
       "type": "callout",
       "variant": "info",
-      "title": "אגנט מיוחד",
-      "content": "game-brief מריצים דרך Game Designer, לא דרך Analyst. אם אין לכם את האגנט הזה (הוא חלק מ-Game Planning Module), תוכלו להשתמש ב-product-brief ולהתאים ידנית."
+      "title": "סוכן מיוחד",
+      "content": "game-brief מריצים דרך Game Designer, לא דרך Analyst. אם אין לכם את הסוכן הזה (הוא חלק מ-Game Planning Module), תוכלו להשתמש ב-product-brief ולהתאים ידנית."
     },
     {
       "type": "heading",

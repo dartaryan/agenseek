@@ -1303,11 +1303,11 @@
           {
             "type": "card",
             "variant": "elevated",
-            "title": "מדריך אגנטים - TEA + UX",
+            "title": "מדריך סוכנים - TEA + UX",
             "content": [
               {
                 "type": "text",
-                "content": "הכירו לעומק את Sally ואת שאר האגנטים שקשורים לעיצוב.",
+                "content": "הכירו לעומק את Sally ואת שאר הסוכנים שקשורים לעיצוב.",
                 "markdown": false
               }
             ]
