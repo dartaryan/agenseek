@@ -4,7 +4,6 @@
  */
 
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
   Dialog,
   DialogContent,
@@ -34,7 +33,6 @@ export function DeleteAccountDialog({ open, onOpenChange }: DeleteAccountDialogP
   const [confirmText, setConfirmText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const { toast } = useToast();
-  const navigate = useNavigate();
   const he = hebrewLocale.accountDeletion;
 
   // Check if confirmation text is valid (Hebrew or English)
@@ -68,9 +66,15 @@ export function DeleteAccountDialog({ open, onOpenChange }: DeleteAccountDialogP
         // Close dialog
         onOpenChange(false);
 
-        // Redirect to home page after short delay
+        // Force clear all local storage and redirect with full page reload
+        // This ensures the auth state is completely cleared
         setTimeout(() => {
-          navigate('/auth/login', { replace: true });
+          // Clear all auth-related storage
+          localStorage.clear();
+          sessionStorage.clear();
+
+          // Use window.location for full page reload to clear all state
+          window.location.href = '/auth/login';
         }, 1500);
       } else {
         toast({
