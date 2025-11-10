@@ -277,8 +277,8 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
                   key={`recent-${index}`}
                   onSelect={() => handleSelectRecentSearch(search)}
                 >
-                  <IconSearch className="ml-2 h-4 w-4" />
-                  <span>{search}</span>
+                  <IconSearch className="ml-2 h-4 w-4 flex-shrink-0" />
+                  <span className="flex-1">{search}</span>
                 </CommandItem>
               ))}
             </CommandGroup>
@@ -296,10 +296,10 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
                   onSelect={() => action.action()}
                   keywords={action.keywords}
                 >
-                  <action.icon className="ml-2 h-4 w-4" />
-                  <span>{action.label}</span>
+                  <action.icon className="ml-2 h-4 w-4 flex-shrink-0" />
+                  <span className="flex-1">{action.label}</span>
                   {action.shortcut && (
-                    <span className="mr-auto text-xs text-muted-foreground">
+                    <span className="text-xs text-slate-400 font-mono" dir="ltr">
                       {action.shortcut}
                     </span>
                   )}
@@ -319,8 +319,8 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
                   key={`guide-${result.item.id}`}
                   onSelect={() => handleSelectResult('guide', result.item.id)}
                 >
-                  <IconBook className="ml-2 h-4 w-4" />
-                  <div className="flex flex-col">
+                  <IconBook className="ml-2 h-4 w-4 flex-shrink-0" />
+                  <div className="flex flex-col flex-1 min-w-0">
                     <span
                       dangerouslySetInnerHTML={{
                         __html: highlightMatches(
@@ -330,7 +330,7 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
                       }}
                     />
                     {result.item.description && (
-                      <span className="text-xs text-muted-foreground truncate">
+                      <span className="text-xs text-slate-400 truncate">
                         {result.item.description.slice(0, 60)}...
                       </span>
                     )}
@@ -351,8 +351,8 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
                   key={`note-${result.item.id}`}
                   onSelect={() => handleSelectResult('note', result.item.id)}
                 >
-                  <IconNotes className="ml-2 h-4 w-4" />
-                  <div className="flex flex-col">
+                  <IconNotes className="ml-2 h-4 w-4 flex-shrink-0" />
+                  <div className="flex flex-col flex-1 min-w-0">
                     <span
                       dangerouslySetInnerHTML={{
                         __html: highlightMatches(
@@ -378,8 +378,8 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
                   key={`task-${result.item.id}`}
                   onSelect={() => handleSelectResult('task', result.item.id)}
                 >
-                  <IconChecklist className="ml-2 h-4 w-4" />
-                  <div className="flex flex-col">
+                  <IconChecklist className="ml-2 h-4 w-4 flex-shrink-0" />
+                  <div className="flex flex-col flex-1 min-w-0">
                     <span
                       dangerouslySetInnerHTML={{
                         __html: highlightMatches(
