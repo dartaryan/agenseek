@@ -46,6 +46,7 @@ export function OnboardingWizardPage() {
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
   const [selectedExperience, setSelectedExperience] = useState<string | null>(null);
+  const [isSkipping, setIsSkipping] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
   const { user, refreshProfile } = useAuth();
@@ -67,6 +68,8 @@ export function OnboardingWizardPage() {
       console.error('[Onboarding] No user ID found');
       return;
     }
+
+    setIsSkipping(true);
 
     try {
       // Check if profile exists first
@@ -155,6 +158,7 @@ export function OnboardingWizardPage() {
         description: 'נכשל בדילוג על און בורדינג. אנא נסה שוב.',
         variant: 'destructive',
       });
+      setIsSkipping(false);
     }
   };
 
@@ -179,7 +183,7 @@ export function OnboardingWizardPage() {
         <div className="w-full max-w-2xl">
           <AnimatePresence mode="wait">
             {currentStep === 1 && (
-              <WelcomeStep key="welcome" onNext={handleNext} onSkip={handleSkip} />
+              <WelcomeStep key="welcome" onNext={handleNext} onSkip={handleSkip} isSkipping={isSkipping} />
             )}
             {currentStep === 2 && (
               <AvatarSelectionStep
@@ -192,6 +196,7 @@ export function OnboardingWizardPage() {
                 }}
                 onBack={handleBack}
                 onSkip={handleSkip}
+                isSkipping={isSkipping}
               />
             )}
             {currentStep === 3 && (
@@ -245,9 +250,10 @@ export function OnboardingWizardPage() {
 interface WelcomeStepProps {
   onNext: () => void;
   onSkip: () => void;
+  isSkipping: boolean;
 }
 
-function WelcomeStep({ onNext, onSkip }: WelcomeStepProps) {
+function WelcomeStep({ onNext, onSkip, isSkipping }: WelcomeStepProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -304,7 +310,12 @@ function WelcomeStep({ onNext, onSkip }: WelcomeStepProps) {
         transition={{ delay: 0.7 }}
         className="space-y-4"
       >
-        <Button size="lg" onClick={onNext} className="text-lg px-8 py-6 h-auto group">
+        <Button
+          size="lg"
+          onClick={onNext}
+          disabled={isSkipping}
+          className="text-lg px-8 py-6 h-auto group"
+        >
           <IconRocket className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
           בואו נתאים אישית את המסע שלכם
         </Button>
@@ -313,9 +324,17 @@ function WelcomeStep({ onNext, onSkip }: WelcomeStepProps) {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }}>
           <button
             onClick={onSkip}
-            className="text-muted-foreground dark:text-gray-400 hover:text-foreground dark:hover:text-gray-300 text-sm underline underline-offset-4 transition-colors"
+            disabled={isSkipping}
+            className="text-muted-foreground dark:text-gray-400 hover:text-foreground dark:hover:text-gray-300 text-sm underline underline-offset-4 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mx-auto"
           >
-            אעשה זאת מאוחר יותר
+            {isSkipping ? (
+              <>
+                <IconLoader2 className="w-4 h-4 animate-spin" />
+                דולג...
+              </>
+            ) : (
+              'אעשה זאת מאוחר יותר'
+            )}
           </button>
         </motion.div>
       </motion.div>

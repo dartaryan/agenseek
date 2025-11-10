@@ -56,6 +56,7 @@ interface DashboardData {
   totalReadingTimeMinutes: number;
   notesCreated: number;
   tasksCompleted: number;
+  bookmarksCount: number; // Story 11.9
   currentStreakDays: number;
   earnedBadges: number;
   lockedBadges: number;
@@ -194,6 +195,12 @@ export function DashboardPage() {
         // Fetch notes count
         const { count: notesCount } = await supabase
           .from('user_notes')
+          .select('*', { count: 'exact', head: true })
+          .eq('user_id', user.id);
+
+        // Story 11.9: Fetch bookmarks count
+        const { count: bookmarksCount } = await supabase
+          .from('guide_bookmarks')
           .select('*', { count: 'exact', head: true })
           .eq('user_id', user.id);
 
@@ -455,6 +462,7 @@ export function DashboardPage() {
           totalReadingTimeMinutes,
           notesCreated: notesCount || 0,
           tasksCompleted: tasksCompletedCount || 0,
+          bookmarksCount: bookmarksCount || 0, // Story 11.9
           currentStreakDays,
           earnedBadges,
           lockedBadges,
@@ -621,6 +629,7 @@ export function DashboardPage() {
               guidesCompleted={dashboardData.guidesCompleted}
               notesCreated={dashboardData.notesCreated}
               tasksCompleted={dashboardData.tasksCompleted}
+              bookmarksCount={dashboardData.bookmarksCount}
               currentStreakDays={dashboardData.currentStreakDays}
               trends={dashboardData.trends}
             />

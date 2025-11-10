@@ -15,6 +15,7 @@ import {
   IconNote,
   IconChecklist,
   IconBookmark,
+  IconBookmarkFilled,
   IconLink,
   IconFlame,
   IconStar,
@@ -31,6 +32,7 @@ interface GuideHeaderProps {
   onAddNote?: () => void;
   onCreateTask?: () => void;
   onBookmark?: () => void;
+  isBookmarked?: boolean; // Story 11.9: Show bookmark state
   onCopyLink?: () => void;
   className?: string;
 }
@@ -62,6 +64,7 @@ export function GuideHeader({
   onAddNote,
   onCreateTask,
   onBookmark,
+  isBookmarked = false,
   onCopyLink,
   className = '',
 }: GuideHeaderProps) {
@@ -123,9 +126,13 @@ export function GuideHeader({
           <IconChecklist className="w-4 h-4 ml-1" />
           צור משימה
         </Button>
-        <Button onClick={onBookmark} variant="outline" size="sm">
-          <IconBookmark className="w-4 h-4 ml-1" />
-          שמור
+        <Button onClick={onBookmark} variant={isBookmarked ? 'default' : 'outline'} size="sm">
+          {isBookmarked ? (
+            <IconBookmarkFilled className="w-4 h-4 ml-1" />
+          ) : (
+            <IconBookmark className="w-4 h-4 ml-1" />
+          )}
+          {isBookmarked ? 'נשמר' : 'שמור'}
         </Button>
         <Button onClick={onCopyLink} variant="outline" size="sm">
           <IconLink className="w-4 h-4 ml-1" />

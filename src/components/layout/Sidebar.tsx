@@ -4,6 +4,7 @@ import {
   IconLayoutDashboard,
   IconRoute,
   IconBooks,
+  IconBookmark,
   IconNote,
   IconChecklist,
   IconUser,
@@ -47,6 +48,7 @@ const navigationItems: NavItem[] = [
   { name: hebrewLocale.nav.notes, href: '/notes', icon: IconNote, shortcut: 'Alt+3' },
   { name: hebrewLocale.nav.tasks, href: '/tasks', icon: IconChecklist, shortcut: 'Alt+4' },
   { name: 'פרופיל והגדרות', href: '/profile', icon: IconUser, shortcut: 'Alt+5' },
+  { name: 'מועדפים', href: '/bookmarks', icon: IconBookmark },
 ];
 
 const adminItems: NavItem[] = [

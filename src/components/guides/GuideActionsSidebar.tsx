@@ -13,11 +13,14 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import {
   IconBookmark,
+  IconBookmarkFilled,
   IconNote,
   IconChecklist,
   IconCheck,
   IconThumbUp,
+  IconThumbUpFilled,
   IconThumbDown,
+  IconThumbDownFilled,
   IconRotateClockwise,
 } from '@tabler/icons-react';
 
@@ -27,9 +30,11 @@ interface GuideActionsSidebarProps {
   onMarkComplete: () => void;
   onUnmarkComplete?: () => void; // Story 5.1.2: Added for toggle functionality
   onBookmark?: () => void;
+  isBookmarked?: boolean; // Story 11.9: Show bookmark state
   onAddNote?: () => void;
   onCreateTask?: () => void;
   onFeedback?: (helpful: boolean) => void;
+  userVote?: boolean | null; // Story 11.9: null = not voted, true = helpful, false = not helpful
   className?: string;
 }
 
@@ -39,9 +44,11 @@ export function GuideActionsSidebar({
   onMarkComplete,
   onUnmarkComplete,
   onBookmark,
+  isBookmarked = false,
   onAddNote,
   onCreateTask,
   onFeedback,
+  userVote = null,
   className = '',
 }: GuideActionsSidebarProps) {
   return (
@@ -116,9 +123,18 @@ export function GuideActionsSidebar({
           פעולות מהירות
         </h3>
         <div className="space-y-2">
-          <Button onClick={onBookmark} variant="ghost" className="w-full justify-start" size="sm">
-            <IconBookmark className="w-4 h-4 ml-2" />
-            שמור למועדפים
+          <Button
+            onClick={onBookmark}
+            variant={isBookmarked ? 'default' : 'ghost'}
+            className="w-full justify-start"
+            size="sm"
+          >
+            {isBookmarked ? (
+              <IconBookmarkFilled className="w-4 h-4 ml-2" />
+            ) : (
+              <IconBookmark className="w-4 h-4 ml-2" />
+            )}
+            {isBookmarked ? 'נשמר במועדפים' : 'שמור למועדפים'}
           </Button>
           <Button onClick={onAddNote} variant="ghost" className="w-full justify-start" size="sm">
             <IconNote className="w-4 h-4 ml-2" />
@@ -134,20 +150,35 @@ export function GuideActionsSidebar({
       {/* Helpful feedback */}
       <Card className="p-4">
         <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-3">
-          האם המדריך עזר לך?
+          {userVote !== null ? 'תודה על המשוב!' : 'האם המדריך עזר לך?'}
         </h3>
         <div className="flex gap-2">
-          <Button onClick={() => onFeedback?.(true)} variant="outline" className="flex-1" size="sm">
-            <IconThumbUp className="w-4 h-4 ml-1" />
+          <Button
+            onClick={() => onFeedback?.(true)}
+            variant={userVote === true ? 'default' : 'outline'}
+            className="flex-1"
+            size="sm"
+            disabled={userVote !== null}
+          >
+            {userVote === true ? (
+              <IconThumbUpFilled className="w-4 h-4 ml-1" />
+            ) : (
+              <IconThumbUp className="w-4 h-4 ml-1" />
+            )}
             כן
           </Button>
           <Button
             onClick={() => onFeedback?.(false)}
-            variant="outline"
+            variant={userVote === false ? 'default' : 'outline'}
             className="flex-1"
             size="sm"
+            disabled={userVote !== null}
           >
-            <IconThumbDown className="w-4 h-4 ml-1" />
+            {userVote === false ? (
+              <IconThumbDownFilled className="w-4 h-4 ml-1" />
+            ) : (
+              <IconThumbDown className="w-4 h-4 ml-1" />
+            )}
             לא
           </Button>
         </div>

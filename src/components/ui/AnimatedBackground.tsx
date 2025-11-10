@@ -17,6 +17,7 @@ interface AnimatedBackgroundProps {
  */
 export function AnimatedBackground({ variant }: AnimatedBackgroundProps) {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     // Check if user prefers reduced motion
@@ -29,6 +30,17 @@ export function AnimatedBackground({ variant }: AnimatedBackgroundProps) {
 
     mediaQuery.addEventListener('change', handleChange);
     return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  useEffect(() => {
+    // Check if device is mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   // Configuration for auth variant - ONLY TRIANGLES AND CIRCLES
@@ -253,7 +265,8 @@ export function AnimatedBackground({ variant }: AnimatedBackgroundProps) {
             shape.size,
             shape.position,
             shape.color,
-            shape.opacity,
+            // Apply 0.3 opacity on mobile for auth variant, otherwise use original opacity
+            isMobile && variant === 'auth' ? 'opacity-30' : shape.opacity,
             shape.animation
           )}
           style={{

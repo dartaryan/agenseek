@@ -14,6 +14,7 @@ import {
   IconTrendingUp,
   IconClipboardList,
   IconUser,
+  IconBookmark,
 } from '@tabler/icons-react';
 import { BugReportModal } from '../modals/BugReportModal';
 import {
@@ -47,6 +48,7 @@ const NAV_ITEMS: NavItem[] = [
   { icon: IconChecklist, label: 'משימות', href: '/tasks' },
   { icon: IconChartBar, label: 'התקדמות', href: '/progress' },
   { icon: IconUser, label: 'פרופיל והגדרות', href: '/profile' },
+  { icon: IconBookmark, label: 'מועדפים', href: '/bookmarks' },
 ];
 
 const ADMIN_ITEMS: NavItem[] = [

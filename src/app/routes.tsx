@@ -30,6 +30,7 @@ const NotesPage = lazy(() => import('./notes').then(m => ({ default: m.NotesPage
 const TasksPage = lazy(() => import('./tasks').then(m => ({ default: m.TasksPage })));
 const ProfilePage = lazy(() => import('./profile').then(m => ({ default: m.ProfilePage })));
 const SearchResultsPage = lazy(() => import('./search').then(m => ({ default: m.SearchResultsPage })));
+const BookmarksPage = lazy(() => import('./bookmarks').then(m => ({ default: m.BookmarksPage })));
 
 // Admin pages - lazy loaded (heavy analytics components)
 const AdminDashboardPage = lazy(() => import('./admin').then(m => ({ default: m.AdminDashboardPage })));
@@ -221,6 +222,14 @@ export const router = createBrowserRouter([
         element: (
           <RouteSuspense>
             <GuideDetailPage />
+          </RouteSuspense>
+        ),
+      },
+      {
+        path: '/bookmarks',
+        element: (
+          <RouteSuspense>
+            <BookmarksPage />
           </RouteSuspense>
         ),
       },

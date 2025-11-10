@@ -55,6 +55,9 @@ import type { Database } from '@/types/database';
 // Story 0.10.3: Journey phase completion
 import { getJourneyData, handlePhaseCompletion, getNextRecommendedGuide } from '@/lib/journey';
 import type { UserLearningProfile } from '@/lib/learning-path';
+// Story 11.9: Bookmark and voting functionality
+import { isBookmarked, toggleBookmark } from '@/lib/bookmarks';
+import { hasUserVoted, submitVote } from '@/lib/guide-votes';
 
 // Story 10.4: Lazy load heavy modals with editors
 const NoteEditorModal = lazy(() => import('@/components/notes/NoteEditorModal').then(m => ({ default: m.NoteEditorModal }))); // Story 6.3
@@ -101,6 +104,12 @@ export function GuideReaderPage() {
 
   // Story 6.7: Task creation state
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+
+  // Story 11.9: Bookmark and voting state
+  const [bookmarked, setBookmarked] = useState(false);
+  const [bookmarkLoading, setBookmarkLoading] = useState(false);
+  const [userVote, setUserVote] = useState<boolean | null>(null); // null = not voted, true = helpful, false = not helpful
+  const [voteLoading, setVoteLoading] = useState(false);
 
   // Refs
   const contentRef = useRef<HTMLDivElement>(null);
@@ -180,6 +189,27 @@ export function GuideReaderPage() {
 
     loadProgressAndLogActivity();
   }, [user, slug, guide]);
+
+  // Story 11.9: Load bookmark and vote status
+  useEffect(() => {
+    if (!user || !slug) return;
+
+    const loadBookmarkAndVoteStatus = async () => {
+      try {
+        // Check bookmark status
+        const bookmarkStatus = await isBookmarked(user.id, slug);
+        setBookmarked(bookmarkStatus);
+
+        // Check vote status
+        const voteStatus = await hasUserVoted(user.id, slug);
+        setUserVote(voteStatus);
+      } catch (err) {
+        console.error('Error loading bookmark/vote status:', err);
+      }
+    };
+
+    loadBookmarkAndVoteStatus();
+  }, [user, slug]);
 
   // Story 4.6: Resume from last position
   useEffect(() => {
@@ -643,6 +673,98 @@ export function GuideReaderPage() {
     }
   }, [user, slug, guide, toast]);
 
+  // Story 11.9: Handle bookmark toggle
+  const handleBookmarkToggle = useCallback(async () => {
+    if (!user || !slug || bookmarkLoading) return;
+
+    setBookmarkLoading(true);
+
+    try {
+      const newBookmarkStatus = await toggleBookmark(user.id, slug);
+      setBookmarked(newBookmarkStatus);
+
+      toast({
+        title: newBookmarkStatus ? 'נשמר למועדפים' : 'הוסר מהמועדפים',
+        description: newBookmarkStatus
+          ? 'המדריך נשמר ברשימת המועדפים שלך'
+          : 'המדריך הוסר מרשימת המועדפים',
+      });
+
+      // Log activity
+      if (guide) {
+        await supabase.from('user_activity').insert({
+          user_id: user.id,
+          activity_type: newBookmarkStatus ? 'bookmark_guide' : 'unbookmark_guide',
+          target_slug: slug,
+          metadata: {
+            guide_title: guide.metadata.title,
+            guide_category: guide.metadata.category,
+          },
+        });
+      }
+    } catch (err) {
+      console.error('Error toggling bookmark:', err);
+      toast({
+        title: 'שגיאה',
+        description: 'לא הצלחנו לעדכן את הסימניה',
+        variant: 'destructive',
+      });
+    } finally {
+      setBookmarkLoading(false);
+    }
+  }, [user, slug, bookmarkLoading, guide, toast]);
+
+  // Story 11.9: Handle feedback vote
+  const handleFeedbackVote = useCallback(async (isHelpful: boolean) => {
+    if (!user || !slug || voteLoading || userVote !== null) {
+      if (userVote !== null) {
+        toast({
+          title: 'כבר דירגת את המדריך הזה',
+          description: 'ניתן לדרג כל מדריך פעם אחת בלבד',
+        });
+      }
+      return;
+    }
+
+    setVoteLoading(true);
+
+    try {
+      await submitVote(user.id, slug, isHelpful);
+      setUserVote(isHelpful);
+
+      toast({
+        title: 'תודה על המשוב!',
+        description: isHelpful
+          ? 'שמחים שהמדריך עזר לך'
+          : 'נשמע, ננסה לשפר את המדריך',
+      });
+
+      // Log activity
+      if (guide) {
+        await supabase.from('user_activity').insert({
+          user_id: user.id,
+          activity_type: 'vote_guide',
+          target_slug: slug,
+          metadata: {
+            guide_title: guide.metadata.title,
+            guide_category: guide.metadata.category,
+            is_helpful: isHelpful,
+          },
+        });
+      }
+    } catch (err) {
+      console.error('Error submitting vote:', err);
+      const errorMessage = err instanceof Error ? err.message : 'לא הצלחנו לשמור את המשוב';
+      toast({
+        title: 'שגיאה',
+        description: errorMessage,
+        variant: 'destructive',
+      });
+    } finally {
+      setVoteLoading(false);
+    }
+  }, [user, slug, voteLoading, userVote, guide, toast]);
+
   // Update guide reader context for header buttons
   useEffect(() => {
     // Set state when guide is loaded
@@ -681,7 +803,7 @@ export function GuideReaderPage() {
     [isMobileTocOpen]
   );
 
-  // Story 4.8 + 6.7: Keyboard shortcuts (arrows for navigation, Ctrl+T for task)
+  // Story 4.8 + 6.7 + 11.9: Keyboard shortcuts (arrows for navigation, Ctrl+T for task, B for bookmark, +/- for feedback)
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       // Don't trigger if user is typing in an input/textarea
@@ -701,6 +823,27 @@ export function GuideReaderPage() {
         return;
       }
 
+      // Story 11.9: B = toggle bookmark
+      if (event.key === 'b' || event.key === 'B') {
+        event.preventDefault();
+        handleBookmarkToggle();
+        return;
+      }
+
+      // Story 11.9: + or = = vote helpful
+      if (event.key === '+' || event.key === '=') {
+        event.preventDefault();
+        handleFeedbackVote(true);
+        return;
+      }
+
+      // Story 11.9: - = vote not helpful
+      if (event.key === '-') {
+        event.preventDefault();
+        handleFeedbackVote(false);
+        return;
+      }
+
       // Left arrow = next guide (RTL)
       if (event.key === 'ArrowLeft' && next) {
         event.preventDefault();
@@ -716,7 +859,7 @@ export function GuideReaderPage() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [prev, next, navigate, handleCreateTask]);
+  }, [prev, next, navigate, handleCreateTask, handleBookmarkToggle, handleFeedbackVote]);
 
   // Story 10.2: Touch gestures for mobile navigation
   useSwipeGesture(contentRef, {
@@ -801,7 +944,8 @@ export function GuideReaderPage() {
               progress={scrollProgress}
               onAddNote={() => handleAddNote()}
               onCreateTask={handleCreateTask}
-              onBookmark={() => toast({ title: 'נשמר למועדפים' })}
+              onBookmark={handleBookmarkToggle}
+              isBookmarked={bookmarked}
               onCopyLink={handleCopyLink}
               className="mb-8"
             />
@@ -868,14 +1012,12 @@ export function GuideReaderPage() {
               isCompleted={isCompleted}
               onMarkComplete={handleMarkCompleteClick}
               onUnmarkComplete={handleUnmarkCompleteClick}
-              onBookmark={() => toast({ title: 'נשמר למועדפים' })}
+              onBookmark={handleBookmarkToggle}
+              isBookmarked={bookmarked}
               onAddNote={() => handleAddNote()}
               onCreateTask={handleCreateTask}
-              onFeedback={(helpful) =>
-                toast({
-                  title: helpful ? 'תודה על המשוב!' : 'נשמע, ננסה לשפר',
-                })
-              }
+              onFeedback={handleFeedbackVote}
+              userVote={userVote}
             />
           </div>
         </aside>

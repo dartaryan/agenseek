@@ -8,6 +8,7 @@ import {
   IconCircleCheck,
   IconChevronDown,
   IconChevronUp,
+  IconBookmark,
 } from '@tabler/icons-react';
 import { Card } from '../ui/card';
 import { hebrewLocale } from '../../lib/locale/he';
@@ -30,6 +31,7 @@ interface DashboardStatsProps {
   notesCreated: number;
   tasksCompleted: number;
   currentStreakDays: number;
+  bookmarksCount?: number; // Story 11.9
   // Story 5.6 - Optional trend data
   trends?: {
     readingTime?: TrendData;
@@ -37,6 +39,7 @@ interface DashboardStatsProps {
     notes?: TrendData;
     tasks?: TrendData;
     streak?: TrendData;
+    bookmarks?: TrendData; // Story 11.9
   };
 }
 
@@ -120,6 +123,7 @@ export function DashboardStats({
   notesCreated,
   tasksCompleted,
   currentStreakDays,
+  bookmarksCount = 0,
   trends,
 }: DashboardStatsProps) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -213,6 +217,13 @@ export function DashboardStats({
               value={notesCreated}
               iconColor="bg-gradient-to-br from-purple-500 to-purple-600"
               trend={trends?.notes}
+            />
+            <StatCard
+              icon={IconBookmark}
+              label="מועדפים"
+              value={bookmarksCount}
+              iconColor="bg-gradient-to-br from-amber-500 to-amber-600"
+              trend={trends?.bookmarks}
             />
             <StatCard
               icon={IconChecklist}

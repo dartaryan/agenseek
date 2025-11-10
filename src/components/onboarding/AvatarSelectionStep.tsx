@@ -10,6 +10,7 @@ import {
   IconSparkles,
   IconArrowLeft,
   IconArrowRight,
+  IconLoader2,
 } from '@tabler/icons-react';
 import { Button } from '@/components/ui/button';
 import { UserAvatar } from '@/components/ui/user-avatar';
@@ -27,6 +28,7 @@ interface AvatarSelectionStepProps {
   onNext: (config: AvatarConfig) => void;
   onBack: () => void;
   onSkip: () => void;
+  isSkipping: boolean;
 }
 
 export function AvatarSelectionStep({
@@ -35,6 +37,7 @@ export function AvatarSelectionStep({
   onNext,
   onBack,
   onSkip,
+  isSkipping,
 }: AvatarSelectionStepProps) {
   const [selectedStyle, setSelectedStyle] = useState<AvatarStyle>(
     initialConfig?.style || 'avataaars'
@@ -150,19 +153,36 @@ export function AvatarSelectionStep({
 
       {/* Navigation Buttons */}
       <div className="flex items-center justify-between">
-        <Button variant="outline" onClick={onBack} className="gap-2">
+        <Button
+          variant="outline"
+          onClick={onBack}
+          disabled={isSkipping}
+          className="gap-2"
+        >
           <IconArrowRight className="w-5 h-5" />
           חזור
         </Button>
 
         <button
           onClick={onSkip}
-          className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 underline underline-offset-4 text-sm"
+          disabled={isSkipping}
+          className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 underline underline-offset-4 text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
         >
-          דלג
+          {isSkipping ? (
+            <>
+              <IconLoader2 className="w-4 h-4 animate-spin" />
+              דולג...
+            </>
+          ) : (
+            'דלג'
+          )}
         </button>
 
-        <Button onClick={handleNext} className="gap-2">
+        <Button
+          onClick={handleNext}
+          disabled={isSkipping}
+          className="gap-2"
+        >
           הבא
           <IconArrowLeft className="w-5 h-5" />
         </Button>
