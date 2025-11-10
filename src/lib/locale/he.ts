@@ -968,7 +968,7 @@ export const hebrewLocale: LocaleStrings = {
     progress: {
       title: 'ההתקדמות שלי',
       description: 'מעקב אחר מסע הלמידה שלך',
-      heroTitle: 'מסע הלמידה שלך',
+      heroTitle: 'ההתקדמות שלך',
       heroDescription: 'עקוב אחר ההתקדמות שלך בכל המדריכים',
       overallProgress: 'התקדמות כללית',
       categoryBreakdown: 'חלוקה לפי קטגוריות',

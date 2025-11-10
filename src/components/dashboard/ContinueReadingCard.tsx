@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as TablerIcons from '@tabler/icons-react';
+import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';
 import { Card } from '../ui/card';
 import { Button } from '../ui/button';
 import { hebrewLocale } from '../../lib/locale/he';
@@ -137,7 +138,10 @@ const InProgressGuideItem = React.memo(function InProgressGuideItem({ guide }: {
 });
 
 export const ContinueReadingCard = React.memo(function ContinueReadingCard({ inProgressGuides }: ContinueReadingCardProps) {
+  const [showAll, setShowAll] = React.useState(false);
   const hasGuides = inProgressGuides.length > 0;
+  const hasMoreThanThree = inProgressGuides.length > 3;
+  const displayedGuides = showAll ? inProgressGuides : inProgressGuides.slice(0, 3);
 
   return (
     <Card className="p-6">
@@ -157,7 +161,7 @@ export const ContinueReadingCard = React.memo(function ContinueReadingCard({ inP
         {/* Guide List or Empty State */}
         {hasGuides ? (
           <div className="space-y-3">
-            {inProgressGuides.slice(0, 3).map((guide) => (
+            {displayedGuides.map((guide) => (
               <InProgressGuideItem key={guide.id} guide={guide} />
             ))}
           </div>
@@ -175,7 +179,28 @@ export const ContinueReadingCard = React.memo(function ContinueReadingCard({ inP
           </div>
         )}
 
-        {/* View All Button */}
+        {/* Show All / Show Less Button - Story 11.6 */}
+        {hasMoreThanThree && (
+          <Button
+            variant="outline"
+            className="w-full flex items-center justify-center gap-2"
+            onClick={() => setShowAll(!showAll)}
+          >
+            {showAll ? (
+              <>
+                <IconChevronUp className="w-4 h-4" stroke={1.5} />
+                <span>הצג פחות</span>
+              </>
+            ) : (
+              <>
+                <IconChevronDown className="w-4 h-4" stroke={1.5} />
+                <span>הצג הכל ({inProgressGuides.length} מדריכים)</span>
+              </>
+            )}
+          </Button>
+        )}
+
+        {/* Browse Guides Button */}
         {hasGuides && (
           <Button variant="outline" className="w-full" asChild>
             <Link to="/guides" className="flex items-center justify-center gap-2">
