@@ -15,8 +15,10 @@ import {
   IconLayoutSidebarLeftCollapse,
   IconLayoutSidebarLeftExpand,
   IconBug,
+  IconKeyboard,
 } from '@tabler/icons-react';
 import { BugReportModal } from '../modals/BugReportModal';
+import { KeyboardShortcutsModal } from '../common/KeyboardShortcutsModal';
 import { cn } from '../../lib/utils';
 import { hebrewLocale } from '../../lib/locale/he';
 import { useSidebar } from '../../contexts/SidebarContext';
@@ -70,6 +72,7 @@ const adminItems: NavItem[] = [
  */
 export function Sidebar() {
   const [showBugReportModal, setShowBugReportModal] = useState(false);
+  const [showKeyboardShortcutsModal, setShowKeyboardShortcutsModal] = useState(false);
   const location = useLocation();
   const { isCollapsed, toggle } = useSidebar();
   const { user, profile } = useAuth();
@@ -218,8 +221,22 @@ export function Sidebar() {
               </div>
             </Link>
 
-            {/* Bug Report Button - Story 11.2 - Replaces old Help Section */}
-            <div className="p-4">
+            {/* Help Section - Story 11.2 + Story 11.5 */}
+            <div className="p-4 space-y-2">
+              {/* Keyboard Shortcuts Button - Story 11.5 */}
+              <Button
+                variant="outline"
+                size="sm"
+                className="w-full justify-start gap-2"
+                onClick={() => setShowKeyboardShortcutsModal(true)}
+                aria-label="קיצורי מקלדת"
+              >
+                <IconKeyboard className="h-4 w-4" />
+                <span className="text-xs">קיצורי מקלדת</span>
+                <KeyboardShortcutHint keys="?" className="mr-auto" />
+              </Button>
+
+              {/* Bug Report Button - Story 11.2 */}
               <Button
                 variant="default"
                 size="sm"
@@ -263,6 +280,12 @@ export function Sidebar() {
       <BugReportModal
         open={showBugReportModal}
         onOpenChange={setShowBugReportModal}
+      />
+
+      {/* Keyboard Shortcuts Modal - Story 11.5 */}
+      <KeyboardShortcutsModal
+        open={showKeyboardShortcutsModal}
+        onOpenChange={setShowKeyboardShortcutsModal}
       />
     </>
   );

@@ -12,12 +12,11 @@ import { micah } from '@dicebear/collection';
 import { adventurer } from '@dicebear/collection';
 import { bigSmile } from '@dicebear/collection';
 import { funEmoji } from '@dicebear/collection';
-import { notionists } from '@dicebear/collection';
-import { notionistsNeutral } from '@dicebear/collection';
+import { croodles } from '@dicebear/collection';
+import { croodlesNeutral } from '@dicebear/collection';
 import { thumbs } from '@dicebear/collection';
-import { shapes } from '@dicebear/collection';
-import { pixelArt } from '@dicebear/collection';
-import { openPeeps } from '@dicebear/collection';
+import { identicon } from '@dicebear/collection';
+import { rings } from '@dicebear/collection';
 
 export type AvatarStyle =
   | 'avataaars'
@@ -28,12 +27,29 @@ export type AvatarStyle =
   | 'adventurer'
   | 'bigSmile'
   | 'funEmoji'
-  | 'notionists'
-  | 'notionistsNeutral'
+  | 'croodles'
+  | 'croodlesNeutral'
   | 'thumbs'
-  | 'shapes'
-  | 'pixelArt'
-  | 'openPeeps';
+  | 'identicon'
+  | 'rings';
+
+/**
+ * Check if a string is a valid AvatarStyle
+ */
+export function isValidAvatarStyle(style: string): style is AvatarStyle {
+  return ['avataaars', 'bottts', 'lorelei', 'personas', 'micah', 'adventurer', 'bigSmile', 'funEmoji', 'croodles', 'croodlesNeutral', 'thumbs', 'identicon', 'rings'].includes(style);
+}
+
+/**
+ * Normalize avatar style to ensure it's valid
+ * Returns 'avataaars' if style is invalid
+ */
+export function normalizeAvatarStyle(style: string | undefined): AvatarStyle {
+  if (!style || !isValidAvatarStyle(style)) {
+    return 'avataaars';
+  }
+  return style;
+}
 
 export interface AvatarConfig {
   style: AvatarStyle;
@@ -50,27 +66,48 @@ const styleCollections = {
   adventurer,
   bigSmile,
   funEmoji,
-  notionists,
-  notionistsNeutral,
+  croodles,
+  croodlesNeutral,
   thumbs,
-  shapes,
-  pixelArt,
-  openPeeps,
+  identicon,
+  rings,
 };
 
 /**
  * Generate avatar SVG string
+ * Fallback to 'avataaars' if style is invalid
  */
 export function generateAvatar(config: AvatarConfig): string {
-  const collection = styleCollections[config.style];
+  try {
+    const collection = styleCollections[config.style];
 
-  // Type assertion needed due to DiceBear's generic types
-  const avatar = createAvatar(collection as any, {
-    seed: config.seed,
-    ...config.options,
-  });
+    // If collection doesn't exist, fallback to avataaars
+    if (!collection) {
+      console.warn(`Avatar style '${config.style}' not found, falling back to 'avataaars'`);
+      const fallbackCollection = styleCollections.avataaars;
+      const avatar = createAvatar(fallbackCollection as any, {
+        seed: config.seed,
+        ...config.options,
+      });
+      return avatar.toString();
+    }
 
-  return avatar.toString();
+    // Type assertion needed due to DiceBear's generic types
+    const avatar = createAvatar(collection as any, {
+      seed: config.seed,
+      ...config.options,
+    });
+
+    return avatar.toString();
+  } catch (error) {
+    console.error('Error generating avatar:', error);
+    // Ultimate fallback - generate simple avataaars
+    const fallbackCollection = styleCollections.avataaars;
+    const avatar = createAvatar(fallbackCollection as any, {
+      seed: config.seed || 'default',
+    });
+    return avatar.toString();
+  }
 }
 
 /**
@@ -151,40 +188,34 @@ export const avatarStyles: Array<{
     description: 'Emoji-style avatars',
   },
   {
-    value: 'notionists',
-    label: 'Notionists',
-    labelHe: 'נושניסטים',
-    description: 'Notion-style characters',
+    value: 'croodles',
+    label: 'Croodles',
+    labelHe: 'קרודלס',
+    description: 'Hand-drawn doodle avatars',
   },
   {
-    value: 'notionistsNeutral',
-    label: 'Notionists Neutral',
-    labelHe: 'נושניסטים ניטרליים',
-    description: 'Neutral Notion-style',
+    value: 'croodlesNeutral',
+    label: 'Croodles Neutral',
+    labelHe: 'קרודלס ניטרלי',
+    description: 'Neutral doodle style',
   },
   {
     value: 'thumbs',
-    label: 'Thumbs Up',
+    label: 'Thumbs',
     labelHe: 'אגודלים',
-    description: 'Thumbs-up style avatars',
+    description: 'Thumbs up/down avatars',
   },
   {
-    value: 'shapes',
-    label: 'Geometric Shapes',
-    labelHe: 'צורות גיאומטריות',
-    description: 'Abstract geometric avatars',
+    value: 'identicon',
+    label: 'Identicon',
+    labelHe: 'איידנטיקון',
+    description: 'Geometric patterns',
   },
   {
-    value: 'pixelArt',
-    label: 'Pixel Art',
-    labelHe: 'אומנות פיקסלים',
-    description: 'Retro pixel-style avatars',
-  },
-  {
-    value: 'openPeeps',
-    label: 'Open Peeps',
-    labelHe: 'אנשים פתוחים',
-    description: 'Hand-drawn people library',
+    value: 'rings',
+    label: 'Rings',
+    labelHe: 'טבעות',
+    description: 'Colorful ring patterns',
   },
 ];
 
@@ -194,7 +225,7 @@ export const avatarStyles: Array<{
  */
 export function generateAvatarPreviews(
   style: AvatarStyle,
-  count: number = 36
+  count: number = 48
 ): Array<{ seed: string; config: AvatarConfig }> {
   const previews: Array<{ seed: string; config: AvatarConfig }> = [];
 
@@ -219,7 +250,7 @@ export function generateAvatarPreviews(
  */
 export function generatePreviews(
   style: AvatarStyle,
-  count: number = 24
+  count: number = 36
 ): Array<AvatarConfig> {
   return generateAvatarPreviews(style, count).map((p) => p.config);
 }

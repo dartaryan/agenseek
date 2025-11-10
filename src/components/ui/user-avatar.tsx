@@ -2,14 +2,14 @@
  * User Avatar Component
  * Story 0.3: User Avatar Picture Selection
  * Story 0.10.1: Fixed avatar display - always shows selected avatar
- * 
+ *
  * Displays user avatar using DiceBear with Agenseek logo as loading placeholder.
  * If no config is provided, generates a default avatar based on userId.
  * Logo only shows briefly while the avatar image is loading.
  */
 
 import { useMemo, useState } from 'react';
-import { generateAvatarDataUrl, type AvatarConfig, getDefaultAvatarConfig } from '@/lib/avatar';
+import { generateAvatarDataUrl, type AvatarConfig, getDefaultAvatarConfig, normalizeAvatarStyle } from '@/lib/avatar';
 import { cn } from '@/lib/utils';
 import AgenseekLogo from '@/assets/agenseek-logo.svg';
 
@@ -29,23 +29,36 @@ const sizeClasses = {
 
 /**
  * User avatar component that renders DiceBear avatar
- * 
+ *
  * Shows Agenseek logo only briefly while the avatar image is loading.
  * Always renders the avatar - either from provided config or generates default from userId.
  */
 export function UserAvatar({ config, userId, size = 'md', className }: UserAvatarProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
-  
+
   // Generate avatar config - either use provided config or generate default
+  // Normalize style to ensure it's valid (handles legacy/removed styles)
   const avatarConfig = useMemo(() => {
-    if (config) return config;
+    if (config) {
+      // Normalize the style in case it's an old/invalid style
+      return {
+        ...config,
+        style: normalizeAvatarStyle(config.style),
+      };
+    }
     if (userId) return getDefaultAvatarConfig(userId);
     return getDefaultAvatarConfig('default');
   }, [config, userId]);
 
   const avatarUrl = useMemo(() => {
-    return generateAvatarDataUrl(avatarConfig);
-  }, [avatarConfig]);
+    try {
+      return generateAvatarDataUrl(avatarConfig);
+    } catch (error) {
+      console.error('Error generating avatar URL:', error);
+      // Return a fallback avatar if generation fails
+      return generateAvatarDataUrl(getDefaultAvatarConfig(userId || 'default'));
+    }
+  }, [avatarConfig, userId]);
 
   // Show logo only while image is still loading
   const showPlaceholder = !imageLoaded;
@@ -67,7 +80,7 @@ export function UserAvatar({ config, userId, size = 'md', className }: UserAvata
           aria-hidden="true"
         />
       )}
-      
+
       {/* Actual Avatar */}
       <img
         src={avatarUrl}
