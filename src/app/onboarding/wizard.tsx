@@ -199,14 +199,14 @@ export function OnboardingWizardPage() {
       {/* Story 6.15: Animated background shapes */}
       <AnimatedBackground variant="auth" />
 
-      {/* Emergency Logout Button - Fixed at top left */}
-      <div className="absolute top-4 left-4 z-30">
+      {/* Emergency Logout Button - Floating at bottom right (mobile) or top left (desktop) */}
+      <div className="fixed bottom-4 right-4 md:top-4 md:left-4 md:bottom-auto md:right-auto z-30">
         <Button
-          variant="ghost"
+          variant="outline"
           size="sm"
           onClick={handleEmergencyLogout}
           disabled={isLoggingOut}
-          className="text-muted-foreground hover:text-destructive"
+          className="shadow-lg text-xs text-muted-foreground hover:text-destructive bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm"
         >
           {isLoggingOut ? 'מתנתק...' : 'התנתק'}
         </Button>
@@ -369,7 +369,7 @@ function WelcomeStep({ onNext, onSkip, isSkipping }: WelcomeStepProps) {
             {isSkipping ? (
               <>
                 <IconLoader2 className="w-4 h-4 animate-spin" />
-                דולג...
+                מדלג...
               </>
             ) : (
               'אעשה זאת מאוחר יותר'

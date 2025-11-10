@@ -171,7 +171,7 @@ export function AvatarSelectionStep({
           {isSkipping ? (
             <>
               <IconLoader2 className="w-4 h-4 animate-spin" />
-              דולג...
+              מדלג...
             </>
           ) : (
             'דלג'
