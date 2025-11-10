@@ -22,15 +22,16 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { useAuth } from '@/hooks/useAuth';
-import { getBookmarks, removeBookmark, type Bookmark } from '@/lib/bookmarks';
+import { getBookmarks, removeBookmark } from '@/lib/bookmarks';
 import { guideCatalog } from '@/lib/guide-catalog';
+import type { GuideCategory, GuideDifficulty } from '@/types/guide-catalog';
 import { toast } from '@/hooks/use-toast';
 
 type GuideWithBookmark = {
   id: string;
   title: string;
-  category: string;
-  difficulty?: string;
+  category: GuideCategory;
+  difficulty?: GuideDifficulty;
   estimatedMinutes?: number;
   description?: string;
   bookmarkedAt: string;
@@ -41,7 +42,6 @@ type SortOption = 'recent' | 'alphabetical' | 'category';
 export function BookmarksPage() {
   const navigate = useNavigate();
   const { user } = useAuth();
-  const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
   const [bookmarkedGuides, setBookmarkedGuides] = useState<GuideWithBookmark[]>([]);
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState<SortOption>('recent');
@@ -55,10 +55,9 @@ export function BookmarksPage() {
       setLoading(true);
       try {
         const userBookmarks = await getBookmarks(user.id);
-        setBookmarks(userBookmarks);
 
-        // Join with guide catalog
-        const guidesWithBookmarks: GuideWithBookmark[] = userBookmarks
+        // Join with guide catalog and filter out nulls
+        const guidesWithBookmarks = userBookmarks
           .map((bookmark) => {
             const guide = guideCatalog.find((g) => g.id === bookmark.guide_slug);
             if (!guide) return null;
@@ -70,7 +69,7 @@ export function BookmarksPage() {
               estimatedMinutes: guide.estimatedMinutes,
               description: guide.description,
               bookmarkedAt: bookmark.created_at,
-            };
+            } as GuideWithBookmark;
           })
           .filter((g): g is GuideWithBookmark => g !== null);
 
@@ -114,7 +113,6 @@ export function BookmarksPage() {
       await removeBookmark(user.id, guideSlug);
 
       // Update local state
-      setBookmarks((prev) => prev.filter((b) => b.guide_slug !== guideSlug));
       setBookmarkedGuides((prev) => prev.filter((g) => g.id !== guideSlug));
 
       toast({

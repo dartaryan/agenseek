@@ -724,6 +724,37 @@ export interface Database {
           },
         ];
       };
+      guide_votes: {
+        Row: {
+          id: string;
+          user_id: string;
+          guide_slug: string;
+          is_helpful: boolean;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          guide_slug: string;
+          is_helpful: boolean;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          guide_slug?: string;
+          is_helpful?: boolean;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'guide_votes_user_id_fkey';
+            columns: ['user_id'];
+            referencedRelation: 'profiles';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
     };
     Views: {
       [_ in never]: never;
@@ -740,6 +771,22 @@ export interface Database {
           p_guide_slug: string;
         };
         Returns: void;
+      };
+      increment_helpful_votes: {
+        Args: {
+          guide_slug_param: string;
+        };
+        Returns: void;
+      };
+      increment_not_helpful_votes: {
+        Args: {
+          guide_slug_param: string;
+        };
+        Returns: void;
+      };
+      delete_own_account: {
+        Args: Record<string, never>;
+        Returns: Json;
       };
     };
     Enums: {
