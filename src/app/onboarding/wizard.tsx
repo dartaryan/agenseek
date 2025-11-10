@@ -47,9 +47,27 @@ export function OnboardingWizardPage() {
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
   const [selectedExperience, setSelectedExperience] = useState<string | null>(null);
   const [isSkipping, setIsSkipping] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
   const { user, refreshProfile } = useAuth();
+
+  // Emergency logout handler for stuck users
+  const handleEmergencyLogout = async () => {
+    setIsLoggingOut(true);
+    try {
+      await supabase.auth.signOut();
+      localStorage.clear();
+      sessionStorage.clear();
+      window.location.href = '/auth/login';
+    } catch (error) {
+      console.error('[Onboarding] Emergency logout error:', error);
+      // Force logout anyway
+      localStorage.clear();
+      sessionStorage.clear();
+      window.location.href = '/auth/login';
+    }
+  };
 
   const handleNext = () => {
     if (currentStep < TOTAL_STEPS) {
@@ -94,6 +112,12 @@ export function OnboardingWizardPage() {
 
         if (createError) {
           console.error('[Onboarding Skip] Error creating profile:', createError);
+          toast({
+            title: 'שגיאה ביצירת פרופיל',
+            description: `לא הצלחנו ליצור פרופיל חדש. לחץ על "התנתק" בפינה השמאלית העליונה. שגיאה: ${createError.message}`,
+            variant: 'destructive',
+            duration: 10000,
+          });
           throw createError;
         }
       } else {
@@ -153,10 +177,12 @@ export function OnboardingWizardPage() {
       navigate('/dashboard');
     } catch (error) {
       console.error('[Onboarding Skip] Error:', error);
+      const errorMessage = error instanceof Error ? error.message : 'שגיאה לא ידועה';
       toast({
-        title: 'שגיאה',
-        description: 'נכשל בדילוג על און בורדינג. אנא נסה שוב.',
+        title: 'שגיאה בדילוג על און בורדינג',
+        description: `${errorMessage}. אם אתה תקוע, לחץ על "התנתק" בפינה השמאלית העליונה.`,
         variant: 'destructive',
+        duration: 10000,
       });
       setIsSkipping(false);
     }
@@ -172,6 +198,19 @@ export function OnboardingWizardPage() {
     <div className="relative min-h-screen bg-gradient-to-br from-emerald-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex flex-col">
       {/* Story 6.15: Animated background shapes */}
       <AnimatedBackground variant="auth" />
+
+      {/* Emergency Logout Button - Fixed at top left */}
+      <div className="absolute top-4 left-4 z-30">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={handleEmergencyLogout}
+          disabled={isLoggingOut}
+          className="text-muted-foreground hover:text-destructive"
+        >
+          {isLoggingOut ? 'מתנתק...' : 'התנתק'}
+        </Button>
+      </div>
 
       {/* Progress Stepper - Fixed at top with padding */}
       <div className="w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-border dark:border-gray-700 py-6 px-6 sticky top-0 z-20 shadow-sm">
