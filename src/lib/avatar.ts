@@ -12,6 +12,12 @@ import { micah } from '@dicebear/collection';
 import { adventurer } from '@dicebear/collection';
 import { bigSmile } from '@dicebear/collection';
 import { funEmoji } from '@dicebear/collection';
+import { notionists } from '@dicebear/collection';
+import { notionistsNeutral } from '@dicebear/collection';
+import { thumbs } from '@dicebear/collection';
+import { shapes } from '@dicebear/collection';
+import { pixelArt } from '@dicebear/collection';
+import { openPeeps } from '@dicebear/collection';
 
 export type AvatarStyle =
   | 'avataaars'
@@ -21,7 +27,13 @@ export type AvatarStyle =
   | 'micah'
   | 'adventurer'
   | 'bigSmile'
-  | 'funEmoji';
+  | 'funEmoji'
+  | 'notionists'
+  | 'notionistsNeutral'
+  | 'thumbs'
+  | 'shapes'
+  | 'pixelArt'
+  | 'openPeeps';
 
 export interface AvatarConfig {
   style: AvatarStyle;
@@ -38,6 +50,12 @@ const styleCollections = {
   adventurer,
   bigSmile,
   funEmoji,
+  notionists,
+  notionistsNeutral,
+  thumbs,
+  shapes,
+  pixelArt,
+  openPeeps,
 };
 
 /**
@@ -132,6 +150,42 @@ export const avatarStyles: Array<{
     labelHe: 'אימוג׳ים כיפיים',
     description: 'Emoji-style avatars',
   },
+  {
+    value: 'notionists',
+    label: 'Notionists',
+    labelHe: 'נושניסטים',
+    description: 'Notion-style characters',
+  },
+  {
+    value: 'notionistsNeutral',
+    label: 'Notionists Neutral',
+    labelHe: 'נושניסטים ניטרליים',
+    description: 'Neutral Notion-style',
+  },
+  {
+    value: 'thumbs',
+    label: 'Thumbs Up',
+    labelHe: 'אגודלים',
+    description: 'Thumbs-up style avatars',
+  },
+  {
+    value: 'shapes',
+    label: 'Geometric Shapes',
+    labelHe: 'צורות גיאומטריות',
+    description: 'Abstract geometric avatars',
+  },
+  {
+    value: 'pixelArt',
+    label: 'Pixel Art',
+    labelHe: 'אומנות פיקסלים',
+    description: 'Retro pixel-style avatars',
+  },
+  {
+    value: 'openPeeps',
+    label: 'Open Peeps',
+    labelHe: 'אנשים פתוחים',
+    description: 'Hand-drawn people library',
+  },
 ];
 
 /**
@@ -140,7 +194,7 @@ export const avatarStyles: Array<{
  */
 export function generateAvatarPreviews(
   style: AvatarStyle,
-  count: number = 24
+  count: number = 36
 ): Array<{ seed: string; config: AvatarConfig }> {
   const previews: Array<{ seed: string; config: AvatarConfig }> = [];
 
@@ -165,7 +219,7 @@ export function generateAvatarPreviews(
  */
 export function generatePreviews(
   style: AvatarStyle,
-  count: number = 12
+  count: number = 24
 ): Array<AvatarConfig> {
   return generateAvatarPreviews(style, count).map((p) => p.config);
 }

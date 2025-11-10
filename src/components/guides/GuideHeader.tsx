@@ -113,8 +113,8 @@ export function GuideHeader({
         </div>
       </div>
 
-      {/* Action bar */}
-      <div className="flex flex-wrap gap-2 pt-2 border-t border-gray-200 dark:border-gray-700">
+      {/* Action bar - Mobile only */}
+      <div className="flex md:hidden flex-wrap gap-2 pt-2 border-t border-gray-200 dark:border-gray-700">
         <Button onClick={onAddNote} variant="outline" size="sm">
           <IconNote className="w-4 h-4 ml-1" />
           הוסף הערה

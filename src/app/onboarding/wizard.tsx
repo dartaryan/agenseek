@@ -175,7 +175,7 @@ export function OnboardingWizardPage() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex items-center justify-center p-6 pt-12">
+      <div className="relative z-10 flex-1 flex items-center justify-center p-6 pt-12">
         <div className="w-full max-w-2xl">
           <AnimatePresence mode="wait">
             {currentStep === 1 && (
@@ -330,10 +330,6 @@ function WelcomeStep({ onNext, onSkip }: WelcomeStepProps) {
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-primary rounded-full" />
           <span>6 שלבים מהירים</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 bg-primary rounded-full" />
-          <span>3 דקות</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-primary rounded-full" />
@@ -1189,13 +1185,9 @@ function LearningPathStep({
                     <h4 className="font-semibold text-foreground dark:text-white mb-1">
                       {guide.title}
                     </h4>
-                    <p className="text-sm text-muted-foreground dark:text-gray-400 mb-2">
+                    <p className="text-sm text-muted-foreground dark:text-gray-400">
                       {guide.description}
                     </p>
-                    <span className="inline-flex items-center text-xs text-muted-foreground dark:text-muted-foreground">
-                      <IconClock className="w-3 h-3 ml-1" />
-                      {guide.estimatedMinutes} דקות
-                    </span>
                   </div>
                 </motion.div>
               ))}
@@ -1215,17 +1207,7 @@ function LearningPathStep({
           <span className="font-semibold text-primary">
             {guideSections.reduce((total, section) => total + section.guides.length, 0)} מדריכים
           </span>{' '}
-          נבחרו עבורך •{' '}
-          <span className="font-semibold text-primary">
-            ~
-            {guideSections.reduce(
-              (total, section) =>
-                total + section.guides.reduce((sum, guide) => sum + guide.estimatedMinutes, 0),
-              0
-            )}{' '}
-            דקות
-          </span>{' '}
-          של למידה
+          נבחרו עבורך במסע הלמידה שלך
         </p>
       </motion.div>
 
@@ -1254,24 +1236,5 @@ function LearningPathStep({
         </Button>
       </motion.div>
     </motion.div>
-  );
-}
-
-// Missing IconClock - add it inline
-function IconClock({ className }: { className?: string }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="12" cy="12" r="10" />
-      <polyline points="12 6 12 12 16 14" />
-    </svg>
   );
 }
