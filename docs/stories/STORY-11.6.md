@@ -539,7 +539,7 @@ Does tags table exist in DB?
 **Completion Date:** November 10, 2025
 **Story Type:** Bug Fix + Enhancement (Epic 11)
 **Estimated Effort:** 3 story points (~3.5-4 hours)
-**Actual Effort:** ~1 hour
+**Actual Effort:** ~1.5 hours
 
 ---
 
@@ -751,5 +751,104 @@ Added expand/collapse functionality to Continue Reading card when user has >3 in
 
 ---
 
-*Dashboard is now fully functional with enhanced Continue Reading section!*
+### Additional Fixes & Enhancements (November 10, 2025)
+
+**Issue #1: Activity Feed empty state "shows nothing"**
+- **Problem:** Empty state was subtle - when user has no activities, it looked like the section was broken
+- **Fix:** Enhanced empty state with:
+  - Bold title: "אין פעילות אחרונה"
+  - Helpful subtitle: "התחל לקרוא מדריכים כדי לראות את הפעילות שלך כאן"
+  - CTA button: "התחל לקרוא" → links to `/guides`
+- **Result:** Empty state now clearly explains why it's empty and provides action
+
+**Issue #2: Activity Feed "View All" link wrong**
+- **Problem:** "View All Activity" button went to `/profile` instead of `/progress`
+- **Fix:** Changed link from `/profile` to `/progress` where full activity history is now displayed
+- **Result:** Button now correctly navigates to progress page
+
+**Issue #3: Achievements (הישגים) navigation - add proper sections**
+- **Problem:** Achievements link was correct (`/progress`) but the page needed better organization
+- **Solution:** Added two new sections to Progress page:
+
+  **3a. All Badges Section** (before category breakdown):
+  - Shows all possible badges (earned + locked) in responsive grid
+  - Grid: 3 cols mobile, 4-5 cols tablet, 6 cols desktop
+  - Earned badges displayed first, then locked badges
+  - Click any badge to open BadgeModal with details
+  - Shows count: "השגת X מתוך Y תגים"
+  - Integrated with existing `useAchievements` hook
+
+  **3b. Full Activity Feed Section** (after category breakdown):
+  - Complete activity history (not just last 10)
+  - Collapsible: Shows first 5, "הצג הכל" expands to show all
+  - Shows count in expand button: "הצג הכל (X)"
+  - Empty state with helpful message and CTA
+  - Each activity clickable with proper icon
+  - Time formatting: "עכשיו", "לפני X דקות", etc.
+
+**Files Modified:**
+- `src/components/dashboard/ActivityFeedCard.tsx` - Enhanced empty state, fixed "View All" link
+- `src/app/progress/index.tsx` - Added badges section and full activities feed
+- `src/components/dashboard/BadgeModal.tsx` - Fixed duplicate close button issue
+
+---
+
+### Additional Polish & Bug Fixes (November 10, 2025 - Round 2)
+
+**Issue #4: BadgeModal duplicate close buttons**
+- **Problem:** Modal had two X buttons for closing - one from custom code and one from the Dialog component
+- **Fix:** Removed custom close button from `DialogHeader`, keeping only the Dialog's built-in close button
+- **Files Modified:** `src/components/dashboard/BadgeModal.tsx`
+
+**Issue #5: Badges section should be collapsible**
+- **Problem:** All badges section always displayed, making the page very long
+- **Solution:** Made badges section collapsible with toggle button:
+  - Added `showAllBadges` state (default: `false`)
+  - Added "הצג הכל" / "הצג פחות" button with chevron icons
+  - Badges grid only renders when `showAllBadges` is `true`
+  - Maintains badge count display even when collapsed
+- **Files Modified:** `src/app/progress/index.tsx`
+
+---
+
+### Technical Implementation Details
+
+**Progress Page Enhancements:**
+1. Added imports for badges and activities components
+2. Added interfaces: `Activity` type
+3. Added state: `selectedBadge`, `showBadgeModal`, `showAllActivities`
+4. Added achievements hook: `useAchievements()`
+5. Added activities fetching in `useEffect`
+6. Added helper functions: `getActivityDescription`, `getActivityLink`, `getActivityIcon`, `formatActivityTime`
+7. Added two new JSX sections:
+   - All Badges Grid section
+   - Full Activity Feed section with collapse
+8. Added BadgeModal at end for badge details
+
+**Activity Feed Improvements:**
+- Enhanced empty state from subtle icon to clear CTA
+- Fixed "View All" navigation from `/profile` to `/progress`
+- Maintains all existing functionality (grouping, icons, time formatting)
+
+---
+
+### Final Build Status
+
+✅ **Build Success** (no errors, no warnings except chunk size)
+
+**All Dashboard & Progress Issues Resolved:**
+1. ✅ All navigation links verified and working
+2. ✅ Tags investigated - not an issue (data layer only)
+3. ✅ "Show All" button added to Continue Reading (dashboard)
+4. ✅ Activity Feed empty state enhanced with clear CTA
+5. ✅ Activity Feed "View All" link fixed (dashboard → progress)
+6. ✅ All Badges section added to Progress page (collapsible)
+7. ✅ Full Activity Feed section added to Progress page (collapsible)
+8. ✅ Achievements navigation fully functional with proper sections
+9. ✅ BadgeModal duplicate close button fixed
+10. ✅ Badges section made collapsible with toggle button
+
+---
+
+*Dashboard and Progress page now fully functional with enhanced sections, clear navigation, and polished UX!*
 

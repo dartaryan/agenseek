@@ -25,9 +25,22 @@ import {
   IconPlayerPlay,
   IconReload,
   IconFileDownload,
+  IconTrophy,
+  IconChevronDown,
+  IconChevronUp,
+  IconCircleCheck,
+  IconNote,
+  IconChecklist,
+  IconMessage,
+  IconStarFilled,
 } from '@tabler/icons-react';
 import type { GuideCatalogEntry } from '../../types/guide-catalog';
 import type { CategorizedGuides } from '../../lib/learning-path';
+import { useAchievements } from '../../hooks/useAchievements';
+import { BadgeDisplay } from '../../components/dashboard/BadgeDisplay';
+import { BadgeModal } from '../../components/dashboard/BadgeModal';
+import type { BadgeDefinition } from '../../lib/achievements';
+import { getBadgeProgress } from '../../lib/achievements';
 
 /**
  * Progress Details Page (Protected)
@@ -58,6 +71,14 @@ interface CategoryProgress {
   percentage: number;
 }
 
+interface Activity {
+  id: string;
+  type: 'view_guide' | 'complete_guide' | 'create_note' | 'create_task' | 'earn_achievement' | 'comment_reply' | 'solution_marked';
+  description: string;
+  link?: string;
+  timestamp: string;
+}
+
 interface ProgressData {
   totalGuides: number;
   guidesCompleted: number;
@@ -72,6 +93,7 @@ interface ProgressData {
     optional: CategoryProgress;
   };
   allGuidesWithProgress: GuideWithProgress[];
+  recentActivities: Activity[];
 }
 
 export function ProgressDetailsPage() {
@@ -79,6 +101,13 @@ export function ProgressDetailsPage() {
   const [progressData, setProgressData] = useState<ProgressData | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
+  const [selectedBadge, setSelectedBadge] = useState<BadgeDefinition | null>(null);
+  const [showBadgeModal, setShowBadgeModal] = useState(false);
+  const [showAllActivities, setShowAllActivities] = useState(false);
+  const [showAllBadges, setShowAllBadges] = useState(false);
+
+  // Story 11.6: Load achievements
+  const { earnedBadges, lockedBadges, stats, loading: achievementsLoading } = useAchievements();
 
   useEffect(() => {
     async function fetchProgressData() {
@@ -134,6 +163,21 @@ export function ProgressDetailsPage() {
         );
         const categoryProgress = getAllCategoryProgress(categorizedGuides, completedGuideIds);
 
+        // Story 11.6: Fetch activities for full feed
+        const { data: activities } = await supabase
+          .from('user_activity')
+          .select('*')
+          .eq('user_id', user.id)
+          .order('created_at', { ascending: false });
+
+        const recentActivities: Activity[] = activities?.map((activity) => ({
+          id: activity.id,
+          type: activity.activity_type as Activity['type'],
+          description: getActivityDescription(activity.activity_type, activity.metadata as { guide_title?: string } | null),
+          link: getActivityLink(activity.activity_type, activity.target_slug),
+          timestamp: activity.created_at,
+        })) || [];
+
         setProgressData({
           totalGuides,
           guidesCompleted,
@@ -143,6 +187,7 @@ export function ProgressDetailsPage() {
           categorizedGuides,
           categoryProgress,
           allGuidesWithProgress,
+          recentActivities,
         });
       } catch (error) {
         console.error('Error fetching progress data:', error);
@@ -153,6 +198,87 @@ export function ProgressDetailsPage() {
 
     fetchProgressData();
   }, [user, profile]);
+
+  // Activity helper functions - Story 11.6
+  function getActivityDescription(type: string, metadata: { guide_title?: string } | null): string {
+    switch (type) {
+      case 'guide_started':
+      case 'view_guide':
+        return `קראת את "${metadata?.guide_title || 'מדריך'}"`;
+      case 'guide_read':
+        return `המשכת לקרוא "${metadata?.guide_title || 'מדריך'}"`;
+      case 'complete_guide':
+        return `השלמת את "${metadata?.guide_title || 'מדריך'}"`;
+      case 'uncomplete_guide':
+        return `סימנת כלא הושלם את "${metadata?.guide_title || 'מדריך'}"`;
+      case 'create_note':
+        return 'יצרת הערה חדשה';
+      case 'create_task':
+        return 'הוספת משימה חדשה';
+      case 'earn_achievement':
+        return `קיבלת הישג חדש!`;
+      default:
+        return 'פעילות חדשה';
+    }
+  }
+
+  function getActivityLink(type: string, targetSlug: string | null): string | undefined {
+    if (!targetSlug) return undefined;
+
+    switch (type) {
+      case 'guide_started':
+      case 'guide_read':
+      case 'view_guide':
+      case 'complete_guide':
+      case 'uncomplete_guide':
+        return `/guides/${targetSlug}`;
+      case 'create_note':
+        return `/notes`;
+      case 'create_task':
+        return `/tasks`;
+      case 'earn_achievement':
+        return `/progress`;
+      default:
+        return undefined;
+    }
+  }
+
+  function getActivityIcon(type: Activity['type']) {
+    switch (type) {
+      case 'view_guide':
+        return <IconBook className="w-5 h-5 text-blue-500" stroke={1.5} />;
+      case 'complete_guide':
+        return <IconCircleCheck className="w-5 h-5 text-emerald-500" stroke={1.5} />;
+      case 'create_note':
+        return <IconNote className="w-5 h-5 text-purple-500" stroke={1.5} />;
+      case 'create_task':
+        return <IconChecklist className="w-5 h-5 text-amber-500" stroke={1.5} />;
+      case 'earn_achievement':
+        return <IconTrophy className="w-5 h-5 text-yellow-500" stroke={1.5} />;
+      case 'comment_reply':
+        return <IconMessage className="w-5 h-5 text-blue-500" stroke={1.5} />;
+      case 'solution_marked':
+        return <IconStarFilled className="w-5 h-5 text-amber-500" stroke={1.5} />;
+    }
+  }
+
+  function formatActivityTime(dateString: string): string {
+    const now = new Date();
+    const activityTime = new Date(dateString);
+    const diffInMinutes = Math.floor((now.getTime() - activityTime.getTime()) / (1000 * 60));
+
+    if (diffInMinutes < 1) {
+      return 'עכשיו';
+    } else if (diffInMinutes < 60) {
+      return `לפני ${diffInMinutes} דקות`;
+    } else if (diffInMinutes < 24 * 60) {
+      const hours = Math.floor(diffInMinutes / 60);
+      return `לפני ${hours} שעות`;
+    } else {
+      const days = Math.floor(diffInMinutes / (24 * 60));
+      return `לפני ${days} ימים`;
+    }
+  }
 
   // Filter guides based on active filter
   const getFilteredGuides = (guides: GuideWithProgress[]) => {
@@ -320,6 +446,82 @@ export function ProgressDetailsPage() {
           </Card>
         </div>
 
+        {/* All Badges Section - Story 11.6 (Collapsible) */}
+        {!achievementsLoading && (
+          <Card className="p-4 md:p-6">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <IconTrophy className="w-6 h-6 text-amber-500" stroke={1.5} />
+                  <div>
+                    <h2 className="text-lg md:text-xl font-bold text-foreground">
+                      כל התגים האפשריים
+                    </h2>
+                    <p className="text-sm text-muted-foreground">
+                      השגת {earnedBadges.length} מתוך {earnedBadges.length + lockedBadges.length} תגים
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowAllBadges(!showAllBadges)}
+                  className="gap-2"
+                >
+                  {showAllBadges ? (
+                    <>
+                      <IconChevronUp className="w-4 h-4" stroke={1.5} />
+                      <span>הצג פחות</span>
+                    </>
+                  ) : (
+                    <>
+                      <IconChevronDown className="w-4 h-4" stroke={1.5} />
+                      <span>הצג הכל</span>
+                    </>
+                  )}
+                </Button>
+              </div>
+
+              {/* All Badges Grid - Collapsible */}
+              {showAllBadges && (
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4">
+                  {/* Earned Badges */}
+                  {earnedBadges.map((achievement) => (
+                    <BadgeDisplay
+                      key={achievement.badge_id}
+                      badge={achievement.badge}
+                      earned={true}
+                      progress={stats ? getBadgeProgress(achievement.badge_id, stats) : undefined}
+                      size="medium"
+                      onClick={() => {
+                        setSelectedBadge(achievement.badge);
+                        setShowBadgeModal(true);
+                      }}
+                      showProgress={false}
+                    />
+                  ))}
+
+                  {/* Locked Badges */}
+                  {lockedBadges.map((badge) => (
+                    <BadgeDisplay
+                      key={badge.id}
+                      badge={badge}
+                      earned={false}
+                      progress={stats ? getBadgeProgress(badge.id, stats) : undefined}
+                      size="medium"
+                      onClick={() => {
+                        setSelectedBadge(badge);
+                        setShowBadgeModal(true);
+                      }}
+                      showProgress={true}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          </Card>
+        )}
+
         {/* Category Breakdown Section */}
         <Card className="p-4 md:p-6">
           <h2 className="text-lg md:text-xl font-bold text-foreground mb-4">
@@ -397,6 +599,87 @@ export function ProgressDetailsPage() {
           </Accordion>
         </Card>
 
+        {/* Full Activity Feed Section - Story 11.6 */}
+        <Card className="p-4 md:p-6">
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h2 className="text-lg md:text-xl font-bold text-foreground">
+                פעילות מלאה
+              </h2>
+              {progressData.recentActivities.length > 5 && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowAllActivities(!showAllActivities)}
+                  className="gap-2"
+                >
+                  {showAllActivities ? (
+                    <>
+                      <IconChevronUp className="w-4 h-4" stroke={1.5} />
+                      <span>הצג פחות</span>
+                    </>
+                  ) : (
+                    <>
+                      <IconChevronDown className="w-4 h-4" stroke={1.5} />
+                      <span>הצג הכל ({progressData.recentActivities.length})</span>
+                    </>
+                  )}
+                </Button>
+              )}
+            </div>
+
+            {progressData.recentActivities.length === 0 ? (
+              <div className="flex flex-col items-center justify-center py-12 text-center">
+                <div className="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-3">
+                  <IconBook className="w-8 h-8 text-gray-400" stroke={1.5} />
+                </div>
+                <p className="text-gray-900 dark:text-white font-semibold mb-2">
+                  אין פעילות עדיין
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                  התחל לקרוא מדריכים כדי לראות את הפעילות שלך כאן
+                </p>
+                <Button variant="default" asChild>
+                  <Link to="/guides">התחל לקרוא</Link>
+                </Button>
+              </div>
+            ) : (
+              <div className={`space-y-2 ${!showAllActivities && progressData.recentActivities.length > 5 ? 'max-h-[400px] overflow-hidden' : ''}`}>
+                {(showAllActivities ? progressData.recentActivities : progressData.recentActivities.slice(0, 5)).map((activity) => (
+                  <div
+                    key={activity.id}
+                    className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                  >
+                    {/* Icon */}
+                    <div className="flex-shrink-0 w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center">
+                      {getActivityIcon(activity.type)}
+                    </div>
+
+                    {/* Content */}
+                    <div className="flex-1 min-w-0">
+                      {activity.link ? (
+                        <Link
+                          to={activity.link}
+                          className="text-sm text-gray-900 dark:text-white line-clamp-2 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+                        >
+                          {activity.description}
+                        </Link>
+                      ) : (
+                        <p className="text-sm text-gray-900 dark:text-white line-clamp-2">
+                          {activity.description}
+                        </p>
+                      )}
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                        {formatActivityTime(activity.timestamp)}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </Card>
+
         {/* All Guides Section with Filters */}
         <div className="space-y-4">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -467,6 +750,18 @@ export function ProgressDetailsPage() {
           </div>
         </div>
       </div>
+
+      {/* Badge Details Modal - Story 11.6 */}
+      {selectedBadge && stats && (
+        <BadgeModal
+          open={showBadgeModal}
+          onOpenChange={setShowBadgeModal}
+          badge={selectedBadge}
+          earned={earnedBadges.some(a => a.badge_id === selectedBadge.id)}
+          earnedAt={earnedBadges.find(a => a.badge_id === selectedBadge.id)?.earned_at || null}
+          userStats={stats}
+        />
+      )}
     </div>
   );
 }

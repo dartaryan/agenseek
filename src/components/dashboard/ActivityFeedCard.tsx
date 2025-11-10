@@ -252,16 +252,22 @@ export function ActivityFeedCard({ activities }: ActivityFeedCardProps) {
             <div className="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-3">
               <IconBook className="w-8 h-8 text-gray-400" stroke={1.5} />
             </div>
-            <p className="text-gray-600 dark:text-gray-400">
-              {hebrewLocale.dashboard.noRecentActivity}
+            <p className="text-gray-900 dark:text-white font-semibold mb-2">
+              אין פעילות אחרונה
             </p>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              התחל לקרוא מדריכים כדי לראות את הפעילות שלך כאן
+            </p>
+            <Button variant="default" asChild>
+              <Link to="/guides">התחל לקרוא</Link>
+            </Button>
           </div>
         )}
 
         {/* View All Button */}
         {hasActivities && (
           <Button variant="outline" className="w-full" asChild>
-            <Link to="/profile" className="flex items-center justify-center gap-2">
+            <Link to="/progress" className="flex items-center justify-center gap-2">
               {hebrewLocale.dashboard.viewAllActivity}
               <IconArrowLeft className="w-4 h-4" stroke={1.5} />
             </Link>
