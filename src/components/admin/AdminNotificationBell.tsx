@@ -350,6 +350,23 @@ export function AdminNotificationBell() {
             </div>
           </>
         )}
+
+        {/* Footer - View All Link */}
+        <DropdownMenuSeparator />
+        <div className="p-2">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="w-full justify-center text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+            onClick={() => {
+              setIsOpen(false);
+              navigate('/admin/notifications');
+            }}
+          >
+            <IconBell size={16} className="ml-2" />
+            צפה בכל ההתראות
+          </Button>
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );

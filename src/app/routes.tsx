@@ -37,6 +37,7 @@ const AdminDashboardPage = lazy(() => import('./admin').then(m => ({ default: m.
 const UserManagementPage = lazy(() => import('./admin/users').then(m => ({ default: m.UserManagementPage })));
 const ContentAnalyticsPage = lazy(() => import('./admin/analytics.tsx'));
 const EngagementReportPage = lazy(() => import('./admin/engagement.tsx'));
+const AdminNotificationsPage = lazy(() => import('./admin/notifications').then(m => ({ default: m.AdminNotificationsPage })));
 const AdminNotificationPreferencesPage = lazy(() => import('./admin/notifications/preferences').then(m => ({ default: m.AdminNotificationPreferencesPage })));
 const AdminActionLogPage = lazy(() => import('./admin/logs.tsx'));
 const BugReportsPage = lazy(() => import('./admin/bug-reports').then(m => ({ default: m.BugReportsPage })));
@@ -309,6 +310,14 @@ export const router = createBrowserRouter([
         element: (
           <RouteSuspense>
             <EngagementReportPage />
+          </RouteSuspense>
+        ),
+      },
+      {
+        path: 'notifications',
+        element: (
+          <RouteSuspense>
+            <AdminNotificationsPage />
           </RouteSuspense>
         ),
       },

@@ -10,6 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
+import { ScrollArea } from '../ui/scroll-area';
 import { useAuth } from '../../hooks/useAuth';
 import {
   fetchNotifications,
@@ -145,7 +146,7 @@ export function NotificationDropdown() {
           )}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-80 max-h-[500px] overflow-y-auto bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/90">
+      <DropdownMenuContent align="end" className="w-80 max-h-[600px] bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/90">
         <DropdownMenuLabel className="flex items-center justify-between">
           <span>{hebrewLocale.notifications.title}</span>
           {unreadCount > 0 && (
@@ -170,41 +171,43 @@ export function NotificationDropdown() {
             {hebrewLocale.notifications.noNotifications}
           </div>
         ) : (
-          notifications.map((notification) => (
-            <DropdownMenuItem key={notification.id} asChild className="cursor-pointer">
-              <Link
-                to={`/guides/${notification.guide_slug}?commentId=${notification.comment_id}`}
-                onClick={() => handleNotificationClick(notification)}
-                className={`flex flex-col gap-1 p-3 ${
-                  !notification.is_read ? 'bg-emerald-50' : ''
-                }`}
-              >
-                <div className="flex items-start justify-between gap-2">
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium">
-                      {notification.actor?.display_name || 'משתמש'}
-                    </p>
-                    <p className="text-xs text-gray-600">
-                      {getNotificationMessage(notification)}
-                    </p>
-                    {notification.comment_preview && (
-                      <p className="mt-1 text-xs text-gray-500 line-clamp-2">
-                        {notification.comment_preview}
+          <ScrollArea className="max-h-[400px]">
+            {notifications.map((notification) => (
+              <DropdownMenuItem key={notification.id} asChild className="cursor-pointer">
+                <Link
+                  to={`/guides/${notification.guide_slug}?commentId=${notification.comment_id}`}
+                  onClick={() => handleNotificationClick(notification)}
+                  className={`flex flex-col gap-1 p-3 ${
+                    !notification.is_read ? 'bg-emerald-50' : ''
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium">
+                        {notification.actor?.display_name || 'משתמש'}
                       </p>
-                    )}
-                    <p className="mt-1 text-xs text-gray-400">
-                      {getTimeAgo(notification.created_at)}
-                    </p>
-                  </div>
-                  {!notification.is_read && (
-                    <div className="shrink-0 mt-1">
-                      <div className="h-2 w-2 rounded-full bg-emerald-500" />
+                      <p className="text-xs text-gray-600">
+                        {getNotificationMessage(notification)}
+                      </p>
+                      {notification.comment_preview && (
+                        <p className="mt-1 text-xs text-gray-500 line-clamp-2">
+                          {notification.comment_preview}
+                        </p>
+                      )}
+                      <p className="mt-1 text-xs text-gray-400">
+                        {getTimeAgo(notification.created_at)}
+                      </p>
                     </div>
-                  )}
-                </div>
-              </Link>
-            </DropdownMenuItem>
-          ))
+                    {!notification.is_read && (
+                      <div className="shrink-0 mt-1">
+                        <div className="h-2 w-2 rounded-full bg-emerald-500" />
+                      </div>
+                    )}
+                  </div>
+                </Link>
+              </DropdownMenuItem>
+            ))}
+          </ScrollArea>
         )}
 
         {notifications.length > 0 && (
