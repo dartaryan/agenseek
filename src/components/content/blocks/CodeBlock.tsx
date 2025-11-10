@@ -48,19 +48,22 @@ const LANGUAGE_NAMES: Record<string, string> = {
 const CodeBlock = React.memo(function CodeBlock({ block }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
 
+  // Support both 'code' and 'content' properties (content is used in JSON files)
+  const codeContent = (block as any).content || block.code || '';
+
   // Detect dark mode
   const isDarkMode =
     typeof window !== 'undefined' && document.documentElement.classList.contains('dark');
 
   const handleCopy = React.useCallback(async () => {
     try {
-      await navigator.clipboard.writeText(block.code);
+      await navigator.clipboard.writeText(codeContent);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (error) {
       console.error('Failed to copy code:', error);
     }
-  }, [block.code]);
+  }, [codeContent]);
 
   const languageDisplayName = LANGUAGE_NAMES[block.language] || block.language.toUpperCase();
 
@@ -133,7 +136,7 @@ const CodeBlock = React.memo(function CodeBlock({ block }: CodeBlockProps) {
             },
           }}
         >
-          {block.code}
+          {codeContent}
         </SyntaxHighlighter>
       </div>
     </div>
