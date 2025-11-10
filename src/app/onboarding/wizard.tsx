@@ -52,6 +52,11 @@ export function OnboardingWizardPage() {
   const { toast } = useToast();
   const { user, refreshProfile } = useAuth();
 
+  // Auto-scroll to top when step changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentStep]);
+
   // Emergency logout handler for stuck users
   const handleEmergencyLogout = async () => {
     setIsLoggingOut(true);
