@@ -1,18 +1,28 @@
 /**
  * TabsBlock - Horizontal tabs with content panels
  * Story 3.8 - Implements Shadcn/ui Tabs with nested content support
+ * Extended: Supports both 'items' (TypeScript interface) and 'tabs' (JSON format) arrays
  */
 
-import type { TabsBlock as TabsBlockType } from '@/types/content-blocks';
+import type { TabsBlock as TabsBlockType, TabItem } from '@/types/content-blocks';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import ContentRenderer from '../ContentRenderer';
 
+/**
+ * Extended TabsBlock type to support 'tabs' array from JSON
+ */
+interface ExtendedTabsBlockType extends Omit<TabsBlockType, 'items'> {
+  items?: TabItem[];
+  tabs?: TabItem[];  // Legacy property used in some JSON files
+}
+
 interface TabsBlockProps {
-  block: TabsBlockType;
+  block: ExtendedTabsBlockType;
 }
 
 function TabsBlock({ block }: TabsBlockProps) {
-  const { items } = block;
+  // Support both 'items' (standard) and 'tabs' (legacy) properties
+  const items = block.items || block.tabs;
 
   // Validate items array
   if (!items || !Array.isArray(items) || items.length === 0) {

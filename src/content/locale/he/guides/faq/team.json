@@ -289,11 +289,6 @@
     },
     {
       "type": "text",
-      "content": "**markdown**: true",
-      "markdown": true
-    },
-    {
-      "type": "text",
       "content": "לא מצאתם את התשובה שחיפשתם? יש לכם עוד שאלות על עבודה צוותית עם BMAD?",
       "markdown": false
     },

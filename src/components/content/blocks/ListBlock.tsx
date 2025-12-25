@@ -11,16 +11,28 @@ interface ListBlockProps {
 }
 
 /**
- * Normalize list items - handle both string[] and ListItem[] formats
+ * Extended ListItem type to support legacy 'text' field from JSON
  */
-function normalizeListItems(items: (string | ListItem)[]): ListItem[] {
+interface ExtendedListItem extends ListItem {
+  text?: string; // Legacy field used in some JSON files
+}
+
+/**
+ * Normalize list items - handle string[], ListItem[], and legacy { text: string } formats
+ */
+function normalizeListItems(items: (string | ExtendedListItem)[]): ListItem[] {
   if (!items || !Array.isArray(items)) return [];
 
   return items.map(item => {
     if (typeof item === 'string') {
       return { content: item };
     }
-    return item;
+    // Support both 'content' (standard) and 'text' (legacy) properties
+    const extItem = item as ExtendedListItem;
+    return {
+      content: extItem.content || extItem.text || '',
+      children: extItem.children,
+    };
   });
 }
 

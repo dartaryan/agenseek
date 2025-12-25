@@ -121,8 +121,15 @@
     {
       "type": "card",
       "title": "Paige - כותבת טכנית ומומחית תיעוד",
-      "description": "תפקיד: Technical Writer + Knowledge Curator + Documentation Specialist",
-      "icon": "FileText"
+      "variant": "elevated",
+      "content": [
+        {
+          "type": "text",
+          "id": "paige-role",
+          "content": "**תפקיד:** Technical Writer + Knowledge Curator + Documentation Specialist",
+          "markdown": true
+        }
+      ]
     },
     {
       "type": "heading",
